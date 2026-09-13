@@ -1,0 +1,15 @@
+
+==============================================================================
+Exhaustive feature matching
+==============================================================================
+
+Matching block [1/3, 1/3] in 77.136s
+Matching block [1/3, 2/3] in 70.823s
+Matching block [1/3, 3/3] in 39.857s
+Matching block [2/3, 1/3] in 70.542s
+Matching block [2/3, 2/3] in 62.124s
+Matching block [2/3, 3/3] in 34.427s
+Matching block [3/3, 1/3] in 75.903s
+Matching block [3/3, 2/3] in 71.413s
+Matching block [3/3, 3/3] in 41.963s
+Elapsed time: 9.075 [minutes]

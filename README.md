@@ -10,7 +10,7 @@ gps가 사용 가능하다면 보조 정도... gps로 카메라 방향을 알 �
 초기에는 rgb 영상으로 진행하고 추후에 360도 카메라로 확장할 수 있도록 설계한다.
 
 사용할 라이브러리:
-COLMAP + (PyCOLMAP) + Open3D
+COLMAP + (PyCOLMAP) + OpenMVS + Open3D
 일반 RGB 영상으로 시작하기 좋고, 나중에 segmentation 연결·촬영 회차 비교·재구성 모델 교체하기 용이함. 
 영상 프레임 추출에는 FFmpeg나 OpenCV를 사용.
 나중에 360도로 확장은 파노라마를 여러 방향의 일반 시야각 영상으로 변환하는 방식을 사용
@@ -54,6 +54,18 @@ sfm_freiburg1_xyz_5fps/
 ├── sparse_txt/0/        # 모델의 텍스트 사본: cameras.txt, images.txt, points3D.txt
 ├── sparse.ply           # 색상을 포함한 희소 포인트클라우드
 ├── sparse_overview.png  # 점군과 프레임 순서에 따른 카메라 경로 그림
+├── dense/
+│   ├── images/          # 렌즈 왜곡을 보정한 PNG 133장
+│   ├── sparse/          # 보정 이미지에 맞춘 PINHOLE 카메라와 희소 모델
+│   └── stereo/          # COLMAP이 만든 설정 파일과 빈 깊이/법선 폴더
+├── openmvs/
+│   ├── scene.mvs        # COLMAP에서 변환한 카메라·희소점·이미지 참조
+│   ├── scene_dense.mvs  # 카메라·조밀 점군·관측 정보를 포함한 작업 모델
+│   ├── scene_dense.ply  # 조밀 점군의 좌표·색상·법선
+│   ├── depth*.dmap     # OpenMVS 깊이 지도 133개
+│   ├── densify.cfg     # 깊이 추정에 사용한 설정
+│   ├── view_neighbors.txt # 저장 모델에서 내보낸 이웃 이미지 목록
+│   └── dense_overview.png # 희소·조밀 점군 비교 미리보기
 └── logs/                # 단계별 실행 로그, 결과 통계, 검증 결과, GUI 캡처
 ```
 
@@ -184,4 +196,147 @@ GUI 실행 로그는 `logs/07_gui.log`, 화면 캡처는 `logs/09_gui.png`에 �
 
 ![희소 점군과 카메라 경로](sfm_freiburg1_xyz_5fps/sparse_overview.png)
 
-세 방향으로 왕복하는 카메라 이동 형태를 확인했다. 다만 정답 궤적과 정렬해 비교하지 않았으므로 실제 거리·자세 정확도는 아직 평가하지 않았다. 이번 결과는 RGB 영상만으로 복원한 임의 스케일의 희소 지도이며, 깊이 지도나 밀집 점군은 생성하지 않았다.
+세 방향으로 왕복하는 카메라 이동 형태를 확인했다. 다만 정답 궤적과 정렬해 비교하지 않았으므로 실제 거리·자세 정확도는 아직 평가하지 않았다. 이 SfM 단계의 결과는 RGB 영상만으로 복원한 임의 스케일의 희소 지도다. 이후 아래 과정으로 깊이 지도와 조밀 점군을 생성했다.
+
+## 렌즈 왜곡 보정과 OpenMVS 모델 변환
+
+COLMAP 3.7로 등록한 133장에 렌즈 왜곡 보정을 적용하고, OpenMVS 2.4.0으로 모델을 변환했다. 아래 명령은 저장소 루트에서 실행한 작업을 정리한 것이며, 이미 생성된 결과를 재계산할 필요는 없다.
+
+```bash
+mkdir -p sfm_freiburg1_xyz_5fps/dense
+colmap image_undistorter \
+  --image_path freiburg1_xyz_frames_5fps \
+  --input_path sfm_freiburg1_xyz_5fps/sparse/0 \
+  --output_path sfm_freiburg1_xyz_5fps/dense \
+  --output_type COLMAP \
+  --max_image_size 640 \
+  > sfm_freiburg1_xyz_5fps/logs/10_image_undistorter.log 2>&1
+
+mkdir -p sfm_freiburg1_xyz_5fps/openmvs
+InterfaceCOLMAP \
+  --working-folder "$(pwd)/sfm_freiburg1_xyz_5fps/logs" \
+  --input-file "$(pwd)/sfm_freiburg1_xyz_5fps/dense" \
+  --output-file "$(pwd)/sfm_freiburg1_xyz_5fps/openmvs/scene.mvs" \
+  --image-folder "$(pwd)/sfm_freiburg1_xyz_5fps/dense/images" \
+  --max-threads 8 \
+  > sfm_freiburg1_xyz_5fps/logs/11_interface_colmap.log 2>&1
+```
+
+보정된 이미지의 크기는 631×473이며, 공유 카메라 모델은 `PINHOLE`이다. 내부 파라미터는 `fx=fy=543.450959`, `cx=315.5`, `cy=236.5`다. 이후 이미지 분할과 3D 투영에도 이 보정 이미지와 대응 카메라를 함께 사용한다.
+
+모델 변환에서 카메라 자세 133개와 희소점 11,994개가 옮겨졌고, 이미지 133장의 참조 경로가 모두 존재함을 확인했다. `scene.mvs`의 이미지 참조는 `../dense/images/…` 형식이므로 두 폴더의 상대 위치를 유지한다. 변환 검증 기록은 [12_openmvs_conversion_validation.json](sfm_freiburg1_xyz_5fps/logs/12_openmvs_conversion_validation.json)에 있다.
+
+`dense/stereo/`와 `dense/run-colmap-*.sh`는 COLMAP 왜곡 보정 과정에서 자동 생성됐다. 해당 스크립트나 COLMAP의 조밀 복원은 실행하지 않았으며, 실제 깊이 지도는 다음 OpenMVS 작업으로 `openmvs/`에 생성했다. [OpenMVS의 COLMAP 변환 안내](https://github.com/cdcseacave/openMVS/wiki/Usage#convert-sfm-scene-from-colmap)
+
+## OpenMVS MVS 복원 실행 과정
+
+### 실행 환경과 명령
+
+Ubuntu 22.04.5 LTS에서 OpenMVS 2.4.0 CPU 빌드를 사용했다. 실행 파일은 사용자 경로 `/home/kdj/.local/opt/openmvs/2.4.0/bin/OpenMVS/`에 설치되어 있고, `/home/kdj/.local/bin/`의 링크로 호출한다. 이번 설치에는 CUDA와 GUI Viewer가 포함되지 않았다.
+
+다음 명령 한 번으로 이웃 이미지 선택, PatchMatch 깊이 추정, 기하학적 일관성 검사, 깊이 통합을 순서대로 수행했다. `--working-folder`를 모델 폴더로 지정해 이미지의 상대 경로를 해석하고 깊이 지도를 같은 폴더에 저장한다.
+
+```bash
+DensifyPointCloud \
+  --working-folder "$(pwd)/sfm_freiburg1_xyz_5fps/openmvs" \
+  --input-file scene.mvs \
+  --output-file scene_dense.mvs \
+  --archive-type 2 \
+  --resolution-level 0 \
+  --max-resolution 640 \
+  --min-resolution 320 \
+  --number-views 5 \
+  --iters 3 \
+  --geometric-iters 2 \
+  --number-views-fuse 2 \
+  --fusion-mode 0 \
+  --fusion-filter 2 \
+  --estimate-colors 2 \
+  --estimate-normals 2 \
+  --max-threads 8 \
+  --tower-mode 0 \
+  --estimate-roi 0 \
+  --crop-to-roi 0 \
+  --remove-dmaps 0 \
+  --dense-config-file densify.cfg \
+  > sfm_freiburg1_xyz_5fps/logs/13_densify_point_cloud.log 2>&1
+```
+
+| 단계 | 사용한 설정과 처리 내용 |
+|---|---|
+| 겹치는 이미지 선택 | 133장 모두 처리 가능했으며, 각 깊이 지도에는 기준 이미지와 선택된 이웃 이미지 5장이 기록됐다. |
+| PatchMatch 깊이 추정 | `resolution-level=0`으로 보정 해상도 631×473을 유지했다. `iters=3`으로 초기 깊이를 추정했다. |
+| 여러 시점에서 일관성 확인 | `geometric-iters=2`로 다른 시점의 깊이와 일치하도록 133장 전체에 두 차례 기하학적 검사를 수행했다. |
+| 깊이를 3D 점으로 변환·통합 | `fusion-mode=0`, `fusion-filter=2`로 깊이를 통합하고 필터링했다. `number-views-fuse=2`로 최소 두 시점의 일치를 요구했다. |
+
+CPU 스레드는 8개를 사용했다. `tower-mode=0`으로 타워 촬영용 처리를 끄고, 자동 관심 영역 추정과 해당 영역으로 자르기도 비활성화했다. `remove-dmaps=0`으로 후속 투영·검증에 사용할 깊이 지도를 보관했다. `archive-type=2`로 카메라와 조밀 점군 정보를 압축된 OpenMVS 작업 모델에 저장했다. [OpenMVS 조밀 복원 안내](https://github.com/cdcseacave/openMVS/wiki/Usage#dense-point-cloud-reconstruction-optional)
+
+### 복원 결과와 검증 (2026-09-13)
+
+| 항목 | 결과 |
+|---|---|
+| 입력 / 처리 이미지 | 133 / 133장 |
+| 깊이 지도 | 133개, 각각 631×473 |
+| 기하학적 일관성 검사 | 전체 이미지에 2회 완료 |
+| 최종 조밀 3D 점 | 252,564개 |
+| 희소점 대비 점 수 | 약 21.06배 (`11,994 → 252,564`) |
+| 유효 깊이 픽셀 비율 | 이미지당 평균 62.06%, 최소 35.10%, 최대 77.57% |
+| 실행 시간 | 507.24초, 약 8분 27초 |
+| 실행 종료 코드 | 0 |
+| 저장 모델 재로딩 | 카메라 자세 133개, 조밀점 252,564개 확인 |
+| 메시 / 텍스처 | 생성하지 않음 |
+
+깊이 지도 133개의 파일 구조, 해상도, 이미지 참조, 깊이 값과 카메라 행렬을 검사했다. 모든 깊이 값은 유한하고 음수가 아니었으며, 각 지도에 양의 깊이가 존재했다. 0은 유효 깊이가 없는 픽셀로 집계했다. 조밀 점군의 좌표와 법선도 모두 유한한 값이고, 변환 입력인 `scene.mvs`는 해시 비교 결과 변경되지 않았다.
+
+유효 깊이 픽셀 비율과 점 수 증가는 정확도 점수가 아니다. 정답 깊이·궤적과 비교하지 않았고, 일부 빈 영역과 잡음이 남아 있다. 좌표와 깊이는 RGB 기반 SfM의 임의 스케일이며, TUM 깊이 센서 데이터는 사용하지 않았다.
+
+| 파일 | 용도 |
+|---|---|
+| [scene_dense.ply](sfm_freiburg1_xyz_5fps/openmvs/scene_dense.ply) | 좌표·색상·법선을 가진 조밀 점군. 시각화와 후처리에 사용한다. |
+| [scene_dense.mvs](sfm_freiburg1_xyz_5fps/openmvs/scene_dense.mvs) | 카메라·조밀점·관측 정보를 보관하는 후속 작업용 모델. 이미지 자체는 별도 파일로 참조한다. |
+| `openmvs/depth*.dmap` | 이미지별 깊이·법선·신뢰도와 카메라·선택된 이웃 정보. 파일 번호는 이미지 ID이며 프레임 파일명 번호와 같다고 가정하면 안 된다. |
+| [view_neighbors.txt](sfm_freiburg1_xyz_5fps/openmvs/view_neighbors.txt) | 저장 모델에서 내보낸 이웃 이미지 목록. 깊이 추정에 실제 사용한 5장의 ID는 각 `.dmap` 및 검증 JSON에 기록되어 있다. |
+| [13_densify_point_cloud.log](sfm_freiburg1_xyz_5fps/logs/13_densify_point_cloud.log) | 실행 명령과 단계별 진행·완료 로그. |
+| [14_mvs_run.json](sfm_freiburg1_xyz_5fps/logs/14_mvs_run.json) | 전체 명령 인자, 시작·종료 시각, 소요 시간, 입력 해시. |
+| [15_mvs_validation.json](sfm_freiburg1_xyz_5fps/logs/15_mvs_validation.json) | 전체 통계와 이미지별 깊이 지도 검증 결과. |
+| [16_mvs_model_readback.log](sfm_freiburg1_xyz_5fps/logs/16_mvs_model_readback.log) | 저장 모델을 다시 읽고 이웃 목록만 내보낸 검증 로그. 이 확인 과정에서 복원을 재실행하지 않았다. |
+
+PLY만으로는 원래 카메라와 점별 관측 정보를 모두 복구할 수 없으므로, 후속 작업을 위해 `.mvs`, 보정 이미지, 카메라 모델, 깊이 지도를 함께 보관한다.
+
+![희소 지도와 조밀 지도 비교](sfm_freiburg1_xyz_5fps/openmvs/dense_overview.png)
+
+비교 그림은 67번째 프레임 카메라 기준으로 표시했다. 두 패널의 축 범위는 조밀점 좌표의 0.5–99.5백분위수로 맞췄고, 표시 점은 최대 150,000개를 표본 추출했다. 저장된 PLY에는 전체 252,564개 점이 그대로 있다.
+
+## 앞으로의 파이프라인
+
+현재 완료한 범위는 `RGB 영상 → FFmpeg 5fps 프레임 → COLMAP SfM → 렌즈 왜곡 보정 → OpenMVS 변환 → 조밀 점군 복원`이다. 아래는 앞으로 수행할 계획이며 아직 실행하지 않았다.
+
+프로젝트의 우선 목표는 클래스와 관측 근거를 가진 3D 점군 지도다. 먼저 조밀 점군을 점검한 뒤 보정 이미지의 2D 분할 결과를 3D 점에 연결하는 순서로 진행한다.
+
+```mermaid
+flowchart TD
+    A[조밀 점군 복원 완료] --> B[점군 품질 확인과 후처리]
+    B --> C[보정 이미지의 2D segmentation]
+    C --> D[카메라 투영과 깊이 비교로 관측 연결]
+    D --> E[여러 시점의 클래스와 신뢰도 통합]
+    E --> F[클래스와 관측 근거를 가진 3D 지도]
+    B --> G[선택: 메시 생성]
+    G --> H[선택: 메시 정밀화와 텍스처]
+```
+
+| 순서 | 할 작업 | 산출물·확인 기준 |
+|---|---|---|
+| 1. 점군 품질 확인·후처리 | Open3D 등의 뷰어에서 빈 영역과 고립점을 확인하고, 필요하면 이상점 제거와 voxel downsampling을 적용한다. | 원본과 별도의 정리된 점군. 제거 전후 점 수와 물체 형태를 비교하고, 원본 점 ID와 대응 관계를 보존한다. 필터 거리 기준은 현재 임의 스케일에 맞춰 정한다. |
+| 2. 프레임·카메라 연결 정리 | 보정 이미지 파일명, COLMAP 이미지 ID, 카메라 파라미터, 깊이 지도 ID, 영상 내 시각을 연결한다. | 프레임 메타데이터. 현재 AVI의 상대 시각과 TUM 원본 센서 타임스탬프를 구분한다. |
+| 3. 2D segmentation | 보정 이미지에 고정된 클래스 목록으로 분할을 적용한다. 사용할 모델과 추론 환경은 이 단계에서 선정·검증한다. | 이미지별 클래스 마스크와 제공 가능한 신뢰도. 리사이즈한 추론 결과는 631×473 좌표에 정확히 대응시킨다. |
+| 4. 2D–3D 관측 연결 | 3D 점을 각 보정 이미지에 투영하고, 화면 범위와 양의 깊이, 해당 `.dmap`과의 깊이 일치를 검사한다. | 실제로 보이는 점에만 라벨 후보를 연결한다. 카메라 뒤쪽 점과 다른 물체에 가려진 점은 해당 프레임의 투표에서 제외한다. |
+| 5. 여러 시점의 라벨 통합 | 분할 신뢰도, 관측 횟수, 시점 등을 고려해 점별 클래스를 집계한다. 비슷한 연속 프레임의 중복 투표도 고려한다. | 점별 클래스·신뢰도·관측 수. 관측 부족이나 클래스 충돌은 `unknown`으로 남긴다. |
+| 6. 의미 지도 저장·평가 | `point_id`, `xyz`, `rgb`, `class_id`, 신뢰도와 근거 프레임·시각을 함께 저장한다. | 클래스별 색상 시각화, 대표 프레임 재투영, 수작업 정답 일부와의 비교로 잘못 연결된 라벨을 점검한다. |
+
+점군 후처리에는 통계 기반 또는 반경 기반 이상점 제거를 검토할 수 있다. 현재 단계에서 이러한 추가 후처리는 아직 실행하지 않았다. [Open3D 점군 이상점 제거 안내](https://www.open3d.org/docs/release/tutorial/geometry/pointcloud_outlier_removal.html)
+
+투영에는 보정된 카메라의 `K`와 월드→카메라 변환 `Xc = R·Xw + t`를 사용한다. `u = fx·Xc.x/Xc.z + cx`, `v = fy·Xc.y/Xc.z + cy`로 픽셀 위치를 구하고, `Xc.z`를 같은 이미지의 깊이와 비교한다. 왜곡 보정 전 640×480 이미지의 좌표나 내부 파라미터를 섞지 않는다. [COLMAP 카메라 자세 형식](https://colmap.github.io/format.html#images-txt)
+
+삼각형 표면 모델이 필요하면 `ReconstructMesh → RefineMesh(선택) → TextureMesh(선택)`를 진행한다. 각각 점군에서 표면 생성, 이미지에 맞춘 표면 정밀화, 사진 기반 텍스처 생성을 담당한다. 이 경로는 3D 점에 클래스를 붙이기 위한 필수 단계는 아니다. OpenMVS 후속 도구에는 관측 정보가 있는 `scene_dense.mvs`를 기본 입력으로 사용한다. [OpenMVS 메시 생성·정밀화·텍스처 안내](https://github.com/cdcseacave/openMVS/wiki/Usage#rough-mesh-reconstruction)
+
+의미 지도까지 검증한 뒤에는 고정 클래스 목록을 VLM이 제안한 후보와 연결하고, 여러 촬영 회차의 스케일·좌표 정렬 및 변화 비교로 확장한다. 360도 영상은 시야를 나눈 이미지와 각 시야의 카메라 모델을 일관되게 관리하는 별도 입력 경로로 추가할 계획이다.

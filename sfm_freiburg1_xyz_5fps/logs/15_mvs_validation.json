@@ -1,0 +1,3363 @@
+{
+  "images": 133,
+  "depth_maps": 133,
+  "geometric_consistency_passes": 2,
+  "dense_points": 252564,
+  "sparse_points": 11994,
+  "point_count_ratio": 21.05752876438219,
+  "xyz_all_finite": true,
+  "input_scene_unchanged": true,
+  "elapsed_seconds": 507.2369330319998,
+  "depth_resolution": [
+    631,
+    473
+  ],
+  "valid_depth_fraction_min": 0.3509614257043587,
+  "valid_depth_fraction_mean": 0.6205968931703957,
+  "valid_depth_fraction_max": 0.7757008406402134,
+  "xyz_min": [
+    -40.235008239746094,
+    -43.13201141357422,
+    16.914793014526367
+  ],
+  "xyz_max": [
+    45.99665832519531,
+    19.70905876159668,
+    76.16413879394531
+  ],
+  "output_bytes": {
+    "scene_dense.mvs": 12559132,
+    "scene_dense.ply": 6819474
+  },
+  "depth_maps_bytes": 793945894,
+  "depth_maps_details": [
+    {
+      "file": "depth0001.dmap",
+      "image": "../dense/images/frame_000006.png",
+      "image_id": 1,
+      "neighbors": [
+        81,
+        125,
+        91,
+        90,
+        124
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 200390,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6714065059990686,
+      "depth_min": 7.907391548156738,
+      "depth_max": 48.93730545043945
+    },
+    {
+      "file": "depth0002.dmap",
+      "image": "../dense/images/frame_000002.png",
+      "image_id": 2,
+      "neighbors": [
+        81,
+        90,
+        91,
+        86,
+        59
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 205033,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6869628731199512,
+      "depth_min": 16.387704849243164,
+      "depth_max": 239.8045654296875
+    },
+    {
+      "file": "depth0003.dmap",
+      "image": "../dense/images/frame_000005.png",
+      "image_id": 3,
+      "neighbors": [
+        81,
+        125,
+        84,
+        124,
+        91
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 204628,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6856059210019332,
+      "depth_min": 6.449510097503662,
+      "depth_max": 60.71884536743164
+    },
+    {
+      "file": "depth0004.dmap",
+      "image": "../dense/images/frame_000008.png",
+      "image_id": 4,
+      "neighbors": [
+        81,
+        125,
+        124,
+        91,
+        126
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 208163,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6974499351678433,
+      "depth_min": 11.90061092376709,
+      "depth_max": 54.20233154296875
+    },
+    {
+      "file": "depth0005.dmap",
+      "image": "../dense/images/frame_000004.png",
+      "image_id": 5,
+      "neighbors": [
+        81,
+        125,
+        90,
+        91,
+        124
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 195007,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6533707695761284,
+      "depth_min": 10.351194381713867,
+      "depth_max": 61.37576675415039
+    },
+    {
+      "file": "depth0006.dmap",
+      "image": "../dense/images/frame_000001.png",
+      "image_id": 6,
+      "neighbors": [
+        81,
+        90,
+        91,
+        86,
+        62
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 179603,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6017596821046495,
+      "depth_min": 17.637123107910156,
+      "depth_max": 87.40946960449219
+    },
+    {
+      "file": "depth0007.dmap",
+      "image": "../dense/images/frame_000003.png",
+      "image_id": 7,
+      "neighbors": [
+        81,
+        91,
+        90,
+        125,
+        86
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 196818,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6594385233680556,
+      "depth_min": 15.18034839630127,
+      "depth_max": 80.03307342529297
+    },
+    {
+      "file": "depth0008.dmap",
+      "image": "../dense/images/frame_000007.png",
+      "image_id": 8,
+      "neighbors": [
+        81,
+        125,
+        127,
+        124,
+        126
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 211610,
+      "total_pixels": 298463,
+      "valid_fraction": 0.7089991054167518,
+      "depth_min": 1.904472827911377,
+      "depth_max": 98.08740234375
+    },
+    {
+      "file": "depth0009.dmap",
+      "image": "../dense/images/frame_000010.png",
+      "image_id": 9,
+      "neighbors": [
+        86,
+        125,
+        126,
+        124,
+        91
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 183419,
+      "total_pixels": 298463,
+      "valid_fraction": 0.61454518650553,
+      "depth_min": 15.824090957641602,
+      "depth_max": 118.5006332397461
+    },
+    {
+      "file": "depth0010.dmap",
+      "image": "../dense/images/frame_000009.png",
+      "image_id": 10,
+      "neighbors": [
+        81,
+        125,
+        124,
+        86,
+        91
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 201929,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6765629240475369,
+      "depth_min": 8.457279205322266,
+      "depth_max": 82.14991760253906
+    },
+    {
+      "file": "depth0011.dmap",
+      "image": "../dense/images/frame_000013.png",
+      "image_id": 11,
+      "neighbors": [
+        86,
+        91,
+        125,
+        90,
+        126
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 138527,
+      "total_pixels": 298463,
+      "valid_fraction": 0.4641345828461149,
+      "depth_min": 14.571818351745605,
+      "depth_max": 92.43384552001953
+    },
+    {
+      "file": "depth0012.dmap",
+      "image": "../dense/images/frame_000014.png",
+      "image_id": 12,
+      "neighbors": [
+        82,
+        99,
+        100,
+        83,
+        118
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 126406,
+      "total_pixels": 298463,
+      "valid_fraction": 0.4235231837782238,
+      "depth_min": 20.25772476196289,
+      "depth_max": 97.9674072265625
+    },
+    {
+      "file": "depth0013.dmap",
+      "image": "../dense/images/frame_000011.png",
+      "image_id": 13,
+      "neighbors": [
+        91,
+        86,
+        125,
+        90,
+        126
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 165320,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5539045040758821,
+      "depth_min": 16.94192123413086,
+      "depth_max": 87.15835571289062
+    },
+    {
+      "file": "depth0014.dmap",
+      "image": "../dense/images/frame_000015.png",
+      "image_id": 14,
+      "neighbors": [
+        82,
+        99,
+        100,
+        84,
+        83
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 140192,
+      "total_pixels": 298463,
+      "valid_fraction": 0.4697131637757444,
+      "depth_min": 13.639689445495605,
+      "depth_max": 106.67296600341797
+    },
+    {
+      "file": "depth0015.dmap",
+      "image": "../dense/images/frame_000016.png",
+      "image_id": 15,
+      "neighbors": [
+        81,
+        91,
+        90,
+        86,
+        30
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 176458,
+      "total_pixels": 298463,
+      "valid_fraction": 0.591222362570905,
+      "depth_min": 12.261293411254883,
+      "depth_max": 92.45013427734375
+    },
+    {
+      "file": "depth0016.dmap",
+      "image": "../dense/images/frame_000012.png",
+      "image_id": 16,
+      "neighbors": [
+        91,
+        125,
+        90,
+        86,
+        124
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 150970,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5058248426103068,
+      "depth_min": 11.584857940673828,
+      "depth_max": 87.73369598388672
+    },
+    {
+      "file": "depth0017.dmap",
+      "image": "../dense/images/frame_000019.png",
+      "image_id": 17,
+      "neighbors": [
+        125,
+        124,
+        126,
+        127,
+        86
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 170847,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5724227123630065,
+      "depth_min": 3.697039842605591,
+      "depth_max": 150.55264282226562
+    },
+    {
+      "file": "depth0018.dmap",
+      "image": "../dense/images/frame_000017.png",
+      "image_id": 18,
+      "neighbors": [
+        86,
+        91,
+        90,
+        125,
+        124
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 156615,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5247384097861376,
+      "depth_min": 11.272441864013672,
+      "depth_max": 85.97948455810547
+    },
+    {
+      "file": "depth0019.dmap",
+      "image": "../dense/images/frame_000020.png",
+      "image_id": 19,
+      "neighbors": [
+        125,
+        124,
+        126,
+        81,
+        91
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 193352,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6478256936370672,
+      "depth_min": 12.589730262756348,
+      "depth_max": 66.6334228515625
+    },
+    {
+      "file": "depth0020.dmap",
+      "image": "../dense/images/frame_000018.png",
+      "image_id": 20,
+      "neighbors": [
+        125,
+        124,
+        91,
+        86,
+        126
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 174785,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5856169776488208,
+      "depth_min": 15.253144264221191,
+      "depth_max": 194.67477416992188
+    },
+    {
+      "file": "depth0021.dmap",
+      "image": "../dense/images/frame_000021.png",
+      "image_id": 21,
+      "neighbors": [
+        125,
+        128,
+        81,
+        127,
+        126
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 202229,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6775680737645873,
+      "depth_min": 11.165108680725098,
+      "depth_max": 71.33003234863281
+    },
+    {
+      "file": "depth0022.dmap",
+      "image": "../dense/images/frame_000022.png",
+      "image_id": 22,
+      "neighbors": [
+        125,
+        124,
+        127,
+        126,
+        128
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 208489,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6985421978603713,
+      "depth_min": 1.388476848602295,
+      "depth_max": 66.27404022216797
+    },
+    {
+      "file": "depth0023.dmap",
+      "image": "../dense/images/frame_000024.png",
+      "image_id": 23,
+      "neighbors": [
+        125,
+        126,
+        124,
+        127,
+        129
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 202355,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6779902366457484,
+      "depth_min": 10.93947696685791,
+      "depth_max": 54.13878631591797
+    },
+    {
+      "file": "depth0024.dmap",
+      "image": "../dense/images/frame_000023.png",
+      "image_id": 24,
+      "neighbors": [
+        125,
+        126,
+        127,
+        128,
+        124
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 206614,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6922600121288066,
+      "depth_min": 10.096156120300293,
+      "depth_max": 60.27020263671875
+    },
+    {
+      "file": "depth0025.dmap",
+      "image": "../dense/images/frame_000027.png",
+      "image_id": 25,
+      "neighbors": [
+        91,
+        86,
+        125,
+        90,
+        124
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 137933,
+      "total_pixels": 298463,
+      "valid_fraction": 0.46214438640635525,
+      "depth_min": 17.46381378173828,
+      "depth_max": 89.0826644897461
+    },
+    {
+      "file": "depth0026.dmap",
+      "image": "../dense/images/frame_000026.png",
+      "image_id": 26,
+      "neighbors": [
+        91,
+        125,
+        90,
+        86,
+        126
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 163898,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5491400944170635,
+      "depth_min": 16.128477096557617,
+      "depth_max": 85.41956329345703
+    },
+    {
+      "file": "depth0027.dmap",
+      "image": "../dense/images/frame_000025.png",
+      "image_id": 27,
+      "neighbors": [
+        125,
+        91,
+        86,
+        124,
+        126
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 184055,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6166761039056767,
+      "depth_min": 9.225225448608398,
+      "depth_max": 119.950927734375
+    },
+    {
+      "file": "depth0028.dmap",
+      "image": "../dense/images/frame_000030.png",
+      "image_id": 28,
+      "neighbors": [
+        59,
+        60,
+        39,
+        125,
+        37
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 195690,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6556591604319464,
+      "depth_min": 5.49277400970459,
+      "depth_max": 113.98141479492188
+    },
+    {
+      "file": "depth0029.dmap",
+      "image": "../dense/images/frame_000031.png",
+      "image_id": 29,
+      "neighbors": [
+        60,
+        6,
+        37,
+        52,
+        18
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 190898,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6396035689515953,
+      "depth_min": 6.676163196563721,
+      "depth_max": 100.41018676757812
+    },
+    {
+      "file": "depth0030.dmap",
+      "image": "../dense/images/frame_000032.png",
+      "image_id": 30,
+      "neighbors": [
+        32,
+        16,
+        6,
+        31,
+        18
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 163055,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5463156237121519,
+      "depth_min": 15.31911563873291,
+      "depth_max": 101.86463928222656
+    },
+    {
+      "file": "depth0031.dmap",
+      "image": "../dense/images/frame_000028.png",
+      "image_id": 31,
+      "neighbors": [
+        91,
+        125,
+        86,
+        90,
+        126
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 119713,
+      "total_pixels": 298463,
+      "valid_fraction": 0.4010982935908304,
+      "depth_min": 18.230283737182617,
+      "depth_max": 90.23554992675781
+    },
+    {
+      "file": "depth0032.dmap",
+      "image": "../dense/images/frame_000029.png",
+      "image_id": 32,
+      "neighbors": [
+        91,
+        90,
+        86,
+        125,
+        81
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 169071,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5664722260380683,
+      "depth_min": 5.713927745819092,
+      "depth_max": 88.65603637695312
+    },
+    {
+      "file": "depth0033.dmap",
+      "image": "../dense/images/frame_000033.png",
+      "image_id": 33,
+      "neighbors": [
+        32,
+        31,
+        16,
+        40,
+        6
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 149471,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5008024445241118,
+      "depth_min": 9.297547340393066,
+      "depth_max": 109.25762939453125
+    },
+    {
+      "file": "depth0034.dmap",
+      "image": "../dense/images/frame_000036.png",
+      "image_id": 34,
+      "neighbors": [
+        32,
+        6,
+        16,
+        31,
+        25
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 149243,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5000385307391536,
+      "depth_min": 16.16720199584961,
+      "depth_max": 127.65777587890625
+    },
+    {
+      "file": "depth0035.dmap",
+      "image": "../dense/images/frame_000034.png",
+      "image_id": 35,
+      "neighbors": [
+        32,
+        31,
+        29,
+        16,
+        40
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 146474,
+      "total_pixels": 298463,
+      "valid_fraction": 0.49076099885077884,
+      "depth_min": 10.865983963012695,
+      "depth_max": 121.53022766113281
+    },
+    {
+      "file": "depth0036.dmap",
+      "image": "../dense/images/frame_000037.png",
+      "image_id": 36,
+      "neighbors": [
+        60,
+        6,
+        39,
+        16,
+        18
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 171654,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5751265651018719,
+      "depth_min": 8.564543724060059,
+      "depth_max": 109.24890899658203
+    },
+    {
+      "file": "depth0037.dmap",
+      "image": "../dense/images/frame_000035.png",
+      "image_id": 37,
+      "neighbors": [
+        32,
+        31,
+        40,
+        16,
+        29
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 162769,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5453573809818972,
+      "depth_min": 5.861251354217529,
+      "depth_max": 199.0844268798828
+    },
+    {
+      "file": "depth0038.dmap",
+      "image": "../dense/images/frame_000039.png",
+      "image_id": 38,
+      "neighbors": [
+        90,
+        91,
+        81,
+        62,
+        41
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 182621,
+      "total_pixels": 298463,
+      "valid_fraction": 0.611871488258176,
+      "depth_min": 13.731380462646484,
+      "depth_max": 116.10407257080078
+    },
+    {
+      "file": "depth0039.dmap",
+      "image": "../dense/images/frame_000040.png",
+      "image_id": 39,
+      "neighbors": [
+        90,
+        91,
+        40,
+        81,
+        86
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 207463,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6951045858280591,
+      "depth_min": 13.643948554992676,
+      "depth_max": 133.62857055664062
+    },
+    {
+      "file": "depth0040.dmap",
+      "image": "../dense/images/frame_000038.png",
+      "image_id": 40,
+      "neighbors": [
+        60,
+        39,
+        59,
+        41,
+        91
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 179414,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6011264377829078,
+      "depth_min": 11.599356651306152,
+      "depth_max": 121.5766372680664
+    },
+    {
+      "file": "depth0041.dmap",
+      "image": "../dense/images/frame_000041.png",
+      "image_id": 41,
+      "neighbors": [
+        124,
+        81,
+        125,
+        91,
+        13
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 213624,
+      "total_pixels": 298463,
+      "valid_fraction": 0.7157470105172166,
+      "depth_min": 5.610961437225342,
+      "depth_max": 173.95924377441406
+    },
+    {
+      "file": "depth0042.dmap",
+      "image": "../dense/images/frame_000042.png",
+      "image_id": 42,
+      "neighbors": [
+        27,
+        13,
+        9,
+        58,
+        127
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 209053,
+      "total_pixels": 298463,
+      "valid_fraction": 0.700431879328426,
+      "depth_min": 8.492324829101562,
+      "depth_max": 101.83113861083984
+    },
+    {
+      "file": "depth0043.dmap",
+      "image": "../dense/images/frame_000043.png",
+      "image_id": 43,
+      "neighbors": [
+        89,
+        106,
+        80,
+        128,
+        27
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 197663,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6622696950710808,
+      "depth_min": 13.025853157043457,
+      "depth_max": 81.30311584472656
+    },
+    {
+      "file": "depth0044.dmap",
+      "image": "../dense/images/frame_000045.png",
+      "image_id": 44,
+      "neighbors": [
+        106,
+        89,
+        80,
+        27,
+        127
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 198408,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6647658168684225,
+      "depth_min": 11.847837448120117,
+      "depth_max": 81.15719604492188
+    },
+    {
+      "file": "depth0045.dmap",
+      "image": "../dense/images/frame_000044.png",
+      "image_id": 45,
+      "neighbors": [
+        89,
+        106,
+        133,
+        80,
+        128
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 195177,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6539403544157902,
+      "depth_min": 5.265459060668945,
+      "depth_max": 86.60028839111328
+    },
+    {
+      "file": "depth0046.dmap",
+      "image": "../dense/images/frame_000046.png",
+      "image_id": 46,
+      "neighbors": [
+        128,
+        27,
+        133,
+        127,
+        132
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 204377,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6847649457386678,
+      "depth_min": 4.784992694854736,
+      "depth_max": 97.64024353027344
+    },
+    {
+      "file": "depth0047.dmap",
+      "image": "../dense/images/frame_000048.png",
+      "image_id": 47,
+      "neighbors": [
+        90,
+        91,
+        86,
+        125,
+        81
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 203458,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6816858371054368,
+      "depth_min": 13.16002368927002,
+      "depth_max": 98.490966796875
+    },
+    {
+      "file": "depth0048.dmap",
+      "image": "../dense/images/frame_000047.png",
+      "image_id": 48,
+      "neighbors": [
+        81,
+        65,
+        126,
+        125,
+        9
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 216885,
+      "total_pixels": 298463,
+      "valid_fraction": 0.7266729879415539,
+      "depth_min": 7.180126667022705,
+      "depth_max": 78.56629180908203
+    },
+    {
+      "file": "depth0049.dmap",
+      "image": "../dense/images/frame_000049.png",
+      "image_id": 49,
+      "neighbors": [
+        41,
+        59,
+        81,
+        90,
+        91
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 187049,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6267074980818393,
+      "depth_min": 15.458292007446289,
+      "depth_max": 123.5447998046875
+    },
+    {
+      "file": "depth0050.dmap",
+      "image": "../dense/images/frame_000050.png",
+      "image_id": 50,
+      "neighbors": [
+        60,
+        39,
+        59,
+        127,
+        18
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 168854,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5657451677427353,
+      "depth_min": 6.131560802459717,
+      "depth_max": 136.7171173095703
+    },
+    {
+      "file": "depth0051.dmap",
+      "image": "../dense/images/frame_000051.png",
+      "image_id": 51,
+      "neighbors": [
+        18,
+        58,
+        6,
+        32,
+        2
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 144321,
+      "total_pixels": 298463,
+      "valid_fraction": 0.4835473743814141,
+      "depth_min": 15.702042579650879,
+      "depth_max": 117.77043914794922
+    },
+    {
+      "file": "depth0052.dmap",
+      "image": "../dense/images/frame_000053.png",
+      "image_id": 52,
+      "neighbors": [
+        29,
+        32,
+        31,
+        40,
+        16
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 166142,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5566586143006,
+      "depth_min": 7.614861965179443,
+      "depth_max": 140.41531372070312
+    },
+    {
+      "file": "depth0053.dmap",
+      "image": "../dense/images/frame_000056.png",
+      "image_id": 53,
+      "neighbors": [
+        16,
+        6,
+        32,
+        18,
+        58
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 145434,
+      "total_pixels": 298463,
+      "valid_fraction": 0.48727647983167094,
+      "depth_min": 8.815108299255371,
+      "depth_max": 174.3369598388672
+    },
+    {
+      "file": "depth0054.dmap",
+      "image": "../dense/images/frame_000052.png",
+      "image_id": 54,
+      "neighbors": [
+        32,
+        31,
+        16,
+        6,
+        25
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 146413,
+      "total_pixels": 298463,
+      "valid_fraction": 0.49055661840831194,
+      "depth_min": 13.165119171142578,
+      "depth_max": 119.50921630859375
+    },
+    {
+      "file": "depth0055.dmap",
+      "image": "../dense/images/frame_000054.png",
+      "image_id": 55,
+      "neighbors": [
+        40,
+        32,
+        31,
+        29,
+        16
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 148808,
+      "total_pixels": 298463,
+      "valid_fraction": 0.49858106364943056,
+      "depth_min": 10.050281524658203,
+      "depth_max": 236.24212646484375
+    },
+    {
+      "file": "depth0056.dmap",
+      "image": "../dense/images/frame_000057.png",
+      "image_id": 56,
+      "neighbors": [
+        60,
+        39,
+        59,
+        86,
+        125
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 169026,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5663214535805108,
+      "depth_min": 12.4005765914917,
+      "depth_max": 126.560791015625
+    },
+    {
+      "file": "depth0057.dmap",
+      "image": "../dense/images/frame_000055.png",
+      "image_id": 57,
+      "neighbors": [
+        32,
+        31,
+        40,
+        16,
+        6
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 137262,
+      "total_pixels": 298463,
+      "valid_fraction": 0.4598962015392193,
+      "depth_min": 13.013665199279785,
+      "depth_max": 125.52155303955078
+    },
+    {
+      "file": "depth0058.dmap",
+      "image": "../dense/images/frame_000058.png",
+      "image_id": 58,
+      "neighbors": [
+        91,
+        90,
+        86,
+        125,
+        59
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 200531,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6718789263660823,
+      "depth_min": 12.66341495513916,
+      "depth_max": 114.93961334228516
+    },
+    {
+      "file": "depth0059.dmap",
+      "image": "../dense/images/frame_000060.png",
+      "image_id": 59,
+      "neighbors": [
+        13,
+        58,
+        81,
+        16,
+        32
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 219100,
+      "total_pixels": 298463,
+      "valid_fraction": 0.7340943433524424,
+      "depth_min": 7.82667350769043,
+      "depth_max": 96.27298736572266
+    },
+    {
+      "file": "depth0060.dmap",
+      "image": "../dense/images/frame_000059.png",
+      "image_id": 60,
+      "neighbors": [
+        91,
+        90,
+        125,
+        86,
+        124
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 174445,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5844778079694971,
+      "depth_min": 16.532182693481445,
+      "depth_max": 106.83753967285156
+    },
+    {
+      "file": "depth0061.dmap",
+      "image": "../dense/images/frame_000062.png",
+      "image_id": 61,
+      "neighbors": [
+        20,
+        89,
+        60,
+        97,
+        88
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 213651,
+      "total_pixels": 298463,
+      "valid_fraction": 0.715837473991751,
+      "depth_min": 13.422890663146973,
+      "depth_max": 86.98311614990234
+    },
+    {
+      "file": "depth0062.dmap",
+      "image": "../dense/images/frame_000061.png",
+      "image_id": 62,
+      "neighbors": [
+        27,
+        13,
+        20,
+        16,
+        26
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 222043,
+      "total_pixels": 298463,
+      "valid_fraction": 0.7439548620767064,
+      "depth_min": 7.6888813972473145,
+      "depth_max": 82.63829803466797
+    },
+    {
+      "file": "depth0063.dmap",
+      "image": "../dense/images/frame_000063.png",
+      "image_id": 63,
+      "neighbors": [
+        60,
+        104,
+        88,
+        89,
+        48
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 231518,
+      "total_pixels": 298463,
+      "valid_fraction": 0.7757008406402134,
+      "depth_min": 4.518347263336182,
+      "depth_max": 148.9849090576172
+    },
+    {
+      "file": "depth0064.dmap",
+      "image": "../dense/images/frame_000065.png",
+      "image_id": 64,
+      "neighbors": [
+        88,
+        89,
+        60,
+        27,
+        104
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 210923,
+      "total_pixels": 298463,
+      "valid_fraction": 0.7066973125647065,
+      "depth_min": 4.6422810554504395,
+      "depth_max": 91.06903839111328
+    },
+    {
+      "file": "depth0065.dmap",
+      "image": "../dense/images/frame_000064.png",
+      "image_id": 65,
+      "neighbors": [
+        106,
+        104,
+        60,
+        88,
+        94
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 213918,
+      "total_pixels": 298463,
+      "valid_fraction": 0.7167320572399258,
+      "depth_min": 5.835391521453857,
+      "depth_max": 156.00189208984375
+    },
+    {
+      "file": "depth0066.dmap",
+      "image": "../dense/images/frame_000066.png",
+      "image_id": 66,
+      "neighbors": [
+        27,
+        9,
+        81,
+        76,
+        13
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 210114,
+      "total_pixels": 298463,
+      "valid_fraction": 0.7039867588277274,
+      "depth_min": 14.229718208312988,
+      "depth_max": 88.48017120361328
+    },
+    {
+      "file": "depth0067.dmap",
+      "image": "../dense/images/frame_000070.png",
+      "image_id": 67,
+      "neighbors": [
+        27,
+        7,
+        60,
+        6,
+        18
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 144184,
+      "total_pixels": 298463,
+      "valid_fraction": 0.4830883560106278,
+      "depth_min": 10.497598648071289,
+      "depth_max": 105.73180389404297
+    },
+    {
+      "file": "depth0068.dmap",
+      "image": "../dense/images/frame_000069.png",
+      "image_id": 68,
+      "neighbors": [
+        60,
+        125,
+        39,
+        124,
+        81
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 177543,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5948576540475704,
+      "depth_min": 14.517936706542969,
+      "depth_max": 63.59086608886719
+    },
+    {
+      "file": "depth0069.dmap",
+      "image": "../dense/images/frame_000071.png",
+      "image_id": 69,
+      "neighbors": [
+        32,
+        16,
+        58,
+        7,
+        6
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 112334,
+      "total_pixels": 298463,
+      "valid_fraction": 0.3763749610504485,
+      "depth_min": 12.1095609664917,
+      "depth_max": 47.06351089477539
+    },
+    {
+      "file": "depth0070.dmap",
+      "image": "../dense/images/frame_000068.png",
+      "image_id": 70,
+      "neighbors": [
+        91,
+        125,
+        90,
+        124,
+        86
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 189881,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6361961114107947,
+      "depth_min": 12.9624662399292,
+      "depth_max": 78.98175811767578
+    },
+    {
+      "file": "depth0071.dmap",
+      "image": "../dense/images/frame_000073.png",
+      "image_id": 71,
+      "neighbors": [
+        16,
+        2,
+        58,
+        6,
+        18
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 104799,
+      "total_pixels": 298463,
+      "valid_fraction": 0.3511289506572004,
+      "depth_min": 4.240638256072998,
+      "depth_max": 57.165306091308594
+    },
+    {
+      "file": "depth0072.dmap",
+      "image": "../dense/images/frame_000067.png",
+      "image_id": 72,
+      "neighbors": [
+        81,
+        125,
+        91,
+        124,
+        126
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 203253,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6809989847987857,
+      "depth_min": 4.15791654586792,
+      "depth_max": 98.23286437988281
+    },
+    {
+      "file": "depth0073.dmap",
+      "image": "../dense/images/frame_000072.png",
+      "image_id": 73,
+      "neighbors": [
+        32,
+        16,
+        40,
+        58,
+        6
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 104749,
+      "total_pixels": 298463,
+      "valid_fraction": 0.3509614257043587,
+      "depth_min": 13.347024917602539,
+      "depth_max": 44.76767349243164
+    },
+    {
+      "file": "depth0074.dmap",
+      "image": "../dense/images/frame_000074.png",
+      "image_id": 74,
+      "neighbors": [
+        60,
+        125,
+        39,
+        33,
+        57
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 150796,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5052418557744176,
+      "depth_min": 8.690195083618164,
+      "depth_max": 52.52214050292969
+    },
+    {
+      "file": "depth0075.dmap",
+      "image": "../dense/images/frame_000075.png",
+      "image_id": 75,
+      "neighbors": [
+        81,
+        90,
+        91,
+        41,
+        59
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 155699,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5216693526500772,
+      "depth_min": 14.774803161621094,
+      "depth_max": 61.85758590698242
+    },
+    {
+      "file": "depth0076.dmap",
+      "image": "../dense/images/frame_000079.png",
+      "image_id": 76,
+      "neighbors": [
+        128,
+        127,
+        129,
+        132,
+        126
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 193369,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6478826521210335,
+      "depth_min": 15.02921199798584,
+      "depth_max": 83.1744384765625
+    },
+    {
+      "file": "depth0077.dmap",
+      "image": "../dense/images/frame_000078.png",
+      "image_id": 77,
+      "neighbors": [
+        125,
+        124,
+        86,
+        91,
+        126
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 196504,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6583864666642096,
+      "depth_min": 13.253722190856934,
+      "depth_max": 78.21511840820312
+    },
+    {
+      "file": "depth0078.dmap",
+      "image": "../dense/images/frame_000076.png",
+      "image_id": 78,
+      "neighbors": [
+        90,
+        81,
+        91,
+        109,
+        86
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 206007,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6902262592013081,
+      "depth_min": 14.415265083312988,
+      "depth_max": 56.28791046142578
+    },
+    {
+      "file": "depth0079.dmap",
+      "image": "../dense/images/frame_000081.png",
+      "image_id": 79,
+      "neighbors": [
+        7,
+        89,
+        94,
+        88,
+        20
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 204694,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6858270539396844,
+      "depth_min": 11.97585678100586,
+      "depth_max": 80.40096282958984
+    },
+    {
+      "file": "depth0080.dmap",
+      "image": "../dense/images/frame_000077.png",
+      "image_id": 80,
+      "neighbors": [
+        90,
+        91,
+        125,
+        86,
+        124
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 207582,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6955032952158224,
+      "depth_min": 14.39111614227295,
+      "depth_max": 67.76138305664062
+    },
+    {
+      "file": "depth0081.dmap",
+      "image": "../dense/images/frame_000080.png",
+      "image_id": 81,
+      "neighbors": [
+        132,
+        128,
+        131,
+        129,
+        89
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 205832,
+      "total_pixels": 298463,
+      "valid_fraction": 0.689639921866362,
+      "depth_min": 14.918316841125488,
+      "depth_max": 81.71695709228516
+    },
+    {
+      "file": "depth0082.dmap",
+      "image": "../dense/images/frame_000082.png",
+      "image_id": 82,
+      "neighbors": [
+        20,
+        97,
+        7,
+        94,
+        60
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 204040,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6836358275565145,
+      "depth_min": 10.134108543395996,
+      "depth_max": 157.3250274658203
+    },
+    {
+      "file": "depth0083.dmap",
+      "image": "../dense/images/frame_000083.png",
+      "image_id": 83,
+      "neighbors": [
+        7,
+        97,
+        20,
+        89,
+        94
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 203798,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6828250067847605,
+      "depth_min": 9.098714828491211,
+      "depth_max": 157.36978149414062
+    },
+    {
+      "file": "depth0084.dmap",
+      "image": "../dense/images/frame_000084.png",
+      "image_id": 84,
+      "neighbors": [
+        7,
+        89,
+        128,
+        132,
+        127
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 201775,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6760469471927844,
+      "depth_min": 12.489984512329102,
+      "depth_max": 184.9984588623047
+    },
+    {
+      "file": "depth0085.dmap",
+      "image": "../dense/images/frame_000088.png",
+      "image_id": 85,
+      "neighbors": [
+        81,
+        76,
+        87,
+        13,
+        27
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 199825,
+      "total_pixels": 298463,
+      "valid_fraction": 0.669513474031957,
+      "depth_min": 15.329594612121582,
+      "depth_max": 80.29728698730469
+    },
+    {
+      "file": "depth0086.dmap",
+      "image": "../dense/images/frame_000089.png",
+      "image_id": 86,
+      "neighbors": [
+        77,
+        80,
+        27,
+        13,
+        88
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 209193,
+      "total_pixels": 298463,
+      "valid_fraction": 0.7009009491963828,
+      "depth_min": 14.322113037109375,
+      "depth_max": 66.918212890625
+    },
+    {
+      "file": "depth0087.dmap",
+      "image": "../dense/images/frame_000085.png",
+      "image_id": 87,
+      "neighbors": [
+        126,
+        128,
+        127,
+        125,
+        129
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 180928,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6061990933549553,
+      "depth_min": 10.939902305603027,
+      "depth_max": 81.8564682006836
+    },
+    {
+      "file": "depth0088.dmap",
+      "image": "../dense/images/frame_000086.png",
+      "image_id": 88,
+      "neighbors": [
+        125,
+        126,
+        86,
+        124,
+        91
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 187363,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6277595547856853,
+      "depth_min": 14.495442390441895,
+      "depth_max": 166.556640625
+    },
+    {
+      "file": "depth0089.dmap",
+      "image": "../dense/images/frame_000087.png",
+      "image_id": 89,
+      "neighbors": [
+        81,
+        90,
+        91,
+        86,
+        76
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 205280,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6877904463869894,
+      "depth_min": 14.122208595275879,
+      "depth_max": 74.95934295654297
+    },
+    {
+      "file": "depth0090.dmap",
+      "image": "../dense/images/frame_000090.png",
+      "image_id": 90,
+      "neighbors": [
+        80,
+        78,
+        60,
+        77,
+        27
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 200544,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6719224828538211,
+      "depth_min": 6.553058624267578,
+      "depth_max": 67.81049346923828
+    },
+    {
+      "file": "depth0091.dmap",
+      "image": "../dense/images/frame_000091.png",
+      "image_id": 91,
+      "neighbors": [
+        80,
+        60,
+        77,
+        13,
+        27
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 211424,
+      "total_pixels": 298463,
+      "valid_fraction": 0.7083759125921806,
+      "depth_min": 5.8037285804748535,
+      "depth_max": 165.4158477783203
+    },
+    {
+      "file": "depth0092.dmap",
+      "image": "../dense/images/frame_000092.png",
+      "image_id": 92,
+      "neighbors": [
+        27,
+        77,
+        76,
+        13,
+        87
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 198461,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6649433933184348,
+      "depth_min": 13.80983829498291,
+      "depth_max": 66.38007354736328
+    },
+    {
+      "file": "depth0093.dmap",
+      "image": "../dense/images/frame_000093.png",
+      "image_id": 93,
+      "neighbors": [
+        81,
+        76,
+        87,
+        90,
+        84
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 200323,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6711820225622607,
+      "depth_min": 14.909053802490234,
+      "depth_max": 87.28022766113281
+    },
+    {
+      "file": "depth0094.dmap",
+      "image": "../dense/images/frame_000094.png",
+      "image_id": 94,
+      "neighbors": [
+        81,
+        90,
+        91,
+        86,
+        79
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 203346,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6813105812110714,
+      "depth_min": 14.921135902404785,
+      "depth_max": 85.01683807373047
+    },
+    {
+      "file": "depth0095.dmap",
+      "image": "../dense/images/frame_000096.png",
+      "image_id": 95,
+      "neighbors": [
+        128,
+        131,
+        129,
+        127,
+        132
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 161178,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5400267369824735,
+      "depth_min": 9.730655670166016,
+      "depth_max": 87.68370819091797
+    },
+    {
+      "file": "depth0096.dmap",
+      "image": "../dense/images/frame_000097.png",
+      "image_id": 96,
+      "neighbors": [
+        106,
+        131,
+        132,
+        133,
+        128
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 161811,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5421476028854498,
+      "depth_min": 7.103366851806641,
+      "depth_max": 179.87289428710938
+    },
+    {
+      "file": "depth0097.dmap",
+      "image": "../dense/images/frame_000095.png",
+      "image_id": 97,
+      "neighbors": [
+        125,
+        126,
+        124,
+        128,
+        86
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 177632,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5951558484636287,
+      "depth_min": 12.656573295593262,
+      "depth_max": 168.12442016601562
+    },
+    {
+      "file": "depth0098.dmap",
+      "image": "../dense/images/frame_000098.png",
+      "image_id": 98,
+      "neighbors": [
+        7,
+        94,
+        60,
+        89,
+        20
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 185067,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6200668089511933,
+      "depth_min": 13.515945434570312,
+      "depth_max": 85.04995727539062
+    },
+    {
+      "file": "depth0099.dmap",
+      "image": "../dense/images/frame_000100.png",
+      "image_id": 99,
+      "neighbors": [
+        97,
+        20,
+        7,
+        94,
+        88
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 191006,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6399654228497335,
+      "depth_min": 5.0060954093933105,
+      "depth_max": 156.05809020996094
+    },
+    {
+      "file": "depth0100.dmap",
+      "image": "../dense/images/frame_000099.png",
+      "image_id": 100,
+      "neighbors": [
+        97,
+        20,
+        7,
+        94,
+        16
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 203134,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6806002754110225,
+      "depth_min": 2.6969823837280273,
+      "depth_max": 96.83182525634766
+    },
+    {
+      "file": "depth0101.dmap",
+      "image": "../dense/images/frame_000101.png",
+      "image_id": 101,
+      "neighbors": [
+        89,
+        128,
+        7,
+        129,
+        94
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 192297,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6442909171321068,
+      "depth_min": 12.11738395690918,
+      "depth_max": 176.6491241455078
+    },
+    {
+      "file": "depth0102.dmap",
+      "image": "../dense/images/frame_000102.png",
+      "image_id": 102,
+      "neighbors": [
+        129,
+        128,
+        131,
+        126,
+        106
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 185510,
+      "total_pixels": 298463,
+      "valid_fraction": 0.621551080033371,
+      "depth_min": 9.264433860778809,
+      "depth_max": 84.65438079833984
+    },
+    {
+      "file": "depth0103.dmap",
+      "image": "../dense/images/frame_000104.png",
+      "image_id": 103,
+      "neighbors": [
+        81,
+        90,
+        91,
+        45,
+        76
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 204521,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6852474176028519,
+      "depth_min": 15.17422866821289,
+      "depth_max": 85.84872436523438
+    },
+    {
+      "file": "depth0104.dmap",
+      "image": "../dense/images/frame_000103.png",
+      "image_id": 104,
+      "neighbors": [
+        86,
+        125,
+        126,
+        124,
+        91
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 177063,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5932494145002898,
+      "depth_min": 14.361541748046875,
+      "depth_max": 147.994140625
+    },
+    {
+      "file": "depth0105.dmap",
+      "image": "../dense/images/frame_000106.png",
+      "image_id": 105,
+      "neighbors": [
+        27,
+        76,
+        77,
+        13,
+        9
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 191888,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6429205630178615,
+      "depth_min": 7.761534214019775,
+      "depth_max": 56.88047409057617
+    },
+    {
+      "file": "depth0106.dmap",
+      "image": "../dense/images/frame_000105.png",
+      "image_id": 106,
+      "neighbors": [
+        81,
+        76,
+        87,
+        9,
+        27
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 199907,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6697882149546175,
+      "depth_min": 13.914613723754883,
+      "depth_max": 80.51544952392578
+    },
+    {
+      "file": "depth0107.dmap",
+      "image": "../dense/images/frame_000107.png",
+      "image_id": 107,
+      "neighbors": [
+        80,
+        77,
+        78,
+        60,
+        89
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 190786,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6392283130572298,
+      "depth_min": 12.780282974243164,
+      "depth_max": 66.8382568359375
+    },
+    {
+      "file": "depth0108.dmap",
+      "image": "../dense/images/frame_000108.png",
+      "image_id": 108,
+      "neighbors": [
+        80,
+        78,
+        133,
+        89,
+        106
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 168057,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5630748199944382,
+      "depth_min": 13.788365364074707,
+      "depth_max": 42.70180892944336
+    },
+    {
+      "file": "depth0109.dmap",
+      "image": "../dense/images/frame_000109.png",
+      "image_id": 109,
+      "neighbors": [
+        78,
+        80,
+        127,
+        132,
+        133
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 170103,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5699299410647216,
+      "depth_min": 14.195450782775879,
+      "depth_max": 75.35740661621094
+    },
+    {
+      "file": "depth0110.dmap",
+      "image": "../dense/images/frame_000110.png",
+      "image_id": 110,
+      "neighbors": [
+        80,
+        78,
+        89,
+        131,
+        133
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 174479,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5845917249374294,
+      "depth_min": 14.37612533569336,
+      "depth_max": 47.53473663330078
+    },
+    {
+      "file": "depth0111.dmap",
+      "image": "../dense/images/frame_000111.png",
+      "image_id": 111,
+      "neighbors": [
+        80,
+        60,
+        77,
+        27,
+        20
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 189390,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6345510163738889,
+      "depth_min": 12.229707717895508,
+      "depth_max": 66.82308197021484
+    },
+    {
+      "file": "depth0112.dmap",
+      "image": "../dense/images/frame_000112.png",
+      "image_id": 112,
+      "neighbors": [
+        76,
+        77,
+        81,
+        27,
+        13
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 191649,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6421197937432781,
+      "depth_min": 13.31355094909668,
+      "depth_max": 74.75254821777344
+    },
+    {
+      "file": "depth0113.dmap",
+      "image": "../dense/images/frame_000113.png",
+      "image_id": 113,
+      "neighbors": [
+        81,
+        76,
+        87,
+        46,
+        90
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 191354,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6411313965215119,
+      "depth_min": 15.079324722290039,
+      "depth_max": 87.85287475585938
+    },
+    {
+      "file": "depth0114.dmap",
+      "image": "../dense/images/frame_000114.png",
+      "image_id": 114,
+      "neighbors": [
+        86,
+        91,
+        81,
+        90,
+        125
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 190800,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6392752200440256,
+      "depth_min": 14.41015625,
+      "depth_max": 86.15846252441406
+    },
+    {
+      "file": "depth0115.dmap",
+      "image": "../dense/images/frame_000115.png",
+      "image_id": 115,
+      "neighbors": [
+        127,
+        128,
+        129,
+        132,
+        130
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 164305,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5505037475331951,
+      "depth_min": 8.73496150970459,
+      "depth_max": 90.75592803955078
+    },
+    {
+      "file": "depth0116.dmap",
+      "image": "../dense/images/frame_000116.png",
+      "image_id": 116,
+      "neighbors": [
+        106,
+        132,
+        131,
+        128,
+        89
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 184192,
+      "total_pixels": 298463,
+      "valid_fraction": 0.617135122276463,
+      "depth_min": 9.231467247009277,
+      "depth_max": 85.38688659667969
+    },
+    {
+      "file": "depth0117.dmap",
+      "image": "../dense/images/frame_000117.png",
+      "image_id": 117,
+      "neighbors": [
+        94,
+        89,
+        7,
+        128,
+        132
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 194099,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6503285164325227,
+      "depth_min": 4.719088077545166,
+      "depth_max": 176.87539672851562
+    },
+    {
+      "file": "depth0118.dmap",
+      "image": "../dense/images/frame_000118.png",
+      "image_id": 118,
+      "neighbors": [
+        7,
+        89,
+        94,
+        60,
+        10
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 186904,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6262216757185983,
+      "depth_min": 3.43279767036438,
+      "depth_max": 82.35458374023438
+    },
+    {
+      "file": "depth0119.dmap",
+      "image": "../dense/images/frame_000120.png",
+      "image_id": 119,
+      "neighbors": [
+        128,
+        129,
+        127,
+        132,
+        131
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 162194,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5434308440242174,
+      "depth_min": 13.834551811218262,
+      "depth_max": 86.48812866210938
+    },
+    {
+      "file": "depth0120.dmap",
+      "image": "../dense/images/frame_000119.png",
+      "image_id": 120,
+      "neighbors": [
+        89,
+        128,
+        133,
+        132,
+        127
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 175709,
+      "total_pixels": 298463,
+      "valid_fraction": 0.5887128387773359,
+      "depth_min": 7.884929656982422,
+      "depth_max": 177.06478881835938
+    },
+    {
+      "file": "depth0121.dmap",
+      "image": "../dense/images/frame_000121.png",
+      "image_id": 121,
+      "neighbors": [
+        86,
+        81,
+        90,
+        91,
+        125
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 206066,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6904239386456613,
+      "depth_min": 4.116024017333984,
+      "depth_max": 82.06541442871094
+    },
+    {
+      "file": "depth0122.dmap",
+      "image": "../dense/images/frame_000122.png",
+      "image_id": 122,
+      "neighbors": [
+        81,
+        76,
+        87,
+        90,
+        91
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 198532,
+      "total_pixels": 298463,
+      "valid_fraction": 0.66518127875147,
+      "depth_min": 11.375823974609375,
+      "depth_max": 57.09037399291992
+    },
+    {
+      "file": "depth0123.dmap",
+      "image": "../dense/images/frame_000123.png",
+      "image_id": 123,
+      "neighbors": [
+        81,
+        76,
+        87,
+        77,
+        27
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 195285,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6543022083139284,
+      "depth_min": 14.00228214263916,
+      "depth_max": 72.5579605102539
+    },
+    {
+      "file": "depth0124.dmap",
+      "image": "../dense/images/frame_000124.png",
+      "image_id": 124,
+      "neighbors": [
+        77,
+        27,
+        88,
+        80,
+        20
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 211577,
+      "total_pixels": 298463,
+      "valid_fraction": 0.7088885389478763,
+      "depth_min": 8.539915084838867,
+      "depth_max": 101.38333892822266
+    },
+    {
+      "file": "depth0125.dmap",
+      "image": "../dense/images/frame_000125.png",
+      "image_id": 125,
+      "neighbors": [
+        27,
+        77,
+        20,
+        80,
+        88
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 201869,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6763618941041268,
+      "depth_min": 3.8199398517608643,
+      "depth_max": 38.81875991821289
+    },
+    {
+      "file": "depth0126.dmap",
+      "image": "../dense/images/frame_000126.png",
+      "image_id": 126,
+      "neighbors": [
+        76,
+        77,
+        27,
+        81,
+        87
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 196360,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6579039948000255,
+      "depth_min": 14.35027027130127,
+      "depth_max": 54.39305114746094
+    },
+    {
+      "file": "depth0127.dmap",
+      "image": "../dense/images/frame_000127.png",
+      "image_id": 127,
+      "neighbors": [
+        81,
+        76,
+        87,
+        27,
+        77
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 203266,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6810425412865246,
+      "depth_min": 13.340052604675293,
+      "depth_max": 76.58441162109375
+    },
+    {
+      "file": "depth0128.dmap",
+      "image": "../dense/images/frame_000128.png",
+      "image_id": 128,
+      "neighbors": [
+        81,
+        76,
+        87,
+        27,
+        77
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 205303,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6878675078652965,
+      "depth_min": 8.36749267578125,
+      "depth_max": 103.21405029296875
+    },
+    {
+      "file": "depth0129.dmap",
+      "image": "../dense/images/frame_000129.png",
+      "image_id": 129,
+      "neighbors": [
+        81,
+        76,
+        87,
+        27,
+        77
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 206995,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6935365522694605,
+      "depth_min": 11.755821228027344,
+      "depth_max": 102.87602233886719
+    },
+    {
+      "file": "depth0130.dmap",
+      "image": "../dense/images/frame_000130.png",
+      "image_id": 130,
+      "neighbors": [
+        81,
+        76,
+        87,
+        27,
+        115
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 199343,
+      "total_pixels": 298463,
+      "valid_fraction": 0.6678985334865628,
+      "depth_min": 12.963001251220703,
+      "depth_max": 81.68888092041016
+    },
+    {
+      "file": "depth0131.dmap",
+      "image": "../dense/images/frame_000131.png",
+      "image_id": 131,
+      "neighbors": [
+        81,
+        76,
+        87,
+        109,
+        115
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 221541,
+      "total_pixels": 298463,
+      "valid_fraction": 0.7422729115501754,
+      "depth_min": 5.026221752166748,
+      "depth_max": 188.8989715576172
+    },
+    {
+      "file": "depth0132.dmap",
+      "image": "../dense/images/frame_000132.png",
+      "image_id": 132,
+      "neighbors": [
+        81,
+        76,
+        87,
+        95,
+        109
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 220220,
+      "total_pixels": 298463,
+      "valid_fraction": 0.737846902296097,
+      "depth_min": 11.64692497253418,
+      "depth_max": 60.66050720214844
+    },
+    {
+      "file": "depth0133.dmap",
+      "image": "../dense/images/frame_000133.png",
+      "image_id": 133,
+      "neighbors": [
+        81,
+        76,
+        87,
+        90,
+        109
+      ],
+      "resolution": [
+        631,
+        473
+      ],
+      "image_resolution": [
+        631,
+        473
+      ],
+      "valid_pixels": 218657,
+      "total_pixels": 298463,
+      "valid_fraction": 0.7326100722702646,
+      "depth_min": 11.689004898071289,
+      "depth_max": 81.69322204589844
+    }
+  ],
+  "scope": "dense point cloud only; no mesh or texture generated",
+  "units": "arbitrary SfM units",
+  "saved_model_readback_success": true
+}

@@ -1,0 +1,16 @@
+19:42:50 [App     ] OpenMVS x64 v2.4.0
+19:42:50 [App     ] Build date: Sep 13 2026, 19:20:02
+19:42:50 [App     ] CPU: AMD Ryzen 7 7735HS with Radeon Graphics         (16 cores)
+19:42:50 [App     ] RAM: 26.43GB Physical Memory 0B Virtual Memory
+19:42:50 [App     ] OS: Linux 6.8.0-138-generic (x86_64)
+19:42:50 [App     ] Disk: 119.59GB (250.93GB) space
+19:42:50 [App     ] SSE & AVX compatible CPU & OS detected
+19:42:50 [App     ] Command line: DensifyPointCloud --working-folder /home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/openmvs --input-file scene_dense.mvs --output-view-neighbors-file view_neighbors.txt --tower-mode 0 --estimate-roi 0 --max-threads 8
+19:42:51 [Scene   ] Scene loaded (204ms):
+	133 images (133 calibrated) with a total of 37.86 MPixels (0.28 MPixels/image)
+	252564 points, 0 vertices, 0 faces
+19:42:51 [Scene   ] View neighbors list saved (35ms)
+19:42:51 [App     ] MEMORYINFO: {
+19:42:51 [App     ] 	VmPeak:	  231352 kB
+19:42:51 [App     ] 	VmSize:	  216796 kB
+19:42:51 [App     ] } ENDINFO

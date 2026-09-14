@@ -1,0 +1,15 @@
+Reproduced by File > Import model from... > scene_dense.ply in COLMAP 3.7.
+
+F0914 11:47:10.672288  6436 ply.cc:131] Check failed: line_elems[1] == "float" || line_elems[1] == "float32" || line_elems[1] == "double" || line_elems[1] == "float64" || line_elems[1] == "uchar" PLY import only supports float, double, and uchar data types
+*** Check failure stack trace: ***
+    @     0x7761cd7f8b03  google::LogMessage::Fail()
+    @     0x7761cd8009d1  google::LogMessage::SendToLog()
+    @     0x7761cd7f87c2  google::LogMessage::Flush()
+    @     0x7761cd7fa78f  google::LogMessageFatal::~LogMessageFatal()
+    @     0x6107d6b3ef0c  colmap::ReadPly()
+    @     0x6107d69fdbe6  colmap::Reconstruction::ImportPLY()
+    @     0x6107d6b4eed9  (unknown)
+    @     0x6107d6b3c786  colmap::Thread::RunFunc()
+    @     0x7761cb8dc253  (unknown)
+    @     0x7761cb494a83  (unknown)
+    @     0x7761cb5268e0  (unknown)

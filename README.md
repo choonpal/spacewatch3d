@@ -1,31 +1,6 @@
 # spacewatch3d
 nudix와 산학연계 협력 프로젝트입니다. by kdj
 
-## 파이썬 자동 실행
-
-`scripts/video_to_mvs.py`로 영상 → 프레임 → COLMAP SfM → 왜곡 보정 → OpenMVS 조밀 복원 → 결과 검증을 실행할 수 있다.
-영상 대신 RGB 이미지 폴더나 `rgb/`가 포함된 `.tgz`/`.tar.gz`를 입력하면 프레임 추출을 생략한다.
-저장소 루트에서 다음과 같이 새 출력 폴더를 지정한다.
-
-```bash
-python3 scripts/video_to_mvs.py rgbd_dataset_freiburg1_xyz-rgb.avi \
-  --output runs/freiburg1_xyz_5fps --fps 5 --threads 8
-```
-
-이미지 입력 예시:
-
-```bash
-python3 scripts/video_to_mvs.py /path/to/dataset/rgb --output runs/dataset_images
-python3 scripts/video_to_mvs.py /path/to/dataset.tgz --output runs/dataset_archive
-```
-
-이미지/압축 입력은 기본적으로 모든 RGB 이미지를 사용한다. `--image-step 6`을 추가하면 파일명 순서로 6장마다 1장을 선택한다.
-`--fps`와 `--duration`은 영상 전용 옵션이다.
-
-단계별 로그와 상태를 저장하며, 동일 명령에 `--resume`을 추가하면 완료된 단계를 재사용한다.
-`--dry-run`으로 명령 미리보기, `--stop-after sfm`으로 단계 실행이 가능하다.
-필요한 실행 도구, 출력 구조, 검증 범위와 자세한 사용법은 [자동화 안내](docs/automation.md)에 정리했다.
-
 개요:
 영상으로부터 카메라의 위치·자세와 장면의 깊이를 추정하여 공통 좌표계의 3D 포인트클라우드 지도를 생성한다. 
 gps가 사용 가능하다면 보조 정도... gps로 카메라 방향을 알 수는 없으니깐
@@ -56,6 +31,9 @@ MVS: multi view stereo (SfM을 이용해 dense한 3D 모델 + dense한 point clo
 2. 위 연산들 gpu에서 가능한지, 가능하다면 얼마나 빨라지는지 확인 필요
 3. 그래서 변화 탐지 어떻게할건지
 4. segmentaion 시간 줄이기 위해 keyframe만 segmentaion 하는 아이디어 검증 필요
+
+---이후는 gpt---
+
 
 ## `freiburg1_xyz` 프레임 추출
 

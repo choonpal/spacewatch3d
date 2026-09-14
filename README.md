@@ -15,6 +15,23 @@ COLMAP + (PyCOLMAP) + OpenMVS + Open3D
 영상 프레임 추출에는 FFmpeg나 OpenCV를 사용.
 나중에 360도로 확장은 파노라마를 여러 방향의 일반 시야각 영상으로 변환하는 방식을 사용
 
+SfM: structure from motion (이미지를 입력으로 받아 point cloud 생성) 
+MVS: multi view stereo (SfM을 이용해 dense한 3D 모델 + dense한 point cloud 생성)
+
+--- 계획중인 파이프라인 ---
+1. rbg 영상 입력으로 받음 (.avi)
+2. 초당 3~5 프레임만 추출해서 이미지 파일로 만들기
+3-a. 이미지 파일들로 COLMAP에서 SfM 생성
+3-b. 이미지 파일들로 SAM2나 SAM3에서 segmentaion mask 생성
+4. 3-a의 SfM 결과로 OpenMVS에서 MVS 생성 -> MVS 결과 json으로 저장
+5. MVS의 각 점들에 대해서 모든 이미지의 segmentaion mask 참고해서 클래스 주입 (시간 많이 걸릴거같은데 gpt는 괜찮다고 주장)
+
+더 정해야하는 부분
+1. rbg 영상 대신 360도 카메라를 입력으로 받도록 확장 필요
+2. 위 연산들 gpu에서 가능한지, 가능하다면 얼마나 빨라지는지 확인 필요
+3. 그래서 변화 탐지 어떻게할건지
+4. segmentaion 시간 줄이기 위해 keyframe만 segmentaion 하는 아이디어 검증 필요
+
 ## `freiburg1_xyz` 프레임 추출
 
 FFmpeg로 RGB 영상에서 초당 5장의 PNG 이미지를 추출했다. 아래는 저장 폴더를 처음 만들고 추출할 때 사용한 명령이며, 저장소 루트에서 실행한다. FFmpeg가 설치되어 있고 입력 영상이 해당 위치에 있어야 한다.

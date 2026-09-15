@@ -18,9 +18,9 @@ COLMAP + (PyCOLMAP) + OpenMVS + Open3D
 SfM: structure from motion (이미지를 입력으로 받아 point cloud 생성) 
 MVS: multi view stereo (SfM을 이용해 dense한 3D 모델 + dense한 point cloud 생성)
 
---- 계획중인 파이프라인 ---
+--- 계획중인 파이프라인(김동주 기준) ---
 1. rbg 영상 입력으로 받음 (.avi)
-2. 초당 3~5 프레임만 추출해서 이미지 파일로 만들기
+2. 초당 3~5 프레임만 추출해서 이미지 파일들로 만들기
 
 3-a. 이미지 파일들로 COLMAP에서 SfM 생성
 
@@ -28,14 +28,17 @@ MVS: multi view stereo (SfM을 이용해 dense한 3D 모델 + dense한 point clo
 
 4. 3-a의 SfM 결과로 OpenMVS에서 MVS 생성 -> MVS 결과 json으로 저장
 5. MVS의 각 점들에 대해서 모든 이미지의 segmentaion mask 참고해서 클래스 주입 (시간 많이 걸릴거같은데 gpt는 괜찮다고 주장)
+6. 클래스가 주입된 point cloud를 객체 맵?? 으로 변환??
 
 더 정해야하는 부분
 1. rbg 영상 대신 360도 카메라를 입력으로 받도록 확장 필요
 2. 위 연산들 gpu에서 가능한지, 가능하다면 얼마나 빨라지는지 확인 필요
 3. 현재 SfM 과정에서 모든 점 쌍끼리 비교하는데, 나중에 개선할 필요 있음
-4. 그래서 변화 탐지 어떻게할건지 구체적인 방안 필요 (segmentation 결과를 뭔가 활용하면 좋겠음)
+4. 그래서 변화 탐지 어떻게할건지 구체적인 방안 필요 (segmentation 결과를 뭔가 활용하면 좋겠음, 예시: 순찰, 공사현장, 인테리어)
 5. segmentaion 시간 줄이기 위해 keyframe만 segmentation 하는 아이디어 검증 필요
+6. 웹에 전후 변화 overlap 되는 기능이 있으면 좋겠어요
 
+lingbot-map 처럼 했으면 좋겠다....
 ---이후는 gpt---
 
 

@@ -21,16 +21,20 @@ MVS: multi view stereo (SfM을 이용해 dense한 3D 모델 + dense한 point clo
 --- 계획중인 파이프라인 ---
 1. rbg 영상 입력으로 받음 (.avi)
 2. 초당 3~5 프레임만 추출해서 이미지 파일로 만들기
+
 3-a. 이미지 파일들로 COLMAP에서 SfM 생성
+
 3-b. 이미지 파일들로 SAM2나 SAM3에서 segmentaion mask 생성
+
 4. 3-a의 SfM 결과로 OpenMVS에서 MVS 생성 -> MVS 결과 json으로 저장
 5. MVS의 각 점들에 대해서 모든 이미지의 segmentaion mask 참고해서 클래스 주입 (시간 많이 걸릴거같은데 gpt는 괜찮다고 주장)
 
 더 정해야하는 부분
 1. rbg 영상 대신 360도 카메라를 입력으로 받도록 확장 필요
 2. 위 연산들 gpu에서 가능한지, 가능하다면 얼마나 빨라지는지 확인 필요
-3. 그래서 변화 탐지 어떻게할건지
-4. segmentaion 시간 줄이기 위해 keyframe만 segmentaion 하는 아이디어 검증 필요
+3. 현재 SfM 과정에서 모든 점 쌍끼리 비교하는데, 나중에 개선할 필요 있음
+4. 그래서 변화 탐지 어떻게할건지 구체적인 방안 필요 (segmentation 결과를 뭔가 활용하면 좋겠음)
+5. segmentaion 시간 줄이기 위해 keyframe만 segmentation 하는 아이디어 검증 필요
 
 ---이후는 gpt---
 

@@ -1,0 +1,19 @@
+{
+  "output": "/home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/openmvs/scene.mvs",
+  "size_bytes": 2439088,
+  "sha256": "7d065b138bf38375d2ea520597dc7f5e76ddfc95800544cd88c76693277d2d1d",
+  "format": "MVSI",
+  "format_version": 7,
+  "input_counts": {
+    "cameras": 1,
+    "images": 133,
+    "points3D": 11994
+  },
+  "exported_images": 133,
+  "exported_sparse_points": 11994,
+  "image_references": 133,
+  "missing_images": [],
+  "image_reference_example": "../dense/images/frame_000133.png",
+  "exit_code": 0,
+  "mvs_reconstruction_run": false
+}

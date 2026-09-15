@@ -1,0 +1,24 @@
+{
+  "source": "/home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/openmvs/scene_dense.ply",
+  "compatible_copy": "/home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/openmvs/scene_dense_colmap.ply",
+  "vertex_count": 252564,
+  "change": "Only three RGB property type tokens in the PLY header: uint8 -> uchar",
+  "point_payload_identical": true,
+  "source_sha256": "410a97c940d0bb7602983d65445598b711d4e884ae0a08b18166802b691cfaea",
+  "compatible_copy_sha256": "2e09bba93eb9cdca65b51aa35a96eca194d90aea999669bba4c289c77ff8cea6",
+  "payload_sha256": "45534563780b790a74f6c740d30ecbe61e657c9725360327920a13058b0d2020",
+  "source_unchanged": true,
+  "colmap_version": "3.7",
+  "reason": "COLMAP 3.7 PLY parser supports uchar but rejects uint8 color property type tokens",
+  "parser_source": "https://github.com/colmap/colmap/blob/3.7/src/util/ply.cc#L130-L134",
+  "gui_verified": true,
+  "gui_displayed_points": 252564,
+  "rotation_pan_zoom_verified": true,
+  "gui_pid": 6537,
+  "checked_at": "2026-09-14T11:52:43.252758+09:00",
+  "screenshots": [
+    "/home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/logs/19_colmap_gui_dense.png",
+    "/home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/logs/20_colmap_gui_rotated.png"
+  ],
+  "original_error_log": "/home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/logs/18_colmap_gui_original_error.log"
+}

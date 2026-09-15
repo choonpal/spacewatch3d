@@ -1,0 +1,22 @@
+Command: InterfaceCOLMAP --working-folder /home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/logs --input-file /home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/dense --output-file /home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/openmvs/scene.mvs --image-folder /home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/dense/images --max-threads 8
+
+19:31:02 [App     ] OpenMVS x64 v2.4.0
+19:31:02 [App     ] Build date: Sep 13 2026, 19:20:02
+19:31:02 [App     ] CPU: AMD Ryzen 7 7735HS with Radeon Graphics         (16 cores)
+19:31:02 [App     ] RAM: 26.43GB Physical Memory 0B Virtual Memory
+19:31:02 [App     ] OS: Linux 6.8.0-138-generic (x86_64)
+19:31:02 [App     ] Disk: 120.36GB (250.93GB) space
+19:31:02 [App     ] SSE & AVX compatible CPU & OS detected
+19:31:02 [App     ] Command line: InterfaceCOLMAP --working-folder /home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/logs --input-file /home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/dense --output-file /home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/openmvs/scene.mvs --image-folder /home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/dense/images --max-threads 8
+19:31:02 [App     ] Reading cameras: /home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/dense/sparse/cameras.bin
+19:31:02 [App     ] Reading images: /home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/dense/sparse/images.bin
+19:31:02 [App     ] Reading points: /home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/dense/sparse/points3D.bin
+19:31:02 [App     ] Reading patch-match configuration: /home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/dense/stereo/patch-match.cfg
+19:31:02 [App     ] Reading depth-maps/normal-maps: /home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/dense/stereo/depth_maps/ and /home/kdj/Desktop/capstone/spacewatch3d/sfm_freiburg1_xyz_5fps/dense/stereo/normal_maps/
+19:31:02 [App     ] Exported data: 133 images, 11994 points (63ms)
+19:31:02 [App     ] MEMORYINFO: {
+19:31:02 [App     ] 	VmPeak:	  201532 kB
+19:31:02 [App     ] 	VmSize:	  200888 kB
+19:31:02 [App     ] } ENDINFO
+
+Exit code: 0

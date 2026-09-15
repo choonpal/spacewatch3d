@@ -1,0 +1,30 @@
+{
+  "input_images": 133,
+  "registered_images": 133,
+  "unregistered_images": [],
+  "points3D": 11994,
+  "observations": 267341,
+  "finite_camera_centers_and_points": true,
+  "observations_behind_camera": 0,
+  "observations_per_image_min": 685,
+  "observations_per_image_max": 3004,
+  "camera_step_median_arbitrary_units": 1.4189575009481892,
+  "camera_step_max_arbitrary_units": 2.613514772423611,
+  "camera_center_bounds_arbitrary_units": {
+    "min": [
+      -7.145553107929809,
+      -5.547338319221858,
+      -5.884660121649659
+    ],
+    "max": [
+      7.423713776483602,
+      5.919974972800859,
+      5.962996481290273
+    ]
+  },
+  "point_mean_reprojection_error_percentiles_px": {
+    "median": 1.3971863906158557,
+    "p90": 2.107190671222691
+  },
+  "note": "Monocular reconstruction has arbitrary scale. Camera centers computed as -R.T @ t; no ground-truth alignment or metric accuracy evaluation."
+}

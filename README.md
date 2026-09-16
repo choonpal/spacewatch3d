@@ -17,3 +17,8 @@ LingBot-Map 으로 3D 맵 생성
 퀄리티가 끝내줌. transformer 사용.
 영상 프레임 추출에는 FFmpeg나 OpenCV를 사용.
 나중에 360도로 확장은 파노라마를 여러 방향의 일반 시야각 영상으로 변환하는 방식을 사용
+
+lingbot-map colab 링크:
+https://colab.research.google.com/drive/1h7Vo1Cgmra4qGms4jqxdCzluD7VNKOLG?usp=sharing
+
+누구든 테스트 가능

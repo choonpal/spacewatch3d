@@ -1,0 +1,293 @@
+{
+  "source": "lingbot_result/xyz_dense.ply",
+  "source_sha256": "8b3cc38fc494e3d212fdce5377dc646013b44b847da7f4948fc9ce326282004c",
+  "model_repository": "https://github.com/Pointcept/Utonia",
+  "model_commit": "da776a0bd3a48c6df83ac2ae0e27b26141cc7e31",
+  "weights_repository": "https://huggingface.co/Pointcept/Utonia",
+  "backbone": "utonia.pth",
+  "head": "utonia_linear_prob_head_sc.pth",
+  "backbone_sha256": "a0a2e5e234ce943082ae9ba26bcff74e285f16ed8d04fed5c36ffe8dc30ea353",
+  "source_points": 18275003,
+  "prepared_points": 620660,
+  "inference_points": 63220,
+  "source_units": "unknown LingBot-Map reconstruction units",
+  "pre_voxel_size": 0.0075,
+  "model_scale": 0.5,
+  "model_grid_size": 0.01,
+  "up_estimation": "RANSAC dominant plane constrained toward camera -Y",
+  "normal_estimation": "30-neighbor PCA, oriented toward first camera origin",
+  "rotation_original_to_z_up": [
+    [
+      0.999975323677063,
+      -0.005465861409902573,
+      -0.00441401731222868
+    ],
+    [
+      0.0,
+      -0.6282753348350525,
+      0.7779910564422607
+    ],
+    [
+      -0.007025609724223614,
+      -0.7779718637466431,
+      -0.6282598376274109
+    ]
+  ],
+  "prediction_is_ground_truth": false,
+  "metrics": {
+    "mIoU": null,
+    "accuracy": null
+  },
+  "classes": [
+    {
+      "name": "wall",
+      "scannet_id": 1,
+      "points": 505106,
+      "percentage": 2.7639174669355735,
+      "rgb": [
+        174,
+        199,
+        232
+      ]
+    },
+    {
+      "name": "floor",
+      "scannet_id": 2,
+      "points": 698127,
+      "percentage": 3.8201197559310938,
+      "rgb": [
+        152,
+        223,
+        138
+      ]
+    },
+    {
+      "name": "cabinet",
+      "scannet_id": 3,
+      "points": 216791,
+      "percentage": 1.1862706670964704,
+      "rgb": [
+        31,
+        119,
+        180
+      ]
+    },
+    {
+      "name": "bed",
+      "scannet_id": 4,
+      "points": 2297665,
+      "percentage": 12.572720234300371,
+      "rgb": [
+        255,
+        187,
+        120
+      ]
+    },
+    {
+      "name": "chair",
+      "scannet_id": 5,
+      "points": 323378,
+      "percentage": 1.7695099694374878,
+      "rgb": [
+        188,
+        189,
+        34
+      ]
+    },
+    {
+      "name": "sofa",
+      "scannet_id": 6,
+      "points": 0,
+      "percentage": 0.0,
+      "rgb": [
+        140,
+        86,
+        75
+      ]
+    },
+    {
+      "name": "table",
+      "scannet_id": 7,
+      "points": 5388772,
+      "percentage": 29.487119646437264,
+      "rgb": [
+        255,
+        152,
+        150
+      ]
+    },
+    {
+      "name": "door",
+      "scannet_id": 8,
+      "points": 0,
+      "percentage": 0.0,
+      "rgb": [
+        214,
+        39,
+        40
+      ]
+    },
+    {
+      "name": "window",
+      "scannet_id": 9,
+      "points": 11604,
+      "percentage": 0.0634965696038463,
+      "rgb": [
+        197,
+        176,
+        213
+      ]
+    },
+    {
+      "name": "bookshelf",
+      "scannet_id": 10,
+      "points": 0,
+      "percentage": 0.0,
+      "rgb": [
+        148,
+        103,
+        189
+      ]
+    },
+    {
+      "name": "picture",
+      "scannet_id": 11,
+      "points": 0,
+      "percentage": 0.0,
+      "rgb": [
+        196,
+        156,
+        148
+      ]
+    },
+    {
+      "name": "counter",
+      "scannet_id": 12,
+      "points": 0,
+      "percentage": 0.0,
+      "rgb": [
+        23,
+        190,
+        207
+      ]
+    },
+    {
+      "name": "desk",
+      "scannet_id": 14,
+      "points": 8363091,
+      "percentage": 45.762460339951794,
+      "rgb": [
+        247,
+        182,
+        210
+      ]
+    },
+    {
+      "name": "curtain",
+      "scannet_id": 16,
+      "points": 73,
+      "percentage": 0.000399452738803928,
+      "rgb": [
+        219,
+        219,
+        141
+      ]
+    },
+    {
+      "name": "refrigerator",
+      "scannet_id": 24,
+      "points": 0,
+      "percentage": 0.0,
+      "rgb": [
+        255,
+        127,
+        14
+      ]
+    },
+    {
+      "name": "shower curtain",
+      "scannet_id": 28,
+      "points": 0,
+      "percentage": 0.0,
+      "rgb": [
+        158,
+        218,
+        229
+      ]
+    },
+    {
+      "name": "toilet",
+      "scannet_id": 33,
+      "points": 0,
+      "percentage": 0.0,
+      "rgb": [
+        44,
+        160,
+        44
+      ]
+    },
+    {
+      "name": "sink",
+      "scannet_id": 34,
+      "points": 0,
+      "percentage": 0.0,
+      "rgb": [
+        112,
+        128,
+        144
+      ]
+    },
+    {
+      "name": "bathtub",
+      "scannet_id": 36,
+      "points": 0,
+      "percentage": 0.0,
+      "rgb": [
+        227,
+        119,
+        194
+      ]
+    },
+    {
+      "name": "otherfurniture",
+      "scannet_id": 39,
+      "points": 470396,
+      "percentage": 2.5739858975672947,
+      "rgb": [
+        82,
+        84,
+        163
+      ]
+    }
+  ],
+  "validation": {
+    "original_xyz_rgb_and_order_preserved": true,
+    "label_counts_match_saved_inference": true,
+    "attention_max_abs_error": 8.940696716308594e-08,
+    "sparse_convolution_max_abs_error": 1.7881393432617188e-07,
+    "full_gpu_parity_checked": false
+  },
+  "execution": "Local CPU; PyTorch SDPA and gather/matmul/scatter sparse convolution; original model weights retained.",
+  "comparison_render": {
+    "same_view_and_visible_points": true,
+    "input_points": 18275003,
+    "visible_pixels": 971354,
+    "projection": "x/z, y/z; camera origin; nearest depth per pixel",
+    "crop_quantiles": [
+      0.002,
+      0.998
+    ],
+    "class_colors": "Official ScanNet palette"
+  },
+  "files": {
+    "xyz_dense.ply": {
+      "bytes": 274125239
+    },
+    "xyz_dense_utonia_labeled.ply": {
+      "bytes": 365500557
+    },
+    "xyz_dense_utonia_colored.ply": {
+      "bytes": 12413581
+    }
+  }
+}

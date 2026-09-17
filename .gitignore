@@ -4,3 +4,4 @@
 # Automated reconstructions and Python bytecode are generated locally.
 /runs/
 __pycache__/
+/lingbot_result/

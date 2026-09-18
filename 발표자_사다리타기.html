@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>발표자 사다리타기</title>
+<style>
+  :root{
+    --bg:#f6f7fb;
+    --card:#ffffff;
+    --text:#17181c;
+    --muted:#6b7280;
+    --line:#cfd5df;
+    --accent:#4f46e5;
+    --accent-soft:#eef2ff;
+    --success:#0f9f6e;
+    --shadow:0 18px 50px rgba(23,24,28,.10);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(circle at 10% 10%, #eef2ff 0, transparent 30%),
+      radial-gradient(circle at 90% 90%, #ecfeff 0, transparent 28%),
+      var(--bg);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:28px;
+  }
+  .app{
+    width:min(1050px,100%);
+    background:rgba(255,255,255,.94);
+    border:1px solid #e7e9ef;
+    border-radius:28px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  header{
+    padding:28px 30px 18px;
+    display:flex;
+    gap:20px;
+    align-items:flex-end;
+    justify-content:space-between;
+    flex-wrap:wrap;
+  }
+  h1{margin:0;font-size:clamp(24px,4vw,38px);letter-spacing:-.04em}
+  .sub{margin:8px 0 0;color:var(--muted);font-size:14px}
+  .controls{display:flex;gap:10px;flex-wrap:wrap}
+  button{
+    border:0;
+    border-radius:14px;
+    padding:11px 16px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.18s ease;
+    font-size:14px;
+  }
+  button:hover{transform:translateY(-1px)}
+  .primary{background:var(--accent);color:white}
+  .secondary{background:#f0f2f6;color:#252832}
+  .board-wrap{
+    padding:10px 22px 26px;
+  }
+  .board{
+    position:relative;
+    background:#fbfcff;
+    border:1px solid #e8ebf1;
+    border-radius:22px;
+    padding:18px 14px 16px;
+  }
+  .names,.results{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+    align-items:center;
+  }
+  .name-btn{
+    background:white;
+    border:1px solid #e1e5ed;
+    color:#20232a;
+    padding:12px 8px;
+    box-shadow:0 3px 12px rgba(0,0,0,.04);
+  }
+  .name-btn.active{
+    background:var(--accent-soft);
+    color:var(--accent);
+    border-color:#c7d2fe;
+  }
+  .result{
+    text-align:center;
+    padding:10px 6px;
+    border-radius:12px;
+    background:#f3f4f6;
+    color:#606575;
+    font-weight:800;
+    min-height:42px;
+  }
+  .result.winner-label{
+    background:#ecfdf5;
+    color:#047857;
+    border:1px solid #a7f3d0;
+  }
+  canvas{
+    width:100%;
+    height:470px;
+    display:block;
+    margin:10px 0;
+  }
+  .message{
+    margin:14px 0 0;
+    min-height:56px;
+    padding:15px 18px;
+    border-radius:15px;
+    background:#f7f8fb;
+    color:#3c404b;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+  .message strong{color:var(--accent)}
+  .message.win{
+    background:#ecfdf5;
+    color:#065f46;
+    border:1px solid #a7f3d0;
+    font-size:18px;
+  }
+  .hint{
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+    margin-top:10px;
+  }
+  @media (max-width:720px){
+    body{padding:10px}
+    header{padding:22px 18px 12px}
+    .board-wrap{padding:8px 10px 18px}
+    .name-btn,.result{font-size:12px}
+    canvas{height:390px}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div>
+      <h1>발표자 사다리타기</h1>
+      <p class="sub">이름을 누르면 해당 사람의 경로가 애니메이션으로 표시됩니다. 당첨은 단 1명입니다.</p>
+    </div>
+    <div class="controls">
+      <button class="secondary" id="resetBtn">사다리 새로 만들기</button>
+      <button class="primary" id="revealBtn">발표자 바로 뽑기</button>
+    </div>
+  </header>
+
+  <div class="board-wrap">
+    <div class="board">
+      <div class="names" id="names"></div>
+      <canvas id="ladder"></canvas>
+      <div class="results" id="results"></div>
+      <div class="message" id="message">위의 이름 중 한 명을 눌러 확인하세요.</div>
+      <div class="hint">새로 만들 때마다 사다리 모양은 무작위로 바뀝니다.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const PEOPLE = ["김동주", "서관우", "이태훈", "임현우", "시한결"];
+  const N = PEOPLE.length;
+  const ROWS = 14;
+
+  const canvas = document.getElementById("ladder");
+  const ctx = canvas.getContext("2d");
+  const namesEl = document.getElementById("names");
+  const resultsEl = document.getElementById("results");
+  const messageEl = document.getElementById("message");
+  const resetBtn = document.getElementById("resetBtn");
+  const revealBtn = document.getElementById("revealBtn");
+
+  let rungs = [];
+  let prizeCol = 0;
+  let animating = false;
+  let dpr = Math.max(1, window.devicePixelRatio || 1);
+
+  function shuffled(arr){
+    const a = arr.slice();
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]]=[a[j],a[i]];
+    }
+    return a;
+  }
+
+  function traceEndColumn(startCol){
+    let col = startCol;
+    for(let row=0; row<ROWS; row++){
+      const rightRung = rungs.find(r => r.row === row && r.col === col);
+      const leftRung  = rungs.find(r => r.row === row && r.col === col - 1);
+      if(rightRung) col++;
+      else if(leftRung) col--;
+    }
+    return col;
+  }
+
+  function generateLadder(){
+    rungs = [];
+    for(let row=0; row<ROWS; row++){
+      const possible = [];
+      for(let col=0; col<N-1; col++) possible.push(col);
+      const order = shuffled(possible);
+      const used = new Set();
+      for(const col of order){
+        if(used.has(col) || used.has(col-1) || used.has(col+1)) continue;
+        if(Math.random() < 0.38){
+          rungs.push({row, col});
+          used.add(col);
+        }
+      }
+    }
+
+    // 너무 빈 사다리 방지
+    if(rungs.length < 8) return generateLadder();
+
+    // 사다리 모양은 매번 무작위지만, 맨 오른쪽의 시한결(N-1번)의 도착 칸을 항상 [발표자]로 지정한다.
+    prizeCol = traceEndColumn(N - 1);
+    renderLabels();
+    resizeCanvas();
+    drawBase();
+    messageEl.className = "message";
+    messageEl.textContent = "위의 이름 중 한 명을 눌러 확인하세요.";
+    document.querySelectorAll(".name-btn").forEach(b=>b.classList.remove("active"));
+  }
+
+  function renderLabels(){
+    namesEl.innerHTML = "";
+    PEOPLE.forEach((name, i) => {
+      const b = document.createElement("button");
+      b.className = "name-btn";
+      b.textContent = name;
+      b.addEventListener("click", () => runPerson(i));
+      namesEl.appendChild(b);
+    });
+
+    resultsEl.innerHTML = "";
+    for(let i=0;i<N;i++){
+      const d=document.createElement("div");
+      d.className="result" + (i===prizeCol ? " winner-label":"");
+      d.textContent = i===prizeCol ? "[발표자]" : "꽝";
+      resultsEl.appendChild(d);
+    }
+  }
+
+  function resizeCanvas(){
+    const rect = canvas.getBoundingClientRect();
+    dpr = Math.max(1, window.devicePixelRatio || 1);
+    canvas.width = Math.round(rect.width*dpr);
+    canvas.height = Math.round(rect.height*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+
+  function geom(){
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+    const left = 34;
+    const right = w - 34;
+    const top = 26;
+    const bottom = h - 26;
+    const xs = Array.from({length:N},(_,i)=>left+(right-left)*i/(N-1));
+    const ys = Array.from({length:ROWS},(_,r)=>top+(bottom-top)*(r+1)/(ROWS+1));
+    return {w,h,left,right,top,bottom,xs,ys};
+  }
+
+  function drawBase(){
+    const g=geom();
+    ctx.clearRect(0,0,g.w,g.h);
+    ctx.lineCap="round";
+    ctx.lineJoin="round";
+
+    // 세로줄
+    ctx.strokeStyle="#cdd3df";
+    ctx.lineWidth=3;
+    for(const x of g.xs){
+      ctx.beginPath();
+      ctx.moveTo(x,g.top);
+      ctx.lineTo(x,g.bottom);
+      ctx.stroke();
+    }
+
+    // 가로줄
+    ctx.strokeStyle="#9aa3b4";
+    ctx.lineWidth=3;
+    for(const rung of rungs){
+      const y=g.ys[rung.row];
+      ctx.beginPath();
+      ctx.moveTo(g.xs[rung.col],y);
+      ctx.lineTo(g.xs[rung.col+1],y);
+      ctx.stroke();
+    }
+  }
+
+  function pathFor(startCol){
+    const g=geom();
+    let col=startCol;
+    const pts=[{x:g.xs[col],y:g.top}];
+
+    const sorted=[...rungs].sort((a,b)=>a.row-b.row || a.col-b.col);
+    for(let row=0; row<ROWS; row++){
+      const y=g.ys[row];
+      pts.push({x:g.xs[col],y});
+      const rightRung = sorted.find(r=>r.row===row && r.col===col);
+      const leftRung  = sorted.find(r=>r.row===row && r.col===col-1);
+
+      if(rightRung){
+        col++;
+        pts.push({x:g.xs[col],y});
+      }else if(leftRung){
+        col--;
+        pts.push({x:g.xs[col],y});
+      }
+    }
+    pts.push({x:g.xs[col],y:g.bottom});
+    return {pts,endCol:col};
+  }
+
+  function drawPathPartial(pts, progress){
+    // progress: 0~1 by segment count + interpolation
+    drawBase();
+
+    const lengths=[];
+    let total=0;
+    for(let i=0;i<pts.length-1;i++){
+      const dx=pts[i+1].x-pts[i].x;
+      const dy=pts[i+1].y-pts[i].y;
+      const l=Math.hypot(dx,dy);
+      lengths.push(l);
+      total+=l;
+    }
+
+    let target=total*progress;
+    ctx.strokeStyle="#4f46e5";
+    ctx.lineWidth=6;
+    ctx.shadowColor="rgba(79,70,229,.25)";
+    ctx.shadowBlur=8;
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x,pts[0].y);
+
+    let current=0;
+    let marker={x:pts[0].x,y:pts[0].y};
+    for(let i=0;i<lengths.length;i++){
+      const a=pts[i], b=pts[i+1], l=lengths[i];
+      if(current+l <= target){
+        ctx.lineTo(b.x,b.y);
+        marker={x:b.x,y:b.y};
+        current+=l;
+      }else{
+        const remain=Math.max(0,target-current);
+        const t=l===0?0:remain/l;
+        marker={x:a.x+(b.x-a.x)*t, y:a.y+(b.y-a.y)*t};
+        ctx.lineTo(marker.x,marker.y);
+        break;
+      }
+    }
+    ctx.stroke();
+    ctx.shadowBlur=0;
+
+    ctx.fillStyle="#4f46e5";
+    ctx.beginPath();
+    ctx.arc(marker.x,marker.y,8,0,Math.PI*2);
+    ctx.fill();
+  }
+
+  function runPerson(index, instant=false){
+    if(animating) return;
+    const {pts,endCol}=pathFor(index);
+    document.querySelectorAll(".name-btn").forEach((b,i)=>b.classList.toggle("active",i===index));
+
+    const finish = () => {
+      drawPathPartial(pts,1);
+      animating=false;
+      if(endCol===prizeCol){
+        messageEl.className="message win";
+        messageEl.innerHTML=`🎉 <strong>${PEOPLE[index]}</strong> 님이 [발표자]에 당첨되었습니다!`;
+      }else{
+        messageEl.className="message";
+        messageEl.innerHTML=`${PEOPLE[index]} → 꽝`;
+      }
+    };
+
+    if(instant){
+      finish();
+      return;
+    }
+
+    animating=true;
+    messageEl.className="message";
+    messageEl.textContent=`${PEOPLE[index]}의 경로를 확인하는 중...`;
+    const start=performance.now();
+    const duration=1800;
+
+    function frame(now){
+      const p=Math.min(1,(now-start)/duration);
+      const eased=1-Math.pow(1-p,3);
+      drawPathPartial(pts,eased);
+      if(p<1) requestAnimationFrame(frame);
+      else finish();
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function findWinnerIndex(){
+    for(let i=0;i<N;i++){
+      if(pathFor(i).endCol===prizeCol) return i;
+    }
+    return 0;
+  }
+
+  resetBtn.addEventListener("click",()=>{
+    if(animating) return;
+    generateLadder();
+  });
+
+  revealBtn.addEventListener("click",()=>{
+    if(animating) return;
+    runPerson(findWinnerIndex());
+  });
+
+  window.addEventListener("resize",()=>{
+    resizeCanvas();
+    drawBase();
+  });
+
+  generateLadder();
+})();
+</script>
+</body>
+</html>

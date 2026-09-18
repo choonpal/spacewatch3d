@@ -1,0 +1,92 @@
+{
+  "date": "2026-09-18",
+  "input_archive": "../result_65c313.zip",
+  "input_video": "../rgbd_dataset_freiburg1_xyz-rgb.avi",
+  "artifact_directory": "../lingbot_textured_model",
+  "source_frame_range": [
+    0,
+    594
+  ],
+  "source_frame_step": 6,
+  "source_time_range_seconds": [
+    0.0,
+    19.8
+  ],
+  "build": {
+    "input_points": 18275003,
+    "frames": 100,
+    "image_hw": [
+      392,
+      518
+    ],
+    "method": "Open3D TSDF from source-associated PLY samples reprojected with saved cameras",
+    "voxel_length_model_units": 0.004,
+    "sdf_trunc_model_units": 0.02,
+    "max_pixel_reprojection_error": 3.81133575046988e-05,
+    "mean_rgb_mae": 0.0,
+    "mean_depth_coverage": 0.8999981778425655,
+    "raw_faces": 2380903,
+    "vertices": 206081,
+    "triangles": 399999,
+    "coordinate_convention": "C2W, camera axes x-right / y-down / z-forward",
+    "scale": "Model reconstruction scale; not calibrated to metres.",
+    "elapsed_seconds": 46.190008878707886,
+    "bounds": [
+      [
+        -1.994,
+        -1.4995630513908154,
+        0.520890083947062
+      ],
+      [
+        1.2249231486635246,
+        0.842,
+        2.5054126482809767
+      ]
+    ],
+    "texture_tool": "OpenMVS TextureMesh v2.4.0",
+    "texture_dimensions": [
+      2048,
+      2048
+    ],
+    "seam_leveling": "Disabled: installed OpenMVS throws std::out_of_range with default seam leveling",
+    "textured_glb": "lingbot_textured.glb"
+  },
+  "validation": {
+    "file": "../lingbot_textured_model/lingbot_textured.glb",
+    "size_bytes": 20076284,
+    "sha256": "d06d1a52702ea0fdf53fc85932c69c9620f41d345a5f115429a8c948a9afaaec",
+    "gltf_version": 2,
+    "triangles": 399999,
+    "primitives": 1,
+    "embedded_images": 1,
+    "materials": 1,
+    "bounds": [
+      [
+        -1.99399995803833,
+        -1.4995630979537964,
+        0.5208900570869446
+      ],
+      [
+        1.2249231338500977,
+        0.8420000076293945,
+        2.5054125785827637
+      ]
+    ],
+    "self_contained_textures": true,
+    "materials_json": [
+      {
+        "doubleSided": true,
+        "extensions": {
+          "KHR_materials_unlit": {}
+        },
+        "name": "material",
+        "pbrMetallicRoughness": {
+          "baseColorTexture": {
+            "index": 0
+          },
+          "metallicFactor": 0.0
+        }
+      }
+    ]
+  }
+}

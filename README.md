@@ -102,3 +102,76 @@ LingBot-Map으로 생성한 실내 RGB 포인트 클라우드 `xyz_dense.ply`에
 ### SpaceWatch3D에 적용할 때
 
 이번 결과는 3D 지도에 의미 라벨을 부여하는 기초 비교 자료로 사용할 수 있다. 다만 모니터·키보드·사람까지 구분하려면 필요한 클래스가 포함된 모델이나 추가 학습, 또는 앞서 구상한 2D 분할 결과의 3D 투영 방식을 비교해야 한다. 다음 실험에서는 같은 영역에 정답 라벨을 만들고, 클래스별 IoU와 작은 물체의 경계 품질을 평가한다. 개별 객체 추적에는 semantic segmentation 이후의 객체 묶음 처리와 객체 ID 관리가 별도로 필요하다.
+
+## LingBot-Map 점군을 텍스처가 있는 GLB로 변환
+
+LingBot-Map의 `dense.ply`, `cameras.npz`, `run_info.json`과 원본 RGB 영상을 이용해 **Open3D로 표면 메시를 만들고, OpenMVS로 영상 텍스처를 입힌 GLB 파일**을 생성했다. 점으로 표시하던 장면을 삼각형 면과 UV 텍스처로 표현하므로 Blender나 GLB 지원 3D 뷰어에서 모델 파일로 사용할 수 있다.
+
+### 변환 결과
+
+![Open3D로 복원한 실내 메시와 OpenMVS로 생성한 영상 텍스처. 책상, 모니터, 키보드, 의자, 주변 벽이 보이며 오른쪽에는 대응 원본 영상 프레임이 표시되어 있다.](docs/assets/lingbot-open3d-openmvs-glb.png)
+
+왼쪽은 완성된 GLB를 전체 시점에서 본 모습이고, 오른쪽은 원본 영상의 첫 번째 사용 프레임이다. 두 화면은 서로 다른 시점이며, 뷰어의 **이 카메라에서 보기**를 누르면 선택한 원본 프레임의 촬영 위치·방향으로 모델을 확인할 수 있다. 빈 부분은 배경이 보이는 구멍으로, 촬영되지 않았거나 표면 복원이 충분하지 않은 영역이다.
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 압축파일 | `result_65c313.zip` — 점군·카메라·실행 기록 포함 |
+| 원본 영상 | `rgbd_dataset_freiburg1_xyz-rgb.avi` |
+| 입력 점 개수 | 18,275,003점 |
+| 사용한 영상 구간 | 0~19.8초, 6프레임 간격으로 총 100프레임 |
+| 카메라·영상 해상도 | 프레임별 카메라 100개, 전처리된 RGB 518×392 |
+| 표면 복원 | Open3D TSDF 융합 → 작은 조각 제거 → 메시 단순화 |
+| 삼각형 개수 | 융합 직후 2,380,903개 → 최종 **399,999개** |
+| 텍스처 생성 | OpenMVS `TextureMesh` v2.4.0 |
+| 텍스처 이미지 | **2048×2048 PNG 1개**, GLB 내부에 포함 |
+| 최종 파일 | `lingbot_textured.glb`, **20,076,284바이트(약 20.1 MB)** |
+| 좌표 단위 | LingBot-Map 재구성 단위, 실측 미터로 보정하지 않음 |
+
+### 처리 과정과 cameras.npz의 역할
+
+```text
+dense.ply + run_info.json의 프레임별 점 개수
+  → 각 점을 생성한 프레임 구간 복원
+  → cameras.npz의 C2W·내부 파라미터로 원래 픽셀에 재투영
+  → 필터링 후 남은 유효 깊이 샘플 복원
+
+원본 RGB 영상 + cameras.npz의 source_frame_index
+  → 대응하는 100프레임 추출
+  → 기존 LingBot 입력과 동일한 JPEG·리사이즈 전처리
+
+유효 깊이 + RGB + 카메라
+  → Open3D TSDF 융합 → 약 40만 면으로 단순화
+  → 카메라를 COLMAP 형식으로 변환 → InterfaceCOLMAP으로 scene.mvs 생성
+  → OpenMVS TextureMesh로 UV·텍스처 생성
+  → 텍스처 PNG를 GLB 안에 포함 → 단일 GLB 파일 검증
+```
+
+`c2w`는 각 프레임의 카메라 위치·방향, `intrinsic`은 픽셀 투영에 필요한 내부 파라미터다. `source_frame_index`는 원본 영상에서 사용할 프레임을 지정하고, `image_hw`는 내부 파라미터가 적용되는 이미지 크기를 알려준다. COLMAP/OpenMVS에 연결할 때는 C2W를 W2C로 역변환했으며, 각 프레임의 내부 파라미터를 별도로 유지했다.
+
+이번 압축파일에는 별도 깊이맵이 없지만, PLY 점 순서와 `run_info.json`의 `points_per_frame`이 보존되어 있어 **원래 프레임에서 유지된 약 90%의 픽셀 깊이**를 복원할 수 있었다. 제거된 나머지 깊이는 0으로 두었다. TSDF의 voxel 크기는 `0.004`, 절단 거리는 `0.02`로 설정했으며 모두 재구성 좌표 단위다.
+
+### 검증과 남은 한계
+
+- 원래 픽셀로의 재투영 최대 오차는 **0.000039픽셀 미만**이었다. 추출한 영상 프레임과 PLY의 RGB를 대응 점 위치에서 비교한 평균 절대 오차는 **0**이었다. 이는 프레임·전처리·카메라 연결 검증이며, 실제 3D 형상 정확도를 측정한 값은 아니다.
+- 최종 GLB의 면 인덱스·유한 좌표·UV·내장 텍스처를 확인하고, trimesh와 브라우저 GLTFLoader에서 재로딩했다. **외부 PNG 없이 GLB 파일 하나로 열 수 있다.**
+- OpenMVS의 기본 경계 색상 보정에서 `std::out_of_range` 오류가 발생해 `--global-seam-leveling 0 --local-seam-leveling 0`으로 처리했다. 텍스처 패치 사이에 색상 차이가 남을 수 있다.
+- 가려진 면의 구멍, 깊이 추정 잡음, 얇은 물체의 변형이 남아 있다. 닫힌 CAD 솔리드나 치수가 보정된 모델로 해석하지 않는다.
+- 이 GLB에는 형상과 실제 RGB 텍스처를 저장했다. Utonia의 클래스 라벨과 개별 객체 ID를 메시로 연결하는 작업은 후속 단계다.
+
+상세 수치와 GLB SHA-256은 [변환 실험 기록 JSON](docs/experiments/lingbot-open3d-openmvs-glb.json)에 저장했다. README의 결과 사진과 실험 기록은 저장소에 포함하며, 대용량 모델과 중간 산출물은 저장소 옆의 로컬 `../lingbot_textured_model/` 폴더에 보관한다.
+
+| 로컬 산출물 위치 — 저장소 루트 기준 | 내용 |
+| --- | --- |
+| `../lingbot_textured_model/lingbot_textured.glb` | 최종 모델, 텍스처 내장 |
+| `../lingbot_textured_model/mesh_open3d.ply` | Open3D로 생성한 중간 메시 |
+| `../lingbot_textured_model/colmap/` | 대응 RGB 이미지와 변환한 카메라 정보 |
+| `../lingbot_textured_model/scripts/` | 메시 생성·텍스처 내장·GLB 검증 코드 |
+| `../lingbot_textured_model/README.md` | 실행 명령과 재현 방법 |
+
+로컬 뷰어는 [3D 미리보기](http://127.0.0.1:8766/viewer/)에서 회전·확대, 표면·와이어 표시, 원본 촬영 시점 비교를 지원한다. 이 링크는 해당 PC에서 서버가 실행 중일 때만 동작한다. 서버를 다시 시작하려면 저장소 루트에서 실행한다.
+
+```bash
+python3 -m http.server 8766 --bind 127.0.0.1 --directory ../lingbot_textured_model
+```
+
+사용 도구: [Open3D](https://github.com/isl-org/Open3D), [OpenMVS](https://github.com/cdcseacave/openMVS).

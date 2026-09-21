@@ -1,0 +1,144 @@
+{
+  "source": "/home/kdj/Desktop/capstone/left_hall.ply",
+  "sha256": "5090353ad51d3c9a2c0b0cca6dba9727491fe22695f33a7364f4af115b98eec7",
+  "bytes": 271383074,
+  "vertices": 18092192,
+  "finite_vertices": 18092192,
+  "xyz_min": [
+    -0.6544679403305054,
+    -1.3459433317184448,
+    0.34247687458992004
+  ],
+  "xyz_max": [
+    7.9391770362854,
+    0.4018309712409973,
+    5.748318672180176
+  ],
+  "source_file_unchanged": true,
+  "source_downsampling_for_render": false,
+  "method": "All finite source vertices; perspective projection; nearest depth per pixel; original RGB. No mesh, hole filling, or RGB edits.",
+  "camera_fit": "Deterministic strided sample for overview framing only. 0.1/99.9 projection percentiles with margins. Interior view is manually positioned in reconstruction coordinates.",
+  "coordinate_units": "Reconstruction units; not calibrated to metres.",
+  "views": [
+    {
+      "name": "overview",
+      "image": "docs/assets/lingbot-left-hall-overview.png",
+      "eye": [
+        -4.702438105614014,
+        -3.840504917034317,
+        -6.898017108276457
+      ],
+      "rotation": [
+        [
+          0.766044443118978,
+          -0.16636567534280197,
+          0.6208851530148457
+        ],
+        [
+          0.0,
+          0.9659258262890684,
+          0.2588190451025208
+        ],
+        [
+          -0.6427876096865394,
+          -0.1982668912741462,
+          0.7399421116938482
+        ]
+      ],
+      "principal": [
+        -0.0031609324681042827,
+        0.04288085057529756
+      ],
+      "span": [
+        0.36386065639813514,
+        0.2967174193562711
+      ],
+      "points_inside_view": 18090271,
+      "visible_pixels": 487128,
+      "resolution": [
+        1500,
+        1000
+      ]
+    },
+    {
+      "name": "elevated",
+      "image": "docs/assets/lingbot-left-hall-elevated.png",
+      "eye": [
+        3.6371219158172607,
+        -12.537397088381802,
+        -2.6358097095876056
+      ],
+      "rotation": [
+        [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.42261826174069944,
+          0.90630778703665
+        ],
+        [
+          -0.0,
+          -0.90630778703665,
+          0.42261826174069944
+        ]
+      ],
+      "principal": [
+        -0.017207569574777815,
+        0.014320298828816538
+      ],
+      "span": [
+        0.6275304711935571,
+        0.37600913487877463
+      ],
+      "points_inside_view": 18089290,
+      "visible_pixels": 403618,
+      "resolution": [
+        1500,
+        1000
+      ]
+    },
+    {
+      "name": "interior",
+      "image": "docs/assets/lingbot-left-hall-interior.png",
+      "eye": [
+        2.0,
+        -0.1,
+        2.0
+      ],
+      "rotation": [
+        [
+          0.48860336893184325,
+          0.030432141972703462,
+          0.8719751330189447
+        ],
+        [
+          0.0,
+          0.9993915423835817,
+          -0.034879005320757786
+        ],
+        [
+          -0.87250601594972,
+          0.01704199950471394,
+          0.48830607449060903
+        ]
+      ],
+      "principal": [
+        0.0,
+        0.0
+      ],
+      "span": [
+        1.4,
+        1.0
+      ],
+      "points_inside_view": 11468903,
+      "visible_pixels": 855491,
+      "resolution": [
+        1500,
+        1000
+      ]
+    }
+  ]
+}

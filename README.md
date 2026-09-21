@@ -77,6 +77,36 @@ https://colab.research.google.com/drive/1h7Vo1Cgmra4qGms4jqxdCzluD7VNKOLG?usp=sh
 OPENBLAS_NUM_THREADS=4 python3 scripts/render_lingbot_ply_previews.py --source-dir /home/kdj/Desktop/capstone
 ```
 
+## left_hall.ply 복도 시각화
+
+`/home/kdj/Desktop/capstone/left_hall.ply`를 **세 가지 시점**에서 시각화했다. 원본의 **18,092,192점**과 RGB를 사용했으며, 파일 크기는 **271.38 MB**다. 아래 이미지에는 복도 벽면·문, 바닥, 기둥과 주변 가구의 재구성 상태가 나타난다.
+
+### 1. 전체 사선 시점
+
+복도의 길이 방향과 주변 공간이 한눈에 보이도록 비스듬히 바라본 모습이다.
+
+![left_hall.ply의 전체 사선 시점. 길게 이어지는 복도 벽면과 문, 중간 기둥 및 주변 공간을 볼 수 있다.](docs/assets/lingbot-left-hall-overview.png)
+
+### 2. 높은 시점에서 본 배치
+
+카메라를 높여 복도와 주변 공간의 배치를 살펴본 모습이다.
+
+![left_hall.ply를 높은 시점에서 내려다본 모습. 복도와 기둥, 바닥 및 점이 비어 있는 영역의 분포가 보인다.](docs/assets/lingbot-left-hall-elevated.png)
+
+### 3. 복도 내부 시점
+
+복도 안쪽을 바라보며 왼쪽 벽면·문과 중앙 기둥, 가까운 바닥의 형상을 확인한 모습이다.
+
+![left_hall.ply의 복도 내부 시점. 왼쪽 유리 벽면과 문, 중앙 기둥, 오른쪽 가구 및 바닥의 점군이 보인다.](docs/assets/lingbot-left-hall-interior.png)
+
+세 이미지의 점군 영역은 각각 **1500×1000픽셀**이다. 원본 전체 점을 원근 투영하고 픽셀마다 가장 가까운 점의 RGB를 표시했다. 카메라 구도를 정할 때만 샘플을 사용했으며, 최종 렌더링에서는 점을 다운샘플링하지 않았다. 화면 밖이나 다른 점에 가려진 부분은 이미지에 표시되지 않는다. 별도의 메시 생성·구멍 메우기·색 보정은 적용하지 않았다.
+
+원본의 모든 좌표가 유한함을 확인했고, 생성 전후 SHA-256이 일치했다. 점 개수·파일 크기·카메라 설정은 [시각화 기록 JSON](docs/experiments/lingbot-left-hall-visualization.json), 재생성 코드는 [render_left_hall_previews.py](scripts/render_left_hall_previews.py)에 저장했다. 기존 렌더링 스크립트의 공통 함수를 사용하며, NumPy와 Pillow가 설치된 환경에서 저장소 루트 기준으로 실행한다.
+
+```bash
+OPENBLAS_NUM_THREADS=4 python3 scripts/render_left_hall_previews.py --source /home/kdj/Desktop/capstone/left_hall.ply
+```
+
 ## xyz_dense와 Utonia 분할 결과 비교
 
 LingBot-Map으로 생성한 실내 RGB 포인트 클라우드 `xyz_dense.ply`에 **Utonia 백본 + 공식 ScanNet 20종 선형 분류 헤드**를 적용했다. 추가 학습이나 수동 라벨 수정 없이, 3D 점에 직접 semantic segmentation을 수행한 실험이다. 위에서 구상한 2D segmentation 결과의 3D 투영 방식과 비교할 수 있는 기초 실험으로 정리한다.

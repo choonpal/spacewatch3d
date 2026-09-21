@@ -1,0 +1,300 @@
+{
+  "source_directory": "/home/kdj/Desktop/capstone",
+  "method": "All finite source vertices, perspective projection, one-pixel points, nearest-depth z-buffer, original RGB.",
+  "overview_camera_fit": "Deterministic strided sample; 0.1/99.9 projection percentiles with margins. Camera framing may crop scene edges.",
+  "source_downsampling_for_render": false,
+  "reconstructed_metric_scale_known": false,
+  "chair_cameras_identical": true,
+  "source_files_unchanged": true,
+  "files": [
+    {
+      "name": "chair.ply",
+      "sha256": "40ec6c11b20d296fea0372884586d7678ec6ee41959f64343bfd0ca825085a55",
+      "bytes": 335116844,
+      "vertices": 22341110,
+      "finite_vertices": 22341110,
+      "xyz_min": [
+        -1.4145431518554688,
+        -0.6639397144317627,
+        -0.49482041597366333
+      ],
+      "xyz_max": [
+        1.5149677991867065,
+        1.094665765762329,
+        1.7458815574645996
+      ],
+      "image": "docs/assets/lingbot-chair-pointcloud.png",
+      "views": {
+        "overview": {
+          "eye": [
+            -0.05175592750310898,
+            0.0775393396615982,
+            -3.119042856677837
+          ],
+          "rotation": [
+            [
+              1.0,
+              -0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "principal": [
+            -0.02494292577715687,
+            0.06452169041305483
+          ],
+          "span": [
+            0.5587799339250368,
+            0.3568368038350121
+          ],
+          "points_inside_view": 22321375,
+          "visible_pixels": 605410,
+          "resolution": [
+            1100,
+            825
+          ]
+        },
+        "close": {
+          "eye": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "principal": [
+            0.0,
+            -0.045
+          ],
+          "span": [
+            1.15,
+            0.84
+          ],
+          "points_inside_view": 15966645,
+          "visible_pixels": 701206,
+          "resolution": [
+            1100,
+            825
+          ]
+        }
+      }
+    },
+    {
+      "name": "chair_1fps.ply",
+      "sha256": "1128d1d1da01980d309deec306363dd9c01d023bbd836f860e0d3ee8c8e796b5",
+      "bytes": 67845899,
+      "vertices": 4523047,
+      "finite_vertices": 4523047,
+      "xyz_min": [
+        -1.7270710468292236,
+        -0.5729076862335205,
+        -0.3616108298301697
+      ],
+      "xyz_max": [
+        1.1587932109832764,
+        1.0035274028778076,
+        1.6211365461349487
+      ],
+      "image": "docs/assets/lingbot-chair-1fps-pointcloud.png",
+      "views": {
+        "overview": {
+          "eye": [
+            -0.05175592750310898,
+            0.0775393396615982,
+            -3.119042856677837
+          ],
+          "rotation": [
+            [
+              1.0,
+              -0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "principal": [
+            -0.02494292577715687,
+            0.06452169041305483
+          ],
+          "span": [
+            0.5587799339250368,
+            0.3568368038350121
+          ],
+          "points_inside_view": 4517735,
+          "visible_pixels": 482518,
+          "resolution": [
+            1100,
+            825
+          ]
+        },
+        "close": {
+          "eye": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "principal": [
+            0.0,
+            -0.045
+          ],
+          "span": [
+            1.15,
+            0.84
+          ],
+          "points_inside_view": 3203790,
+          "visible_pixels": 637885,
+          "resolution": [
+            1100,
+            825
+          ]
+        }
+      }
+    },
+    {
+      "name": "chairs_tables.ply",
+      "sha256": "b9bbb34c88a327f03699ec27a89a94793b628085a9ae81d44dcab8a0ce20c78c",
+      "bytes": 359787959,
+      "vertices": 23985851,
+      "finite_vertices": 23985851,
+      "xyz_min": [
+        -1.6176902055740356,
+        -1.1809478998184204,
+        -0.027197429910302162
+      ],
+      "xyz_max": [
+        1.0485361814498901,
+        0.8021313548088074,
+        2.4154176712036133
+      ],
+      "image": "docs/assets/lingbot-chairs-tables-pointcloud.png",
+      "views": {
+        "overview": {
+          "eye": [
+            1.7207278203002825,
+            -1.4638177443650644,
+            -2.5158944216878014
+          ],
+          "rotation": [
+            [
+              0.8660254037844387,
+              0.12940952255126034,
+              -0.48296291314453405
+            ],
+            [
+              0.0,
+              0.9659258262890682,
+              0.25881904510252074
+            ],
+            [
+              0.49999999999999994,
+              -0.2241438680420134,
+              0.8365163037378079
+            ]
+          ],
+          "principal": [
+            0.029328936897972654,
+            0.05223187252575491
+          ],
+          "span": [
+            0.5323988427819626,
+            0.42671913710951137
+          ],
+          "points_inside_view": 23969502,
+          "visible_pixels": 652114,
+          "resolution": [
+            1100,
+            825
+          ]
+        },
+        "close": {
+          "eye": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "principal": [
+            -0.38,
+            -0.29
+          ],
+          "span": [
+            1.6,
+            1.16
+          ],
+          "points_inside_view": 22689710,
+          "visible_pixels": 646951,
+          "resolution": [
+            1100,
+            825
+          ]
+        }
+      }
+    }
+  ],
+  "comparison_image": "docs/assets/lingbot-three-ply-comparison.png"
+}

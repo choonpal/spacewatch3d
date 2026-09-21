@@ -23,6 +23,60 @@ https://colab.research.google.com/drive/1h7Vo1Cgmra4qGms4jqxdCzluD7VNKOLG?usp=sh
 
 누구든 테스트 가능
 
+## LingBot-Map PLY 3종 시각화
+
+`/home/kdj/Desktop/capstone/`의 `chair.ply`, `chair_1fps.ply`, `chairs_tables.ply`를 원본 RGB로 시각화했다. **실제 PLY의 XYZ 좌표와 RGB를 투영한 결과**이며, 각 파일의 전체 모습과 가까이 본 모습을 함께 저장했다.
+
+![왼쪽부터 chair.ply, chair_1fps.ply, chairs_tables.ply의 RGB 포인트 클라우드. 두 의자 결과는 같은 카메라 위치와 방향, 같은 화면 범위로 표시했다.](docs/assets/lingbot-three-ply-comparison.png)
+
+| 원본 파일 — 저장소 옆 폴더 | 전체 점 개수 | 파일 크기 | 장면 |
+| --- | ---: | ---: | --- |
+| `../chair.ply` | **22,341,110** | 335.12 MB | 녹색 등받이의 의자와 주변 바닥 |
+| `../chair_1fps.ply` | **4,523,047** | 67.85 MB | 의자 장면의 별도 재구성 결과 |
+| `../chairs_tables.ply` | **23,985,851** | 359.79 MB | 여러 의자·테이블과 파란 바닥 |
+
+점 개수는 PLY 헤더와 실제 파일 길이를 대조해 확인했으며, MB는 1,000,000바이트 기준이다. 세 파일은 모두 `binary_little_endian` 형식으로, 점마다 float32 XYZ와 uint8 RGB를 저장한다. `chair_1fps.ply`의 점 개수는 `chair.ply`의 약 **20.25%**다. 점 개수 자체가 재구성 정확도를 뜻하지는 않는다.
+
+### 파일별 전체·근접 시점
+
+각 이미지는 왼쪽에 전체 모습을 넓게 본 시점, 오른쪽에 가까이 본 시점을 배치했다. 아래 항목을 펼치면 큰 이미지를 확인할 수 있다.
+
+<details>
+<summary><strong>chair.ply — 22,341,110점</strong></summary>
+
+![chair.ply의 전체 모습과 근접 시점. 녹색 등받이, 검은 좌판, 의자 다리와 주변 바닥이 보인다.](docs/assets/lingbot-chair-pointcloud.png)
+
+</details>
+
+<details>
+<summary><strong>chair_1fps.ply — 4,523,047점</strong></summary>
+
+![chair_1fps.ply의 전체 모습과 근접 시점. chair.ply와 동일한 시각화 카메라를 사용했다.](docs/assets/lingbot-chair-1fps-pointcloud.png)
+
+</details>
+
+<details>
+<summary><strong>chairs_tables.ply — 23,985,851점</strong></summary>
+
+![chairs_tables.ply의 전체 모습과 근접 시점. 여러 의자와 테이블, 파란 바닥 및 재구성 표면의 겹침과 빈 부분이 보인다.](docs/assets/lingbot-chairs-tables-pointcloud.png)
+
+</details>
+
+### 시각화 방법
+
+- 최종 렌더링에는 **원본의 모든 유한한 좌표를 가진 점**을 사용했다. 카메라의 구도를 정할 때만 일부 점을 샘플링했다.
+- CPU에서 원근 투영하고, 각 픽셀에 가장 가까운 점의 RGB를 표시했다. 개별 이미지의 각 시점은 **1100×825픽셀**이며, 위 비교 이미지는 이를 축소해 배치했다.
+- 두 의자 파일의 좌표를 그대로 두고, 전체·근접 시점 각각에 **동일한 카메라 위치·방향·투영 범위**를 적용했다.
+- 화면 구도에 따라 가장자리나 카메라 뒤쪽 점은 이미지에 나타나지 않는다. 짙은 배경은 해당 시점에서 점이 표시되지 않은 부분이다. 원본 PLY를 수정하거나 메시 생성·구멍 메우기·색 보정을 적용하지 않았다.
+
+원본 파일의 SHA-256, 전체 점 개수, 좌표 범위, 카메라 설정과 표시된 픽셀 수는 [시각화 기록 JSON](docs/experiments/lingbot-three-ply-visualization.json)에 저장했다. 생성 전후 SHA-256을 비교해 원본 파일이 유지된 것을 확인했다.
+
+재생성 코드: [render_lingbot_ply_previews.py](scripts/render_lingbot_ply_previews.py). NumPy와 Pillow가 설치된 환경에서 저장소 루트 기준으로 실행한다.
+
+```bash
+OPENBLAS_NUM_THREADS=4 python3 scripts/render_lingbot_ply_previews.py --source-dir /home/kdj/Desktop/capstone
+```
+
 ## xyz_dense와 Utonia 분할 결과 비교
 
 LingBot-Map으로 생성한 실내 RGB 포인트 클라우드 `xyz_dense.ply`에 **Utonia 백본 + 공식 ScanNet 20종 선형 분류 헤드**를 적용했다. 추가 학습이나 수동 라벨 수정 없이, 3D 점에 직접 semantic segmentation을 수행한 실험이다. 위에서 구상한 2D segmentation 결과의 3D 투영 방식과 비교할 수 있는 기초 실험으로 정리한다.

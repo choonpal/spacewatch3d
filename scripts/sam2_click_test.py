@@ -14,7 +14,7 @@ from sam2.sam2_image_predictor import SAM2ImagePredictor
 # --------------------------------------------------
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
-IMAGE_PATH = PROJECT_ROOT / "data" / "test_images" / "sample3.png"
+IMAGE_PATH = PROJECT_ROOT / "data" / "test_images" / "sample2.png"
 
 CHECKPOINT = Path(
     "/home/lhw/nudix/sam2/checkpoints/sam2.1_hiera_tiny.pt"

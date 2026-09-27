@@ -1,0 +1,65 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "objects",
+  "scene_id": "synthetic_room",
+  "capture_id": "capture_002",
+  "synthetic": true,
+  "producer": "handmade-fixture",
+  "parameters": {},
+  "instances_manifest": "instances.json",
+  "objects": [
+    {
+      "instance_id": "object_0091",
+      "mesh_uri": "object.obj",
+      "mesh_format": "obj",
+      "material_uri": null,
+      "texture_uris": [],
+      "world_from_object": [
+        [
+          1,
+          0,
+          0,
+          0.3
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "bbox_min": [
+        0.04999999999999999,
+        -0.25,
+        1.75
+      ],
+      "bbox_max": [
+        0.55,
+        0.25,
+        2.25
+      ],
+      "centroid": [
+        0.3,
+        0,
+        2
+      ],
+      "appearance": "none",
+      "geometry_status": "reconstructed_surface",
+      "evidence_frame_ids": [
+        "f000000"
+      ]
+    }
+  ]
+}

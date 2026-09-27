@@ -1,0 +1,24 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "instances",
+  "scene_id": "synthetic_room",
+  "capture_id": "capture_001",
+  "synthetic": true,
+  "producer": "handmade-fixture",
+  "parameters": {},
+  "reconstruction_manifest": "reconstruction.json",
+  "point_labels_uri": "labels.csv",
+  "point_count": 8,
+  "instances": [
+    {
+      "instance_id": "object_0001",
+      "class_name": "synthetic_block",
+      "class_confidence": 1,
+      "confidence": 1,
+      "point_count": 8,
+      "evidence_frame_ids": [
+        "f000000"
+      ]
+    }
+  ]
+}

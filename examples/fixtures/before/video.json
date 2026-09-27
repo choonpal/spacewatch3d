@@ -1,0 +1,13 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "video",
+  "scene_id": "synthetic_room",
+  "capture_id": "capture_001",
+  "synthetic": true,
+  "producer": "handmade-fixture",
+  "parameters": {},
+  "source_video_uri": "input.mp4",
+  "projection": "perspective",
+  "width": 16,
+  "height": 16
+}

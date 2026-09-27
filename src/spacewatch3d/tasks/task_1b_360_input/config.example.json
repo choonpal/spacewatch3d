@@ -1,0 +1,14 @@
+{
+  "backend": "unimplemented",
+  "sample_fps": 2.0,
+  "view_fov_degrees": 90,
+  "view_yaw_degrees": [
+    0,
+    90,
+    180,
+    270
+  ],
+  "view_pitch_degrees": [
+    0
+  ]
+}

@@ -1,0 +1,1010 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SpaceWatch3D artifact contract 0.1.0",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/video"
+    },
+    {
+      "$ref": "#/$defs/frames"
+    },
+    {
+      "$ref": "#/$defs/reconstruction"
+    },
+    {
+      "$ref": "#/$defs/instances"
+    },
+    {
+      "$ref": "#/$defs/objects"
+    },
+    {
+      "$ref": "#/$defs/changes"
+    },
+    {
+      "$ref": "#/$defs/keyframes"
+    }
+  ],
+  "$defs": {
+    "vector3": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "matrix3": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        },
+        "minItems": 3,
+        "maxItems": 3
+      },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "matrix4": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        },
+        "minItems": 4,
+        "maxItems": 4
+      },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "intrinsics": {
+      "type": "object",
+      "properties": {
+        "fx": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "fy": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "cx": {
+          "type": "number"
+        },
+        "cy": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "fx",
+        "fy",
+        "cx",
+        "cy"
+      ],
+      "additionalProperties": false
+    },
+    "coordinates": {
+      "type": "object",
+      "properties": {
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "handedness": {
+          "const": "right"
+        },
+        "up_axis": {
+          "enum": [
+            "unknown",
+            "+Y",
+            "-Y",
+            "+Z"
+          ]
+        },
+        "units": {
+          "enum": [
+            "m",
+            "arbitrary"
+          ]
+        },
+        "scale_to_meters": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "frame_id",
+        "handedness",
+        "up_axis",
+        "units",
+        "scale_to_meters"
+      ],
+      "additionalProperties": false
+    },
+    "frame": {
+      "type": "object",
+      "properties": {
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "timestamp_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "source_frame_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "view_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "image_uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "intrinsics": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/intrinsics"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_from_view_rotation": {
+          "$ref": "#/$defs/matrix3"
+        }
+      },
+      "required": [
+        "frame_id",
+        "timestamp_s",
+        "source_frame_index",
+        "view_id",
+        "image_uri",
+        "width",
+        "height",
+        "intrinsics",
+        "source_from_view_rotation"
+      ],
+      "additionalProperties": false
+    },
+    "camera": {
+      "type": "object",
+      "properties": {
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "image_uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "intrinsics": {
+          "$ref": "#/$defs/intrinsics"
+        },
+        "world_from_camera": {
+          "$ref": "#/$defs/matrix4"
+        },
+        "depth_uri": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "confidence_uri": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "depth_convention": {
+          "enum": [
+            "camera_z",
+            null
+          ]
+        }
+      },
+      "required": [
+        "frame_id",
+        "image_uri",
+        "width",
+        "height",
+        "intrinsics",
+        "world_from_camera",
+        "depth_uri",
+        "confidence_uri",
+        "depth_convention"
+      ],
+      "additionalProperties": false
+    },
+    "instance": {
+      "type": "object",
+      "properties": {
+        "instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "class_name": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "class_confidence": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "point_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "evidence_frame_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "instance_id",
+        "class_name",
+        "class_confidence",
+        "confidence",
+        "point_count",
+        "evidence_frame_ids"
+      ],
+      "additionalProperties": false
+    },
+    "object": {
+      "type": "object",
+      "properties": {
+        "instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mesh_uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mesh_format": {
+          "enum": [
+            "glb",
+            "obj"
+          ]
+        },
+        "material_uri": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "texture_uris": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "world_from_object": {
+          "$ref": "#/$defs/matrix4"
+        },
+        "bbox_min": {
+          "$ref": "#/$defs/vector3"
+        },
+        "bbox_max": {
+          "$ref": "#/$defs/vector3"
+        },
+        "centroid": {
+          "$ref": "#/$defs/vector3"
+        },
+        "appearance": {
+          "enum": [
+            "none",
+            "vertex_color",
+            "texture"
+          ]
+        },
+        "geometry_status": {
+          "enum": [
+            "observed_partial",
+            "reconstructed_surface"
+          ]
+        },
+        "evidence_frame_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "instance_id",
+        "mesh_uri",
+        "mesh_format",
+        "material_uri",
+        "texture_uris",
+        "world_from_object",
+        "bbox_min",
+        "bbox_max",
+        "centroid",
+        "appearance",
+        "geometry_status",
+        "evidence_frame_ids"
+      ],
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "capture_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "capture_id",
+        "frame_id"
+      ],
+      "additionalProperties": false
+    },
+    "change": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "added",
+            "removed",
+            "moved",
+            "shape_changed",
+            "unchanged",
+            "unknown"
+          ]
+        },
+        "before_instance_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "after_instance_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "displacement_in_baseline": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/vector3"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      },
+      "required": [
+        "type",
+        "before_instance_id",
+        "after_instance_id",
+        "confidence",
+        "displacement_in_baseline",
+        "reason",
+        "evidence"
+      ],
+      "additionalProperties": false
+    },
+    "registration": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "ok",
+            "insufficient_overlap",
+            "failed"
+          ]
+        },
+        "model": {
+          "enum": [
+            "SE3",
+            "Sim3"
+          ]
+        },
+        "baseline_from_current": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/matrix4"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fitness": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rmse": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "status",
+        "model",
+        "baseline_from_current",
+        "fitness",
+        "rmse",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "keyframe": {
+      "type": "object",
+      "properties": {
+        "instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_frame_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timestamp_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "view_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "image_uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "instance_id",
+        "frame_id",
+        "source_frame_index",
+        "timestamp_s",
+        "view_id",
+        "image_uri",
+        "score",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "video": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "0.1.0"
+        },
+        "kind": {
+          "const": "video"
+        },
+        "scene_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "capture_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "synthetic": {
+          "type": "boolean"
+        },
+        "producer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parameters": {
+          "type": "object"
+        },
+        "source_video_uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "projection": {
+          "enum": [
+            "perspective",
+            "equirectangular"
+          ]
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "scene_id",
+        "capture_id",
+        "synthetic",
+        "producer",
+        "parameters",
+        "source_video_uri",
+        "projection",
+        "width",
+        "height"
+      ],
+      "additionalProperties": false
+    },
+    "frames": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "0.1.0"
+        },
+        "kind": {
+          "const": "frames"
+        },
+        "scene_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "capture_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "synthetic": {
+          "type": "boolean"
+        },
+        "producer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parameters": {
+          "type": "object"
+        },
+        "source_manifest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "frames": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/frame"
+          }
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "scene_id",
+        "capture_id",
+        "synthetic",
+        "producer",
+        "parameters",
+        "source_manifest",
+        "frames"
+      ],
+      "additionalProperties": false
+    },
+    "reconstruction": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "0.1.0"
+        },
+        "kind": {
+          "const": "reconstruction"
+        },
+        "scene_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "capture_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "synthetic": {
+          "type": "boolean"
+        },
+        "producer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parameters": {
+          "type": "object"
+        },
+        "frames_manifest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "coordinates": {
+          "$ref": "#/$defs/coordinates"
+        },
+        "pointcloud_uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "point_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "cameras": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/camera"
+          }
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "scene_id",
+        "capture_id",
+        "synthetic",
+        "producer",
+        "parameters",
+        "frames_manifest",
+        "coordinates",
+        "pointcloud_uri",
+        "point_count",
+        "cameras"
+      ],
+      "additionalProperties": false
+    },
+    "instances": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "0.1.0"
+        },
+        "kind": {
+          "const": "instances"
+        },
+        "scene_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "capture_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "synthetic": {
+          "type": "boolean"
+        },
+        "producer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parameters": {
+          "type": "object"
+        },
+        "reconstruction_manifest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "point_labels_uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "point_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "instances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/instance"
+          }
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "scene_id",
+        "capture_id",
+        "synthetic",
+        "producer",
+        "parameters",
+        "reconstruction_manifest",
+        "point_labels_uri",
+        "point_count",
+        "instances"
+      ],
+      "additionalProperties": false
+    },
+    "objects": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "0.1.0"
+        },
+        "kind": {
+          "const": "objects"
+        },
+        "scene_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "capture_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "synthetic": {
+          "type": "boolean"
+        },
+        "producer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parameters": {
+          "type": "object"
+        },
+        "instances_manifest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "objects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/object"
+          }
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "scene_id",
+        "capture_id",
+        "synthetic",
+        "producer",
+        "parameters",
+        "instances_manifest",
+        "objects"
+      ],
+      "additionalProperties": false
+    },
+    "changes": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "0.1.0"
+        },
+        "kind": {
+          "const": "changes"
+        },
+        "scene_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "capture_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "synthetic": {
+          "type": "boolean"
+        },
+        "producer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parameters": {
+          "type": "object"
+        },
+        "baseline_objects_manifest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "current_objects_manifest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "baseline_capture_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "registration": {
+          "$ref": "#/$defs/registration"
+        },
+        "changes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/change"
+          }
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "scene_id",
+        "capture_id",
+        "synthetic",
+        "producer",
+        "parameters",
+        "baseline_objects_manifest",
+        "current_objects_manifest",
+        "baseline_capture_id",
+        "registration",
+        "changes"
+      ],
+      "additionalProperties": false
+    },
+    "keyframes": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "0.1.0"
+        },
+        "kind": {
+          "const": "keyframes"
+        },
+        "scene_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "capture_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "synthetic": {
+          "type": "boolean"
+        },
+        "producer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parameters": {
+          "type": "object"
+        },
+        "objects_manifest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "keyframes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/keyframe"
+          }
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "scene_id",
+        "capture_id",
+        "synthetic",
+        "producer",
+        "parameters",
+        "objects_manifest",
+        "keyframes"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

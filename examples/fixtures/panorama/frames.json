@@ -1,0 +1,44 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "frames",
+  "scene_id": "synthetic_room",
+  "capture_id": "capture_360",
+  "synthetic": true,
+  "producer": "handmade-fixture",
+  "parameters": {},
+  "source_manifest": "video.json",
+  "frames": [
+    {
+      "frame_id": "f000000_front",
+      "timestamp_s": 0,
+      "source_frame_index": 0,
+      "view_id": "front",
+      "image_uri": "view_front.ppm",
+      "width": 16,
+      "height": 16,
+      "intrinsics": {
+        "fx": 12.5,
+        "fy": 12.5,
+        "cx": 8,
+        "cy": 8
+      },
+      "source_from_view_rotation": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+# Install only the dependencies validated by this task owner.
+# Record tested model revision, CUDA/Python versions and installation steps in README.md.
+# The shared contract environment does not install any GPU/model dependency.

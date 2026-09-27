@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "keyframes",
+  "scene_id": "synthetic_room",
+  "capture_id": "capture_002",
+  "synthetic": true,
+  "producer": "handmade-fixture",
+  "parameters": {},
+  "objects_manifest": "objects.json",
+  "keyframes": [
+    {
+      "instance_id": "object_0091",
+      "frame_id": "f000000",
+      "source_frame_index": 0,
+      "timestamp_s": 0.0,
+      "view_id": "rgb",
+      "image_uri": "frame_000000.ppm",
+      "score": 1,
+      "reason": "Synthetic contract example; no frame ranking algorithm was run."
+    }
+  ]
+}

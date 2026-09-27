@@ -1,0 +1,62 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "reconstruction",
+  "scene_id": "synthetic_room",
+  "capture_id": "capture_001",
+  "synthetic": true,
+  "producer": "handmade-fixture",
+  "parameters": {},
+  "frames_manifest": "frames.json",
+  "coordinates": {
+    "frame_id": "world:capture_001",
+    "handedness": "right",
+    "up_axis": "-Y",
+    "units": "m",
+    "scale_to_meters": 1
+  },
+  "pointcloud_uri": "points.ply",
+  "point_count": 8,
+  "cameras": [
+    {
+      "frame_id": "f000000",
+      "image_uri": "frame_000000.ppm",
+      "width": 16,
+      "height": 16,
+      "intrinsics": {
+        "fx": 12.5,
+        "fy": 12.5,
+        "cx": 8,
+        "cy": 8
+      },
+      "world_from_camera": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "depth_uri": null,
+      "confidence_uri": null,
+      "depth_convention": null
+    }
+  ]
+}

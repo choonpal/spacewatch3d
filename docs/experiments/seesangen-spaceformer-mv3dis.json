@@ -1,0 +1,2592 @@
+{
+  "scene": "Seesangen inside",
+  "documentation_date": "2026-09-27",
+  "source_viewer": "https://mikatammi.github.io/infurer-lingbot-map-demos/seesangen-inside.html",
+  "source_revision": "31c99e60298b1dfdea4a50ef3dc46c5b7efd8383",
+  "source_ply_sha256": "bb252449f6fbc666ca3c1eb97f72539145d33cb51fe780f8a38f10bddd8b0e93",
+  "local_output_root": "/home/kdj/Documents/ChatGPT/capstone design/output/seesangen_segmentation",
+  "models_rerun_for_documentation": false,
+  "figures": {
+    "source": "Saved inference outputs; models not rerun",
+    "scene_frame_indices": [
+      35,
+      213
+    ],
+    "source_point_count": 2932450,
+    "statistics_verified_against_point_labels": true,
+    "selected_regions": {
+      "spaceformer": [
+        {
+          "region_id": 1,
+          "points": 737023
+        },
+        {
+          "region_id": 2,
+          "points": 194684
+        },
+        {
+          "region_id": 7,
+          "points": 43989
+        },
+        {
+          "region_id": 19,
+          "points": 14199
+        },
+        {
+          "region_id": 47,
+          "points": 4091
+        },
+        {
+          "region_id": 71,
+          "points": 121
+        }
+      ],
+      "mv3dis": [
+        {
+          "region_id": 1,
+          "points": 1161192
+        },
+        {
+          "region_id": 2,
+          "points": 356284
+        },
+        {
+          "region_id": 4,
+          "points": 55122
+        },
+        {
+          "region_id": 7,
+          "points": 32272
+        },
+        {
+          "region_id": 12,
+          "points": 10052
+        },
+        {
+          "region_id": 18,
+          "points": 595
+        }
+      ]
+    }
+  },
+  "models": {
+    "spaceformer": {
+      "export_report": {
+        "model": "spaceformer",
+        "source_points": 2932450,
+        "model_support_points": 210003,
+        "regions": 71,
+        "assigned_source_points": 1961038,
+        "assigned_fraction": 0.668737062865522,
+        "unassigned_source_points": 971412,
+        "geometric_transfer_coverage": 1.0,
+        "max_transfer_distance_native_units": 0.07,
+        "source_order_preserved": true,
+        "unassigned_id": 0,
+        "semantic_labels_are_predictions": true,
+        "ground_truth_available": false,
+        "accuracy_metrics": null,
+        "display_score_threshold": 0.5,
+        "overlap_resolution": "Higher objectness-mask score first; raw overlapping masks retained in instances.npz",
+        "mask_count_by_threshold": {
+          "0": 145,
+          "0.3": 74,
+          "0.5": 72,
+          "0.7": 61
+        }
+      },
+      "inference_report": {
+        "source_points": 2932450,
+        "input_points": 210003,
+        "output_points": 210003,
+        "instances": 145,
+        "objectness_scores": [
+          0.9926636219024658,
+          0.9850318431854248,
+          0.9845827221870422,
+          0.9831802248954773,
+          0.9727996587753296,
+          0.9720652103424072,
+          0.970635712146759,
+          0.9702495336532593,
+          0.9622907638549805,
+          0.9616789817810059,
+          0.9605656862258911,
+          0.9580308198928833,
+          0.9577184915542603,
+          0.9570105671882629,
+          0.9568344950675964,
+          0.9490991830825806,
+          0.9475984573364258,
+          0.9453148245811462,
+          0.9432520270347595,
+          0.9406250715255737,
+          0.9405854940414429,
+          0.9398968815803528,
+          0.9391720294952393,
+          0.93097984790802,
+          0.9272999167442322,
+          0.9271212220191956,
+          0.9237490296363831,
+          0.9236351251602173,
+          0.9174603819847107,
+          0.9169179797172546,
+          0.9164025187492371,
+          0.9136727452278137,
+          0.9134570360183716,
+          0.9108213782310486,
+          0.9106793999671936,
+          0.8983641266822815,
+          0.8914495706558228,
+          0.8906555771827698,
+          0.8838971853256226,
+          0.8796437978744507,
+          0.8696585297584534,
+          0.8598914742469788,
+          0.8575727939605713,
+          0.8535614013671875,
+          0.8463335037231445,
+          0.8398499488830566,
+          0.8325549960136414,
+          0.8284275531768799,
+          0.8261991739273071,
+          0.8215952515602112,
+          0.8204782605171204,
+          0.8163766860961914,
+          0.8123046159744263,
+          0.8006778359413147,
+          0.7694911360740662,
+          0.767755389213562,
+          0.7562879920005798,
+          0.755361020565033,
+          0.7381683588027954,
+          0.7221410870552063,
+          0.7014682292938232,
+          0.6984395384788513,
+          0.6923475861549377,
+          0.6909134984016418,
+          0.6684933304786682,
+          0.663384735584259,
+          0.6553663611412048,
+          0.6490955948829651,
+          0.63394695520401,
+          0.6271190047264099,
+          0.6183293461799622,
+          0.5440552830696106,
+          0.41463303565979004,
+          0.3175339698791504,
+          0.26958587765693665,
+          0.23696154356002808,
+          0.23461270332336426,
+          0.17523019015789032,
+          0.15610618889331818,
+          0.14799456298351288,
+          0.13315759599208832,
+          0.12307031452655792,
+          0.10137828439474106,
+          0.05456320941448212,
+          0.04949183017015457,
+          0.0444197878241539,
+          0.043667808175086975,
+          0.04268666356801987,
+          0.041058383882045746,
+          0.04063906893134117,
+          0.04014381021261215,
+          0.031875498592853546,
+          0.029315147548913956,
+          0.02617194503545761,
+          0.023616239428520203,
+          0.02307361178100109,
+          0.02271164394915104,
+          0.02036333829164505,
+          0.019924333319067955,
+          0.01972210593521595,
+          0.016921401023864746,
+          0.016804957762360573,
+          0.01513273548334837,
+          0.014434116892516613,
+          0.014384797774255276,
+          0.013338854536414146,
+          0.013268593698740005,
+          0.013064362108707428,
+          0.013060067780315876,
+          0.013001734390854836,
+          0.012935291975736618,
+          0.012512832880020142,
+          0.012355728074908257,
+          0.011883114464581013,
+          0.01169042382389307,
+          0.011260196566581726,
+          0.010991567745804787,
+          0.010737643577158451,
+          0.010102539323270321,
+          0.009861139580607414,
+          0.009485002607107162,
+          0.009433122351765633,
+          0.00932280719280243,
+          0.009037836454808712,
+          0.008784185163676739,
+          0.007882261648774147,
+          0.007440302055329084,
+          0.0074096121825277805,
+          0.007245957851409912,
+          0.0072336518205702305,
+          0.006756329443305731,
+          0.0062764729373157024,
+          0.00618017790839076,
+          0.005916719790548086,
+          0.005593712441623211,
+          0.005298180505633354,
+          0.004929407965391874,
+          0.004835615865886211,
+          0.004754933528602123,
+          0.004609169438481331,
+          0.003964342642575502,
+          0.003379625268280506,
+          0.0032011086586862803,
+          0.0020278748124837875,
+          0.0013418879825621843
+        ],
+        "labels": [
+          "bathtub",
+          "wall",
+          "floor",
+          "floor",
+          "shelf",
+          "shelf",
+          "toilet",
+          "wall",
+          "toilet",
+          "floor",
+          "shelf",
+          "toilet",
+          "television",
+          "wall",
+          "wall",
+          "shelf",
+          "shelf",
+          "television",
+          "wall",
+          "television",
+          "wall",
+          "shelf",
+          "floor",
+          "shelf",
+          "television",
+          "computer monitor",
+          "wall",
+          "cabinet",
+          "bathtub",
+          "cabinet",
+          "shelf",
+          "toilet",
+          "cabinet",
+          "shelf",
+          "toilet",
+          "cabinet",
+          "shelf",
+          "wall",
+          "shelf",
+          "shelf",
+          "wall",
+          "table",
+          "television",
+          "toilet",
+          "wall",
+          "table",
+          "wall",
+          "television",
+          "floor",
+          "cabinet",
+          "television",
+          "shelf",
+          "shelf",
+          "television",
+          "shelf",
+          "shelf",
+          "shelf",
+          "wall",
+          "floor",
+          "wall",
+          "wall",
+          "bed",
+          "wall",
+          "shelf",
+          "wall",
+          "floor",
+          "wall",
+          "floor",
+          "wall",
+          "floor",
+          "wall",
+          "computer monitor",
+          "floor",
+          "wall",
+          "shelf",
+          "wall",
+          "wall",
+          "wall",
+          "floor",
+          "wall",
+          "cabinet",
+          "cabinet",
+          "wall",
+          "shelf",
+          "floor",
+          "curtain",
+          "wall",
+          "shelf",
+          "wall",
+          "television",
+          "wall",
+          "shelf",
+          "television",
+          "wall",
+          "floor",
+          "wall",
+          "wall",
+          "cabinet",
+          "shelf",
+          "wall",
+          "shelf",
+          "wall",
+          "floor",
+          "shelf",
+          "curtain",
+          "toilet",
+          "television",
+          "wall",
+          "shelf",
+          "wall",
+          "curtain",
+          "toilet",
+          "shelf",
+          "wall",
+          "bathtub",
+          "wall",
+          "curtain",
+          "floor",
+          "wall",
+          "floor",
+          "wall",
+          "wall",
+          "table",
+          "television",
+          "floor",
+          "toilet",
+          "wall",
+          "door",
+          "toilet",
+          "bed",
+          "wall",
+          "floor",
+          "television",
+          "bed",
+          "wall",
+          "wall",
+          "bed",
+          "bed",
+          "wall",
+          "floor",
+          "floor",
+          "wall",
+          "wall",
+          "bathtub",
+          "shelf"
+        ],
+        "forward_seconds": 7.829191244999947,
+        "total_seconds": 120.3052738299998,
+        "checkpoint": "chrischoy/SpaCeFormer/spaceformer_512_siglip2_ssccc.ckpt",
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "torch": "2.5.1+cu124",
+        "gpu": "Tesla T4",
+        "warpconvnet_source_commit": "e3ab140bea3567b930c2e1f1aa85c4299dd088b8",
+        "cuda_arch": "7.5",
+        "checkpoint_sha256": "ac20817f6bab055483d2374c146c31050ae147c452f74123e43ef29f5ff9eed5",
+        "input_voxel": 0.04,
+        "model_voxel": 0.02,
+        "seed": 42,
+        "scale": "Uncalibrated native units treated as meters",
+        "attention": "T4 compatibility: mathematically equivalent PyTorch SDPA with exact packed sequence boundaries",
+        "convolution": "explicit_gemm",
+        "postprocessing": {
+          "use_dbscan": false,
+          "use_stability_score": false,
+          "use_nms": true,
+          "nms_thresh": 0.7,
+          "min_mask_points": 20,
+          "objectness_thresh": 0.0
+        },
+        "vocabulary": [
+          "chair",
+          "desk",
+          "table",
+          "sofa",
+          "bed",
+          "cabinet",
+          "shelf",
+          "door",
+          "window",
+          "wall",
+          "floor",
+          "curtain",
+          "computer monitor",
+          "television",
+          "sink",
+          "toilet",
+          "bathtub",
+          "refrigerator"
+        ]
+      },
+      "qualitative_review": {
+        "basis": "Same-camera projection comparison and original-RGB region previews; no ground truth",
+        "findings": [
+          "71 disjoint regions after 0.5 score threshold and overlap resolution; not 71 verified objects",
+          "Large wall regions coexist with many small surface fragments",
+          "Some furniture surfaces receive table/shelf/television labels, but clean complete chair/desk separation is not established",
+          "No selected masks labeled chair or desk in the 18-label vocabulary; this does not establish absence of those objects"
+        ],
+        "conclusion": "Further input cleanup and instance boundary refinement needed before making object-complete GLB/OBJ meshes."
+      },
+      "regions": [
+        {
+          "region_id": 1,
+          "source_model_id": 67,
+          "points": 737023,
+          "source_fraction": 0.2513335265733431,
+          "bbox_min": [
+            -2.2171530723571777,
+            -0.8342633247375488,
+            -4.597951412200928
+          ],
+          "bbox_max": [
+            1.246326208114624,
+            2.8041982650756836,
+            -0.05627039074897766
+          ],
+          "label_candidate": "wall",
+          "objectness_mask_score": 0.6553663611412048,
+          "class_probability": 0.10382590442895889,
+          "query_index": 101,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 2,
+          "source_model_id": 71,
+          "points": 194684,
+          "source_fraction": 0.06638953775852956,
+          "bbox_min": [
+            0.762266993522644,
+            -0.9080259799957275,
+            -2.64349102973938
+          ],
+          "bbox_max": [
+            2.612921714782715,
+            3.038433313369751,
+            1.0832945108413696
+          ],
+          "label_candidate": "wall",
+          "objectness_mask_score": 0.6183293461799622,
+          "class_probability": 0.12968522310256958,
+          "query_index": 182,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 3,
+          "source_model_id": 62,
+          "points": 165802,
+          "source_fraction": 0.05654043547204556,
+          "bbox_min": [
+            -1.4719102382659912,
+            1.968701958656311,
+            -5.1002397537231445
+          ],
+          "bbox_max": [
+            0.2891371250152588,
+            3.0348267555236816,
+            -3.390209197998047
+          ],
+          "label_candidate": "bed",
+          "objectness_mask_score": 0.6984395384788513,
+          "class_probability": 0.15899540483951569,
+          "query_index": 142,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 4,
+          "source_model_id": 68,
+          "points": 119575,
+          "source_fraction": 0.04077648382751624,
+          "bbox_min": [
+            -2.093409538269043,
+            0.2847484350204468,
+            -2.650024890899658
+          ],
+          "bbox_max": [
+            0.21829865872859955,
+            2.2008299827575684,
+            1.2747156620025635
+          ],
+          "label_candidate": "floor",
+          "objectness_mask_score": 0.6490955948829651,
+          "class_probability": 0.14454694092273712,
+          "query_index": 49,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 5,
+          "source_model_id": 66,
+          "points": 98894,
+          "source_fraction": 0.033724019164862146,
+          "bbox_min": [
+            -2.1642003059387207,
+            1.7392535209655762,
+            -5.031074047088623
+          ],
+          "bbox_max": [
+            0.05703204870223999,
+            3.3032608032226562,
+            -1.881407380104065
+          ],
+          "label_candidate": "floor",
+          "objectness_mask_score": 0.663384735584259,
+          "class_probability": 0.12545108795166016,
+          "query_index": 167,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 6,
+          "source_model_id": 69,
+          "points": 59765,
+          "source_fraction": 0.020380569148664086,
+          "bbox_min": [
+            -0.05745983123779297,
+            -1.1065789461135864,
+            0.6898468732833862
+          ],
+          "bbox_max": [
+            1.2885265350341797,
+            0.37624800205230713,
+            1.2556421756744385
+          ],
+          "label_candidate": "wall",
+          "objectness_mask_score": 0.63394695520401,
+          "class_probability": 0.09568383544683456,
+          "query_index": 9,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 7,
+          "source_model_id": 42,
+          "points": 43989,
+          "source_fraction": 0.015000767276509404,
+          "bbox_min": [
+            -0.506790041923523,
+            -0.16972136497497559,
+            0.3911256194114685
+          ],
+          "bbox_max": [
+            0.5683162212371826,
+            0.6090941429138184,
+            1.1120072603225708
+          ],
+          "label_candidate": "table",
+          "objectness_mask_score": 0.8598914742469788,
+          "class_probability": 0.08694044500589371,
+          "query_index": 184,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 8,
+          "source_model_id": 63,
+          "points": 41022,
+          "source_fraction": 0.013988985319442787,
+          "bbox_min": [
+            -1.7263379096984863,
+            -1.2122732400894165,
+            -0.40888094902038574
+          ],
+          "bbox_max": [
+            0.357621431350708,
+            0.7206525206565857,
+            1.2803016901016235
+          ],
+          "label_candidate": "wall",
+          "objectness_mask_score": 0.6923475861549377,
+          "class_probability": 0.1084088385105133,
+          "query_index": 0,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 9,
+          "source_model_id": 44,
+          "points": 35007,
+          "source_fraction": 0.01193779945097103,
+          "bbox_min": [
+            -1.941074013710022,
+            1.3405989408493042,
+            -3.2975635528564453
+          ],
+          "bbox_max": [
+            -0.9307233095169067,
+            2.3115439414978027,
+            -2.356333017349243
+          ],
+          "label_candidate": "toilet",
+          "objectness_mask_score": 0.8535614013671875,
+          "class_probability": 0.07779227197170258,
+          "query_index": 29,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 10,
+          "source_model_id": 51,
+          "points": 30333,
+          "source_fraction": 0.010343910382103702,
+          "bbox_min": [
+            -1.981490135192871,
+            0.47228163480758667,
+            -2.8059191703796387
+          ],
+          "bbox_max": [
+            -0.8135707378387451,
+            1.5079602003097534,
+            -0.3096655607223511
+          ],
+          "label_candidate": "television",
+          "objectness_mask_score": 0.8204782605171204,
+          "class_probability": 0.08958794176578522,
+          "query_index": 72,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 11,
+          "source_model_id": 40,
+          "points": 29246,
+          "source_fraction": 0.00997323057511637,
+          "bbox_min": [
+            0.042067646980285645,
+            -0.1687690019607544,
+            -1.2623751163482666
+          ],
+          "bbox_max": [
+            1.079795002937317,
+            1.106759786605835,
+            -0.34252309799194336
+          ],
+          "label_candidate": "shelf",
+          "objectness_mask_score": 0.8796437978744507,
+          "class_probability": 0.10052715241909027,
+          "query_index": 154,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 12,
+          "source_model_id": 24,
+          "points": 28822,
+          "source_fraction": 0.009828641579566574,
+          "bbox_min": [
+            0.549606204032898,
+            0.9959514141082764,
+            -2.2081141471862793
+          ],
+          "bbox_max": [
+            1.2249343395233154,
+            1.710411548614502,
+            -1.5274473428726196
+          ],
+          "label_candidate": "shelf",
+          "objectness_mask_score": 0.93097984790802,
+          "class_probability": 0.09965139627456665,
+          "query_index": 15,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 13,
+          "source_model_id": 29,
+          "points": 28133,
+          "source_fraction": 0.009593684461798155,
+          "bbox_min": [
+            -0.5181368589401245,
+            0.2674931585788727,
+            -0.22935864329338074
+          ],
+          "bbox_max": [
+            0.30291831493377686,
+            0.739106297492981,
+            0.4498898386955261
+          ],
+          "label_candidate": "bathtub",
+          "objectness_mask_score": 0.9174603819847107,
+          "class_probability": 0.10752391070127487,
+          "query_index": 28,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 14,
+          "source_model_id": 35,
+          "points": 18871,
+          "source_fraction": 0.006435233337311804,
+          "bbox_min": [
+            -1.8946176767349243,
+            0.9729170203208923,
+            -1.9777277708053589
+          ],
+          "bbox_max": [
+            -1.4957497119903564,
+            1.6730067729949951,
+            -1.3289697170257568
+          ],
+          "label_candidate": "toilet",
+          "objectness_mask_score": 0.9106793999671936,
+          "class_probability": 0.13404186069965363,
+          "query_index": 24,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 15,
+          "source_model_id": 43,
+          "points": 17688,
+          "source_fraction": 0.0060318163992565945,
+          "bbox_min": [
+            -0.6793617010116577,
+            -1.1493282318115234,
+            0.8184624910354614
+          ],
+          "bbox_max": [
+            0.7087801098823547,
+            -0.22475242614746094,
+            1.3219515085220337
+          ],
+          "label_candidate": "television",
+          "objectness_mask_score": 0.8575727939605713,
+          "class_probability": 0.09808458387851715,
+          "query_index": 159,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 16,
+          "source_model_id": 38,
+          "points": 15491,
+          "source_fraction": 0.005282613514296919,
+          "bbox_min": [
+            -1.2313908338546753,
+            -1.2119605541229248,
+            0.7619638442993164
+          ],
+          "bbox_max": [
+            -0.055709660053253174,
+            -0.15556490421295166,
+            1.3825947046279907
+          ],
+          "label_candidate": "wall",
+          "objectness_mask_score": 0.8906555771827698,
+          "class_probability": 0.09892863780260086,
+          "query_index": 71,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 17,
+          "source_model_id": 52,
+          "points": 15395,
+          "source_fraction": 0.00524987638322904,
+          "bbox_min": [
+            1.0239771604537964,
+            0.07704643160104752,
+            -0.43672987818717957
+          ],
+          "bbox_max": [
+            1.6770668029785156,
+            0.7271448373794556,
+            0.9391659498214722
+          ],
+          "label_candidate": "shelf",
+          "objectness_mask_score": 0.8163766860961914,
+          "class_probability": 0.08390621095895767,
+          "query_index": 157,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 18,
+          "source_model_id": 25,
+          "points": 14380,
+          "source_fraction": 0.004903749424542618,
+          "bbox_min": [
+            -0.501986026763916,
+            -0.34513235092163086,
+            0.5417283177375793
+          ],
+          "bbox_max": [
+            0.11730974912643433,
+            -0.004054725170135498,
+            0.9179534912109375
+          ],
+          "label_candidate": "television",
+          "objectness_mask_score": 0.9272999167442322,
+          "class_probability": 0.16965273022651672,
+          "query_index": 56,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 19,
+          "source_model_id": 50,
+          "points": 14199,
+          "source_fraction": 0.004842026292008389,
+          "bbox_min": [
+            0.5336775779724121,
+            0.6968984603881836,
+            -1.7790400981903076
+          ],
+          "bbox_max": [
+            1.2619572877883911,
+            1.4706073999404907,
+            -1.1039750576019287
+          ],
+          "label_candidate": "cabinet",
+          "objectness_mask_score": 0.8215952515602112,
+          "class_probability": 0.08736089617013931,
+          "query_index": 137,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 20,
+          "source_model_id": 59,
+          "points": 13686,
+          "source_fraction": 0.004667087247864413,
+          "bbox_min": [
+            -1.4685677289962769,
+            -1.2481788396835327,
+            -0.604865550994873
+          ],
+          "bbox_max": [
+            0.6245042085647583,
+            -0.7355392575263977,
+            0.7103567123413086
+          ],
+          "label_candidate": "floor",
+          "objectness_mask_score": 0.7381683588027954,
+          "class_probability": 0.10793469846248627,
+          "query_index": 171,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 21,
+          "source_model_id": 61,
+          "points": 13412,
+          "source_fraction": 0.004573650019608177,
+          "bbox_min": [
+            0.08563604950904846,
+            1.9041197299957275,
+            -4.849550247192383
+          ],
+          "bbox_max": [
+            0.4697306156158447,
+            2.5551164150238037,
+            -3.7495670318603516
+          ],
+          "label_candidate": "wall",
+          "objectness_mask_score": 0.7014682292938232,
+          "class_probability": 0.09674479067325592,
+          "query_index": 123,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 22,
+          "source_model_id": 23,
+          "points": 12669,
+          "source_fraction": 0.004320278265614077,
+          "bbox_min": [
+            -1.2930703163146973,
+            -0.2684382200241089,
+            0.5257970094680786
+          ],
+          "bbox_max": [
+            -0.47428154945373535,
+            0.49010205268859863,
+            1.1998207569122314
+          ],
+          "label_candidate": "floor",
+          "objectness_mask_score": 0.9391720294952393,
+          "class_probability": 0.10190999507904053,
+          "query_index": 94,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 23,
+          "source_model_id": 11,
+          "points": 12260,
+          "source_fraction": 0.004180804446793637,
+          "bbox_min": [
+            -0.10440301895141602,
+            1.2440189123153687,
+            -2.3034255504608154
+          ],
+          "bbox_max": [
+            0.3609706163406372,
+            1.8511658906936646,
+            -1.7975366115570068
+          ],
+          "label_candidate": "shelf",
+          "objectness_mask_score": 0.9605656862258911,
+          "class_probability": 0.084927499294281,
+          "query_index": 153,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 24,
+          "source_model_id": 21,
+          "points": 11445,
+          "source_fraction": 0.0039028798444986274,
+          "bbox_min": [
+            -0.26698818802833557,
+            1.0271295309066772,
+            -3.697185516357422
+          ],
+          "bbox_max": [
+            0.12594139575958252,
+            1.6695349216461182,
+            -3.1116456985473633
+          ],
+          "label_candidate": "wall",
+          "objectness_mask_score": 0.9405854940414429,
+          "class_probability": 0.09298474341630936,
+          "query_index": 128,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 25,
+          "source_model_id": 36,
+          "points": 11114,
+          "source_fraction": 0.0037900049446708385,
+          "bbox_min": [
+            -1.3607110977172852,
+            1.185347557067871,
+            -2.4716100692749023
+          ],
+          "bbox_max": [
+            -0.7082996368408203,
+            1.8581527471542358,
+            -2.016632318496704
+          ],
+          "label_candidate": "cabinet",
+          "objectness_mask_score": 0.8983641266822815,
+          "class_probability": 0.09339292347431183,
+          "query_index": 139,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 26,
+          "source_model_id": 14,
+          "points": 11058,
+          "source_fraction": 0.0037709082848812426,
+          "bbox_min": [
+            -2.230379581451416,
+            1.6615996360778809,
+            -4.321400165557861
+          ],
+          "bbox_max": [
+            -2.0146286487579346,
+            2.190781593322754,
+            -3.6807258129119873
+          ],
+          "label_candidate": "wall",
+          "objectness_mask_score": 0.9570105671882629,
+          "class_probability": 0.09992942214012146,
+          "query_index": 58,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 27,
+          "source_model_id": 15,
+          "points": 9191,
+          "source_fraction": 0.003134239287967399,
+          "bbox_min": [
+            1.562171459197998,
+            -0.2406598925590515,
+            -0.525282084941864
+          ],
+          "bbox_max": [
+            1.7977845668792725,
+            0.3938763737678528,
+            0.3996830880641937
+          ],
+          "label_candidate": "wall",
+          "objectness_mask_score": 0.9568344950675964,
+          "class_probability": 0.10415612906217575,
+          "query_index": 104,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 28,
+          "source_model_id": 53,
+          "points": 8156,
+          "source_fraction": 0.0027812920936418355,
+          "bbox_min": [
+            0.5324841141700745,
+            -0.027031421661376953,
+            -1.8420640230178833
+          ],
+          "bbox_max": [
+            1.3088536262512207,
+            1.505676031112671,
+            -0.33254194259643555
+          ],
+          "label_candidate": "shelf",
+          "objectness_mask_score": 0.8123046159744263,
+          "class_probability": 0.08861833065748215,
+          "query_index": 48,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 29,
+          "source_model_id": 72,
+          "points": 7715,
+          "source_fraction": 0.002630905897798769,
+          "bbox_min": [
+            -0.5632201433181763,
+            -1.1287333965301514,
+            0.7248216867446899
+          ],
+          "bbox_max": [
+            0.8725078105926514,
+            -0.13158172369003296,
+            1.2806437015533447
+          ],
+          "label_candidate": "computer monitor",
+          "objectness_mask_score": 0.5440552830696106,
+          "class_probability": 0.09941116720438004,
+          "query_index": 160,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 30,
+          "source_model_id": 45,
+          "points": 7272,
+          "source_fraction": 0.0024798376783917884,
+          "bbox_min": [
+            2.25063419342041,
+            1.5299023389816284,
+            -1.2554532289505005
+          ],
+          "bbox_max": [
+            2.587303400039673,
+            2.84969425201416,
+            -0.3012688159942627
+          ],
+          "label_candidate": "wall",
+          "objectness_mask_score": 0.8463335037231445,
+          "class_probability": 0.08557398617267609,
+          "query_index": 78,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 31,
+          "source_model_id": 32,
+          "points": 7130,
+          "source_fraction": 0.002431414005353885,
+          "bbox_min": [
+            -2.061434507369995,
+            1.5323486328125,
+            -2.197288751602173
+          ],
+          "bbox_max": [
+            -1.6286144256591797,
+            1.9142048358917236,
+            -1.9456448554992676
+          ],
+          "label_candidate": "toilet",
+          "objectness_mask_score": 0.9136727452278137,
+          "class_probability": 0.08045724034309387,
+          "query_index": 141,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 32,
+          "source_model_id": 49,
+          "points": 7020,
+          "source_fraction": 0.0023939027093386077,
+          "bbox_min": [
+            0.16347470879554749,
+            0.4821365177631378,
+            -0.12557850778102875
+          ],
+          "bbox_max": [
+            0.871377170085907,
+            0.971704363822937,
+            0.8694857954978943
+          ],
+          "label_candidate": "floor",
+          "objectness_mask_score": 0.8261991739273071,
+          "class_probability": 0.11115485429763794,
+          "query_index": 103,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 33,
+          "source_model_id": 58,
+          "points": 7011,
+          "source_fraction": 0.002390833603300994,
+          "bbox_min": [
+            -1.2031803131103516,
+            2.0029661655426025,
+            -5.916439056396484
+          ],
+          "bbox_max": [
+            -0.454693078994751,
+            2.748049736022949,
+            -5.436477184295654
+          ],
+          "label_candidate": "wall",
+          "objectness_mask_score": 0.755361020565033,
+          "class_probability": 0.08327900618314743,
+          "query_index": 10,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 34,
+          "source_model_id": 10,
+          "points": 6966,
+          "source_fraction": 0.002375488073112926,
+          "bbox_min": [
+            -2.074951171875,
+            1.0264396667480469,
+            -1.168318510055542
+          ],
+          "bbox_max": [
+            -1.6584954261779785,
+            1.3923025131225586,
+            -0.6192673444747925
+          ],
+          "label_candidate": "floor",
+          "objectness_mask_score": 0.9616789817810059,
+          "class_probability": 0.09189799427986145,
+          "query_index": 85,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 35,
+          "source_model_id": 20,
+          "points": 6379,
+          "source_fraction": 0.002175314157104128,
+          "bbox_min": [
+            -0.06083273887634277,
+            -0.4046138525009155,
+            0.5723848938941956
+          ],
+          "bbox_max": [
+            0.5207979679107666,
+            -0.09056822955608368,
+            0.944496214389801
+          ],
+          "label_candidate": "television",
+          "objectness_mask_score": 0.9406250715255737,
+          "class_probability": 0.10394531488418579,
+          "query_index": 149,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 36,
+          "source_model_id": 13,
+          "points": 5934,
+          "source_fraction": 0.0020235639141332334,
+          "bbox_min": [
+            -1.7773518562316895,
+            -0.7389634847640991,
+            -0.49206894636154175
+          ],
+          "bbox_max": [
+            -1.3608694076538086,
+            0.301494836807251,
+            0.5736967325210571
+          ],
+          "label_candidate": "television",
+          "objectness_mask_score": 0.9577184915542603,
+          "class_probability": 0.19702480733394623,
+          "query_index": 140,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 37,
+          "source_model_id": 34,
+          "points": 5885,
+          "source_fraction": 0.0020068543368173372,
+          "bbox_min": [
+            0.5511176586151123,
+            0.21466350555419922,
+            -0.4466160535812378
+          ],
+          "bbox_max": [
+            1.5039482116699219,
+            0.9182744026184082,
+            0.2827252447605133
+          ],
+          "label_candidate": "shelf",
+          "objectness_mask_score": 0.9108213782310486,
+          "class_probability": 0.09009431302547455,
+          "query_index": 59,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 38,
+          "source_model_id": 48,
+          "points": 5736,
+          "source_fraction": 0.001956043581305734,
+          "bbox_min": [
+            -2.016706943511963,
+            0.6229115724563599,
+            -2.1613759994506836
+          ],
+          "bbox_max": [
+            -1.788109540939331,
+            1.328553318977356,
+            -1.361457109451294
+          ],
+          "label_candidate": "television",
+          "objectness_mask_score": 0.8284275531768799,
+          "class_probability": 0.08837857097387314,
+          "query_index": 40,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 39,
+          "source_model_id": 8,
+          "points": 5605,
+          "source_fraction": 0.0019113710378693583,
+          "bbox_min": [
+            -2.0011649131774902,
+            0.4953043460845947,
+            -0.9680593013763428
+          ],
+          "bbox_max": [
+            -1.777808666229248,
+            1.1216542720794678,
+            -0.30445265769958496
+          ],
+          "label_candidate": "wall",
+          "objectness_mask_score": 0.9702495336532593,
+          "class_probability": 0.08714631199836731,
+          "query_index": 62,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 40,
+          "source_model_id": 31,
+          "points": 5312,
+          "source_fraction": 0.0018114545857559378,
+          "bbox_min": [
+            0.5350139141082764,
+            1.0797977447509766,
+            -1.2275077104568481
+          ],
+          "bbox_max": [
+            1.3321363925933838,
+            1.9915691614151,
+            -0.4469642639160156
+          ],
+          "label_candidate": "shelf",
+          "objectness_mask_score": 0.9164025187492371,
+          "class_probability": 0.07945303618907928,
+          "query_index": 98,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 41,
+          "source_model_id": 28,
+          "points": 5275,
+          "source_fraction": 0.0017988371498235264,
+          "bbox_min": [
+            -1.5007935762405396,
+            1.248378038406372,
+            -2.2823877334594727
+          ],
+          "bbox_max": [
+            -1.0056785345077515,
+            1.805907964706421,
+            -1.968133568763733
+          ],
+          "label_candidate": "cabinet",
+          "objectness_mask_score": 0.9236351251602173,
+          "class_probability": 0.09844157844781876,
+          "query_index": 174,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 42,
+          "source_model_id": 4,
+          "points": 5031,
+          "source_fraction": 0.001715630275026002,
+          "bbox_min": [
+            0.5861078500747681,
+            0.20528358221054077,
+            0.7498900294303894
+          ],
+          "bbox_max": [
+            1.090254783630371,
+            0.4966776967048645,
+            1.0282769203186035
+          ],
+          "label_candidate": "floor",
+          "objectness_mask_score": 0.9831802248954773,
+          "class_probability": 0.09362553060054779,
+          "query_index": 115,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 43,
+          "source_model_id": 27,
+          "points": 4750,
+          "source_fraction": 0.0016198059642960664,
+          "bbox_min": [
+            0.6885675191879272,
+            -0.8088665008544922,
+            0.7091140747070312
+          ],
+          "bbox_max": [
+            1.037247896194458,
+            0.2592456042766571,
+            1.019202709197998
+          ],
+          "label_candidate": "wall",
+          "objectness_mask_score": 0.9237490296363831,
+          "class_probability": 0.09114227443933487,
+          "query_index": 180,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 44,
+          "source_model_id": 3,
+          "points": 4489,
+          "source_fraction": 0.001530801889205272,
+          "bbox_min": [
+            -0.01623767614364624,
+            1.1063834428787231,
+            -1.8085963726043701
+          ],
+          "bbox_max": [
+            0.4497765302658081,
+            1.6099202632904053,
+            -1.2048969268798828
+          ],
+          "label_candidate": "floor",
+          "objectness_mask_score": 0.9845827221870422,
+          "class_probability": 0.09567926079034805,
+          "query_index": 191,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 45,
+          "source_model_id": 39,
+          "points": 4457,
+          "source_fraction": 0.0015198895121826459,
+          "bbox_min": [
+            0.20872604846954346,
+            0.22246691584587097,
+            -1.0800210237503052
+          ],
+          "bbox_max": [
+            0.7081023454666138,
+            1.094312310218811,
+            -0.5700669288635254
+          ],
+          "label_candidate": "shelf",
+          "objectness_mask_score": 0.8838971853256226,
+          "class_probability": 0.09608367830514908,
+          "query_index": 5,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 46,
+          "source_model_id": 64,
+          "points": 4366,
+          "source_fraction": 0.001488857440024553,
+          "bbox_min": [
+            -0.5758853554725647,
+            -0.1617896556854248,
+            -2.703946828842163
+          ],
+          "bbox_max": [
+            0.41504567861557007,
+            0.2734757661819458,
+            -1.8326683044433594
+          ],
+          "label_candidate": "shelf",
+          "objectness_mask_score": 0.6909134984016418,
+          "class_probability": 0.10628094524145126,
+          "query_index": 148,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 47,
+          "source_model_id": 46,
+          "points": 4091,
+          "source_fraction": 0.0013950791999863595,
+          "bbox_min": [
+            -0.5342947840690613,
+            0.5861132740974426,
+            -0.0700703114271164
+          ],
+          "bbox_max": [
+            0.03192204236984253,
+            1.044002890586853,
+            0.595248818397522
+          ],
+          "label_candidate": "table",
+          "objectness_mask_score": 0.8398499488830566,
+          "class_probability": 0.0771479606628418,
+          "query_index": 86,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 48,
+          "source_model_id": 6,
+          "points": 4055,
+          "source_fraction": 0.001382802775835905,
+          "bbox_min": [
+            0.6019644737243652,
+            0.09717988967895508,
+            -0.4128303527832031
+          ],
+          "bbox_max": [
+            1.0777981281280518,
+            0.6287877559661865,
+            0.1353541910648346
+          ],
+          "label_candidate": "shelf",
+          "objectness_mask_score": 0.9720652103424072,
+          "class_probability": 0.09721805155277252,
+          "query_index": 170,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 49,
+          "source_model_id": 65,
+          "points": 3598,
+          "source_fraction": 0.0012269603914815256,
+          "bbox_min": [
+            -1.9970145225524902,
+            -0.05302848666906357,
+            -1.599431037902832
+          ],
+          "bbox_max": [
+            -1.2833187580108643,
+            1.2966935634613037,
+            0.24699684977531433
+          ],
+          "label_candidate": "wall",
+          "objectness_mask_score": 0.6684933304786682,
+          "class_probability": 0.0890996977686882,
+          "query_index": 193,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 50,
+          "source_model_id": 7,
+          "points": 3441,
+          "source_fraction": 0.0011734215417142661,
+          "bbox_min": [
+            0.27877217531204224,
+            1.1882765293121338,
+            -1.7010797262191772
+          ],
+          "bbox_max": [
+            0.6553844213485718,
+            1.5767970085144043,
+            -1.2090245485305786
+          ],
+          "label_candidate": "toilet",
+          "objectness_mask_score": 0.970635712146759,
+          "class_probability": 0.09099287539720535,
+          "query_index": 169,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 51,
+          "source_model_id": 30,
+          "points": 3333,
+          "source_fraction": 0.001136592269262903,
+          "bbox_min": [
+            -1.7860653400421143,
+            0.720232367515564,
+            -0.89456707239151
+          ],
+          "bbox_max": [
+            -1.2100918292999268,
+            1.186111330986023,
+            -0.3487941026687622
+          ],
+          "label_candidate": "cabinet",
+          "objectness_mask_score": 0.9169179797172546,
+          "class_probability": 0.10329035669565201,
+          "query_index": 130,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 52,
+          "source_model_id": 12,
+          "points": 2971,
+          "source_fraction": 0.0010131460041944448,
+          "bbox_min": [
+            0.6650055646896362,
+            0.3956410884857178,
+            0.24031566083431244
+          ],
+          "bbox_max": [
+            1.0706398487091064,
+            0.7423272132873535,
+            0.8630088567733765
+          ],
+          "label_candidate": "toilet",
+          "objectness_mask_score": 0.9580308198928833,
+          "class_probability": 0.10180969536304474,
+          "query_index": 118,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 53,
+          "source_model_id": 2,
+          "points": 2866,
+          "source_fraction": 0.000977339767088953,
+          "bbox_min": [
+            1.6845719814300537,
+            1.1557565927505493,
+            -0.6941583156585693
+          ],
+          "bbox_max": [
+            2.1439030170440674,
+            1.5614659786224365,
+            -0.4823497533798218
+          ],
+          "label_candidate": "wall",
+          "objectness_mask_score": 0.9850318431854248,
+          "class_probability": 0.1203807145357132,
+          "query_index": 75,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 54,
+          "source_model_id": 16,
+          "points": 2731,
+          "source_fraction": 0.0009313031765247489,
+          "bbox_min": [
+            1.2437717914581299,
+            0.09675026684999466,
+            0.3259280025959015
+          ],
+          "bbox_max": [
+            1.6072838306427002,
+            0.49355772137641907,
+            0.7865452766418457
+          ],
+          "label_candidate": "shelf",
+          "objectness_mask_score": 0.9490991830825806,
+          "class_probability": 0.08862359821796417,
+          "query_index": 55,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 55,
+          "source_model_id": 33,
+          "points": 2709,
+          "source_fraction": 0.0009238009173216934,
+          "bbox_min": [
+            -1.6076841354370117,
+            0.6265078186988831,
+            -0.31461238861083984
+          ],
+          "bbox_max": [
+            -1.1422544717788696,
+            0.9963492155075073,
+            0.35943496227264404
+          ],
+          "label_candidate": "cabinet",
+          "objectness_mask_score": 0.9134570360183716,
+          "class_probability": 0.09188896417617798,
+          "query_index": 74,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 56,
+          "source_model_id": 9,
+          "points": 2320,
+          "source_fraction": 0.0007911473341403946,
+          "bbox_min": [
+            0.9071511030197144,
+            0.20014163851737976,
+            0.1719367653131485
+          ],
+          "bbox_max": [
+            1.1770259141921997,
+            0.6085736751556396,
+            0.615805447101593
+          ],
+          "label_candidate": "toilet",
+          "objectness_mask_score": 0.9622907638549805,
+          "class_probability": 0.08745503425598145,
+          "query_index": 4,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 57,
+          "source_model_id": 60,
+          "points": 1374,
+          "source_fraction": 0.0004685501884090095,
+          "bbox_min": [
+            -1.2358381748199463,
+            -0.13956278562545776,
+            0.6842666864395142
+          ],
+          "bbox_max": [
+            -0.5297455787658691,
+            0.48216769099235535,
+            1.2754110097885132
+          ],
+          "label_candidate": "wall",
+          "objectness_mask_score": 0.7221410870552063,
+          "class_probability": 0.08505856990814209,
+          "query_index": 105,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 58,
+          "source_model_id": 1,
+          "points": 1320,
+          "source_fraction": 0.0004501355521833279,
+          "bbox_min": [
+            -0.51703941822052,
+            -0.5606633424758911,
+            -0.579706072807312
+          ],
+          "bbox_max": [
+            0.09918791055679321,
+            -0.35312360525131226,
+            -0.32208094000816345
+          ],
+          "label_candidate": "bathtub",
+          "objectness_mask_score": 0.9926636219024658,
+          "class_probability": 0.1105959489941597,
+          "query_index": 106,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 59,
+          "source_model_id": 54,
+          "points": 1235,
+          "source_fraction": 0.0004211495507169773,
+          "bbox_min": [
+            -0.8704841136932373,
+            -0.03621234744787216,
+            0.7766427993774414
+          ],
+          "bbox_max": [
+            -0.38939034938812256,
+            0.27106738090515137,
+            1.2092838287353516
+          ],
+          "label_candidate": "television",
+          "objectness_mask_score": 0.8006778359413147,
+          "class_probability": 0.09531434625387192,
+          "query_index": 181,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 60,
+          "source_model_id": 56,
+          "points": 1226,
+          "source_fraction": 0.0004180804446793637,
+          "bbox_min": [
+            0.22224456071853638,
+            0.49091875553131104,
+            -0.8543405532836914
+          ],
+          "bbox_max": [
+            1.1560187339782715,
+            1.109283208847046,
+            -0.32706499099731445
+          ],
+          "label_candidate": "shelf",
+          "objectness_mask_score": 0.767755389213562,
+          "class_probability": 0.09925641864538193,
+          "query_index": 33,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 61,
+          "source_model_id": 17,
+          "points": 1146,
+          "source_fraction": 0.00039079950212279836,
+          "bbox_min": [
+            0.4053928852081299,
+            -0.5609489679336548,
+            -1.066739559173584
+          ],
+          "bbox_max": [
+            1.113694429397583,
+            0.06089627742767334,
+            -0.6161136627197266
+          ],
+          "label_candidate": "shelf",
+          "objectness_mask_score": 0.9475984573364258,
+          "class_probability": 0.12653827667236328,
+          "query_index": 111,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 62,
+          "source_model_id": 19,
+          "points": 1141,
+          "source_fraction": 0.000389094443213013,
+          "bbox_min": [
+            0.4150656461715698,
+            0.35023871064186096,
+            -2.945003032684326
+          ],
+          "bbox_max": [
+            0.9281232357025146,
+            0.5346654653549194,
+            -1.0951168537139893
+          ],
+          "label_candidate": "wall",
+          "objectness_mask_score": 0.9432520270347595,
+          "class_probability": 0.09592467546463013,
+          "query_index": 102,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 63,
+          "source_model_id": 5,
+          "points": 745,
+          "source_fraction": 0.0002540537775580146,
+          "bbox_min": [
+            -1.8331692218780518,
+            0.07373665273189545,
+            -1.1187946796417236
+          ],
+          "bbox_max": [
+            -0.8268884420394897,
+            0.5778045058250427,
+            -0.6422238349914551
+          ],
+          "label_candidate": "shelf",
+          "objectness_mask_score": 0.9727996587753296,
+          "class_probability": 0.08965745568275452,
+          "query_index": 92,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 64,
+          "source_model_id": 47,
+          "points": 652,
+          "source_fraction": 0.00022233968183600744,
+          "bbox_min": [
+            0.7145771384239197,
+            -0.5160874128341675,
+            0.6671552658081055
+          ],
+          "bbox_max": [
+            0.9245312809944153,
+            -0.33803221583366394,
+            0.8965412974357605
+          ],
+          "label_candidate": "wall",
+          "objectness_mask_score": 0.8325549960136414,
+          "class_probability": 0.09579943120479584,
+          "query_index": 2,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 65,
+          "source_model_id": 41,
+          "points": 590,
+          "source_fraction": 0.0002011969513546693,
+          "bbox_min": [
+            0.07676583528518677,
+            -0.22051143646240234,
+            -2.20186710357666
+          ],
+          "bbox_max": [
+            0.7171739339828491,
+            0.03175443410873413,
+            -1.6435761451721191
+          ],
+          "label_candidate": "wall",
+          "objectness_mask_score": 0.8696585297584534,
+          "class_probability": 0.07877333462238312,
+          "query_index": 1,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 66,
+          "source_model_id": 55,
+          "points": 516,
+          "source_fraction": 0.00017596207948984637,
+          "bbox_min": [
+            1.0587568283081055,
+            0.48835453391075134,
+            -1.79027259349823
+          ],
+          "bbox_max": [
+            1.4841804504394531,
+            1.5412449836730957,
+            -0.10394708067178726
+          ],
+          "label_candidate": "shelf",
+          "objectness_mask_score": 0.7694911360740662,
+          "class_probability": 0.09364604204893112,
+          "query_index": 76,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 67,
+          "source_model_id": 18,
+          "points": 392,
+          "source_fraction": 0.0001336766185271701,
+          "bbox_min": [
+            -1.9925212860107422,
+            -0.3027321994304657,
+            0.017003804445266724
+          ],
+          "bbox_max": [
+            -0.372616708278656,
+            0.1510932594537735,
+            1.0814597606658936
+          ],
+          "label_candidate": "television",
+          "objectness_mask_score": 0.9453148245811462,
+          "class_probability": 0.09913467615842819,
+          "query_index": 73,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 68,
+          "source_model_id": 37,
+          "points": 373,
+          "source_fraction": 0.00012719739466998586,
+          "bbox_min": [
+            -0.9606320858001709,
+            -0.0301821231842041,
+            -2.131802558898926
+          ],
+          "bbox_max": [
+            -0.7503278255462646,
+            0.15098154544830322,
+            -1.8524785041809082
+          ],
+          "label_candidate": "shelf",
+          "objectness_mask_score": 0.8914495706558228,
+          "class_probability": 0.07464831322431564,
+          "query_index": 177,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 69,
+          "source_model_id": 57,
+          "points": 230,
+          "source_fraction": 7.843270985012532e-05,
+          "bbox_min": [
+            0.6835154891014099,
+            1.0385637283325195,
+            -1.4213368892669678
+          ],
+          "bbox_max": [
+            1.352445125579834,
+            1.934933066368103,
+            -0.4711407423019409
+          ],
+          "label_candidate": "shelf",
+          "objectness_mask_score": 0.7562879920005798,
+          "class_probability": 0.07537204027175903,
+          "query_index": 144,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 70,
+          "source_model_id": 70,
+          "points": 219,
+          "source_fraction": 7.46815802485976e-05,
+          "bbox_min": [
+            -1.5215997695922852,
+            0.17533627152442932,
+            0.2694467306137085
+          ],
+          "bbox_max": [
+            -0.4772372841835022,
+            0.8059424161911011,
+            1.218034267425537
+          ],
+          "label_candidate": "floor",
+          "objectness_mask_score": 0.6271190047264099,
+          "class_probability": 0.14464357495307922,
+          "query_index": 77,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        },
+        {
+          "region_id": 71,
+          "source_model_id": 26,
+          "points": 121,
+          "source_fraction": 4.1262425616805064e-05,
+          "bbox_min": [
+            -0.524223804473877,
+            -0.33209285140037537,
+            0.7798290252685547
+          ],
+          "bbox_max": [
+            -0.07264375686645508,
+            -0.01918238401412964,
+            0.9677525758743286
+          ],
+          "label_candidate": "computer monitor",
+          "objectness_mask_score": 0.9271212220191956,
+          "class_probability": 0.10356102883815765,
+          "query_index": 54,
+          "label_source": "SpaCeFormer features matched to SigLIP2 text vocabulary"
+        }
+      ]
+    },
+    "mv3dis": {
+      "export_report": {
+        "model": "mv3dis",
+        "source_points": 2932450,
+        "model_support_points": 99396,
+        "regions": 18,
+        "assigned_source_points": 1898341,
+        "assigned_fraction": 0.6473566471721598,
+        "unassigned_source_points": 1034109,
+        "geometric_transfer_coverage": 0.6481133523163225,
+        "max_transfer_distance_native_units": 0.05,
+        "source_order_preserved": true,
+        "unassigned_id": 0,
+        "semantic_labels_are_predictions": true,
+        "ground_truth_available": false,
+        "accuracy_metrics": null,
+        "display_score_threshold": null
+      },
+      "inference_report": {
+        "seconds": 1.45,
+        "vertices": 99396,
+        "regions": 18,
+        "unassigned_vertices": 91,
+        "region_vertex_counts": [
+          {
+            "id": 1,
+            "raw_label": 89,
+            "vertices": 60508
+          },
+          {
+            "id": 2,
+            "raw_label": 87,
+            "vertices": 22801
+          },
+          {
+            "id": 3,
+            "raw_label": 108,
+            "vertices": 3630
+          },
+          {
+            "id": 4,
+            "raw_label": 106,
+            "vertices": 2684
+          },
+          {
+            "id": 5,
+            "raw_label": 152,
+            "vertices": 2562
+          },
+          {
+            "id": 6,
+            "raw_label": 112,
+            "vertices": 1536
+          },
+          {
+            "id": 7,
+            "raw_label": 146,
+            "vertices": 1399
+          },
+          {
+            "id": 8,
+            "raw_label": 145,
+            "vertices": 650
+          },
+          {
+            "id": 9,
+            "raw_label": 86,
+            "vertices": 574
+          },
+          {
+            "id": 10,
+            "raw_label": 143,
+            "vertices": 492
+          },
+          {
+            "id": 11,
+            "raw_label": 110,
+            "vertices": 421
+          },
+          {
+            "id": 12,
+            "raw_label": 127,
+            "vertices": 400
+          },
+          {
+            "id": 13,
+            "raw_label": 99,
+            "vertices": 314
+          },
+          {
+            "id": 14,
+            "raw_label": 142,
+            "vertices": 294
+          },
+          {
+            "id": 15,
+            "raw_label": 132,
+            "vertices": 292
+          },
+          {
+            "id": 16,
+            "raw_label": 120,
+            "vertices": 280
+          },
+          {
+            "id": 17,
+            "raw_label": 136,
+            "vertices": 249
+          },
+          {
+            "id": 18,
+            "raw_label": 107,
+            "vertices": 219
+          }
+        ],
+        "mv3dis_commit": "381bfe923c071fb045bce77d1d3ec8fc6128458c",
+        "args": {
+          "base_dir": "/scannet",
+          "scans_dir": "/home/kdj/Documents/ChatGPT/capstone design/output/seesangen_segmentation/data",
+          "points_path": "/points_path",
+          "sam2d_path": "grounding_sam2",
+          "data2d_path": "scannet/RGB_D/validation",
+          "scene_id": null,
+          "mask_name": "semantic-sam10",
+          "test": false,
+          "text": "demo_scannet_10view",
+          "view_freq": 1,
+          "thres_connect": "0.9,0.5,5",
+          "dis_decay": 0.5,
+          "thres_dis": 0.05,
+          "thres_merge": 200,
+          "max_neighbor_distance": 2,
+          "similar_metric": "2-norm",
+          "thres_trunc": 0.0,
+          "from_points_thres": 0,
+          "use_torch": false,
+          "scannetpp": false,
+          "eval_dir": "",
+          "points_clipfeature_path": null,
+          "begin": 0,
+          "end": 312
+        },
+        "adaptation": "LingBot camera/depth adapter, official ScanNet superpoints on verified fused mesh; only CUDA device allocations patched in core helpers.",
+        "differences_from_benchmark": [
+          "CPU execution",
+          "24 selected views",
+          "GroundingDINO tiny via Transformers",
+          "SAM2.1 small",
+          "18 explicitly recorded indoor text categories",
+          "Synthetic RGB-D rendered from public viewer points, followed by TSDF mesh fusion; not original RGB-D"
+        ]
+      },
+      "qualitative_review": {
+        "basis": "Manual visual inspection of projected same-camera views and PCA-fitted original-RGB region thumbnails; no ground truth",
+        "findings": [
+          {
+            "regions": [
+              1,
+              2
+            ],
+            "observation": "Large areas of the building envelope and floor merge into common regions."
+          },
+          {
+            "regions": [
+              4
+            ],
+            "observation": "Contains illuminated monitor screens and surrounding furniture, so it is not one clean monitor instance."
+          },
+          {
+            "regions": [
+              6,
+              7,
+              9,
+              10,
+              11,
+              12
+            ],
+            "observation": "Parts of furniture are separated, but boundaries include fragments or nearby surfaces."
+          },
+          {
+            "regions": [
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "observation": "Small surface/noise fragments remain."
+          }
+        ],
+        "semantic_vote_warning": "Auxiliary 2D label votes are dominated by wall/floor detections and can be visibly incorrect; region IDs are the reliable output identifiers.",
+        "conclusion": "18 separated regions do not mean 18 correctly isolated objects. Current render-input MV3DIS output is inadequate for automatic object-complete chair/desk meshes."
+      },
+      "regions": [
+        {
+          "region_id": 1,
+          "source_model_id": 1,
+          "points": 1161192,
+          "source_fraction": 0.3959801531142901,
+          "bbox_min": [
+            -2.2586398124694824,
+            -1.289412260055542,
+            -5.110684394836426
+          ],
+          "bbox_max": [
+            2.503462314605713,
+            3.297213554382324,
+            1.2911442518234253
+          ],
+          "label_candidate": "wall",
+          "label_vote_fraction": 0.5088686240509178,
+          "label_source": "Auxiliary projected GroundingDINO/SAM2 votes, not MV3DIS semantic prediction",
+          "alternative_labels": [
+            "floor",
+            "wall floor"
+          ]
+        },
+        {
+          "region_id": 2,
+          "source_model_id": 2,
+          "points": 356284,
+          "source_fraction": 0.12149704172279152,
+          "bbox_min": [
+            -2.283266067504883,
+            0.8369741439819336,
+            -5.934952735900879
+          ],
+          "bbox_max": [
+            0.40967392921447754,
+            3.308598041534424,
+            -2.344205856323242
+          ],
+          "label_candidate": "wall",
+          "label_vote_fraction": 0.6597049735938539,
+          "label_source": "Auxiliary projected GroundingDINO/SAM2 votes, not MV3DIS semantic prediction",
+          "alternative_labels": [
+            "sofa",
+            "floor"
+          ]
+        },
+        {
+          "region_id": 3,
+          "source_model_id": 3,
+          "points": 102924,
+          "source_fraction": 0.03509829664614912,
+          "bbox_min": [
+            -0.8335013389587402,
+            0.14971208572387695,
+            -2.9138343334198
+          ],
+          "bbox_max": [
+            1.7305777072906494,
+            1.919979214668274,
+            0.1338428556919098
+          ],
+          "label_candidate": "wall",
+          "label_vote_fraction": 0.5178742978222692,
+          "label_source": "Auxiliary projected GroundingDINO/SAM2 votes, not MV3DIS semantic prediction",
+          "alternative_labels": [
+            "floor",
+            "curtain"
+          ]
+        },
+        {
+          "region_id": 4,
+          "source_model_id": 7,
+          "points": 55122,
+          "source_fraction": 0.018797251445037425,
+          "bbox_min": [
+            -0.3781416416168213,
+            -0.32939955592155457,
+            0.3911256194114685
+          ],
+          "bbox_max": [
+            0.44273537397384644,
+            0.2742418944835663,
+            0.8857190012931824
+          ],
+          "label_candidate": "wall",
+          "label_vote_fraction": 0.2879376314879299,
+          "label_source": "Auxiliary projected GroundingDINO/SAM2 votes, not MV3DIS semantic prediction",
+          "alternative_labels": [
+            "window",
+            "sofa"
+          ]
+        },
+        {
+          "region_id": 5,
+          "source_model_id": 4,
+          "points": 47621,
+          "source_fraction": 0.01623932206857747,
+          "bbox_min": [
+            1.1052184104919434,
+            -0.4963679611682892,
+            -1.1754924058914185
+          ],
+          "bbox_max": [
+            1.8016636371612549,
+            0.7521485090255737,
+            0.8306713104248047
+          ],
+          "label_candidate": "wall",
+          "label_vote_fraction": 0.811567137250388,
+          "label_source": "Auxiliary projected GroundingDINO/SAM2 votes, not MV3DIS semantic prediction",
+          "alternative_labels": [
+            "window",
+            "floor"
+          ]
+        },
+        {
+          "region_id": 6,
+          "source_model_id": 5,
+          "points": 39268,
+          "source_fraction": 0.013390850653890092,
+          "bbox_min": [
+            -1.4984164237976074,
+            0.15273885428905487,
+            0.1509004831314087
+          ],
+          "bbox_max": [
+            0.47275376319885254,
+            0.8621814250946045,
+            1.1978721618652344
+          ],
+          "label_candidate": "floor",
+          "label_vote_fraction": 0.588262411628023,
+          "label_source": "Auxiliary projected GroundingDINO/SAM2 votes, not MV3DIS semantic prediction",
+          "alternative_labels": [
+            "wall",
+            "window"
+          ]
+        },
+        {
+          "region_id": 7,
+          "source_model_id": 6,
+          "points": 32272,
+          "source_fraction": 0.011005132227318453,
+          "bbox_min": [
+            -0.13917961716651917,
+            -0.12196499109268188,
+            -1.3022208213806152
+          ],
+          "bbox_max": [
+            0.5372257232666016,
+            0.998666524887085,
+            -0.620722770690918
+          ],
+          "label_candidate": "floor",
+          "label_vote_fraction": 0.4610044280302673,
+          "label_source": "Auxiliary projected GroundingDINO/SAM2 votes, not MV3DIS semantic prediction",
+          "alternative_labels": [
+            "wall",
+            "door"
+          ]
+        },
+        {
+          "region_id": 8,
+          "source_model_id": 9,
+          "points": 29188,
+          "source_fraction": 0.00995345189176286,
+          "bbox_min": [
+            -1.4271819591522217,
+            2.4286062717437744,
+            -4.824550628662109
+          ],
+          "bbox_max": [
+            -0.3834437131881714,
+            2.7358193397521973,
+            -4.312199115753174
+          ],
+          "label_candidate": "computer monitor",
+          "label_vote_fraction": 0.5833139995078465,
+          "label_source": "Auxiliary projected GroundingDINO/SAM2 votes, not MV3DIS semantic prediction",
+          "alternative_labels": [
+            "floor",
+            "wall"
+          ]
+        },
+        {
+          "region_id": 9,
+          "source_model_id": 10,
+          "points": 23026,
+          "source_fraction": 0.007852137291343417,
+          "bbox_min": [
+            -0.3309159278869629,
+            0.2795950174331665,
+            -0.22935864329338074
+          ],
+          "bbox_max": [
+            0.20288364589214325,
+            0.6163864731788635,
+            0.3571990728378296
+          ],
+          "label_candidate": "floor",
+          "label_vote_fraction": 0.5291736547097515,
+          "label_source": "Auxiliary projected GroundingDINO/SAM2 votes, not MV3DIS semantic prediction",
+          "alternative_labels": [
+            "wall",
+            "chair"
+          ]
+        },
+        {
+          "region_id": 10,
+          "source_model_id": 12,
+          "points": 13963,
+          "source_fraction": 0.004761547511466522,
+          "bbox_min": [
+            0.7188475728034973,
+            1.2659956216812134,
+            -2.1946120262145996
+          ],
+          "bbox_max": [
+            1.1367385387420654,
+            1.5823099613189697,
+            -1.7315847873687744
+          ],
+          "label_candidate": "wall",
+          "label_vote_fraction": 0.43443189823689626,
+          "label_source": "Auxiliary projected GroundingDINO/SAM2 votes, not MV3DIS semantic prediction",
+          "alternative_labels": [
+            "floor",
+            "sofa"
+          ]
+        },
+        {
+          "region_id": 11,
+          "source_model_id": 13,
+          "points": 13037,
+          "source_fraction": 0.0044457706013742776,
+          "bbox_min": [
+            -1.6899932622909546,
+            1.6671264171600342,
+            -3.1458747386932373
+          ],
+          "bbox_max": [
+            -1.16049063205719,
+            1.9726660251617432,
+            -2.7876715660095215
+          ],
+          "label_candidate": "wall",
+          "label_vote_fraction": 1.0,
+          "label_source": "Auxiliary projected GroundingDINO/SAM2 votes, not MV3DIS semantic prediction",
+          "alternative_labels": []
+        },
+        {
+          "region_id": 12,
+          "source_model_id": 8,
+          "points": 10052,
+          "source_fraction": 0.0034278504322324335,
+          "bbox_min": [
+            -1.0396652221679688,
+            -0.17512187361717224,
+            0.5257970094680786
+          ],
+          "bbox_max": [
+            -0.4669796824455261,
+            0.3156120777130127,
+            1.0544006824493408
+          ],
+          "label_candidate": "wall",
+          "label_vote_fraction": 0.4015751114509359,
+          "label_source": "Auxiliary projected GroundingDINO/SAM2 votes, not MV3DIS semantic prediction",
+          "alternative_labels": [
+            "sofa",
+            "chair"
+          ]
+        },
+        {
+          "region_id": 13,
+          "source_model_id": 17,
+          "points": 3977,
+          "source_fraction": 0.001356203856843254,
+          "bbox_min": [
+            -1.3545193672180176,
+            0.10157757997512817,
+            -0.7610286474227905
+          ],
+          "bbox_max": [
+            -0.8955445289611816,
+            0.5190454721450806,
+            -0.44986212253570557
+          ],
+          "label_candidate": "wall",
+          "label_vote_fraction": 0.4826175211409485,
+          "label_source": "Auxiliary projected GroundingDINO/SAM2 votes, not MV3DIS semantic prediction",
+          "alternative_labels": [
+            "floor",
+            "chair sofa"
+          ]
+        },
+        {
+          "region_id": 14,
+          "source_model_id": 11,
+          "points": 3142,
+          "source_fraction": 0.0010714590189091033,
+          "bbox_min": [
+            -0.9520860910415649,
+            -0.9035091400146484,
+            -1.4158681631088257
+          ],
+          "bbox_max": [
+            0.27312374114990234,
+            -0.3843151330947876,
+            -0.31625717878341675
+          ],
+          "label_candidate": "wall",
+          "label_vote_fraction": 0.8110824695327825,
+          "label_source": "Auxiliary projected GroundingDINO/SAM2 votes, not MV3DIS semantic prediction",
+          "alternative_labels": [
+            "floor"
+          ]
+        },
+        {
+          "region_id": 15,
+          "source_model_id": 18,
+          "points": 2967,
+          "source_fraction": 0.0010117819570666167,
+          "bbox_min": [
+            -1.2170826196670532,
+            0.880470335483551,
+            -0.6603869199752808
+          ],
+          "bbox_max": [
+            -0.7384911775588989,
+            1.186955213546753,
+            -0.3318556547164917
+          ],
+          "label_candidate": "wall",
+          "label_vote_fraction": 0.9207439454701238,
+          "label_source": "Auxiliary projected GroundingDINO/SAM2 votes, not MV3DIS semantic prediction",
+          "alternative_labels": [
+            "curtain",
+            "floor"
+          ]
+        },
+        {
+          "region_id": 16,
+          "source_model_id": 15,
+          "points": 1879,
+          "source_fraction": 0.0006407611382973281,
+          "bbox_min": [
+            -1.0584585666656494,
+            -1.0855450630187988,
+            -0.5813392400741577
+          ],
+          "bbox_max": [
+            0.02141416072845459,
+            -0.7535008192062378,
+            0.028888046741485596
+          ],
+          "label_candidate": "wall",
+          "label_vote_fraction": 0.9719427548701577,
+          "label_source": "Auxiliary projected GroundingDINO/SAM2 votes, not MV3DIS semantic prediction",
+          "alternative_labels": [
+            "floor"
+          ]
+        },
+        {
+          "region_id": 17,
+          "source_model_id": 14,
+          "points": 1832,
+          "source_fraction": 0.0006247335845453461,
+          "bbox_min": [
+            -1.9698803424835205,
+            -0.3219760060310364,
+            -0.3194672465324402
+          ],
+          "bbox_max": [
+            -1.6689831018447876,
+            0.31548649072647095,
+            0.11337503790855408
+          ],
+          "label_candidate": "wall",
+          "label_vote_fraction": 0.5736143221013615,
+          "label_source": "Auxiliary projected GroundingDINO/SAM2 votes, not MV3DIS semantic prediction",
+          "alternative_labels": [
+            "door",
+            "sofa"
+          ]
+        },
+        {
+          "region_id": 18,
+          "source_model_id": 16,
+          "points": 595,
+          "source_fraction": 0.00020290201026445463,
+          "bbox_min": [
+            1.9168072938919067,
+            2.282132148742676,
+            -0.4682661294937134
+          ],
+          "bbox_max": [
+            2.3691048622131348,
+            2.758132219314575,
+            -0.09398341178894043
+          ],
+          "label_candidate": "computer monitor",
+          "label_vote_fraction": 0.4197757226025615,
+          "label_source": "Auxiliary projected GroundingDINO/SAM2 votes, not MV3DIS semantic prediction",
+          "alternative_labels": [
+            "wall floor",
+            "wall"
+          ]
+        }
+      ]
+    }
+  },
+  "assets": {
+    "docs/assets/seesangen-segmentation-comparison.png": {
+      "bytes": 1498426,
+      "sha256": "74b380e89659205155ba8e1c2150fff0ddb1d5dc61ea0e5895360daa9bd0c9a4",
+      "source_relative_path": "figures/scene_comparison.png"
+    },
+    "docs/assets/seesangen-segmentation-statistics.png": {
+      "bytes": 125436,
+      "sha256": "258d71802c40f8a4871bbed45643d4f8676c85eb96aa668099093e1376054291",
+      "source_relative_path": "figures/assignment_and_region_sizes.png"
+    },
+    "docs/assets/seesangen-spaceformer-regions.png": {
+      "bytes": 242832,
+      "sha256": "e7e72697b851dc020e6dc641c466b8ae35f155310d78af42217d674dc4d9802b",
+      "source_relative_path": "figures/spaceformer_regions.png"
+    },
+    "docs/assets/seesangen-mv3dis-regions.png": {
+      "bytes": 287763,
+      "sha256": "c9bf6f583018b92c42b1f1cf0d364266ffa48c14981d5a0f8dd3526e97a89d8f",
+      "source_relative_path": "figures/mv3dis_regions.png"
+    },
+    "docs/assets/seesangen-spaceformer-all-regions.jpg": {
+      "bytes": 2146671,
+      "sha256": "a7e1b177459700fee9af2bd8419c8d36f458ca2108c03e0738cf94db3c55ca79",
+      "source_relative_path": "spaceformer/region_thumbnails.jpg"
+    },
+    "docs/assets/seesangen-mv3dis-all-regions.jpg": {
+      "bytes": 600326,
+      "sha256": "8be7d82a644537855d3838b8a8311661b5aaff6ea8fd929d6e9f2f1db293fe45",
+      "source_relative_path": "mv3dis/region_thumbnails.jpg"
+    }
+  },
+  "limitations": [
+    "No ground-truth instance labels; assignment fraction is not accuracy.",
+    "Original RGB/depth frames and metric scale unavailable.",
+    "MV3DIS uses 24 synthetic RGB-D views rendered from the source point cloud.",
+    "Input sampling, surfaces and thresholds differ between the two methods.",
+    "Region counts are not verified physical object counts; exported PLY files are point clouds, not complete object meshes."
+  ]
+}

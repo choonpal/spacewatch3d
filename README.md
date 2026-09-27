@@ -127,6 +127,89 @@ OPENBLAS_NUM_THREADS=4 python3 scripts/render_lingbot_ply_previews.py --source-d
 OPENBLAS_NUM_THREADS=4 python3 scripts/render_left_hall_previews.py --source /home/kdj/Desktop/capstone/left_hall.ply
 ```
 
+## Seesangen inside: SpaCeFormer · MV3DIS 영역 분리 비교
+
+공개 LingBot-Map 결과인 **Seesangen inside의 2,932,450개 XYZRGB 점**에 두 모델을 적용한 실제 실행 결과다. SpaCeFormer는 **71개 영역**, MV3DIS는 **18개 영역**을 내보냈다. 두 결과 모두 주변 표면이 함께 묶이거나 작은 조각으로 나뉘는 문제가 있어, 의자·책상별 GLB/OBJ를 만들려면 객체 경계를 정제하고 메시를 생성하는 후속 처리가 필요하다.
+
+아래 그림은 저장된 PLY·점별 영역 ID·실행 기록으로 만들었다. 시각화 정리일은 **2026-09-27**이며, 문서를 정리하면서 모델을 다시 추론하거나 영역 ID·임계값을 변경하지 않았다. 이 입력은 위의 의자·복도 PLY 및 아래의 `xyz_dense.ply`와 별개의 공개 장면이다.
+
+### 같은 시점에서 본 원본과 분할 결과
+
+왼쪽부터 **원본 점군 RGB → SpaCeFormer → MV3DIS**다. 같은 원본 점을 같은 카메라로 투영했으며, 각 색은 분리된 영역 ID, **회색은 미할당(ID 0)**이다. 원본 열도 실제 사진이 아닌 점군 렌더링이다. 두 모델의 같은 색·번호가 같은 물체를 뜻하지는 않는다.
+
+![Seesangen inside의 동일 시점 비교. 왼쪽은 원본 점군 RGB, 가운데는 SpaCeFormer, 오른쪽은 MV3DIS이며 회색은 미할당 점이다.](docs/assets/seesangen-segmentation-comparison.png)
+
+위·아래 행은 저장된 카메라 배열의 인덱스 35와 213에서 본 모습이다. SpaCeFormer는 가구 주변이 여러 색의 조각으로 나뉘고, MV3DIS는 여러 표면이 큰 공통 영역으로 묶이는 양상이 보인다. 색으로 구분됐다는 사실만으로 올바른 객체 경계라고 판단할 수는 없다.
+
+| 항목 | SpaCeFormer | MV3DIS |
+| --- | --- | --- |
+| 최종 분리 영역 | **71개** | **18개** |
+| 영역이 할당된 원본 점 | 1,961,038개 (**66.87%**) | 1,898,341개 (**64.74%**) |
+| 미할당 원본 점 | 971,412개 (33.13%) | 1,034,109개 (35.26%) |
+| 모델이 처리한 3D 점·정점 | 다운샘플한 210,003점 | 재구성 표면의 99,396정점 |
+| 실제 사용 입력 | XYZRGB 점군 | 점군에서 합성한 RGB-D 24개 시점, 표면·카메라 정보 |
+| 2D 분할 사용 | 사용하지 않음 | GroundingDINO + SAM2로 70개 마스크 생성 |
+| 주요 관찰 | 큰 구조 영역과 작은 표면 조각이 함께 존재하며 의미 라벨 오분류도 나타남 | 벽·바닥·가구 일부가 큰 영역으로 합쳐짐 |
+| 객체별 GLB/OBJ 제작 | 경계 정제·조각 병합 및 메시 생성 필요 | 경계 정제·객체 분리 및 메시 생성 필요 |
+
+### SpaCeFormer: 대표 영역
+
+큰 구조 영역 R01·R02, `table` 예측 후보 R07·R47, 가구 주변 표면 R19, 작은 조각 R71을 함께 표시했다. 그림은 원본 RGB를 유지하며, 자동 클래스 이름 대신 영역 ID와 실제 점 수를 표시한다. **R07·R47은 완전한 책상으로 검증된 결과가 아니다.**
+
+![SpaCeFormer의 R01, R02, R07, R19, R47, R71 영역별 원본 RGB 미리보기](docs/assets/seesangen-spaceformer-regions.png)
+
+145개 후보 마스크 중 objectness×mask-quality가 0.5 이상인 72개를 선택하고, 겹치는 점을 높은 점수의 마스크에 우선 할당했다. 한 마스크는 남는 점이 없어 최종 71개 영역이 됐다. 선택된 결과에 `chair`, `desk` 라벨은 없었지만, 이것이 장면에 의자·책상이 없다는 뜻은 아니다.
+
+<details>
+<summary><strong>SpaCeFormer 전체 71개 영역 펼치기</strong></summary>
+
+![SpaCeFormer 전체 71개 영역의 원본 RGB 미리보기](docs/assets/seesangen-spaceformer-all-regions.jpg)
+
+</details>
+
+### MV3DIS: 대표 영역
+
+큰 구조 영역 R01·R02, 모니터 화면과 주변 가구가 함께 포함된 R04, 가구 일부 R07·R12, 작은 조각 R18을 표시했다. 특히 R04는 하나의 모니터만 깔끔하게 분리한 결과가 아니다.
+
+![MV3DIS의 R01, R02, R04, R07, R12, R18 영역별 원본 RGB 미리보기](docs/assets/seesangen-mv3dis-regions.png)
+
+원본 RGB·깊이 영상이 없어 점군과 카메라 정보로 **합성 RGB-D 24개 시점**을 만들었다. 2D 마스크와 1,253개 초기 슈퍼포인트를 이용해 3D 영역을 결합했다. 보조적으로 연결한 의미 라벨은 2D 검출 결과의 투표이며, MV3DIS 자체의 의미 분류 출력이 아니다.
+
+<details>
+<summary><strong>MV3DIS 전체 18개 영역 펼치기</strong></summary>
+
+![MV3DIS 전체 18개 영역의 원본 RGB 미리보기](docs/assets/seesangen-mv3dis-all-regions.jpg)
+
+</details>
+
+두 모델의 영역별 미리보기는 각 영역의 방향·배율을 독립적으로 맞췄고 최대 30,000점을 표시한다. 제목의 점 수는 해당 영역의 전체 점 수다. 이미지끼리 실제 크기나 장면 내 배치를 비교할 수는 없다.
+
+### 점 할당률과 영역 크기
+
+![SpaCeFormer와 MV3DIS의 점 할당률 및 영역 크기 분포. 할당률은 분할 정확도가 아니며 오른쪽 세로축은 로그 눈금이다.](docs/assets/seesangen-segmentation-statistics.png)
+
+왼쪽은 전체 원본 점 중 영역 ID가 붙은 비율, 오른쪽은 영역별 점 수를 큰 순서대로 표시한 그래프다. 세로축은 로그 눈금이다. **할당률은 정확도가 아니며, 71개·18개는 검증된 실제 물체 수가 아니다.** 점 수는 표면적이나 물체의 실제 크기를 뜻하지도 않는다.
+
+정답 라벨과 실측 미터 스케일이 없고 두 모델의 입력·전처리·임계값도 다르다. 특히 MV3DIS는 합성 RGB-D를 사용했으므로, 이 사례만으로 두 모델의 정확도 우열을 판정할 수 없다. 객체별 메시 생성에 사용하려면 과분할·과병합을 정리하고, 의자·책상이 하나의 완전한 영역으로 분리됐는지 추가로 확인해야 한다.
+
+### 실험 기록과 산출물
+
+이미지와 [실험 기록 JSON](docs/experiments/seesangen-spaceformer-mv3dis.json)은 이 저장소에 포함한다. 기록에는 모델별 실행·내보내기 조건, 전체 영역의 점 수·경계 상자·라벨 후보, 선택한 시점·영역 ID, 이미지 SHA-256을 담았다. 그래프 수치는 원본 `point_labels.npz`를 집계해 실행 기록과 일치함을 확인했다.
+
+대용량 PLY·NPZ와 ZIP은 실험 기록 JSON의 `local_output_root`에 지정한 로컬 실험 폴더에 보관한다. 아래 경로는 그 폴더를 기준으로 하며, 이 저장소에 모델 결과 파일 전체를 복사한 것은 아니다.
+
+| 산출물 | SpaCeFormer | MV3DIS |
+| --- | --- | --- |
+| 전체 영역 색상 점군 | `spaceformer/scene_instances.ply` | `mv3dis/scene_instances.ply` |
+| 원본 점별 영역 ID | `spaceformer/point_labels.npz` | `mv3dis/point_labels.npz` |
+| 영역별 원본 RGB 점군 | `spaceformer/regions/region_001.ply` … `region_071.ply` | `mv3dis/regions/region_001.ply` … `region_018.ply` |
+| 전체 결과 묶음 | `seesangen_segmentation_results.zip` — 두 모델 결과 포함 | 동일 ZIP |
+
+현재 결과 PLY는 **점군**이며, 삼각형 면을 가진 완성 GLB/OBJ 메시가 아니다.
+
+- 입력 출처: [공개 Seesangen inside viewer](https://mikatammi.github.io/infurer-lingbot-map-demos/seesangen-inside.html), [고정 데이터 revision](https://github.com/mikatammi/infurer-lingbot-map-demos/tree/31c99e60298b1dfdea4a50ef3dc46c5b7efd8383)
+- 공식 모델·코드: [SpaCeFormer](https://huggingface.co/chrischoy/SpaCeFormer), [WarpConvNet](https://github.com/NVlabs/WarpConvNet), [MV3DIS](https://github.com/zybjn/MV3DIS)
+
 ## xyz_dense와 Utonia 분할 결과 비교
 
 LingBot-Map으로 생성한 실내 RGB 포인트 클라우드 `xyz_dense.ply`에 **Utonia 백본 + 공식 ScanNet 20종 선형 분류 헤드**를 적용했다. 추가 학습이나 수동 라벨 수정 없이, 3D 점에 직접 semantic segmentation을 수행한 실험이다. 이 실험은 점별 클래스 분류에 대한 비교 자료이며, 현재 계획한 직접 3D instance segmentation의 구현 완료를 뜻하지 않는다.

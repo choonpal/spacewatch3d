@@ -7,6 +7,43 @@
 실제 영상 처리·LingBot-Map·MV3DIS·메시 생성·정합·변화탐지·키프레임 선별 backend는 각 task에서 구현합니다.
 `run`은 backend 연결 전까지 미구현 오류를 반환합니다. fixture 검증 통과는 모델 성능이나 전체 파이프라인 완성을 의미하지 않습니다.
 
+
+spacewatch3d/
+├── README.md                  # 프로젝트 소개와 시작 방법
+├── CONTRIBUTING.md            # 브랜치·PR 등 협업 규칙
+├── pyproject.toml             # Python 패키지 설정과 공통 의존성
+├── .gitignore                 # Git에 올리지 않을 파일 지정
+│
+├── src/
+│   └── spacewatch3d/           # 프로젝트의 Python 코드
+│       ├── __init__.py
+│       ├── __main__.py         # python -m spacewatch3d 진입점
+│       ├── cli.py              # 명령어 처리와 작업 실행
+│       ├── task_api.py         # 모든 작업이 공유하는 입력 형식
+│       ├── registry.py         # 작업 번호·모듈·입출력 연결표
+│       ├── contracts.py        # 결과 파일의 규칙·참조 관계 검사
+│       ├── schemas/
+│       │   └── artifact.schema.json  # JSON 데이터 형식 정의
+│       └── tasks/             # 단계별 알고리즘 구현 위치
+│
+├── examples/
+│   └── fixtures/              # 개발·검증용 합성 예제
+│       ├── before/            # 이전 촬영 회차 예제
+│       ├── after/             # 이후 촬영 회차 예제
+│       ├── panorama/          # 360도 영상 예제
+│       └── changes.json       # 변화 결과 예제
+│
+├── tests/                     # 공통 검증 테스트
+├── docs/                      # 설계 문서·작업표·발표자료
+├── .github/                   # 자동 검사와 Issue·PR 양식
+│
+├── data/                      # 실제 입력 영상·데이터셋
+├── outputs/                   # 실행 결과
+├── weights/                   # AI 모델 가중치
+└── third_party/               # 외부 모델 소스코드
+
+참고해서 파일 정리할 것!!!!!!
+
 ## Task별 작업 위치
 
 | 그림 번호 | 담당 범위 | 개발 폴더 | 입력 → 출력 |

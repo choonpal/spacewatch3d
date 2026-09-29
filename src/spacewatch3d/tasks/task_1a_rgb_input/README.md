@@ -13,6 +13,18 @@
 
 ## 입력과 출력
 
+#다음 작업시 확인 후 삭제 요망
+{
+링봇 기본 입력할 때 단순히 n프레임 단위로 보는게 아니라
+flow_threshold: 움직임에 따라 키프레임 선정
+max_non_keyframe_gap: 너무 오래 선택되지 않으면 강제 선정
+keyframes_only_points: 키프레임의 점만 포인트클라우드에 포함
+save_predictions: 선정 결과와 프레임별 예측 저장
+와 같이 불필요한 프레임 제외하고 3d맵을 만드는데 중요한 프레임들만 뽑는 세팅들이 있음 이거 잘 조절하면 영상 속도와 관련없이 3d 맵 잘 만들 수 있을 것 같은데
+적용하고 확인요망
+}
+
+
 | 입력 이름 | artifact kind | 독립 개발용 입력 |
 |---|---|---|
 | `video` | `video` | `examples/fixtures/before/video.json` |

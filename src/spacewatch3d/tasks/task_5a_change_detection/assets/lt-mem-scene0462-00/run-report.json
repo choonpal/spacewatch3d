@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-03",
+  "scope": "LT-Mem input preparation, not official LT-Mem inference",
+  "base_commit": "029f4996093fdc9eda7007330b0087025970e8a1",
+  "runtime": {
+    "os": "Windows",
+    "python": "3.12.14",
+    "jsonschema": "4.26.0",
+    "gpu_used": false
+  },
+  "source": {
+    "source_url": "https://nvlabs.github.io/SpaCeFormer/assets/pointclouds/scene0462_00.json",
+    "source_sha256": "5a363f8a444d13827e4113f6f1dad1676b90c9cbbca7af4490d1cdfad21f9abb",
+    "source_matches_task4": true,
+    "perception": "published_SpaCeFormer_prediction_not_rerun",
+    "official_lt_mem_code": "not_used_code_TBD"
+  },
+  "audit": {
+    "source_point_count": 60000,
+    "source_mask_count": 50,
+    "observation_count": 50,
+    "empty_mask_ids": [],
+    "unique_masked_points": 38868,
+    "points_in_multiple_masks": 716,
+    "masks_are_independent_predictions": true
+  },
+  "output": {
+    "file": "observations.json",
+    "bytes": 67622,
+    "sha256": "8d8a15ef6c8500abf2912158ddda2d431efd450f380bcdcaf43924c8e4181a29"
+  },
+  "verification": {
+    "unit_tests_passed": 27,
+    "fixture_contract_checks_passed": 7,
+    "source_sha256_matches_task4": true,
+    "official_lt_mem_inference_run": false,
+    "live_delta_meta_generated": false,
+    "vqa_run": false,
+    "colab_run": false
+  },
+  "limitations": [
+    "Official project code link is Code (TBD)",
+    "One real capture only; no measured cross-session changes",
+    "50 independent predicted masks with 716 overlapping points, not 50 confirmed objects",
+    "RGB histogram is a feature proxy, not a learned visual embedding",
+    "Volume is AABB volume; coordinates preserve the centered input frame"
+  ],
+  "commands": [
+    "python -m spacewatch3d.tasks.task_5a_change_detection.prepare_observations --source data/lt_mem_trial/scene0462_00.json --output outputs/lt_mem_input_trial_verified/observations.json",
+    "python -m spacewatch3d check-fixtures",
+    "python -m unittest discover -s tests -v",
+    "git diff --check"
+  ]
+}

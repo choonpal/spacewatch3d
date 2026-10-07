@@ -1,0 +1,48 @@
+{
+  "first_window_points": 179551,
+  "merged_points": 2376696,
+  "all_xyz_finite": true,
+  "rgb_range": [
+    0,
+    255
+  ],
+  "merged_xyz_min": [
+    -11.812478065490723,
+    -5.063197612762451,
+    -32.228370666503906
+  ],
+  "merged_xyz_max": [
+    30.53571319580078,
+    20.495723724365234,
+    6.88671875
+  ],
+  "camera_poses": 69,
+  "inference_seconds_sum": 108.11267614499991,
+  "peak_allocated_gpu_gb": 4.868854272,
+  "alignment_residual_ratio_min_median_max": [
+    0.010085009511699687,
+    0.02578683034239387,
+    0.038941167321418724
+  ],
+  "visualization": {
+    "merged_sample_points": 300000,
+    "seed": 7,
+    "axis_crop": false,
+    "display_axes": [
+      "X",
+      "Z",
+      "-Y"
+    ],
+    "gravity_aligned": false
+  },
+  "source_sha256": {
+    "panovggt_merged.ply": "b7b7b3bf9510c008b405652b1625af188b542d6e6b08b2dc6a85f1efa964bebe",
+    "first_window.ply": "4d8aeb585d3b8b198ff28f4e8809ed70cbe254fc7f7c9a2faa87ba587f91b1c5",
+    "summary.json": "2c8c0d6adc1c4457a17da56d8733f66618d4e6d29cb83edb7a9538d5d4b18c51",
+    "settings.json": "4e4594d590eb27170353f62b581f58207e309667cf0940144ed63450a2639023",
+    "camera_poses.json": "c83345d59e19d9bfcfb3d4eadc80387fdcf7ca33784462a12c599f1ad1db6d83",
+    "input_manifest.json": "a6dd6eee9f61cd119de5b9f894a28b8d76dcebc76bff2b86d0b0eca06d8dda5b",
+    "alignment_diagnostics.json": "42851aa2b04795aed9129d181545c691c70f2a778d54c03b0ad23aa9483f1407",
+    "inference_timing.json": "6985b05667f50db7499889f88ca72fe0818815332b0f6233f72441ef45d8b823"
+  }
+}

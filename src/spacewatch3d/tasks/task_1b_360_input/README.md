@@ -172,3 +172,109 @@ python3 -s src/spacewatch3d/tasks/task_1b_360_input/assets/r0010003_20261006/ren
 ```
 
 이미지는 로컬 Python의 NumPy 1.x / Matplotlib 3.5.1 조합으로 생성했다. 위 `-s`는 이 PC의 사용자 설치 NumPy와 시스템 Matplotlib 간 충돌을 피하기 위해 사용자 site-packages를 제외하는 옵션이다.
+
+---
+
+## PanoVGGT 복원 결과 (2026-10-07)
+
+같은 `R0010003.MP4`에서 약 1초 간격으로 추출한 **360° 파노라마 69장**을 PanoVGGT로 처리했다. 5장씩 복원한 23개 묶음을 별도의 정합 코드로 연결해 **RGB 포인트 2,376,696개의 통합 point cloud와 카메라 pose 69개**를 저장했다.
+
+공식 PanoVGGT 모델의 다중 이미지 예측에 **공통 프레임 기반의 순차 Sim(3) 정합**을 추가한 Colab 실험이다. Sim(3)는 묶음 사이의 회전·이동·크기를 함께 맞추는 변환이다. 이번 처리에는 loop closure와 bundle adjustment를 적용하지 않았다. Task 1b의 `pipeline.py` 및 공통 `frames` 규약과는 아직 연결하지 않았다.
+
+### 입력과 실행 설정
+
+| 항목 | 값 |
+|---|---|
+| 원본 | RICOH THETA X의 `R0010003.MP4`, 3840 × 1920, 2,055프레임 |
+| 프레임 선택 | 원본 30프레임마다 1장, 총 69장; 원본 frame index 0~2,040 |
+| 선택 프레임의 시간 범위 | 0.000000~67.989067초 |
+| 모델 입력 | 2:1 equirectangular RGB 이미지, **1036 × 518**; perspective 변환 없음 |
+| 모델 | [PanoVGGT](https://github.com/YijingGuo-June/PanoVGGT), revision `556bb7d2ec2d02bd3ee4ed535542e74290ba22cf` |
+| 가중치 | `YijingGuo/PanoVGGT/model.pt`, 3,939,890,032 bytes |
+| 실행 환경 | Colab Tesla T4, PyTorch `2.11.0+cu130`, FP16 autocast |
+| 묶음 구성 | 5장씩 총 23묶음; 일반적으로 앞 묶음과 2장 중복, 마지막 묶음은 4장 중복 |
+| 출력 point map 샘플링 | 가로·세로 각각 3픽셀 간격 (`pixel_step=3`); 영상 프레임 선택 간격과 별개 |
+| 출력/정합에 사용하는 영역 | 이미지 높이의 3% 이상~65% 미만; 프레임별 깊이 1~98 percentile 범위 |
+| 통합 방법 | 공통 프레임의 같은 픽셀로 robust Sim(3) 정합 → 프레임별 묶음 하나 선택 → voxel 평균 |
+| Voxel 크기 | 첫 묶음 유효 깊이 중앙값의 0.5%, 상대 좌표로 `0.0105207`; 미터 단위 아님 |
+
+모델에는 하단을 자르거나 가리지 않은 **전체 ERP 이미지**를 넣었다. 촬영자가 있는 하단 35%는 예측 후 출력·정합에서 제외했으므로, 바닥 일부도 빠져 있다. 필터는 기하 조건에 따른 것으로 학습된 confidence 점수에 기반하지 않는다.
+
+### 산출물과 수치 확인
+
+| 항목 | 확인 결과 |
+|---|---|
+| 첫 5장 복원 | `first_window.ply`, **179,551개 점**; 출력 필터와 픽셀 샘플링 적용 후 |
+| Voxel 통합 전 | 고유 프레임을 선택해 합친 **2,477,791개 점** (`summary.json` 기록) |
+| 최종 통합 PLY | `panovggt_merged.ply`, binary little-endian, XYZ + RGB, **2,376,696개 점** |
+| 최종 PLY 크기 | 35,650,621 bytes, 약 **35.65 MB** |
+| 카메라 경로 | `camera_poses.json`, frame 0~68의 **69개 camera-to-world pose** |
+| 추론 함수 측정 합계 | 23회 합계 **108.11초, 약 1분 48초** |
+| GPU 메모리 | PyTorch peak allocated 최대 **4.87 GB**; 런타임 전체 GPU 사용량과는 구분 |
+| 인접 묶음 정합 | 22회; 공통 픽셀 대응점 보통 10,000쌍, 마지막 20,000쌍 |
+| 정규화 정합 잔차 | 22회 값의 최소 **1.01%**, 중앙값 **2.58%**, 최대 **3.89%** |
+| 파일 검사 | 두 PLY의 헤더·실제 점 수·데이터 길이 일치, XYZ 모두 유한값, RGB 0~255; pose 69개 모두 유한값 |
+
+108.11초는 `inference_timing.json`에 기록된 예측·CPU 전송·기본 필터 처리 구간의 합계다. 설치, 가중치 다운로드, 입력 업로드, 이미지 로딩·전처리, 묶음 정합, 파일 저장 및 이미지 생성 시간은 포함하지 않는다. 앞의 Stella 실험과는 입력 프레임 수와 시간 측정 범위가 달라 이 수치만으로 처리 속도를 비교하지 않는다.
+
+정규화 정합 잔차는 **공통 픽셀의 두 3D 예측 사이 거리 중앙값 ÷ 앞 묶음의 유효 깊이 중앙값**이다. 3.89%는 최대 정합 잔차 비율이며, 실제 공간의 거리 오차율이나 모델 정확도를 의미하지 않는다.
+
+### 복원 결과 시각화
+
+아래 그림은 제공된 PLY와 JSON에서 직접 생성했다. 첫 묶음은 **179,551개 점 전체**, 통합 지도는 고정 난수 seed 7로 선택한 **300,000개 점**을 표시했다. 축 범위는 각 원본 PLY의 전체 범위를 사용하며, 시각화 단계에서 이상점을 제거하거나 좌표 범위를 잘라내지 않았다. 원본 PLY는 수정하지 않았다.
+
+**첫 구간과 전체 통합 지도**
+
+![PanoVGGT 첫 5장 복원과 69장 통합 point cloud](assets/panovggt_r0010003_20261007/pointcloud_overview.png)
+
+첫 구간에서는 벽면의 색과 일부 구조가 보이며, 전체 지도에서는 길게 이어진 공간의 경계를 확인할 수 있다. 내부의 빈 영역, 경계 주변의 흩어진 점과 두꺼워진 표면도 남아 있다. 두 패널은 서로 다른 범위를 담으므로 각 축 눈금을 기준으로 해석한다.
+
+**두 방향 투영과 카메라 이동 경로**
+
+![PanoVGGT 통합 지도의 X-Z 및 X와 -Y 투영, 카메라 경로](assets/panovggt_r0010003_20261007/pointcloud_projections.png)
+
+노란 선은 저장된 69개 카메라 위치를 시간순으로 연결했고, 초록 원과 분홍 X는 시작과 끝이다. 시작 부근으로 돌아오는 경로가 보이지만 이것은 loop closure를 수행했다는 뜻이 아니다. 표시 좌표 `(X, Z, -Y)`는 Colab 미리보기와 같은 축 변환일 뿐 **중력 방향 정렬을 하지 않았다**. 따라서 X-Z 투영을 실제 수평 평면도로, 그림의 기울기를 실제 바닥 경사로 단정하지 않는다.
+
+**묶음 간 정합 잔차와 크기 보정**
+
+![PanoVGGT 묶음별 정규화 정합 잔차와 Sim3 스케일](assets/panovggt_r0010003_20261007/alignment_diagnostics.png)
+
+위 그래프는 22개 정합의 잔차 비율, 아래 그래프는 인접 묶음 및 첫 묶음 기준의 스케일 변환값이다. 인접 묶음의 크기 보정은 **0.780~1.267배**, 첫 묶음 기준 누적 스케일은 **0.896~1.348배** 범위다. 각 묶음의 예측 크기를 맞춘 값이며, 실측 오차나 누적 drift를 직접 측정한 값은 아니다.
+
+### 해석과 한계
+
+- 69개의 실제 360° 프레임에서 색상을 가진 point cloud와 카메라 경로를 생성하고 하나의 좌표계로 연결했다.
+- 전체 공간의 윤곽은 확인되지만, 순차 정합만 수행했으므로 긴 경로의 누적 오차와 중복 표면이 남을 수 있다. 최종 점 개수가 많다는 사실만으로 Stella 결과보다 정확하다고 판단하지 않는다.
+- 하단 출력 제외, 깊이 필터 및 가려짐 때문에 바닥과 일부 표면이 불완전하다. watertight mesh나 정밀 도면을 생성한 결과는 아니다.
+- 좌표의 절대 스케일·중력 방향을 보정하지 않았고 ground truth와의 정합 및 정확도 평가도 수행하지 않았다.
+- 객체 분할, 객체별 export, 변화 감지 및 Task 1b backend 연결은 이 실험의 산출물에 포함하지 않는다.
+
+### 결과 위치와 재현
+
+```text
+입력: /home/kdj/Desktop/capstone/360video/R0010003.MP4
+결과: /home/kdj/Desktop/capstone/360video/panovggt_result/
+묶음: run_20261007_062854_results.zip
+```
+
+| 파일 | 용도 |
+|---|---|
+| `panovggt_merged.ply`, `first_window.ply` | 통합 point cloud 및 첫 5장 복원 결과 |
+| `camera_poses.json`, `window_transforms.npz` | 프레임별 pose와 묶음별 Sim(3) 변환 |
+| `input_manifest.json`, `settings.json` | 원본 SHA-256, 선택 프레임·시간, 모델 revision, 실행 설정 |
+| `summary.json`, `inference_timing.json` | 점 개수, 추론 함수 소요 시간, GPU 메모리 기록 |
+| `alignment_diagnostics.json` | 공통 프레임, 정합 잔차, 상대·누적 스케일 |
+| `input_contact_sheet.jpg`, `pointcloud_*.png`, `RESULTS.txt` | Colab에서 저장한 입력 표본, 원래 미리보기 및 설명 |
+
+복원 코드는 [PanoVGGT Colab 노트북](https://colab.research.google.com/drive/1OHUhtmjMuEB4maiQyG0bdOcmZVBUYymF?usp=sharing)에 있다. 결과 ZIP에는 묶음별 원시 point map인 `windows/*.npz`가 포함되어 있지 않으므로, 원시 예측부터 다시 정합하려면 추론을 재실행하거나 Colab에 남아 있는 해당 파일이 필요하다.
+
+README에는 PNG 3장, [렌더링 스크립트](assets/panovggt_r0010003_20261007/render_results.py), [파일 검증 기록](assets/panovggt_r0010003_20261007/verification.json)을 추가했다. 검증 기록에는 사용한 PLY·JSON의 SHA-256과 점 수, 좌표 범위, 시각화 설정이 들어 있다. 원본 PLY·영상·ZIP은 저장소에 복사하지 않았다.
+
+이미지만 다시 생성하려면 저장소 루트에서 다음 명령을 실행한다. NumPy와 Matplotlib이 필요하며 모델 추론이나 GPU는 필요하지 않다.
+
+```bash
+python3 -s src/spacewatch3d/tasks/task_1b_360_input/assets/panovggt_r0010003_20261007/render_results.py \
+  '/home/kdj/Desktop/capstone/360video/panovggt_result'
+```
+
+`-s`는 앞의 Stella 그림과 마찬가지로 이 PC의 사용자 site-packages 충돌을 피하기 위한 옵션이다.

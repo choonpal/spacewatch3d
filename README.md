@@ -71,6 +71,9 @@ flowchart TD
     P["이전 촬영 회차의 객체"] --> G
 ```
 
+<img width="1305" height="728" alt="image" src="https://github.com/user-attachments/assets/2122c9ef-4666-4958-9792-63f6e71ef264" />
+
+
 실제 데이터 처리는 이 의존 순서가 필요합니다. **개발은 제공된 task별 입력 fixture로 동시에 진행**합니다.
 5-a와 5-b는 서로의 구현을 기다릴 필요가 없습니다. 각 manifest는 상위 결과를 참조하므로 프레임·카메라 정보도 추적할 수 있습니다.
 

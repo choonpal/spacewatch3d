@@ -1,25 +1,58 @@
-import {formatTime} from './core.js';
-import {validateTrajectory,poseAt,floorPoint,projectSegment,pickPath,dot,sub,cross,unit,rotate,lerp} from './trajectory-math.js';
+import {formatTime,projectPoint} from './core.js';
+import {validateTrajectory,poseAt,pickPath,dot,sub,cross,unit,rotate,lerp,directionalSteps,viewAfterStep,editedRouteSteps} from './trajectory-math.js';
 
 const $=id=>document.getElementById(id);
 const COLORS={future:'#65d9ff',past:'#efb875'};
 
 export class TrajectoryController {
-  constructor({getState,onChange,onSeek,notify,openDialog,getConfig}) {
-    Object.assign(this,{getState,onChange,onSeek,notify,openDialog,getConfig});
+  constructor({getState,onChange,onSeek,onNavigate,notify,openDialog,getConfig}) {
+    Object.assign(this,{getState,onChange,onSeek,onNavigate,notify,openDialog,getConfig});
     this.enabled=true;this.showMap=true;this.windowSeconds=12;this.heightFactor=1;this.data=null;
     this.asset=null;this.key=null;this.epoch=0;this.pollTimer=null;this.status={state:'idle'};this.lastDraw='';
-    this.canvas=$('route-overlay');this.context=this.canvas.getContext('2d');this.map=$('route-map');this.mapContext=this.map.getContext('2d');
+    this.canvas=$('panorama');this.map=$('route-map');this.mapContext=this.map.getContext('2d');
     this.pathSegments=[];this.mapSegments=[];this.gestures=new Map();this.hover=null;
-    this.bindSeeking($('panorama'),false);this.bindSeeking(this.map,true);
+    this.steps=[];this.directions={};this.stepButtons=new Map();
+    this.bindSeeking(this.map,true);
     this.map.addEventListener('keydown',e=>{
-      const {media,loading}=this.getState();if(loading||!this.data||!this.enabled||!(media instanceof HTMLVideoElement))return;
+      const {media,loading}=this.getState();if(loading||!this.data||!(media instanceof HTMLVideoElement))return;
       const times={ArrowLeft:media.currentTime-5,ArrowDown:media.currentTime-5,ArrowRight:media.currentTime+5,ArrowUp:media.currentTime+5,Home:0,End:media.duration};
       if(!(e.key in times)||e.altKey||e.ctrlKey||e.metaKey)return;
       e.preventDefault();e.stopPropagation();this.onSeek(times[e.key]);this.clearHover();
     });
     $('trajectory-open').onclick=()=>this.openSettings();
     new ResizeObserver(()=>{this.lastDraw='';this.draw();}).observe(this.canvas);
+  }
+  navigate(target) {
+    const {media,view,loading,editing}=this.getState();
+    if(!target||!this.data||!this.enabled||loading||editing||!(media instanceof HTMLVideoElement)||media.seeking||media.readyState<2)return false;
+    const pose=poseAt(this.data,media.currentTime);if(!pose)return false;
+    this.onNavigate(target.t,viewAfterStep(pose,target,view));this.clearHover();return true;
+  }
+  navigateDirection(direction) {
+    this.draw();return this.navigate(this.directions[direction]);
+  }
+  drawNavigation(pose,time,view,ready) {
+    this.steps=ready&&pose?editedRouteSteps(this.data,time,this.asset?.routeEdits).filter(step=>Math.abs(step.t-time)<=this.windowSeconds):[];this.directions=directionalSteps(this.steps,view?.yaw||0);
+    const container=$('route-navigation'),width=this.canvas.clientWidth,height=this.canvas.clientHeight;
+    container.hidden=!this.steps.length;
+    const times=new Set(this.steps.map(step=>step.t));
+    for(const [time,button] of this.stepButtons)if(!times.has(time)){button.remove();this.stepButtons.delete(time);}
+    for(const target of this.steps){
+      let button=this.stepButtons.get(target.t);
+      if(!button){
+        button=document.createElement('button');button.className='roadview-arrow';
+        button.innerHTML='<span class="roadview-arrow-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V5M5 12l7-7 7 7"/></svg></span><span class="roadview-arrow-label"></span>';
+        const time=target.t;button.onclick=()=>this.navigate(this.steps.find(step=>step.t===time));
+        container.append(button);this.stepButtons.set(time,button);
+      }
+      const pitch=-Math.atan(Math.tan(24*Math.PI/180)*this.heightFactor)*180/Math.PI;
+      const point=projectPoint(target.yaw,pitch,view,width,height),index=this.data.samples.findIndex(sample=>sample.t===target.t);
+      button.hidden=!point||point.x<48||point.x>width-48||point.y<90||point.y>height-42;
+      const label=`${this.nodeName(index)} · ${formatTime(target.t)}`;
+      button.dataset.time=target.t.toFixed(3);button.setAttribute('aria-label',label+'로 이동');
+      button.querySelector('.roadview-arrow-label').textContent=label;
+      if(point){button.style.left=`${point.x}px`;button.style.top=`${point.y}px`;}
+    }
   }
   pick(event,map) {
     const {media,loading}=this.getState();
@@ -76,7 +109,7 @@ export class TrajectoryController {
     const {asset,source}=this.getState();
     if(!force&&this.asset===asset&&this.sourceURL===source?.url)return;
     const epoch=++this.epoch;clearTimeout(this.pollTimer);this.asset=asset;this.sourceURL=source?.url;
-    this.pathSegments=[];this.mapSegments=[];this.gestures.clear();this.clearHover();
+    this.pathSegments=[];this.mapSegments=[];this.steps=[];this.directions={};this.gestures.clear();this.clearHover();
     this.key=source?.trajectoryKey||null;this.data=null;this.loadedKey=null;this.heightFactor=1;this.status={state:'idle'};
     const settings=asset?.trajectorySettings||{};this.enabled=settings.enabled!==false;this.showMap=settings.showMap!==false;this.windowSeconds=settings.windowSeconds||12;this.heightFactor=settings.heightFactor||1;
     if(asset?.type==='video'&&asset.trajectory){
@@ -132,13 +165,15 @@ export class TrajectoryController {
     try{const status=await this.request(`/api/trajectory/${this.key}/cancel`,{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});if(epoch!==this.epoch)return;this.status=status;this.updateUI();}catch(error){if(epoch===this.epoch)this.notify(error.message,true);}
   }
   saveSettings(){if(this.asset){this.asset.trajectorySettings={enabled:this.enabled,showMap:this.showMap,windowSeconds:this.windowSeconds,heightFactor:this.heightFactor};this.onChange();}this.lastDraw='';this.draw();}
+  nodeName(index) {
+    return this.asset?.routeEdits?.nodes?.[index]?.name||`지점 ${index+1}`;
+  }
   updateUI() {
     const available=this.asset?.type==='video';$('trajectory-open').disabled=!available;
     const running=['queued','running','cancelling'].includes(this.status.state);
     $('trajectory-open').classList.toggle('active',!!this.data&&this.enabled);
     $('trajectory-open').classList.toggle('analyzing',running);
     $('trajectory-button-label').textContent=running?'경로 분석 중':this.data?'촬영 경로':'자동 경로';
-    $('route-legend').hidden=!this.data||!this.enabled;
     $('route-map-wrap').hidden=!this.data||!this.enabled||!this.showMap;
     if(!this.data||!this.enabled)$('route-gap').hidden=true;
     if($('trajectory-status')){
@@ -165,43 +200,16 @@ export class TrajectoryController {
     $('trajectory-start').onclick=()=>this.start(!!this.data);$('trajectory-cancel').onclick=()=>this.cancel();this.updateUI();
   }
   draw() {
-    const {media,view,loading}=this.getState(),time=media instanceof HTMLVideoElement?media.currentTime:0,seeking=media instanceof HTMLVideoElement&&media.seeking;
+    const {media,view,loading,editing}=this.getState(),time=media instanceof HTMLVideoElement?media.currentTime:0,seeking=media instanceof HTMLVideoElement&&media.seeking;
     const width=this.canvas.clientWidth,height=this.canvas.clientHeight;
-    const signature=`${time.toFixed(3)}:${view?.yaw}:${view?.pitch}:${view?.fov}:${width}:${height}:${this.enabled}:${this.showMap}:${!!this.data}:${loading}:${seeking}`;
+    const signature=`${time.toFixed(3)}:${view?.yaw}:${view?.pitch}:${view?.fov}:${width}:${height}:${this.enabled}:${this.showMap}:${!!this.data}:${loading}:${seeking}:${editing}`;
     if(this.lastDraw===signature)return;this.lastDraw=signature;
-    const ratio=Math.min(devicePixelRatio||1,2);
-    if(this.canvas.width!==Math.round(width*ratio)||this.canvas.height!==Math.round(height*ratio)){this.canvas.width=Math.round(width*ratio);this.canvas.height=Math.round(height*ratio);}
-    const ctx=this.context;ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,width,height);
     this.pathSegments=[];this.mapSegments=[];
-    if(!this.data||!this.enabled||!view||loading||seeking||!(media instanceof HTMLVideoElement)){this.canvas.dataset.segments='0';$('route-gap').hidden=true;this.clearHover();return;}
+    if(!this.data||!this.enabled||!view||loading||seeking||!(media instanceof HTMLVideoElement)){this.drawNavigation(null,time,view,false);$('route-gap').hidden=true;this.clearHover();return;}
     const pose=poseAt(this.data,time);
+    this.drawNavigation(pose,time,view,!editing&&this.enabled);
     $('route-gap').hidden=!!pose;$('route-gap').textContent='이 구간은 촬영 위치를 확인하지 못했습니다.';
-    this.drawMap(pose,time,view);
-    if(!pose||!this.data.floor){this.canvas.dataset.segments='0';this.updateHover();return;}
-    const floor=this.data.floor;let count=0;const strokes=[];
-    ctx.lineCap='round';ctx.lineJoin='round';
-    for(const [start,end] of this.data.segments){
-      for(let i=start;i<end;i++){
-        const a=this.data.samples[i],b=this.data.samples[i+1];
-        if(b.t<time-this.windowSeconds||a.t>time+this.windowSeconds||b.t-a.t>this.data.maxGap)continue;
-        const cuts=[Math.max(a.t,time-this.windowSeconds)];if(time>a.t&&time<b.t)cuts.push(time);cuts.push(Math.min(b.t,time+this.windowSeconds));
-        for(let k=0;k<cuts.length-1;k++){
-          if(cuts[k+1]<=cuts[k])continue;
-          const first=floorPoint(lerp(a.p,b.p,(cuts[k]-a.t)/(b.t-a.t)),floor,this.heightFactor),second=floorPoint(lerp(a.p,b.p,(cuts[k+1]-a.t)/(b.t-a.t)),floor,this.heightFactor);
-          const line=projectSegment(first,second,pose,view,width,height,floor.cameraHeight*.07);if(!line)continue;
-          const [p,q]=line;
-          if(Math.max(p.x,q.x)<-30||Math.min(p.x,q.x)>width+30||Math.max(p.y,q.y)<-30||Math.min(p.y,q.y)>height+30)continue;
-          const isPast=cuts[k+1]<=time,stroke=Math.max(2,Math.min(14,height*floor.cameraHeight*.055/Math.max(floor.cameraHeight*.2,(p.z+q.z)/2)));
-          strokes.push({p,q,isPast,stroke,t0:cuts[k]+(cuts[k+1]-cuts[k])*p.fraction,t1:cuts[k]+(cuts[k+1]-cuts[k])*q.fraction,perspective:true,arrow:!isPast&&i%3===0&&Math.hypot(p.x-q.x,p.y-q.y)>8});count++;
-        }
-      }
-    }
-    // Paint all outlines before all colored strokes to avoid dark seams between samples.
-    for(const outline of [true,false])for(const {p,q,isPast,stroke} of strokes){ctx.setLineDash(isPast?[stroke*1.7,stroke*1.2]:[]);ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle=outline?'#071c2299':isPast?COLORS.past:COLORS.future;ctx.lineWidth=outline?stroke+3:isPast?stroke*.72:stroke;ctx.stroke();}
-    ctx.setLineDash([]);
-    for(const {p,q,stroke,arrow} of strokes)if(arrow){const angle=Math.atan2(q.y-p.y,q.x-p.x),x=(p.x+q.x)/2,y=(p.y+q.y)/2,size=Math.max(5,Math.min(10,stroke*1.1));ctx.save();ctx.translate(x,y);ctx.rotate(angle);ctx.beginPath();ctx.moveTo(-size,-size*.65);ctx.lineTo(0,0);ctx.lineTo(-size,size*.65);ctx.strokeStyle='#effaff';ctx.lineWidth=2;ctx.stroke();ctx.restore();}
-    this.canvas.dataset.segments=String(count);this.canvas.dataset.time=time.toFixed(3);
-    this.pathSegments=strokes;this.updateHover();
+    this.drawMap(pose,time,view);this.updateHover();
   }
   drawMap(pose,time,view) {
     if(!this.showMap)return;

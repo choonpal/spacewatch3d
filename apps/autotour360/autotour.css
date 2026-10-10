@@ -9,7 +9,7 @@
 .project-name-button { display:flex; align-items:center; gap:8px; min-width:0; padding:0; }.project-name-button svg { width:12px; height:12px; flex-shrink:0; }
 .workspace-footer .save-status { margin:0 0 0 14px; padding:0; }
 @media(max-width:600px){.workspace-footer .save-status { display:none; }}
-.player-bar { background:#17202b; }.viewer-shell { border-color:#344052; }.route-map-wrap { background:#101c2bee; }.route-legend { background:#172338ed; }
+.player-bar { background:#17202b; }.viewer-shell { border-color:#344052; }.route-map-wrap { background:#101c2bee; }
 .button.primary,.play-button { background:#b7ceff; color:#172542; }.button.dashed { border-color:#556c91; color:#c4d8ff; }.button.subtle { background:#1c2635; border-color:#38475d; }
 .dialog-header,.dialog-body { background:#1a2330; }dialog { background:#1a2330; border-color:#43526a; }.trajectory-status-card { background:#17283d; border-color:#425779; }
 .trajectory-button.active { background:#203755; border-color:#5a84b8; }
@@ -43,5 +43,6 @@
 @media(max-width:1000px){.welcome { padding:28px 30px; }.welcome-copy h1 { font-size:34px; }.welcome-hero { gap:0; grid-template-columns:1.25fr 1fr; }.orbit-chip { padding:9px; }.chip-top { left:0; }.workflow { gap:10px; padding:19px; }.workflow small { font-size:8px; }.library-list { grid-template-columns:repeat(2,1fr); }.top-actions { gap:7px; }.top-actions button { padding-left:10px; padding-right:10px; }}
 @media(max-width:600px){.welcome { padding:22px 21px 34px; }.welcome-topline .eyebrow { font-size:7px; letter-spacing:.7px; }.engine-badge { font-size:8px; }.welcome-hero { display:block; min-height:0; padding-top:40px; }.welcome-copy h1 { font-size:32px; }.welcome-copy>p { font-size:11px; }.welcome-illustration { display:none; }.hero-label { font-size:8px; margin-bottom:18px; }.hero-upload { width:100%; }.upload-spec { font-size:8px; text-align:center; }.privacy-copy { font-size:8px; }.workflow { align-items:flex-start; gap:10px; padding:17px 11px; margin:28px 0; }.workflow>div { flex:1; flex-direction:column; gap:9px; align-items:center; text-align:center; }.workflow>div>span { width:26px; height:26px; font-size:8px; }.workflow strong { font-size:10px; }.workflow small { font-size:8px; line-height:1.7; }.workflow i { margin-top:4px; }.library-list { grid-template-columns:1fr; }.library-heading h2 { font-size:14px; }.library-heading button { font-size:9px; gap:5px; }.analysis-strip { margin:0 10px 9px; padding:10px; gap:9px; }.analysis-copy strong { font-size:10px; }.analysis-copy>span { font-size:9px; line-height:1.4; }.analysis-mark { width:24px; height:24px; font-size:15px; }.analysis-strip .text-button { font-size:9px; white-space:nowrap; }.upload-panel { right:16px; bottom:16px; }.top-actions #help { display:none; }.scene-card-info small { max-width:220px; }.welcome-mode .topbar { height:67px; }}
 
-@media(min-width:601px){.route-map-wrap { right:76px; }}
+@media(min-width:601px){.route-map-wrap { right:204px; }}
+@media(max-width:600px){.route-map-wrap { right:150px; }}
 .workflow small { word-break:keep-all; }

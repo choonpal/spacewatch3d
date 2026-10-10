@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {validateTrajectory,poseAt,floorPoint,projectSegment,pickPath,rotate,slerp} from '../trajectory-math.js';
+import {validateTrajectory,poseAt,floorPoint,projectSegment,pickPath,rotate,slerp,routeSteps,directionalSteps,viewAfterStep,routeNodeAt,defaultRouteLinks,validateRouteEdits,connectRouteNodes,editedRouteSteps} from '../trajectory-math.js';
 import {validateProject} from '../core.js';
 
 const fixture=()=>({version:1,source:{name:'video.mp4',size:10,sha256:'a'.repeat(64)},duration:6,up:[0,-1,0],floor:{normal:[0,-1,0],offset:1.7,cameraHeight:1.7,support:100},samples:[0,1,2,4,5].map(t=>({t,p:[0,0,t],q:[0,0,0,1]})),segments:[[0,2],[3,4]],maxGap:1.5,quality:{coverage:.5}});
@@ -56,4 +56,78 @@ test('tour round trip retains trajectory and calibration, rejects wrong video as
   const input={version:1,id:'tour',assets:[{id:'v',name:'video.mp4',size:10,type:'video',trajectory:fixture(),trajectorySettings:{enabled:true,showMap:true,heightFactor:1.2,windowSeconds:6}}],scenes:[]};
   const project=validateProject(JSON.parse(JSON.stringify(input)));assert.equal(project.assets[0].trajectory.samples.length,5);assert.equal(project.assets[0].trajectorySettings.heightFactor,1.2);
   input.assets[0].name='other.mp4';assert.throws(()=>validateProject(input));
+});
+
+test('roadview arrows never cross a missing interval or offer movement beyond a route endpoint',()=>{
+  const data=validateTrajectory(fixture());
+  assert.deepEqual(routeSteps(data,0).map(s=>[s.direction,s.t]),[[1,2]]);
+  assert.deepEqual(routeSteps(data,2).map(s=>[s.direction,s.t]),[[-1,0]]);
+  assert.deepEqual(routeSteps(data,3),[]);
+  assert.deepEqual(routeSteps(data,5).map(s=>[s.direction,s.t]),[[-1,4]]);
+  const gap=fixture();gap.segments=[[0,4]];
+  assert.deepEqual(routeSteps(validateTrajectory(gap),1.5).map(s=>[s.direction,s.t]),[[-1,0],[1,2]]);
+});
+
+test('roadview directions follow the view and require a real horizontal displacement',()=>{
+  const steps=routeSteps(validateTrajectory(fixture()),1);
+  assert.equal(directionalSteps(steps,0).forward.t,2);
+  assert.equal(directionalSteps(steps,0).back.t,0);
+  assert.equal(directionalSteps(steps,90).left.t,2);
+  assert.equal(directionalSteps(steps,90).forward,null);
+  const stationary=fixture();stationary.samples.forEach(s=>s.p=[0,0,0]);
+  assert.deepEqual(routeSteps(validateTrajectory(stationary),1),[]);
+});
+
+test('roadview movement preserves world view direction across camera rotation',()=>{
+  const origin={q:[0,0,0,1]},destination={q:[0,Math.SQRT1_2,0,Math.SQRT1_2]};
+  const shifted=viewAfterStep(origin,destination,{yaw:0,pitch:12,fov:75});
+  assert.ok(Math.abs(shifted.yaw+90)<1e-8);assert.ok(Math.abs(shifted.pitch-12)<1e-8);
+  assert.equal(shifted.fov,75);
+});
+
+test('editing a point name retains automatic movement and survives a tour JSON round trip',()=>{
+  const data=validateTrajectory(fixture());
+  const edits=validateRouteEdits({version:1,sourceSha256:data.source.sha256,nodes:{0:{t:0,name:'복도 입구'}}},data);
+  assert.equal(routeNodeAt(data,.2),0);assert.equal(routeNodeAt(data,3),null);
+  assert.deepEqual(editedRouteSteps(data,0,edits),routeSteps(data,0));
+  const input={version:1,id:'tour',assets:[{id:'v',name:'video.mp4',size:10,type:'video',trajectory:data,routeEdits:edits}],scenes:[]};
+  const saved=validateProject(JSON.parse(JSON.stringify(input))).assets[0].routeEdits;
+  assert.deepEqual(saved,edits);
+});
+
+test('custom connection bearings and reverse connections account for camera rotation',()=>{
+  const input=fixture();input.samples[2].q=[0,Math.SQRT1_2,0,Math.SQRT1_2];
+  const data=validateTrajectory(input),edits=connectRouteNodes(data,null,0,2,90,true);
+  assert.equal(directionalSteps(editedRouteSteps(data,0,edits),0).right.t,2);
+  assert.ok(Math.abs(edits.nodes[2].links.find(link=>link.target===0).yaw-180)<1e-8);
+  assert.equal(directionalSteps(editedRouteSteps(data,2,edits),0).back.t,0);
+  assert.deepEqual(defaultRouteLinks(data,0).map(link=>link.target),[2]);
+  const modified=connectRouteNodes(data,edits,0,2,-90);
+  assert.equal(modified.nodes[0].links.length,1);
+  assert.equal(directionalSteps(editedRouteSteps(data,0,modified),0).left.t,2);
+  assert.equal(edits.nodes[0].links[0].yaw,90);
+});
+
+test('removing all connections stays disconnected after saving and follows the current camera frame',()=>{
+  const input=fixture();input.samples[1].q=[0,Math.SQRT1_2,0,Math.SQRT1_2];
+  const data=validateTrajectory(input),edits=connectRouteNodes(data,null,0,2,0);
+  const steps=editedRouteSteps(data,.5,edits);
+  assert.ok(Math.abs(steps[0].yaw+45)<1e-8);
+  edits.nodes[0].links=[];
+  assert.deepEqual(editedRouteSteps(data,0,validateRouteEdits(JSON.parse(JSON.stringify(edits)),data)),[]);
+});
+
+test('route edits reject source mismatches, changed timestamps, duplicate targets and missing intervals',()=>{
+  const data=validateTrajectory(fixture()),edits=connectRouteNodes(data,null,0,2,0);
+  const corrupt=change=>{const copy=structuredClone(edits);change(copy);assert.throws(()=>validateRouteEdits(copy,data));};
+  corrupt(copy=>copy.sourceSha256='b'.repeat(64));
+  corrupt(copy=>copy.nodes[0].t=.1);
+  corrupt(copy=>copy.nodes[0].links[0].t=1);
+  corrupt(copy=>copy.nodes[0].links[0].yaw=181);
+  corrupt(copy=>copy.nodes[0].links.push({...copy.nodes[0].links[0]}));
+  assert.throws(()=>connectRouteNodes(data,edits,0,3,0));
+  assert.throws(()=>connectRouteNodes(data,edits,0,0,0));
+  assert.throws(()=>connectRouteNodes(data,edits,0,99,0));
+  const gap=fixture();gap.segments=[[0,4]];
+  assert.throws(()=>connectRouteNodes(validateTrajectory(gap),null,1,3,0));
 });

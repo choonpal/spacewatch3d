@@ -1609,12 +1609,6 @@ dialog::backdrop {
 .trajectory-button svg { width: 16px; height: 16px; }
 .trajectory-button.active { color: #9ee7ff; background: #183640; border-color: #3c6d7c; }
 .trajectory-button.analyzing { color: #e0dba4; border-color: #807745; }
-#route-overlay { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-.route-legend { position: absolute; left: 26px; bottom: 52px; z-index: 2; display: flex; gap: 14px; font-size: 10px; background: #14231bd9; backdrop-filter: blur(8px); padding: 9px 12px; border: 1px solid #ffffff25; border-radius: 7px; pointer-events: none; }
-.route-legend span { display: flex; gap: 6px; align-items: center; }
-.route-legend span:before { content: ''; display: block; width: 16px; height: 3px; border-radius: 3px; }
-.route-legend .future:before { background: #65d9ff; }
-.route-legend .past:before { background: #efb875; }
 .route-map-wrap { position: absolute; right: 21px; bottom: 53px; z-index: 2; width: 182px; padding: 10px 10px 0; border: 1px solid #cad9ce50; border-radius: 9px; background: #101e1de6; backdrop-filter: blur(10px); }
 .route-map-wrap>div { display: flex; justify-content: space-between; align-items: center; font-size: 9px; color: #b9d2c9; }
 #route-map { display: block; width: 160px; height: 102px; touch-action: none; cursor: default; border-radius: 5px; }
@@ -1632,6 +1626,13 @@ dialog::backdrop {
 .trajectory-checks input { accent-color: #a8dca9; }
 #route-height { width: 100%; padding: 0; margin: 10px 0; border: 0; }
 @media(max-width:1200px) { .workspace-actions .local-badge { display: none; } }
+.route-navigation { position:absolute; inset:0; z-index:4; pointer-events:none; }
+.roadview-arrow { position:absolute; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; gap:5px; padding:8px; pointer-events:auto; color:white; filter:drop-shadow(0 4px 8px #0005); }
+.roadview-arrow-disc { width:72px; height:48px; display:grid; place-items:center; border:1px solid #ffffff88; border-radius:50%; background:#ffffff26; backdrop-filter:blur(2px); transform:perspective(90px) rotateX(30deg); transition:background .15s; }
+.roadview-arrow-disc svg { width:37px; height:37px; stroke-width:2.5; filter:drop-shadow(0 3px 3px #0003); }
+.roadview-arrow:hover .roadview-arrow-disc,.roadview-arrow:focus-visible .roadview-arrow-disc { background:#ed744fcc; border-color:#ffffffbb; }
+.roadview-arrow-label { font-size:10px; padding:4px 8px; border-radius:4px; background:#14281bd9; white-space:nowrap; max-width:180px; overflow:hidden; text-overflow:ellipsis; }
+.is-editing .route-navigation { display:none; }
 @media(max-width:600px) {
   .workspace-actions { gap: 0; }
   .trajectory-button { font-size: 9px; padding: 7px 8px; gap: 5px; }
@@ -1641,9 +1642,7 @@ dialog::backdrop {
   .route-map-wrap { width: 120px; right: 12px; bottom: 47px; padding: 8px 7px 0; }
   .route-map-wrap>div { font-size: 8px; }
   #route-map { width: 104px; height: 72px; }
-  .route-legend { left: 13px; bottom: 48px; padding: 7px; gap: 9px; font-size: 8px; }
-  .route-legend span:before { width: 10px; }
   .route-gap { font-size: 9px; white-space: normal; text-align: center; }
   .is-editing .route-map-wrap { display: none; }
-  .is-editing .route-legend { bottom: 12px; }
+  .roadview-arrow-disc { width:61px; height:41px; }.roadview-arrow-label { font-size:9px; }
 }

@@ -62,7 +62,7 @@ function updateHeader(){
   $('project-title').textContent=project.title;
   const count=project.scenes.reduce((n,s)=>n+s.hotspots.length,0);
   $('tour-summary').textContent=`영상 ${project.assets.length}개 · 연결 및 설명 지점 ${count}개`;
-  const scene=current();if(scene){$('active-title').textContent=scene.title;$('active-description').textContent=scene.description;$('scene-kicker').textContent='360° VIRTUAL TOUR';}
+  const scene=current();if(scene){$('active-title').textContent=scene.title;$('active-description').textContent=['촬영 경로를 클릭해 공간을 둘러보세요.','바닥 화살표를 눌러 동선을 이동하세요.','방향 버튼을 눌러 동선을 이동하세요.'].includes(scene.description)?'바닥 화살표를 눌러 동선을 이동하세요.':scene.description;$('scene-kicker').textContent='360° VIRTUAL TOUR';}
 }
 function renderHotspots(){
   $('hotspots').replaceChildren();
@@ -189,7 +189,7 @@ async function addFiles(files,relinkId=null){
       const item=await uploadVideo(file,fraction=>{$('upload-progress').value=fraction*100;$('upload-label').textContent=fraction===1?'영상을 확인하고 자동 분석을 시작합니다':`영상 보관 중 · ${Math.round(fraction*100)}%`;},uploadController.signal);
       const index=config.media.findIndex(m=>m.trajectoryKey===item.trajectoryKey);if(index<0)config.media.push(item);else config.media[index]=item;
       let asset;
-      if(relinkId){asset=descriptor(relinkId);if(!asset)continue;disposeMedia();Object.assign(asset,{name:item.name,size:item.size,type:'video',lastModified:0,trajectoryKey:item.trajectoryKey});delete asset.trajectory;for(const scene of project.scenes.filter(s=>s.assetId===asset.id)){scene.thumbnail='';scene.startTime=Math.min(scene.startTime,item.duration-.05);}}
+      if(relinkId){asset=descriptor(relinkId);if(!asset)continue;disposeMedia();const sameSource=asset.trajectory?.source.sha256===item.trajectoryKey;Object.assign(asset,{name:item.name,size:item.size,type:'video',lastModified:0,trajectoryKey:item.trajectoryKey});if(sameSource)asset.trajectory.source.name=item.name;else{delete asset.trajectory;delete asset.routeEdits;}for(const scene of project.scenes.filter(s=>s.assetId===asset.id)){scene.thumbnail='';scene.startTime=Math.min(scene.startTime,item.duration-.05);}}
       else asset=ensureLibraryAsset(item);
       sources.set(asset.id,{url:item.url,trajectoryKey:item.trajectoryKey});changed();renderLibrary();
       await loadScene(project.scenes.find(s=>s.assetId===asset.id)?.id);await refreshLibrary();
@@ -219,7 +219,7 @@ async function importProject(file){
   }catch(error){toast(error instanceof SyntaxError?'올바른 JSON 투어 파일이 아닙니다.':error.message,true);}
 }
 function showOpenDialog(){openDialog('영상과 투어 가져오기',`<p>영상을 넣으면 촬영 경로를 자동으로 만듭니다.</p><button id="dialog-add-media" class="dialog-choice"><span>${icon('panorama')}</span><div><strong>360° 영상 추가 → 자동 투어 생성</strong><small>MP4 · MOV · WebM / 2:1 파노라마 / 최대 2GB · 10분</small></div></button><button id="dialog-open-project" class="dialog-choice"><span>${icon('file')}</span><div><strong>저장한 투어 불러오기</strong><small>.tour.json · 경로, 장면, 설명을 이어서 사용합니다.</small></div></button><p class="hint" style="margin-top:20px">영상과 분석 결과는 프로그램을 실행한 PC에 보관됩니다. 외부 서비스에 전송하지 않습니다.</p>`);$('dialog-add-media').onclick=()=>{$('dialog').close();chooseMedia();};$('dialog-open-project').onclick=()=>{$('dialog').close();$('project-input').value='';$('project-input').click();};}
-function showHelp(){openDialog('공간을 둘러보는 방법',`<div class="help-grid"><span>마우스 드래그 / 터치</span><span>원하는 방향으로 둘러보기</span><span>휠 / 두 손가락</span><span>확대 · 축소</span><span><kbd>←</kbd> <kbd>↑</kbd> <kbd>↓</kbd> <kbd>→</kbd></span><span>시선 이동</span><span><kbd>Space</kbd> / <kbd>M</kbd></span><span>재생·정지 / 음소거</span><span><kbd>R</kbd> / <kbd>F</kbd></span><span>시점 초기화 / 전체 화면</span></div><p class="dialog-note">① <strong>영상 선택</strong>만 하면 촬영 경로 분석이 자동으로 시작됩니다.<br>② 영상 위 경로나 미니맵을 클릭해 이동하고, 드래그로 둘러보세요.<br>③ <strong>투어 편집</strong>에서 설명을 추가한 뒤 <strong>투어 저장</strong>으로 보관하세요.</p><p>편집 설정은 이 브라우저에 자동 저장됩니다. 투어 파일에는 영상이 포함되지 않으므로 원본도 함께 보관하세요. 360°로 이어 붙인 2:1 영상을 지원합니다. 분석된 동선은 실제 촬영 경로의 추정값이며, 벽 뒤 경로의 가림 처리는 지원하지 않습니다.</p><div class="dialog-actions"><button class="button primary" data-close>둘러보기 시작</button></div>`);}
+function showHelp(){openDialog('공간을 둘러보는 방법',`<div class="help-grid"><span>마우스 드래그 / 터치</span><span>원하는 방향으로 둘러보기</span><span>휠 / 두 손가락</span><span>확대 · 축소</span><span><kbd>←</kbd> <kbd>↑</kbd> <kbd>↓</kbd> <kbd>→</kbd></span><span>동선 이동 · Q/E로 좌우 둘러보기</span><span><kbd>Space</kbd> / <kbd>M</kbd></span><span>재생·정지 / 음소거</span><span><kbd>R</kbd> / <kbd>F</kbd></span><span>시점 초기화 / 전체 화면</span></div><p class="dialog-note">① <strong>영상 선택</strong>만 하면 촬영 경로 분석이 자동으로 시작됩니다.<br>② 바닥 화살표로 이동하고, 드래그로 둘러보세요. 미니맵에서도 이동할 수 있습니다.<br>③ <strong>촬영 경로</strong>에서 표시 설정을 바꾼 뒤 <strong>투어 저장</strong>으로 보관하세요.</p><p>편집 설정은 이 브라우저에 자동 저장됩니다. 투어 파일에는 영상이 포함되지 않으므로 원본도 함께 보관하세요. 360°로 이어 붙인 2:1 영상을 지원합니다. 분석된 동선은 실제 촬영 경로의 추정값이며, 위치가 확인되지 않은 구간은 동선 지도에서 연결하지 않습니다.</p><div class="dialog-actions"><button class="button primary" data-close>둘러보기 시작</button></div>`);}
 async function fullscreen(){try{if(document.fullscreenElement)await document.exitFullscreen();else if($('viewer-shell').requestFullscreen)await $('viewer-shell').requestFullscreen();else toast('이 브라우저에서는 전체 화면 API를 지원하지 않습니다.',true);}catch{toast('브라우저에서 전체 화면을 허용하지 않았습니다.',true);}}
 function bindEvents(){
   $('browse-mode').onclick=()=>setEditing(false);$('edit-mode').onclick=()=>setEditing(true);$('close-inspector').onclick=()=>setEditing(false);
@@ -237,8 +237,12 @@ function bindEvents(){
   document.addEventListener('keydown',e=>{
     if($('dialog').open||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)||e.target.isContentEditable)return;
     const key=e.key.toLowerCase(),v={...renderer.view};
-    if(['arrowleft','arrowright','arrowup','arrowdown',' ','+','=','-','r','f','m','?'].includes(key))e.preventDefault();
-    if(key.startsWith('arrow')){renderer.autoRotate=false;if(key==='arrowleft')v.yaw-=5;if(key==='arrowright')v.yaw+=5;if(key==='arrowup')v.pitch+=5;if(key==='arrowdown')v.pitch-=5;renderer.setView(v);}
+    if(['arrowleft','arrowright','arrowup','arrowdown','q','e',' ','+','=','-','r','f','m','?'].includes(key))e.preventDefault();
+    if(key.startsWith('arrow')){
+      if(!editing&&trajectory.data&&trajectory.enabled){const direction={arrowup:'forward',arrowright:'right',arrowdown:'back',arrowleft:'left'}[key];if(!trajectory.navigateDirection(direction))toast('이 방향에 연결된 이동 지점이 없습니다.');}
+      else{renderer.autoRotate=false;if(key==='arrowleft')v.yaw-=5;if(key==='arrowright')v.yaw+=5;if(key==='arrowup')v.pitch+=5;if(key==='arrowdown')v.pitch-=5;renderer.setView(v);}
+    }
+    if(key==='q'||key==='e'){renderer.autoRotate=false;v.yaw+=key==='q'?-15:15;renderer.setView(v);}
     if(key===' ')togglePlay();if(key==='m')toggleMute();if(key==='r')$('reset-view').click();if(key==='f')fullscreen();if(key==='+'||key==='=')renderer.zoom(-5);if(key==='-')renderer.zoom(5);if(key==='?')showHelp();
   });
   let dragDepth=0;document.addEventListener('dragenter',e=>{if(e.dataTransfer.types.includes('Files')){e.preventDefault();dragDepth++;$('drop-overlay').hidden=false;}});document.addEventListener('dragover',e=>{if(e.dataTransfer.types.includes('Files'))e.preventDefault();});
@@ -254,7 +258,7 @@ function ensureLibraryAsset(item){
   if(!asset){
     if(project.assets.length>=200||project.scenes.length>=200)throw new Error('한 투어에 등록할 수 있는 영상 또는 장면 수를 초과했습니다.');
     asset={id:uid(),name:item.name,size:item.size,lastModified:0,type:'video',trajectoryKey:item.trajectoryKey};project.assets.push(asset);
-    const scene=newScene(asset.id,item.name.replace(/\.[^.]+$/,'')+' · 시작');scene.description='촬영 경로를 클릭해 공간을 둘러보세요.';project.scenes.push(scene);
+    const scene=newScene(asset.id,item.name.replace(/\.[^.]+$/,'')+' · 시작');scene.description='바닥 화살표를 눌러 동선을 이동하세요.';project.scenes.push(scene);
   }
   asset.trajectoryKey=item.trajectoryKey;sources.set(asset.id,{url:item.url,trajectoryKey:item.trajectoryKey});return asset;
 }
@@ -273,7 +277,7 @@ function renderAnalysis(){
   const working=['queued','running','cancelling'].includes(status.state),ready=!!asset?.trajectory;
   $('analysis-strip').hidden=!asset;$('analysis-strip').dataset.state=working?'running':ready?'complete':status.state;
   $('analysis-title').textContent=working?stateLabel(status.state):ready?'자동 투어 준비 완료':stateLabel(status.state);
-  $('analysis-detail').textContent=working?(status.message||'영상을 분석하고 있습니다.'):ready?`촬영 구간 ${(asset.trajectory.quality.coverage*100).toFixed(1)}% 연결 · 경로를 클릭해서 이동하세요`:(status.message||'경로를 준비하고 있습니다.');
+  $('analysis-detail').textContent=working?(status.message||'영상을 분석하고 있습니다.'):ready?`촬영 구간 ${(asset.trajectory.quality.coverage*100).toFixed(1)}% 연결 · 바닥 화살표로 이동하세요`:(status.message||'경로를 준비하고 있습니다.');
   $('analysis-progress').hidden=!working;$('analysis-progress').value=status.progress||0;
   $('analysis-cancel').hidden=!working;$('analysis-cancel').disabled=status.state==='cancelling';
   $('analysis-retry').hidden=working||ready;$('analysis-retry').disabled=!config.trajectory?.available||!item;
@@ -298,7 +302,7 @@ async function refreshLibrary(){
 }
 async function init(){
   try{renderer=new Panorama($('panorama'),updateView,message=>toast(message,true));}catch(error){showMessage('360° 화면을 시작할 수 없습니다',error.message);return;}
-  trajectory=new TrajectoryController({getState:()=>({asset:descriptor(current()?.assetId),source:sources.get(current()?.assetId),sceneId:current()?.id,media,view:renderer.view,loading:sceneLoading}),onChange:changed,onSeek:seekVideo,notify:toast,openDialog,getConfig:()=>config});
+  trajectory=new TrajectoryController({getState:()=>({asset:descriptor(current()?.assetId),source:sources.get(current()?.assetId),sceneId:current()?.id,media,view:renderer.view,loading:sceneLoading,editing}),onChange:changed,onSeek:seekVideo,onNavigate:(time,view)=>{media.pause();renderer.autoRotate=false;renderer.setView(view);seekVideo(time);},notify:toast,openDialog,getConfig:()=>config});
   renderer.onFrame=()=>trajectory.draw();
   bindEvents();
   try{const r=await fetch('/api/config');if(r.ok)config=await r.json();}catch{}

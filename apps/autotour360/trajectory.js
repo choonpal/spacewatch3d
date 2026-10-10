@@ -1,5 +1,6 @@
 import {formatTime,projectPoint} from './core.js';
 import {validateTrajectory,poseAt,pickPath,dot,sub,cross,unit,rotate,lerp,directionalSteps,viewAfterStep,editedRouteSteps} from './trajectory-math.js';
+import {keyframeRouteSteps} from './tour-keyframes.js';
 
 const $=id=>document.getElementById(id);
 const COLORS={future:'#65d9ff',past:'#efb875'};
@@ -32,7 +33,8 @@ export class TrajectoryController {
     this.draw();return this.navigate(this.directions[direction]);
   }
   drawNavigation(pose,time,view,ready) {
-    this.steps=ready&&pose?editedRouteSteps(this.data,time,this.asset?.routeEdits).filter(step=>Math.abs(step.t-time)<=this.windowSeconds):[];this.directions=directionalSteps(this.steps,view?.yaw||0);
+    const selection=this.asset?.tourKeyframes;
+    this.steps=ready&&pose?(selection?.enabled?keyframeRouteSteps(this.data,time,selection):editedRouteSteps(this.data,time,this.asset?.routeEdits).filter(step=>Math.abs(step.t-time)<=this.windowSeconds)):[];this.directions=directionalSteps(this.steps,view?.yaw||0);
     const container=$('route-navigation'),width=this.canvas.clientWidth,height=this.canvas.clientHeight;
     container.hidden=!this.steps.length;
     const times=new Set(this.steps.map(step=>step.t));
@@ -166,6 +168,8 @@ export class TrajectoryController {
   }
   saveSettings(){if(this.asset){this.asset.trajectorySettings={enabled:this.enabled,showMap:this.showMap,windowSeconds:this.windowSeconds,heightFactor:this.heightFactor};this.onChange();}this.lastDraw='';this.draw();}
   nodeName(index) {
+    const number=this.asset?.tourKeyframes?.enabled?this.asset.tourKeyframes.frames.findIndex(frame=>frame.index===index):-1;
+    if(number>=0)return `키프레임 ${number+1}`;
     return this.asset?.routeEdits?.nodes?.[index]?.name||`지점 ${index+1}`;
   }
   updateUI() {
@@ -229,6 +233,7 @@ export class TrajectoryController {
       for(let j=0;j<cuts.length-1;j++){const p=point(lerp(a.p,b.p,(cuts[j]-a.t)/(b.t-a.t))),q=point(lerp(a.p,b.p,(cuts[j+1]-a.t)/(b.t-a.t)));ctx.beginPath();ctx.moveTo(...p);ctx.lineTo(...q);ctx.strokeStyle=cuts[j+1]<=time?COLORS.past:COLORS.future;ctx.stroke();this.mapSegments.push({p:{x:p[0],y:p[1]},q:{x:q[0],y:q[1]},t0:cuts[j],t1:cuts[j+1]});}
     }
     const begin=point(first.p),end=point(data.samples.at(-1).p);ctx.fillStyle='#b7d1c3';for(const p of [begin,end]){ctx.beginPath();ctx.arc(...p,2.5,0,Math.PI*2);ctx.fill();}
+    if(this.asset?.tourKeyframes?.enabled)for(const frame of this.asset.tourKeyframes.frames){const p=point(data.samples[frame.index].p);ctx.beginPath();ctx.arc(...p,2.6,0,Math.PI*2);ctx.fillStyle='#cfb6ff';ctx.fill();ctx.strokeStyle='#142238';ctx.lineWidth=1;ctx.stroke();}
     if(pose){
       const p=point(pose.p),yaw=view.yaw*Math.PI/180,direction=rotate(pose.q,[Math.sin(yaw),0,Math.cos(yaw)]),angle=Math.atan2(-dot(direction,forward),dot(direction,right));
       ctx.save();ctx.translate(...p);ctx.rotate(angle);ctx.beginPath();ctx.moveTo(12,0);ctx.lineTo(-4,-5);ctx.lineTo(-1,0);ctx.lineTo(-4,5);ctx.closePath();ctx.fillStyle='#f1fff3';ctx.shadowColor='#000';ctx.shadowBlur=4;ctx.fill();ctx.restore();

@@ -2,6 +2,7 @@ import {inspectVideoFile,uploadVideo} from './autotour.js';
 import {validateTrajectory} from './trajectory-math.js';
 import {Panorama} from './panorama.js';
 import {TrajectoryController} from './trajectory.js';
+import {KeyframeController} from './keyframe-controller.js';
 import {uid,clamp,escapeHTML as esc,formatTime,newScene,emptyProject,validateProject,removeScene} from './core.js';
 
 const paths={
@@ -26,7 +27,7 @@ const KEY='autotour360.project.v1';
 let libraryTimer,libraryBusy=false,adding=false,uploadController;
 const activeJobs=new Set();
 let project=emptyProject(),activeId=null,editing=false,renderer,media=null,mediaAssetId=null,loadVersion=0,config={media:[]};
-let saveTimer,toastTimer,dbPromise,muted=true,volume=.7,rate=1,relinkAssetId=null,sceneLoading=false,trajectory;
+let saveTimer,toastTimer,dbPromise,muted=true,volume=.7,rate=1,relinkAssetId=null,sceneLoading=false,trajectory,keyframes;
 const sources=new Map(),objectURLs=new Set();
 const current=()=>project.scenes.find(s=>s.id===activeId);
 const descriptor=id=>project.assets.find(a=>a.id===id);
@@ -189,7 +190,7 @@ async function addFiles(files,relinkId=null){
       const item=await uploadVideo(file,fraction=>{$('upload-progress').value=fraction*100;$('upload-label').textContent=fraction===1?'영상을 확인하고 자동 분석을 시작합니다':`영상 보관 중 · ${Math.round(fraction*100)}%`;},uploadController.signal);
       const index=config.media.findIndex(m=>m.trajectoryKey===item.trajectoryKey);if(index<0)config.media.push(item);else config.media[index]=item;
       let asset;
-      if(relinkId){asset=descriptor(relinkId);if(!asset)continue;disposeMedia();const sameSource=asset.trajectory?.source.sha256===item.trajectoryKey;Object.assign(asset,{name:item.name,size:item.size,type:'video',lastModified:0,trajectoryKey:item.trajectoryKey});if(sameSource)asset.trajectory.source.name=item.name;else{delete asset.trajectory;delete asset.routeEdits;}for(const scene of project.scenes.filter(s=>s.assetId===asset.id)){scene.thumbnail='';scene.startTime=Math.min(scene.startTime,item.duration-.05);}}
+      if(relinkId){asset=descriptor(relinkId);if(!asset)continue;disposeMedia();const sameSource=asset.trajectory?.source.sha256===item.trajectoryKey;Object.assign(asset,{name:item.name,size:item.size,type:'video',lastModified:0,trajectoryKey:item.trajectoryKey});if(sameSource)asset.trajectory.source.name=item.name;else{delete asset.trajectory;delete asset.routeEdits;delete asset.tourKeyframes;}for(const scene of project.scenes.filter(s=>s.assetId===asset.id)){scene.thumbnail='';scene.startTime=Math.min(scene.startTime,item.duration-.05);}}
       else asset=ensureLibraryAsset(item);
       sources.set(asset.id,{url:item.url,trajectoryKey:item.trajectoryKey});changed();renderLibrary();
       await loadScene(project.scenes.find(s=>s.assetId===asset.id)?.id);await refreshLibrary();
@@ -303,7 +304,8 @@ async function refreshLibrary(){
 async function init(){
   try{renderer=new Panorama($('panorama'),updateView,message=>toast(message,true));}catch(error){showMessage('360° 화면을 시작할 수 없습니다',error.message);return;}
   trajectory=new TrajectoryController({getState:()=>({asset:descriptor(current()?.assetId),source:sources.get(current()?.assetId),sceneId:current()?.id,media,view:renderer.view,loading:sceneLoading,editing}),onChange:changed,onSeek:seekVideo,onNavigate:(time,view)=>{media.pause();renderer.autoRotate=false;renderer.setView(view);seekVideo(time);},notify:toast,openDialog,getConfig:()=>config});
-  renderer.onFrame=()=>trajectory.draw();
+  keyframes=new KeyframeController({getState:()=>({asset:descriptor(current()?.assetId),data:trajectory.data,source:sources.get(current()?.assetId),media,view:renderer.view,loading:sceneLoading}),onChange:changed,onNavigate:(time,view)=>{if(media instanceof HTMLVideoElement)media.pause();renderer.autoRotate=false;renderer.setView(view);seekVideo(time);},openDialog,notify:toast,invalidate:()=>{trajectory.lastDraw='';trajectory.draw();}});
+  renderer.onFrame=()=>{keyframes.update();trajectory.draw();};
   bindEvents();
   try{const r=await fetch('/api/config');if(r.ok)config=await r.json();}catch{}
   let restored=false;try{const saved=localStorage.getItem(KEY);if(saved){project=validateProject(JSON.parse(saved));restored=true;}}catch{toast('이전 자동 저장을 읽지 못했습니다. 저장한 투어 파일을 불러와 주세요.',true);}

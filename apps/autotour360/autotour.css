@@ -46,3 +46,41 @@
 @media(min-width:601px){.route-map-wrap { right:204px; }}
 @media(max-width:600px){.route-map-wrap { right:150px; }}
 .workflow small { word-break:keep-all; }
+
+/* Selected tour viewpoints stay outside the panorama and its floor arrows. */
+.workspace-actions { gap:10px; }
+#keyframes-open.active { color:#decaff; border-color:#796095; background:#30273e; }
+.keyframe-panel { flex-shrink:0; padding:7px 14px 5px; background:#141c29; border-top:1px solid #344052; }
+.keyframe-panel-heading,.keyframe-panel-heading>div { display:flex; align-items:center; gap:12px; }
+.keyframe-panel-heading { justify-content:space-between; margin-bottom:4px; }
+.keyframe-panel-heading strong { color:#ddcbfa; font-size:11px; font-weight:550; white-space:nowrap; }
+.keyframe-panel-heading span { font-size:10px; color:#9daec4; }
+.keyframe-panel-heading button { color:#c3b2dd; font-size:10px; white-space:nowrap; }
+.keyframe-list { display:flex; gap:8px; overflow-x:auto; scrollbar-width:thin; padding:2px 1px 5px; }
+.keyframe-card { flex:0 0 100px; overflow:hidden; border:1px solid #3a465a; border-radius:7px; background:#1e2838; text-align:left; transition:border-color .15s; }
+.keyframe-card img,.keyframe-placeholder { display:block; width:100%; height:40px; object-fit:cover; }
+.keyframe-placeholder { display:grid; place-items:center; color:#8092ad; font-size:12px; }
+.keyframe-card>span:last-child { display:block; padding:3px 8px; font-size:10px; color:#b9c8db; }
+.keyframe-card[aria-current="true"] { border-color:#c6a1fb; box-shadow:0 0 0 1px #c6a1fb55; }
+.keyframe-card[aria-current="true"]>span:last-child { background:#403153; color:#efddff; }
+.keyframe-card:focus-visible { outline:2px solid #c6a1fb; outline-offset:2px; }
+#keyframe-progress { display:block; height:6px; width:100%; margin:9px 0; accent-color:#c6a1fb; }
+.keyframe-dialog { width:540px; }
+.keyframe-results { display:flex; gap:10px; margin-bottom:18px; }
+.keyframe-results>span { flex:1; display:flex; flex-direction:column; gap:7px; border:1px solid #414a60; background:#232b3d; border-radius:8px; padding:12px; color:#a5b4cc; font-size:11px; }
+.keyframe-results strong { color:#e2cffd; font-size:24px; font-weight:550; }
+.keyframe-method { display:grid; grid-template-columns:25px 1fr; gap:14px 10px; margin:20px 0; }
+.keyframe-method>span { color:#ac89db; font-size:11px; padding-top:2px; }
+.keyframe-method p { color:#9cafc6; font-size:11px; line-height:1.7; }
+.keyframe-method strong { display:block; color:#d8e0ee; font-size:12px; margin-bottom:2px; }
+.keyframe-use { display:flex; gap:8px; align-items:center; font-size:12px; margin:18px 0; }
+.keyframe-use input { accent-color:#c6a1fb; }
+@media(max-width:600px){
+  .workspace-actions { gap:6px; }
+  #keyframes-open>span[data-icon] { display:none; }
+  .keyframe-panel { padding:8px 10px 6px; }
+  .keyframe-panel-heading>div { align-items:flex-start; flex-direction:column; gap:4px; }
+  .keyframe-panel-heading span { font-size:9px; }
+  .keyframe-card { flex-basis:86px; }
+  .keyframe-card img,.keyframe-placeholder { height:42px; }
+}

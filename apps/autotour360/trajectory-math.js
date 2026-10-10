@@ -55,6 +55,7 @@ export function poseAt(trajectory,time) {
   let [low,high]=segment;
   while(high-low>1){const middle=(low+high)>>1;if(samples[middle].t<=time)low=middle;else high=middle;}
   const a=samples[low],b=samples[high],alpha=Math.max(0,Math.min(1,(time-a.t)/(b.t-a.t)));
+  if(time===a.t||time===b.t){const sample=time===a.t?a:b;return {t:time,p:[...sample.p],q:[...sample.q],segment};}
   if(b.t-a.t>trajectory.maxGap)return null;
   return {t:time,p:lerp(a.p,b.p,alpha),q:slerp(a.q,b.q,alpha),segment};
 }

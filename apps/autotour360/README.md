@@ -17,6 +17,87 @@ cd "/home/kdj/Desktop/capstone/spacewatch3d/apps/autotour360"
 
 다른 PC에서 처음 실행할 때는 Python 3.10 이상, FFmpeg(`ffmpeg`와 `ffprobe`를 PATH에 등록)를 준비하고 `setup-trajectory.sh`를 한 번 실행하세요. Windows에서는 `setup-trajectory.bat`입니다. 이후 `start.sh` / `start.bat`으로 실행합니다. 최초 패키지 설치에는 인터넷이 필요하며, 설치 후 분석과 재생은 외부 서비스 없이 로컬에서 처리합니다.
 
+### FFmpeg 설치 및 확인
+
+사용하는 운영체제에 해당하는 명령만 실행하세요. FFmpeg 패키지에는 영상 정보를 읽는 `ffprobe`도 포함됩니다. **두 명령의 버전 정보가 모두 출력되면** 준비된 상태이며, 이미 정상 실행된다면 다시 설치할 필요가 없습니다.
+
+#### Ubuntu / Debian
+
+터미널에서 설치하고 실행 경로와 버전을 확인합니다. 패키지 관리자로 설치하면 일반적으로 PATH를 직접 수정할 필요가 없습니다.
+
+```bash
+sudo apt update
+sudo apt install -y ffmpeg
+
+command -v ffmpeg
+command -v ffprobe
+ffmpeg -version
+ffprobe -version
+```
+
+일반적인 실행 경로는 `/usr/bin/ffmpeg`, `/usr/bin/ffprobe`입니다. 배포판별 패키지는 [FFmpeg 공식 다운로드 안내](https://ffmpeg.org/download.html)에서도 확인할 수 있습니다.
+
+#### Windows 10 / 11 — PowerShell
+
+WinGet으로 [Gyan의 FFmpeg Windows 패키지](https://www.gyan.dev/ffmpeg/builds/)를 설치합니다. `--id`, `--exact`, `--source` 옵션은 설치할 패키지를 지정합니다. [Microsoft 설치 명령 안내](https://learn.microsoft.com/en-us/windows/package-manager/winget/install)
+
+```powershell
+winget --version
+winget install --id Gyan.FFmpeg --exact --source winget
+```
+
+설치가 끝나면 **Windows Terminal / PowerShell 창을 완전히 닫고 새로 연 뒤** 확인합니다. 편집기 안의 터미널이라면 편집기도 다시 실행하세요.
+
+```powershell
+where.exe ffmpeg
+where.exe ffprobe
+ffmpeg -version
+ffprobe -version
+```
+
+WinGet이 인식되지 않으면 [Microsoft의 WinGet 설치 안내](https://learn.microsoft.com/en-us/windows/package-manager/winget/#install-winget)에 따라 **앱 설치 관리자(App Installer)**를 설치하거나 업데이트한 뒤 다시 실행하세요. FFmpeg ZIP을 직접 내려받아 압축을 푼 경우에는 `ffmpeg.exe`와 `ffprobe.exe`가 들어 있는 `bin` 폴더를 사용자 환경 변수 `Path`에 추가하고 터미널을 다시 열어야 합니다.
+
+#### macOS — Homebrew
+
+Homebrew가 설치된 터미널에서 [공식 FFmpeg Formula](https://formulae.brew.sh/formula/ffmpeg)의 설치 명령을 실행합니다.
+
+```bash
+brew install ffmpeg
+
+command -v ffmpeg
+command -v ffprobe
+ffmpeg -version
+ffprobe -version
+```
+
+`brew`가 인식되지 않으면 [Homebrew 설치 안내](https://brew.sh/)에 따라 설치하고, 설치 마지막에 표시되는 `brew shellenv` 설정을 적용한 뒤 새 터미널에서 실행하세요.
+
+### FFmpeg 준비 후 최초 설정과 실행
+
+Python 3.10 이상이 준비된 상태에서 진행합니다. 아래 앱 폴더 경로는 각 PC에 프로젝트를 저장한 실제 경로로 바꾸세요.
+
+**Ubuntu / Debian / macOS:**
+
+```bash
+cd "/path/to/spacewatch3d/apps/autotour360"
+python3 --version
+./setup-trajectory.sh
+./start.sh
+```
+
+Ubuntu / Debian에서 가상환경 생성 중 `venv` 또는 `ensurepip` 관련 오류가 나면 `sudo apt install -y python3-venv`로 기본 Python의 가상환경 패키지를 설치한 뒤 `./setup-trajectory.sh`를 다시 실행하세요.
+
+**Windows PowerShell:**
+
+```powershell
+Set-Location "C:\path\to\spacewatch3d\apps\autotour360"
+py -3 --version
+.\setup-trajectory.bat
+.\start.bat
+```
+
+설정 스크립트가 오류 없이 완료된 뒤 시작 스크립트를 실행하세요. 이후에는 `start.sh` / `start.bat`만 실행하면 됩니다. FFmpeg를 설치하거나 PATH를 바꾼 동안 뷰어 서버가 실행 중이었다면, 기존 서버를 `Ctrl+C`로 종료하고 새 터미널에서 다시 시작하세요.
+
 ## 사용 흐름
 
 1. 시작 화면의 **360° 영상 선택**을 누르거나 영상을 끌어다 놓습니다. 여러 영상도 선택할 수 있습니다.

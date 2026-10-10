@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111718"><meta name="description" content="로컬 360도 영상을 둘러보고 나만의 가상투어를 만드는 공간.">
+  <title>AUTO TOUR 360 — 영상에서 바로 투어로</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23c2e8bd'/%3E%3Cellipse cx='32' cy='32' rx='23' ry='12' fill='none' stroke='%23121918' stroke-width='4' transform='rotate(-35 32 32)'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%23121918'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="autotour.css">
+</head>
+<body class="welcome-mode">
+<header class="topbar">
+  <a class="brand" href="./" aria-label="AUTO TOUR 360 홈"><span class="brand-symbol"><svg viewBox="0 0 40 40"><ellipse cx="20" cy="20" rx="17" ry="8" transform="rotate(-35 20 20)"/><circle cx="20" cy="20" r="4"/></svg></span><span>AUTO <b>TOUR</b><small>360 VIDEO → VIRTUAL TOUR</small></span></a>
+  <nav class="mode-switch" aria-label="작업 모드"><button id="browse-mode" class="selected" aria-pressed="true"><span data-icon="compass"></span>둘러보기</button><button id="edit-mode" aria-pressed="false"><span data-icon="edit"></span>투어 편집</button></nav>
+  <div class="top-actions"><button id="library-home" class="button subtle" aria-label="내 영상"><span data-icon="panorama"></span><span>내 영상</span></button><button id="help" class="icon-button" title="사용 방법" aria-label="사용 방법"><span data-icon="help"></span></button><button id="open-project" class="button subtle" aria-label="불러오기"><span data-icon="folder"></span><span>불러오기</span></button><button id="export-project" class="button primary" aria-label="투어 저장"><span data-icon="download"></span><span>투어 저장</span></button></div>
+</header>
+<section id="welcome" class="welcome" aria-label="자동 투어 시작">
+  <div class="welcome-topline"><span class="eyebrow">YOUR SPACE, READY TO EXPLORE</span><span id="engine-badge" class="engine-badge">분석 도구 확인 중</span></div>
+  <div class="welcome-hero">
+    <div class="welcome-copy"><div class="hero-label"><span></span> 360° VIDEO TO TOUR</div><h1>촬영한 공간을,<br><em>걸어볼 수 있는 투어로.</em></h1><p>360도 영상을 넣어 주세요.<br>촬영 경로를 자동으로 찾고, 클릭해서 이동하는 투어를 만듭니다.</p>
+      <button id="welcome-add" class="button hero-upload"><span data-icon="upload"></span>360° 영상 선택<span class="upload-arrow">↗</span></button>
+      <div class="upload-spec">MP4 · MOV · WebM &nbsp; / &nbsp; 2:1 파노라마 &nbsp; / &nbsp; 최대 2GB · 10분</div>
+      <span class="privacy-copy"><span data-icon="shield"></span>영상은 이 PC에 보관됩니다. 외부 서비스 전송 없이 분석합니다.</span>
+      <div id="setup-note" class="setup-note" hidden>처음 실행한 PC에서는 폴더의 <strong>setup-trajectory.sh</strong> (Windows: .bat)로 분석 도구를 설치하고 프로그램을 다시 시작해 주세요.</div>
+    </div>
+    <div class="welcome-illustration" aria-hidden="true"><div class="orbit-label">ONE VIDEO. A WHOLE SPACE.</div><svg class="orbit-art" viewBox="0 0 500 360"><defs><radialGradient id="sphere-glow"><stop stop-color="#425a9e" stop-opacity=".3"/><stop offset="1" stop-color="#425a9e" stop-opacity="0"/></radialGradient><linearGradient id="route-grad"><stop stop-color="#90c8ff"/><stop offset="1" stop-color="#bca5ff"/></linearGradient></defs><circle cx="254" cy="183" r="165" fill="url(#sphere-glow)" stroke="none"/><g stroke="#52658a" opacity=".45" fill="none"><circle cx="254" cy="183" r="118"/><ellipse cx="254" cy="183" rx="67" ry="118"/><ellipse cx="254" cy="183" rx="118" ry="39"/><ellipse cx="254" cy="183" rx="118" ry="87" transform="rotate(-35 254 183)"/><path d="M136 183h236m-118-118v236"/></g><ellipse cx="254" cy="183" rx="194" ry="70" transform="rotate(-28 254 183)" fill="none" stroke="#7188b5" stroke-dasharray="3 7"/><path d="M130 255 Q194 229 212 184 T284 142 T372 100" stroke="url(#route-grad)" stroke-width="5" fill="none"/><circle cx="130" cy="255" r="8" fill="#c2ddff" stroke="#172033" stroke-width="4"/><circle cx="372" cy="100" r="8" fill="#c5afff" stroke="#172033" stroke-width="4"/><circle cx="247" cy="154" r="17" fill="#d3e3ff" stroke="#839ddb" stroke-opacity=".3" stroke-width="16"/><path d="m244 149 9 5-9 5z" fill="#22396c" stroke="none"/></svg><div class="orbit-chip chip-top"><span class="chip-dot"></span><div>VIDEO INPUT<strong>360° 파노라마</strong></div></div><div class="orbit-chip chip-bottom"><span class="chip-dot purple"></span><div>READY TO EXPLORE<strong>경로를 클릭해 이동</strong></div></div></div>
+  </div>
+  <div class="workflow"><div><span>01</span><p><strong>영상 넣기</strong><small>파일 선택 또는 드래그</small></p></div><i>→</i><div><span>02</span><p><strong>경로 자동 생성</strong><small>촬영 위치와 이동 동선 분석</small></p></div><i>→</i><div><span>03</span><p><strong>공간 둘러보기</strong><small>경로 클릭 · 시선 이동 · 투어 저장</small></p></div></div>
+  <div class="library-heading"><h2>내 영상 <span id="library-count">0</span></h2><button id="welcome-import" class="text-button"><span data-icon="folder"></span>저장한 투어 불러오기</button></div>
+  <div id="library-list" class="library-list"></div><div id="library-empty" class="library-empty"><span data-icon="panorama"></span><p>첫 번째 영상으로 투어를 만들어 보세요.</p><small>여기에 영상을 끌어다 놓아도 됩니다.</small></div>
+</section>
+<main class="workspace">
+  <section class="main-column">
+    <div class="workspace-heading"><div class="breadcrumb"><span>내 프로젝트</span><span class="slash">/</span><button id="rename-project" class="project-name-button" title="투어 이름 변경"><strong id="project-title">나의 자동 투어</strong><span data-icon="edit"></span></button></div><div class="workspace-actions"><button id="trajectory-open" class="trajectory-button" aria-label="자동 촬영 경로 설정"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M6 16v-5a4 4 0 0 1 4-4h4m0 0-3-3m3 3-3 3"/></svg><span id="trajectory-button-label">자동 경로</span></button><span class="local-badge"><span class="live-dot"></span>LOCAL PROCESSING</span></div></div>
+    <div id="analysis-strip" class="analysis-strip" hidden><span class="analysis-mark">✦</span><div class="analysis-copy"><strong id="analysis-title">자동 투어 준비 중</strong><span id="analysis-detail"></span><progress id="analysis-progress" max="100" value="0"></progress></div><button id="analysis-cancel" class="text-button" hidden>분석 취소</button><button id="analysis-retry" class="button subtle" hidden>다시 분석</button></div>
+    <div class="viewer-shell" id="viewer-shell">
+      <div class="viewport" id="viewport">
+        <canvas id="panorama" tabindex="0" aria-label="360도 영상. 드래그 또는 방향키로 둘러보고, 휠 또는 더하기·빼기 키로 확대·축소합니다. 촬영 경로를 클릭하면 해당 시각으로 이동합니다."></canvas><canvas id="route-overlay" aria-hidden="true"></canvas>
+        <div class="viewer-top"><div class="scene-heading"><span class="scene-kicker" id="scene-kicker">360° VIRTUAL TOUR</span><h1 id="active-title">공간을 둘러보세요.</h1><p id="active-description">360도 영상을 추가해 나만의 투어를 만들어 보세요.</p></div><div class="viewer-badges"><span class="pano-badge">360°</span><span id="resolution" class="resolution">EQUIRECTANGULAR</span></div></div>
+        <div id="hotspots" class="hotspots" aria-label="장면의 이동 및 설명 지점"></div>
+        <div id="route-legend" class="route-legend" hidden><span class="future">앞으로</span><span class="past">지나온 길</span></div><div id="route-map-wrap" class="route-map-wrap" hidden><div><span>동선 · 클릭 이동</span><span id="route-map-time">00:00</span></div><canvas id="route-map" tabindex="0" role="slider" aria-label="촬영 동선. 경로 클릭으로 시간 이동. 방향키로 5초 이동" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0"></canvas></div><div id="route-seek-hint" class="route-seek-hint" aria-hidden="true" hidden></div><div id="route-gap" class="route-gap" hidden></div><div id="crosshair" class="crosshair" hidden><span></span><small>이 방향에 지점 추가</small></div>
+        <div class="view-tools"><button id="zoom-in" class="icon-button" aria-label="확대" title="확대 (+)"><span data-icon="plus"></span></button><button id="zoom-out" class="icon-button" aria-label="축소" title="축소 (-)"><span data-icon="minus"></span></button><i></i><button id="reset-view" class="icon-button" aria-label="시점 초기화" title="시점 초기화 (R)"><span data-icon="reset"></span></button><button id="fullscreen" class="icon-button" aria-label="전체 화면" title="전체 화면 (F)"><span data-icon="fullscreen"></span></button></div>
+        <div id="viewer-message" class="viewer-message" hidden><span data-icon="panorama"></span><h2 id="message-title"></h2><p id="message-text"></p><button id="message-action" class="button primary">미디어 선택</button></div>
+        <div id="loading" class="loading" hidden><span class="spinner"></span><span>장면을 불러오는 중</span></div>
+        <div class="viewport-bottom"><span id="interaction-hint"><span data-icon="drag"></span>드래그해서 둘러보세요<span class="hint-divider">·</span>휠로 확대</span><div class="compass"><svg viewBox="0 0 32 32" id="compass-needle"><path d="M16 3L23 24L16 20L9 24Z"/></svg><span id="heading-value">000°</span></div></div>
+        <div id="drop-overlay" class="drop-overlay" hidden><span data-icon="upload"></span>360° 영상을 여기에 놓으세요</div>
+      </div>
+      <div class="player-bar"><div class="timeline-row"><span id="current-time">00:00</span><input id="timeline" type="range" min="0" max="1" step="0.01" value="0" aria-label="영상 재생 위치" disabled><span id="duration">00:00</span></div><div class="playback-row"><div class="playback-left"><button id="play" class="play-button" aria-label="재생" title="재생 / 일시정지 (Space)" disabled><span data-icon="play"></span></button><button id="mute" class="icon-button" aria-label="음소거 해제" title="음소거 전환 (M)"><span data-icon="mute"></span></button><input id="volume" type="range" min="0" max="1" step="0.05" value="0.7" aria-label="음량"><select id="speed" aria-label="재생 속도"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option><option value="2">2×</option></select><span class="player-divider"></span><span id="media-name" class="media-name">미디어 없음</span></div><div class="playback-right"><button id="auto-rotate" class="text-button" aria-label="자동 회전" aria-pressed="false"><span data-icon="rotate"></span><span>자동 회전</span></button></div></div></div>
+    </div>
+    <footer class="workspace-footer"><span><span class="live-dot"></span><span id="tour-summary">투어를 준비하는 중</span><span id="save-status" class="save-status" role="status">이 브라우저에 자동 저장</span></span><button id="keyboard-help">조작 안내 <kbd>?</kbd></button></footer>
+  </section>
+  <aside id="inspector" class="inspector" hidden>
+    <div class="inspector-heading"><div><span class="eyebrow">SCENE EDITOR</span><h2>장면 편집</h2></div><button id="close-inspector" class="icon-button small" aria-label="편집 닫기"><span data-icon="close"></span></button></div>
+    <div id="inspector-content"></div>
+  </aside>
+</main>
+<input id="media-input" type="file" accept="video/mp4,video/webm,video/quicktime,.mp4,.m4v,.mov,.webm,.ogv" multiple hidden>
+<input id="project-input" type="file" accept=".json,application/json" hidden>
+<dialog id="dialog"><div id="dialog-content"></div></dialog>
+<div id="upload-panel" class="upload-panel" role="status" hidden><div><span class="upload-spinner"></span><strong id="upload-label">영상 확인 중</strong><button id="upload-cancel" class="text-button">취소</button></div><span id="upload-name"></span><progress id="upload-progress" max="100" value="0"></progress></div>
+<div id="toast" class="toast" role="status" hidden></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

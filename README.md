@@ -7,6 +7,8 @@
 실제 영상 처리·LingBot-Map·MV3DIS·메시 생성·정합·변화탐지·키프레임 선별 backend는 각 task에서 구현합니다.
 `run`은 backend 연결 전까지 미구현 오류를 반환합니다. fixture 검증 통과는 모델 성능이나 전체 파이프라인 완성을 의미하지 않습니다.
 
+**360° 가상투어 앱:** [AUTO TOUR 360](apps/autotour360/README.md)은 별도로 실행할 수 있습니다. 저장소 루트에서 `./apps/autotour360/start.sh`를 실행하면 영상 입력·촬영 경로 추정·경로 클릭 이동을 사용할 수 있습니다. 코드·데이터 구성과 분석 한계는 [가상투어 문서](docs/virtual-tour.md)에 정리했습니다.
+
 
 spacewatch3d/
 ├── README.md                  # 프로젝트 소개와 시작 방법
@@ -25,6 +27,9 @@ spacewatch3d/
 │       ├── schemas/
 │       │   └── artifact.schema.json  # JSON 데이터 형식 정의
 │       └── tasks/             # 단계별 알고리즘 구현 위치
+│
+├── apps/
+│   └── autotour360/           # 독립 실행 360도 가상투어 앱
 │
 ├── examples/
 │   └── fixtures/              # 개발·검증용 합성 예제
@@ -148,4 +153,4 @@ git push -u origin task/3-instance-segmentation/mv3dis-adapter
 - `kdj`, `lth`, `gwanwoo3849-for-commit`, `wooh594-for-commit`, `library-cleanup` 브랜치와 기존 PR은 그대로 유지합니다.
 - 기존 코드를 가져오는 위치와 절차: [기존 브랜치 이관 가이드](docs/migration.md).
 
-현재 요청의 범위는 그림에 해당하는 분석 파이프라인의 병렬 개발 기반입니다. 기존 웹 초안은 별도 브랜치에 보존되어 있습니다.
+분석 파이프라인은 위 task 구성을 기준으로 개발합니다. 가상투어 앱은 `apps/autotour360/`에서 독립적으로 실행하며, 기존 웹 초안은 별도 브랜치에 보존되어 있습니다.

@@ -47,6 +47,16 @@
 @media(max-width:600px){.route-map-wrap { right:150px; }}
 .workflow small { word-break:keep-all; }
 
+.route-map-wrap { z-index:5; touch-action:none; user-select:none; }
+.route-map-handle { display:flex; align-items:center; justify-content:space-between; width:100%; padding:2px 0 4px; cursor:grab; color:#b9d2e3; font-size:9px; }
+.route-map-heading { display:flex; align-items:center; gap:6px; }
+.route-map-heading svg { width:8px; height:12px; fill:currentColor; stroke:none; opacity:.7; }
+.route-map-handle:focus-visible { outline:2px solid #b8caff; outline-offset:3px; border-radius:3px; }
+#route-map { cursor:grab; }
+#route-map.route-hit { cursor:pointer; }
+.route-map-wrap.is-dragging,.route-map-wrap.is-dragging * { cursor:grabbing!important; }
+@media(max-width:600px){.route-map-handle { font-size:8px; }.route-map-heading { gap:4px; }}
+
 /* Selected tour viewpoints stay outside the panorama and its floor arrows. */
 .workspace-actions { gap:10px; }
 #keyframes-open.active { color:#decaff; border-color:#796095; background:#30273e; }

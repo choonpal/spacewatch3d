@@ -64,7 +64,11 @@ export function validateProject(input) {
     if(a.trajectory){const trajectory=validateTrajectory(a.trajectory);if(asset.type!=='video'||trajectory.source.size!==asset.size||trajectory.source.name!==asset.name)fail('경로와 원본 영상 정보가 일치하지 않습니다.');asset.trajectory=trajectory;}
     if(a.routeEdits)asset.routeEdits=validateRouteEdits(a.routeEdits,asset.trajectory);
     if(a.tourKeyframes)asset.tourKeyframes=validateTourKeyframes(a.tourKeyframes,asset.trajectory);
-    if(asset.trajectory&&a.trajectorySettings)asset.trajectorySettings={enabled:a.trajectorySettings.enabled!==false,showMap:a.trajectorySettings.showMap!==false,windowSeconds:[6,12,24,60].includes(a.trajectorySettings.windowSeconds)?a.trajectorySettings.windowSeconds:12,heightFactor:num(a.trajectorySettings.heightFactor,1,.5,1.5)};
+    if(asset.trajectory&&a.trajectorySettings){
+      asset.trajectorySettings={enabled:a.trajectorySettings.enabled!==false,showMap:a.trajectorySettings.showMap!==false,windowSeconds:[6,12,24,60].includes(a.trajectorySettings.windowSeconds)?a.trajectorySettings.windowSeconds:12,heightFactor:num(a.trajectorySettings.heightFactor,1,.5,1.5)};
+      const position=a.trajectorySettings.mapPosition;
+      if(Number.isFinite(position?.x)&&Number.isFinite(position?.y))asset.trajectorySettings.mapPosition={x:clamp(position.x,0,1),y:clamp(position.y,0,1)};
+    }
     return asset;
   });
   const scenes = input.scenes.map(s => {

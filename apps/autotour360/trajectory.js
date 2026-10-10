@@ -11,9 +11,11 @@ export class TrajectoryController {
     this.enabled=true;this.showMap=true;this.windowSeconds=12;this.heightFactor=1;this.data=null;
     this.asset=null;this.key=null;this.epoch=0;this.pollTimer=null;this.status={state:'idle'};this.lastDraw='';
     this.canvas=$('panorama');this.map=$('route-map');this.mapContext=this.map.getContext('2d');
+    this.mapWrap=$('route-map-wrap');this.viewport=$('viewport');this.mapPosition=null;this.mapDrag=null;
     this.pathSegments=[];this.mapSegments=[];this.gestures=new Map();this.hover=null;
     this.steps=[];this.directions={};this.stepButtons=new Map();
     this.bindSeeking(this.map,true);
+    this.bindMapDragging();
     this.map.addEventListener('keydown',e=>{
       const {media,loading}=this.getState();if(loading||!this.data||!(media instanceof HTMLVideoElement))return;
       const times={ArrowLeft:media.currentTime-5,ArrowDown:media.currentTime-5,ArrowRight:media.currentTime+5,ArrowUp:media.currentTime+5,Home:0,End:media.duration};
@@ -21,7 +23,69 @@ export class TrajectoryController {
       e.preventDefault();e.stopPropagation();this.onSeek(times[e.key]);this.clearHover();
     });
     $('trajectory-open').onclick=()=>this.openSettings();
-    new ResizeObserver(()=>{this.lastDraw='';this.draw();}).observe(this.canvas);
+    new ResizeObserver(()=>{this.positionMap();this.lastDraw='';this.draw();}).observe(this.canvas);
+  }
+  mapBounds(){
+    const viewport=this.viewport.getBoundingClientRect(),panel=this.mapWrap.getBoundingClientRect();
+    return {left:panel.left-viewport.left,top:panel.top-viewport.top,min:8,maxX:Math.max(8,viewport.width-panel.width-8),maxY:Math.max(8,viewport.height-panel.height-8)};
+  }
+  positionMap(){
+    if(this.mapWrap.hidden)return;
+    const style=this.mapWrap.style;
+    if(!this.mapPosition){
+      for(const property of ['left','top','right','bottom'])style.removeProperty(property);
+      const bounds=this.mapBounds();
+      // Keep the original default placement unless a smaller viewport clips it.
+      if(bounds.left<bounds.min||bounds.left>bounds.maxX){style.left=`${Math.max(bounds.min,Math.min(bounds.maxX,bounds.left))}px`;style.right='auto';}
+      if(bounds.top<bounds.min||bounds.top>bounds.maxY){style.top=`${Math.max(bounds.min,Math.min(bounds.maxY,bounds.top))}px`;style.bottom='auto';}
+      return;
+    }
+    const bounds=this.mapBounds();
+    style.left=`${bounds.min+this.mapPosition.x*(bounds.maxX-bounds.min)}px`;
+    style.top=`${bounds.min+this.mapPosition.y*(bounds.maxY-bounds.min)}px`;style.right='auto';style.bottom='auto';
+  }
+  moveMap(left,top){
+    const bounds=this.mapBounds();
+    const x=Math.max(bounds.min,Math.min(bounds.maxX,left)),y=Math.max(bounds.min,Math.min(bounds.maxY,top));
+    this.mapPosition={x:bounds.maxX>bounds.min?(x-bounds.min)/(bounds.maxX-bounds.min):0,y:bounds.maxY>bounds.min?(y-bounds.min)/(bounds.maxY-bounds.min):0};
+    this.positionMap();
+  }
+  finishMapDrag(cancel=false){
+    const gesture=this.mapDrag;if(!gesture)return;
+    this.mapDrag=null;this.mapWrap.classList.remove('is-dragging');
+    if(cancel){this.mapPosition=gesture.original;this.positionMap();}
+    else if(gesture.moved)this.saveSettings();
+    if(this.mapWrap.hasPointerCapture(gesture.id))this.mapWrap.releasePointerCapture(gesture.id);
+  }
+  bindMapDragging(){
+    const handle=$('route-map-handle');
+    this.mapWrap.addEventListener('pointerdown',e=>{
+      if(e.button!==0)return;
+      if(this.mapDrag){this.finishMapDrag(true);return;}
+      if(!e.isPrimary)return;
+      const bounds=this.mapBounds();
+      this.mapDrag={id:e.pointerId,x:e.clientX,y:e.clientY,left:bounds.left,top:bounds.top,original:this.mapPosition?{...this.mapPosition}:null,moved:false};
+      // The map canvas keeps its capture so a short click can still seek.
+      if(e.target!==this.map){e.preventDefault();handle.focus({preventScroll:true});this.mapWrap.setPointerCapture(e.pointerId);}
+      this.clearHover();e.stopPropagation();
+    });
+    this.mapWrap.addEventListener('pointermove',e=>{
+      const gesture=this.mapDrag;if(!gesture||gesture.id!==e.pointerId)return;
+      const dx=e.clientX-gesture.x,dy=e.clientY-gesture.y;
+      if(!gesture.moved&&Math.hypot(dx,dy)<=(e.pointerType==='touch'?10:6))return;
+      gesture.moved=true;const seekGesture=this.gestures.get(e.pointerId);if(seekGesture)seekGesture.cancelled=true;
+      this.mapWrap.classList.add('is-dragging');this.clearHover();this.moveMap(gesture.left+dx,gesture.top+dy);e.preventDefault();
+    });
+    this.mapWrap.addEventListener('pointerup',e=>{if(this.mapDrag?.id===e.pointerId)this.finishMapDrag();});
+    for(const event of ['pointercancel','lostpointercapture'])this.mapWrap.addEventListener(event,e=>{if(this.mapDrag?.id===e.pointerId)this.finishMapDrag(true);});
+    const reset=()=>{this.finishMapDrag(true);this.mapPosition=null;this.positionMap();this.saveSettings();};
+    handle.addEventListener('dblclick',reset);
+    handle.addEventListener('keydown',e=>{
+      if(e.altKey||e.ctrlKey||e.metaKey)return;
+      if(e.key==='Home'){e.preventDefault();e.stopPropagation();reset();return;}
+      const offset={ArrowLeft:[-12,0],ArrowRight:[12,0],ArrowUp:[0,-12],ArrowDown:[0,12]}[e.key];if(!offset)return;
+      e.preventDefault();e.stopPropagation();const bounds=this.mapBounds();this.moveMap(bounds.left+offset[0],bounds.top+offset[1]);this.saveSettings();
+    });
   }
   navigate(target) {
     const {media,view,loading,editing}=this.getState();
@@ -110,10 +174,11 @@ export class TrajectoryController {
   async syncAsset(force=false) {
     const {asset,source}=this.getState();
     if(!force&&this.asset===asset&&this.sourceURL===source?.url)return;
+    this.finishMapDrag(true);
     const epoch=++this.epoch;clearTimeout(this.pollTimer);this.asset=asset;this.sourceURL=source?.url;
     this.pathSegments=[];this.mapSegments=[];this.steps=[];this.directions={};this.gestures.clear();this.clearHover();
     this.key=source?.trajectoryKey||null;this.data=null;this.loadedKey=null;this.heightFactor=1;this.status={state:'idle'};
-    const settings=asset?.trajectorySettings||{};this.enabled=settings.enabled!==false;this.showMap=settings.showMap!==false;this.windowSeconds=settings.windowSeconds||12;this.heightFactor=settings.heightFactor||1;
+    const settings=asset?.trajectorySettings||{};this.enabled=settings.enabled!==false;this.showMap=settings.showMap!==false;this.windowSeconds=settings.windowSeconds||12;this.heightFactor=settings.heightFactor||1;this.mapPosition=settings.mapPosition||null;
     if(asset?.type==='video'&&asset.trajectory){
       try{this.data=validateTrajectory(asset.trajectory);this.key ||= this.data.source.sha256;}catch(error){this.notify(error.message,true);}
     }
@@ -166,7 +231,7 @@ export class TrajectoryController {
     const epoch=this.epoch;
     try{const status=await this.request(`/api/trajectory/${this.key}/cancel`,{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});if(epoch!==this.epoch)return;this.status=status;this.updateUI();}catch(error){if(epoch===this.epoch)this.notify(error.message,true);}
   }
-  saveSettings(){if(this.asset){this.asset.trajectorySettings={enabled:this.enabled,showMap:this.showMap,windowSeconds:this.windowSeconds,heightFactor:this.heightFactor};this.onChange();}this.lastDraw='';this.draw();}
+  saveSettings(){if(this.asset){this.asset.trajectorySettings={enabled:this.enabled,showMap:this.showMap,windowSeconds:this.windowSeconds,heightFactor:this.heightFactor,...(this.mapPosition?{mapPosition:{...this.mapPosition}}:{})};this.onChange();}this.lastDraw='';this.draw();}
   nodeName(index) {
     const number=this.asset?.tourKeyframes?.enabled?this.asset.tourKeyframes.frames.findIndex(frame=>frame.index===index):-1;
     if(number>=0)return `키프레임 ${number+1}`;
@@ -179,6 +244,7 @@ export class TrajectoryController {
     $('trajectory-open').classList.toggle('analyzing',running);
     $('trajectory-button-label').textContent=running?'경로 분석 중':this.data?'촬영 경로':'자동 경로';
     $('route-map-wrap').hidden=!this.data||!this.enabled||!this.showMap;
+    this.positionMap();
     if(!this.data||!this.enabled)$('route-gap').hidden=true;
     if($('trajectory-status')){
       $('trajectory-status').textContent=this.status.message||(this.data?'촬영 경로를 표시할 수 있습니다.':'영상에서 촬영 경로를 자동으로 추정합니다.');

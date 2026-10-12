@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111718"><title>SpaceWatch3D · 변화 근거</title>
+  <link rel="icon" href="data:,"><link rel="stylesheet" href="change-evidence.css">
+</head>
+<body>
+<header><a class="brand" href="/">SPACEWATCH<span>3D</span></a><span class="header-label">변화 근거 비교</span><a class="back" href="/">360° 투어로 돌아가기 ↗</a></header>
+<main>
+  <div class="intro"><div><p class="eyebrow">REAL RECAPTURE · OPEN SPACE</p><h1>무엇이 달라졌는지, 점으로 확인하기</h1><p>같은 공간의 전후 3D 점군을 같은 시점에서 비교합니다.</p></div><span class="real-badge">실제 RGB-D 재촬영</span></div>
+  <div id="load-status" role="status">전후 점군과 변화 근거를 불러오는 중…</div>
+  <div class="change-summary" aria-label="변화 종류"><span class="change-badge removed" id="removed-summary">제거 후보</span><span class="change-badge added" id="added-summary">추가 후보</span><span class="change-badge moved" id="moved-summary">이동 · 대응 정보 없음</span></div>
+  <section class="comparison" aria-label="전후 3D 점군 비교">
+    <div class="viewer-column">
+      <div class="toolbar"><div class="legend"><span><i class="before"></i>제거 후보</span><span><i class="after"></i>추가 후보</span></div><div class="controls"><label><input id="highlight" type="checkbox" checked>변화 강조</label><button id="overview">전체 보기</button><button id="top-view">위에서 보기</button><button id="zoom-in" aria-label="점군 확대">＋</button><button id="zoom-out" aria-label="점군 축소">−</button></div></div>
+      <div class="viewports">
+        <article class="cloud-view"><div class="cloud-title"><h2>이전 <span>Epoch 0</span></h2><span id="before-count"></span></div><canvas id="before-cloud" tabindex="0" aria-label="이전 3D 점군. 드래그로 회전, 휠로 확대. 방향키로 회전, 더하기와 빼기로 확대·축소."></canvas><div id="before-labels" class="change-labels" aria-label="이전 점군의 변화 라벨"></div><span class="canvas-tag orange">BEFORE</span></article>
+        <article class="cloud-view"><div class="cloud-title"><h2>이후 <span>Epoch 1</span></h2><span id="after-count"></span></div><canvas id="after-cloud" tabindex="0" aria-label="이후 3D 점군. 드래그로 회전, 휠로 확대. 방향키로 회전, 더하기와 빼기로 확대·축소."></canvas><div id="after-labels" class="change-labels" aria-label="이후 점군의 변화 라벨"></div><span class="canvas-tag blue">AFTER</span></article>
+      </div>
+      <div class="view-hint"><span>드래그로 회전 · 휠로 확대 · 두 화면 시점 동기화</span><span>선택 영역의 동일 좌표를 테두리로 표시</span></div>
+      <div class="scope-note"><strong>변화 라벨 읽는 방법</strong><p>제거 후보는 이전에 있던 변화 표면, 추가 후보는 이후에 나타난 변화 표면입니다. 같은 객체가 이동한 경우에도 이전·이후 위치가 각각 후보로 표시될 수 있습니다.</p><p>이동 거리는 동일 객체의 전후 위치가 연결되고 미터 단위가 확인될 때 표시합니다. 현재 데이터에는 객체 대응 정보가 없어 이동 거리를 산정하지 않습니다. 아래 표면 간 거리는 객체 이동 거리가 아닙니다.</p></div>
+      <details class="provenance"><summary>데이터 출처와 비교 조건</summary><div id="provenance"></div></details>
+    </div>
+    <aside><div class="regions-heading"><h2>변화 영역</h2><span id="region-count"></span></div><p class="aside-hint">영역을 누르면 전후 화면이 해당 위치로 이동합니다. 영역 번호는 객체 ID가 아닙니다.</p><div id="regions" class="regions"></div><section id="evidence-detail" aria-label="선택 영역의 비교 근거"><p>영역을 선택하면 거리와 원본 포인트 근거를 확인할 수 있습니다.</p></section></aside>
+  </section>
+  <footer><span>MultiChange3D authors · 3DOM / FBK · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noreferrer">CC BY-NC-SA 4.0</a></span><a href="/evidence/evidence.json" download="change-evidence.json">전체 근거 JSON ↓</a></footer>
+</main>
+<script type="module" src="change-evidence.js"></script>
+</body></html>

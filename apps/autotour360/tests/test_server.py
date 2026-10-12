@@ -56,6 +56,32 @@ class RangeTests(unittest.TestCase):
                 server.shutdown()
                 server.server_close()
 
+    def test_evidence_downloads_do_not_expose_arbitrary_output_files(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'evidence.json').write_text('{"version":1}')
+            (root / 'region-001.bin').write_bytes(bytes(range(24)))
+            (root / 'private.json').write_text('private')
+            server = ThreadingHTTPServer(('127.0.0.1', 0), make_handler([], [], evidence_dir=root))
+            threading.Thread(target=server.serve_forever, daemon=True).start()
+            try:
+                c = HTTPConnection('127.0.0.1', server.server_port)
+                c.request('GET', '/evidence/region-001.bin', headers={'Range': 'bytes=12-23'})
+                response = c.getresponse()
+                self.assertEqual(response.status, 206)
+                self.assertEqual(response.read(), bytes(range(12, 24)))
+                for url in ['/evidence/private.json', '/evidence/../private.json', '/evidence/%2e%2e/private.json', '/evidence/region-1.bin']:
+                    c.request('GET', url)
+                    response = c.getresponse()
+                    self.assertEqual(response.status, 404)
+                    response.read()
+                c.request('GET', '/evidence/evidence.json')
+                self.assertEqual(json.loads(c.getresponse().read()), {'version': 1})
+                c.close()
+            finally:
+                server.shutdown()
+                server.server_close()
+
 
 if __name__ == '__main__':
     unittest.main()

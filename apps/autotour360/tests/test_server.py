@@ -51,6 +51,10 @@ class RangeTests(unittest.TestCase):
                 c.request('GET', '/api/config')
                 r = c.getresponse()
                 self.assertEqual(json.loads(r.read())['media'][0]['name'], 'sample.mp4')
+                c.request('GET', '/keyframe-transition.js')
+                r = c.getresponse()
+                self.assertEqual(r.status, 200)
+                self.assertIn(b'export class KeyframeTransition', r.read())
                 c.close()
             finally:
                 server.shutdown()

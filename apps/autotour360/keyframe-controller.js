@@ -1,5 +1,5 @@
 import {escapeHTML as esc,formatTime} from './core.js';
-import {poseAt,viewAfterStep} from './trajectory-math.js';
+import {poseAt,viewAfterStep,rotate,sub} from './trajectory-math.js';
 import {DENSITIES,connectedChunks,frameQuality,routeSignature,selectTourKeyframes,validateTourKeyframes} from './tour-keyframes.js';
 
 const $=id=>document.getElementById(id);
@@ -58,7 +58,8 @@ export class KeyframeController{
   jump(frame){
     const {media,view,loading}=this.getState();if(loading||!(media instanceof HTMLVideoElement)||media.seeking||media.readyState<2||!this.data)return;
     const pose=poseAt(this.data,media.currentTime),target=this.data.samples[frame.index];
-    this.onNavigate(frame.t,pose?viewAfterStep(pose,target,view):view);
+    const direction=pose?rotate([-pose.q[0],-pose.q[1],-pose.q[2],pose.q[3]],sub(target.p,pose.p)):null;
+    this.onNavigate(frame.t,pose?viewAfterStep(pose,target,view):view,direction?{yaw:Math.atan2(direction[0],direction[2])*180/Math.PI}:undefined);
   }
   updateDialog(){
     if(!$('keyframe-start'))return;

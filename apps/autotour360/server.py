@@ -156,7 +156,7 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
             else:
                 name = "index.html" if route == "/" else route.lstrip("/")
                 # Never expose source video directories, local config, repository, or test files.
-                allowed = name in {"index.html", "styles.css", "app.js", "core.js", "panorama.js", "trajectory.js", "trajectory-math.js", "tour-keyframes.js", "keyframe-controller.js", "autotour.js", "autotour.css", "changes.html", "change-evidence.js", "change-evidence.css"} or re.fullmatch(r"assets/[a-zA-Z0-9_-]+\.(jpg|png|webp|svg)", name)
+                allowed = name in {"index.html", "styles.css", "app.js", "core.js", "panorama.js", "trajectory.js", "trajectory-math.js", "tour-keyframes.js", "keyframe-controller.js", "keyframe-transition.js", "autotour.js", "autotour.css", "changes.html", "change-evidence.js", "change-evidence.css"} or re.fullmatch(r"assets/[a-zA-Z0-9_-]+\.(jpg|png|webp|svg)", name)
                 if not allowed:
                     self.send_error(404)
                     return

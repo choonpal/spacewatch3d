@@ -3,6 +3,7 @@ import {validateTrajectory} from './trajectory-math.js';
 import {Panorama} from './panorama.js';
 import {TrajectoryController} from './trajectory.js';
 import {KeyframeController} from './keyframe-controller.js';
+import {KeyframeTransition} from './keyframe-transition.js';
 import {uid,clamp,escapeHTML as esc,formatTime,newScene,emptyProject,validateProject,removeScene} from './core.js';
 
 const paths={
@@ -27,7 +28,7 @@ const KEY='autotour360.project.v1';
 let libraryTimer,libraryBusy=false,adding=false,uploadController;
 const activeJobs=new Set();
 let project=emptyProject(),activeId=null,editing=false,renderer,media=null,mediaAssetId=null,loadVersion=0,config={media:[]};
-let saveTimer,toastTimer,dbPromise,muted=true,volume=.7,rate=1,relinkAssetId=null,sceneLoading=false,trajectory,keyframes;
+let saveTimer,toastTimer,dbPromise,muted=true,volume=.7,rate=1,relinkAssetId=null,sceneLoading=false,trajectory,keyframes,movement;
 const sources=new Map(),objectURLs=new Set();
 const current=()=>project.scenes.find(s=>s.id===activeId);
 const descriptor=id=>project.assets.find(a=>a.id===id);
@@ -81,6 +82,7 @@ function activateHotspot(h){if(h.type==='link')loadScene(h.targetId);else openDi
 function showMessage(title,text,action='미디어 선택'){$('message-title').textContent=title;$('message-text').textContent=text;$('message-action').textContent=action;$('viewer-message').hidden=false;$('loading').hidden=true;}
 function setLoading(value){$('loading').hidden=!value;}
 function disposeMedia(){
+  movement?.cancel();
   renderer?.setMedia(null);
   if(media instanceof HTMLVideoElement){media.pause();media.removeAttribute('src');media.load();}
   media=null;mediaAssetId=null;updatePlayer();
@@ -93,6 +95,7 @@ function waitFor(target,event,signal){return new Promise((resolve,reject)=>{
 });}
 let loadController;
 async function loadScene(id){
+  movement?.cancel();
   const version=++loadVersion;loadController?.abort();loadController=new AbortController();const signal=loadController.signal;
   sceneLoading=false;
   const scene=project.scenes.find(s=>s.id===id);if(!scene){disposeMedia();activeId=null;void trajectory?.syncAsset();renderHotspots();renderInspector();$('media-name').textContent='미디어 없음';$('resolution').textContent='EQUIRECTANGULAR';showMessage('공간을 연결하는 새로운 방법','360도 영상을 추가하면 촬영 경로를 자동으로 만듭니다.\n원본 영상은 외부로 전송되지 않습니다.');return;}
@@ -134,18 +137,19 @@ async function loadScene(id){
 }
 function updatePlayer(){
   const video=media instanceof HTMLVideoElement?media:null,ready=video&&video.readyState>=2&&!sceneLoading;
-  $('play').disabled=!ready;$('timeline').disabled=!ready;$('mute').disabled=!video;$('volume').disabled=!video;$('speed').disabled=!video;
+  $('play').disabled=!ready||!!movement?.active;$('timeline').disabled=!ready;$('mute').disabled=!video;$('volume').disabled=!video;$('speed').disabled=!video;
   $('play').innerHTML=icon(video&&!video.paused?'pause':'play');$('play').setAttribute('aria-label',video&&!video.paused?'일시정지':'재생');
   const duration=Number.isFinite(video?.duration)?video.duration:0,time=video?.currentTime||0;$('timeline').max=duration||1;$('timeline').value=time;$('timeline').style.setProperty('--progress',`${duration?time/duration*100:0}%`);$('current-time').textContent=formatTime(time);$('duration').textContent=video?formatTime(duration):'사진';
   $('mute').innerHTML=icon(muted||volume===0?'mute':'sound');$('mute').setAttribute('aria-label',muted?'음소거 해제':'음소거');$('volume').style.setProperty('--progress',`${muted?0:volume*100}%`);
 }
 function seekVideo(time){
   if(!(media instanceof HTMLVideoElement)||sceneLoading||media.readyState<1||!Number.isFinite(time)||!Number.isFinite(media.duration))return;
+  movement?.cancel();
   media.currentTime=clamp(time,0,media.duration);renderer.frameDirty=true;updatePlayer();
 }
-async function togglePlay(){if(!(media instanceof HTMLVideoElement))return;try{if(media.paused){if(media.ended)media.currentTime=current()?.startTime||0;await media.play();}else media.pause();}catch{toast('재생 버튼을 다시 눌러 주세요. 브라우저가 자동 재생을 제한했거나 코덱을 지원하지 않습니다.',true);}}
+async function togglePlay(){if(!(media instanceof HTMLVideoElement))return;movement?.cancel();try{if(media.paused){if(media.ended)media.currentTime=current()?.startTime||0;await media.play();}else media.pause();}catch{toast('재생 버튼을 다시 눌러 주세요. 브라우저가 자동 재생을 제한했거나 코덱을 지원하지 않습니다.',true);}}
 function toggleMute(){muted=!muted;if(media instanceof HTMLVideoElement)media.muted=muted;updatePlayer();}
-function setEditing(value){editing=value;document.body.classList.toggle('is-editing',value);$('inspector').hidden=!value;$('crosshair').hidden=!value;$('browse-mode').classList.toggle('selected',!value);$('edit-mode').classList.toggle('selected',value);$('browse-mode').setAttribute('aria-pressed',String(!value));$('edit-mode').setAttribute('aria-pressed',String(value));renderInspector();renderHotspots();}
+function setEditing(value){movement?.cancel();editing=value;document.body.classList.toggle('is-editing',value);$('inspector').hidden=!value;$('crosshair').hidden=!value;$('browse-mode').classList.toggle('selected',!value);$('edit-mode').classList.toggle('selected',value);$('browse-mode').setAttribute('aria-pressed',String(!value));$('edit-mode').setAttribute('aria-pressed',String(value));renderInspector();renderHotspots();}
 function renderInspector(){
   const s=current(),el=$('inspector-content');if(!s){el.innerHTML='<div class="inspector-block"><p class="hint">미디어를 추가하면 장면을 편집할 수 있습니다.</p></div>';return;}
   const a=descriptor(s.assetId);
@@ -231,8 +235,8 @@ function bindEvents(){
   $('volume').oninput=e=>{volume=Number(e.target.value);muted=volume===0;if(media instanceof HTMLVideoElement){media.volume=volume;media.muted=muted;}updatePlayer();};
   $('speed').onchange=e=>{rate=Number(e.target.value);if(media instanceof HTMLVideoElement)media.playbackRate=rate;};
   $('timeline').oninput=e=>seekVideo(Number(e.target.value));
-  $('zoom-in').onclick=()=>renderer.zoom(-8);$('zoom-out').onclick=()=>renderer.zoom(8);$('reset-view').onclick=()=>{renderer.autoRotate=false;renderer.setView(current()?.view||{yaw:0,pitch:0,fov:75});};
-  $('fullscreen').onclick=fullscreen;$('auto-rotate').onclick=()=>{renderer.autoRotate=!renderer.autoRotate;updateView();};
+  $('zoom-in').onclick=()=>{movement.cancel();renderer.zoom(-8);};$('zoom-out').onclick=()=>{movement.cancel();renderer.zoom(8);};$('reset-view').onclick=()=>{movement.cancel();renderer.autoRotate=false;renderer.setView(current()?.view||{yaw:0,pitch:0,fov:75});};
+  $('fullscreen').onclick=fullscreen;$('auto-rotate').onclick=()=>{movement.cancel();renderer.autoRotate=!renderer.autoRotate;updateView();};
   $('help').onclick=$('keyboard-help').onclick=showHelp;
   $('rename-project').onclick=()=>{openDialog('투어 이름 변경',`<form id="rename-form"><label class="field">투어 이름<input id="new-title" value="${esc(project.title)}" maxlength="100" required></label><div class="dialog-actions"><button type="button" class="button subtle" data-close>취소</button><button class="button primary" type="submit">저장</button></div></form>`);$('rename-form').onsubmit=e=>{e.preventDefault();const title=$('new-title').value.trim();if(!title)return;project.title=title;changed();$('dialog').close();};};
   document.addEventListener('keydown',e=>{
@@ -240,17 +244,19 @@ function bindEvents(){
     const key=e.key.toLowerCase(),v={...renderer.view};
     if(['arrowleft','arrowright','arrowup','arrowdown','q','e',' ','+','=','-','r','f','m','?'].includes(key))e.preventDefault();
     if(key.startsWith('arrow')){
+      if(movement.active)return;
       if(!editing&&trajectory.data&&trajectory.enabled){const direction={arrowup:'forward',arrowright:'right',arrowdown:'back',arrowleft:'left'}[key];if(!trajectory.navigateDirection(direction))toast('이 방향에 연결된 이동 지점이 없습니다.');}
       else{renderer.autoRotate=false;if(key==='arrowleft')v.yaw-=5;if(key==='arrowright')v.yaw+=5;if(key==='arrowup')v.pitch+=5;if(key==='arrowdown')v.pitch-=5;renderer.setView(v);}
     }
-    if(key==='q'||key==='e'){renderer.autoRotate=false;v.yaw+=key==='q'?-15:15;renderer.setView(v);}
-    if(key===' ')togglePlay();if(key==='m')toggleMute();if(key==='r')$('reset-view').click();if(key==='f')fullscreen();if(key==='+'||key==='=')renderer.zoom(-5);if(key==='-')renderer.zoom(5);if(key==='?')showHelp();
+    if(key==='q'||key==='e'){movement.cancel();renderer.autoRotate=false;v.yaw+=key==='q'?-15:15;renderer.setView(v);}
+    if(key===' ')togglePlay();if(key==='m')toggleMute();if(key==='r')$('reset-view').click();if(key==='f')fullscreen();if(key==='+'||key==='='){movement.cancel();renderer.zoom(-5);}if(key==='-'){movement.cancel();renderer.zoom(5);}if(key==='?')showHelp();
   });
   let dragDepth=0;document.addEventListener('dragenter',e=>{if(e.dataTransfer.types.includes('Files')){e.preventDefault();dragDepth++;$('drop-overlay').hidden=false;}});document.addEventListener('dragover',e=>{if(e.dataTransfer.types.includes('Files'))e.preventDefault();});
   document.addEventListener('dragleave',()=>{if(--dragDepth<=0){dragDepth=0;$('drop-overlay').hidden=true;}});
   document.addEventListener('drop',e=>{e.preventDefault();dragDepth=0;$('drop-overlay').hidden=true;const files=[...e.dataTransfer.files];if(files.length===1&&files[0].name.endsWith('.json'))importProject(files[0]);else addFiles(files);});
 }
 function showWelcome(value){
+  if(value)movement?.cancel();
   document.body.classList.toggle('welcome-mode',value);$('welcome').hidden=!value;
   if(value){if(media instanceof HTMLVideoElement)media.pause();renderLibrary();}
 }
@@ -303,8 +309,10 @@ async function refreshLibrary(){
 }
 async function init(){
   try{renderer=new Panorama($('panorama'),updateView,message=>toast(message,true));}catch(error){showMessage('360° 화면을 시작할 수 없습니다',error.message);return;}
-  trajectory=new TrajectoryController({getState:()=>({asset:descriptor(current()?.assetId),source:sources.get(current()?.assetId),sceneId:current()?.id,media,view:renderer.view,loading:sceneLoading,editing}),onChange:changed,onSeek:seekVideo,onNavigate:(time,view)=>{media.pause();renderer.autoRotate=false;renderer.setView(view);seekVideo(time);},notify:toast,openDialog,getConfig:()=>config});
-  keyframes=new KeyframeController({getState:()=>({asset:descriptor(current()?.assetId),data:trajectory.data,source:sources.get(current()?.assetId),media,view:renderer.view,loading:sceneLoading}),onChange:changed,onNavigate:(time,view)=>{if(media instanceof HTMLVideoElement)media.pause();renderer.autoRotate=false;renderer.setView(view);seekVideo(time);},openDialog,notify:toast,invalidate:()=>{trajectory.lastDraw='';trajectory.draw();}});
+  movement=new KeyframeTransition({renderer,getMedia:()=>media,isLoading:()=>sceneLoading,onStateChange:()=>{updatePlayer();updateView();if(trajectory){trajectory.lastDraw='';trajectory.draw();}},onError:message=>toast(message,true)});
+  const navigateKeyframe=(time,view,direction)=>movement.navigate(time,view,direction);
+  trajectory=new TrajectoryController({getState:()=>({asset:descriptor(current()?.assetId),source:sources.get(current()?.assetId),sceneId:current()?.id,media,view:renderer.view,loading:sceneLoading||movement.active,editing}),onChange:changed,onSeek:seekVideo,onNavigate:navigateKeyframe,notify:toast,openDialog,getConfig:()=>config});
+  keyframes=new KeyframeController({getState:()=>({asset:descriptor(current()?.assetId),data:trajectory.data,source:sources.get(current()?.assetId),media,view:renderer.view,loading:sceneLoading||movement.active}),onChange:changed,onNavigate:navigateKeyframe,openDialog,notify:toast,invalidate:()=>{trajectory.lastDraw='';trajectory.draw();}});
   renderer.onFrame=()=>{keyframes.update();trajectory.draw();};
   bindEvents();
   try{const r=await fetch('/api/config');if(r.ok)config=await r.json();}catch{}

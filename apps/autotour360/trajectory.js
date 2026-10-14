@@ -91,7 +91,7 @@ export class TrajectoryController {
     const {media,view,loading,editing}=this.getState();
     if(!target||!this.data||!this.enabled||loading||editing||!(media instanceof HTMLVideoElement)||media.seeking||media.readyState<2)return false;
     const pose=poseAt(this.data,media.currentTime);if(!pose)return false;
-    this.onNavigate(target.t,viewAfterStep(pose,target,view));this.clearHover();return true;
+    this.onNavigate(target.t,viewAfterStep(pose,target,view),{yaw:target.yaw});this.clearHover();return true;
   }
   navigateDirection(direction) {
     this.draw();return this.navigate(this.directions[direction]);

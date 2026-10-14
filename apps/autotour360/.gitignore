@@ -1,0 +1,8 @@
+.local.json
+.preview/
+__pycache__/
+tests/__pycache__/
+.venv/
+.cache/
+.data/
+exports/

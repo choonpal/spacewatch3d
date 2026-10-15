@@ -46,10 +46,13 @@ def inspect_media(path, index):
     return result
 
 
-def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_dir=None, rescan_dir=None):
+def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_dir=None, rescan_dir=None, mesh_comparison_dir=None, independent_dir=None, rgbd_dir=None):
     tours_dir = Path(export_dir).resolve() if export_dir is not None else StoragePaths.for_app(ROOT).tours
     evidence_root = Path(evidence_dir).resolve() if evidence_dir is not None else ROOT.parents[1] / "outputs/change_evidence_demo"
     rescan_root = Path(rescan_dir).resolve() if rescan_dir is not None else ROOT.parents[1] / "outputs/rescan-review"
+    comparison_root = Path(mesh_comparison_dir).resolve() if mesh_comparison_dir is not None else ROOT.parents[1] / "outputs/mesh-comparison-final2-20261015"
+    independent_root = Path(independent_dir).resolve() if independent_dir is not None else ROOT.parents[1] / "outputs/m3c2-noise-screen-v2-20261015"
+    rgbd_root = Path(rgbd_dir).resolve() if rgbd_dir is not None else ROOT.parents[1] / "outputs/bonn-removal-20261015/published"
     class Handler(BaseHTTPRequestHandler):
         def send_json(self, data, code=200, head_only=False):
             payload = json.dumps(data, ensure_ascii=False).encode()
@@ -139,7 +142,16 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
             media_match = re.fullmatch(r"/media/(\d+)", route)
             evidence_match = re.fullmatch(r"/evidence/(evidence\.json|before\.bin|after\.bin|region-\d{3}(?:\.indices)?\.bin)", route)
             rescan_match = re.fullmatch(r"/rescan/((?:review|changes)\.json|[01]-(?:object-)?(?:mesh|points)\.bin|frame-[01]-\d{6}\.jpg|region-\d{3}\.indices\.bin)", route)
-            if rescan_match:
+            comparison_match = re.fullmatch(r"/mesh-comparison/(comparison\.json|[01]-comparison\.bin)", route)
+            independent_match = re.fullmatch(r"/m3c2-independent/(changes\.json|[01]-region-ids\.bin|frame-[01]-\d{6}\.jpg)", route)
+            rgbd_match = re.fullmatch(r"/datasets/bonn-removal/((?:comparison|reference|changes)\.json|[01]-(?:comparison|region-ids)\.bin|frame-[01]-\d{6}\.jpg)", route)
+            if rgbd_match:
+                path = rgbd_root / rgbd_match[1]
+            elif independent_match:
+                path = independent_root / independent_match[1]
+            elif comparison_match:
+                path = comparison_root / comparison_match[1]
+            elif rescan_match:
                 path = rescan_root / rescan_match[1]
             elif evidence_match:
                 path = evidence_root / evidence_match[1]
@@ -160,7 +172,7 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
             else:
                 name = "index.html" if route == "/" else route.lstrip("/")
                 # Never expose source video directories, local config, repository, or test files.
-                allowed = name in {"index.html", "styles.css", "app.js", "core.js", "panorama.js", "trajectory.js", "trajectory-math.js", "tour-keyframes.js", "keyframe-controller.js", "keyframe-transition.js", "autotour.js", "autotour.css", "changes.html", "change-evidence.js", "change-evidence.css", "rescan.html", "rescan-review.js", "rescan-review.css"} or re.fullmatch(r"assets/[a-zA-Z0-9_-]+\.(jpg|png|webp|svg)", name)
+                allowed = name in {"index.html", "styles.css", "app.js", "core.js", "panorama.js", "trajectory.js", "trajectory-math.js", "tour-keyframes.js", "keyframe-controller.js", "keyframe-transition.js", "autotour.js", "autotour.css", "changes.html", "change-evidence.js", "change-evidence.css", "rescan.html", "rescan-review.js", "rescan-review.css", "mesh-comparison.html", "mesh-comparison.js", "mesh-comparison.css", "mesh-change-context.js"} or re.fullmatch(r"assets/[a-zA-Z0-9_-]+\.(jpg|png|webp|svg)", name)
                 if not allowed:
                     self.send_error(404)
                     return
@@ -220,6 +232,9 @@ def main():
     parser.add_argument("--output-dir", help="Analysis and tour output directory; relative paths use the app directory")
     parser.add_argument("--evidence-dir", type=Path, help="Generated change evidence directory (default: repository outputs/change_evidence_demo)")
     parser.add_argument("--rescan-dir", type=Path, help="Real Rescan mesh review directory (default: repository outputs/rescan-review)")
+    parser.add_argument("--mesh-comparison-dir", type=Path, help="Geometry-only M3C2 / GLS comparison output directory")
+    parser.add_argument("--independent-dir", type=Path, help="Label-free M3C2 change regions, masks and new original keyframes")
+    parser.add_argument("--rgbd-dir", type=Path, help="Published Bonn RGB-D comparison and original frames")
     args = parser.parse_args()
     entries = args.media
     if entries is None and (ROOT / ".local.json").exists():
@@ -239,7 +254,7 @@ def main():
     if jobs.available:
         for meta in metadata:
             jobs.start(meta["trajectoryKey"])
-    server = ThreadingHTTPServer((args.host, args.port), make_handler(paths, metadata, jobs, export_dir=jobs.storage.tours, evidence_dir=args.evidence_dir, rescan_dir=args.rescan_dir))
+    server = ThreadingHTTPServer((args.host, args.port), make_handler(paths, metadata, jobs, export_dir=jobs.storage.tours, evidence_dir=args.evidence_dir, rescan_dir=args.rescan_dir, mesh_comparison_dir=args.mesh_comparison_dir, independent_dir=args.independent_dir, rgbd_dir=args.rgbd_dir))
     server.daemon_threads = True
     url = f"http://{'127.0.0.1' if args.host == '0.0.0.0' else args.host}:{server.server_port}"
     print(f"AUTO TOUR 360: {url}\nLocal media: {len(jobs.sources)} file(s). Trajectory analysis: {'ready' if jobs.available else 'setup required'}.\nVideos: {jobs.storage.data}\nOutputs: {jobs.storage.output}\nPress Ctrl+C to stop.", flush=True)

@@ -12,6 +12,78 @@ from server import make_handler, parse_range
 
 
 class RangeTests(unittest.TestCase):
+    def test_bonn_routes_serve_viewer_assets_without_exposing_raw_depth(self):
+        with TemporaryDirectory() as directory:
+            root=Path(directory)
+            (root/'changes.json').write_text('{"dataset_id":"bonn-removal"}')
+            (root/'frame-0-000040.jpg').write_bytes(b'original-bonn-frame')
+            (root/'frame-0-000040.raw').write_bytes(b'private-depth')
+            server=ThreadingHTTPServer(('127.0.0.1',0),make_handler([],[],rgbd_dir=root))
+            threading.Thread(target=server.serve_forever,daemon=True).start()
+            try:
+                c=HTTPConnection('127.0.0.1',server.server_port)
+                c.request('GET','/datasets/bonn-removal/changes.json');r=c.getresponse()
+                self.assertEqual(r.status,200);self.assertEqual(json.loads(r.read())['dataset_id'],'bonn-removal')
+                c.request('GET','/datasets/bonn-removal/frame-0-000040.jpg');r=c.getresponse()
+                self.assertEqual(r.status,200);self.assertEqual(r.read(),b'original-bonn-frame')
+                for path in ['/datasets/bonn-removal/frame-0-000040.raw','/datasets/bonn-removal/%2e%2e/server.py','/datasets/other/changes.json']:
+                    c.request('GET',path);r=c.getresponse();self.assertEqual(r.status,404);r.read()
+                c.close()
+            finally:server.shutdown();server.server_close()
+
+    def test_independent_change_routes_keep_raw_inputs_and_private_fields_private(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'changes.json').write_text('{"kind":"m3c2_independent_changes"}')
+            (root / '0-region-ids.bin').write_bytes(bytes(range(20)))
+            (root / 'frame-0-000015.jpg').write_bytes(b'original-frame-fixture')
+            (root / 'candidate-fields.npz').write_bytes(b'private')
+            server = ThreadingHTTPServer(('127.0.0.1', 0), make_handler([], [], independent_dir=root))
+            threading.Thread(target=server.serve_forever, daemon=True).start()
+            try:
+                c = HTTPConnection('127.0.0.1', server.server_port)
+                c.request('GET', '/m3c2-independent/0-region-ids.bin', headers={'Range':'bytes=2-9'})
+                r = c.getresponse()
+                self.assertEqual(r.status, 206); self.assertEqual(r.read(), bytes(range(2,10)))
+                c.request('GET', '/m3c2-independent/frame-0-000015.jpg')
+                r = c.getresponse(); self.assertEqual(r.status, 200); r.read()
+                for path in ['/m3c2-independent/candidate-fields.npz','/m3c2-independent/frame-0-000015.raw','/m3c2-independent/%2e%2e/server.py']:
+                    c.request('GET', path); r = c.getresponse(); self.assertEqual(r.status, 404); r.read()
+                c.close()
+            finally:
+                server.shutdown(); server.server_close()
+
+    def test_mesh_comparison_only_serves_public_viewer_outputs(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'comparison.json').write_text('{"kind":"geometry_method_comparison"}')
+            (root / '0-comparison.bin').write_bytes(bytes(range(60)))
+            (root / 'core-fields.npz').write_bytes(b'private computation data')
+            server = ThreadingHTTPServer(('127.0.0.1', 0), make_handler([], [], mesh_comparison_dir=root))
+            threading.Thread(target=server.serve_forever, daemon=True).start()
+            try:
+                c = HTTPConnection('127.0.0.1', server.server_port)
+                c.request('GET', '/mesh-comparison/0-comparison.bin', headers={'Range': 'bytes=28-43'})
+                r = c.getresponse()
+                self.assertEqual(r.status, 206)
+                self.assertEqual(r.read(), bytes(range(28, 44)))
+                for url in ['/mesh-comparison/core-fields.npz', '/mesh-comparison/../server.py', '/mesh-comparison/%2e%2e/server.py', '/mesh-comparison/2-comparison.bin']:
+                    c.request('GET', url)
+                    r = c.getresponse()
+                    self.assertEqual(r.status, 404)
+                    r.read()
+                c.request('GET', '/mesh-comparison/comparison.json')
+                r = c.getresponse()
+                self.assertEqual(json.loads(r.read())['kind'], 'geometry_method_comparison')
+                c.request('GET', '/mesh-comparison.html')
+                r = c.getresponse()
+                self.assertEqual(r.status, 200)
+                self.assertIn(b'M3C2', r.read())
+                c.close()
+            finally:
+                server.shutdown()
+                server.server_close()
+
     def test_ranges(self):
         self.assertEqual(parse_range('bytes=0-9', 100), (0, 9))
         self.assertEqual(parse_range('bytes=50-', 100), (50, 99))

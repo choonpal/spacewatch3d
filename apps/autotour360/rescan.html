@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111819"><title>SpaceWatch3D · Rescan 변화 비교</title><link rel="icon" href="data:,"><link rel="stylesheet" href="rescan-review.css"></head>
+<body>
+<header><a href="/" class="brand">SPACEWATCH<span>3D</span></a><span>실제 전후 메쉬 · Rescan</span><a href="changes.html">기존 점군 비교 ↗</a></header>
+<main>
+<div class="intro"><div><p class="eyebrow" id="capture-pair">REAL RECAPTURE / RESCAN</p><h1>무엇이 달라졌는지, 전후로 비교하기</h1><p>달라진 객체를 누르면 전후 메쉬와 해당 객체의 원본 사진을 함께 보여줍니다.</p></div><span class="pill">실제 데이터 · 정지 키프레임</span></div>
+<p id="status" role="status">실제 전후 메쉬와 원본 키프레임을 불러오는 중…</p>
+<section id="change-summary" class="change-summary" aria-label="변화 종류"></section>
+<div class="workspace">
+<div>
+<div class="toolbar"><div class="tabs"><label>표현 <select id="geometry"><option value="mesh">복원 메쉬</option><option value="points">원본 점군</option></select></label><label>색상 <select id="color"><option value="1">변화 강조</option><option value="0">원래 색상</option><option value="2">인스턴스 분할</option></select></label><label><input id="wire" type="checkbox">삼각형 선</label></div><div class="buttons"><button id="overview">전체 보기</button><button id="top">위에서 보기</button></div></div>
+<div class="viewports">
+<article class="map"><div class="map-title"><h2>이전 <small id="capture-0"></small></h2><span id="map-info-0"></span></div><canvas id="map-0" tabindex="0" aria-label="이전 메쉬 지도. 드래그와 방향키로 회전, 휠과 더하기·빼기로 확대"></canvas><span class="map-label" id="map-label-0"></span></article>
+<article class="map"><div class="map-title"><h2>이후 <small id="capture-1"></small></h2><span id="map-info-1"></span></div><canvas id="map-1" tabindex="0" aria-label="이후 메쉬 지도. 드래그와 방향키로 회전, 휠과 더하기·빼기로 확대"></canvas><span class="map-label" id="map-label-1"></span></article>
+</div>
+<p class="hint">드래그로 회전 · 휠로 확대 · 두 지도 시점 동기화 · 보라: 이동 / 파랑: 추가 / 주황: 소실</p>
+<section class="photos" aria-labelledby="photos-title"><div class="section-title"><h2 id="photos-title">전후 원본 키프레임</h2><span id="photo-context"></span></div><div class="photo-pair">
+<figure id="photo-panel-0" tabindex="0"><div class="photo-title"><strong>이전 원본</strong><span id="photo-check-0"></span></div><div class="photo-wrap"><img id="photo-0" alt="이전 촬영의 원본 정지 키프레임"><svg id="photo-overlay-0" viewBox="0 0 648 484" aria-hidden="true"></svg><div class="no-photo" id="no-photo-0" hidden>이 위치에 연결할 사진 후보가 없습니다.</div></div><figcaption id="photo-caption-0"></figcaption><div class="photo-nav"><button data-epoch="0" data-step="-1" aria-label="이전 촬영의 앞 키프레임">←</button><span id="photo-index-0"></span><button data-epoch="0" data-step="1" aria-label="이전 촬영의 다음 키프레임">→</button></div></figure>
+<figure id="photo-panel-1" tabindex="0"><div class="photo-title"><strong>이후 원본</strong><span id="photo-check-1"></span></div><div class="photo-wrap"><img id="photo-1" alt="이후 촬영의 원본 정지 키프레임"><svg id="photo-overlay-1" viewBox="0 0 648 484" aria-hidden="true"></svg><div class="no-photo" id="no-photo-1" hidden>이 위치에 연결할 사진 후보가 없습니다.</div></div><figcaption id="photo-caption-1"></figcaption><div class="photo-nav"><button data-epoch="1" data-step="-1" aria-label="이후 촬영의 앞 키프레임">←</button><span id="photo-index-1"></span><button data-epoch="1" data-step="1" aria-label="이후 촬영의 다음 키프레임">→</button></div></figure>
+</div><p class="hint">원본 영상에서 추출한 정지 사진입니다. 점선은 추정한 객체 위치이며, 사진은 넘길 때만 전환됩니다.</p></section>
+<details class="explanation"><summary>메쉬 데이터는 어떻게 이루어지나요?</summary><p>메쉬는 3D 정점의 좌표와, 정점 세 개를 잇는 삼각형 목록으로 구성됩니다. 색상·표면 방향·인스턴스 ID를 함께 저장할 수 있습니다.</p><div id="mesh-example"></div></details>
+</div>
+<aside><div class="section-title"><h2>변화한 객체</h2><span id="region-count"></span></div><label class="filter">종류 <select id="change-filter"><option value="all">전체 변화</option><option value="moved">이동</option><option value="added">추가</option><option value="removed">소실</option></select></label><p class="hint">객체를 누르면 전후 위치와 사진이 연결됩니다.</p><div id="regions" class="regions"></div><section id="detail"><p>객체를 선택하면 이동과 전후 사진을 볼 수 있습니다.</p></section></aside>
+</div>
+<footer><span><a href="https://rescan.cs.princeton.edu/" target="_blank" rel="noreferrer">Rescan · Halber et al., ICCV 2019</a> · 변화 분류와 사진 위치는 추정 결과</span><a href="/rescan/changes.json" download>변화 결과 JSON ↓</a></footer>
+</main><script type="module" src="rescan-review.js"></script>
+</body></html>

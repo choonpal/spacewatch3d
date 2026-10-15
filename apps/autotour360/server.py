@@ -46,9 +46,10 @@ def inspect_media(path, index):
     return result
 
 
-def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_dir=None):
+def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_dir=None, rescan_dir=None):
     tours_dir = Path(export_dir).resolve() if export_dir is not None else StoragePaths.for_app(ROOT).tours
     evidence_root = Path(evidence_dir).resolve() if evidence_dir is not None else ROOT.parents[1] / "outputs/change_evidence_demo"
+    rescan_root = Path(rescan_dir).resolve() if rescan_dir is not None else ROOT.parents[1] / "outputs/rescan-review"
     class Handler(BaseHTTPRequestHandler):
         def send_json(self, data, code=200, head_only=False):
             payload = json.dumps(data, ensure_ascii=False).encode()
@@ -137,7 +138,10 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
             export_match = re.fullmatch(r"/exports/([\w -]+\.tour\.json)", route)
             media_match = re.fullmatch(r"/media/(\d+)", route)
             evidence_match = re.fullmatch(r"/evidence/(evidence\.json|before\.bin|after\.bin|region-\d{3}(?:\.indices)?\.bin)", route)
-            if evidence_match:
+            rescan_match = re.fullmatch(r"/rescan/((?:review|changes)\.json|[01]-(?:object-)?(?:mesh|points)\.bin|frame-[01]-\d{6}\.jpg|region-\d{3}\.indices\.bin)", route)
+            if rescan_match:
+                path = rescan_root / rescan_match[1]
+            elif evidence_match:
                 path = evidence_root / evidence_match[1]
             elif export_match:
                 path = tours_dir / export_match[1]
@@ -156,7 +160,7 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
             else:
                 name = "index.html" if route == "/" else route.lstrip("/")
                 # Never expose source video directories, local config, repository, or test files.
-                allowed = name in {"index.html", "styles.css", "app.js", "core.js", "panorama.js", "trajectory.js", "trajectory-math.js", "tour-keyframes.js", "keyframe-controller.js", "keyframe-transition.js", "autotour.js", "autotour.css", "changes.html", "change-evidence.js", "change-evidence.css"} or re.fullmatch(r"assets/[a-zA-Z0-9_-]+\.(jpg|png|webp|svg)", name)
+                allowed = name in {"index.html", "styles.css", "app.js", "core.js", "panorama.js", "trajectory.js", "trajectory-math.js", "tour-keyframes.js", "keyframe-controller.js", "keyframe-transition.js", "autotour.js", "autotour.css", "changes.html", "change-evidence.js", "change-evidence.css", "rescan.html", "rescan-review.js", "rescan-review.css"} or re.fullmatch(r"assets/[a-zA-Z0-9_-]+\.(jpg|png|webp|svg)", name)
                 if not allowed:
                     self.send_error(404)
                     return
@@ -215,6 +219,7 @@ def main():
     parser.add_argument("--data-dir", help="Uploaded video directory; relative paths use the app directory")
     parser.add_argument("--output-dir", help="Analysis and tour output directory; relative paths use the app directory")
     parser.add_argument("--evidence-dir", type=Path, help="Generated change evidence directory (default: repository outputs/change_evidence_demo)")
+    parser.add_argument("--rescan-dir", type=Path, help="Real Rescan mesh review directory (default: repository outputs/rescan-review)")
     args = parser.parse_args()
     entries = args.media
     if entries is None and (ROOT / ".local.json").exists():
@@ -234,7 +239,7 @@ def main():
     if jobs.available:
         for meta in metadata:
             jobs.start(meta["trajectoryKey"])
-    server = ThreadingHTTPServer((args.host, args.port), make_handler(paths, metadata, jobs, export_dir=jobs.storage.tours, evidence_dir=args.evidence_dir))
+    server = ThreadingHTTPServer((args.host, args.port), make_handler(paths, metadata, jobs, export_dir=jobs.storage.tours, evidence_dir=args.evidence_dir, rescan_dir=args.rescan_dir))
     server.daemon_threads = True
     url = f"http://{'127.0.0.1' if args.host == '0.0.0.0' else args.host}:{server.server_port}"
     print(f"AUTO TOUR 360: {url}\nLocal media: {len(jobs.sources)} file(s). Trajectory analysis: {'ready' if jobs.available else 'setup required'}.\nVideos: {jobs.storage.data}\nOutputs: {jobs.storage.output}\nPress Ctrl+C to stop.", flush=True)

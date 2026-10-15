@@ -12,6 +12,51 @@ from server import make_handler, parse_range
 
 
 class RangeTests(unittest.TestCase):
+    def test_frozen_transfer_route_keeps_previous_result_and_private_data_separate(self):
+        with TemporaryDirectory() as directory:
+            root=Path(directory);original=root/'original';transfer=root/'transfer'
+            original.mkdir();transfer.mkdir()
+            (original/'comparison.json').write_text('{"capture":"rescan"}')
+            (transfer/'comparison.json').write_text('{"capture":"unused-bonn"}')
+            (transfer/'frame-0-000005.jpg').write_bytes(b'original-photo')
+            (transfer/'prediction.npz').write_bytes(b'private')
+            server=ThreadingHTTPServer(('127.0.0.1',0),make_handler([],[],residual_dir=original,transfer_dir=transfer))
+            threading.Thread(target=server.serve_forever,daemon=True).start()
+            try:
+                connection=HTTPConnection('127.0.0.1',server.server_port)
+                for route,value in [('/residual-comparison/comparison.json','rescan'),
+                    ('/residual-comparison/bonn-placement/comparison.json','unused-bonn')]:
+                    connection.request('GET',route);response=connection.getresponse()
+                    self.assertEqual(response.status,200);self.assertEqual(json.loads(response.read())['capture'],value)
+                connection.request('GET','/residual-comparison/bonn-placement/frame-0-000005.jpg')
+                response=connection.getresponse();self.assertEqual(response.read(),b'original-photo')
+                for route in ['/residual-comparison/bonn-placement/prediction.npz',
+                    '/residual-comparison/bonn-placement/%2e%2e/comparison.json',
+                    '/residual-comparison/unknown/comparison.json']:
+                    connection.request('GET',route);response=connection.getresponse();self.assertEqual(response.status,404);response.read()
+                connection.close()
+            finally:server.shutdown();server.server_close()
+
+    def test_residual_experiment_is_separate_and_does_not_replace_default_results(self):
+        with TemporaryDirectory() as directory:
+            root=Path(directory);experiment=root/'experiment';legacy=root/'legacy'
+            experiment.mkdir();legacy.mkdir()
+            (experiment/'comparison.json').write_text('{"kind":"reviewed_roi_residual_comparison"}')
+            (experiment/'0-empirical.bin').write_bytes(bytes(range(32)))
+            (experiment/'measurements.npz').write_bytes(b'private')
+            (legacy/'changes.json').write_text('{"fixed_sigma":0.02}')
+            server=ThreadingHTTPServer(('127.0.0.1',0),make_handler([],[],independent_dir=legacy,residual_dir=experiment))
+            threading.Thread(target=server.serve_forever,daemon=True).start()
+            try:
+                c=HTTPConnection('127.0.0.1',server.server_port)
+                c.request('GET','/m3c2-independent/changes.json');r=c.getresponse();self.assertEqual(json.loads(r.read()),{'fixed_sigma':.02})
+                c.request('GET','/residual-comparison/comparison.json');r=c.getresponse();self.assertEqual(r.status,200);r.read()
+                c.request('GET','/residual-comparison/0-empirical.bin',headers={'Range':'bytes=4-11'});r=c.getresponse();self.assertEqual(r.status,206);self.assertEqual(r.read(),bytes(range(4,12)))
+                for url in ('/residual-comparison/measurements.npz','/residual-comparison/%2e%2e/server.py','/residual-comparison/frame-0-000001.raw'):
+                    c.request('GET',url);r=c.getresponse();self.assertEqual(r.status,404);r.read()
+                c.close()
+            finally:server.shutdown();server.server_close()
+
     def test_bonn_routes_serve_viewer_assets_without_exposing_raw_depth(self):
         with TemporaryDirectory() as directory:
             root=Path(directory)

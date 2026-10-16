@@ -45,6 +45,8 @@ def validate_outputs(plan, requests):
         edges.add(frozenset((a, b)))
     viewpoints = {v["viewpoint_id"]: v for v in plan["viewpoints"]}
     require(len(viewpoints) == len(plan["viewpoints"]), "duplicate viewpoint")
+    excluded = {v["viewpoint_id"] for v in plan.get("excluded_viewpoints", [])}
+    require(not excluded.intersection(viewpoints), "excluded camera used as final image")
     if "candidate_report" in plan:
         sampling = plan["candidate_report"]
         candidates = {c["candidate_id"]: c for c in sampling["candidates"]}
@@ -77,6 +79,12 @@ def validate_outputs(plan, requests):
     require(plan["coverage_report"]["unique_image_count"] == len(viewpoints), "final image count")
     require(plan["coverage_report"]["content_count"] == sum("content" in v["roles"] for v in viewpoints.values()), "content count")
     require(plan["coverage_report"]["transition_count"] == sum("transition" in v["roles"] for v in viewpoints.values()), "transition count")
+    selection = plan["coverage_report"].get("selection", {})
+    for key, expected in (
+        ("detour_link_count", sum(link.get("connection_method") == "renderable_candidate_detour" for link in plan["tour_links"])),
+        ("constraint_progress_count", sum(v.get("selection_method") == "constraint_progress" for v in viewpoints.values() if "content" in v["roles"]))):
+        if key in selection:
+            require(type(selection[key]) is int and selection[key] == expected, "selection " + key)
     for viewpoint in viewpoints.values():
         pose = np.asarray(viewpoint["reference_from_camera"], float)
         require(pose.shape == (4, 4) and np.allclose(pose[3], [0, 0, 0, 1]), "pose shape")
@@ -116,6 +124,10 @@ def validate_outputs(plan, requests):
         require(np.allclose(link["polyline_m"], [nodes[n]["position_m"] for n in ids]), "tour polyline")
         measured = sum(float(np.linalg.norm(np.asarray(nodes[u]["position_m"]) - nodes[v]["position_m"])) for u, v in zip(ids, ids[1:]))
         require(math.isclose(link["length_m"], measured, abs_tol=1e-8), "tour path length")
+        if "connection_method" in link:
+            require(link["connection_method"] in ("shortest_path_spacing", "renderable_candidate_detour"), "connection method")
+            if link["connection_method"] == "renderable_candidate_detour":
+                require(measured <= plan["provenance"]["config"]["max_link_m"] + 1e-8, "detour has oversized jump")
         if plan["planning_status"] == "complete":
             require(measured <= plan["provenance"]["config"]["max_link_m"] + 1e-8, "complete tour has oversized jump")
     if plan["planning_status"] == "complete":

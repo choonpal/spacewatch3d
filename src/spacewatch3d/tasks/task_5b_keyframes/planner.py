@@ -98,9 +98,13 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
         return shortest(route.adjacency, node)
 
     @lru_cache(maxsize=256)
+    def hop_paths_from(node):
+        return shortest(route.adjacency, node, max_distance=config.max_link_m)
+
+    @lru_cache(maxsize=256)
     def evaluate_routed_set(key):
         nodes = [candidates[i] for i in key]
-        _, tour_links, transition_nodes, connection_failures = connect_tour(route, nodes, config, banned, scene.start, paths_from)
+        _, tour_links, transition_nodes, connection_failures = connect_tour(route, nodes, config, banned, scene.start, paths_from, hop_paths_from)
         final = set(nodes) | set(transition_nodes)
         utility, selection_report = objective.measure([lookup[node] for node in sorted(final)])
         selection_report.update(selection_image_count=len(final),
@@ -112,7 +116,7 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
     chosen, history, _ = select_keyframes(objective, evaluator)
     content_report = objective.measure(chosen)[1]
     selected_nodes = [candidates[i] for i in chosen]
-    visits, links, transitions, failures = connect_tour(route, selected_nodes, config, banned, scene.start, paths_from)
+    visits, links, transitions, failures = connect_tour(route, selected_nodes, config, banned, scene.start, paths_from, hop_paths_from)
     final_nodes = sorted(set(selected_nodes) | set(transitions))
     # Every transition is an already-scored candidate. Never redefine coverage
     # denominators to just the selected images or hide unobservable geometry.
@@ -120,6 +124,8 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
     report["content_only"] = content_report
     report["selection"] = {"strategy": "routed_gain_per_added_image_with_one_swap" if evaluator else "marginal_gain",
                            "tour_length_m": sum(link["length_m"] for link in links),
+                           "detour_link_count": sum(link["connection_method"] == "renderable_candidate_detour" for link in links),
+                           "constraint_progress_count": sum(history[i]["selection_method"] == "constraint_progress" for i in chosen),
                            "local_swap_applied": any(history[i]["selection_method"] == "route_cost_local_swap" for i in chosen)}
     report["candidate_count_before_feedback"] = len(route.candidates)
     report["candidate_count_after_feedback"] = len(candidates)
@@ -187,7 +193,7 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
             "tour_links": links, "coverage_report": report, "unobservable_items": unobservable,
             "failures": failures, "warnings": warnings,
             "excluded_viewpoints": [{"viewpoint_id": route.viewpoint_id(n), "reason": "renderer_failure_or_quality_rejection"} for n in sorted(banned)],
-            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.3.0",
+            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.4.0",
                            "dependency_versions": versions, "importance_cache": importance_cache or {},
                            "feedback_manifest": str(Path(feedback_path).resolve()) if feedback_path else None,
                            "coordinate_policy": "externally_normalized_metric_z_up",

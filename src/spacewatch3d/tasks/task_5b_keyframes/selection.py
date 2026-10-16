@@ -65,6 +65,20 @@ class Objective:
                   "object_best_quality": {obj["instance_id"]: float(best[j]) for j, obj in enumerate(self.objects)}}
         return utility, report
 
+    def constraint_deficit(self, report):
+        """Unweighted shortfall of active goals, separate from ranking utility."""
+        deficit = float("no_observable_surface" in report["unmet_targets"])
+        deficit += max(0., self.config.space_target - report["balanced_space_coverage"])
+        deficit += sum(max(0., self.config.region_target - region["coverage_observable"])
+                       for region in report["regions"] if region["coverage_observable"] is not None)
+        object_coverage = report["object_importance_coverage_observable"]
+        if object_coverage is not None:
+            deficit += max(0., self.config.object_target - object_coverage)
+        threshold = self.config.object_quality_threshold
+        deficit += sum(max(0., threshold - report["object_best_quality"][obj["instance_id"]]) / threshold
+                       for obj in self.objects if obj["must_see"])
+        return deficit
+
 
 def _prune_redundant(selected, measure):
     """Recheck routed goals after each deletion until no core view is removable.
@@ -101,6 +115,7 @@ def select_keyframes(objective: Objective, evaluate=None):
         utility, report = measure(selected)
         if not report["unmet_targets"]:
             break
+        deficit = objective.constraint_deficit(report)
         options = []
         for i in candidates:
             trial_utility, trial_report = measure(selected + [i])
@@ -113,20 +128,27 @@ def select_keyframes(objective: Objective, evaluate=None):
                     gain / max(1, added_images), gain,
                     -trial_report.get("selection_image_count", len(selected) + 1),
                     -trial_report.get("selection_tour_length_m", 0), -i)
-            options.append((rank, gain, i, added_images))
-        _, gain, chosen, added_images = max(options)
-        # Thresholded object goals can need a useful view with tiny continuous gain.
+            completed = len(report["unmet_targets"]) - len(trial_report["unmet_targets"])
+            progress = deficit - objective.constraint_deficit(trial_report)
+            constraint_rank = None
+            if completed > 0 or (completed == 0 and progress > 1e-12):
+                constraint_rank = (not trial_report.get("selection_connection_failures"), completed > 0,
+                                   completed / max(1, added_images), progress / max(1, added_images), gain,
+                                   -trial_report.get("selection_image_count", len(selected) + 1),
+                                   -trial_report.get("selection_tour_length_m", 0), -i)
+            options.append((rank, gain, i, added_images, constraint_rank))
+        _, gain, chosen, added_images, _ = max(options, key=lambda option: option[0])
+        method = "gain_per_added_image" if evaluate else "marginal_gain"
         if gain <= 1e-12:
-            # Zero importance must not silently disable explicit must-see constraints.
-            pending = [j for j, obj in enumerate(objective.objects)
-                       if obj["must_see"] and "must_see:" + obj["instance_id"] in report["unmet_targets"]]
-            useful = [i for i in candidates if any(objective.quality[i, j] >= objective.config.object_quality_threshold for j in pending)]
+            # A zero ranking weight does not disable a hard goal. Evaluate the
+            # actual routed set, including objects seen only by transition views.
+            useful = [option for option in options if option[4] is not None]
             if not useful:
                 break
-            chosen = useful[0]
-            _, gain, _, added_images = next(option for option in options if option[2] == chosen)
+            _, gain, chosen, added_images, _ = max(useful, key=lambda option: option[4])
+            method = "constraint_progress"
         history[chosen] = {"selection_step": len(selected) + 1, "marginal_gain_at_selection": float(gain),
-                           "selection_method": "gain_per_added_image" if evaluate else "marginal_gain",
+                           "selection_method": method,
                            "marginal_image_count_at_selection": added_images}
         selected.append(chosen)
         candidates.remove(chosen)

@@ -54,7 +54,7 @@ def neighbors(cell, mask):
             yield (nr, nc), math.hypot(dr, dc)
 
 
-def shortest(adjacency, source, target=None):
+def shortest(adjacency, source, target=None, max_distance=math.inf):
     distances, previous, queue = {source: 0.0}, {}, [(0.0, source)]
     while queue:
         cost, node = heapq.heappop(queue)
@@ -64,6 +64,8 @@ def shortest(adjacency, source, target=None):
             break
         for other, length in adjacency[node]:
             candidate = cost + length
+            if candidate > max_distance + 1e-9:
+                continue
             if candidate < distances.get(other, math.inf) - 1e-12:
                 distances[other], previous[other] = candidate, node
                 heapq.heappush(queue, (candidate, other))
@@ -266,7 +268,38 @@ def build_route(scene: Scene, config: Config) -> Route:
     return route
 
 
-def connect_tour(route: Route, selected: list[int], config: Config, banned: set[int], start=None, paths_from=None):
+def _renderable_detour(route, source, target, renderable, config, hop_paths_from=None):
+    """Lazy search over scored camera hops, then restore real graph polylines.
+
+    Minimize hop count then distance. Failed camera nodes may be traversed, but
+    never used as image endpoints. Geometry obstacles remain absent from the
+    walkable graph. No new or unscored camera position is invented here.
+    """
+    def paths(node):
+        return hop_paths_from(node) if hop_paths_from else shortest(
+            route.adjacency, node, max_distance=config.max_link_m)
+
+    best, previous = {source: (0, 0.)}, {}
+    queue = [(0, 0., source)]
+    while queue:
+        hops, length, node = heapq.heappop(queue)
+        if (hops, length) != best[node]:
+            continue
+        if node == target:
+            anchors = restore_path(previous, source, target)
+            return [restore_path(paths(a)[1], a, b) for a, b in zip(anchors, anchors[1:])]
+        distances, _ = paths(node)
+        for other in sorted(renderable.intersection(distances)):
+            if other == node or distances[other] > config.max_link_m + 1e-9:
+                continue
+            cost = (hops + 1, length + distances[other])
+            if cost < best.get(other, (math.inf, math.inf)):
+                best[other], previous[other] = cost, node
+                heapq.heappush(queue, (*cost, other))
+    return None
+
+
+def connect_tour(route: Route, selected: list[int], config: Config, banned: set[int], start=None, paths_from=None, hop_paths_from=None):
     """Nearest-neighbor graph walk. Intermediate assets are unique, visits may repeat."""
     visits, links, transitions, failures = [], [], set(), []
     renderable = set(route.candidates) - banned
@@ -285,27 +318,38 @@ def connect_tour(route: Route, selected: list[int], config: Config, banned: set[
             lengths = [0.0]
             for a, b in zip(path, path[1:]):
                 lengths.append(lengths[-1] + float(np.linalg.norm(route.positions[a] - route.positions[b])))
-            anchors, index = [0], 0
+            anchors, index, gap_node = [0], 0, None
             while lengths[-1] - lengths[index] > config.max_link_m + 1e-9:
                 options = [j for j in range(index + 1, len(path))
                            if lengths[j] - lengths[index] <= config.max_link_m + 1e-9 and path[j] in renderable]
                 if not options:
-                    failures.append({"code": "transition_gap", "from_node": route.node_id(path[index]),
-                                     "to_node": route.node_id(target)})
+                    gap_node = path[index]
                     break
                 index = max(options)
                 anchors.append(index)
             anchors.append(len(path) - 1)
-            for a, b in zip(anchors, anchors[1:]):
-                if path[b] not in selected:
-                    transitions.add(path[b])
-                links.append({"from_viewpoint": route.viewpoint_id(path[a]),
-                              "to_viewpoint": route.viewpoint_id(path[b]),
-                              "component_id": route.component_id(path[a]),
-                              "length_m": lengths[b] - lengths[a],
-                              "route_node_ids": [route.node_id(n) for n in path[a:b + 1]],
-                              "polyline_m": route.positions[path[a:b + 1]].tolist()})
-                visits.append(path[b])
+            segments = [(path[a:b + 1], lengths[b] - lengths[a]) for a, b in zip(anchors, anchors[1:])]
+            method = "shortest_path_spacing"
+            if gap_node is not None:
+                detour = _renderable_detour(route, current, target, renderable, config, hop_paths_from)
+                if detour is None:
+                    failures.append({"code": "transition_gap", "from_node": route.node_id(gap_node),
+                                     "to_node": route.node_id(target)})
+                else:
+                    segments = [(nodes, sum(float(np.linalg.norm(route.positions[a] - route.positions[b]))
+                                             for a, b in zip(nodes, nodes[1:]))) for nodes in detour]
+                    method = "renderable_candidate_detour"
+            for nodes, length in segments:
+                a, b = nodes[0], nodes[-1]
+                if b not in selected:
+                    transitions.add(b)
+                links.append({"from_viewpoint": route.viewpoint_id(a),
+                              "to_viewpoint": route.viewpoint_id(b),
+                              "component_id": route.component_id(a),
+                              "length_m": length, "connection_method": method,
+                              "route_node_ids": [route.node_id(n) for n in nodes],
+                              "polyline_m": route.positions[nodes].tolist()})
+                visits.append(b)
             current = target
             remaining.remove(target)
     if len({route.components[node] for node in selected}) > 1:

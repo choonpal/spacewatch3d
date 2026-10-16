@@ -1,0 +1,95 @@
+"""Greedy marginal coverage + weighted best object quality; reverse pruning."""
+
+import numpy as np
+
+from .models import Config
+
+
+class Objective:
+    def __init__(self, visible, quality, weights, regions, objects, config: Config):
+        self.visible, self.quality = visible, quality
+        self.weights, self.regions, self.objects, self.config = weights, np.asarray(regions), objects, config
+        self.observable = np.any(visible, axis=0) if len(visible) else np.zeros(len(weights), dtype=bool)
+        self.importance = np.asarray([obj["importance"] for obj in objects])
+        self.possible_objects = np.any(quality >= config.object_quality_threshold, axis=0) if len(quality) else np.zeros(len(objects), bool)
+        self.region_ids = sorted(set(regions))
+
+    def measure(self, selected):
+        covered = np.any(self.visible[selected], axis=0) if selected else np.zeros(len(self.weights), dtype=bool)
+        best = np.max(self.quality[selected], axis=0) if selected else np.zeros(len(self.objects))
+        per_region = []
+        for rid in self.region_ids:
+            mask = self.regions == rid
+            possible = float(self.weights[mask & self.observable].sum())
+            seen = float(self.weights[mask & covered].sum())
+            feasible_seen = float(self.weights[mask & covered & self.observable].sum())
+            total = float(self.weights[mask].sum())
+            per_region.append({"region_id": rid, "input_area_m2": total,
+                               "observable_area_m2": possible, "covered_area_m2": seen,
+                               "coverage_observable": feasible_seen / possible if possible else None,
+                               "coverage_total": seen / total if total else 0})
+        feasible_regions = [r["coverage_observable"] for r in per_region if r["coverage_observable"] is not None]
+        c_space = float(np.mean(feasible_regions)) if feasible_regions else 0.0
+        importance_sum = float(self.importance.sum())
+        c_object = float(best @ self.importance / importance_sum) if importance_sum else 0.0
+        alpha, beta = self.config.space_weight, self.config.object_weight if importance_sum else 0.0
+        if alpha + beta == 0:
+            alpha = 1.0  # No semantic weights -> space-only, even for object-only config.
+        utility = (alpha * c_space + beta * c_object) / (alpha + beta) if alpha + beta else 0.0
+        observed = best >= self.config.object_quality_threshold
+        feasible_weight = float(self.importance[self.possible_objects].sum())
+        observed_weight = float(self.importance[observed].sum())
+        object_feasible = float(self.importance[observed & self.possible_objects].sum()) / feasible_weight if feasible_weight else None
+        unmet = []
+        if not self.observable.any():
+            unmet.append("no_observable_surface")
+        if c_space + 1e-10 < self.config.space_target:
+            unmet.append("space_target")
+        if any(value + 1e-10 < self.config.region_target for value in feasible_regions):
+            unmet.append("region_target")
+        if object_feasible is not None and object_feasible + 1e-10 < self.config.object_target:
+            unmet.append("object_target")
+        for j, obj in enumerate(self.objects):
+            if obj["must_see"] and not observed[j]:
+                unmet.append("must_see:" + obj["instance_id"])
+        possible_area = float(self.weights[self.observable].sum())
+        seen_area = float(self.weights[covered].sum())
+        report = {"utility": utility, "balanced_space_coverage": c_space,
+                  "weighted_object_quality": c_object, "input_area_m2": float(self.weights.sum()),
+                  "observable_area_m2": possible_area, "covered_area_m2": seen_area,
+                  "coverage_observable": float(self.weights[covered & self.observable].sum()) / possible_area if possible_area else 0,
+                  "coverage_total": seen_area / float(self.weights.sum()),
+                  "object_importance_coverage_observable": object_feasible,
+                  "object_importance_coverage_total": observed_weight / importance_sum if importance_sum else None,
+                  "regions": per_region, "unmet_targets": unmet,
+                  "object_best_quality": {obj["instance_id"]: float(best[j]) for j, obj in enumerate(self.objects)}}
+        return utility, report
+
+
+def select_keyframes(objective: Objective):
+    selected, history = [], {}
+    candidates = list(range(len(objective.visible)))
+    while candidates:
+        utility, report = objective.measure(selected)
+        if not report["unmet_targets"]:
+            break
+        gains = [(objective.measure(selected + [i])[0] - utility, i) for i in candidates]
+        gain, chosen = max(gains, key=lambda pair: (pair[0], -pair[1]))
+        # Thresholded object goals can need a useful view with tiny continuous gain.
+        if gain <= 1e-12:
+            # Zero importance must not silently disable explicit must-see constraints.
+            pending = [j for j, obj in enumerate(objective.objects)
+                       if obj["must_see"] and "must_see:" + obj["instance_id"] in report["unmet_targets"]]
+            useful = [i for i in candidates if any(objective.quality[i, j] >= objective.config.object_quality_threshold for j in pending)]
+            if not useful:
+                break
+            chosen = useful[0]
+        history[chosen] = {"selection_step": len(selected) + 1, "marginal_gain_at_selection": float(gain)}
+        selected.append(chosen)
+        candidates.remove(chosen)
+    if not objective.measure(selected)[1]["unmet_targets"]:
+        for chosen in list(reversed(selected)):
+            trial = [i for i in selected if i != chosen]
+            if not objective.measure(trial)[1]["unmet_targets"]:
+                selected = trial
+    return selected, history, objective.measure(selected)[1]

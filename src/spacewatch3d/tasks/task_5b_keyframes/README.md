@@ -6,13 +6,89 @@
 
 ## 상태와 적용 범위
 
-- **설계 명세:** 아래 중앙 경로 및 가상 뷰포인트 기능은 개발 목표이며 아직 구현되지 않았다.
-- **현재 코드:** `pipeline.py`는 `BackendNotImplemented`를 반환한다. 이 문서 변경은 알고리즘 구현 완료를 뜻하지 않는다.
+- **구현 상태:** 단일 회차용 CPU 프로토타입을 구현했다. 바닥/장애물 격자, medial-axis 경로 그래프, 360° 후보, 삼각형 가림 검사, 의미 중요도, 정보 증가량 선정과 역제거, 이동용 위치, 생성 실패 후보 제외, 전용 출력 검사를 포함한다. 실제 팀 데이터 성능이나 이미지 품질을 입증한 상태는 아니다.
+- **현재 코드:** 새 기능은 `planner.create_plan()` / `planner.generate()`와 task 전용 CLI로 실행한다. 기존 `pipeline.run()`은 여전히 `BackendNotImplemented`를 반환하여 원본 프레임 계약과 섞이지 않게 유지했다.
 - **기존 실행 계약:** 현재 registry와 공통 스키마의 Task5b는 여전히 `objects -> keyframes`, 즉 원본 프레임 선정을 정의한다. 새 출력은 아직 공통 CLI에 등록되지 않았다.
-- **변경 경계:** 이번 문서는 Task5b의 목표와 제안 입출력을 정의한다. 다른 task의 코드, 공통 schema·registry·validator·fixture는 변경하지 않는다. 공통 통합은 [협업 규칙](../../../../CONTRIBUTING.md)에 따라 별도로 합의한다.
+- **변경 경계:** 구현은 Task5b 디렉터리와 전용 테스트에 한정한다. 다른 task의 코드, 공통 schema·registry·validator·fixture는 변경하지 않는다. 공통 통합은 [협업 규칙](../../../../CONTRIBUTING.md)에 따라 별도로 합의한다.
 - **1차 대상:** 단일 층의 비교적 평평한 실내 공간이다. 계단·다층 공간은 미지원으로 명시한다.
 
 이 문서의 `필수`는 구현 시 충족해야 하는 조건이다. `제안`은 아직 생산·소비 task 간 확정되지 않은 인터페이스 또는 실험용 초기값이다.
+
+## 프로토타입 실행
+
+저장소 루트에서 task 전용 가상환경을 사용한다. 검증 환경은 Python 3.13, CPU이며 GPU·모델 가중치를 사용하지 않는다. 실제 검증 버전은 [requirements-tested.txt](requirements-tested.txt)에 기록했다. 범위 의존성은 [requirements.txt](requirements.txt)에 있으며 다른 조합은 다시 검증해야 한다.
+
+```bash
+python -m venv .venv-task5b
+source .venv-task5b/bin/activate
+python -m pip install -e .
+python -m pip install -r src/spacewatch3d/tasks/task_5b_keyframes/requirements-tested.txt
+python -m spacewatch3d.tasks.task_5b_keyframes plan \
+  --scene src/spacewatch3d/tasks/task_5b_keyframes/examples/room.scene.json \
+  --output outputs/task5b-demo-001
+python -m spacewatch3d.tasks.task_5b_keyframes validate \
+  outputs/task5b-demo-001/tour_plan.json outputs/task5b-demo-001/render_requests.json
+python -m unittest discover -s tests -v
+```
+
+`--output`은 존재하지 않는 새 디렉터리여야 한다. 기존 결과와 상위 입력을 덮어쓰지 않는다. 종료 코드는 기하학적 계획 목표 달성 `0`, 입력/실행 오류 `2`, 유효 입력이지만 목표 미달 `3`이다. `3`일 때도 실패 사유를 포함한 계획을 저장한다. 오류 `2`는 표준 오류에 `planning_status=invalid_input`을 기록한다.
+
+선택 인자: `--config planning.config.example.json`, `--importance-cache 중요도.json`, `--feedback 피드백.json`. 모두 task 전용 CLI의 인자이며 공통 `spacewatch3d run`의 인자가 아니다.
+
+합성 예시는 문으로 연결된 두 공간·벽·객체 3개를 사용한다. `box`는 직접 정의한 합성 메시이며 실제 재구성 성능의 증거가 아니다. 기본값은 격자 0.15m·후보 간격 0.6m이고 나머지는 `models.Config`를 따른다. 아래 설계의 초기 제안값과 구별한다.
+
+### 실제 입력 형식
+
+입력은 [examples/room.scene.json](examples/room.scene.json)의 `spacewatch3d.planning_scene / 0.1.0` 형식이다.
+
+- `coordinates`: 계획 좌표계의 `frame_id`, `units="m"`, `up_axis="+Z"`, `gravity_aligned=true`. 알고리즘이 스케일이나 중력 방향을 추측하지 않는다.
+- `floor`: `confirmed=true`, 하나의 수평 높이 `height_m`, XY 외곽 `polygon`과 선택적 `holes`. 구멍은 미확인/통행 금지 영역이다. 불규칙 바닥과 다층은 아직 지원하지 않는다.
+- `geometry_complete=true`: 바닥·벽·가림/장애물 구조를 전달했음을 입력 생산자가 명시적으로 확인한다. 코드가 실제 공간의 누락 여부를 자동으로 보증하지는 않는다.
+- `objects`: `instance_id`, `class_name` 또는 null, `mesh_uri` 또는 `triangles` 또는 `box`, 선택적 `world_from_object`, `importance`, `must_see`, `description`.
+- `structures`: 같은 기하 형식. `solid=false`인 장면 구조 메시에는 몸 높이 구간의 삼각형만 투영한다. 기둥 등 **부피가 찬 개별 장애물**은 `solid=true`로 표시한다. `box`는 기본적으로 solid이다. 방 전체 메시를 solid로 표시하면 내부까지 차단할 수 있으므로 금지한다.
+- `regions`: 겹치지 않는 `region_id`·XY `polygon`. 없거나 미지정인 표면은 고정 타일로 계산한다.
+- `start_xy_m`: 선택적 시작 방향 선호 위치. 선정 위치 중 가까운 곳부터 방문하며 해당 좌표에 강제로 새 촬영 위치를 만들지 않는다.
+
+메시 파일은 로컬 OBJ/GLB를 지원한다. 경로는 **그 필드를 가진 manifest의 디렉터리 기준**이다. GLB 내부 노드 변환을 먼저 bake하고 `world_from_object`를 한 번 적용한다. 텍스처는 선정 계산에 사용하지 않는다.
+
+기존 Task4 결과를 쓸 때는 `objects` 대신 `objects_manifest`를 지정하면 Task3의 객체명을 ID로 결합하고 Task2까지 scene/capture/synthetic 연속성을 검사한다. 다른 task의 내부 코드는 import하지 않는다. 상위 세계 좌표계가 이미 계획 좌표계와 같은 미터·+Z 좌표이면 그대로 사용한다. 다르면 실측으로 결정한 4x4 `planning_from_world`를 명시한다. 이 행렬은 객체 변환보다 나중에 적용되며, 반사·비균일 스케일은 거부한다. 알려진 `scale_to_meters`와 행렬 스케일이 일치해야 한다. 스케일이 미확인이면 `source_scale_confirmed=true`와 **실제로 보정한** 행렬이 필요하며 임의로 true를 지정하면 안 된다. `floor`·`structures`·`regions`는 이미 계획 좌표계여야 한다.
+
+`object_overrides`는 알려진 `instance_id`를 키로 `importance`, `must_see`, `description`만 덮어쓸 수 있다. 상위 manifest를 편집하지 않고 필수 객체나 수동 중요도를 설정하는 용도다.
+
+### LLM 중요도 연결
+
+기본 실행은 외부 LLM을 호출하지 않는다. 우선순위는 **수동 값 → 캐시 → 주입한 제공자 → 기본 0.5**이다. 유효하지 않은 수동 값은 오류, LLM/캐시의 잘못된 점수나 호출 실패는 경고와 기본값으로 처리한다. 모든 객체의 최종 값과 근거를 `importance_scores.json`에 저장한다.
+
+```python
+from spacewatch3d.tasks.task_5b_keyframes.importance import LLMImportanceProvider
+from spacewatch3d.tasks.task_5b_keyframes.planner import generate
+
+# model_json_call(prompt, objects) -> {instance_id: {"score": 0..1, "reason": str}}
+# 모델 SDK, 인증, 타임아웃, 재시도는 이 콜백 구현자가 관리한다.
+provider = LLMImportanceProvider(model_json_call)
+generate("scene.json", "outputs/task5b-run-001", importance_provider=provider)
+```
+
+`importance.py`의 고정 프롬프트는 공간 대표성·관리/안전 중요성·상태 확인 필요성과 일시성을 평가하고, 실제 상태/변화를 객체명에서 지어내지 않도록 한다. CLI 캐시는 `{"scene_id":"...","capture_id":"...","scores":{"객체ID":{"score":0.8,"reason":"..."}}}`이며 생성된 `importance_scores.json`을 재사용할 수 있다. 회차를 바꾼 캐시를 조용히 적용하지 않는다.
+
+### 렌더링 실패 피드백
+
+`--feedback`의 입력은 `spacewatch3d.virtual_tour_render_feedback / 0.1.0`, `scene_id`, `capture_id`, `reference_frame_id`, `geometry_sha256`, `results`를 가진다. `geometry_sha256`은 생성 요청의 값을 보존한다. 각 결과는 `viewpoint_id`, 요청과 같은 `reference_from_camera`, `render_status="failed"|"succeeded"`, 선택적 `quality_accepted`, `failure_reasons`를 가진다. 성공은 실제 존재하는 `image_ref`가 필수다.
+
+실패 또는 품질 거부 위치는 후보에서 제외하고 재선정한다. 제외 전후 후보 수·관측 가능 면적을 보고한다. 이동용 위치도 **점수를 계산한 후보 집합** 안에서 고른다. 경로 위에 렌더링 가능한 중간 후보가 없어 최대 간격을 지킬 수 없으면 `transition_gap`으로 미완료 처리하며 벽을 가로지르지 않는다. 원본 후보 간격을 더 촘촘하게 설정하는 것이 해결 방법 중 하나다.
+
+외부 성공 이미지가 있으면 `quality_status=partial`로 기록할 수 있지만, 파일 존재와 외부 응답은 독립적인 이미지 품질 검증이 아니다. 프로토타입은 항상 `publication_ready=false`이며 게시용 `tour_manifest.json`은 아직 출력하지 않는다. 이미 있는 이미지의 요청은 `render_required=false`로 표시한다.
+
+### 아직 구현하지 않은 부분
+
+- 미보정 점군에서 스케일·중력·바닥·구조 메시를 자동 복원하는 기능.
+- 반복 회차의 기준 경로 재사용, 경로 버전 갱신과 Task5a 정합 자동 연결. 현재 입력에 `reference_route`/`registration`을 주면 명시적으로 거부한다.
+- 원본 카메라 관측 범위에 의한 합성 가능성 제한, 실제 360° 이미지 합성, 상태 가독성/합성 오류 검사와 게시용 exporter.
+- 실제 대형 메시의 속도·메모리 평가, 실제 공간의 비교 실험과 최종 가중치 튜닝.
+
+자원 상한을 넘으면 데이터를 조용히 버리지 않고 오류를 낸다. 광선 검사는 CPU BVH와 양면 삼각형 교차를 사용한다. 공간 지표는 면적 가중 표면 샘플의 근사치이므로 작은 물체·얇은 틈은 해상도와 표본 수에 민감하다. 고정 시드로 같은 입력의 재현성을 확보하지만 서로 다른 삼각분할에서 같은 샘플을 보장하지는 않는다. 경로도 격자 해상도에 따른 근사이며 실제 보행 안전을 보증하는 시스템이 아니다.
+
+참고 구현 문서: [scikit-image medial_axis](https://scikit-image.org/docs/stable/api/skimage.morphology.html#skimage.morphology.medial_axis), [SciPy distance_transform_edt](https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.distance_transform_edt.html), [Trimesh Scene.to_mesh](https://trimesh.org/trimesh.scene.scene.html#trimesh.scene.scene.Scene.to_mesh).
 
 ## 담당 범위
 
@@ -158,7 +234,7 @@ gain(candidate | S) = F(S + candidate) - F(S)
 
 ## 출력 계약 제안
 
-다음은 **새 계획 코어의 목표 출력**이다. 현재 `artifact.schema.json`에 등록된 kind나 실제 생성 파일이 아니다. 스키마·validator·CLI·소비 모듈의 합의가 완료되기 전까지 전용 형식으로 구현한다.
+다음은 **새 계획 코어의 출력 계약**이다. `tour_plan.json`과 `render_requests.json`은 프로토타입에서 실제 생성하며 `importance_scores.json`도 재사용용 캐시로 저장한다. `render_feedback.json`은 외부 입력, `tour_manifest.json`은 아직 미구현인 후속 목표다. 이 형식은 공통 `artifact.schema.json`에 등록된 kind가 아니다. 공통 통합 합의 전까지 task 전용 CLI와 검증기를 사용한다.
 
 | 파일 | 생산과 소비 | 내용 |
 | --- | --- | --- |
@@ -287,6 +363,15 @@ gain(candidate | S) = F(S + candidate) - F(S)
 - 새 출력과 추가 입력은 schema·registry·validator·소비 모듈·fixtures·테스트를 함께 합의한 후 공통 CLI에 연결한다. 이 문서 변경만으로 기존 `run`의 반환 계약을 바꾸지 않는다.
 
 ## 검증과 구현 완료 기준
+
+### 프로토타입 확인 결과 (2026-10-10)
+
+- Task5b 전용 합성 테스트 34개와 기존 공통 테스트 19개, 총 53개 통과. task 의존성이 있는 전용 환경에서는 건너뛴 테스트가 없다. 공통 환경만 있을 때 Task5b 기하 테스트는 명시적으로 skip한다.
+- 기존 task 7개의 형식 예제 검사 통과. 이것은 새 경로 또는 실제 모델 성능 검증과 별개다.
+- 기본 설정의 합성 두 공간 예시: 후보 35곳 → 정보용 3곳 + 이동용 6곳 = 고유 촬영 위치 9곳. 실제 이미지는 생성하지 않았다.
+- 이 예시의 최종 표면 커버리지는 **후보에서 관측 가능한 표면 기준 99.42%, 입력된 전체 표면 기준 60.88%**였다. 벽/객체의 뒤쪽 등 관측 불가능한 면을 제외한 수치를 전체 공간 커버리지라고 표시하지 않는다.
+- 파일·ID·pose/생성 요청 일치, 벽 가림, 문 연결, ㄱ자 공간/바닥 구멍, 분리 공간, 중복 효용, 중요도/필수 객체, GLB 변환, 입력 보존, 실패 재선정과 게시 미검증 상태를 시험했다.
+- 실제 팀 입력 연결, 외부 LLM 응답 품질, 합성 이미지 품질, 대형 장면 성능과 회차 간 경로 재사용은 미검증/미구현이다. 아래 완료 목록은 전체 기능 목표이므로 모두 완료 처리하지 않는다.
 
 ### 현재 실행 가능한 기존 계약 검사
 

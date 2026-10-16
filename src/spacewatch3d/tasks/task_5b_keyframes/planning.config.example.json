@@ -1,0 +1,17 @@
+{
+  "grid_m": 0.15,
+  "clearance_m": 0.3,
+  "camera_height_m": 1.5,
+  "candidate_spacing_m": 0.6,
+  "max_link_m": 2.0,
+  "surface_samples": 600,
+  "space_weight": 0.6,
+  "object_weight": 0.4,
+  "space_target": 0.9,
+  "region_target": 0.6,
+  "object_target": 0.9,
+  "object_quality_threshold": 0.35,
+  "seed": 0,
+  "width": 4096,
+  "height": 2048
+}

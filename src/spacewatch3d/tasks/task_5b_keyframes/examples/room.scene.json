@@ -1,0 +1,53 @@
+{
+  "schema_name": "spacewatch3d.planning_scene",
+  "schema_version": "0.1.0",
+  "scene_id": "synthetic_demo_room",
+  "capture_id": "synthetic_capture_001",
+  "synthetic": true,
+  "coordinates": {
+    "frame_id": "world:synthetic_demo_room",
+    "units": "m",
+    "up_axis": "+Z",
+    "gravity_aligned": true
+  },
+  "geometry_complete": true,
+  "levels": 1,
+  "floor": {
+    "confirmed": true,
+    "height_m": 0,
+    "polygon": [[0, 0], [7, 0], [7, 5], [0, 5]]
+  },
+  "start_xy_m": [1, 1],
+  "regions": [
+    {"region_id": "left_room", "polygon": [[0, 0], [3.5, 0], [3.5, 5], [0, 5]]},
+    {"region_id": "right_room", "polygon": [[3.5, 0], [7, 0], [7, 5], [3.5, 5]]}
+  ],
+  "objects": [
+    {
+      "instance_id": "cabinet_001",
+      "class_name": "cabinet",
+      "importance": 0.6,
+      "box": [[0.2, 2, 0], [1, 3.2, 1.8]]
+    },
+    {
+      "instance_id": "table_001",
+      "class_name": "table",
+      "importance": 0.4,
+      "box": [[4.4, 2, 0], [5.6, 3, 0.8]]
+    },
+    {
+      "instance_id": "safety_001",
+      "class_name": "fire extinguisher",
+      "importance": 0.95,
+      "must_see": true,
+      "box": [[5.8, 0.25, 0], [6.15, 0.6, 0.65]]
+    }
+  ],
+  "structures": [
+    {"box": [[0, 0, 0], [7, 0.1, 2.8]]},
+    {"box": [[0, 4.9, 0], [7, 5, 2.8]]},
+    {"box": [[0, 0.1, 0], [0.1, 4.9, 2.8]]},
+    {"box": [[6.9, 0.1, 0], [7, 4.9, 2.8]]},
+    {"box": [[3.4, 0.1, 0], [3.5, 3.6, 2.8]]}
+  ]
+}

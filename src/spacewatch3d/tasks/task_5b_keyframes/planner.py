@@ -11,11 +11,12 @@ import numpy as np
 
 from .importance import resolve_importance
 from .coverage_validation import validate_coverage
+from .coverage_repair import JointObjective, finish_repair_report, make_objectives, prepare_repair_samples
 from .candidates import audit_visibility_candidates, refine_visibility_candidates
 from .loader import load_scene
 from .models import Config, InputError, read_json
 from .routing import build_route, camera_components, connect_tour, shortest
-from .selection import Objective, repair_connected_selection, select_keyframes
+from .selection import repair_connected_selection, select_keyframes
 from .validation import validate_outputs
 from .visibility import evaluate_positions, sample_surface
 from .reference import export_reference, finish_reuse, load_reference, reuse_route
@@ -100,11 +101,15 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
     if audited:
         all_visible = np.concatenate([all_visible, audited_visible])
         all_quality = np.concatenate([all_quality, audited_quality])
+    datasets, coverage_repair = prepare_repair_samples(
+        scene, route, surface, all_visible, all_quality, objects, config, banned)
+    all_visible, all_quality = datasets[0]["visible"], datasets[0]["quality"]
     allowed_indices = [i for i, node in enumerate(route.candidates) if node not in banned]
     candidates = [route.candidates[i] for i in allowed_indices]
     visible, quality = all_visible[allowed_indices], all_quality[allowed_indices]
-    objective = Objective(visible, quality, surface.weights, surface.regions, objects, config,
-                          declared_regions=[rid for rid, _ in scene.regions])
+    objectives = make_objectives(datasets, allowed_indices, objects, config, [rid for rid, _ in scene.regions])
+    objective = objectives[0]
+    optimization = JointObjective(objectives) if config.coverage_repair else objective
     lookup = {node: i for i, node in enumerate(candidates)}
 
     @lru_cache(maxsize=32)
@@ -120,7 +125,7 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
         nodes = [candidates[i] for i in key]
         _, tour_links, transition_nodes, connection_failures = connect_tour(route, nodes, config, banned, scene.start, paths_from, hop_paths_from)
         final = set(nodes) | set(transition_nodes)
-        utility, selection_report = objective.measure([lookup[node] for node in sorted(final)])
+        utility, selection_report = optimization.measure([lookup[node] for node in sorted(final)])
         selection_report.update(selection_image_count=len(final),
                                 selection_tour_length_m=sum(link["length_m"] for link in tour_links),
                                 selection_connection_failures=[f["code"] for f in connection_failures])
@@ -128,7 +133,7 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
 
     evaluator = (lambda selected: evaluate_routed_set(tuple(sorted(selected)))) if config.route_aware_selection else None
     required_indices = [lookup[n] for n in required_nodes if n not in banned]
-    chosen, history, selection_report = select_keyframes(objective, evaluator, required=required_indices)
+    chosen, history, selection_report = select_keyframes(optimization, evaluator, required=required_indices)
     repair_trigger = []
     if evaluator and (selection_report["selection_connection_failures"] or selection_report["unmet_targets"]):
         repair_trigger = (["connection_failure"] if selection_report["selection_connection_failures"] else [])
@@ -136,7 +141,7 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
             repair_trigger.append("targets_unmet")
         groups = [[lookup[n] for n in sorted(group)] for group in
                   camera_components(route, candidates, config, hop_paths_from)]
-        chosen, history, _ = repair_connected_selection(objective, evaluator, chosen, history, groups, required_indices)
+        chosen, history, _ = repair_connected_selection(optimization, evaluator, chosen, history, groups, required_indices)
     selected_nodes = [candidates[i] for i in chosen]
     reference_roles = {v["viewpoint_id"]: v["roles"] for v in reference["viewpoints"]} if reference else {}
     content_nodes = [n for n in selected_nodes if reference_roles.get(route.viewpoint_id(n)) != ["transition"]]
@@ -169,6 +174,12 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
         failures.append({"code": "no_selected_viewpoints"})
     if report["unmet_targets"]:
         failures.append({"code": "targets_unmet", "targets": report["unmet_targets"]})
+    finish_repair_report(coverage_repair, objectives, [lookup[node] for node in final_nodes])
+    report["coverage_repair"] = coverage_repair
+    if coverage_repair["status"] == "targets_unmet":
+        failures.append({"code": "coverage_repair_targets_unmet", "runs": [
+            {"seed": run["seed"], "targets": run["coverage_report"]["unmet_targets"]}
+            for run in coverage_repair["runs"] if run["coverage_report"]["unmet_targets"]]})
     validation = validate_coverage(scene, route, final_nodes, objects, config, banned)
     report["independent_validation"] = validation
     if validation["status"] == "failed":
@@ -235,7 +246,7 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
             "tour_links": links, "coverage_report": report, "unobservable_items": unobservable,
             "failures": failures, "warnings": warnings,
             "excluded_viewpoints": [{"viewpoint_id": route.viewpoint_id(n), "reason": "renderer_failure_or_quality_rejection"} for n in sorted(banned)],
-            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.7.0",
+            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.8.0",
                            "dependency_versions": versions, "importance_cache": importance_cache or {},
                            "feedback_manifest": str(Path(feedback_path).resolve()) if feedback_path else None,
                            "coordinate_policy": "externally_normalized_metric_z_up",

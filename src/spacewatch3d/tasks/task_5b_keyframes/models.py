@@ -52,6 +52,9 @@ class Config:
     surface_samples: int = 600
     min_object_samples: int = 12
     min_region_samples: int = 12
+    coverage_repair: bool = True
+    coverage_repair_runs: int = 2
+    coverage_repair_sample_multiplier: int = 2
     independent_coverage_validation: bool = True
     validation_sample_multiplier: int = 2
     validation_runs: int = 2
@@ -97,7 +100,8 @@ class Config:
                 raise InputError(f"Config {name} must be nonnegative")
         positive = ("grid_m", "candidate_spacing_m", "candidate_min_spacing_m", "max_link_m",
                     "max_view_distance_m", "tile_m", "surface_samples", "min_object_samples", "min_region_samples",
-                    "solid_angle_target_sr", "validation_sample_multiplier", "validation_runs", "max_grid_cells", "max_route_nodes",
+                    "solid_angle_target_sr", "coverage_repair_runs", "coverage_repair_sample_multiplier",
+                    "validation_sample_multiplier", "validation_runs", "max_grid_cells", "max_route_nodes",
                     "max_candidates", "max_visibility_probes", "max_triangles", "width", "height")
         if any(getattr(result, name) <= 0 for name in positive):
             raise InputError("Lengths, sample counts and resource limits must be positive")

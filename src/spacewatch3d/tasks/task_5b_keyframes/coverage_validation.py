@@ -23,7 +23,7 @@ def validate_coverage(scene, route, selected_nodes, objects, config, banned=()):
     for index in range(config.validation_runs):
         # Graph, poses, importance and selected images stay fixed. Only the
         # random surface draw changes, and none of these scores affect selection.
-        seed = config.seed + index + 1
+        seed = config.seed + (config.coverage_repair_runs if config.coverage_repair else 0) + index + 1
         surface = sample_surface(scene, replace(config, seed=seed, surface_samples=sample_count))
         visible, quality = evaluate_positions(route.positions[eligible], surface, objects, config)
         objective = Objective(visible, quality, surface.weights, surface.regions, objects, config,

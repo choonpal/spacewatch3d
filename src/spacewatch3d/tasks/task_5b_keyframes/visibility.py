@@ -12,6 +12,12 @@ import shapely
 from .models import Config, InputError, Scene
 
 
+# Dimensionless triangle-coordinate grid; a power of two keeps unit vertices
+# exact. GEOS overlays share this precision instead of manufacturing 1e-17 m2
+# residual regions. This is not an absolute physical-area cutoff.
+PARTITION_PRECISION = 64 * np.finfo(float).eps
+
+
 class BVH:
     def __init__(self, triangles):
         self.triangles = np.asarray(triangles)
@@ -139,7 +145,7 @@ def _surface_strata(geometries, regions, config):
                                 for p in shapely.get_parts(shapely.constrained_delaunay_triangles(polygon))])
         region_meshes.append((rid, triangles, triangles.min(axis=1), triangles.max(axis=1)))
     strata, split_count = [], 0
-    unit = shapely.Polygon([[0, 0], [1, 0], [0, 1]])
+    unit = shapely.set_precision(shapely.Polygon([[0, 0], [1, 0], [0, 1]]), PARTITION_PRECISION)
     for gi, geometry in enumerate(geometries):
         buckets = {}
         if not regions:
@@ -152,10 +158,10 @@ def _surface_strata(geometries, regions, config):
                     hits = np.flatnonzero(np.all(high >= xy.min(axis=0), axis=1)
                                           & np.all(low <= xy.max(axis=0), axis=1))
                     pieces = [_clip_parameter_triangle(xy, region_triangles[i]) for i in hits]
-                    pieces = [p for p in pieces if p is not None]
+                    pieces = [shapely.set_precision(p, PARTITION_PRECISION) for p in pieces if p is not None]
                     if not pieces:
                         continue
-                    assigned = remaining.intersection(shapely.union_all(pieces))
+                    assigned = remaining.intersection(shapely.union_all(pieces, grid_size=PARTITION_PRECISION))
                     if assigned.area:
                         buckets.setdefault(rid, []).extend(_lift_triangles(assigned, triangle))
                         remaining = remaining.difference(assigned)
@@ -296,6 +302,7 @@ def sample_surface(scene: Scene, config: Config) -> Surface:
                 tile = "unnamed_" + tile
             regions[i] = tile
     audit = {"method": "geometry_named_region_area_stratified", "sample_count": len(points),
+             "partition_precision_barycentric": float(PARTITION_PRECISION),
              "stratum_count": len(strata), "min_region_samples": config.min_region_samples,
              "input_area_m2": float(totals.sum()), "declared_regions": [
                  {"region_id": rid, "sample_count": sum(int(n) for s, n in zip(strata, counts) if s[1] == rid),

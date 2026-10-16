@@ -10,6 +10,7 @@ import os
 import numpy as np
 
 from .importance import resolve_importance
+from .coverage_validation import validate_coverage
 from .candidates import audit_visibility_candidates, refine_visibility_candidates
 from .loader import load_scene
 from .models import Config, InputError, read_json
@@ -146,6 +147,7 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
     # Every transition is an already-scored candidate. Never redefine coverage
     # denominators to just the selected images or hide unobservable geometry.
     report = objective.measure([lookup[node] for node in final_nodes])[1]
+    report["sample_role"] = "selection"
     report["content_only"] = content_report
     report["selection"] = {"strategy": "routed_gain_per_added_image_with_one_swap" if evaluator else "marginal_gain",
                            "tour_length_m": sum(link["length_m"] for link in links),
@@ -167,6 +169,16 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
         failures.append({"code": "no_selected_viewpoints"})
     if report["unmet_targets"]:
         failures.append({"code": "targets_unmet", "targets": report["unmet_targets"]})
+    validation = validate_coverage(scene, route, final_nodes, objects, config, banned)
+    report["independent_validation"] = validation
+    if validation["status"] == "failed":
+        failures.append({"code": "independent_coverage_targets_unmet", "runs": [
+            {"seed": run["seed"], "targets": run["coverage_report"]["unmet_targets"]}
+            for run in validation["runs"] if run["coverage_report"]["unmet_targets"]]})
+    elif validation["status"] == "disabled":
+        warnings.append({"code": "independent_coverage_validation_disabled",
+                         "message": "Coverage targets were evaluated only on selection samples"})
+    report["selection"]["feasibility_repair_succeeded"] = bool(repair_trigger) and not failures and not report["unmet_targets"]
     unobservable = []
     for rid in objective.region_ids:
         mask = objective.regions == rid
@@ -223,7 +235,7 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
             "tour_links": links, "coverage_report": report, "unobservable_items": unobservable,
             "failures": failures, "warnings": warnings,
             "excluded_viewpoints": [{"viewpoint_id": route.viewpoint_id(n), "reason": "renderer_failure_or_quality_rejection"} for n in sorted(banned)],
-            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.6.0",
+            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.7.0",
                            "dependency_versions": versions, "importance_cache": importance_cache or {},
                            "feedback_manifest": str(Path(feedback_path).resolve()) if feedback_path else None,
                            "coordinate_policy": "externally_normalized_metric_z_up",

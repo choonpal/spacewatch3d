@@ -96,6 +96,68 @@ def validate_outputs(plan, requests):
     require(plan["coverage_report"]["unique_image_count"] == len(viewpoints), "final image count")
     require(plan["coverage_report"]["content_count"] == sum("content" in v["roles"] for v in viewpoints.values()), "content count")
     require(plan["coverage_report"]["transition_count"] == sum("transition" in v["roles"] for v in viewpoints.values()), "transition count")
+    config = plan["provenance"]["config"]
+    if "independent_coverage_validation" in config:
+        require("independent_validation" in plan["coverage_report"], "missing independent coverage validation")
+        require(type(config["independent_coverage_validation"]) is bool, "holdout enable flag")
+        require(all(type(config[key]) is int and config[key] > 0 for key in
+                    ("validation_sample_multiplier", "validation_runs")), "holdout config counts")
+        require(plan["coverage_report"].get("sample_role") == "selection", "primary coverage sample role")
+    if "independent_validation" in plan["coverage_report"]:
+        validation = plan["coverage_report"]["independent_validation"]
+        require(validation["used_for_selection"] is False, "holdout samples used for selection")
+        require(validation["status"] in ("passed", "failed", "disabled"), "independent validation status")
+        failures = [f for f in plan["failures"] if f["code"] == "independent_coverage_targets_unmet"]
+        if not config["independent_coverage_validation"]:
+            require(validation["status"] == "disabled" and validation["runs"] == [] and not failures,
+                    "disabled coverage validation")
+        else:
+            require(validation["status"] != "disabled", "enabled coverage validation skipped")
+            require(validation["method"] == "fresh_surface_samples_on_fixed_eligible_route_graph", "holdout method")
+            require(len(validation["selected_viewpoint_ids"]) == len(viewpoints)
+                    and set(validation["selected_viewpoint_ids"]) == set(viewpoints), "holdout final image set")
+            require(validation["eligible_route_node_count"] == len(nodes) - len(excluded), "holdout eligible node count")
+            count = config["surface_samples"] * config["validation_sample_multiplier"]
+            require(validation["sample_count_per_run"] == count, "holdout sample count")
+            require(len(validation["runs"]) == config["validation_runs"], "holdout run count")
+            bad_runs = []
+            for index, run in enumerate(validation["runs"]):
+                require(type(run["seed"]) is int and run["seed"] == config["seed"] + index + 1, "holdout seed independence")
+                require(type(run["sample_count"]) is int and run["sample_count"] == count, "holdout run sample count")
+                report = run["coverage_report"]
+                require(report.get("sample_role") == "holdout", "holdout coverage sample role")
+                require(sum(r["sample_count"] for r in report["regions"]) == count, "holdout region samples")
+                values = [r["coverage_observable"] for r in report["regions"] if r["coverage_observable"] is not None]
+                require(math.isclose(report["balanced_space_coverage"], sum(values) / len(values) if values else 0,
+                                     abs_tol=1e-10), "holdout balanced coverage")
+                for field in ("coverage_observable", "coverage_total", "balanced_space_coverage"):
+                    require(0 <= report[field] <= 1 + 1e-9, "holdout coverage range")
+                expected = []
+                if report["observable_area_m2"] <= 0:
+                    expected.append("no_observable_surface")
+                if report["balanced_space_coverage"] + 1e-10 < config["space_target"]:
+                    expected.append("space_target")
+                if any(value + 1e-10 < config["region_target"] for value in values):
+                    expected.append("region_target")
+                expected.extend("region_unassessed:" + r["region_id"] for r in report["regions"] if not r["sample_count"])
+                object_coverage = report["object_importance_coverage_observable"]
+                if object_coverage is not None and object_coverage + 1e-10 < config["object_target"]:
+                    expected.append("object_target")
+                expected.extend("must_see:" + o["instance_id"] for o in plan["object_importances"]
+                                if o["must_see"] and report["object_best_quality"][o["instance_id"]] < config["object_quality_threshold"])
+                require(report["unmet_targets"] == expected, "holdout target results")
+                if expected:
+                    bad_runs.append({"seed": run["seed"], "targets": expected})
+            for output, metric in (("worst_coverage_observable", "coverage_observable"),
+                                   ("worst_balanced_space_coverage", "balanced_space_coverage")):
+                require(math.isclose(validation[output], min(r["coverage_report"][metric] for r in validation["runs"]),
+                                     abs_tol=1e-10), "holdout worst coverage")
+            require(validation["status"] == ("failed" if bad_runs else "passed"), "holdout pass/fail mismatch")
+            if bad_runs:
+                require(plan["planning_status"] == "incomplete" and len(failures) == 1
+                        and failures[0]["runs"] == bad_runs, "holdout failure cannot be published as complete")
+            else:
+                require(not failures, "spurious holdout failure")
     selection = plan["coverage_report"].get("selection", {})
     if "feasibility_repair_trigger" in selection:
         trigger = selection["feasibility_repair_trigger"]

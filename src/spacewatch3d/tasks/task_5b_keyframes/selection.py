@@ -179,14 +179,20 @@ def select_keyframes(objective: Objective, evaluate=None, required=()):
                 for new in available:
                     trial = [new if i == old else i for i in selected]
                     trial_report = measure(trial)[1]
+                    if trial_report["unmet_targets"] or trial_report["selection_connection_failures"]:
+                        continue
+                    # Compare the completed exchange, not its temporary two-view
+                    # state. A replacement can subsume several old views even
+                    # when that temporary route is longer than the current one.
+                    trial = _prune_redundant(trial, measure, required)
+                    trial_report = measure(trial)[1]
                     cost = (bool(trial_report["selection_connection_failures"]),
                             trial_report["selection_image_count"], trial_report["selection_tour_length_m"])
                     if (not trial_report["unmet_targets"] and not trial_report["selection_connection_failures"]
                             and cost < best_cost):
-                        best_cost, best_swap = cost, (old, new)
+                        best_cost, best_swap = cost, (old, new, trial)
             if best_swap:
-                old, new = best_swap
-                selected = [new if i == old else i for i in selected]
+                old, new, selected = best_swap
                 history[new] = {"selection_step": None, "marginal_gain_at_selection": None,
                                 "selection_method": "route_cost_local_swap", "replaced_index": old,
                                 "marginal_image_count_at_selection": None}

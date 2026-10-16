@@ -11,6 +11,7 @@
   "route_aware_selection": true,
   "max_link_m": 2.0,
   "surface_samples": 600,
+  "min_region_samples": 12,
   "space_weight": 0.6,
   "object_weight": 0.4,
   "space_target": 0.9,

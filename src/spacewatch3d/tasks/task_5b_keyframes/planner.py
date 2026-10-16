@@ -102,7 +102,8 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
     allowed_indices = [i for i, node in enumerate(route.candidates) if node not in banned]
     candidates = [route.candidates[i] for i in allowed_indices]
     visible, quality = all_visible[allowed_indices], all_quality[allowed_indices]
-    objective = Objective(visible, quality, surface.weights, surface.regions, objects, config)
+    objective = Objective(visible, quality, surface.weights, surface.regions, objects, config,
+                          declared_regions=[rid for rid, _ in scene.regions])
     lookup = {node: i for i, node in enumerate(candidates)}
 
     @lru_cache(maxsize=32)
@@ -127,7 +128,11 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
     evaluator = (lambda selected: evaluate_routed_set(tuple(sorted(selected)))) if config.route_aware_selection else None
     required_indices = [lookup[n] for n in required_nodes if n not in banned]
     chosen, history, selection_report = select_keyframes(objective, evaluator, required=required_indices)
-    if evaluator and selection_report["selection_connection_failures"]:
+    repair_trigger = []
+    if evaluator and (selection_report["selection_connection_failures"] or selection_report["unmet_targets"]):
+        repair_trigger = (["connection_failure"] if selection_report["selection_connection_failures"] else [])
+        if selection_report["unmet_targets"]:
+            repair_trigger.append("targets_unmet")
         groups = [[lookup[n] for n in sorted(group)] for group in
                   camera_components(route, candidates, config, hop_paths_from)]
         chosen, history, _ = repair_connected_selection(objective, evaluator, chosen, history, groups, required_indices)
@@ -147,6 +152,8 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
                            "detour_link_count": sum(link["connection_method"] == "renderable_candidate_detour" for link in links),
                            "constraint_progress_count": sum(history[i]["selection_method"] == "constraint_progress" for i in chosen),
                            "connected_component_repair_count": sum(history[i]["selection_method"] == "connected_component_repair" for i in chosen),
+                           "feasibility_repair_trigger": repair_trigger,
+                           "feasibility_repair_succeeded": bool(repair_trigger) and not failures and not report["unmet_targets"],
                            "local_swap_applied": any(history[i]["selection_method"] == "route_cost_local_swap" for i in chosen)}
     report["candidate_count_before_feedback"] = len(route.candidates)
     report["candidate_count_after_feedback"] = len(candidates)
@@ -154,6 +161,8 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
     report["unique_image_count"] = len(final_nodes)
     report["content_count"] = len(content_nodes)
     report["transition_count"] = len(transition_nodes)
+    if getattr(surface, "sampling_report", None) is not None:
+        report["surface_sampling"] = surface.sampling_report
     if not final_nodes:
         failures.append({"code": "no_selected_viewpoints"})
     if report["unmet_targets"]:
@@ -161,6 +170,8 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
     unobservable = []
     for rid in objective.region_ids:
         mask = objective.regions == rid
+        if not mask.any():
+            unobservable.append({"region_id": rid, "reason": "Declared region has no input mesh surface; coverage is unassessed"})
         area = float(surface.weights[mask & ~objective.observable].sum())
         if area:
             unobservable.append({"region_id": rid, "unobservable_area_m2": area, "reason": "No eligible candidate sees sampled patches"})
@@ -212,7 +223,7 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
             "tour_links": links, "coverage_report": report, "unobservable_items": unobservable,
             "failures": failures, "warnings": warnings,
             "excluded_viewpoints": [{"viewpoint_id": route.viewpoint_id(n), "reason": "renderer_failure_or_quality_rejection"} for n in sorted(banned)],
-            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.5.0",
+            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.6.0",
                            "dependency_versions": versions, "importance_cache": importance_cache or {},
                            "feedback_manifest": str(Path(feedback_path).resolve()) if feedback_path else None,
                            "coordinate_policy": "externally_normalized_metric_z_up",

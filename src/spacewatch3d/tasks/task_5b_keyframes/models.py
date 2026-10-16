@@ -51,6 +51,7 @@ class Config:
     tile_m: float = 3.0
     surface_samples: int = 600
     min_object_samples: int = 12
+    min_region_samples: int = 12
     space_weight: float = 0.6
     object_weight: float = 0.4
     space_target: float = 0.9
@@ -92,7 +93,7 @@ class Config:
             if name != "seed" and value < 0:
                 raise InputError(f"Config {name} must be nonnegative")
         positive = ("grid_m", "candidate_spacing_m", "candidate_min_spacing_m", "max_link_m",
-                    "max_view_distance_m", "tile_m", "surface_samples", "min_object_samples",
+                    "max_view_distance_m", "tile_m", "surface_samples", "min_object_samples", "min_region_samples",
                     "solid_angle_target_sr", "max_grid_cells", "max_route_nodes",
                     "max_candidates", "max_visibility_probes", "max_triangles", "width", "height")
         if any(getattr(result, name) <= 0 for name in positive):

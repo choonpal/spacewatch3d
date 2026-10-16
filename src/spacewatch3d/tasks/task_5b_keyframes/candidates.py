@@ -41,8 +41,8 @@ def refine_visibility_candidates(route, visible, quality, surface_weights, confi
 def audit_visibility_candidates(route, visible, quality, surface_weights, config, evaluate, banned=()):
     """Probe every unscored, eligible graph node, independently of seed scores.
 
-    Keep a subset preserving the dense sampled-surface union and the best quality
-    of each object (within 1e-12). Close discoveries bypass distance thinning:
+    Keep a subset preserving the dense sampled-surface union, best per-object
+    quality and maximal joint threshold-observation patterns. Close discoveries bypass distance thinning:
     being near a seed is not evidence that the seed sees through the same gap.
     This is a discrete graph/surface audit, not a continuous-space guarantee.
     """
@@ -63,7 +63,8 @@ def audit_visibility_candidates(route, visible, quality, surface_weights, config
     audit = {"status": "complete", "method": "all_eligible_route_graph_nodes",
              "probe_count": len(probes), "eligible_route_node_count": len(route.positions) - len(banned),
              "baseline_candidate_count": len(baseline), "excluded_route_node_count": len(banned),
-             "sampled_observable_union_preserved": True, "best_object_quality_preserved": True}
+             "sampled_observable_union_preserved": True, "best_object_quality_preserved": True,
+             "joint_object_threshold_patterns_preserved": True, "joint_object_added_count": 0}
     if not probes:
         _, connectivity = connectivity_bridges(route, [route.candidates[i] for i in baseline], config, banned)
         audit.update(connectivity, sampled_camera_connectivity_preserved=True, connectivity_added_count=0)
@@ -96,6 +97,31 @@ def audit_visibility_candidates(route, visible, quality, surface_weights, config
             # Zero-weight patches still must not invalidate the union claim.
             index = int(np.flatnonzero(np.any(probe_visible[:, missing], axis=1))[0])
         retain(index, "surface_visibility_discovery")
+    # Preserving each object's maximum does not preserve a single view that
+    # adequately shows several objects together. Keep a representative of every
+    # inclusion-maximal threshold pattern, unless a retained view already shows
+    # its superset. Only patterns actually measured are considered (no 2**N
+    # enumeration). Include zero-importance/must-see objects; threshold matches
+    # Objective exactly. This is not a guarantee of globally minimal tour cost.
+    def pattern(row):
+        return sum(1 << int(j) for j in np.flatnonzero(row >= config.object_quality_threshold))
+
+    baseline_patterns = {pattern(quality[i]) for i in baseline}
+    probe_patterns = [pattern(row) for row in probe_quality]
+    maximal = []
+    for value in sorted(baseline_patterns | set(probe_patterns), key=lambda p: (-p.bit_count(), p)):
+        if value.bit_count() >= 2 and not any(value & other == value for other in maximal):
+            maximal.append(value)
+    for value in maximal:
+        existing = baseline_patterns | {probe_patterns[i] for i in retained}
+        if any(value & other == value for other in existing):
+            continue
+        indices = [i for i, p in enumerate(probe_patterns) if p == value]
+        index = max(indices, key=lambda i: (float(probe_quality[i].sum()),
+                                            float(surface_weights[probe_visible[i]].sum()), -probes[i]))
+        retain(index, "joint_object_observation")
+        audit["joint_object_added_count"] += 1
+    audit["maximal_joint_object_pattern_count"] = len(maximal)
     probe_index = {node: i for i, node in enumerate(probes)}
     bridges, connectivity = connectivity_bridges(
         route, [route.candidates[i] for i in baseline] + [probes[i] for i in retained], config, banned)

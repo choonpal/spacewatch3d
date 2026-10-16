@@ -6,13 +6,14 @@ from .models import Config
 
 
 class Objective:
-    def __init__(self, visible, quality, weights, regions, objects, config: Config):
+    def __init__(self, visible, quality, weights, regions, objects, config: Config, declared_regions=()):
         self.visible, self.quality = visible, quality
         self.weights, self.regions, self.objects, self.config = weights, np.asarray(regions), objects, config
         self.observable = np.any(visible, axis=0) if len(visible) else np.zeros(len(weights), dtype=bool)
         self.importance = np.asarray([obj["importance"] for obj in objects])
         self.possible_objects = np.any(quality >= config.object_quality_threshold, axis=0) if len(quality) else np.zeros(len(objects), bool)
-        self.region_ids = sorted(set(regions))
+        self.declared_regions = set(declared_regions)
+        self.region_ids = sorted(set(regions) | self.declared_regions)
 
     def measure(self, selected):
         covered = np.any(self.visible[selected], axis=0) if selected else np.zeros(len(self.weights), dtype=bool)
@@ -25,9 +26,11 @@ class Objective:
             feasible_seen = float(self.weights[mask & covered & self.observable].sum())
             total = float(self.weights[mask].sum())
             per_region.append({"region_id": rid, "input_area_m2": total,
+                               "sample_count": int(mask.sum()), "declared": rid in self.declared_regions,
+                               "assessment_status": "no_surface" if not mask.any() else "sampled",
                                "observable_area_m2": possible, "covered_area_m2": seen,
                                "coverage_observable": feasible_seen / possible if possible else None,
-                               "coverage_total": seen / total if total else 0})
+                               "coverage_total": seen / total if total else None})
         feasible_regions = [r["coverage_observable"] for r in per_region if r["coverage_observable"] is not None]
         c_space = float(np.mean(feasible_regions)) if feasible_regions else 0.0
         importance_sum = float(self.importance.sum())
@@ -47,6 +50,7 @@ class Objective:
             unmet.append("space_target")
         if any(value + 1e-10 < self.config.region_target for value in feasible_regions):
             unmet.append("region_target")
+        unmet.extend("region_unassessed:" + r["region_id"] for r in per_region if not r["sample_count"])
         if object_feasible is not None and object_feasible + 1e-10 < self.config.object_target:
             unmet.append("object_target")
         for j, obj in enumerate(self.objects):
@@ -68,6 +72,7 @@ class Objective:
     def constraint_deficit(self, report):
         """Unweighted shortfall of active goals, separate from ranking utility."""
         deficit = float("no_observable_surface" in report["unmet_targets"])
+        deficit += sum(target.startswith("region_unassessed:") for target in report["unmet_targets"])
         deficit += max(0., self.config.space_target - report["balanced_space_coverage"])
         deficit += sum(max(0., self.config.region_target - region["coverage_observable"])
                        for region in report["regions"] if region["coverage_observable"] is not None)
@@ -195,12 +200,12 @@ def select_keyframes(objective: Objective, evaluate=None, required=()):
 def repair_connected_selection(objective, evaluate, selected, history, groups, required=()):
     """Try whole feasible camera components without changing the global targets.
 
-    A one-swap repair can miss a feasible tour requiring several replacements.
+    A greedy stall or one-swap repair can miss a feasible tour requiring several additions/replacements.
     Each eligible component starts with all its views, then removes redundancy.
     This is bounded, not a global minimum-image optimizer.
     """
     current = evaluate(selected)[1]
-    if not current.get("selection_connection_failures"):
+    if not current.get("selection_connection_failures") and not current["unmet_targets"]:
         return selected, history, current
     required = set(required)
     best = None

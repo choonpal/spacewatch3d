@@ -5,6 +5,7 @@ has not been established; resource limits intentionally fail instead of truncati
 """
 
 from dataclasses import dataclass
+from collections import deque
 import numpy as np
 import shapely
 
@@ -80,43 +81,229 @@ class Surface:
     regions: list[str]
     bvh: BVH
     object_areas: dict
+    sampling_report: dict | None = None
+
+
+def _apportion(count, areas):
+    """Deterministic largest-remainder allocation, including count=0."""
+    fractional = count * np.asarray(areas) / np.sum(areas)
+    result = np.floor(fractional).astype(int)
+    for index in np.argsort(-(fractional - result), kind="stable")[:int(count - result.sum())]:
+        result[index] += 1
+    return result
+
+
+def _clip_parameter_triangle(xy, region_triangle):
+    """Pull back three XY half planes to barycentric (u,v) space.
+
+    Unlike inverse XY projection this also handles vertical mesh faces. A face
+    on a shared region/triangulation boundary may appear in several pieces;
+    the caller unions them and assigns shared boundaries to the first region.
+    """
+    polygon = np.array([[0., 0.], [1., 0.], [0., 1.]])
+    orientation = np.linalg.det(np.array([region_triangle[1] - region_triangle[0],
+                                          region_triangle[2] - region_triangle[0]]))
+    for a, b in zip(region_triangle, np.roll(region_triangle, -1, axis=0)):
+        edge = b - a
+        normal = np.array([-edge[1], edge[0]]) * (1 if orientation > 0 else -1)
+        normal /= np.linalg.norm(normal)
+        values = (xy - a) @ normal
+        values[np.abs(values) < 1e-12] = 0
+        coefficient = values[1:] - values[0]
+        distances = polygon @ coefficient + values[0]
+        clipped = []
+        for i in range(len(polygon)):
+            p, q = polygon[i - 1], polygon[i]
+            dp, dq = distances[i - 1], distances[i]
+            if (dp >= 0) != (dq >= 0):
+                clipped.append(p + (q - p) * dp / (dp - dq))
+            if dq >= 0:
+                clipped.append(q)
+        if len(clipped) < 3:
+            return None
+        polygon = np.asarray(clipped)
+    result = shapely.Polygon(polygon)
+    return result if result.area > 0 else None
+
+
+def _surface_strata(geometries, regions, config):
+    """Partition physical surface area by geometry and named XY region.
+
+    All operations happen in a nondegenerate triangle's barycentric plane, so
+    vertical walls, sloped faces, concave regions and holes retain their area.
+    Unnamed residual surfaces keep the existing sampled-tile interpretation.
+    """
+    region_meshes = []
+    for rid, polygon in regions:
+        triangles = np.asarray([np.asarray(p.exterior.coords)[:3, :2]
+                                for p in shapely.get_parts(shapely.constrained_delaunay_triangles(polygon))])
+        region_meshes.append((rid, triangles, triangles.min(axis=1), triangles.max(axis=1)))
+    strata, split_count = [], 0
+    unit = shapely.Polygon([[0, 0], [1, 0], [0, 1]])
+    for gi, geometry in enumerate(geometries):
+        buckets = {}
+        if not regions:
+            buckets[None] = list(geometry.triangles)
+        else:
+            for triangle in geometry.triangles:
+                xy = triangle[:, :2]
+                remaining = unit
+                for rid, region_triangles, low, high in region_meshes:
+                    hits = np.flatnonzero(np.all(high >= xy.min(axis=0), axis=1)
+                                          & np.all(low <= xy.max(axis=0), axis=1))
+                    pieces = [_clip_parameter_triangle(xy, region_triangles[i]) for i in hits]
+                    pieces = [p for p in pieces if p is not None]
+                    if not pieces:
+                        continue
+                    assigned = remaining.intersection(shapely.union_all(pieces))
+                    if assigned.area:
+                        buckets.setdefault(rid, []).extend(_lift_triangles(assigned, triangle))
+                        remaining = remaining.difference(assigned)
+                    if remaining.is_empty:
+                        break
+                if remaining.area:
+                    buckets.setdefault(None, []).extend(_lift_triangles(remaining, triangle))
+        for rid, pieces in buckets.items():
+            triangles = np.asarray(pieces)
+            areas = np.linalg.norm(np.cross(triangles[:, 1] - triangles[:, 0],
+                                            triangles[:, 2] - triangles[:, 0]), axis=1) / 2
+            positive = areas > 0
+            if not positive.any():
+                continue
+            triangles, areas = triangles[positive], areas[positive]
+            split_count += len(triangles)
+            if split_count > config.max_triangles:
+                raise InputError("max_triangles exceeded by regional surface partition; crop or explicitly raise limit")
+            strata.append((gi, rid, triangles, areas, float(areas.sum())))
+        original = np.linalg.norm(np.cross(geometry.triangles[:, 1] - geometry.triangles[:, 0],
+                                           geometry.triangles[:, 2] - geometry.triangles[:, 0]), axis=1).sum() / 2
+        partitioned = sum(s[4] for s in strata if s[0] == gi)
+        if not np.isclose(original, partitioned, rtol=1e-9, atol=1e-10):
+            raise InputError("Regional surface partition failed area conservation")
+    return strata
+
+
+def _lift_triangles(domain, triangle):
+    for part in shapely.get_parts(domain):
+        if part.geom_type != "Polygon" or not part.area:
+            continue
+        for face in shapely.get_parts(shapely.constrained_delaunay_triangles(part)):
+            uv = np.asarray(face.exterior.coords)[:3, :2]
+            yield triangle[0] + uv[:, :1] * (triangle[1] - triangle[0]) + uv[:, 1:] * (triangle[2] - triangle[0])
+
+
+def _minimum_counts(strata, geometries, regions, totals, config):
+    """Share sample minima between objects and regions via integral max flow.
+
+    Each positive-area stratum needs one sample. Additional samples can satisfy
+    a geometry and region deficit simultaneously; independent allocation can
+    incorrectly reject a sufficient sample budget. A tiny bipartite residual
+    graph maximizes this overlap, then area-apportions the unmatched deficits.
+    """
+    counts = np.ones(len(strata), dtype=int)
+    rows = {gi: [i for i, s in enumerate(strata) if s[0] == gi] for gi in range(len(geometries))}
+    columns = {rid: [i for i, s in enumerate(strata) if s[1] == rid] for rid, _ in regions}
+    row_deficit = {gi: max(0, (config.min_object_samples if g.object_id is not None else 1) - len(rows[gi]))
+                   for gi, g in enumerate(geometries)}
+    col_deficit = {rid: max(0, config.min_region_samples - len(indices)) if indices else 0
+                   for rid, indices in columns.items()}
+    error = "surface_samples too small for min_object_samples, min_region_samples and surface strata"
+    if len(strata) + max(sum(row_deficit.values()), sum(col_deficit.values())) > config.surface_samples:
+        raise InputError(error)
+    source, sink = ("source",), ("sink",)
+    residual = {source: {}, sink: {}}
+
+    def edge(a, b, capacity):
+        residual.setdefault(a, {})[b] = int(capacity)
+        residual.setdefault(b, {})[a] = 0
+
+    for gi, deficit in row_deficit.items():
+        if deficit:
+            edge(source, ("geometry", gi), deficit)
+    for rid, deficit in col_deficit.items():
+        if deficit:
+            edge(("region", rid), sink, deficit)
+    capacities = {}
+    for i, (gi, rid, *_) in enumerate(strata):
+        capacity = min(row_deficit[gi], col_deficit.get(rid, 0))
+        if capacity:
+            a, b = ("geometry", gi), ("region", rid)
+            edge(a, b, capacity)
+            capacities[i] = (a, b, capacity)
+    while True:
+        previous = {source: None}
+        queue = deque([source])
+        while queue and sink not in previous:
+            a = queue.popleft()
+            for b, capacity in residual[a].items():
+                if capacity > 0 and b not in previous:
+                    previous[b] = a
+                    queue.append(b)
+        if sink not in previous:
+            break
+        path, node = [], sink
+        while node != source:
+            path.append((previous[node], node))
+            node = previous[node]
+        amount = min(residual[a][b] for a, b in path)
+        for a, b in path:
+            residual[a][b] -= amount
+            residual[b][a] += amount
+    for i, (a, b, capacity) in capacities.items():
+        counts[i] += capacity - residual[a][b]
+    for gi, indices in rows.items():
+        minimum = config.min_object_samples if geometries[gi].object_id is not None else 1
+        counts[indices] += _apportion(max(0, minimum - counts[indices].sum()), totals[indices])
+    for rid, indices in columns.items():
+        if indices:
+            counts[indices] += _apportion(max(0, config.min_region_samples - counts[indices].sum()), totals[indices])
+    if counts.sum() > config.surface_samples:
+        raise InputError(error)
+    return counts
 
 
 def sample_surface(scene: Scene, config: Config) -> Surface:
     geometries = [g for g in scene.geometries if len(g.triangles)]
-    areas = [np.linalg.norm(np.cross(g.triangles[:, 1] - g.triangles[:, 0],
-                                     g.triangles[:, 2] - g.triangles[:, 0]), axis=1) / 2 for g in geometries]
-    totals = np.asarray([a.sum() for a in areas])
-    minimum = np.asarray([config.min_object_samples if g.object_id is not None else 1 for g in geometries])
-    if minimum.sum() > config.surface_samples:
-        raise InputError("surface_samples too small for min_object_samples and structure count")
-    fractional = (config.surface_samples - minimum.sum()) * totals / totals.sum()
-    counts = minimum + np.floor(fractional).astype(int)
-    for index in np.argsort(-(fractional - np.floor(fractional)), kind="stable")[:config.surface_samples - counts.sum()]:
-        counts[index] += 1
+    strata = _surface_strata(geometries, scene.regions, config)
+    totals = np.asarray([s[4] for s in strata])
+    # At least one sample per positive-area geometry/region stratum, plus both
+    # object and named-region minima. Extra samples never duplicate area weight.
+    counts = _minimum_counts(strata, geometries, scene.regions, totals, config)
+    counts += _apportion(config.surface_samples - counts.sum(), totals)
     rng = np.random.default_rng(config.seed)
     points, normals, weights, object_ids, object_areas = [], [], [], [], {}
-    for g, area, total, count in zip(geometries, areas, totals, counts):
+    regions = []
+    for (gi, rid, triangles, area, total), count in zip(strata, counts):
+        g = geometries[gi]
         chosen = rng.choice(len(area), size=int(count), p=area / total)
-        tri = g.triangles[chosen]
+        tri = triangles[chosen]
         u, v = np.sqrt(rng.random(int(count))), rng.random(int(count))
         points.extend((1 - u[:, None]) * tri[:, 0] + (u * (1 - v))[:, None] * tri[:, 1] + (u * v)[:, None] * tri[:, 2])
         normal = np.cross(tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0])
         normals.extend(normal / np.linalg.norm(normal, axis=1)[:, None])
         weights.extend([float(total / count)] * int(count))
         object_ids.extend([g.object_id] * int(count))
+        regions.extend([rid] * int(count))
         if g.object_id is not None:
             object_areas[g.object_id] = object_areas.get(g.object_id, 0) + float(total)
     points = np.asarray(points)
-    regions = []
-    for p in points:
-        assigned = next((rid for rid, poly in scene.regions if shapely.intersects_xy(poly, p[0], p[1])), None)
-        if assigned is None:
+    declared_ids = {rid for rid, _ in scene.regions}
+    for i, p in enumerate(points):
+        if regions[i] is None:
             # Remaining surfaces always have a denominator, even outside named rooms.
-            assigned = "tile_%d_%d" % tuple(np.floor(p[:2] / config.tile_m).astype(int))
-        regions.append(assigned)
+            tile = "tile_%d_%d" % tuple(np.floor(p[:2] / config.tile_m).astype(int))
+            while tile in declared_ids:
+                tile = "unnamed_" + tile
+            regions[i] = tile
+    audit = {"method": "geometry_named_region_area_stratified", "sample_count": len(points),
+             "stratum_count": len(strata), "min_region_samples": config.min_region_samples,
+             "input_area_m2": float(totals.sum()), "declared_regions": [
+                 {"region_id": rid, "sample_count": sum(int(n) for s, n in zip(strata, counts) if s[1] == rid),
+                  "input_area_m2": float(sum(s[4] for s in strata if s[1] == rid)),
+                  "status": "sampled" if any(s[1] == rid for s in strata) else "no_surface"}
+                 for rid, _ in scene.regions]}
     return Surface(points, np.asarray(normals), np.asarray(weights), object_ids, regions,
-                   BVH(np.concatenate([g.triangles for g in geometries])), object_areas)
+                   BVH(np.concatenate([g.triangles for g in geometries])), object_areas, audit)
 
 
 def evaluate_positions(positions, surface: Surface, objects: list[dict], config: Config):

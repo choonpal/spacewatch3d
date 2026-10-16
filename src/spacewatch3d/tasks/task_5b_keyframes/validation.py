@@ -80,6 +80,12 @@ def validate_outputs(plan, requests):
                 require(audit["probe_count"] <= plan["provenance"]["config"]["max_visibility_probes"], "visibility audit limit")
                 require(audit["sampled_observable_union_preserved"] is True and audit["best_object_quality_preserved"] is True,
                         "visibility audit preservation flags")
+                if "joint_object_threshold_patterns_preserved" in audit:
+                    require(audit["joint_object_threshold_patterns_preserved"] is True, "joint object preservation flag")
+                    require(type(audit["joint_object_added_count"]) is int and 0 <= audit["joint_object_added_count"] <= added,
+                            "joint object added count")
+                    actual = sum("joint_object_observation" in c["reasons"] for c in candidates.values())
+                    require(actual == audit["joint_object_added_count"], "joint object candidate reasons/count")
                 if "sampled_camera_connectivity_preserved" in audit:
                     require(audit["sampled_camera_connectivity_preserved"] is True, "camera connectivity preservation flag")
                     require(type(audit["connectivity_added_count"]) is int and 0 <= audit["connectivity_added_count"] <= added,
@@ -91,6 +97,39 @@ def validate_outputs(plan, requests):
     require(plan["coverage_report"]["content_count"] == sum("content" in v["roles"] for v in viewpoints.values()), "content count")
     require(plan["coverage_report"]["transition_count"] == sum("transition" in v["roles"] for v in viewpoints.values()), "transition count")
     selection = plan["coverage_report"].get("selection", {})
+    if "feasibility_repair_trigger" in selection:
+        trigger = selection["feasibility_repair_trigger"]
+        succeeded = selection["feasibility_repair_succeeded"]
+        require(isinstance(trigger, list) and len(trigger) == len(set(trigger))
+                and set(trigger) <= {"targets_unmet", "connection_failure"}, "feasibility repair trigger")
+        require(type(succeeded) is bool and (not succeeded or bool(trigger)), "feasibility repair status")
+        if succeeded:
+            require(not plan["failures"] and not plan["coverage_report"]["unmet_targets"], "successful repair has failures")
+    if "surface_sampling" in plan["coverage_report"]:
+        sampling = plan["coverage_report"]["surface_sampling"]
+        config = plan["provenance"]["config"]
+        require(sampling["method"] == "geometry_named_region_area_stratified", "surface sampling method")
+        require(type(sampling["sample_count"]) is int and sampling["sample_count"] == config["surface_samples"], "surface sample count")
+        require(type(sampling["stratum_count"]) is int and 0 < sampling["stratum_count"] <= sampling["sample_count"], "surface stratum count")
+        require(sampling["min_region_samples"] == config["min_region_samples"], "region sample minimum")
+        require(math.isclose(sampling["input_area_m2"], plan["coverage_report"]["input_area_m2"], rel_tol=1e-9, abs_tol=1e-10), "sampled input area")
+        regions = {r["region_id"]: r for r in plan["coverage_report"]["regions"]}
+        declared = sampling["declared_regions"]
+        require(len({r["region_id"] for r in declared}) == len(declared), "duplicate declared sampled region")
+        require({r["region_id"] for r in declared} == {rid for rid, r in regions.items() if r.get("declared")}, "declared region coverage partition")
+        require(sum(r["sample_count"] for r in regions.values()) == sampling["sample_count"], "region sample count sum")
+        for item in declared:
+            region = regions[item["region_id"]]
+            count = item["sample_count"]
+            require(type(count) is int and count >= 0 and count == region["sample_count"], "declared region sample count")
+            require(math.isclose(item["input_area_m2"], region["input_area_m2"], rel_tol=1e-9, abs_tol=1e-10), "declared region input area")
+            if item["status"] == "no_surface":
+                require(count == item["input_area_m2"] == 0 and region["assessment_status"] == "no_surface", "empty region status")
+                require(region["coverage_observable"] is None and region["coverage_total"] is None, "empty region cannot claim coverage")
+                require("region_unassessed:" + item["region_id"] in plan["coverage_report"]["unmet_targets"], "unassessed region missing failure")
+            else:
+                require(item["status"] == region["assessment_status"] == "sampled"
+                        and count >= config["min_region_samples"] and item["input_area_m2"] > 0, "declared region sample minimum/status")
     for key, expected in (
         ("detour_link_count", sum(link.get("connection_method") == "renderable_candidate_detour" for link in plan["tour_links"])),
         ("connected_component_repair_count", sum(v.get("selection_method") == "connected_component_repair" for v in viewpoints.values() if "content" in v["roles"])),

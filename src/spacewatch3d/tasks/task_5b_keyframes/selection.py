@@ -66,6 +66,28 @@ class Objective:
         return utility, report
 
 
+def _prune_redundant(selected, measure):
+    """Recheck routed goals after each deletion until no core view is removable.
+
+    Routed utility is not monotone: deleting a core view can change the order and
+    the transition images. A previously rejected deletion may then become valid.
+    Every accepted step removes a core view, so this loop is finite.
+    """
+    selected = list(selected)
+    while True:
+        changed = False
+        for chosen in list(reversed(selected)):
+            trial = [i for i in selected if i != chosen]
+            current_report = measure(selected)[1]
+            trial_report = measure(trial)[1]
+            if (not trial_report["unmet_targets"] and not trial_report.get("selection_connection_failures")
+                    and trial_report.get("selection_image_count", len(trial)) <= current_report.get("selection_image_count", len(selected))):
+                selected = trial
+                changed = True
+        if not changed:
+            return selected
+
+
 def select_keyframes(objective: Objective, evaluate=None):
     """Use pure gain, or exact routed-set gain per additional unique image.
 
@@ -109,13 +131,7 @@ def select_keyframes(objective: Objective, evaluate=None):
         selected.append(chosen)
         candidates.remove(chosen)
     if not measure(selected)[1]["unmet_targets"]:
-        for chosen in list(reversed(selected)):
-            trial = [i for i in selected if i != chosen]
-            current_report = measure(selected)[1]
-            trial_report = measure(trial)[1]
-            if (not trial_report["unmet_targets"] and not trial_report.get("selection_connection_failures")
-                    and trial_report.get("selection_image_count", len(trial)) <= current_report.get("selection_image_count", len(selected))):
-                selected = trial
+        selected = _prune_redundant(selected, measure)
         if evaluate:
             # Exactly one best improving exchange, not an unbounded optimizer.
             current_report = measure(selected)[1]
@@ -136,4 +152,8 @@ def select_keyframes(objective: Objective, evaluate=None):
                 history[new] = {"selection_step": None, "marginal_gain_at_selection": None,
                                 "selection_method": "route_cost_local_swap", "replaced_index": old,
                                 "marginal_image_count_at_selection": None}
+                # A replacement can make other core views redundant. Rebuild the
+                # routed set for every deletion; never delete transition images
+                # independently of their required graph connection.
+                selected = _prune_redundant(selected, measure)
     return selected, history, measure(selected)[1]

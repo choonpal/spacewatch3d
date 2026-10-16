@@ -63,6 +63,7 @@ class Config:
     max_grid_cells: int = 250000
     max_route_nodes: int = 20000
     max_candidates: int = 800
+    max_visibility_probes: int = 2000
     max_triangles: int = 200000
     width: int = 4096
     height: int = 2048
@@ -93,7 +94,7 @@ class Config:
         positive = ("grid_m", "candidate_spacing_m", "candidate_min_spacing_m", "max_link_m",
                     "max_view_distance_m", "tile_m", "surface_samples", "min_object_samples",
                     "solid_angle_target_sr", "max_grid_cells", "max_route_nodes",
-                    "max_candidates", "max_triangles", "width", "height")
+                    "max_candidates", "max_visibility_probes", "max_triangles", "width", "height")
         if any(getattr(result, name) <= 0 for name in positive):
             raise InputError("Lengths, sample counts and resource limits must be positive")
         if result.camera_height_m is not None and result.camera_height_m <= 0:

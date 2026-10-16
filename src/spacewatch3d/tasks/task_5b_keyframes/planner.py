@@ -10,7 +10,7 @@ import os
 import numpy as np
 
 from .importance import resolve_importance
-from .candidates import refine_visibility_candidates
+from .candidates import audit_visibility_candidates, refine_visibility_candidates
 from .loader import load_scene
 from .models import Config, InputError, read_json
 from .routing import build_route, connect_tour, shortest
@@ -81,6 +81,12 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
         refined_visible, refined_quality = evaluate_positions(route.positions[refined], surface, objects, config)
         all_visible = np.concatenate([all_visible, refined_visible])
         all_quality = np.concatenate([all_quality, refined_quality])
+    audited, audited_visible, audited_quality = audit_visibility_candidates(
+        route, all_visible, all_quality, surface.weights, config,
+        lambda nodes: evaluate_positions(route.positions[nodes], surface, objects, config), banned)
+    if audited:
+        all_visible = np.concatenate([all_visible, audited_visible])
+        all_quality = np.concatenate([all_quality, audited_quality])
     allowed_indices = [i for i, node in enumerate(route.candidates) if node not in banned]
     candidates = [route.candidates[i] for i in allowed_indices]
     visible, quality = all_visible[allowed_indices], all_quality[allowed_indices]
@@ -181,7 +187,7 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
             "tour_links": links, "coverage_report": report, "unobservable_items": unobservable,
             "failures": failures, "warnings": warnings,
             "excluded_viewpoints": [{"viewpoint_id": route.viewpoint_id(n), "reason": "renderer_failure_or_quality_rejection"} for n in sorted(banned)],
-            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.2.0",
+            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.3.0",
                            "dependency_versions": versions, "importance_cache": importance_cache or {},
                            "feedback_manifest": str(Path(feedback_path).resolve()) if feedback_path else None,
                            "coordinate_policy": "externally_normalized_metric_z_up",

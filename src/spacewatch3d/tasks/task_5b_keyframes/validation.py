@@ -49,12 +49,31 @@ def validate_outputs(plan, requests):
         sampling = plan["candidate_report"]
         candidates = {c["candidate_id"]: c for c in sampling["candidates"]}
         require(len(candidates) == len(sampling["candidates"]), "duplicate candidate")
-        require(len(candidates) == sum(sampling[key] for key in ("uniform_seed_count", "geometry_added_count", "visibility_added_count")), "candidate refinement counts")
+        require(len(candidates) == sum(sampling[key] for key in ("uniform_seed_count", "geometry_added_count", "visibility_added_count"))
+                + sampling.get("visibility_audit_added_count", 0), "candidate refinement counts")
         require(len(candidates) == plan["coverage_report"]["candidate_count_before_feedback"], "candidate count/report")
         for candidate in candidates.values():
             require(candidate["route_node_id"] in nodes, "candidate route node")
             require(bool(candidate["reasons"]) and all(isinstance(reason, str) for reason in candidate["reasons"]), "candidate reasons")
         require(all(v["candidate_id"] in candidates for v in viewpoints.values()), "final image must be a scored candidate")
+        if "visibility_audit" in sampling:
+            audit = sampling["visibility_audit"]
+            added = sampling["visibility_audit_added_count"]
+            require(audit["status"] in ("complete", "disabled"), "visibility audit status")
+            require(type(audit["probe_count"]) is int and audit["probe_count"] >= 0
+                    and type(added) is int and 0 <= added <= audit["probe_count"], "visibility audit counts")
+            if audit["status"] == "disabled":
+                require(audit["probe_count"] == added == 0, "disabled visibility audit has probes")
+            else:
+                for field in ("eligible_route_node_count", "baseline_candidate_count", "excluded_route_node_count"):
+                    require(type(audit[field]) is int and audit[field] >= 0, "visibility audit node counts")
+                require(audit["baseline_candidate_count"] + audit["probe_count"] == audit["eligible_route_node_count"], "visibility audit eligible count")
+                require(audit["eligible_route_node_count"] + audit["excluded_route_node_count"] == len(nodes), "visibility audit graph count")
+                require(audit["excluded_route_node_count"] == len(plan["excluded_viewpoints"]), "visibility audit excluded count")
+                require(audit["baseline_candidate_count"] + added == plan["coverage_report"]["candidate_count_after_feedback"], "visibility audit candidate count")
+                require(audit["probe_count"] <= plan["provenance"]["config"]["max_visibility_probes"], "visibility audit limit")
+                require(audit["sampled_observable_union_preserved"] is True and audit["best_object_quality_preserved"] is True,
+                        "visibility audit preservation flags")
     require(plan["coverage_report"]["unique_image_count"] == len(viewpoints), "final image count")
     require(plan["coverage_report"]["content_count"] == sum("content" in v["roles"] for v in viewpoints.values()), "content count")
     require(plan["coverage_report"]["transition_count"] == sum("transition" in v["roles"] for v in viewpoints.values()), "transition count")

@@ -7,6 +7,7 @@
   "candidate_min_spacing_m": 0.15,
   "candidate_narrow_clearance_m": 0.6,
   "candidate_visibility_change_threshold": 0.15,
+  "max_visibility_probes": 2000,
   "route_aware_selection": true,
   "max_link_m": 2.0,
   "surface_samples": 600,

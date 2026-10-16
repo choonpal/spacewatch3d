@@ -11,6 +11,7 @@
     "gravity_aligned": true
   },
   "geometry_complete": true,
+  "camera": {"height_above_floor_m": 1.5},
   "levels": 1,
   "floor": {
     "confirmed": true,

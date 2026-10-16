@@ -1,6 +1,6 @@
 """Conservative walkable raster, medial-axis graph and collision-safe paths."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import heapq
 import math
 import numpy as np
@@ -79,6 +79,47 @@ def restore_path(previous, source, target):
     return list(reversed(path))
 
 
+def nearest_candidates(adjacency, candidates):
+    """Graph Voronoi ownership; never compare distances through walls."""
+    distance, owner = {}, {}
+    queue = []
+    for node in candidates:
+        distance[node], owner[node] = 0.0, node
+        heapq.heappush(queue, (0.0, node, node))
+    while queue:
+        cost, source, node = heapq.heappop(queue)
+        if (cost, source) != (distance[node], owner[node]):
+            continue
+        for other, length in adjacency[node]:
+            trial = (cost + length, source)
+            if trial < (distance.get(other, math.inf), owner.get(other, math.inf)):
+                distance[other], owner[other] = trial
+                heapq.heappush(queue, (*trial, other))
+    return distance, owner
+
+
+def add_candidates(route, nodes, spacing, reason, config, force=False):
+    distance, _ = nearest_candidates(route.adjacency, route.candidates)
+    known, added = set(route.candidates), []
+    for node in sorted(set(nodes)):
+        if node in known:
+            if reason not in route.candidate_reasons[node]:
+                route.candidate_reasons[node].append(reason)
+            continue
+        if not force and distance.get(node, math.inf) + 1e-12 < spacing:
+            continue
+        if len(route.candidates) >= config.max_candidates:
+            raise InputError("max_candidates exceeded; adjust candidate sampling settings")
+        route.candidates.append(node)
+        route.candidate_reasons[node] = [reason]
+        known.add(node)
+        added.append(node)
+        local, _ = shortest(route.adjacency, node)
+        for other, value in local.items():
+            distance[other] = min(distance.get(other, math.inf), value)
+    return added
+
+
 @dataclass
 class Route:
     origin: np.ndarray
@@ -91,6 +132,8 @@ class Route:
     adjacency: dict
     candidates: list[int]
     obstacles: object
+    candidate_reasons: dict = field(default_factory=dict)
+    candidate_sampling: dict = field(default_factory=dict)
 
     def node_id(self, node):
         r, c = self.cells[node]
@@ -190,9 +233,10 @@ def build_route(scene: Scene, config: Config) -> Route:
     lookup = {cell: i for i, cell in enumerate(cells)}
     adjacency = {i: [(lookup[other], length * config.grid_m) for other, length in neighbors(cell, walkable)
                      if other in lookup] for i, cell in enumerate(cells)}
+    camera_height = scene.camera_height_m if config.camera_height_m is None else config.camera_height_m
     positions = np.asarray([[origin[0] + (c + 0.5) * config.grid_m,
                              origin[1] + (r + 0.5) * config.grid_m,
-                             scene.floor_height + config.camera_height_m] for r, c in cells]).reshape((-1, 3))
+                             scene.floor_height + camera_height] for r, c in cells]).reshape((-1, 3))
     components = [int(labels[cell]) for cell in cells]
     # Deterministic graph-distance sampling, not Euclidean thinning across walls.
     nearest, candidates = np.full(len(cells), np.inf), []
@@ -205,11 +249,24 @@ def build_route(scene: Scene, config: Config) -> Route:
         distances, _ = shortest(adjacency, node)
         for other, value in distances.items():
             nearest[other] = min(nearest[other], value)
-    return Route(origin, config.grid_m, walkable, clearance, cells, positions, components,
-                 adjacency, candidates, obstacles)
+    route = Route(origin, config.grid_m, walkable, clearance, cells, positions, components,
+                  adjacency, candidates, obstacles)
+    route.candidate_reasons = {node: ["uniform_seed"] for node in candidates}
+    route.candidate_sampling = {"strategy": "adaptive" if config.adaptive_candidates else "uniform",
+                                "uniform_seed_count": len(candidates), "geometry_added_count": 0,
+                                "visibility_added_count": 0,
+                                "effective_min_spacing_m": max(config.grid_m, config.candidate_min_spacing_m)}
+    if config.adaptive_candidates:
+        before = len(route.candidates)
+        anchors = [node for node, edges in adjacency.items() if len(edges) != 2]
+        add_candidates(route, anchors, config.grid_m, "junction_or_endpoint", config, force=True)
+        narrow = [node for node, cell in enumerate(cells) if clearance[cell] <= config.candidate_narrow_clearance_m]
+        add_candidates(route, narrow, max(config.grid_m, config.candidate_min_spacing_m), "narrow_passage", config)
+        route.candidate_sampling["geometry_added_count"] = len(route.candidates) - before
+    return route
 
 
-def connect_tour(route: Route, selected: list[int], config: Config, banned: set[int], start=None):
+def connect_tour(route: Route, selected: list[int], config: Config, banned: set[int], start=None, paths_from=None):
     """Nearest-neighbor graph walk. Intermediate assets are unique, visits may repeat."""
     visits, links, transitions, failures = [], [], set(), []
     renderable = set(route.candidates) - banned
@@ -222,7 +279,7 @@ def connect_tour(route: Route, selected: list[int], config: Config, banned: set[
         visits.append(current)
         remaining.remove(current)
         while remaining:
-            distances, previous = shortest(route.adjacency, current)
+            distances, previous = paths_from(current) if paths_from else shortest(route.adjacency, current)
             target = min(remaining, key=lambda n: (distances.get(n, math.inf), n))
             path = restore_path(previous, current, target)
             lengths = [0.0]

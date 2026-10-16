@@ -1,6 +1,7 @@
 """Public planning API. Inputs stay read-only; output is a new directory."""
 
-from dataclasses import asdict
+from dataclasses import asdict, replace
+from functools import lru_cache
 from pathlib import Path
 import hashlib
 import importlib.metadata
@@ -9,9 +10,10 @@ import os
 import numpy as np
 
 from .importance import resolve_importance
+from .candidates import refine_visibility_candidates
 from .loader import load_scene
 from .models import Config, InputError, read_json
-from .routing import build_route, connect_tour
+from .routing import build_route, connect_tour, shortest
 from .selection import Objective, select_keyframes
 from .validation import validate_outputs
 from .visibility import evaluate_positions, sample_surface
@@ -62,32 +64,57 @@ def read_feedback(path, scene, route):
 
 
 def create_plan(scene_path, config=None, importance_cache=None, importance_provider=None, feedback_path=None):
-    """Return (plan, requests). Does not write files or call an LLM/renderer."""
+    """Return (plan, requests); only an explicitly injected provider may call an LLM."""
     config = Config.from_dict(asdict(config) if isinstance(config, Config) else config)
     scene = load_scene(Path(scene_path), config)
+    config = replace(config, camera_height_m=scene.camera_height_m)
     objects, warnings = resolve_importance(scene.objects, config, importance_cache, importance_provider)
+    if scene.provenance["camera_height"]["source"] == "fallback_unverified":
+        warnings.append({"code": "camera_height_fallback", "message": "No measured camera height supplied; using unverified 1.5m above floor"})
     route = build_route(scene, config)
     feedback, banned, feedback_warnings = read_feedback(feedback_path, scene, route)
     warnings.extend(feedback_warnings)
     surface = sample_surface(scene, config)
     all_visible, all_quality = evaluate_positions(route.positions[route.candidates], surface, objects, config)
+    refined = refine_visibility_candidates(route, all_visible, all_quality, surface.weights, config)
+    if refined:
+        refined_visible, refined_quality = evaluate_positions(route.positions[refined], surface, objects, config)
+        all_visible = np.concatenate([all_visible, refined_visible])
+        all_quality = np.concatenate([all_quality, refined_quality])
     allowed_indices = [i for i, node in enumerate(route.candidates) if node not in banned]
     candidates = [route.candidates[i] for i in allowed_indices]
     visible, quality = all_visible[allowed_indices], all_quality[allowed_indices]
     objective = Objective(visible, quality, surface.weights, surface.regions, objects, config)
-    chosen, history, content_report = select_keyframes(objective)
+    lookup = {node: i for i, node in enumerate(candidates)}
+
+    @lru_cache(maxsize=32)
+    def paths_from(node):
+        return shortest(route.adjacency, node)
+
+    @lru_cache(maxsize=256)
+    def evaluate_routed_set(key):
+        nodes = [candidates[i] for i in key]
+        _, tour_links, transition_nodes, connection_failures = connect_tour(route, nodes, config, banned, scene.start, paths_from)
+        final = set(nodes) | set(transition_nodes)
+        utility, selection_report = objective.measure([lookup[node] for node in sorted(final)])
+        selection_report.update(selection_image_count=len(final),
+                                selection_tour_length_m=sum(link["length_m"] for link in tour_links),
+                                selection_connection_failures=[f["code"] for f in connection_failures])
+        return utility, selection_report
+
+    evaluator = (lambda selected: evaluate_routed_set(tuple(sorted(selected)))) if config.route_aware_selection else None
+    chosen, history, _ = select_keyframes(objective, evaluator)
+    content_report = objective.measure(chosen)[1]
     selected_nodes = [candidates[i] for i in chosen]
-    visits, links, transitions, failures = connect_tour(route, selected_nodes, config, banned, scene.start)
+    visits, links, transitions, failures = connect_tour(route, selected_nodes, config, banned, scene.start, paths_from)
     final_nodes = sorted(set(selected_nodes) | set(transitions))
-    extra_visible, extra_quality = evaluate_positions(route.positions[transitions], surface, objects, config)
-    # Transition images count and can only improve the final reported coverage.
-    final_objective = Objective(np.concatenate([visible, extra_visible]), np.concatenate([quality, extra_quality]),
-                                surface.weights, surface.regions, objects, config)
-    # Keep the pre-transition denominator: never redefine targets to selected views.
-    final_objective.observable = objective.observable
-    final_objective.possible_objects = objective.possible_objects
-    report = final_objective.measure(chosen + list(range(len(candidates), len(candidates) + len(transitions))))[1]
+    # Every transition is an already-scored candidate. Never redefine coverage
+    # denominators to just the selected images or hide unobservable geometry.
+    report = objective.measure([lookup[node] for node in final_nodes])[1]
     report["content_only"] = content_report
+    report["selection"] = {"strategy": "routed_gain_per_added_image_with_one_swap" if evaluator else "marginal_gain",
+                           "tour_length_m": sum(link["length_m"] for link in links),
+                           "local_swap_applied": any(history[i]["selection_method"] == "route_cost_local_swap" for i in chosen)}
     report["candidate_count_before_feedback"] = len(route.candidates)
     report["candidate_count_after_feedback"] = len(candidates)
     report["observable_area_before_feedback_m2"] = float(surface.weights[np.any(all_visible, axis=0)].sum()) if len(all_visible) else 0
@@ -108,15 +135,11 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
         if not objective.possible_objects[i]:
             unobservable.append({"instance_id": obj["instance_id"], "must_see": obj["must_see"],
                                  "reason": "No eligible candidate reaches object quality threshold"})
-    lookup = {node: i for i, node in enumerate(candidates)}
-    transition_lookup = {node: i for i, node in enumerate(transitions)}
     viewpoints = []
     for node in final_nodes:
-        if node in lookup:
-            q = quality[lookup[node]]
-        else:
-            q = extra_quality[transition_lookup[node]]
+        q = quality[lookup[node]]
         content = node in selected_nodes
+        selection = history[lookup[node]] if content else {}
         record = feedback.get(route.viewpoint_id(node), {})
         succeeded = record.get("render_status") == "succeeded" and node not in banned
         viewpoints.append({"viewpoint_id": route.viewpoint_id(node), "candidate_id": route.candidate_id(node),
@@ -125,9 +148,12 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
                                                      [0, 0, 1, float(route.positions[node, 1])],
                                                      [0, -1, 0, float(route.positions[node, 2])], [0, 0, 0, 1]],
                            "roles": ["content" if content else "transition"], "score_basis": "geometry",
-                           "selection_step": history[lookup[node]]["selection_step"] if content else None,
-                           "marginal_gain_at_selection": history[lookup[node]]["marginal_gain_at_selection"] if content else None,
-                           "reason": "marginal_space_object_gain" if content else "graph_path_max_link_spacing",
+                           "selection_step": selection.get("selection_step"),
+                           "marginal_gain_at_selection": selection.get("marginal_gain_at_selection"),
+                           "marginal_image_count_at_selection": selection.get("marginal_image_count_at_selection"),
+                           "selection_method": selection.get("selection_method"),
+                           "replaced_viewpoint_id": route.viewpoint_id(candidates[selection["replaced_index"]]) if "replaced_index" in selection else None,
+                           "reason": selection.get("selection_method", "graph_path_max_link_spacing"),
                            "object_observations": [{"instance_id": obj["instance_id"], "class_name": obj["class_name"],
                                                     "importance": obj["importance"], "importance_source": obj["importance_source"],
                                                     "importance_reason": obj["importance_reason"],
@@ -146,13 +172,16 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
             "planning_status": "incomplete" if failures else "complete",
             "quality_status": "partial" if any(v["render_status"] == "succeeded" for v in viewpoints) else "unverified",
             "publication_ready": False, "route_graph": route.export(), "viewpoints": viewpoints,
+            "candidate_report": {**route.candidate_sampling,
+                                 "candidates": [{"candidate_id": route.candidate_id(n), "route_node_id": route.node_id(n),
+                                                 "reasons": route.candidate_reasons[n]} for n in route.candidates]},
             "object_importances": objects,
             "tour_visits": [{"visit_id": f"visit_{i:05d}", "viewpoint_id": route.viewpoint_id(n),
                              "component_id": route.component_id(n)} for i, n in enumerate(visits)],
             "tour_links": links, "coverage_report": report, "unobservable_items": unobservable,
             "failures": failures, "warnings": warnings,
             "excluded_viewpoints": [{"viewpoint_id": route.viewpoint_id(n), "reason": "renderer_failure_or_quality_rejection"} for n in sorted(banned)],
-            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.1.0",
+            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.2.0",
                            "dependency_versions": versions, "importance_cache": importance_cache or {},
                            "feedback_manifest": str(Path(feedback_path).resolve()) if feedback_path else None,
                            "coordinate_policy": "externally_normalized_metric_z_up",

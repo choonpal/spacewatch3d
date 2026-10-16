@@ -12,7 +12,7 @@
 - **변경 경계:** 구현은 Task5b 디렉터리와 전용 테스트에 한정한다. 다른 task의 코드, 공통 schema·registry·validator·fixture는 변경하지 않는다. 공통 통합은 [협업 규칙](../../../../CONTRIBUTING.md)에 따라 별도로 합의한다.
 - **1차 대상:** 단일 층의 비교적 평평한 실내 공간이다. 계단·다층 공간은 미지원으로 명시한다.
 
-이 문서의 `필수`는 구현 시 충족해야 하는 조건이다. `제안`은 아직 생산·소비 task 간 확정되지 않은 인터페이스 또는 실험용 초기값이다.
+이 문서의 `필수`는 구현 시 충족해야 하는 조건이다. `제안`은 아직 생산·소비 task 간 확정되지 않은 인터페이스 또는 실험용 초기값이다. 이어서 작업할 때는 짧은 [개선 작업 메모](DEVELOPMENT_NOTES.md)의 결정사항과 완료 상태를 먼저 확인한다.
 
 ## 프로토타입 실행
 
@@ -35,7 +35,9 @@ python -m unittest discover -s tests -v
 
 선택 인자: `--config planning.config.example.json`, `--importance-cache 중요도.json`, `--feedback 피드백.json`. 모두 task 전용 CLI의 인자이며 공통 `spacewatch3d run`의 인자가 아니다.
 
-합성 예시는 문으로 연결된 두 공간·벽·객체 3개를 사용한다. `box`는 직접 정의한 합성 메시이며 실제 재구성 성능의 증거가 아니다. 기본값은 격자 0.15m·후보 간격 0.6m이고 나머지는 `models.Config`를 따른다. 아래 설계의 초기 제안값과 구별한다.
+합성 예시는 문으로 연결된 두 공간·벽·객체 3개를 사용한다. `box`는 직접 정의한 합성 메시이며 실제 재구성 성능의 증거가 아니다. 기본값은 격자 0.15m·초기 후보 간격 0.6m·보강 간격 0.15m이며, 적응형 후보와 이동용 장수를 고려한 선정을 기본 사용한다. 나머지는 `models.Config`를 따른다. 아래 설계의 초기 제안값과 구별한다.
+
+`adaptive_candidates=false`, `route_aware_selection=false`로 기존 고정 후보·정보 증가량 방식을 비교할 수 있다. 두 옵션은 독립적이다. 작은 예시 맵의 밀도/선정 비교는 `examples/compare_planning.py --scene 장면.json --output 새디렉터리`로 실행한다. 같은 표면 표본과 전체 경로 노드의 공통 관측 가능 분모를 사용하며, 같은 이미지 장수 비교나 실제 이미지 품질 평가를 대신하지 않는다.
 
 ### 실제 입력 형식
 
@@ -43,6 +45,7 @@ python -m unittest discover -s tests -v
 
 - `coordinates`: 계획 좌표계의 `frame_id`, `units="m"`, `up_axis="+Z"`, `gravity_aligned=true`. 알고리즘이 스케일이나 중력 방향을 추측하지 않는다.
 - `floor`: `confirmed=true`, 하나의 수평 높이 `height_m`, XY 외곽 `polygon`과 선택적 `holes`. 구멍은 미확인/통행 금지 영역이다. 불규칙 바닥과 다층은 아직 지원하지 않는다.
+- `camera.height_above_floor_m`: 선택적 실제 촬영/관람 높이. 우선순위는 명시적 `config.camera_height_m` → 이 필드 → 미검증 기본 1.5m와 경고다. 설정의 null은 장면 값을 사용한다는 뜻이다. 해석된 높이와 출처는 `provenance.camera_height`에 기록하고, 후보 Z는 바닥 높이와 합산한다. 몸 높이 검사 범위 밖이면 입력 오류이며 `body_max_m` 등을 실제 조건에 맞춰 함께 설정해야 한다.
 - `geometry_complete=true`: 바닥·벽·가림/장애물 구조를 전달했음을 입력 생산자가 명시적으로 확인한다. 코드가 실제 공간의 누락 여부를 자동으로 보증하지는 않는다.
 - `objects`: `instance_id`, `class_name` 또는 null, `mesh_uri` 또는 `triangles` 또는 `box`, 선택적 `world_from_object`, `importance`, `must_see`, `description`.
 - `structures`: 같은 기하 형식. `solid=false`인 장면 구조 메시에는 몸 높이 구간의 삼각형만 투영한다. 기둥 등 **부피가 찬 개별 장애물**은 `solid=true`로 표시한다. `box`는 기본적으로 solid이다. 방 전체 메시를 solid로 표시하면 내부까지 차단할 수 있으므로 금지한다.
@@ -53,7 +56,9 @@ python -m unittest discover -s tests -v
 
 기존 Task4 결과를 쓸 때는 `objects` 대신 `objects_manifest`를 지정하면 Task3의 객체명을 ID로 결합하고 Task2까지 scene/capture/synthetic 연속성을 검사한다. 다른 task의 내부 코드는 import하지 않는다. 상위 세계 좌표계가 이미 계획 좌표계와 같은 미터·+Z 좌표이면 그대로 사용한다. 다르면 실측으로 결정한 4x4 `planning_from_world`를 명시한다. 이 행렬은 객체 변환보다 나중에 적용되며, 반사·비균일 스케일은 거부한다. 알려진 `scale_to_meters`와 행렬 스케일이 일치해야 한다. 스케일이 미확인이면 `source_scale_confirmed=true`와 **실제로 보정한** 행렬이 필요하며 임의로 true를 지정하면 안 된다. `floor`·`structures`·`regions`는 이미 계획 좌표계여야 한다.
 
-`object_overrides`는 알려진 `instance_id`를 키로 `importance`, `must_see`, `description`만 덮어쓸 수 있다. 상위 manifest를 편집하지 않고 필수 객체나 수동 중요도를 설정하는 용도다.
+벽·천장은 공간 커버리지로만 평가한다. `objects`로 들어와도 이름이 `wall`, `walls`, `ceiling`, `ceilings`, `벽`, `천장`인 항목은 구조물로 처리하고 의미 점수와 LLM 요청에서 제외한다. 해당 ID는 `provenance.coverage_only_objects`에 남긴다. 다른 이름을 자동 추론하지 않으므로 구조물은 명시적으로 `structures`에 전달하는 것이 권장된다. 구조물의 `must_see`나 중요도 override를 조용히 무시하지 않고 오류로 보고한다.
+
+`object_overrides`는 벽·천장을 제외한 의미 객체의 알려진 `instance_id`를 키로 `importance`, `must_see`, `description`만 덮어쓸 수 있다. 상위 manifest를 편집하지 않고 필수 객체나 수동 중요도를 설정하는 용도다.
 
 ### LLM 중요도 연결
 
@@ -86,7 +91,7 @@ generate("scene.json", "outputs/task5b-run-001", importance_provider=provider)
 - 원본 카메라 관측 범위에 의한 합성 가능성 제한, 실제 360° 이미지 합성, 상태 가독성/합성 오류 검사와 게시용 exporter.
 - 실제 대형 메시의 속도·메모리 평가, 실제 공간의 비교 실험과 최종 가중치 튜닝.
 
-자원 상한을 넘으면 데이터를 조용히 버리지 않고 오류를 낸다. 광선 검사는 CPU BVH와 양면 삼각형 교차를 사용한다. 공간 지표는 면적 가중 표면 샘플의 근사치이므로 작은 물체·얇은 틈은 해상도와 표본 수에 민감하다. 고정 시드로 같은 입력의 재현성을 확보하지만 서로 다른 삼각분할에서 같은 샘플을 보장하지는 않는다. 경로도 격자 해상도에 따른 근사이며 실제 보행 안전을 보증하는 시스템이 아니다.
+자원 상한을 넘으면 데이터를 조용히 버리지 않고 오류를 낸다. 광선 검사는 CPU BVH와 양면 삼각형 교차를 사용한다. 공간 지표는 면적 가중 표면 샘플의 근사치이므로 작은 물체·얇은 틈은 해상도와 표본 수에 민감하다. 가시성 변화에 따른 후보 보강은 한 번 수행하며, 양 끝 후보에서 모두 안 보이는 좁은 틈의 정보를 반드시 발견한다고 보장하지 않는다. 고정 시드로 같은 입력의 재현성을 확보하지만 서로 다른 삼각분할에서 같은 샘플을 보장하지는 않는다. 경로도 격자 해상도에 따른 근사이며 실제 보행 안전을 보증하는 시스템이 아니다. 정보 보존을 검사하는 가지 정리와 경로 평활화는 아직 구현하지 않았다.
 
 참고 구현 문서: [scikit-image medial_axis](https://scikit-image.org/docs/stable/api/skimage.morphology.html#skimage.morphology.medial_axis), [SciPy distance_transform_edt](https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.distance_transform_edt.html), [Trimesh Scene.to_mesh](https://trimesh.org/trimesh.scene.scene.html#trimesh.scene.scene.Scene.to_mesh).
 
@@ -186,8 +191,10 @@ Task4의 GLB 실험에는 노드 회전이 있고 OBJ는 원래 세계 좌표를
 2. 장애물 주변 여유 거리를 적용하고 **확인된 바닥 중 장애물·미확인 영역이 아닌 곳만** 이동 가능으로 둔다.
 3. 거리 변환과 medial axis로 중심선을 추출하고 분기·끝점·연결 폴리라인을 가진 그래프로 만든다.
 4. 벽을 관통하는 직선 연결과 모서리 대각선 통과를 금지한다. 서로 떨어진 공간은 별도 성분으로 남긴다.
-5. 경로를 일정 간격으로 샘플링하고 설정한 눈높이에 후보 카메라를 배치한다.
+5. 초기 일정 간격 후보에 분기·끝점과 좁은 구간의 후보를 추가한다. 인접 후보의 면적 가중 가시 표면 차이 또는 객체 품질 차이가 설정 임계값 이상인 경로 구간을 한 번 더 촘촘하게 보강한다. 거리 비교는 벽을 가로지르는 직선 거리가 아니라 그래프 거리다.
 6. 전체 360°이므로 같은 위치의 yaw만 다른 후보를 중복 생성하지 않는다. 초기 표시 방향만 별도로 정한다.
+
+보강 간격은 `max(grid_m, candidate_min_spacing_m)`이며 분기·끝점은 보존한다. `candidate_narrow_clearance_m`는 여유 거리 적용 후 격자의 거리 변환 값 기준이고, `candidate_visibility_change_threshold`는 가시 표면의 면적 가중 대칭 차이/합집합 또는 객체 품질 차이의 임계값이다. 모든 추가 후보의 점수를 계산한 뒤 관측 가능 분모를 고정한다. 원인과 단계별 개수는 `candidate_report`에 기록한다.
 
 물체 중심점들의 평균은 중앙 경로가 아니다. 경로 평활화 후에도 충돌을 재검사한다. 후보 간격은 탐색 해상도이며 선정 위치 사이의 강제 최소 거리와 구분한다.
 
@@ -215,11 +222,13 @@ gain(candidate | S) = F(S + candidate) - F(S)
 
 빈 선정 집합의 커버리지와 객체 품질은 0이다. 의미 객체 중요도 합이 0이면 객체 항을 적용하지 않고 공간 항으로 재정규화한다.
 
-1. 정보 증가량이 가장 큰 후보를 하나 선택한다.
+1. 기본 모드에서는 후보를 추가했을 때의 실제 그래프 연결과 이동용 위치까지 계산한다. 추가 정보량을 추가 고유 이미지 수로 나눈 값이 큰 후보를 선택한다. 추가 장수의 분모는 최소 1이며, 양의 증가량 후보 중 연결 가능한 대안을 우선한다. 기존 모드는 정보 증가량만 사용한다.
 2. 이미 본 표면과 이미 잘 보이는 객체를 반영해 나머지 증가량을 갱신한다.
-3. 공간 전체·구역별 목표, 충분히 관측된 객체 중요도 비율, 필수 객체 조건까지 확인한다.
+3. 공간 전체·구역별 목표, 충분히 관측된 객체 중요도 비율, 필수 객체 조건까지 확인한다. 기본 모드에서는 실제 제공할 이동용 이미지의 정보도 포함하며 `content_only` 결과는 별도로 기록한다.
 4. 모든 적용 목표를 만족하면 멈춘다. 후보 소진 또는 수치적으로 증가량이 없어도 멈추되 목표 미달이면 `incomplete`이다.
-5. 목표를 보존하면서 불필요한 위치를 역순으로 제거한다. 동일 점수는 고정 ID 순서로 처리한다.
+5. 목표를 보존하면서 불필요한 위치를 역순으로 제거한다. 기본 모드는 실제 이미지 장수가 늘지 않아야 제거하고, 최종 장수와 경로 길이를 줄이는 단일 위치 교환도 최대 한 번 적용한다. 목표나 연결 조건을 완화하지 않는다. 동일 점수는 고정 ID 순서로 처리한다.
+
+`T(S)`를 선정 위치 S와 실제 연결에 필요한 이동용 위치의 합집합이라 하면 기본 순위는 `(F(T(S+i)) - F(T(S))) / max(1, |T(S+i)| - |T(S)|)`다. 이것은 전역 최적 경로/최소 장수 알고리즘이 아닌 결정적 휴리스틱이다.
 
 중복은 추가 정보가 거의 없는 것으로 처리한다. 독립 점수 상위 N개 또는 객체별 top-k만으로 전체 투어 선정을 대체하지 않는다. 관측 가능한 객체 기준과 전체 객체 기준 달성률을 모두 기록하며 관측 불가능한 필수 객체는 실패로 남긴다.
 
@@ -258,6 +267,7 @@ gain(candidate | S) = F(S + candidate) - F(S)
 | `quality_status` | `unverified`, `partial`, `validated`, `failed` |
 | `publication_ready` | boolean. 기하학적 계획과 실제 미디어의 게시 준비 조건 |
 | `route_graph` | object. 노드와 성분 ID, 연결과 실제 경로 폴리라인 |
+| `candidate_report` | object. 초기/기하/가시성 보강 후보 개수, 후보 ID와 경로 노드, 보강 이유 |
 | `viewpoints` | array. 선정 위치, pose, 역할, 선정 이력, 객체 품질, 이미지 상태 |
 | `tour_visits`, `tour_links` | array. 재방문 가능한 방문 순서와 그래프 경로 연결 참조 |
 | `coverage_report` | object. 구역 균형 점수, 면적 기준 비율, 전체/관측 가능 객체 달성률, 목표 미달 항목 |
@@ -273,7 +283,8 @@ gain(candidate | S) = F(S + candidate) - F(S)
 | `reference_from_camera` | 카메라→기준 좌표계의 4x4 행렬 |
 | `roles` | `content` 또는 `transition`을 포함하는 배열 |
 | `score_basis` | 기하학 또는 확인된 외부 품질을 사용했는지에 대한 기록 |
-| `selection_step`, `marginal_gain_at_selection`, `reason` | 선정 당시의 순서·효용 증가량·이유 |
+| `selection_step`, `marginal_gain_at_selection`, `reason` | 탐욕 선정 당시의 순서·효용 증가량·이유. 단일 교환으로 들어온 위치는 순서와 증가량이 null이며 이유로 구별한다 |
+| `selection_method`, `marginal_image_count_at_selection` | 순수 정보량/추가 장수 고려/단일 교환 방식과 당시 추가 고유 이미지 수 |
 | `object_observations` | 회차 내 객체 ID, 중요도와 출처, 기하학적 품질, 실제 검사 결과 또는 null |
 | `render_status`, `image_ref` | `pending`/`succeeded`/`failed`, 실제 상대 경로 또는 null |
 
@@ -366,10 +377,10 @@ gain(candidate | S) = F(S + candidate) - F(S)
 
 ### 프로토타입 확인 결과 (2026-10-10)
 
-- Task5b 전용 합성 테스트 34개와 기존 공통 테스트 19개, 총 53개 통과. task 의존성이 있는 전용 환경에서는 건너뛴 테스트가 없다. 공통 환경만 있을 때 Task5b 기하 테스트는 명시적으로 skip한다.
+- 개선 후 Task5b 전용 합성 테스트 53개와 기존 공통 테스트 19개, 총 72개 통과. task 의존성이 있는 전용 환경에서는 건너뛴 테스트가 없다. 공통 환경만 있을 때 Task5b 기하 테스트는 명시적으로 skip한다.
 - 기존 task 7개의 형식 예제 검사 통과. 이것은 새 경로 또는 실제 모델 성능 검증과 별개다.
-- 기본 설정의 합성 두 공간 예시: 후보 35곳 → 정보용 3곳 + 이동용 6곳 = 고유 촬영 위치 9곳. 실제 이미지는 생성하지 않았다.
-- 이 예시의 최종 표면 커버리지는 **후보에서 관측 가능한 표면 기준 99.42%, 입력된 전체 표면 기준 60.88%**였다. 벽/객체의 뒤쪽 등 관측 불가능한 면을 제외한 수치를 전체 공간 커버리지라고 표시하지 않는다.
+- 이전 고정 후보/순수 정보량 방식의 합성 두 공간 예시: 후보 35곳 → 정보용 3곳 + 이동용 6곳 = 고유 촬영 위치 9곳. 최종 표면 커버리지는 관측 가능한 표면 기준 99.42%, 입력된 전체 표면 기준 60.88%였다. 개선 결과와 목표의 차이는 [개선 작업 메모](DEVELOPMENT_NOTES.md)에 기록한다. 실제 이미지는 생성하지 않았다.
+- 벽/객체의 뒤쪽 등 관측 불가능한 면을 제외한 수치를 전체 공간 커버리지라고 표시하지 않는다. 설정 목표를 만족하는 장수를 줄이면 목표 이상으로 과도하게 확보했던 커버리지는 낮아질 수 있다.
 - 파일·ID·pose/생성 요청 일치, 벽 가림, 문 연결, ㄱ자 공간/바닥 구멍, 분리 공간, 중복 효용, 중요도/필수 객체, GLB 변환, 입력 보존, 실패 재선정과 게시 미검증 상태를 시험했다.
 - 실제 팀 입력 연결, 외부 LLM 응답 품질, 합성 이미지 품질, 대형 장면 성능과 회차 간 경로 재사용은 미검증/미구현이다. 아래 완료 목록은 전체 기능 목표이므로 모두 완료 처리하지 않는다.
 

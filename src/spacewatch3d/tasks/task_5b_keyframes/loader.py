@@ -9,6 +9,9 @@ from shapely.geometry import Polygon
 from .models import Config, Geometry, InputError, Scene, read_json
 
 
+COVERAGE_ONLY_CLASSES = {"wall", "walls", "ceiling", "ceilings", "벽", "천장"}
+
+
 def matrix(value, name="transform"):
     try:
         result = np.asarray(value, dtype=float)
@@ -111,6 +114,23 @@ def load_scene(path: Path, config: Config) -> Scene:
     if data.get("levels", 1) != 1:
         raise InputError("Multiple levels and stairs are unsupported")
     provenance = {"scene_manifest": str(path), "scene_sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+    camera = data.get("camera", {})
+    if not isinstance(camera, dict):
+        raise InputError("camera must be an object")
+    captured_height = camera.get("height_above_floor_m")
+    if "height_above_floor_m" in camera and (isinstance(captured_height, bool)
+            or not isinstance(captured_height, (int, float)) or not np.isfinite(captured_height)
+            or captured_height <= 0):
+        raise InputError("camera.height_above_floor_m must be finite and positive")
+    if config.camera_height_m is not None:
+        camera_height, height_source = config.camera_height_m, "config"
+    elif captured_height is not None:
+        camera_height, height_source = captured_height, "scene.camera.height_above_floor_m"
+    else:
+        camera_height, height_source = 1.5, "fallback_unverified"
+    if not config.body_min_m < camera_height <= config.body_max_m:
+        raise InputError("Body height interval must include the resolved camera height; adjust body_max_m if needed")
+    provenance["camera_height"] = {"height_above_floor_m": float(camera_height), "source": height_source}
     items = [(item, path.parent) for item in data.get("objects", [])]
     if data.get("objects_manifest"):
         object_path = (path.parent / data["objects_manifest"]).resolve()
@@ -153,6 +173,7 @@ def load_scene(path: Path, config: Config) -> Scene:
         provenance["objects_manifest"] = str(object_path)
         provenance["source_cameras"] = len(reconstruction.get("cameras", []))
     geometries, objects, ids = [], [], set()
+    coverage_only_objects = []
     for item, base in items:
         oid = item.get("instance_id")
         if not isinstance(oid, str) or not oid or oid in ids:
@@ -163,6 +184,15 @@ def load_scene(path: Path, config: Config) -> Scene:
             raise InputError("class_name must be string or null")
         if not isinstance(item.get("must_see", False), bool):
             raise InputError("must_see must be boolean")
+        if name is not None and name.strip().casefold() in COVERAGE_ONLY_CLASSES:
+            if item.get("must_see", False):
+                raise InputError("Walls and ceilings are coverage-only; must_see applies to semantic objects")
+            solid = item.get("solid", "box" in item)
+            if not isinstance(solid, bool):
+                raise InputError("structure.solid must be boolean")
+            geometries.append(Geometry(f"structure_object:{oid}", load_triangles(item, base, config), None, solid=solid))
+            coverage_only_objects.append({"instance_id": oid, "class_name": name})
+            continue
         objects.append({"instance_id": oid, "class_name": name,
                         "must_see": item.get("must_see", False), "importance": item.get("importance"),
                         "description": item.get("description", "")})
@@ -173,8 +203,8 @@ def load_scene(path: Path, config: Config) -> Scene:
         geometries.append(Geometry(f"structure:{index}", load_triangles(item, path.parent, config), None,
                                    solid=item.get("solid", "box" in item)))
     overrides = data.get("object_overrides", {})
-    if not isinstance(overrides, dict) or set(overrides) - ids:
-        raise InputError("object_overrides must reference known instance_id values")
+    if not isinstance(overrides, dict) or set(overrides) - {obj["instance_id"] for obj in objects}:
+        raise InputError("object_overrides must reference semantic object IDs; walls/ceilings are coverage-only")
     for obj in objects:
         override = overrides.get(obj["instance_id"], {})
         if not isinstance(override, dict) or set(override) - {"importance", "must_see", "description"}:
@@ -209,6 +239,7 @@ def load_scene(path: Path, config: Config) -> Scene:
         geometry_hash.update(geom.geometry_id.encode())
         geometry_hash.update(geom.triangles.astype("<f8").tobytes())
     provenance["geometry_sha256"] = geometry_hash.hexdigest()
+    provenance["coverage_only_objects"] = coverage_only_objects
     regions = []
     for item in data.get("regions", []):
         region = polygon(item)
@@ -222,4 +253,4 @@ def load_scene(path: Path, config: Config) -> Scene:
     if start is not None and (np.asarray(start).shape != (2,) or not np.isfinite(start).all()):
         raise InputError("start_xy_m must be finite 2-vector")
     return Scene(data["scene_id"], data["capture_id"], data["synthetic"], coords["frame_id"],
-                 floor, float(height), geometries, objects, regions, start, provenance)
+                 floor, float(height), geometries, objects, regions, start, provenance, float(camera_height))

@@ -1,4 +1,4 @@
-"""Greedy marginal coverage + weighted best object quality; reverse pruning."""
+"""Marginal coverage/object utility, optional routed image cost, pruning and one swap."""
 
 import numpy as np
 
@@ -66,15 +66,33 @@ class Objective:
         return utility, report
 
 
-def select_keyframes(objective: Objective):
+def select_keyframes(objective: Objective, evaluate=None):
+    """Use pure gain, or exact routed-set gain per additional unique image.
+
+    The injected evaluator may include transition viewpoints in utility/goals.
+    A bounded one-swap search improves cost without relaxing any target.
+    """
+    measure = evaluate or objective.measure
     selected, history = [], {}
     candidates = list(range(len(objective.visible)))
     while candidates:
-        utility, report = objective.measure(selected)
+        utility, report = measure(selected)
         if not report["unmet_targets"]:
             break
-        gains = [(objective.measure(selected + [i])[0] - utility, i) for i in candidates]
-        gain, chosen = max(gains, key=lambda pair: (pair[0], -pair[1]))
+        options = []
+        for i in candidates:
+            trial_utility, trial_report = measure(selected + [i])
+            gain = trial_utility - utility
+            added_images = trial_report.get("selection_image_count", len(selected) + 1) - report.get("selection_image_count", len(selected))
+            # Prefer a feasible connection among positive-gain alternatives.
+            # If every useful alternative is disconnected, retain an explicit
+            # incomplete plan instead of pretending the hidden region vanished.
+            rank = (gain > 1e-12, not trial_report.get("selection_connection_failures"),
+                    gain / max(1, added_images), gain,
+                    -trial_report.get("selection_image_count", len(selected) + 1),
+                    -trial_report.get("selection_tour_length_m", 0), -i)
+            options.append((rank, gain, i, added_images))
+        _, gain, chosen, added_images = max(options)
         # Thresholded object goals can need a useful view with tiny continuous gain.
         if gain <= 1e-12:
             # Zero importance must not silently disable explicit must-see constraints.
@@ -84,12 +102,38 @@ def select_keyframes(objective: Objective):
             if not useful:
                 break
             chosen = useful[0]
-        history[chosen] = {"selection_step": len(selected) + 1, "marginal_gain_at_selection": float(gain)}
+            _, gain, _, added_images = next(option for option in options if option[2] == chosen)
+        history[chosen] = {"selection_step": len(selected) + 1, "marginal_gain_at_selection": float(gain),
+                           "selection_method": "gain_per_added_image" if evaluate else "marginal_gain",
+                           "marginal_image_count_at_selection": added_images}
         selected.append(chosen)
         candidates.remove(chosen)
-    if not objective.measure(selected)[1]["unmet_targets"]:
+    if not measure(selected)[1]["unmet_targets"]:
         for chosen in list(reversed(selected)):
             trial = [i for i in selected if i != chosen]
-            if not objective.measure(trial)[1]["unmet_targets"]:
+            current_report = measure(selected)[1]
+            trial_report = measure(trial)[1]
+            if (not trial_report["unmet_targets"] and not trial_report.get("selection_connection_failures")
+                    and trial_report.get("selection_image_count", len(trial)) <= current_report.get("selection_image_count", len(selected))):
                 selected = trial
-    return selected, history, objective.measure(selected)[1]
+        if evaluate:
+            # Exactly one best improving exchange, not an unbounded optimizer.
+            current_report = measure(selected)[1]
+            best_cost = (current_report["selection_image_count"], current_report["selection_tour_length_m"])
+            best_swap = None
+            available = [i for i in range(len(objective.visible)) if i not in selected]
+            for old in selected:
+                for new in available:
+                    trial = [new if i == old else i for i in selected]
+                    trial_report = measure(trial)[1]
+                    cost = (trial_report["selection_image_count"], trial_report["selection_tour_length_m"])
+                    if (not trial_report["unmet_targets"] and not trial_report["selection_connection_failures"]
+                            and cost < best_cost):
+                        best_cost, best_swap = cost, (old, new)
+            if best_swap:
+                old, new = best_swap
+                selected = [new if i == old else i for i in selected]
+                history[new] = {"selection_step": None, "marginal_gain_at_selection": None,
+                                "selection_method": "route_cost_local_swap", "replaced_index": old,
+                                "marginal_image_count_at_selection": None}
+    return selected, history, measure(selected)[1]

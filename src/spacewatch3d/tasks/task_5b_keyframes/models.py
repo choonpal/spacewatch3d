@@ -37,10 +37,15 @@ def read_json(path: Path) -> dict:
 class Config:
     grid_m: float = 0.15
     clearance_m: float = 0.3
-    camera_height_m: float = 1.5
+    camera_height_m: float | None = None
     body_min_m: float = 0.08
     body_max_m: float = 1.9
     candidate_spacing_m: float = 0.6
+    adaptive_candidates: bool = True
+    candidate_min_spacing_m: float = 0.15
+    candidate_narrow_clearance_m: float = 0.6
+    candidate_visibility_change_threshold: float = 0.15
+    route_aware_selection: bool = True
     max_link_m: float = 2.0
     max_view_distance_m: float = 15.0
     tile_m: float = 3.0
@@ -73,18 +78,30 @@ class Config:
         result = cls(**values)
         defaults = asdict(cls())
         for name, value in asdict(result).items():
+            if isinstance(defaults[name], bool):
+                if not isinstance(value, bool):
+                    raise InputError(f"Config {name} must be boolean")
+                continue
+            if name == "camera_height_m" and value is None:
+                continue
             if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
                 raise InputError(f"Config {name} must be finite numeric")
             if isinstance(defaults[name], int) and not isinstance(value, int):
                 raise InputError(f"Config {name} must be an integer")
             if name != "seed" and value < 0:
                 raise InputError(f"Config {name} must be nonnegative")
-        positive = ("grid_m", "camera_height_m", "candidate_spacing_m", "max_link_m",
+        positive = ("grid_m", "candidate_spacing_m", "candidate_min_spacing_m", "max_link_m",
                     "max_view_distance_m", "tile_m", "surface_samples", "min_object_samples",
                     "solid_angle_target_sr", "max_grid_cells", "max_route_nodes",
                     "max_candidates", "max_triangles", "width", "height")
         if any(getattr(result, name) <= 0 for name in positive):
             raise InputError("Lengths, sample counts and resource limits must be positive")
+        if result.camera_height_m is not None and result.camera_height_m <= 0:
+            raise InputError("camera_height_m must be positive or null")
+        if result.candidate_min_spacing_m > result.candidate_spacing_m:
+            raise InputError("candidate_min_spacing_m must not exceed candidate_spacing_m")
+        if not 0 < result.candidate_visibility_change_threshold <= 1:
+            raise InputError("candidate_visibility_change_threshold must be in (0,1]")
         for name in ("space_target", "region_target", "object_target", "default_importance",
                      "object_quality_threshold"):
             if not 0 <= getattr(result, name) <= 1:
@@ -95,7 +112,7 @@ class Config:
             raise InputError("object_quality_threshold must be positive; zero would mark invisible objects observed")
         if result.seed < 0 or result.body_min_m >= result.body_max_m:
             raise InputError("Invalid seed or body height interval")
-        if result.body_max_m < result.camera_height_m:
+        if result.camera_height_m is not None and not result.body_min_m < result.camera_height_m <= result.body_max_m:
             raise InputError("Body interval must include camera height")
         if result.width != 2 * result.height:
             raise InputError("Equirectangular resolution must be 2:1")
@@ -126,3 +143,4 @@ class Scene:
     regions: list[tuple[str, Any]]
     start: Any
     provenance: dict
+    camera_height_m: float = 1.5

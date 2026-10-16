@@ -45,6 +45,19 @@ def validate_outputs(plan, requests):
         edges.add(frozenset((a, b)))
     viewpoints = {v["viewpoint_id"]: v for v in plan["viewpoints"]}
     require(len(viewpoints) == len(plan["viewpoints"]), "duplicate viewpoint")
+    if "candidate_report" in plan:
+        sampling = plan["candidate_report"]
+        candidates = {c["candidate_id"]: c for c in sampling["candidates"]}
+        require(len(candidates) == len(sampling["candidates"]), "duplicate candidate")
+        require(len(candidates) == sum(sampling[key] for key in ("uniform_seed_count", "geometry_added_count", "visibility_added_count")), "candidate refinement counts")
+        require(len(candidates) == plan["coverage_report"]["candidate_count_before_feedback"], "candidate count/report")
+        for candidate in candidates.values():
+            require(candidate["route_node_id"] in nodes, "candidate route node")
+            require(bool(candidate["reasons"]) and all(isinstance(reason, str) for reason in candidate["reasons"]), "candidate reasons")
+        require(all(v["candidate_id"] in candidates for v in viewpoints.values()), "final image must be a scored candidate")
+    require(plan["coverage_report"]["unique_image_count"] == len(viewpoints), "final image count")
+    require(plan["coverage_report"]["content_count"] == sum("content" in v["roles"] for v in viewpoints.values()), "content count")
+    require(plan["coverage_report"]["transition_count"] == sum("transition" in v["roles"] for v in viewpoints.values()), "transition count")
     for viewpoint in viewpoints.values():
         pose = np.asarray(viewpoint["reference_from_camera"], float)
         require(pose.shape == (4, 4) and np.allclose(pose[3], [0, 0, 0, 1]), "pose shape")

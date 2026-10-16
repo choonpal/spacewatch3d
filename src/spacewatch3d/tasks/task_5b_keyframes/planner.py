@@ -13,10 +13,11 @@ from .importance import resolve_importance
 from .candidates import audit_visibility_candidates, refine_visibility_candidates
 from .loader import load_scene
 from .models import Config, InputError, read_json
-from .routing import build_route, connect_tour, shortest
-from .selection import Objective, select_keyframes
+from .routing import build_route, camera_components, connect_tour, shortest
+from .selection import Objective, repair_connected_selection, select_keyframes
 from .validation import validate_outputs
 from .visibility import evaluate_positions, sample_surface
+from .reference import export_reference, finish_reuse, load_reference, reuse_route
 
 
 def read_feedback(path, scene, route):
@@ -38,9 +39,7 @@ def read_feedback(path, scene, route):
             raise InputError("Unknown or duplicate feedback viewpoint_id")
         node = valid_ids[vid]
         pose = np.asarray(record.get("reference_from_camera"), dtype=float)
-        expected = np.eye(4)
-        expected[:3, :3] = [[1, 0, 0], [0, 0, 1], [0, -1, 0]]
-        expected[:3, 3] = route.positions[node]
+        expected = route.camera_pose(node)
         if pose.shape != (4, 4) or not np.allclose(pose, expected, atol=1e-8):
             raise InputError("Feedback pose mismatch; do not reuse feedback after moving a viewpoint")
         if record.get("render_status") not in ("failed", "succeeded"):
@@ -63,17 +62,30 @@ def read_feedback(path, scene, route):
     return results, banned, warnings
 
 
-def create_plan(scene_path, config=None, importance_cache=None, importance_provider=None, feedback_path=None):
+def create_plan(scene_path, config=None, importance_cache=None, importance_provider=None, feedback_path=None,
+                reference_route_path=None, registration_path=None):
     """Return (plan, requests); only an explicitly injected provider may call an LLM."""
     config = Config.from_dict(asdict(config) if isinstance(config, Config) else config)
     scene = load_scene(Path(scene_path), config)
+    if registration_path is not None and reference_route_path is None:
+        raise InputError("registration requires reference_route_path")
+    reference = load_reference(reference_route_path, scene, config, registration_path) if reference_route_path else None
     config = replace(config, camera_height_m=scene.camera_height_m)
     objects, warnings = resolve_importance(scene.objects, config, importance_cache, importance_provider)
     if scene.provenance["camera_height"]["source"] == "fallback_unverified":
         warnings.append({"code": "camera_height_fallback", "message": "No measured camera height supplied; using unverified 1.5m above floor"})
     route = build_route(scene, config)
+    required_nodes, reuse_report = [], None
+    if reference:
+        route, required_nodes, reuse_report = reuse_route(scene, route, reference, config)
     feedback, banned, feedback_warnings = read_feedback(feedback_path, scene, route)
     warnings.extend(feedback_warnings)
+    if reuse_report:
+        rejected = [v for v in reuse_report["reused_viewpoints"] if v["viewpoint_id"] in
+                    {route.viewpoint_id(n) for n in banned}]
+        for view in rejected:
+            reuse_report["unavailable_viewpoints"].append({"viewpoint_id": view["viewpoint_id"],
+                "reference_from_camera": view["reference_from_camera"], "reason": "renderer_failure_or_quality_rejection"})
     surface = sample_surface(scene, config)
     all_visible, all_quality = evaluate_positions(route.positions[route.candidates], surface, objects, config)
     refined = refine_visibility_candidates(route, all_visible, all_quality, surface.weights, config)
@@ -113,11 +125,19 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
         return utility, selection_report
 
     evaluator = (lambda selected: evaluate_routed_set(tuple(sorted(selected)))) if config.route_aware_selection else None
-    chosen, history, _ = select_keyframes(objective, evaluator)
-    content_report = objective.measure(chosen)[1]
+    required_indices = [lookup[n] for n in required_nodes if n not in banned]
+    chosen, history, selection_report = select_keyframes(objective, evaluator, required=required_indices)
+    if evaluator and selection_report["selection_connection_failures"]:
+        groups = [[lookup[n] for n in sorted(group)] for group in
+                  camera_components(route, candidates, config, hop_paths_from)]
+        chosen, history, _ = repair_connected_selection(objective, evaluator, chosen, history, groups, required_indices)
     selected_nodes = [candidates[i] for i in chosen]
+    reference_roles = {v["viewpoint_id"]: v["roles"] for v in reference["viewpoints"]} if reference else {}
+    content_nodes = [n for n in selected_nodes if reference_roles.get(route.viewpoint_id(n)) != ["transition"]]
+    content_report = objective.measure([lookup[n] for n in content_nodes])[1]
     visits, links, transitions, failures = connect_tour(route, selected_nodes, config, banned, scene.start, paths_from, hop_paths_from)
     final_nodes = sorted(set(selected_nodes) | set(transitions))
+    transition_nodes = set(final_nodes) - set(content_nodes)
     # Every transition is an already-scored candidate. Never redefine coverage
     # denominators to just the selected images or hide unobservable geometry.
     report = objective.measure([lookup[node] for node in final_nodes])[1]
@@ -126,13 +146,14 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
                            "tour_length_m": sum(link["length_m"] for link in links),
                            "detour_link_count": sum(link["connection_method"] == "renderable_candidate_detour" for link in links),
                            "constraint_progress_count": sum(history[i]["selection_method"] == "constraint_progress" for i in chosen),
+                           "connected_component_repair_count": sum(history[i]["selection_method"] == "connected_component_repair" for i in chosen),
                            "local_swap_applied": any(history[i]["selection_method"] == "route_cost_local_swap" for i in chosen)}
     report["candidate_count_before_feedback"] = len(route.candidates)
     report["candidate_count_after_feedback"] = len(candidates)
     report["observable_area_before_feedback_m2"] = float(surface.weights[np.any(all_visible, axis=0)].sum()) if len(all_visible) else 0
     report["unique_image_count"] = len(final_nodes)
-    report["content_count"] = len(selected_nodes)
-    report["transition_count"] = len(transitions)
+    report["content_count"] = len(content_nodes)
+    report["transition_count"] = len(transition_nodes)
     if not final_nodes:
         failures.append({"code": "no_selected_viewpoints"})
     if report["unmet_targets"]:
@@ -150,15 +171,13 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
     viewpoints = []
     for node in final_nodes:
         q = quality[lookup[node]]
-        content = node in selected_nodes
-        selection = history[lookup[node]] if content else {}
+        content = node in content_nodes
+        selection = history.get(lookup[node], {})
         record = feedback.get(route.viewpoint_id(node), {})
         succeeded = record.get("render_status") == "succeeded" and node not in banned
         viewpoints.append({"viewpoint_id": route.viewpoint_id(node), "candidate_id": route.candidate_id(node),
                            "route_node_id": route.node_id(node), "component_id": route.component_id(node),
-                           "reference_from_camera": [[1, 0, 0, float(route.positions[node, 0])],
-                                                     [0, 0, 1, float(route.positions[node, 1])],
-                                                     [0, -1, 0, float(route.positions[node, 2])], [0, 0, 0, 1]],
+                           "reference_from_camera": route.camera_pose(node).tolist(),
                            "roles": ["content" if content else "transition"], "score_basis": "geometry",
                            "selection_step": selection.get("selection_step"),
                            "marginal_gain_at_selection": selection.get("marginal_gain_at_selection"),
@@ -193,14 +212,20 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
             "tour_links": links, "coverage_report": report, "unobservable_items": unobservable,
             "failures": failures, "warnings": warnings,
             "excluded_viewpoints": [{"viewpoint_id": route.viewpoint_id(n), "reason": "renderer_failure_or_quality_rejection"} for n in sorted(banned)],
-            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.4.0",
+            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.5.0",
                            "dependency_versions": versions, "importance_cache": importance_cache or {},
                            "feedback_manifest": str(Path(feedback_path).resolve()) if feedback_path else None,
                            "coordinate_policy": "externally_normalized_metric_z_up",
-                           "canonical_route_reuse": "not_implemented"}}
+                           "canonical_route_reuse": scene.provenance.get("canonical_route_reuse", "not_requested")}}
+    if reference:
+        finish_reuse(plan, reference, reuse_report)
+        if reuse_report["unavailable_count"]:
+            warnings.append({"code": "reference_viewpoints_unavailable",
+                             "message": "Some reference views are unavailable; current coverage is evaluated independently"})
     requests = {"schema_name": "spacewatch3d.virtual_tour_render_requests", "schema_version": "0.1.0",
                 "scene_id": scene.scene_id,
                 "geometry_sha256": scene.provenance["geometry_sha256"], "route_id": plan["route_id"],
+                "route_version": plan["route_version"],
                 "requests": [{"viewpoint_id": v["viewpoint_id"], "capture_id": scene.capture_id,
                               "reference_frame_id": scene.reference_frame_id,
                               "reference_from_camera": v["reference_from_camera"], "projection": "equirectangular",
@@ -209,6 +234,10 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
                               "required_object_ids": [obj["instance_id"] for i, obj in enumerate(objects)
                                                       if obj["must_see"] and v["object_observations"][i]["geometry_quality"] >= config.object_quality_threshold]}
                              for v in viewpoints]}
+    if reference:
+        transform = scene.provenance["canonical_route_reuse"]
+        requests["coordinate_transform"] = {key: transform[key] for key in
+                                            ("current_frame_id", "reference_frame_id", "reference_from_current")}
     validate_outputs(plan, requests)
     return plan, requests
 
@@ -226,6 +255,9 @@ def generate(scene_path, output_dir, config=None, **kwargs):
             viewpoint["image_ref"] = os.path.relpath(viewpoint["image_ref"], output)
     for name, data in (("tour_plan.json", plan), ("render_requests.json", requests)):
         (output / name).write_text(json.dumps(data, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    if plan["planning_status"] == "complete":
+        (output / "reference_route.json").write_text(
+            json.dumps(export_reference(plan), ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     scores = {obj["instance_id"]: {"score": obj["importance"], "reason": obj["importance_reason"],
                                   "source": obj["importance_source"]} for obj in plan["object_importances"]}
     (output / "importance_scores.json").write_text(json.dumps({"scene_id": plan["scene_id"], "capture_id": plan["capture_id"],

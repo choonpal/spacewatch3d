@@ -3,7 +3,7 @@
 import numpy as np
 
 from .models import InputError
-from .routing import add_candidates, nearest_candidates, restore_path, shortest
+from .routing import add_candidates, connectivity_bridges, nearest_candidates, restore_path, shortest
 
 
 def refine_visibility_candidates(route, visible, quality, surface_weights, config):
@@ -65,6 +65,8 @@ def audit_visibility_candidates(route, visible, quality, surface_weights, config
              "baseline_candidate_count": len(baseline), "excluded_route_node_count": len(banned),
              "sampled_observable_union_preserved": True, "best_object_quality_preserved": True}
     if not probes:
+        _, connectivity = connectivity_bridges(route, [route.candidates[i] for i in baseline], config, banned)
+        audit.update(connectivity, sampled_camera_connectivity_preserved=True, connectivity_added_count=0)
         route.candidate_sampling["visibility_audit"] = audit
         return [], empty_visible, empty_quality
     probe_visible, probe_quality = evaluate(probes)
@@ -94,6 +96,12 @@ def audit_visibility_candidates(route, visible, quality, surface_weights, config
             # Zero-weight patches still must not invalidate the union claim.
             index = int(np.flatnonzero(np.any(probe_visible[:, missing], axis=1))[0])
         retain(index, "surface_visibility_discovery")
+    probe_index = {node: i for i, node in enumerate(probes)}
+    bridges, connectivity = connectivity_bridges(
+        route, [route.candidates[i] for i in baseline] + [probes[i] for i in retained], config, banned)
+    for node in sorted(bridges):
+        retain(probe_index[node], "connectivity_bridge")
+    audit.update(connectivity, sampled_camera_connectivity_preserved=True, connectivity_added_count=len(bridges))
     indices = sorted(retained)
     if len(route.candidates) + len(indices) > config.max_candidates:
         raise InputError("max_candidates exceeded by visibility discoveries; crop the scene or explicitly raise the candidate limit")

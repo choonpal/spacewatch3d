@@ -26,6 +26,10 @@ def validate_outputs(plan, requests):
     require(plan.get("schema_version") == requests.get("schema_version") == "0.1.0", "schema version")
     for field in ("scene_id", "capture_id", "reference_frame_id", "route_id"):
         require(isinstance(plan.get(field), str) and bool(plan[field]), field)
+    for field in ("scene_id", "route_id"):
+        require(requests.get(field) == plan[field], "request " + field)
+    if "route_version" in requests:
+        require(type(requests["route_version"]) is int and requests["route_version"] == plan["route_version"], "request route_version")
     require(plan["planning_status"] in ("complete", "incomplete"), "planning_status")
     require(plan["quality_status"] in ("unverified", "partial", "failed"), "prototype cannot claim validated imagery")
     require(plan["publication_ready"] is False, "prototype is not a publication validator")
@@ -52,7 +56,7 @@ def validate_outputs(plan, requests):
         candidates = {c["candidate_id"]: c for c in sampling["candidates"]}
         require(len(candidates) == len(sampling["candidates"]), "duplicate candidate")
         require(len(candidates) == sum(sampling[key] for key in ("uniform_seed_count", "geometry_added_count", "visibility_added_count"))
-                + sampling.get("visibility_audit_added_count", 0), "candidate refinement counts")
+                + sampling.get("visibility_audit_added_count", 0) + sampling.get("reference_added_count", 0), "candidate refinement counts")
         require(len(candidates) == plan["coverage_report"]["candidate_count_before_feedback"], "candidate count/report")
         for candidate in candidates.values():
             require(candidate["route_node_id"] in nodes, "candidate route node")
@@ -76,12 +80,20 @@ def validate_outputs(plan, requests):
                 require(audit["probe_count"] <= plan["provenance"]["config"]["max_visibility_probes"], "visibility audit limit")
                 require(audit["sampled_observable_union_preserved"] is True and audit["best_object_quality_preserved"] is True,
                         "visibility audit preservation flags")
+                if "sampled_camera_connectivity_preserved" in audit:
+                    require(audit["sampled_camera_connectivity_preserved"] is True, "camera connectivity preservation flag")
+                    require(type(audit["connectivity_added_count"]) is int and 0 <= audit["connectivity_added_count"] <= added,
+                            "camera connectivity added count")
+                    before, after = audit["camera_components_before"], audit["camera_components_after"]
+                    require(type(before) is int and type(after) is int and 0 <= after <= before,
+                            "camera connectivity component counts")
     require(plan["coverage_report"]["unique_image_count"] == len(viewpoints), "final image count")
     require(plan["coverage_report"]["content_count"] == sum("content" in v["roles"] for v in viewpoints.values()), "content count")
     require(plan["coverage_report"]["transition_count"] == sum("transition" in v["roles"] for v in viewpoints.values()), "transition count")
     selection = plan["coverage_report"].get("selection", {})
     for key, expected in (
         ("detour_link_count", sum(link.get("connection_method") == "renderable_candidate_detour" for link in plan["tour_links"])),
+        ("connected_component_repair_count", sum(v.get("selection_method") == "connected_component_repair" for v in viewpoints.values() if "content" in v["roles"])),
         ("constraint_progress_count", sum(v.get("selection_method") == "constraint_progress" for v in viewpoints.values() if "content" in v["roles"]))):
         if key in selection:
             require(type(selection[key]) is int and selection[key] == expected, "selection " + key)
@@ -109,6 +121,26 @@ def validate_outputs(plan, requests):
         require(request["render_required"] == (viewpoints[vid]["render_status"] == "pending"), "render_required")
         require(isinstance(request["width"], int) and isinstance(request["height"], int)
                 and request["height"] > 0 and request["width"] == 2 * request["height"], "resolution")
+    if "reference_reuse" in plan:
+        transform = plan["provenance"]["canonical_route_reuse"]
+        require(requests.get("coordinate_transform") == {key: transform[key] for key in
+                ("current_frame_id", "reference_frame_id", "reference_from_current")}, "request coordinate transform")
+        reuse = plan["reference_reuse"]
+        retained = {v["viewpoint_id"]: v for v in reuse["reused_viewpoints"]}
+        missing = {v["viewpoint_id"] for v in reuse["unavailable_viewpoints"]}
+        new = set(reuse["new_viewpoint_ids"])
+        require(len(retained) == len(reuse["reused_viewpoints"]) == reuse["reused_count"], "reference reused count")
+        require(len(missing) == len(reuse["unavailable_viewpoints"]) == reuse["unavailable_count"], "reference unavailable count")
+        require(len(new) == len(reuse["new_viewpoint_ids"]) == reuse["new_count"], "reference new count")
+        require(not (set(retained) & missing or new & missing or new & set(retained)), "reference identity overlap")
+        require(set(viewpoints) == set(retained) | new, "reference final viewpoint partition")
+        require(plan["route_id"] == reuse["reference_route_id"], "reference route lineage")
+        require(type(reuse["route_changed"]) is bool and
+                plan["route_version"] == reuse["reference_route_version"] + int(reuse["route_changed"]), "reference route version")
+        for vid, saved in retained.items():
+            require(viewpoints[vid]["roles"] == saved["roles"] and
+                    np.allclose(viewpoints[vid]["reference_from_camera"], saved["reference_from_camera"], rtol=0, atol=1e-8),
+                    "reference pose/roles must be preserved")
     for visit in plan["tour_visits"]:
         require(visit["viewpoint_id"] in viewpoints, "visit references missing viewpoint")
     require(set(v["viewpoint_id"] for v in plan["tour_visits"]) == set(viewpoints), "every final image must be visited")

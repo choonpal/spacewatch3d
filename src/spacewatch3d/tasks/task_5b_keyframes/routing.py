@@ -136,8 +136,13 @@ class Route:
     obstacles: object
     candidate_reasons: dict = field(default_factory=dict)
     candidate_sampling: dict = field(default_factory=dict)
+    node_ids: dict = field(default_factory=dict)
+    viewpoint_ids: dict = field(default_factory=dict)
+    camera_poses: dict = field(default_factory=dict)
 
     def node_id(self, node):
+        if node in self.node_ids:
+            return self.node_ids[node]
         r, c = self.cells[node]
         return f"n_{r:05d}_{c:05d}"
 
@@ -145,7 +150,15 @@ class Route:
         return "candidate_" + self.node_id(node)
 
     def viewpoint_id(self, node):
-        return "vp_" + self.node_id(node)
+        return self.viewpoint_ids.get(node, "vp_" + self.node_id(node))
+
+    def camera_pose(self, node):
+        if node in self.camera_poses:
+            return self.camera_poses[node]
+        pose = np.eye(4)
+        pose[:3, :3] = [[1, 0, 0], [0, 0, 1], [0, -1, 0]]
+        pose[:3, 3] = self.positions[node]
+        return pose
 
     def component_id(self, node):
         return f"component_{self.components[node]:03d}"
@@ -297,6 +310,53 @@ def _renderable_detour(route, source, target, renderable, config, hop_paths_from
                 best[other], previous[other] = cost, node
                 heapq.heappush(queue, (*cost, other))
     return None
+
+
+def camera_components(route, cameras, config, paths_from=None):
+    """Connected components of eligible image stops, not physical obstacles."""
+    remaining, groups = set(cameras), []
+    while remaining:
+        root = min(remaining)
+        remaining.remove(root)
+        group, stack = {root}, [root]
+        while stack:
+            node = stack.pop()
+            distances, _ = paths_from(node) if paths_from else shortest(
+                route.adjacency, node, max_distance=config.max_link_m)
+            reached = {n for n in remaining.intersection(distances)
+                       if distances[n] <= config.max_link_m + 1e-9}
+            remaining -= reached
+            group |= reached
+            stack.extend(sorted(reached, reverse=True))
+        groups.append(group)
+    return groups
+
+
+def connectivity_bridges(route, cameras, config, banned=()):
+    """Preserve dense eligible-camera connectivity when thinning scored nodes.
+
+    A rejected image stop may still be traversed physically. Never bridge a
+    camera-network gap that even all eligible graph nodes cannot bridge.
+    """
+    from functools import lru_cache
+    paths = lru_cache(maxsize=256)(lambda node: shortest(
+        route.adjacency, node, max_distance=config.max_link_m))
+    groups = camera_components(route, cameras, config, paths)
+    if len(groups) <= 1:
+        return set(), {"camera_components_before": len(groups), "camera_components_after": len(groups)}
+    eligible = set(range(len(route.positions))) - set(banned)
+    dense_groups = camera_components(route, eligible, config, paths)
+    added = set()
+    for dense in dense_groups:
+        roots = [min(group & dense) for group in groups if group & dense]
+        for target in roots[1:]:
+            segments = _renderable_detour(route, roots[0], target, dense, config, paths)
+            if segments is None:
+                raise InputError("Dense camera connectivity repair failed")
+            added.update(path[-1] for path in segments)
+    added -= set(cameras)
+    after = camera_components(route, set(cameras) | added, config, paths)
+    return added, {"camera_components_before": len(groups), "camera_components_after": len(after)}
 
 
 def connect_tour(route: Route, selected: list[int], config: Config, banned: set[int], start=None, paths_from=None, hop_paths_from=None):

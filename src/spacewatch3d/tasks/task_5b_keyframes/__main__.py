@@ -17,6 +17,8 @@ def main(argv=None):
     plan_parser.add_argument("--config", type=Path)
     plan_parser.add_argument("--importance-cache", type=Path)
     plan_parser.add_argument("--feedback", type=Path)
+    plan_parser.add_argument("--reference-route", type=Path, help="Completed reference_route.json from another capture")
+    plan_parser.add_argument("--registration", type=Path, help="Successful external current-to-reference metric alignment")
     validator = commands.add_parser("validate")
     validator.add_argument("plan", type=Path)
     validator.add_argument("requests", type=Path)
@@ -40,7 +42,8 @@ def main(argv=None):
                 raise InputError("Importance cache needs a scores object")
         path = generate(args.scene, args.output,
                         read_json(args.config) if args.config else None,
-                        importance_cache=cache, feedback_path=args.feedback)
+                        importance_cache=cache, feedback_path=args.feedback,
+                        reference_route_path=args.reference_route, registration_path=args.registration)
         plan = read_json(path)
         print(json.dumps({"planning_status": plan["planning_status"], "plan": str(path),
                           "image_count": len(plan["viewpoints"]),

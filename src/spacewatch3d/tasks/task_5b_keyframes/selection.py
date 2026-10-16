@@ -80,7 +80,7 @@ class Objective:
         return deficit
 
 
-def _prune_redundant(selected, measure):
+def _prune_redundant(selected, measure, required=()):
     """Recheck routed goals after each deletion until no core view is removable.
 
     Routed utility is not monotone: deleting a core view can change the order and
@@ -91,6 +91,8 @@ def _prune_redundant(selected, measure):
     while True:
         changed = False
         for chosen in list(reversed(selected)):
+            if chosen in required:
+                continue
             trial = [i for i in selected if i != chosen]
             current_report = measure(selected)[1]
             trial_report = measure(trial)[1]
@@ -102,15 +104,18 @@ def _prune_redundant(selected, measure):
             return selected
 
 
-def select_keyframes(objective: Objective, evaluate=None):
+def select_keyframes(objective: Objective, evaluate=None, required=()):
     """Use pure gain, or exact routed-set gain per additional unique image.
 
     The injected evaluator may include transition viewpoints in utility/goals.
     A bounded one-swap search improves cost without relaxing any target.
     """
     measure = evaluate or objective.measure
-    selected, history = [], {}
-    candidates = list(range(len(objective.visible)))
+    selected = sorted(set(required))
+    history = {i: {"selection_step": None, "marginal_gain_at_selection": None,
+                   "selection_method": "reference_viewpoint_reuse",
+                   "marginal_image_count_at_selection": None} for i in selected}
+    candidates = [i for i in range(len(objective.visible)) if i not in selected]
     while candidates:
         utility, report = measure(selected)
         if not report["unmet_targets"]:
@@ -153,18 +158,24 @@ def select_keyframes(objective: Objective, evaluate=None):
         selected.append(chosen)
         candidates.remove(chosen)
     if not measure(selected)[1]["unmet_targets"]:
-        selected = _prune_redundant(selected, measure)
+        selected = _prune_redundant(selected, measure, required)
         if evaluate:
             # Exactly one best improving exchange, not an unbounded optimizer.
             current_report = measure(selected)[1]
-            best_cost = (current_report["selection_image_count"], current_report["selection_tour_length_m"])
+            # A disconnected two-image plan must not defeat a connected
+            # three-image plan. Cost optimization is secondary to feasibility.
+            best_cost = (bool(current_report["selection_connection_failures"]),
+                         current_report["selection_image_count"], current_report["selection_tour_length_m"])
             best_swap = None
             available = [i for i in range(len(objective.visible)) if i not in selected]
             for old in selected:
+                if old in required:
+                    continue
                 for new in available:
                     trial = [new if i == old else i for i in selected]
                     trial_report = measure(trial)[1]
-                    cost = (trial_report["selection_image_count"], trial_report["selection_tour_length_m"])
+                    cost = (bool(trial_report["selection_connection_failures"]),
+                            trial_report["selection_image_count"], trial_report["selection_tour_length_m"])
                     if (not trial_report["unmet_targets"] and not trial_report["selection_connection_failures"]
                             and cost < best_cost):
                         best_cost, best_swap = cost, (old, new)
@@ -177,5 +188,39 @@ def select_keyframes(objective: Objective, evaluate=None):
                 # A replacement can make other core views redundant. Rebuild the
                 # routed set for every deletion; never delete transition images
                 # independently of their required graph connection.
-                selected = _prune_redundant(selected, measure)
+                selected = _prune_redundant(selected, measure, required)
     return selected, history, measure(selected)[1]
+
+
+def repair_connected_selection(objective, evaluate, selected, history, groups, required=()):
+    """Try whole feasible camera components without changing the global targets.
+
+    A one-swap repair can miss a feasible tour requiring several replacements.
+    Each eligible component starts with all its views, then removes redundancy.
+    This is bounded, not a global minimum-image optimizer.
+    """
+    current = evaluate(selected)[1]
+    if not current.get("selection_connection_failures"):
+        return selected, history, current
+    required = set(required)
+    best = None
+    for group in groups:
+        if not required <= set(group):
+            continue
+        trial = sorted(group)
+        report = evaluate(trial)[1]
+        if report["unmet_targets"] or report["selection_connection_failures"]:
+            continue
+        trial = _prune_redundant(trial, evaluate, required)
+        report = evaluate(trial)[1]
+        rank = (report["selection_image_count"], report["selection_tour_length_m"], -report["utility"], tuple(trial))
+        if best is None or rank < best[0]:
+            best = rank, trial, report
+    if best is None:
+        return selected, history, current
+    _, selected, report = best
+    history = {i: history[i] if i in required else {
+        "selection_step": None, "marginal_gain_at_selection": None,
+        "selection_method": "connected_component_repair", "marginal_image_count_at_selection": None}
+        for i in selected}
+    return selected, history, report

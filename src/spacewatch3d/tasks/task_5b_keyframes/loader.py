@@ -100,7 +100,7 @@ def load_scene(path: Path, config: Config) -> Scene:
     if data.get("geometry_complete") is not True:
         raise InputError("geometry_complete=true must explicitly attest structural/occluder input")
     if data.get("reference_route") is not None or data.get("registration") is not None:
-        raise InputError("Canonical-route reuse/registration is not implemented; normalize and plan one capture")
+        raise InputError("Inline reference_route/registration is unsupported; use --reference-route and --registration")
     for field in ("objects", "structures", "regions"):
         if not isinstance(data.get(field, []), list) or any(not isinstance(item, dict) for item in data.get(field, [])):
             raise InputError(f"{field} must be an array of objects")

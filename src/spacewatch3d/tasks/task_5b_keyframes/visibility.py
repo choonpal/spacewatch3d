@@ -6,6 +6,7 @@ has not been established; resource limits intentionally fail instead of truncati
 
 from dataclasses import dataclass
 from collections import deque
+import hashlib
 import numpy as np
 import shapely
 
@@ -152,6 +153,80 @@ class Surface:
     bvh: BVH
     object_areas: dict
     sampling_report: dict | None = None
+    prepared: "PreparedSurface | None" = None
+
+
+@dataclass(frozen=True)
+class _SamplingGeometry:
+    object_id: str | None
+
+
+@dataclass(frozen=True)
+class PreparedSurface:
+    """Plan-local read-only geometry; no random samples or visibility scores."""
+
+    scene: Scene
+    signature: bytes
+    geometries: tuple
+    regions: tuple
+    strata: tuple
+    totals: np.ndarray
+    bvh: BVH
+    input_triangle_count: int
+    partition_triangle_count: int
+
+    def validate(self, scene, config):
+        if scene is not self.scene:
+            raise InputError("prepared surface belongs to a different scene")
+        if _geometry_signature(scene) != self.signature:
+            raise InputError("prepared surface input geometry, objects or regions changed; prepare again")
+        if self.input_triangle_count > config.max_triangles:
+            raise InputError("max_triangles exceeded by prepared input geometry")
+        if self.partition_triangle_count > config.max_triangles:
+            raise InputError("max_triangles exceeded by prepared regional surface partition")
+
+
+def _geometry_signature(scene):
+    digest = hashlib.sha256()
+    for geometry in scene.geometries:
+        triangles = np.ascontiguousarray(geometry.triangles)
+        digest.update(repr((geometry.geometry_id, geometry.object_id, triangles.shape, triangles.dtype.str)).encode())
+        digest.update(triangles.view(np.uint8))
+    for rid, region in scene.regions:
+        digest.update(repr(rid).encode())
+        digest.update(region.wkb)
+    return digest.digest()
+
+
+def prepare_surface(scene, config):
+    """Prepare fixed geometry once without advancing any random generator."""
+    geometries = [g for g in scene.geometries if len(g.triangles)]
+    triangle_count = sum(len(g.triangles) for g in geometries)
+    if triangle_count > config.max_triangles:
+        raise InputError("max_triangles exceeded by input surface geometry")
+    strata = tuple(_surface_strata(geometries, scene.regions, config))
+    totals = np.asarray([s[4] for s in strata])
+    # Keep invalid-budget failures ahead of BVH construction, as before.
+    # Every actual draw still recomputes its own minimum allocation.
+    _minimum_counts(strata, geometries, scene.regions, totals, config)
+    bvh = BVH(np.concatenate([g.triangles for g in geometries]))
+    for array in (totals, bvh.triangles, bvh.low, bvh.high):
+        array.setflags(write=False)
+    for _, _, triangles, areas, _ in strata:
+        triangles.setflags(write=False)
+        areas.setflags(write=False)
+    stack = [bvh.root]
+    while stack:
+        low, high, indices, left, right = stack.pop()
+        low.setflags(write=False)
+        high.setflags(write=False)
+        if indices is None:
+            stack.extend((left, right))
+        else:
+            indices.setflags(write=False)
+    return PreparedSurface(scene, _geometry_signature(scene), tuple(_SamplingGeometry(g.object_id) for g in geometries),
+                           tuple(scene.regions), strata, totals, bvh, triangle_count,
+                           sum(len(s[2]) for s in strata))
 
 
 def _apportion(count, areas):
@@ -349,10 +424,14 @@ def _stratified_triangle_indices(areas, count, rng):
     return np.searchsorted(cdf, probability, side="right")
 
 
-def sample_surface(scene: Scene, config: Config) -> Surface:
-    geometries = [g for g in scene.geometries if len(g.triangles)]
-    strata = _surface_strata(geometries, scene.regions, config)
-    totals = np.asarray([s[4] for s in strata])
+def sample_surface(scene: Scene, config: Config, prepared: PreparedSurface | None = None) -> Surface:
+    if prepared is None:
+        prepared = prepare_surface(scene, config)
+    else:
+        if not isinstance(prepared, PreparedSurface):
+            raise InputError("prepared surface must be created by prepare_surface")
+        prepared.validate(scene, config)
+    geometries, strata, totals = prepared.geometries, prepared.strata, prepared.totals
     # At least one sample per positive-area geometry/region stratum, plus both
     # object and named-region minima. Extra samples never duplicate area weight.
     counts = _minimum_counts(strata, geometries, scene.regions, totals, config)
@@ -394,7 +473,7 @@ def sample_surface(scene: Scene, config: Config) -> Surface:
                   "status": "sampled" if any(s[1] == rid for s in strata) else "no_surface"}
                  for rid, _ in scene.regions]}
     return Surface(points, np.asarray(normals), np.asarray(weights), object_ids, regions,
-                   BVH(np.concatenate([g.triangles for g in geometries])), object_areas, audit)
+                   prepared.bvh, object_areas, audit, prepared)
 
 
 def evaluate_positions(positions, surface: Surface, objects: list[dict], config: Config):

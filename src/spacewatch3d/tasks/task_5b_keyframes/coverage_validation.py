@@ -6,7 +6,7 @@ from .selection import Objective
 from .visibility import evaluate_positions, sample_surface
 
 
-def validate_coverage(scene, route, selected_nodes, objects, config, banned=()):
+def validate_coverage(scene, route, selected_nodes, objects, config, banned=(), prepared_surface=None):
     if not config.independent_coverage_validation:
         return {"status": "disabled", "used_for_selection": False, "runs": []}
     banned = set(banned)
@@ -24,7 +24,10 @@ def validate_coverage(scene, route, selected_nodes, objects, config, banned=()):
         # Graph, poses, importance and selected images stay fixed. Only the
         # random surface draw changes, and none of these scores affect selection.
         seed = config.seed + (config.coverage_repair_runs if config.coverage_repair else 0) + index + 1
-        surface = sample_surface(scene, replace(config, seed=seed, surface_samples=sample_count))
+        draw_config = replace(config, seed=seed, surface_samples=sample_count)
+        surface = (sample_surface(scene, draw_config, prepared=prepared_surface) if prepared_surface is not None
+                   else sample_surface(scene, draw_config))
+        prepared_surface = getattr(surface, "prepared", None)
         visible, quality = evaluate_positions(route.positions[eligible], surface, objects, config)
         objective = Objective(visible, quality, surface.weights, surface.regions, objects, config,
                               declared_regions=[rid for rid, _ in scene.regions])

@@ -53,7 +53,9 @@ def prepare_repair_samples(scene, route, primary_surface, primary_visible, prima
         draw_config = replace(config, seed=seed, surface_samples=config.surface_samples * multiplier,
                               min_object_samples=config.min_object_samples * multiplier,
                               min_region_samples=config.min_region_samples * multiplier)
-        surface = sample_surface(scene, draw_config)
+        prepared = getattr(primary_surface, "prepared", None)
+        surface = (sample_surface(scene, draw_config, prepared=prepared) if prepared is not None
+                   else sample_surface(scene, draw_config))
         visible, quality = evaluate_positions(route.positions[route.candidates], surface, objects, config)
         # Reuse the same bounded visibility/joint-object/connectivity audit, but
         # do not overwrite the primary draw's counts and preservation evidence.

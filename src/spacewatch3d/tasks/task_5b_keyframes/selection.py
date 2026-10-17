@@ -12,6 +12,9 @@ class Objective:
         self.observable = np.any(visible, axis=0) if len(visible) else np.zeros(len(weights), dtype=bool)
         self.importance = np.asarray([obj["importance"] for obj in objects])
         self.possible_objects = np.any(quality >= config.object_quality_threshold, axis=0) if len(quality) else np.zeros(len(objects), bool)
+        # Selection guards may replace these thresholds on a shallow copy, but
+        # must never recompute the nominal observable-object denominator.
+        self.object_thresholds = np.full(len(objects), config.object_quality_threshold)
         self.declared_regions = set(declared_regions)
         self.region_ids = sorted(set(regions) | self.declared_regions)
 
@@ -39,7 +42,7 @@ class Objective:
         if alpha + beta == 0:
             alpha = 1.0  # No semantic weights -> space-only, even for object-only config.
         utility = (alpha * c_space + beta * c_object) / (alpha + beta) if alpha + beta else 0.0
-        observed = best >= self.config.object_quality_threshold
+        observed = best >= self.object_thresholds
         feasible_weight = float(self.importance[self.possible_objects].sum())
         observed_weight = float(self.importance[observed].sum())
         object_feasible = float(self.importance[observed & self.possible_objects].sum()) / feasible_weight if feasible_weight else None
@@ -79,9 +82,8 @@ class Objective:
         object_coverage = report["object_importance_coverage_observable"]
         if object_coverage is not None:
             deficit += max(0., self.config.object_target - object_coverage)
-        threshold = self.config.object_quality_threshold
         deficit += sum(max(0., threshold - report["object_best_quality"][obj["instance_id"]]) / threshold
-                       for obj in self.objects if obj["must_see"])
+                       for obj, threshold in zip(self.objects, self.object_thresholds) if obj["must_see"])
         return deficit
 
 

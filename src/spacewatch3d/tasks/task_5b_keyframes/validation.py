@@ -89,6 +89,14 @@ def validate_outputs(plan, requests):
                     actual = sum("joint_object_observation" in c["reasons"] and "coverage_repair" not in c["reasons"]
                                  for c in candidates.values())
                     require(actual == audit["joint_object_added_count"], "joint object candidate reasons/count")
+                if "guarded_joint_object_threshold_patterns_preserved" in audit:
+                    require(audit["guarded_joint_object_threshold_patterns_preserved"] is True,
+                            "guarded joint object preservation flag")
+                    require(type(audit["guarded_joint_object_added_count"]) is int
+                            and 0 <= audit["guarded_joint_object_added_count"] <= added, "guarded joint object added count")
+                    actual = sum("guarded_joint_object_observation" in c["reasons"] and "coverage_repair" not in c["reasons"]
+                                 for c in candidates.values())
+                    require(actual == audit["guarded_joint_object_added_count"], "guarded joint object reasons/count")
                 if "sampled_camera_connectivity_preserved" in audit:
                     require(audit["sampled_camera_connectivity_preserved"] is True, "camera connectivity preservation flag")
                     require(type(audit["connectivity_added_count"]) is int and 0 <= audit["connectivity_added_count"] <= added,
@@ -164,6 +172,13 @@ def validate_outputs(plan, requests):
                     require(all(audit[field] is True for field in ("sampled_observable_union_preserved",
                             "best_object_quality_preserved", "joint_object_threshold_patterns_preserved",
                             "sampled_camera_connectivity_preserved")), "coverage repair preservation flags")
+                    if "object_selection_margin" in config:
+                        require(audit.get("guarded_joint_object_threshold_patterns_preserved") is True,
+                                "coverage repair guarded preservation flag")
+                        actual_guarded = sum("guarded_joint_object_observation" in candidates[cid]["reasons"] for cid in ids)
+                        require(type(audit.get("guarded_joint_object_added_count")) is int
+                                and audit["guarded_joint_object_added_count"] == actual_guarded,
+                                "coverage repair guarded candidate reasons/count")
                 else:
                     require(audit == {"status":"disabled", "probe_count":0} and not ids, "disabled repair candidate audit")
                 before_count += len(ids)
@@ -177,6 +192,69 @@ def validate_outputs(plan, requests):
                         and repair_failures[0]["runs"] == bad_runs, "coverage repair failure cannot be complete")
             else:
                 require(not repair_failures, "spurious coverage repair failure")
+    if "object_selection_margin" in config:
+        margin, nominal = config["object_selection_margin"], config["object_quality_threshold"]
+        require(type(margin) in (int, float) and 0 <= margin <= 1, "object selection margin")
+        require("object_selection_guard" in plan["coverage_report"], "missing object selection guard")
+        primary_audit = plan["candidate_report"].get("visibility_audit", {})
+        if config["adaptive_candidates"]:
+            require(primary_audit.get("guarded_joint_object_threshold_patterns_preserved") is True,
+                    "missing primary guarded preservation flag")
+        guard = plan["coverage_report"]["object_selection_guard"]
+        failures = [f for f in plan["failures"] if f["code"] == "object_selection_guard_targets_unmet"]
+        if not margin:
+            require(guard == {"status":"disabled", "used_for_selection":False, "runs":[]}
+                    and not failures, "disabled object selection guard")
+        else:
+            require(guard["used_for_selection"] is True and guard["method"] == "capped_quality_headroom"
+                    and guard["nominal_observable_denominator_preserved"] is True, "object guard role/denominator")
+            require(guard["margin"] == margin and guard["nominal_threshold"] == nominal, "object guard policy")
+            base_reports = [plan["coverage_report"]]
+            if config.get("coverage_repair", False):
+                base_reports += [r["coverage_report"] for r in plan["coverage_report"]["coverage_repair"]["runs"]]
+            require(len(guard["runs"]) == len(base_reports), "object guard draw count")
+            objects = plan["object_importances"]
+            bad_runs = []
+            for index, (run, base) in enumerate(zip(guard["runs"], base_reports)):
+                require(type(run["seed"]) is int and run["seed"] == config["seed"] + index
+                        and run["sample_role"] == "selection_guard", "object guard seed/role")
+                require([o["instance_id"] for o in run["objects"]] == [o["instance_id"] for o in objects],
+                        "object guard object identity")
+                denominator, numerator, nominal_numerator = 0., 0., 0.
+                must_see = []
+                for saved, obj in zip(run["objects"], objects):
+                    best, selected = saved["best_eligible_quality"], saved["selected_best_quality"]
+                    require(type(best) in (int, float) and type(selected) in (int, float)
+                            and 0 <= selected <= best + 1e-10 and best <= 1 + 1e-9, "object guard quality range")
+                    require(selected == base["object_best_quality"][obj["instance_id"]], "object guard selected quality")
+                    threshold = max(nominal, min(nominal + margin, best))
+                    require(saved["selection_threshold"] == threshold, "object guard threshold")
+                    possible, met = best >= nominal, selected >= threshold
+                    require(saved["nominally_observable"] is possible and saved["guard_met"] is met
+                            and saved["capped_at_best_known"] is (possible and best < nominal + margin),
+                            "object guard observation/cap evidence")
+                    if possible:
+                        denominator += obj["importance"]
+                        numerator += obj["importance"] * met
+                        nominal_numerator += obj["importance"] * (selected >= nominal)
+                    if obj["must_see"] and not met:
+                        must_see.append("must_see:" + obj["instance_id"])
+                coverage = numerator / denominator if denominator else None
+                expected_nominal = nominal_numerator / denominator if denominator else None
+                for actual, expected in ((run["object_importance_coverage_observable"], coverage),
+                                         (base["object_importance_coverage_observable"], expected_nominal)):
+                    require(actual is None if expected is None else actual is not None and math.isclose(actual, expected, abs_tol=1e-10),
+                            "object guard nominal denominator/coverage")
+                expected = (["object_target"] if coverage is not None and coverage + 1e-10 < config["object_target"] else []) + must_see
+                require(run["unmet_targets"] == expected, "object guard target results")
+                if expected:
+                    bad_runs.append({"seed":run["seed"], "targets":expected})
+            require(guard["status"] == ("targets_unmet" if bad_runs else "targets_met"), "object guard status")
+            if bad_runs:
+                require(plan["planning_status"] == "incomplete" and len(failures) == 1 and failures[0]["runs"] == bad_runs,
+                        "object guard failure cannot be complete")
+            else:
+                require(not failures, "spurious object guard failure")
     if "independent_coverage_validation" in config:
         require("independent_validation" in plan["coverage_report"], "missing independent coverage validation")
         require(type(config["independent_coverage_validation"]) is bool, "holdout enable flag")

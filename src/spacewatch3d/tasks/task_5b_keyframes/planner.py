@@ -17,6 +17,7 @@ from .loader import load_scene
 from .models import Config, InputError, read_json
 from .routing import build_route, camera_components, connect_tour, shortest
 from .selection import repair_connected_selection, select_keyframes
+from .selection_guard import finish_guard_report, guard_objectives
 from .validation import validate_outputs
 from .visibility import evaluate_positions, sample_surface
 from .reference import export_reference, finish_reuse, load_reference, reuse_route
@@ -109,7 +110,8 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
     visible, quality = all_visible[allowed_indices], all_quality[allowed_indices]
     objectives = make_objectives(datasets, allowed_indices, objects, config, [rid for rid, _ in scene.regions])
     objective = objectives[0]
-    optimization = JointObjective(objectives) if config.coverage_repair else objective
+    guarded_objectives = guard_objectives(objectives)
+    optimization = JointObjective(guarded_objectives) if config.coverage_repair else guarded_objectives[0]
     lookup = {node: i for i, node in enumerate(candidates)}
 
     @lru_cache(maxsize=32)
@@ -180,6 +182,13 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
         failures.append({"code": "coverage_repair_targets_unmet", "runs": [
             {"seed": run["seed"], "targets": run["coverage_report"]["unmet_targets"]}
             for run in coverage_repair["runs"] if run["coverage_report"]["unmet_targets"]]})
+    guard_report = finish_guard_report(guarded_objectives, [lookup[node] for node in final_nodes],
+                                       [data["seed"] for data in datasets])
+    report["object_selection_guard"] = guard_report
+    if guard_report["status"] == "targets_unmet":
+        failures.append({"code": "object_selection_guard_targets_unmet", "runs": [
+            {"seed": run["seed"], "targets": run["unmet_targets"]}
+            for run in guard_report["runs"] if run["unmet_targets"]]})
     validation = validate_coverage(scene, route, final_nodes, objects, config, banned)
     report["independent_validation"] = validation
     if validation["status"] == "failed":
@@ -246,7 +255,7 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
             "tour_links": links, "coverage_report": report, "unobservable_items": unobservable,
             "failures": failures, "warnings": warnings,
             "excluded_viewpoints": [{"viewpoint_id": route.viewpoint_id(n), "reason": "renderer_failure_or_quality_rejection"} for n in sorted(banned)],
-            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.8.0",
+            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.9.0",
                            "dependency_versions": versions, "importance_cache": importance_cache or {},
                            "feedback_manifest": str(Path(feedback_path).resolve()) if feedback_path else None,
                            "coordinate_policy": "externally_normalized_metric_z_up",

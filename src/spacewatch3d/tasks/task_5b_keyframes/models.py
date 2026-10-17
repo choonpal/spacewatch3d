@@ -64,6 +64,7 @@ class Config:
     region_target: float = 0.6
     object_target: float = 0.9
     object_quality_threshold: float = 0.35
+    object_selection_margin: float = 0.05
     solid_angle_target_sr: float = 0.02
     default_importance: float = 0.5
     seed: int = 0
@@ -112,7 +113,7 @@ class Config:
         if not 0 < result.candidate_visibility_change_threshold <= 1:
             raise InputError("candidate_visibility_change_threshold must be in (0,1]")
         for name in ("space_target", "region_target", "object_target", "default_importance",
-                     "object_quality_threshold"):
+                     "object_quality_threshold", "object_selection_margin"):
             if not 0 <= getattr(result, name) <= 1:
                 raise InputError(f"Config {name} must be in [0, 1]")
         if result.space_weight + result.object_weight <= 0:

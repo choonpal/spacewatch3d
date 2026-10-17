@@ -4,6 +4,7 @@ import numpy as np
 
 from .models import InputError
 from .routing import add_candidates, connectivity_bridges, nearest_candidates, restore_path, shortest
+from .selection_guard import guard_thresholds
 
 
 def refine_visibility_candidates(route, visible, quality, surface_weights, config):
@@ -64,7 +65,8 @@ def audit_visibility_candidates(route, visible, quality, surface_weights, config
              "probe_count": len(probes), "eligible_route_node_count": len(route.positions) - len(banned),
              "baseline_candidate_count": len(baseline), "excluded_route_node_count": len(banned),
              "sampled_observable_union_preserved": True, "best_object_quality_preserved": True,
-             "joint_object_threshold_patterns_preserved": True, "joint_object_added_count": 0}
+             "joint_object_threshold_patterns_preserved": True, "joint_object_added_count": 0,
+             "guarded_joint_object_threshold_patterns_preserved": True, "guarded_joint_object_added_count": 0}
     if not probes:
         _, connectivity = connectivity_bridges(route, [route.candidates[i] for i in baseline], config, banned)
         audit.update(connectivity, sampled_camera_connectivity_preserved=True, connectivity_added_count=0)
@@ -103,25 +105,33 @@ def audit_visibility_candidates(route, visible, quality, surface_weights, config
     # its superset. Only patterns actually measured are considered (no 2**N
     # enumeration). Include zero-importance/must-see objects; threshold matches
     # Objective exactly. This is not a guarantee of globally minimal tour cost.
-    def pattern(row):
-        return sum(1 << int(j) for j in np.flatnonzero(row >= config.object_quality_threshold))
+    def preserve_patterns(thresholds, reason, count_field, pattern_field):
+        def pattern(row):
+            return sum(1 << int(j) for j in np.flatnonzero(row >= thresholds))
+        baseline_patterns = {pattern(quality[i]) for i in baseline}
+        probe_patterns = [pattern(row) for row in probe_quality]
+        maximal = []
+        for value in sorted(baseline_patterns | set(probe_patterns), key=lambda p: (-p.bit_count(), p)):
+            if value.bit_count() >= 2 and not any(value & other == value for other in maximal):
+                maximal.append(value)
+        for value in maximal:
+            existing = baseline_patterns | {probe_patterns[i] for i in retained}
+            if any(value & other == value for other in existing):
+                continue
+            indices = [i for i, p in enumerate(probe_patterns) if p == value]
+            index = max(indices, key=lambda i: (float(probe_quality[i].sum()),
+                                                float(surface_weights[probe_visible[i]].sum()), -probes[i]))
+            retain(index, reason)
+            audit[count_field] += 1
+        audit[pattern_field] = len(maximal)
 
-    baseline_patterns = {pattern(quality[i]) for i in baseline}
-    probe_patterns = [pattern(row) for row in probe_quality]
-    maximal = []
-    for value in sorted(baseline_patterns | set(probe_patterns), key=lambda p: (-p.bit_count(), p)):
-        if value.bit_count() >= 2 and not any(value & other == value for other in maximal):
-            maximal.append(value)
-    for value in maximal:
-        existing = baseline_patterns | {probe_patterns[i] for i in retained}
-        if any(value & other == value for other in existing):
-            continue
-        indices = [i for i, p in enumerate(probe_patterns) if p == value]
-        index = max(indices, key=lambda i: (float(probe_quality[i].sum()),
-                                            float(surface_weights[probe_visible[i]].sum()), -probes[i]))
-        retain(index, "joint_object_observation")
-        audit["joint_object_added_count"] += 1
-    audit["maximal_joint_object_pattern_count"] = len(maximal)
+    preserve_patterns(config.object_quality_threshold, "joint_object_observation",
+                      "joint_object_added_count", "maximal_joint_object_pattern_count")
+    if config.object_selection_margin:
+        # Maxima from *all eligible* scored/probed nodes, never banned nodes.
+        dense_best = np.maximum(best_quality, np.max(probe_quality, axis=0))
+        preserve_patterns(guard_thresholds(dense_best, config), "guarded_joint_object_observation",
+                          "guarded_joint_object_added_count", "maximal_guarded_joint_object_pattern_count")
     probe_index = {node: i for i, node in enumerate(probes)}
     bridges, connectivity = connectivity_bridges(
         route, [route.candidates[i] for i in baseline] + [probes[i] for i in retained], config, banned)

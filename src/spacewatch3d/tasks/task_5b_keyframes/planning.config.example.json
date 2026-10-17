@@ -24,6 +24,7 @@
   "region_target": 0.6,
   "object_target": 0.9,
   "object_quality_threshold": 0.35,
+  "object_selection_margin": 0.05,
   "seed": 0,
   "width": 4096,
   "height": 2048

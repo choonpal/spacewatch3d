@@ -14,8 +14,8 @@ from .models import Config, InputError, Scene
 
 
 # Dimensionless triangle-coordinate grid; a power of two keeps unit vertices
-# exact. GEOS overlays share this precision instead of manufacturing 1e-17 m2
-# residual regions. This is not an absolute physical-area cutoff.
+# exact. GEOS overlays share this precision; physical region containment also
+# guards against triangulation-seam residuals. This is not an area cutoff.
 PARTITION_PRECISION = 64 * np.finfo(float).eps
 # Bound temporary ray/triangle arrays independently of scene and sample size.
 # This is a computation chunk, never a sampling or visibility truncation limit.
@@ -309,16 +309,33 @@ def _surface_strata(geometries, regions, config):
                                           & np.all(low <= high_xy, axis=1))
                     pieces = [_clip_parameter_triangle(xy, region_triangles[i]) for i in hits]
                     pieces = [shapely.set_precision(p, PARTITION_PRECISION) for p in pieces if p is not None]
-                    if not pieces:
-                        continue
                     assigned = remaining.intersection(shapely.union_all(pieces, grid_size=PARTITION_PRECISION))
+                    # A region containing the physical XY footprint owns all
+                    # remaining parameter-space area, including roundoff gaps
+                    # between its triangulation pieces. Test the entire convex
+                    # footprint (also a line/point for vertical faces), not only
+                    # vertices: a concavity or hole may cut through the face.
+                    # No area tolerance discards a real small residual/region.
+                    if (not assigned.covers(remaining)
+                            and regions[region_number][1].covers(shapely.MultiPoint(xy).convex_hull)):
+                        assigned = remaining
                     if assigned.area:
                         buckets.setdefault(rid, []).extend(_lift_triangles(assigned, triangle))
                         remaining = remaining.difference(assigned)
                     if remaining.is_empty:
                         break
                 if remaining.area:
-                    buckets.setdefault(None, []).extend(_lift_triangles(remaining, triangle))
+                    # A face crossing several regions can leave seam fragments
+                    # even though no single region contains the whole face.
+                    # Relabel only fragments whose entire physical footprint
+                    # is covered by a named region. Keep every fragment and
+                    # use input order for overlapping/boundary ownership; true
+                    # outside surfaces retain the unnamed-tile denominator.
+                    for fragment in _lift_triangles(remaining, triangle):
+                        footprint = shapely.MultiPoint(fragment[:, :2]).convex_hull
+                        owner = next((regions[i][0] for i in nearby
+                                      if regions[i][1].covers(footprint)), None)
+                        buckets.setdefault(owner, []).append(fragment)
         for rid, pieces in buckets.items():
             triangles = np.asarray(pieces)
             areas = np.linalg.norm(np.cross(triangles[:, 1] - triangles[:, 0],

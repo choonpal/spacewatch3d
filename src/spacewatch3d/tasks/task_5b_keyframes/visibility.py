@@ -283,6 +283,7 @@ def _surface_strata(geometries, regions, config):
         triangles = np.asarray([np.asarray(p.exterior.coords)[:3, :2]
                                 for p in shapely.get_parts(shapely.constrained_delaunay_triangles(polygon))])
         region_meshes.append((rid, triangles, triangles.min(axis=1), triangles.max(axis=1)))
+    region_index = shapely.STRtree([polygon for _, polygon in regions]) if regions else None
     strata, split_count = [], 0
     unit = shapely.set_precision(shapely.Polygon([[0, 0], [1, 0], [0, 1]]), PARTITION_PRECISION)
     for gi, geometry in enumerate(geometries):
@@ -292,10 +293,17 @@ def _surface_strata(geometries, regions, config):
         else:
             for triangle in geometry.triangles:
                 xy = triangle[:, :2]
+                low_xy, high_xy = xy.min(axis=0), xy.max(axis=0)
+                # Query bounding boxes only (no geometric predicate). Vertical
+                # faces, shared boundaries and concave/holey false positives
+                # still enter the original exact clipping loop. STRtree order
+                # is unspecified, so restore input order for boundary ownership.
+                nearby = np.sort(region_index.query(shapely.box(*low_xy, *high_xy)))
                 remaining = unit
-                for rid, region_triangles, low, high in region_meshes:
-                    hits = np.flatnonzero(np.all(high >= xy.min(axis=0), axis=1)
-                                          & np.all(low <= xy.max(axis=0), axis=1))
+                for region_number in nearby:
+                    rid, region_triangles, low, high = region_meshes[region_number]
+                    hits = np.flatnonzero(np.all(high >= low_xy, axis=1)
+                                          & np.all(low <= high_xy, axis=1))
                     pieces = [_clip_parameter_triangle(xy, region_triangles[i]) for i in hits]
                     pieces = [shapely.set_precision(p, PARTITION_PRECISION) for p in pieces if p is not None]
                     if not pieces:

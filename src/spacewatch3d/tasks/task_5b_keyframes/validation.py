@@ -313,6 +313,55 @@ def validate_outputs(plan, requests):
         require(type(succeeded) is bool and (not succeeded or bool(trigger)), "feasibility repair status")
         if succeeded:
             require(not plan["failures"] and not plan["coverage_report"]["unmet_targets"], "successful repair has failures")
+    if "object_quality_refinement" in config:
+        require(type(config["object_quality_refinement"]) is bool, "object quality refinement flag")
+        quality_draws = [(config["seed"], plan["coverage_report"])]
+        for key in ("coverage_repair", "independent_validation"):
+            quality_draws.extend((run["seed"], run["coverage_report"]) for run in
+                                 plan["coverage_report"].get(key, {}).get("runs", []))
+        if config["object_quality_refinement"] and plan["object_importances"]:
+            for seed, draw in quality_draws:
+                precision = draw.get("object_quality_precision")
+                require(isinstance(precision, dict), "missing object quality precision report")
+                require(precision.get("method") == "object_only_adaptive_precision_lower_of_two_fine_draws"
+                        and precision.get("seed") == seed and precision.get("space_surface_unchanged") is True
+                        and precision.get("statistical_confidence_guarantee") is False, "object quality precision policy")
+                records = precision.get("objects", [])
+                require([r["instance_id"] for r in records] == [o["instance_id"] for o in plan["object_importances"]],
+                        "object quality precision object identities")
+                for record in records:
+                    views = record["views"]
+                    require(len(views) == len(plan["viewpoints"]), "object quality precision view count")
+                    for index, view in enumerate(views):
+                        pose = plan["viewpoints"][index]["reference_from_camera"]
+                        require(np.asarray(view["position_m"]).shape == (3,) and np.allclose(
+                            view["position_m"], [pose[0][3], pose[1][3], pose[2][3]], rtol=0, atol=1e-8),
+                            "object quality precision pose")
+                        count, estimates = view["samples_per_estimate"], view["estimates"]
+                        require(type(count) is int and count in (0, 64, 256, 1024)
+                                and type(view["estimate_count"]) is int
+                                and len(estimates) == view["estimate_count"] == (2 if count == 1024 else 1),
+                                "object quality precision sample counts")
+                        require(all(type(q) in (int, float) and 0 <= q <= 1 + 1e-9 for q in estimates)
+                                and math.isclose(view["quality"], min(estimates), rel_tol=0, abs_tol=1e-12),
+                                "object quality precision conservative estimate")
+                        disagrees = min(estimates) < config["object_quality_threshold"] <= max(estimates)
+                        require(type(view["nominal_decision_disagrees"]) is bool
+                                and view["nominal_decision_disagrees"] == disagrees, "object quality precision decision")
+                    best = max((v["quality"] for v in views), default=0.)
+                    require(math.isclose(best, draw["object_best_quality"][record["instance_id"]],
+                                         rel_tol=0, abs_tol=1e-12), "object quality precision reported best")
+    if "attainable_goals" in plan["coverage_report"]:
+        attainable = plan["coverage_report"]["attainable_goals"]
+        unreachable = attainable["unreachable_targets_under_current_estimates"]
+        require(attainable["method"] == "full_pool_attainable_goal_stopping_without_success_relaxation"
+                and attainable["original_targets_and_denominators_preserved"] is True
+                and type(attainable["all_attainable_goals_met"]) is bool
+                and type(attainable["minimum_full_pool_deficit"]) in (int, float)
+                and attainable["minimum_full_pool_deficit"] >= 0, "attainable goal stopping policy")
+        require(isinstance(unreachable, list) and all(isinstance(x, str) for x in unreachable)
+                and len(set(unreachable)) == len(unreachable), "attainable goal failure identities")
+        require(not unreachable or plan["planning_status"] == "incomplete", "unreachable goals cannot be complete")
     sampling_draws = [plan["coverage_report"].get("surface_sampling")]
     for key in ("coverage_repair", "independent_validation"):
         sampling_draws.extend(run.get("surface_sampling") for run in

@@ -16,7 +16,8 @@ from .candidates import audit_visibility_candidates, refine_visibility_candidate
 from .loader import load_scene
 from .models import Config, InputError, read_json
 from .routing import build_route, camera_components, connect_tour, shortest
-from .selection import repair_connected_selection, select_keyframes
+from .selection import AttainableGoals, repair_connected_selection, select_keyframes
+from .object_quality import make_quality_refiner
 from .selection_guard import finish_guard_report, guard_objectives
 from .validation import validate_outputs
 from .visibility import evaluate_positions, sample_surface
@@ -112,20 +113,28 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
             reuse_report["unavailable_viewpoints"].append({"viewpoint_id": view["viewpoint_id"],
                 "reference_from_camera": view["reference_from_camera"], "reason": "renderer_failure_or_quality_rejection"})
     surface = sample_surface(scene, config)
-    all_visible, all_quality = evaluate_positions(route.positions[route.candidates], surface, objects, config)
+    quality_refiner = make_quality_refiner(scene, surface, objects, config)
+
+    def evaluate(nodes):
+        visible, quality = evaluate_positions(route.positions[nodes], surface, objects, config)
+        if quality_refiner is not None:
+            quality = quality_refiner.evaluate(route.positions[nodes], objects)
+        return visible, quality
+
+    all_visible, all_quality = evaluate(route.candidates)
     refined = refine_visibility_candidates(route, all_visible, all_quality, surface.weights, config)
     if refined:
-        refined_visible, refined_quality = evaluate_positions(route.positions[refined], surface, objects, config)
+        refined_visible, refined_quality = evaluate(refined)
         all_visible = np.concatenate([all_visible, refined_visible])
         all_quality = np.concatenate([all_quality, refined_quality])
     audited, audited_visible, audited_quality = audit_visibility_candidates(
         route, all_visible, all_quality, surface.weights, config,
-        lambda nodes: evaluate_positions(route.positions[nodes], surface, objects, config), banned)
+        evaluate, banned)
     if audited:
         all_visible = np.concatenate([all_visible, audited_visible])
         all_quality = np.concatenate([all_quality, audited_quality])
     datasets, coverage_repair = prepare_repair_samples(
-        scene, route, surface, all_visible, all_quality, objects, config, banned)
+        scene, route, surface, all_visible, all_quality, objects, config, banned, primary_refiner=quality_refiner)
     all_visible, all_quality = datasets[0]["visible"], datasets[0]["quality"]
     allowed_indices = [i for i, node in enumerate(route.candidates) if node not in banned]
     candidates = [route.candidates[i] for i in allowed_indices]
@@ -178,6 +187,9 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
     # denominators to just the selected images or hide unobservable geometry.
     report = objective.measure([lookup[node] for node in final_nodes])[1]
     report["sample_role"] = "selection"
+    report["attainable_goals"] = AttainableGoals(optimization).report(optimization.measure([lookup[node] for node in final_nodes])[1])
+    if quality_refiner is not None:
+        report["object_quality_precision"] = quality_refiner.report(route.positions[final_nodes], objects)
     report["content_only"] = content_report
     report["core_role_classification"] = {"policy": "optimization_goal_preserving_core_with_connection_only_transitions",
         "uses_final_holdout": False, "promoted_viewpoint_ids": [route.viewpoint_id(n) for n in sorted(promoted_nodes)]}
@@ -202,6 +214,9 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
     if report["unmet_targets"]:
         failures.append({"code": "targets_unmet", "targets": report["unmet_targets"]})
     finish_repair_report(coverage_repair, objectives, [lookup[node] for node in final_nodes])
+    for run, dataset in zip(coverage_repair["runs"], datasets[1:]):
+        if dataset["quality_refiner"] is not None:
+            run["coverage_report"]["object_quality_precision"] = dataset["quality_refiner"].report(route.positions[final_nodes], objects)
     report["coverage_repair"] = coverage_repair
     if coverage_repair["status"] == "targets_unmet":
         failures.append({"code": "coverage_repair_targets_unmet", "runs": [
@@ -282,7 +297,7 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
             "tour_links": links, "coverage_report": report, "unobservable_items": unobservable,
             "failures": failures, "warnings": warnings,
             "excluded_viewpoints": [{"viewpoint_id": route.viewpoint_id(n), "reason": "renderer_failure_or_quality_rejection"} for n in sorted(banned)],
-            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.19.0",
+            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.20.0",
                            "dependency_versions": versions, "importance_cache": importance_cache or {},
                            "feedback_manifest": str(Path(feedback_path).resolve()) if feedback_path else None,
                            "coordinate_policy": "externally_normalized_metric_z_up",

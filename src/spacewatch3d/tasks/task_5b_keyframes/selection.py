@@ -87,7 +87,33 @@ class Objective:
         return deficit
 
 
-def _prune_redundant(selected, measure, required=()):
+class AttainableGoals:
+    """Full-pool ceiling for stopping, never a relaxed success definition.
+
+Failure labels and original denominators stay in the returned measurements.
+All remaining achievable goals and the best attainable deficit must be met.
+This is feasibility under current estimates, NOT proof about physical geometry.
+"""
+
+    def __init__(self, objective):
+        self.objective = objective
+        ceiling = objective.measure(list(range(len(objective.visible))))[1]
+        self.unreachable = set(ceiling["unmet_targets"])
+        self.minimum_deficit = float(objective.constraint_deficit(ceiling))
+
+    def met(self, report):
+        return bool(set(report["unmet_targets"]) <= self.unreachable
+                    and self.objective.constraint_deficit(report) <= self.minimum_deficit + 1e-10)
+
+    def report(self, measured):
+        return {"method": "full_pool_attainable_goal_stopping_without_success_relaxation",
+                "unreachable_targets_under_current_estimates": sorted(self.unreachable),
+                "minimum_full_pool_deficit": self.minimum_deficit,
+                "all_attainable_goals_met": self.met(measured),
+                "original_targets_and_denominators_preserved": True}
+
+
+def _prune_redundant(selected, measure, required=(), goal_met=None):
     """Recheck routed goals after each deletion until no core view is removable.
 
     Routed utility is not monotone: deleting a core view can change the order and
@@ -95,6 +121,7 @@ def _prune_redundant(selected, measure, required=()):
     Every accepted step removes a core view, so this loop is finite.
     """
     selected = list(selected)
+    goal_met = goal_met or (lambda report: not report["unmet_targets"])
     while True:
         changed = False
         for chosen in list(reversed(selected)):
@@ -103,7 +130,7 @@ def _prune_redundant(selected, measure, required=()):
             trial = [i for i in selected if i != chosen]
             current_report = measure(selected)[1]
             trial_report = measure(trial)[1]
-            if (not trial_report["unmet_targets"] and not trial_report.get("selection_connection_failures")
+            if (goal_met(trial_report) and not trial_report.get("selection_connection_failures")
                     and trial_report.get("selection_image_count", len(trial)) <= current_report.get("selection_image_count", len(selected))):
                 selected = trial
                 changed = True
@@ -118,6 +145,7 @@ def select_keyframes(objective: Objective, evaluate=None, required=()):
     A bounded one-swap search improves cost without relaxing any target.
     """
     measure = evaluate or objective.measure
+    attainable = AttainableGoals(objective)
     selected = sorted(set(required))
     history = {i: {"selection_step": None, "marginal_gain_at_selection": None,
                    "selection_method": "reference_viewpoint_reuse",
@@ -125,7 +153,7 @@ def select_keyframes(objective: Objective, evaluate=None, required=()):
     candidates = [i for i in range(len(objective.visible)) if i not in selected]
     while candidates:
         utility, report = measure(selected)
-        if not report["unmet_targets"]:
+        if attainable.met(report):
             break
         deficit = objective.constraint_deficit(report)
         options = []
@@ -164,8 +192,8 @@ def select_keyframes(objective: Objective, evaluate=None, required=()):
                            "marginal_image_count_at_selection": added_images}
         selected.append(chosen)
         candidates.remove(chosen)
-    if not measure(selected)[1]["unmet_targets"]:
-        selected = _prune_redundant(selected, measure, required)
+    if attainable.met(measure(selected)[1]):
+        selected = _prune_redundant(selected, measure, required, attainable.met)
         if evaluate:
             # Exactly one best improving exchange, not an unbounded optimizer.
             current_report = measure(selected)[1]
@@ -181,16 +209,16 @@ def select_keyframes(objective: Objective, evaluate=None, required=()):
                 for new in available:
                     trial = [new if i == old else i for i in selected]
                     trial_report = measure(trial)[1]
-                    if trial_report["unmet_targets"] or trial_report["selection_connection_failures"]:
+                    if not attainable.met(trial_report) or trial_report["selection_connection_failures"]:
                         continue
                     # Compare the completed exchange, not its temporary two-view
                     # state. A replacement can subsume several old views even
                     # when that temporary route is longer than the current one.
-                    trial = _prune_redundant(trial, measure, required)
+                    trial = _prune_redundant(trial, measure, required, attainable.met)
                     trial_report = measure(trial)[1]
                     cost = (bool(trial_report["selection_connection_failures"]),
                             trial_report["selection_image_count"], trial_report["selection_tour_length_m"])
-                    if (not trial_report["unmet_targets"] and not trial_report["selection_connection_failures"]
+                    if (attainable.met(trial_report) and not trial_report["selection_connection_failures"]
                             and cost < best_cost):
                         best_cost, best_swap = cost, (old, new, trial)
             if best_swap:
@@ -201,8 +229,10 @@ def select_keyframes(objective: Objective, evaluate=None, required=()):
                 # A replacement can make other core views redundant. Rebuild the
                 # routed set for every deletion; never delete transition images
                 # independently of their required graph connection.
-                selected = _prune_redundant(selected, measure, required)
-    return selected, history, measure(selected)[1]
+                selected = _prune_redundant(selected, measure, required, attainable.met)
+    report = dict(measure(selected)[1])
+    report["attainable_goals"] = attainable.report(report)
+    return selected, history, report
 
 
 def repair_connected_selection(objective, evaluate, selected, history, groups, required=()):
@@ -213,7 +243,8 @@ def repair_connected_selection(objective, evaluate, selected, history, groups, r
     This is bounded, not a global minimum-image optimizer.
     """
     current = evaluate(selected)[1]
-    if not current.get("selection_connection_failures") and not current["unmet_targets"]:
+    attainable = AttainableGoals(objective)
+    if not current.get("selection_connection_failures") and attainable.met(current):
         return selected, history, current
     required = set(required)
     best = None
@@ -222,9 +253,9 @@ def repair_connected_selection(objective, evaluate, selected, history, groups, r
             continue
         trial = sorted(group)
         report = evaluate(trial)[1]
-        if report["unmet_targets"] or report["selection_connection_failures"]:
+        if not attainable.met(report) or report["selection_connection_failures"]:
             continue
-        trial = _prune_redundant(trial, evaluate, required)
+        trial = _prune_redundant(trial, evaluate, required, attainable.met)
         report = evaluate(trial)[1]
         rank = (report["selection_image_count"], report["selection_tour_length_m"], -report["utility"], tuple(trial))
         if best is None or rank < best[0]:

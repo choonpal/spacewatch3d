@@ -8,6 +8,7 @@ from .candidates import audit_visibility_candidates
 from .routing import add_candidates
 from .selection import Objective
 from .visibility import evaluate_positions, sample_surface
+from .object_quality import make_quality_refiner
 
 
 class JointObjective:
@@ -34,7 +35,7 @@ class JointObjective:
 
 
 def prepare_repair_samples(scene, route, primary_surface, primary_visible, primary_quality,
-                           objects, config, banned=()):
+                           objects, config, banned=(), primary_refiner=None):
     """Append candidates discovered in fixed training draws, retaining all draws.
 
     Old row order stays fixed. Every new node is scored on every previous draw,
@@ -43,7 +44,7 @@ def prepare_repair_samples(scene, route, primary_surface, primary_visible, prima
     """
     route.candidate_sampling["coverage_repair_added_count"] = 0
     datasets = [{"seed": config.seed, "surface": primary_surface,
-                 "visible": primary_visible, "quality": primary_quality}]
+                 "visible": primary_visible, "quality": primary_quality, "quality_refiner": primary_refiner}]
     if not config.coverage_repair:
         return datasets, {"status": "disabled", "used_for_selection": False, "runs": []}
     audits = []
@@ -56,7 +57,15 @@ def prepare_repair_samples(scene, route, primary_surface, primary_visible, prima
         prepared = getattr(primary_surface, "prepared", None)
         surface = (sample_surface(scene, draw_config, prepared=prepared) if prepared is not None
                    else sample_surface(scene, draw_config))
-        visible, quality = evaluate_positions(route.positions[route.candidates], surface, objects, config)
+        refiner = make_quality_refiner(scene, surface, objects, draw_config)
+
+        def evaluate(nodes):
+            visible, quality = evaluate_positions(route.positions[nodes], surface, objects, config)
+            if refiner is not None:
+                quality = refiner.evaluate(route.positions[nodes], objects)
+            return visible, quality
+
+        visible, quality = evaluate(route.candidates)
         # Reuse the same bounded visibility/joint-object/connectivity audit, but
         # do not overwrite the primary draw's counts and preservation evidence.
         audited_route = copy(route)
@@ -65,7 +74,7 @@ def prepare_repair_samples(scene, route, primary_surface, primary_visible, prima
         audited_route.candidate_sampling = {}
         added, added_visible, added_quality = audit_visibility_candidates(
             audited_route, visible, quality, surface.weights, config,
-            lambda nodes: evaluate_positions(route.positions[nodes], surface, objects, config), banned)
+            evaluate, banned)
         if added:
             actual = add_candidates(route, added, config.grid_m, "coverage_repair", config, force=True)
             assert actual == added
@@ -74,12 +83,15 @@ def prepare_repair_samples(scene, route, primary_surface, primary_visible, prima
                                                      if reason not in route.candidate_reasons[node])
             for dataset in datasets:
                 new_visible, new_quality = evaluate_positions(route.positions[actual], dataset["surface"], objects, config)
+                if dataset["quality_refiner"] is not None:
+                    new_quality = dataset["quality_refiner"].evaluate(route.positions[actual], objects)
                 dataset["visible"] = np.concatenate([dataset["visible"], new_visible])
                 dataset["quality"] = np.concatenate([dataset["quality"], new_quality])
             visible = np.concatenate([visible, added_visible])
             quality = np.concatenate([quality, added_quality])
         route.candidate_sampling["coverage_repair_added_count"] += len(added)
         datasets.append({"seed": seed, "surface": surface, "visible": visible, "quality": quality})
+        datasets[-1]["quality_refiner"] = refiner
         audits.append({"seed": seed, "sample_count": draw_config.surface_samples,
                        "min_object_samples": draw_config.min_object_samples,
                        "min_region_samples": draw_config.min_region_samples,

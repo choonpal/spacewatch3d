@@ -65,6 +65,7 @@ class Config:
     object_target: float = 0.9
     object_quality_threshold: float = 0.35
     object_selection_margin: float = 0.05
+    object_quality_refinement: bool = True
     solid_angle_target_sr: float = 0.02
     default_importance: float = 0.5
     seed: int = 0

@@ -4,7 +4,7 @@ const cm=x=>x==null?'—':(x*100).toFixed(2)+'cm',pct=x=>(x*100).toFixed(1)+'%';
 const camera={target:[0,0,0],radius:8,theta:-1.12,phi:.85};
 const sub=(a,b)=>a.map((v,i)=>v-b[i]),dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0);
 const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]],unit=a=>a.map(v=>v/Math.max(Math.hypot(...a),1e-10));
-let data,selected=null,epoch=1,ready=false,renderers=[];
+let data,selected=null,ready=false,renderers=[];
 const photos=[[],[]],photoIndices=[0,0],photoTokens=[0,0];
 const dataRoot=resultRoot(location.search);
 $('dataset').value=dataRoot.includes('bonn-placement')?'bonn-placement':'rescan';
@@ -31,22 +31,22 @@ if(u_mode>1.5)color=base*.85;
 float light=.65+.35*abs(dot(normalize(a_normal+vec3(.0001)),normalize(vec3(.4,-.6,1.))));v_color=color*light;
 if(u_box>.5)v_color=vec3(.35,.90,.65);}`;
 const fragment=`precision mediump float;varying mediump vec3 v_color;varying highp float v_height;uniform highp float u_cut;uniform mediump float u_box;void main(){if(u_box<.5&&v_height>u_cut)discard;gl_FragColor=vec4(v_color,1.);}`;
-function renderer(canvas,geometry,fields,original=false){
+function renderer(canvas,geometry,fields,epoch){
   const gl=canvas.getContext('webgl',{antialias:true,alpha:false,preserveDrawingBuffer:true});if(!gl)throw new Error('WebGL을 사용할 수 없습니다.');
   function shader(type,source){const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(s));return s;}
   const program=gl.createProgram();gl.attachShader(program,shader(gl.VERTEX_SHADER,vertex));gl.attachShader(program,shader(gl.FRAGMENT_SHADER,fragment));gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(program));
   const attrs=Object.fromEntries(['position','normal','rgb','field'].map(k=>[k,gl.getAttribLocation(program,'a_'+k)]));
   const u=Object.fromEntries(['matrix','mode','box','min','max','cut'].map(k=>[k,gl.getUniformLocation(program,'u_'+k)]));
   function buffer(bytes){const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,bytes,gl.STATIC_DRAW);return b;}
-  const meshes=geometry.map(buffer),scores=fields.map(buffer),box=gl.createBuffer();
+  const mesh=buffer(geometry),scores=buffer(fields),box=gl.createBuffer();
   function draw(){
     const ratio=Math.min(devicePixelRatio||1,2),w=Math.max(1,Math.round(canvas.clientWidth*ratio)),h=Math.max(1,Math.round(canvas.clientHeight*ratio));
     if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}
     gl.viewport(0,0,w,h);gl.clearColor(.035,.065,.092,1);gl.enable(gl.DEPTH_TEST);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.useProgram(program);
-    gl.uniformMatrix4fv(u.matrix,false,matrix(w/h));gl.uniform1f(u.mode,original?2:['decision','ratio','original'].indexOf($('mode').value));gl.uniform1f(u.box,0);gl.uniform1f(u.cut,data.bounds.max[2]-.28);
+    gl.uniformMatrix4fv(u.matrix,false,matrix(w/h));gl.uniform1f(u.mode,['decision','ratio','original'].indexOf($('mode').value));gl.uniform1f(u.box,0);gl.uniform1f(u.cut,data.bounds.max[2]-.28);
     const bounds=selected?{min:selected.bounds.min.map((v,i)=>v-data.display_origin[i]-.05),max:selected.bounds.max.map((v,i)=>v-data.display_origin[i]+.05)}:data.bounds;
-    gl.uniform3fv(u.min,bounds.min);gl.uniform3fv(u.max,bounds.max);gl.bindBuffer(gl.ARRAY_BUFFER,meshes[epoch]);for(const a of Object.values(attrs))gl.enableVertexAttribArray(a);
-    gl.vertexAttribPointer(attrs.position,3,gl.FLOAT,false,60,0);gl.vertexAttribPointer(attrs.normal,3,gl.FLOAT,false,60,12);gl.vertexAttribPointer(attrs.rgb,3,gl.UNSIGNED_BYTE,true,60,24);gl.bindBuffer(gl.ARRAY_BUFFER,scores[epoch]);gl.vertexAttribPointer(attrs.field,4,gl.FLOAT,false,16,0);gl.drawArrays(gl.TRIANGLES,0,data.displays[epoch].count);
+    gl.uniform3fv(u.min,bounds.min);gl.uniform3fv(u.max,bounds.max);gl.bindBuffer(gl.ARRAY_BUFFER,mesh);for(const a of Object.values(attrs))gl.enableVertexAttribArray(a);
+    gl.vertexAttribPointer(attrs.position,3,gl.FLOAT,false,60,0);gl.vertexAttribPointer(attrs.normal,3,gl.FLOAT,false,60,12);gl.vertexAttribPointer(attrs.rgb,3,gl.UNSIGNED_BYTE,true,60,24);gl.bindBuffer(gl.ARRAY_BUFFER,scores);gl.vertexAttribPointer(attrs.field,4,gl.FLOAT,false,16,0);gl.drawArrays(gl.TRIANGLES,0,data.displays[epoch].count);
     if(selected){
       const corners=[],positions=[];for(let i=0;i<8;i++)corners.push([i&1?bounds.max[0]:bounds.min[0],i&2?bounds.max[1]:bounds.min[1],i&4?bounds.max[2]:bounds.min[2]]);
       for(let i=0;i<8;i++)for(const bit of [1,2,4])if(!(i&bit))positions.push(...corners[i],...corners[i|bit]);
@@ -66,29 +66,26 @@ function drawAll(){for(const r of renderers)r.draw();}
 function overview(){camera.target=data.bounds.min.map((v,i)=>(v+data.bounds.max[i])/2);camera.radius=Math.max(...sub(data.bounds.max,data.bounds.min))*1.04;camera.phi=.94;drawAll();}
 function resultCards(){
   for(let i=0;i<2;i++){
-    $('capture-'+i).textContent=epoch===0?'이전 메쉬':'이후 메쉬';const box=$('result-'+i);box.replaceChildren();
+    $('capture-'+i).textContent=data.transfer?data.transfer.windows_s[i].map(v=>v.toFixed(2)).join('–')+'초':'촬영 회차 '+data.source_epochs[i];const box=$('result-'+i);box.replaceChildren();
     if(!selected){box.append(element('span','선택 영역 없음'));continue;}
-    if(data.transfer&&i===0){box.dataset.status='original';box.append(element('strong','원본 메쉬'),element('div','오른쪽과 같은 촬영·같은 3D 위치'),element('div','주황 후보는 오른쪽 지도에서 확인합니다.'));continue;}
+    const s=selected.statistics[1];
     if(selected.kind==='background'){
-      box.dataset.status='background';box.append(element('strong',OUTCOMES.background),element('div','전후에 대응되는 구조면 '+selected.statistics[i].core_count+'점 · 가구와 분리하여 측정'),element('div','공통 구조면은 후보에서 제외합니다. 바닥 오차 모델은 별도로 유지합니다.'));
+      box.dataset.status='background';box.append(element('strong',OUTCOMES.background),element('div','전후에 대응되는 구조면 '+s.core_count+'점 · 가구와 분리하여 측정'),element('div','공통 구조면은 후보에서 제외합니다. 바닥 오차 모델은 별도로 유지합니다.'));
       continue;
     }
-    if(selected.evaluation){
-      const e=i===0?selected.evaluation.previous:selected.evaluation;
-      box.dataset.status=e.outcome==='captured'?'change_candidate':'unassessable';
-      box.append(element('strong',REFERENCE_OUTCOMES[e.outcome]),element('div','대상 가구 표면 '+e.candidate_cores+' / '+e.source_cores+'점 · '+(e.coverage_fraction==null?'표면 없음':pct(e.coverage_fraction))),element('div','후보 면적 '+e.candidate_area_m2.toFixed(3)+'m² · 최대 연결 '+e.largest_connected_cores+'점'));
-      continue;
-    }
-    const s=selected.statistics[i];box.dataset.status=s.status;box.append(element('strong',OUTCOMES[s.status]),element('div','유효 '+s.valid_cores+'/'+s.core_count+' ('+pct(s.valid_fraction)+') · '+(s.valid_cores?'유효 표본 내 초과 '+s.exceeding_cores+' ('+pct(s.exceeding_valid_fraction)+')':'초과 판정 보류')),element('div',s.valid_cores?'초과 면적 전 '+s.exceeding_area_by_epoch_m2[0].toFixed(3)+' / 후 '+s.exceeding_area_by_epoch_m2[1].toFixed(3)+'m² · 최대 연결 '+s.largest_connected_exceedance_cores+'점':'초과 면적·연결성 미산정 · 승인된 비교 근거 없음'));
-    if(s.status==='background'){box.replaceChildren(element('strong',OUTCOMES.background),element('div','전후에 대응되는 구조면 '+s.background_cores+'점 · 가구와 분리하여 측정'),element('div','이 면은 오차 기준에만 사용하며 변화 후보 개수에 포함하지 않습니다.'));}
-    if(i===1&&$('mode').value==='ratio'&&!data.background)box.append(element('div','미승인 기준의 참고 비율도 포함 · 변화 판정으로 쓰지 않음'));
+    const area=s.exceeding_area_by_epoch_m2[i],hasSurface=area>1e-6;
+    box.dataset.status=s.status;
+    box.append(element('strong',s.status==='change_candidate'?(hasSurface?'변화 후보 표면':'이 촬영의 후보 표면 없음'):OUTCOMES[s.status]),element('div',(i===0?'이전':'이후')+' 메쉬의 후보 표면 면적 '+area.toFixed(3)+'m²'));
+    if(selected.evaluation){const e=selected.evaluation;box.append(element('div','전후 합산 대상 표면 '+e.candidate_cores+' / '+e.source_cores+'점 · '+(e.coverage_fraction==null?'표면 없음':pct(e.coverage_fraction))));}
+    else box.append(element('div','선택 구역의 전후 합산 후보 '+s.exceeding_cores+'점 · 최대 연결 '+s.largest_connected_exceedance_cores+'점'));
   }
 }
 function trace(){
   const box=$('trace');box.replaceChildren();if(!selected)return;
   box.append(element('p','좌표계: 기존 정합 맵의 회전 후 절대 좌표 · 단위 m · 범위 '+selected.bounds.min.map(v=>v.toFixed(3)).join(', ')+' → '+selected.bounds.max.map(v=>v.toFixed(3)).join(', ')));
-  const table=element('table'),head=element('tr');for(const title of data.transfer?['반경','3D 표면 거리','고정한 바닥 기준','국소 요철 기준','최종 노이즈 기준']:['반경','이전 법선 방향 차이','새 3D 표면 거리','이전 판정 기준','새 노이즈 기준'])head.append(element('th',title));table.append(head);
-  data.config.radii_m.forEach((r,j)=>{const row=element('tr');const values=data.transfer?[cm(r),cm(selected.distance_by_radius_m[j]?.median),cm(data.config.noise_budget_m[j]),cm(selected.conditions.roughness_m?.median==null?null:1.96*Math.sqrt(2)*selected.conditions.roughness_m.median),cm(selected.statistics[1].threshold_by_radius_m[j]?.median)]:[cm(r),cm(selected.distance_by_radius_m[j]?.median),cm(selected.corrected_distance_by_radius_m?.[j]?.median),cm(selected.statistics[0].threshold_by_radius_m[j]?.median),cm(selected.statistics[1].threshold_by_radius_m[j]?.median)];for(const value of values)row.append(element('td',value));table.append(row);});box.append(table);
+  const table=element('table'),head=element('tr');for(const title of ['반경','3D 표면 거리','바닥 오차 기준','국소 요철 기준','최종 노이즈 기준'])head.append(element('th',title));table.append(head);
+  const distance=selected.corrected_distance_by_radius_m||selected.distance_by_radius_m;
+  data.config.radii_m.forEach((r,j)=>{const row=element('tr');const roughness=selected.conditions?.roughness_m?.median;for(const value of [cm(r),cm(distance[j]?.median),cm(data.config.noise_budget_m?.[j]),cm(roughness==null?null:1.96*Math.sqrt(2)*roughness),cm(selected.statistics[1].threshold_by_radius_m[j]?.median)])row.append(element('td',value));table.append(row);});box.append(table);
   box.append(element('p','보류·판정 사유: '+Object.entries(selected.reasons).map(([r,n])=>(REASONS[r]||r)+' '+n+'점').join(' / ')));
   const c=selected.conditions;if(c)box.append(element('p','표면 요철 중앙값 '+cm(c.roughness_m?.median)+' · 지지 표본 수 중앙값 '+(c.density?.median?.toFixed(0)||'—')+' · 평면성 중앙값 '+(c.planarity?.median?.toFixed(3)||'—')));
   if(selected.reference_plane)box.append(element('p','대응 기준면: '+selected.reference_plane+' · 기준면과 가구는 별도 표면으로 측정합니다.'));
@@ -127,11 +124,11 @@ function renderRegions(){
 function showEvaluation(){
   if(!data.evaluation)return;
   $('evaluation-panel').hidden=false;const table=element('table'),head=element('tr');
-  for(const title of ['항목','기존 종류','이전 방식','모든 방향','포착한 표면 비율'])head.append(element('th',title));table.append(head);
+  for(const title of ['항목','기존 종류','위치 포착','포착한 표면 비율'])head.append(element('th',title));table.append(head);
   for(const r of filtered(data.regions,'reference')){
     const e=r.evaluation,row=element('tr'),cell=element('td'),button=element('button',r.title);
     button.dataset.reference=r.id;button.addEventListener('click',()=>{$('filter').value='reference';renderRegions();choose(r);$('region-title').scrollIntoView({block:'start'});});cell.append(button);row.append(cell);
-    for(const value of [REFERENCE_TYPES[e.reference_type],REFERENCE_OUTCOMES[e.previous.outcome],REFERENCE_OUTCOMES[e.outcome],e.coverage_fraction==null?'—':pct(e.coverage_fraction)])row.append(element('td',value));
+    for(const value of [REFERENCE_TYPES[e.reference_type],REFERENCE_OUTCOMES[e.outcome],e.coverage_fraction==null?'—':pct(e.coverage_fraction)])row.append(element('td',value));
     table.append(row);
   }
   $('evaluation-table').replaceChildren(table);$('evaluation-note').textContent='포착 기준: 해당 가구 표면에 9점 이상, 0.04m² 이상의 연결 후보가 한 곳 이상 존재. 기존 항목 라벨은 탐지 후 대조에만 사용했습니다. 전체 오탐률·이동 종류 정확도를 뜻하지 않습니다.';
@@ -149,30 +146,28 @@ async function get(url,binary=false){const r=await fetch(url);if(!r.ok)throw new
 async function load(){
   try{
     data=validate(await get(dataRoot+'comparison.json'));const geometry=await Promise.all(data.displays.map(d=>get(d.url,true)));
-    const fields=await Promise.all(['fixed','empirical'].map(mode=>Promise.all([0,1].map(e=>get(dataRoot+e+'-'+mode+'.bin',true)))));
-    for(let e=0;e<2;e++){const count=data.displays[e].count;if(geometry[e].byteLength!==count*60||fields.some(f=>f[e].byteLength!==count*16))throw new Error('메쉬와 판정 표면의 크기가 다릅니다.');}
-    renderers=fields.map((f,i)=>renderer($('map-'+i),geometry,f,Boolean(data.transfer&&i===0)));$('pair').textContent=data.scene;
+    const fields=await Promise.all([0,1].map(e=>get(dataRoot+e+'-empirical.bin',true)));
+    for(let e=0;e<2;e++){const count=data.displays[e].count;if(geometry[e].byteLength!==count*60||fields[e].byteLength!==count*16)throw new Error('메쉬와 판정 표면의 크기가 다릅니다.');}
+    renderers=[0,1].map(e=>renderer($('map-'+e),geometry[e],fields[e],e));$('pair').textContent=data.scene;
     $('result-download').href=dataRoot+'comparison.json';
     const enabled=data.models.filter(m=>m.enabled).length;
-    for(let i=0;i<2;i++)$('method-'+i).textContent=data.variants[i].label;
-    $('exceed-count').textContent=data.variants.map(v=>exceedCount(v.summary)).join(' → ');
+    $('exceed-count').textContent=exceedCount(data.variants[1].summary);
     if(data.transfer){
       const t=data.transfer,a=data.assessable_nonbackground;
-      document.title='SpaceWatch3D · 새 촬영 쌍 / 고정 설정';$('dataset-caption').textContent='Bonn · 처음 적용한 촬영 / 설정 고정';
-      $('page-title').textContent='처음 적용한 전후 촬영의 변화 후보';$('method-description').textContent='왼쪽: 원본 메쉬 / 오른쪽: Rescan 설정을 그대로 적용한 변화 후보';
+      document.title='SpaceWatch3D · 새 촬영 쌍 / 전후 메쉬';$('dataset-caption').textContent='Bonn · 모든 방향 3D 표면 비교';
+      $('page-title').textContent='전후 메쉬에서 변화 구역 보기';
       $('summary-models').textContent='변화 후보 · 연결 표면';$('models-count').textContent=t.candidate_patches+'개';$('models-note').textContent='전후 사진 모두 연결 '+t.candidate_patches_with_paired_originals+'개 · 객체 개수와 다름';
       $('summary-exceed').textContent='변화 후보 표면 지점';$('exceed-count').textContent=t.candidate_cores.toLocaleString()+'점';$('candidate-note').textContent='깊이의 존재·빈 공간 지지 '+t.visibility_supported_candidates+'점';
       $('summary-valid').textContent='구조면 밖에서 비교 가능한 지점';$('valid-count').textContent=a.current.toLocaleString()+' / '+a.total.toLocaleString();$('assessable-note').textContent='바닥 기준값·검출 조건 그대로 · 라벨 사용 없음';
-      $('legend').textContent='오른쪽 지도: 주황은 변화 의심 표면 / 청록은 공통 구조면 · 후보 제외 / 회색은 비교 근거 부족. 왼쪽은 원본 메쉬입니다.';
-      document.querySelector('.maps').setAttribute('aria-label','같은 촬영의 원본 메쉬와 고정 설정 변화 후보 비교');document.querySelector('.photo-actions span').textContent='점선은 제공된 카메라 포즈로 연결한 같은 3D 위치입니다. 원본 정지 사진이며 자동 재생하지 않습니다.';
+      $('legend').textContent='두 지도 모두: 주황은 변화 의심 표면 / 청록은 공통 구조면 · 후보 제외 / 회색은 비교 근거 부족. 왼쪽은 이전, 오른쪽은 이후 메쉬입니다.';
+      document.querySelector('.photo-actions span').textContent='점선은 제공된 카메라 포즈로 연결한 같은 3D 위치입니다. 원본 정지 사진이며 자동 재생하지 않습니다.';
       $('context-note').textContent='처음 사용한 Bonn 상자 놓기 영상의 앞·뒤 구간을 각각 복원했습니다. 독립적인 두 번의 방문 촬영은 아닙니다. 기존 Bonn 상자 제거와는 같은 실험 공간입니다. 정답 라벨 없이 모든 후보를 표시하며, 복원 누락·가림에 따른 차이도 포함될 수 있습니다.';
       $('noise-details-summary').textContent='그대로 고정한 오차 기준과 검출 조건';$('result-download').textContent='고정 설정·출처·결과 JSON ↓';
       for(const option of [...$('filter').options])if(['reference','captured','partial','missed'].includes(option.value))option.remove();
-      $('map-0').setAttribute('aria-label','원본 메쉬 지도. 드래그 회전, 휠 확대');$('map-1').setAttribute('aria-label','고정 설정 변화 후보 지도. 드래그 회전, 휠 확대');
       $('filter').value=t.candidate_patches?'change_candidate':'all';
     }else if(data.evaluation){
-      const e=data.evaluation,a=data.assessable_nonbackground;$('models-count').textContent=e.previous_captured+' → '+e.captured+' / '+e.reference_count;
-      $('valid-count').textContent=a.previous.toLocaleString()+' → '+a.current.toLocaleString();
+      const e=data.evaluation,a=data.assessable_nonbackground;$('models-count').textContent=e.captured+' / '+e.reference_count;
+      $('valid-count').textContent=a.current.toLocaleString()+' / '+a.total.toLocaleString();
       $('assessable-note').textContent='구조면 제외 '+a.total.toLocaleString()+'점 중 비교 가능';
       $('candidate-note').textContent=e.candidate_cores_outside_reference_items.toLocaleString()+'점은 12개 항목 밖 · 추가 후보와 오탐이 섞일 수 있음';
       $('filter').value='reference';
@@ -186,7 +181,6 @@ async function load(){
 }
 $('filter').addEventListener('change',()=>{if(ready)renderRegions();});$('region').addEventListener('change',e=>{if(ready)choose(data.regions.find(r=>r.id===e.target.value));});
 $('dataset').addEventListener('change',()=>{location.href='residual-comparison.html'+($('dataset').value==='rescan'?'':'?dataset=bonn-placement');});
-for(const [id,e]of [['before',0],['after',1]])$(id).addEventListener('click',()=>{if(!ready)return;epoch=e;$('before').setAttribute('aria-pressed',String(e===0));$('after').setAttribute('aria-pressed',String(e===1));resultCards();drawAll();});
 $('mode').addEventListener('change',()=>{if(ready){resultCards();drawAll();}});$('overview').addEventListener('click',()=>{if(ready)overview();});$('top').addEventListener('click',()=>{if(ready){camera.phi=1.52;drawAll();}});
 for(const b of document.querySelectorAll('[data-epoch]'))b.addEventListener('click',()=>{const e=Number(b.dataset.epoch),next=clamp(photoIndices[e]+Number(b.dataset.step),0,photos[e].length-1);if(next!==photoIndices[e]){photoIndices[e]=next;showPhoto(e);}});
 $('expand').addEventListener('click',()=>{for(let e=0;e<2;e++)$('large-'+e).src=$('photo-'+e).src;$('photo-dialog').showModal();});$('close').addEventListener('click',()=>$('photo-dialog').close());

@@ -19,8 +19,16 @@ def matrix(value, name="transform"):
         raise InputError(f"Invalid {name}") from exc
     if result.shape != (4, 4) or not np.isfinite(result).all():
         raise InputError(f"{name} must be a finite 4x4 matrix")
-    if not np.allclose(result[3], [0, 0, 0, 1]) or abs(np.linalg.det(result[:3, :3])) < 1e-12:
+    linear = result[:3, :3]
+    magnitude = float(np.max(np.abs(linear)))
+    if not np.allclose(result[3], [0, 0, 0, 1], rtol=0, atol=1e-8) or magnitude == 0:
         raise InputError(f"{name} must be an invertible affine transform")
+    # Determinant magnitude depends on the source unit cubed. Validate rank
+    # after normalization so a small, well-conditioned unit conversion is valid
+    # while a large but almost singular affine transform is not.
+    singular = np.linalg.svd(linear / magnitude, compute_uv=False)
+    if singular[-1] <= singular[0] * 1e-12:
+        raise InputError(f"{name} must be a numerically stable invertible affine transform")
     return result
 
 
@@ -79,7 +87,11 @@ def load_triangles(item, base: Path, config: Config):
     if len(triangles) > config.max_triangles or not np.isfinite(triangles).all():
         raise InputError("Non-finite mesh or max_triangles exceeded")
     transform = matrix(item.get("world_from_object", np.eye(4)))
-    return triangles @ transform[:3, :3].T + transform[:3, 3]
+    with np.errstate(over="ignore", invalid="ignore"):
+        transformed = triangles @ transform[:3, :3].T + transform[:3, 3]
+    if not np.isfinite(transformed).all():
+        raise InputError("Non-finite transformed mesh")
+    return transformed
 
 
 def load_scene(path: Path, config: Config) -> Scene:
@@ -149,12 +161,22 @@ def load_scene(path: Path, config: Config) -> Scene:
         if "planning_from_world" in data:
             planning_from_world = matrix(data["planning_from_world"], "planning_from_world")
             linear = planning_from_world[:3, :3]
-            scale = np.linalg.norm(linear[:, 0])
-            if np.linalg.det(linear) <= 0 or not np.allclose(linear.T @ linear, np.eye(3) * scale ** 2, atol=1e-8):
+            magnitude = float(np.max(np.abs(linear)))
+            normalized = linear / magnitude
+            column_norm = np.linalg.norm(normalized[:, 0])
+            rotation = normalized / column_norm
+            with np.errstate(over="ignore"):
+                scale = magnitude * column_norm
+            if (not np.isfinite(scale) or scale <= 0 or np.linalg.det(rotation) <= 0
+                    or not np.allclose(rotation.T @ rotation, np.eye(3), rtol=0, atol=1e-8)):
                 raise InputError("planning_from_world must be a proper uniform-scale similarity")
             known_scale = source_coords.get("scale_to_meters")
-            if known_scale is not None and not np.isclose(scale, known_scale):
-                raise InputError("planning_from_world scale disagrees with source scale_to_meters")
+            if known_scale is not None:
+                if (isinstance(known_scale, bool) or not isinstance(known_scale, (int, float))
+                        or not np.isfinite(known_scale) or known_scale <= 0):
+                    raise InputError("source scale_to_meters must be finite and positive")
+                if not np.isclose(scale, known_scale, rtol=1e-8, atol=0):
+                    raise InputError("planning_from_world scale disagrees with source scale_to_meters")
             if known_scale is None and data.get("source_scale_confirmed") is not True:
                 raise InputError("Unknown source scale requires source_scale_confirmed=true and measured planning_from_world")
             provenance["planning_from_world"] = planning_from_world.tolist()

@@ -101,7 +101,8 @@ def nearest_candidates(adjacency, candidates):
 
 
 def add_candidates(route, nodes, spacing, reason, config, force=False):
-    distance, _ = nearest_candidates(route.adjacency, route.candidates)
+    # Forced anchors/discoveries bypass spacing, so no distance map is needed.
+    distance = None if force else nearest_candidates(route.adjacency, route.candidates)[0]
     known, added = set(route.candidates), []
     for node in sorted(set(nodes)):
         if node in known:
@@ -116,9 +117,13 @@ def add_candidates(route, nodes, spacing, reason, config, force=False):
         route.candidate_reasons[node] = [reason]
         known.add(node)
         added.append(node)
-        local, _ = shortest(route.adjacency, node)
-        for other, value in local.items():
-            distance[other] = min(distance.get(other, math.inf), value)
+        if not force:
+            # Only distances below spacing can reject a later candidate. Keep
+            # graph-distance semantics and the original threshold tolerance;
+            # this cap never applies to actual tour/connection paths.
+            local, _ = shortest(route.adjacency, node, max_distance=spacing)
+            for other, value in local.items():
+                distance[other] = min(distance.get(other, math.inf), value)
     return added
 
 
@@ -261,7 +266,9 @@ def build_route(scene: Scene, config: Config) -> Route:
         candidates.append(node)
         if len(candidates) > config.max_candidates:
             raise InputError("max_candidates exceeded; increase candidate_spacing_m")
-        distances, _ = shortest(adjacency, node)
+        # Farther nodes cannot be thinned by this seed; their exact distance
+        # is unnecessary. Routing itself still uses unrestricted shortest paths.
+        distances, _ = shortest(adjacency, node, max_distance=config.candidate_spacing_m)
         for other, value in distances.items():
             nearest[other] = min(nearest[other], value)
     route = Route(origin, config.grid_m, walkable, clearance, cells, positions, components,

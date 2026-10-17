@@ -16,6 +16,9 @@ from .models import Config, InputError, Scene
 # exact. GEOS overlays share this precision instead of manufacturing 1e-17 m2
 # residual regions. This is not an absolute physical-area cutoff.
 PARTITION_PRECISION = 64 * np.finfo(float).eps
+# Bound temporary ray/triangle arrays independently of scene and sample size.
+# This is a computation chunk, never a sampling or visibility truncation limit.
+RAY_BATCH_SIZE = 128
 
 
 class BVH:
@@ -76,6 +79,67 @@ class BVH:
                       & (t > 1e-7) & (t < end)):
                 return True
         return False
+
+    def blocked_many(self, origin, targets):
+        """Query all targets with bounded CPU batches and scalar tolerances.
+
+        Each live ray traverses the same tree; only array arithmetic is shared.
+        No visibility result is cached across positions or surface draws.
+        """
+        origin, targets = np.asarray(origin, dtype=float), np.asarray(targets, dtype=float)
+        if (origin.shape != (3,) or targets.ndim != 2 or targets.shape[1] != 3
+                or not np.isfinite(origin).all() or not np.isfinite(targets).all()):
+            raise InputError("Occlusion queries require a finite origin 3-vector and target Nx3 array")
+        result = np.zeros(len(targets), dtype=bool)
+        for start in range(0, len(targets), RAY_BATCH_SIZE):
+            result[start:start + RAY_BATCH_SIZE] = self._blocked_batch(origin, targets[start:start + RAY_BATCH_SIZE])
+        return result
+
+    def _blocked_batch(self, origin, targets):
+        delta = targets - origin
+        distances = np.linalg.norm(delta, axis=1)
+        directions = np.divide(delta, distances[:, None], out=np.zeros_like(delta), where=distances[:, None] > 1e-8)
+        end = distances - 1e-6
+        blocked = np.zeros(len(targets), dtype=bool)
+        stack = [(self.root, np.flatnonzero(distances > 1e-8))]
+        while stack:
+            (low, high, indices, left, right), rays = stack.pop()
+            rays = rays[~blocked[rays]]
+            if not len(rays):
+                continue
+            near, far = np.full(len(rays), 1e-7), end[rays].copy()
+            for axis in range(3):
+                direction = directions[rays, axis]
+                parallel = np.abs(direction) < 1e-14
+                if origin[axis] < low[axis] - 1e-10 or origin[axis] > high[axis] + 1e-10:
+                    far[parallel] = -1
+                moving = ~parallel
+                a = (low[axis] - origin[axis]) / direction[moving]
+                b = (high[axis] - origin[axis]) / direction[moving]
+                near[moving] = np.maximum(near[moving], np.minimum(a, b))
+                far[moving] = np.minimum(far[moving], np.maximum(a, b))
+            rays = rays[near <= far]
+            if not len(rays):
+                continue
+            if indices is None:
+                stack.extend(((left, rays), (right, rays)))
+                continue
+            # At most RAY_BATCH_SIZE rays by 24 leaf triangles. Avoid a
+            # full samples-by-scene-triangles tensor and retain two-sided hits.
+            tri = self.triangles[indices]
+            e1, e2 = tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0]
+            h = np.cross(directions[rays, None, :], e2[None, :, :])
+            determinant = np.einsum("tj,rtj->rt", e1, h)
+            valid = np.abs(determinant) > 1e-12
+            inverse = np.divide(1., determinant, out=np.zeros_like(determinant), where=valid)
+            s = origin - tri[:, 0]
+            u = inverse * np.einsum("tj,rtj->rt", s, h)
+            q = np.cross(s, e1)
+            v = inverse * np.einsum("tj,rj->rt", q, directions[rays])
+            t = inverse * np.einsum("ij,ij->i", e2, q)[None, :]
+            blocked[rays] = np.any(valid & (u >= -1e-10) & (v >= -1e-10) & (u + v <= 1 + 1e-10)
+                                   & (t > 1e-7) & (t < end[rays, None]), axis=1)
+        return blocked
 
 
 @dataclass
@@ -322,8 +386,8 @@ def evaluate_positions(positions, surface: Surface, objects: list[dict], config:
         distances = np.linalg.norm(delta, axis=1)
         incidence = np.abs(np.einsum("ij,ij->i", surface.normals, delta / np.maximum(distances[:, None], 1e-12)))
         eligible = (distances > 1e-6) & (distances <= config.max_view_distance_m) & (incidence > 1e-5)
-        for patch in np.flatnonzero(eligible):
-            visible[index, patch] = not surface.bvh.blocked(position, surface.points[patch])
+        patches = np.flatnonzero(eligible)
+        visible[index, patches] = ~surface.bvh.blocked_many(position, surface.points[patches])
         for j, (obj, mask) in enumerate(zip(objects, masks)):
             seen = mask & visible[index]
             total = surface.object_areas.get(obj["instance_id"], 0)

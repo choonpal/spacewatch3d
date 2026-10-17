@@ -92,11 +92,17 @@ class BVH:
                 or not np.isfinite(origin).all() or not np.isfinite(targets).all()):
             raise InputError("Occlusion queries require a finite origin 3-vector and target Nx3 array")
         result = np.zeros(len(targets), dtype=bool)
+        # Terms depending on the origin and one leaf, but not the ray, are
+        # shared across chunks in this query only. No cross-camera/draw cache.
+        leaf_terms = {}
         for start in range(0, len(targets), RAY_BATCH_SIZE):
-            result[start:start + RAY_BATCH_SIZE] = self._blocked_batch(origin, targets[start:start + RAY_BATCH_SIZE])
+            result[start:start + RAY_BATCH_SIZE] = self._blocked_batch(
+                origin, targets[start:start + RAY_BATCH_SIZE], leaf_terms)
         return result
 
-    def _blocked_batch(self, origin, targets):
+    def _blocked_batch(self, origin, targets, leaf_terms=None):
+        if leaf_terms is None:
+            leaf_terms = {}
         delta = targets - origin
         distances = np.linalg.norm(delta, axis=1)
         directions = np.divide(delta, distances[:, None], out=np.zeros_like(delta), where=distances[:, None] > 1e-8)
@@ -127,17 +133,29 @@ class BVH:
                 continue
             # At most RAY_BATCH_SIZE rays by 24 leaf triangles. Avoid a
             # full samples-by-scene-triangles tensor and retain two-sided hits.
-            tri = self.triangles[indices]
-            e1, e2 = tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0]
-            h = np.cross(directions[rays, None, :], e2[None, :, :])
+            terms = leaf_terms.get(id(indices))
+            if terms is None:
+                tri = self.triangles[indices]
+                e1, e2 = tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0]
+                s = origin - tri[:, 0]
+                q = np.cross(s, e1)
+                t_numerator = np.einsum("ij,ij->i", e2, q)
+                terms = leaf_terms[id(indices)] = e1, e2, s, q, t_numerator
+            e1, e2, s, q, t_numerator = terms
+            # All vectors here are known 3-vectors. Explicit components avoid
+            # np.cross's general dimension/axis dispatch, with identical
+            # multiply/subtract order and without fused/reordered arithmetic.
+            direction = directions[rays]
+            h = np.empty((len(rays), len(indices), 3))
+            h[:, :, 0] = direction[:, 1, None] * e2[None, :, 2] - direction[:, 2, None] * e2[None, :, 1]
+            h[:, :, 1] = direction[:, 2, None] * e2[None, :, 0] - direction[:, 0, None] * e2[None, :, 2]
+            h[:, :, 2] = direction[:, 0, None] * e2[None, :, 1] - direction[:, 1, None] * e2[None, :, 0]
             determinant = np.einsum("tj,rtj->rt", e1, h)
             valid = np.abs(determinant) > 1e-12
             inverse = np.divide(1., determinant, out=np.zeros_like(determinant), where=valid)
-            s = origin - tri[:, 0]
             u = inverse * np.einsum("tj,rtj->rt", s, h)
-            q = np.cross(s, e1)
             v = inverse * np.einsum("tj,rj->rt", q, directions[rays])
-            t = inverse * np.einsum("ij,ij->i", e2, q)[None, :]
+            t = inverse * t_numerator[None, :]
             blocked[rays] = np.any(valid & (u >= -1e-10) & (v >= -1e-10) & (u + v <= 1 + 1e-10)
                                    & (t > 1e-7) & (t < end[rays, None]), axis=1)
         return blocked

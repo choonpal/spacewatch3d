@@ -157,10 +157,11 @@ def load_reference(path, scene, config, registration_path=None):
 
 
 def reuse_route(scene, route, reference, config):
-    """Keep exact safe baseline nodes and connect them via current free raster.
+    """Keep safe content poses, rebuilding their paths from current free space.
 
-    Baseline images are never snapped to a new centerline. New raster paths are
-    collision checked by the same conservative walkable mask as normal routing.
+    Historical graph positions do not become anchors merely because they are
+    still safe. Their IDs can survive where the current graph independently
+    needs the same position. Content images are never snapped to a centerline.
     """
     ref_cells, valid_nodes = {}, {}
     for record in reference["route_graph"]["nodes"]:
@@ -170,12 +171,14 @@ def reuse_route(scene, route, reference, config):
         if 0 <= r < route.walkable.shape[0] and 0 <= c < route.walkable.shape[1] and route.walkable[cell]:
             ref_cells[cell] = record
             valid_nodes[record["node_id"]] = cell
+    anchors = {valid_nodes[view["route_node_id"]] for view in reference["viewpoints"]
+               if view["roles"] == ["content"] and view["route_node_id"] in valid_nodes}
     original = set(route.cells)
-    marked = original | set(ref_cells)
-    targets = set(ref_cells) - original
+    marked = original | anchors
+    targets = anchors - original
     if targets:
-        # Multi-source shortest paths attach all safe old nodes to the current
-        # centerline. A wall or a floor hole can never be crossed by attachment.
+        # Only safe canonical content cameras require attachment. Recompute
+        # paths through the current free mask, never through a wall/floor hole.
         queue = [(0., cell) for cell in sorted(original)]
         heapq.heapify(queue)
         distances, previous = {cell: 0. for cell in original}, {}
@@ -191,7 +194,7 @@ def reuse_route(scene, route, reference, config):
                     heapq.heappush(queue, (value, other))
         if targets:
             raise InputError("Cannot attach reference nodes to current free-space graph")
-        for cell in ref_cells:
+        for cell in sorted(anchors):
             while cell not in original:
                 marked.add(cell)
                 cell = previous[cell]
@@ -214,6 +217,7 @@ def reuse_route(scene, route, reference, config):
     reserved = {n["node_id"] for n in reference["route_graph"]["nodes"]}
     for node, cell in enumerate(cells):
         if cell in ref_cells:
+            # Stable identity is not a requirement to retain that old position.
             result.node_ids[node] = ref_cells[cell]["node_id"]
         else:
             nid = "n_added_" + digest(positions[node].tolist())[:20]

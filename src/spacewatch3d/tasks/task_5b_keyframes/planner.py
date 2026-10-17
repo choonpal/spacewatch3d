@@ -43,7 +43,9 @@ def read_feedback(path, scene, route):
         node = valid_ids[vid]
         pose = np.asarray(record.get("reference_from_camera"), dtype=float)
         expected = route.camera_pose(node)
-        if pose.shape != (4, 4) or not np.allclose(pose, expected, atol=1e-8):
+        # Pose identity is absolute in the metric reference frame. A relative
+        # tolerance would accept a different camera farther from the origin.
+        if pose.shape != (4, 4) or not np.allclose(pose, expected, rtol=0, atol=1e-8):
             raise InputError("Feedback pose mismatch; do not reuse feedback after moving a viewpoint")
         if record.get("render_status") not in ("failed", "succeeded"):
             raise InputError("Invalid feedback render_status")
@@ -256,7 +258,7 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
             "tour_links": links, "coverage_report": report, "unobservable_items": unobservable,
             "failures": failures, "warnings": warnings,
             "excluded_viewpoints": [{"viewpoint_id": route.viewpoint_id(n), "reason": "renderer_failure_or_quality_rejection"} for n in sorted(banned)],
-            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.12.0",
+            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.13.0",
                            "dependency_versions": versions, "importance_cache": importance_cache or {},
                            "feedback_manifest": str(Path(feedback_path).resolve()) if feedback_path else None,
                            "coordinate_policy": "externally_normalized_metric_z_up",

@@ -44,7 +44,7 @@ def validate_outputs(plan, requests):
         a, b = edge["from_node"], edge["to_node"]
         require(a in nodes and b in nodes, "edge references missing node")
         require(nodes[a]["component_id"] == nodes[b]["component_id"], "edge crosses components")
-        require(np.allclose(edge["polyline_m"], [nodes[a]["position_m"], nodes[b]["position_m"]]), "edge polyline")
+        require(np.allclose(edge["polyline_m"], [nodes[a]["position_m"], nodes[b]["position_m"]], rtol=0, atol=1e-8), "edge polyline")
         require(math.isclose(edge["length_m"], float(np.linalg.norm(np.asarray(nodes[a]["position_m"]) - nodes[b]["position_m"])), abs_tol=1e-8), "edge length")
         edges.add(frozenset((a, b)))
     viewpoints = {v["viewpoint_id"]: v for v in plan["viewpoints"]}
@@ -349,12 +349,12 @@ def validate_outputs(plan, requests):
             require(type(selection[key]) is int and selection[key] == expected, "selection " + key)
     for viewpoint in viewpoints.values():
         pose = np.asarray(viewpoint["reference_from_camera"], float)
-        require(pose.shape == (4, 4) and np.allclose(pose[3], [0, 0, 0, 1]), "pose shape")
-        require(np.allclose(pose[:3, :3].T @ pose[:3, :3], np.eye(3), atol=1e-8)
-                and math.isclose(np.linalg.det(pose[:3, :3]), 1, abs_tol=1e-8), "camera rotation")
+        require(pose.shape == (4, 4) and np.allclose(pose[3], [0, 0, 0, 1], rtol=0, atol=1e-8), "pose shape")
+        require(np.allclose(pose[:3, :3].T @ pose[:3, :3], np.eye(3), rtol=0, atol=1e-8)
+                and math.isclose(np.linalg.det(pose[:3, :3]), 1, rel_tol=0, abs_tol=1e-8), "camera rotation")
         require(bool(viewpoint["roles"]) and set(viewpoint["roles"]) <= {"content", "transition"}, "viewpoint roles")
         require(viewpoint["route_node_id"] in nodes, "viewpoint route node")
-        require(np.allclose(pose[:3, 3], nodes[viewpoint["route_node_id"]]["position_m"]), "pose translation")
+        require(np.allclose(pose[:3, 3], nodes[viewpoint["route_node_id"]]["position_m"], rtol=0, atol=1e-8), "pose translation")
         require(viewpoint["component_id"] == nodes[viewpoint["route_node_id"]]["component_id"], "viewpoint component")
         require(viewpoint["render_status"] in ("pending", "succeeded"), "render status")
         require((viewpoint["image_ref"] is None) == (viewpoint["render_status"] == "pending"), "image status")
@@ -365,7 +365,7 @@ def validate_outputs(plan, requests):
     reqs = {r["viewpoint_id"]: r for r in requests["requests"]}
     require(len(reqs) == len(requests["requests"]) and set(reqs) == set(viewpoints), "request/viewpoint IDs")
     for vid, request in reqs.items():
-        require(np.allclose(request["reference_from_camera"], viewpoints[vid]["reference_from_camera"]), "request pose")
+        require(np.allclose(request["reference_from_camera"], viewpoints[vid]["reference_from_camera"], rtol=0, atol=1e-8), "request pose")
         require(request["capture_id"] == plan["capture_id"] and request["reference_frame_id"] == plan["reference_frame_id"], "request frame")
         require(request["projection"] == "equirectangular" and request["media_origin"] == "novel_view", "request projection")
         require(request["render_required"] == (viewpoints[vid]["render_status"] == "pending"), "render_required")
@@ -403,7 +403,7 @@ def validate_outputs(plan, requests):
         ids = link["route_node_ids"]
         require(bool(ids) and ids[0] == viewpoints[a]["route_node_id"] and ids[-1] == viewpoints[b]["route_node_id"], "tour path endpoints")
         require(all(frozenset((u, v)) in edges for u, v in zip(ids, ids[1:])), "tour path must follow graph edges")
-        require(np.allclose(link["polyline_m"], [nodes[n]["position_m"] for n in ids]), "tour polyline")
+        require(np.allclose(link["polyline_m"], [nodes[n]["position_m"] for n in ids], rtol=0, atol=1e-8), "tour polyline")
         measured = sum(float(np.linalg.norm(np.asarray(nodes[u]["position_m"]) - nodes[v]["position_m"])) for u, v in zip(ids, ids[1:]))
         require(math.isclose(link["length_m"], measured, abs_tol=1e-8), "tour path length")
         if "connection_method" in link:

@@ -172,6 +172,7 @@ class Surface:
     object_areas: dict
     sampling_report: dict | None = None
     prepared: "PreparedSurface | None" = None
+    object_bvhs: dict | None = None
 
 
 @dataclass(frozen=True)
@@ -193,6 +194,7 @@ class PreparedSurface:
     bvh: BVH
     input_triangle_count: int
     partition_triangle_count: int
+    object_bvhs: dict
 
     def validate(self, scene, config):
         if scene is not self.scene:
@@ -245,9 +247,15 @@ def prepare_surface(scene, config):
             stack.extend((left, right))
         else:
             indices.setflags(write=False)
+    object_pieces = {}
+    for geometry in geometries:
+        owners = geometry.object_ids or ((geometry.object_id,) if geometry.object_id is not None else ())
+        for oid in owners:
+            object_pieces.setdefault(oid, []).append(geometry.triangles)
+    object_bvhs = {oid: BVH(np.concatenate(pieces)) for oid, pieces in object_pieces.items()}
     return PreparedSurface(scene, _geometry_signature(scene), tuple(_SamplingGeometry(g.object_id, g.object_ids) for g in geometries),
                            tuple(scene.regions), strata, totals, bvh, triangle_count,
-                           sum(len(s[2]) for s in strata))
+                           sum(len(s[2]) for s in strata), object_bvhs)
 
 
 def _apportion(count, areas):
@@ -527,7 +535,7 @@ def sample_surface(scene: Scene, config: Config, prepared: PreparedSurface | Non
                   "status": "sampled" if any(s[1] == rid for s in strata) else "no_surface"}
                  for rid, _ in scene.regions]}
     return Surface(points, np.asarray(normals), np.asarray(weights), object_ids, regions,
-                   prepared.bvh, object_areas, audit, prepared)
+                   prepared.bvh, object_areas, audit, prepared, prepared.object_bvhs)
 
 
 def evaluate_positions(positions, surface: Surface, objects: list[dict], config: Config):
@@ -544,10 +552,24 @@ def evaluate_positions(positions, surface: Surface, objects: list[dict], config:
         visible[index, patches] = ~surface.bvh.blocked_many(position, surface.points[patches])
         for j, (obj, mask) in enumerate(zip(objects, masks)):
             seen = mask & visible[index]
+            if not seen.any():
+                continue
             total = surface.object_areas.get(obj["instance_id"], 0)
             if total == 0:
                 continue
+            object_bvh = (surface.object_bvhs or {}).get(obj["instance_id"])
+            if config.shape_normalized_object_quality and object_bvh is not None:
+                # Shape-only reference: remove other objects/structures, not
+                # the object's own self-occlusion. Do NOT derive this denominator
+                # from the actually observed pixels or candidate-pool maximum.
+                # Keep out-of-range front patches in the reference, so seeing
+                # only the near tip of a long object cannot normalize to 100%.
+                potential = np.flatnonzero(mask & (distances > 1e-6) & (incidence > 1e-5))
+                self_visible = ~object_bvh.blocked_many(position, surface.points[potential])
+                total = float(surface.weights[potential[self_visible]].sum())
+                if total == 0:
+                    continue
             fraction = surface.weights[seen].sum() / total
             solid_angle = np.sum(surface.weights[seen] * incidence[seen] / np.maximum(distances[seen] ** 2, 1e-12))
-            quality[index, j] = fraction * min(1, solid_angle / config.solid_angle_target_sr)
+            quality[index, j] = min(1, fraction) * min(1, solid_angle / config.solid_angle_target_sr)
     return visible, quality

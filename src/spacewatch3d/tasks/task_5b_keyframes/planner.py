@@ -22,6 +22,7 @@ from .selection_guard import finish_guard_report, guard_objectives
 from .validation import validate_outputs
 from .visibility import evaluate_positions, sample_surface
 from .reference import export_reference, finish_reuse, load_reference, reuse_route
+from .input_coverage import summarize_input_coverage
 
 
 def read_feedback(path, scene, route):
@@ -151,7 +152,7 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
 
     @lru_cache(maxsize=256)
     def hop_paths_from(node):
-        return shortest(route.adjacency, node, max_distance=config.max_link_m)
+        return shortest(route.adjacency, node, max_distance=config.max_link_m if config.max_link_m is not None else float("inf"))
 
     @lru_cache(maxsize=256)
     def evaluate_routed_set(key):
@@ -191,6 +192,9 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
     if quality_refiner is not None:
         report["object_quality_precision"] = quality_refiner.report(route.positions[final_nodes], objects)
     report["content_only"] = content_report
+    report["object_observation_policy"] = {
+        "model": "self_visible_exterior" if config.shape_normalized_object_quality else "whole_mesh_surface",
+        "aggregation": "single_best_view", "image_readability_validated": False}
     report["core_role_classification"] = {"policy": "optimization_goal_preserving_core_with_connection_only_transitions",
         "uses_final_holdout": False, "promoted_viewpoint_ids": [route.viewpoint_id(n) for n in sorted(promoted_nodes)]}
     report["selection"] = {"strategy": "routed_gain_per_added_image_with_one_swap" if evaluator else "marginal_gain",
@@ -239,6 +243,12 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
     elif validation["status"] == "disabled":
         warnings.append({"code": "independent_coverage_validation_disabled",
                          "message": "Coverage targets were evaluated only on selection samples"})
+    input_coverage = summarize_input_coverage(report, objects, asdict(config))
+    report["input_coverage"] = input_coverage
+    if input_coverage["status"] == "targets_unmet":
+        warnings.append({"code": "input_coverage_targets_unmet",
+                         "message": "A solved feasible plan is not whole-input coverage success; inspect input_coverage and unobservable_items",
+                         "unobserved_object_ids": input_coverage["unobserved_object_ids"]})
     report["selection"]["feasibility_repair_succeeded"] = bool(repair_trigger) and not failures and not report["unmet_targets"]
     unobservable = []
     for rid in objective.region_ids:
@@ -286,6 +296,8 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
             "reference_frame_id": scene.reference_frame_id, "units": "m", "up_axis": "+Z",
             "route_id": f"route_{route_digest}", "route_version": 1,
             "planning_status": "incomplete" if failures else "complete",
+            "planning_status_scope": "observable_geometry_targets_and_safe_connections",
+            "input_coverage_status": input_coverage["status"],
             "quality_status": "partial" if any(v["render_status"] == "succeeded" for v in viewpoints) else "unverified",
             "publication_ready": False, "route_graph": route.export(), "viewpoints": viewpoints,
             "candidate_report": {**route.candidate_sampling,
@@ -297,7 +309,7 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
             "tour_links": links, "coverage_report": report, "unobservable_items": unobservable,
             "failures": failures, "warnings": warnings,
             "excluded_viewpoints": [{"viewpoint_id": route.viewpoint_id(n), "reason": "renderer_failure_or_quality_rejection"} for n in sorted(banned)],
-            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.24.0",
+            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.25.0",
                            "dependency_versions": versions, "importance_cache": importance_cache or {},
                            "feedback_manifest": str(Path(feedback_path).resolve()) if feedback_path else None,
                            "coordinate_policy": "externally_normalized_metric_z_up",

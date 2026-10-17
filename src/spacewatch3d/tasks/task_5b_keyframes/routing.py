@@ -321,6 +321,11 @@ def _renderable_detour(route, source, target, renderable, config, hop_paths_from
 
 def camera_components(route, cameras, config, paths_from=None):
     """Connected components of eligible image stops, not physical obstacles."""
+    if config.max_link_m is None:
+        # Physical component identity is sufficient without an image hop limit.
+        # Rejected camera assets do not block traversal through their positions.
+        return [{node for node in cameras if route.components[node] == component}
+                for component in sorted({route.components[node] for node in cameras})]
     remaining, groups = set(cameras), []
     while remaining:
         root = min(remaining)
@@ -386,7 +391,7 @@ def connect_tour(route: Route, selected: list[int], config: Config, banned: set[
             for a, b in zip(path, path[1:]):
                 lengths.append(lengths[-1] + float(np.linalg.norm(route.positions[a] - route.positions[b])))
             anchors, index, gap_node = [0], 0, None
-            while lengths[-1] - lengths[index] > config.max_link_m + 1e-9:
+            while config.max_link_m is not None and lengths[-1] - lengths[index] > config.max_link_m + 1e-9:
                 options = [j for j in range(index + 1, len(path))
                            if lengths[j] - lengths[index] <= config.max_link_m + 1e-9 and path[j] in renderable]
                 if not options:
@@ -396,7 +401,7 @@ def connect_tour(route: Route, selected: list[int], config: Config, banned: set[
                 anchors.append(index)
             anchors.append(len(path) - 1)
             segments = [(path[a:b + 1], lengths[b] - lengths[a]) for a, b in zip(anchors, anchors[1:])]
-            method = "shortest_path_spacing"
+            method = "shortest_safe_path" if config.max_link_m is None else "shortest_path_spacing"
             if gap_node is not None:
                 detour = _renderable_detour(route, current, target, renderable, config, hop_paths_from)
                 if detour is None:

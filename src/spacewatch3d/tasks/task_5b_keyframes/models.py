@@ -46,7 +46,9 @@ class Config:
     candidate_narrow_clearance_m: float = 0.6
     candidate_visibility_change_threshold: float = 0.15
     route_aware_selection: bool = True
-    max_link_m: float = 2.0
+    # Images are observation assets, not samples of a continuous walkthrough.
+    # A positive value explicitly opts into legacy distance-spaced assets.
+    max_link_m: float | None = None
     max_view_distance_m: float = 15.0
     tile_m: float = 3.0
     surface_samples: int = 600
@@ -66,6 +68,7 @@ class Config:
     object_quality_threshold: float = 0.35
     object_selection_margin: float = 0.05
     object_quality_refinement: bool = True
+    shape_normalized_object_quality: bool = True
     solid_angle_target_sr: float = 0.02
     default_importance: float = 0.5
     seed: int = 0
@@ -92,7 +95,7 @@ class Config:
                 if not isinstance(value, bool):
                     raise InputError(f"Config {name} must be boolean")
                 continue
-            if name == "camera_height_m" and value is None:
+            if name in ("camera_height_m", "max_link_m") and value is None:
                 continue
             if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
                 raise InputError(f"Config {name} must be finite numeric")
@@ -100,7 +103,7 @@ class Config:
                 raise InputError(f"Config {name} must be an integer")
             if name != "seed" and value < 0:
                 raise InputError(f"Config {name} must be nonnegative")
-        positive = ("grid_m", "candidate_spacing_m", "candidate_min_spacing_m", "max_link_m",
+        positive = ("grid_m", "candidate_spacing_m", "candidate_min_spacing_m",
                     "max_view_distance_m", "tile_m", "surface_samples", "min_object_samples", "min_region_samples",
                     "solid_angle_target_sr", "coverage_repair_runs", "coverage_repair_sample_multiplier",
                     "validation_sample_multiplier", "validation_runs", "max_grid_cells", "max_route_nodes",
@@ -127,7 +130,7 @@ class Config:
             raise InputError("Body interval must include camera height")
         if result.width != 2 * result.height:
             raise InputError("Equirectangular resolution must be 2:1")
-        if result.max_link_m < math.sqrt(2) * result.grid_m:
+        if result.max_link_m is not None and result.max_link_m < math.sqrt(2) * result.grid_m:
             raise InputError("max_link_m must allow at least one diagonal grid step")
         return result
 

@@ -4,6 +4,7 @@ import math
 import numpy as np
 
 from .models import InputError
+from .input_coverage import summarize_input_coverage
 
 
 def validate_outputs(plan, requests):
@@ -115,6 +116,19 @@ def validate_outputs(plan, requests):
         require(len(promoted) == len(set(promoted)) and all(
             vid in viewpoints and viewpoints[vid]["roles"] == ["content"] for vid in promoted), "promoted core cameras")
     config = plan["provenance"]["config"]
+    if "shape_normalized_object_quality" in config or "input_coverage_status" in plan:
+        model = "self_visible_exterior" if config["shape_normalized_object_quality"] else "whole_mesh_surface"
+        require(plan["coverage_report"].get("object_observation_policy") == {
+            "model": model, "aggregation": "single_best_view", "image_readability_validated": False},
+            "object observation policy")
+        expected_input = summarize_input_coverage(plan["coverage_report"], plan["object_importances"], config)
+        require(plan.get("planning_status_scope") == "observable_geometry_targets_and_safe_connections",
+                "input coverage/planning scope")
+        require(plan.get("input_coverage_status") == expected_input["status"]
+                and plan["coverage_report"].get("input_coverage") == expected_input, "input coverage report/status")
+        require(expected_input["status"] != "targets_unmet" or any(
+            warning["code"] == "input_coverage_targets_unmet" for warning in plan["warnings"]),
+            "input coverage deficit warning")
     def check_draw(report, count, role):
         require(report.get("sample_role") == role, role + " coverage sample role")
         require(sum(r["sample_count"] for r in report["regions"]) == count, role + " region samples")
@@ -326,6 +340,8 @@ def validate_outputs(plan, requests):
                 require(precision.get("method") == "object_only_adaptive_precision_lower_of_two_fine_draws"
                         and precision.get("seed") == seed and precision.get("space_surface_unchanged") is True
                         and precision.get("statistical_confidence_guarantee") is False, "object quality precision policy")
+                if "shape_normalized_object_quality" in config:
+                    require(precision.get("observation_model") == model, "object quality normalization policy")
                 records = precision.get("objects", [])
                 require([r["instance_id"] for r in records] == [o["instance_id"] for o in plan["object_importances"]],
                         "object quality precision object identities")
@@ -472,10 +488,12 @@ def validate_outputs(plan, requests):
         measured = sum(float(np.linalg.norm(np.asarray(nodes[u]["position_m"]) - nodes[v]["position_m"])) for u, v in zip(ids, ids[1:]))
         require(math.isclose(link["length_m"], measured, abs_tol=1e-8), "tour path length")
         if "connection_method" in link:
-            require(link["connection_method"] in ("shortest_path_spacing", "renderable_candidate_detour"), "connection method")
+            require(link["connection_method"] in ("shortest_path_spacing", "renderable_candidate_detour", "shortest_safe_path"), "connection method")
             if link["connection_method"] == "renderable_candidate_detour":
-                require(measured <= plan["provenance"]["config"]["max_link_m"] + 1e-8, "detour has oversized jump")
-        if plan["planning_status"] == "complete":
+                require(config["max_link_m"] is not None and measured <= config["max_link_m"] + 1e-8, "detour has oversized jump")
+            if link["connection_method"] == "shortest_safe_path":
+                require(config["max_link_m"] is None, "unspaced connection requires disabled image spacing")
+        if plan["planning_status"] == "complete" and config["max_link_m"] is not None:
             require(measured <= plan["provenance"]["config"]["max_link_m"] + 1e-8, "complete tour has oversized jump")
     if plan["planning_status"] == "complete":
         require(not plan["coverage_report"]["unmet_targets"] and not plan["failures"], "complete plan has failures")

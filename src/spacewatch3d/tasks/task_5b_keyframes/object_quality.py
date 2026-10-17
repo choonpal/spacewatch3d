@@ -9,7 +9,7 @@ from functools import lru_cache
 import hashlib
 import numpy as np
 
-from .visibility import Surface, _stratified_triangle_indices, evaluate_positions
+from .visibility import BVH, Surface, _stratified_triangle_indices, evaluate_positions
 
 
 class ObjectQualityRefiner:
@@ -17,7 +17,7 @@ class ObjectQualityRefiner:
     PRIORITY_SAMPLES = 256
     FINE_SAMPLES = 1024
 
-    def __init__(self, scene, bvh, config):
+    def __init__(self, scene, bvh, config, object_bvhs=None):
         self.bvh, self.config = bvh, config
         # Plan-local bounded caches; a global method cache would retain old
         # scenes/BVHs after subsequent captures are processed.
@@ -25,6 +25,7 @@ class ObjectQualityRefiner:
         self._score = lru_cache(maxsize=4096)(self._score)
         self.triangles = {}
         self.signatures = {}
+        self.object_bvhs = {}
         pieces = {}
         for geometry in scene.geometries:
             owners = geometry.object_ids or ((geometry.object_id,) if geometry.object_id is not None else ())
@@ -37,6 +38,8 @@ class ObjectQualityRefiner:
                                           triangles[:, 2] - triangles[:, 0]), axis=1) / 2
             triangles, area = triangles[area > 0], area[area > 0]
             self.triangles[oid] = triangles, area
+            self.object_bvhs[oid] = ((object_bvhs or {}).get(oid)
+                                     or BVH(triangles))
             self.signatures[oid] = hashlib.sha256(triangles.tobytes()).hexdigest()
 
     def sample(self, oid, count, stage):
@@ -54,7 +57,8 @@ class ObjectQualityRefiner:
         # Only object quality uses these weights. They never enter spatial
         # area, region allocation, or the shared coverage denominator.
         return Surface(points, normals, np.full(count, total / count), [oid] * count,
-                       ["object_quality_only"] * count, self.bvh, {oid: total})
+                       ["object_quality_only"] * count, self.bvh, {oid: total},
+                       object_bvhs={oid: self.object_bvhs[oid]})
 
     def _quality(self, position, oid, count, stage):
         return float(evaluate_positions(np.asarray([position]), self.sample(oid, count, stage),
@@ -100,6 +104,7 @@ class ObjectQualityRefiner:
                               "nominal_decision_disagrees": min(estimates) < self.config.object_quality_threshold <= max(estimates)})
             records.append({"instance_id": obj["instance_id"], "views": views})
         return {"method": "object_only_adaptive_precision_lower_of_two_fine_draws",
+                "observation_model": "self_visible_exterior" if self.config.shape_normalized_object_quality else "whole_mesh_surface",
                 "seed": self.config.seed, "space_surface_unchanged": True,
                 "statistical_confidence_guarantee": False, "objects": records}
 
@@ -107,4 +112,4 @@ class ObjectQualityRefiner:
 def make_quality_refiner(scene, surface, objects, config):
     if not config.object_quality_refinement or not objects:
         return None
-    return ObjectQualityRefiner(scene, surface.bvh, config)
+    return ObjectQualityRefiner(scene, surface.bvh, config, surface.object_bvhs)

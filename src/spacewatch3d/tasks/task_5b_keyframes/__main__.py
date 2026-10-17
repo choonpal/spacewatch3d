@@ -46,6 +46,8 @@ def main(argv=None):
                         reference_route_path=args.reference_route, registration_path=args.registration)
         plan = read_json(path)
         print(json.dumps({"planning_status": plan["planning_status"], "plan": str(path),
+                          "planning_status_scope": plan["planning_status_scope"],
+                          "input_coverage_status": plan["input_coverage_status"],
                           "image_count": len(plan["viewpoints"]),
                           "quality_status": plan["quality_status"],
                           "publication_ready": False}, ensure_ascii=False))

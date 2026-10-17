@@ -248,10 +248,13 @@ def load_scene(path: Path, config: Config) -> Scene:
                 continue
             key = tuple(sorted(tuple(np.round(vertex, 9)) for vertex in triangle))
             if key in seen:
-                if seen[key] != geom.object_id and seen[key] is not None and geom.object_id is not None:
-                    raise InputError("Coincident face belongs to different objects")
+                # A duplicate can be removed only when its meaning agrees.
+                # First-wins would otherwise erase an object label or turn a
+                # solid obstacle into a shell solely because of input order.
+                if seen[key] != (geom.object_id, geom.solid):
+                    raise InputError("Coincident face has conflicting object ownership or solid metadata; resolve overlap before planning")
                 continue
-            seen[key] = geom.object_id
+            seen[key] = (geom.object_id, geom.solid)
             unique.append(triangle)
         geom.triangles = np.asarray(unique).reshape((-1, 3, 3))
     if len(seen) > config.max_triangles:

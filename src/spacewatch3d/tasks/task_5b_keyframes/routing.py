@@ -27,7 +27,7 @@ def footprint(scene, config):
     polygons = []
     low, high = scene.floor_height + config.body_min_m, scene.floor_height + config.body_max_m
     for geometry in scene.geometries:
-        triangles = geometry.triangles
+        triangles = geometry.collision_triangles if geometry.collision_triangles is not None else geometry.triangles
         if not geometry.obstacle or not len(triangles):
             continue
         if triangles[:, :, 2].max() < low or triangles[:, :, 2].min() > high:

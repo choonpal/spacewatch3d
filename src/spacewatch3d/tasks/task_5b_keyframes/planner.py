@@ -67,6 +67,25 @@ def read_feedback(path, scene, route):
     return results, banned, warnings
 
 
+def classify_core_cameras(optimization, selected, final):
+    """Keep observation-critical bridges; release only connection-only images.
+
+    This changes roles, never selected poses or image count. Only optimization
+    draws are inspected, before the final holdout. Existing selected/reference
+    core cameras are never demoted. Greedy pruning is not a global minimum.
+    """
+    selected = set(selected)
+    core = set(final)
+    baseline = optimization.measure(sorted(core))[1]
+    deficit = optimization.constraint_deficit(baseline)
+    for index in sorted(core - selected, reverse=True):
+        trial = optimization.measure(sorted(core - {index}))[1]
+        if (set(trial["unmet_targets"]) <= set(baseline["unmet_targets"])
+                and optimization.constraint_deficit(trial) <= deficit + 1e-10):
+            core.remove(index)
+    return sorted(core), sorted(core - selected)
+
+
 def create_plan(scene_path, config=None, importance_cache=None, importance_provider=None, feedback_path=None,
                 reference_route_path=None, registration_path=None):
     """Return (plan, requests); only an explicitly injected provider may call an LLM."""
@@ -77,6 +96,7 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
     reference = load_reference(reference_route_path, scene, config, registration_path) if reference_route_path else None
     config = replace(config, camera_height_m=scene.camera_height_m)
     objects, warnings = resolve_importance(scene.objects, config, importance_cache, importance_provider)
+    warnings.extend(scene.provenance.get("input_warnings", []))
     if scene.provenance["camera_height"]["source"] == "fallback_unverified":
         warnings.append({"code": "camera_height_fallback", "message": "No measured camera height supplied; using unverified 1.5m above floor"})
     route = build_route(scene, config)
@@ -147,17 +167,20 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
                   camera_components(route, candidates, config, hop_paths_from)]
         chosen, history, _ = repair_connected_selection(optimization, evaluator, chosen, history, groups, required_indices)
     selected_nodes = [candidates[i] for i in chosen]
-    reference_roles = {v["viewpoint_id"]: v["roles"] for v in reference["viewpoints"]} if reference else {}
-    content_nodes = [n for n in selected_nodes if reference_roles.get(route.viewpoint_id(n)) != ["transition"]]
-    content_report = objective.measure([lookup[n] for n in content_nodes])[1]
     visits, links, transitions, failures = connect_tour(route, selected_nodes, config, banned, scene.start, paths_from, hop_paths_from)
     final_nodes = sorted(set(selected_nodes) | set(transitions))
+    core_indices, promoted_indices = classify_core_cameras(optimization, chosen, [lookup[n] for n in final_nodes])
+    content_nodes = [candidates[i] for i in core_indices]
+    promoted_nodes = {candidates[i] for i in promoted_indices}
+    content_report = objective.measure(core_indices)[1]
     transition_nodes = set(final_nodes) - set(content_nodes)
     # Every transition is an already-scored candidate. Never redefine coverage
     # denominators to just the selected images or hide unobservable geometry.
     report = objective.measure([lookup[node] for node in final_nodes])[1]
     report["sample_role"] = "selection"
     report["content_only"] = content_report
+    report["core_role_classification"] = {"policy": "optimization_goal_preserving_core_with_connection_only_transitions",
+        "uses_final_holdout": False, "promoted_viewpoint_ids": [route.viewpoint_id(n) for n in sorted(promoted_nodes)]}
     report["selection"] = {"strategy": "routed_gain_per_added_image_with_one_swap" if evaluator else "marginal_gain",
                            "tour_length_m": sum(link["length_m"] for link in links),
                            "detour_link_count": sum(link["connection_method"] == "renderable_candidate_detour" for link in links),
@@ -230,7 +253,8 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
                            "marginal_image_count_at_selection": selection.get("marginal_image_count_at_selection"),
                            "selection_method": selection.get("selection_method"),
                            "replaced_viewpoint_id": route.viewpoint_id(candidates[selection["replaced_index"]]) if "replaced_index" in selection else None,
-                           "reason": selection.get("selection_method", "graph_path_max_link_spacing"),
+                           "reason": "observation_critical_connection_camera" if node in promoted_nodes
+                                     else selection.get("selection_method", "graph_path_max_link_spacing"),
                            "object_observations": [{"instance_id": obj["instance_id"], "class_name": obj["class_name"],
                                                     "importance": obj["importance"], "importance_source": obj["importance_source"],
                                                     "importance_reason": obj["importance_reason"],
@@ -258,7 +282,7 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
             "tour_links": links, "coverage_report": report, "unobservable_items": unobservable,
             "failures": failures, "warnings": warnings,
             "excluded_viewpoints": [{"viewpoint_id": route.viewpoint_id(n), "reason": "renderer_failure_or_quality_rejection"} for n in sorted(banned)],
-            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.18.0",
+            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.19.0",
                            "dependency_versions": versions, "importance_cache": importance_cache or {},
                            "feedback_manifest": str(Path(feedback_path).resolve()) if feedback_path else None,
                            "coordinate_policy": "externally_normalized_metric_z_up",

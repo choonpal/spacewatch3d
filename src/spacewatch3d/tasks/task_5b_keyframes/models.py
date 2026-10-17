@@ -138,6 +138,10 @@ class Geometry:
     object_id: str | None
     obstacle: bool = True
     solid: bool = False
+    # Coverage may have multiple labels but each physical face is sampled once.
+    object_ids: tuple[str, ...] = ()
+    # Deduplication must never remove the original collision interpretation.
+    collision_triangles: Any = None
 
 
 @dataclass

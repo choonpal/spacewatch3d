@@ -107,6 +107,13 @@ def validate_outputs(plan, requests):
     require(plan["coverage_report"]["unique_image_count"] == len(viewpoints), "final image count")
     require(plan["coverage_report"]["content_count"] == sum("content" in v["roles"] for v in viewpoints.values()), "content count")
     require(plan["coverage_report"]["transition_count"] == sum("transition" in v["roles"] for v in viewpoints.values()), "transition count")
+    classification = plan["coverage_report"].get("core_role_classification")
+    if classification is not None:
+        require(classification["policy"] == "optimization_goal_preserving_core_with_connection_only_transitions"
+                and classification["uses_final_holdout"] is False, "core classification policy")
+        promoted = classification["promoted_viewpoint_ids"]
+        require(len(promoted) == len(set(promoted)) and all(
+            vid in viewpoints and viewpoints[vid]["roles"] == ["content"] for vid in promoted), "promoted core cameras")
     config = plan["provenance"]["config"]
     def check_draw(report, count, role):
         require(report.get("sample_role") == role, role + " coverage sample role")
@@ -384,6 +391,15 @@ def validate_outputs(plan, requests):
         require(len(new) == len(reuse["new_viewpoint_ids"]) == reuse["new_count"], "reference new count")
         require(not (set(retained) & missing or new & missing or new & set(retained)), "reference identity overlap")
         require(set(viewpoints) == set(retained) | new, "reference final viewpoint partition")
+        if "viewpoint_reuse_policy" in reuse:
+            require(reuse["viewpoint_reuse_policy"] == "retain_safe_content_replan_transitions", "reference reuse policy")
+            released = reuse["released_transition_viewpoints"]
+            released_ids = {v["viewpoint_id"] for v in released}
+            require(len(released_ids) == len(released) == reuse["released_transition_count"], "released transition count")
+            require(all(v["roles"] == ["transition"] for v in released), "only transitions are released")
+            require(all(v["roles"] == ["content"] for v in retained.values()), "only content poses are pinned")
+            require(not (released_ids & (set(retained) | missing)), "released transition is not unavailable core")
+            require(reuse["reference_core_count"] == len(retained) + len(missing), "reference core partition")
         require(plan["route_id"] == reuse["reference_route_id"], "reference route lineage")
         require(type(reuse["route_changed"]) is bool and
                 plan["route_version"] == reuse["reference_route_version"] + int(reuse["route_changed"]), "reference route version")

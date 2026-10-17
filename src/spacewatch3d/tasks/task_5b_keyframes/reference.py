@@ -9,7 +9,7 @@ import numpy as np
 from scipy.ndimage import label
 from shapely.affinity import affine_transform
 
-from .loader import matrix
+from .loader import geometry_digest, matrix
 from .models import InputError, read_json
 from .routing import Route, neighbors
 
@@ -132,12 +132,11 @@ def load_reference(path, scene, config, registration_path=None):
     scene.floor_height += float(transform[2, 3])
     if scene.start is not None:
         scene.start = (transform @ [*scene.start, 0, 1])[:2].tolist()
-    geometry_hash = hashlib.sha256()
     for geometry in scene.geometries:
         geometry.triangles = geometry.triangles @ transform[:3, :3].T + transform[:3, 3]
-        geometry_hash.update(geometry.geometry_id.encode())
-        geometry_hash.update(geometry.triangles.astype("<f8").tobytes())
-    scene.provenance["geometry_sha256"] = geometry_hash.hexdigest()
+        if geometry.collision_triangles is not None:
+            geometry.collision_triangles = geometry.collision_triangles @ transform[:3, :3].T + transform[:3, 3]
+    scene.provenance["geometry_sha256"] = geometry_digest(scene.geometries)
     current_frame_id = scene.reference_frame_id
     scene.reference_frame_id = data["reference_frame_id"]
     # A virtual canonical camera keeps its old absolute height, even if the
@@ -223,9 +222,15 @@ def reuse_route(scene, route, reference, config):
             result.node_ids[node] = nid
     report = {"reference_route_id": reference["route_id"], "reference_route_version": reference["route_version"],
               "root_capture_id": reference["root_capture_id"], "source_capture_id": reference["source_capture_id"],
-              "reused_viewpoints": [], "unavailable_viewpoints": [], "new_viewpoint_ids": []}
+              "reused_viewpoints": [], "unavailable_viewpoints": [], "new_viewpoint_ids": [],
+              "viewpoint_reuse_policy": "retain_safe_content_replan_transitions",
+              "reference_core_count": sum(v["roles"] == ["content"] for v in reference["viewpoints"]),
+              "released_transition_viewpoints": []}
     required = []
     for view in reference["viewpoints"]:
+        if view["roles"] == ["transition"]:
+            report["released_transition_viewpoints"].append(dict(view))
+            continue
         if view["route_node_id"] not in valid_nodes:
             report["unavailable_viewpoints"].append({"viewpoint_id": view["viewpoint_id"],
                 "reference_from_camera": view["reference_from_camera"], "reason": "blocked_or_outside_current_walkable_floor"})
@@ -254,6 +259,7 @@ def finish_reuse(plan, reference, report):
     report["unavailable_count"] = len(report["unavailable_viewpoints"])
     report["reused_count"] = len(reused)
     report["new_count"] = len(report["new_viewpoint_ids"])
+    report["released_transition_count"] = len(report["released_transition_viewpoints"])
     report["comparison_status"] = ("reference_views_preserved" if not report["unavailable_count"] else
                                    "partial_reference_views" if reused else "no_reference_views")
     original = {v["viewpoint_id"]: v for v in reference["viewpoints"]}
@@ -265,5 +271,5 @@ def finish_reuse(plan, reference, report):
     plan["route_version"] = reference["route_version"] + int(changed)
     report["route_changed"] = changed
     # Coverage-driven replacements are not one-to-one or equivalent views.
-    report["replacement_policy"] = "retain_safe_reference_views_then_add_for_current_coverage"
+    report["replacement_policy"] = "retain_safe_content_then_add_for_current_coverage_and_connections"
     plan["reference_reuse"] = report

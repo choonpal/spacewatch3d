@@ -159,6 +159,7 @@ class Surface:
 @dataclass(frozen=True)
 class _SamplingGeometry:
     object_id: str | None
+    object_ids: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -191,6 +192,8 @@ def _geometry_signature(scene):
     for geometry in scene.geometries:
         triangles = np.ascontiguousarray(geometry.triangles)
         digest.update(repr((geometry.geometry_id, geometry.object_id, triangles.shape, triangles.dtype.str)).encode())
+        if geometry.object_ids:
+            digest.update(repr(geometry.object_ids).encode())
         digest.update(triangles.view(np.uint8))
     for rid, region in scene.regions:
         digest.update(repr(rid).encode())
@@ -224,7 +227,7 @@ def prepare_surface(scene, config):
             stack.extend((left, right))
         else:
             indices.setflags(write=False)
-    return PreparedSurface(scene, _geometry_signature(scene), tuple(_SamplingGeometry(g.object_id) for g in geometries),
+    return PreparedSurface(scene, _geometry_signature(scene), tuple(_SamplingGeometry(g.object_id, g.object_ids) for g in geometries),
                            tuple(scene.regions), strata, totals, bvh, triangle_count,
                            sum(len(s[2]) for s in strata))
 
@@ -457,10 +460,11 @@ def sample_surface(scene: Scene, config: Config, prepared: PreparedSurface | Non
         normal = np.cross(tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0])
         normals.extend(normal / np.linalg.norm(normal, axis=1)[:, None])
         weights.extend([float(total / count)] * int(count))
-        object_ids.extend([g.object_id] * int(count))
+        owners = g.object_ids or ((g.object_id,) if g.object_id is not None else ())
+        object_ids.extend([frozenset(owners) if len(owners) > 1 else g.object_id] * int(count))
         regions.extend([rid] * int(count))
-        if g.object_id is not None:
-            object_areas[g.object_id] = object_areas.get(g.object_id, 0) + float(total)
+        for oid in owners:
+            object_areas[oid] = object_areas.get(oid, 0) + float(total)
     points = np.asarray(points)
     declared_ids = {rid for rid, _ in scene.regions}
     for i, p in enumerate(points):
@@ -487,7 +491,8 @@ def sample_surface(scene: Scene, config: Config, prepared: PreparedSurface | Non
 def evaluate_positions(positions, surface: Surface, objects: list[dict], config: Config):
     visible = np.zeros((len(positions), len(surface.points)), dtype=bool)
     quality = np.zeros((len(positions), len(objects)))
-    masks = [np.asarray([oid == obj["instance_id"] for oid in surface.object_ids]) for obj in objects]
+    masks = [np.asarray([obj["instance_id"] in oid if isinstance(oid, frozenset)
+                         else oid == obj["instance_id"] for oid in surface.object_ids]) for obj in objects]
     for index, position in enumerate(positions):
         delta = surface.points - position
         distances = np.linalg.norm(delta, axis=1)

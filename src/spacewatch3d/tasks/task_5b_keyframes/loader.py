@@ -12,6 +12,63 @@ from .models import Config, Geometry, InputError, Scene, read_json
 COVERAGE_ONLY_CLASSES = {"wall", "walls", "ceiling", "ceilings", "벽", "천장"}
 
 
+def geometry_digest(geometries):
+    result = hashlib.sha256()
+    for geom in geometries:
+        result.update(geom.geometry_id.encode())
+        result.update(geom.triangles.astype("<f8").tobytes())
+        result.update(repr((geom.object_id, geom.object_ids, geom.obstacle, geom.solid)).encode())
+        if geom.collision_triangles is not None:
+            result.update(geom.collision_triangles.astype("<f8").tobytes())
+    return result.hexdigest()
+
+
+def deduplicate_surfaces(geometries, config, warnings):
+    """Physical coverage once, all semantic owners, original collision solids.
+
+    This reconciles exact face keys only, not intersecting or retriangulated
+    surfaces. Conflicting labels remain aliases rather than guessed identities.
+    """
+    seen, raw = {}, []
+    duplicate_count, metadata_conflicts = 0, 0
+    for index, geom in enumerate(geometries):
+        nondegenerate = []
+        for triangle in geom.triangles:
+            if np.linalg.norm(np.cross(triangle[1] - triangle[0], triangle[2] - triangle[0])) <= 1e-12:
+                continue
+            nondegenerate.append(triangle)
+            key = tuple(sorted(tuple(np.round(vertex, 9)) for vertex in triangle))
+            owners = {geom.object_id} if geom.object_id is not None else set()
+            if key in seen:
+                duplicate_count += 1
+                record = seen[key]
+                metadata_conflicts += int(record[3] != geom.object_id or record[4] != geom.solid)
+                record[2].update(owners)
+            else:
+                seen[key] = [index, triangle, owners, geom.object_id, geom.solid]
+        raw.append(np.asarray(nondegenerate).reshape((-1, 3, 3)))
+    if len(seen) > config.max_triangles:
+        raise InputError("Total max_triangles exceeded")
+    unique, shared = [[] for _ in geometries], {}
+    for index, triangle, owners, first_owner, _ in seen.values():
+        labels = tuple(sorted(owners))
+        if labels == ((first_owner,) if first_owner is not None else ()):
+            unique[index].append(triangle)
+        else:
+            shared.setdefault(labels, []).append(triangle)
+    for geom, original, faces in zip(geometries, raw, unique):
+        geom.triangles = np.asarray(faces).reshape((-1, 3, 3))
+        if not np.array_equal(original, geom.triangles):
+            geom.collision_triangles = original
+    for labels, faces in sorted(shared.items()):
+        geometries.append(Geometry("shared_surface:" + repr(labels), np.asarray(faces), labels[0],
+                                   obstacle=False, object_ids=labels))
+    if metadata_conflicts:
+        warnings.append({"code": "shared_face_metadata", "message":
+            "Shared faces accepted: physical coverage counted once, semantic owners retained; collision uses the union of original inputs",
+            "conflicting_duplicate_count": metadata_conflicts, "duplicate_count": duplicate_count})
+
+
 def matrix(value, name="transform"):
     try:
         result = np.asarray(value, dtype=float)
@@ -102,30 +159,40 @@ def load_scene(path: Path, config: Config) -> Scene:
     for key in ("scene_id", "capture_id"):
         if not isinstance(data.get(key), str) or not data[key]:
             raise InputError(f"Missing {key}")
-    if not isinstance(data.get("synthetic"), bool):
-        raise InputError("synthetic must be explicit boolean")
+    warnings = []
+    if "synthetic" not in data:
+        warnings.append({"code": "synthetic_unspecified", "message": "synthetic omitted; false is an unverified default, not evidence of real-data validation"})
+    elif not isinstance(data["synthetic"], bool):
+        raise InputError("synthetic must be boolean when supplied")
     coords = data.get("coordinates", {})
     if (coords.get("units") != "m" or coords.get("up_axis") != "+Z"
-            or coords.get("gravity_aligned") is not True
             or not isinstance(coords.get("frame_id"), str) or not coords["frame_id"]):
-        raise InputError("Planning coordinates require known meters, +Z and gravity_aligned=true")
-    if data.get("geometry_complete") is not True:
-        raise InputError("geometry_complete=true must explicitly attest structural/occluder input")
+        raise InputError("Planning coordinates require known meters, +Z and frame_id")
+    for container, field in ((coords, "gravity_aligned"), (data, "geometry_complete")):
+        if field not in container:
+            warnings.append({"code": field + "_unverified", "message": field + " omitted; input completeness/alignment is not verified"})
+        elif container[field] is not True:
+            raise InputError(field + " explicitly denies or invalidates the supported planning assumption")
     if data.get("reference_route") is not None or data.get("registration") is not None:
         raise InputError("Inline reference_route/registration is unsupported; use --reference-route and --registration")
     for field in ("objects", "structures", "regions"):
         if not isinstance(data.get(field, []), list) or any(not isinstance(item, dict) for item in data.get(field, [])):
             raise InputError(f"{field} must be an array of objects")
     floor_data = data.get("floor")
-    if not isinstance(floor_data, dict) or floor_data.get("confirmed") is not True:
-        raise InputError("A confirmed single-level floor is required")
+    if not isinstance(floor_data, dict):
+        raise InputError("A single-level floor polygon and height are required")
+    if "confirmed" not in floor_data:
+        warnings.append({"code": "floor_unverified", "message": "Floor confirmation omitted; using supplied floor without asserting surveyed safety"})
+    elif floor_data["confirmed"] is not True:
+        raise InputError("floor.confirmed explicitly denies or invalidates the supplied floor")
     floor = polygon(floor_data)
     height = floor_data.get("height_m")
     if isinstance(height, bool) or not isinstance(height, (int, float)) or not np.isfinite(height):
         raise InputError("floor.height_m must be finite")
     if data.get("levels", 1) != 1:
         raise InputError("Multiple levels and stairs are unsupported")
-    provenance = {"scene_manifest": str(path), "scene_sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+    provenance = {"scene_manifest": str(path), "scene_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+                  "input_warnings": warnings, "synthetic_source": "declared" if "synthetic" in data else "fallback_unverified"}
     camera = data.get("camera", {})
     if not isinstance(camera, dict):
         raise InputError("camera must be an object")
@@ -154,7 +221,13 @@ def load_scene(path: Path, config: Config) -> Scene:
             if manifest.get("kind") != kind:
                 raise InputError(f"Expected {kind} manifest")
             for key in ("scene_id", "capture_id", "synthetic"):
-                if manifest.get(key) != data[key]:
+                if key == "synthetic" and key not in data:
+                    # Inherit a supplied upstream declaration, never guess it.
+                    if not isinstance(manifest.get(key), bool):
+                        raise InputError("Upstream synthetic must be boolean")
+                    data[key] = manifest[key]
+                    provenance["synthetic_source"] = "upstream_manifest"
+                if manifest.get(key) != data.get(key):
                     raise InputError(f"Upstream {key} mismatch")
         source_coords = reconstruction["coordinates"]
         aligned = (source_coords.get("frame_id") == coords["frame_id"] and source_coords.get("units") == "m" and source_coords.get("up_axis") == "+Z")
@@ -178,7 +251,8 @@ def load_scene(path: Path, config: Config) -> Scene:
                 if not np.isclose(scale, known_scale, rtol=1e-8, atol=0):
                     raise InputError("planning_from_world scale disagrees with source scale_to_meters")
             if known_scale is None and data.get("source_scale_confirmed") is not True:
-                raise InputError("Unknown source scale requires source_scale_confirmed=true and measured planning_from_world")
+                warnings.append({"code": "source_scale_unverified", "message":
+                    "Using explicit planning_from_world without redundant scale-confirmation flag; measurement quality is not verified"})
             provenance["planning_from_world"] = planning_from_world.tolist()
         elif aligned:
             planning_from_world = np.eye(4)
@@ -208,7 +282,8 @@ def load_scene(path: Path, config: Config) -> Scene:
             raise InputError("must_see must be boolean")
         if name is not None and name.strip().casefold() in COVERAGE_ONLY_CLASSES:
             if item.get("must_see", False):
-                raise InputError("Walls and ceilings are coverage-only; must_see applies to semantic objects")
+                warnings.append({"code": "coverage_only_metadata_ignored", "instance_id": oid,
+                                 "message": "Wall/ceiling must_see ignored; evaluated through spatial coverage"})
             solid = item.get("solid", "box" in item)
             if not isinstance(solid, bool):
                 raise InputError("structure.solid must be boolean")
@@ -218,52 +293,40 @@ def load_scene(path: Path, config: Config) -> Scene:
         objects.append({"instance_id": oid, "class_name": name,
                         "must_see": item.get("must_see", False), "importance": item.get("importance"),
                         "description": item.get("description", "")})
-        geometries.append(Geometry(f"object:{oid}", load_triangles(item, base, config), oid, solid=True))
+        solid = item.get("solid", True)
+        if not isinstance(solid, bool):
+            raise InputError("object.solid must be boolean")
+        geometries.append(Geometry(f"object:{oid}", load_triangles(item, base, config), oid, solid=solid))
     for index, item in enumerate(data.get("structures", [])):
         if not isinstance(item.get("solid", "box" in item), bool):
             raise InputError("structure.solid must be boolean")
         geometries.append(Geometry(f"structure:{index}", load_triangles(item, path.parent, config), None,
                                    solid=item.get("solid", "box" in item)))
     overrides = data.get("object_overrides", {})
-    if not isinstance(overrides, dict) or set(overrides) - {obj["instance_id"] for obj in objects}:
-        raise InputError("object_overrides must reference semantic object IDs; walls/ceilings are coverage-only")
+    if not isinstance(overrides, dict):
+        raise InputError("object_overrides must be an object")
+    for oid, override in overrides.items():
+        if not isinstance(override, dict):
+            raise InputError("Each object override must be an object")
+        if oid not in {obj["instance_id"] for obj in objects}:
+            warnings.append({"code": "unused_object_override", "instance_id": oid,
+                             "message": "Override has no semantic target; ignored (including coverage-only walls/ceilings)"})
     for obj in objects:
         override = overrides.get(obj["instance_id"], {})
-        if not isinstance(override, dict) or set(override) - {"importance", "must_see", "description"}:
-            raise InputError("Only importance, must_see and description can be overridden")
+        unused = set(override) - {"importance", "must_see", "description"}
+        if unused:
+            warnings.append({"code": "unused_override_fields", "instance_id": obj["instance_id"],
+                             "fields": sorted(unused), "message": "Unconsumed metadata ignored"})
         if "must_see" in override and not isinstance(override["must_see"], bool):
             raise InputError("must_see override must be boolean")
-        obj.update(override)
+        obj.update({key: value for key, value in override.items() if key not in unused})
     floor_triangles = []
     for triangle in shapely.get_parts(shapely.constrained_delaunay_triangles(floor)):
         xy = np.asarray(triangle.exterior.coords)[:3, :2]
         floor_triangles.append(np.column_stack([xy, np.full(3, height)]))
     geometries.append(Geometry("floor", np.asarray(floor_triangles), None, obstacle=False))
-    # One physical face must not multiply coverage when referenced twice.
-    seen = {}
-    for geom in geometries:
-        unique = []
-        for triangle in geom.triangles:
-            if np.linalg.norm(np.cross(triangle[1] - triangle[0], triangle[2] - triangle[0])) <= 1e-12:
-                continue
-            key = tuple(sorted(tuple(np.round(vertex, 9)) for vertex in triangle))
-            if key in seen:
-                # A duplicate can be removed only when its meaning agrees.
-                # First-wins would otherwise erase an object label or turn a
-                # solid obstacle into a shell solely because of input order.
-                if seen[key] != (geom.object_id, geom.solid):
-                    raise InputError("Coincident face has conflicting object ownership or solid metadata; resolve overlap before planning")
-                continue
-            seen[key] = (geom.object_id, geom.solid)
-            unique.append(triangle)
-        geom.triangles = np.asarray(unique).reshape((-1, 3, 3))
-    if len(seen) > config.max_triangles:
-        raise InputError("Total max_triangles exceeded")
-    geometry_hash = hashlib.sha256()
-    for geom in geometries:
-        geometry_hash.update(geom.geometry_id.encode())
-        geometry_hash.update(geom.triangles.astype("<f8").tobytes())
-    provenance["geometry_sha256"] = geometry_hash.hexdigest()
+    deduplicate_surfaces(geometries, config, warnings)
+    provenance["geometry_sha256"] = geometry_digest(geometries)
     provenance["coverage_only_objects"] = coverage_only_objects
     regions = []
     for item in data.get("regions", []):
@@ -272,10 +335,11 @@ def load_scene(path: Path, config: Config) -> Scene:
         if not isinstance(rid, str) or not rid or any(rid == old for old, _ in regions):
             raise InputError("region_id must be unique nonempty string")
         if any(region.intersection(old).area > 1e-8 for _, old in regions):
-            raise InputError("Regions must not overlap")
+            warnings.append({"code": "overlapping_regions", "region_id": rid,
+                             "message": "Overlap accepted; earlier declared region owns shared area, all region goals remain reported"})
         regions.append((rid, region))
     start = data.get("start_xy_m")
     if start is not None and (np.asarray(start).shape != (2,) or not np.isfinite(start).all()):
         raise InputError("start_xy_m must be finite 2-vector")
-    return Scene(data["scene_id"], data["capture_id"], data["synthetic"], coords["frame_id"],
+    return Scene(data["scene_id"], data["capture_id"], data.get("synthetic", False), coords["frame_id"],
                  floor, float(height), geometries, objects, regions, start, provenance, float(camera_height))

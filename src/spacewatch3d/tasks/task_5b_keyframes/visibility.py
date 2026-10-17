@@ -332,6 +332,23 @@ def _minimum_counts(strata, geometries, regions, totals, config):
     return counts
 
 
+def _stratified_triangle_indices(areas, count, rng):
+    """One independent draw per equal-area CDF bin, without extra samples.
+
+    This stratifies triangle choice, not points within a triangle or occlusion
+    boundaries. Each draw retains the stratum's original total/count weight;
+    triangle count is never used as a substitute for physical area.
+    """
+    cdf = np.cumsum(areas, dtype=float)
+    cdf /= cdf[-1]
+    bins = np.arange(count, dtype=float)
+    probability = (bins + rng.random(count)) / count
+    # Addition can round a jitter just below 1 onto the next bin (including
+    # probability=1 in the last bin). Keep every draw inside its own bin.
+    probability = np.minimum(probability, np.nextafter((bins + 1) / count, 0.))
+    return np.searchsorted(cdf, probability, side="right")
+
+
 def sample_surface(scene: Scene, config: Config) -> Surface:
     geometries = [g for g in scene.geometries if len(g.triangles)]
     strata = _surface_strata(geometries, scene.regions, config)
@@ -345,7 +362,8 @@ def sample_surface(scene: Scene, config: Config) -> Surface:
     regions = []
     for (gi, rid, triangles, area, total), count in zip(strata, counts):
         g = geometries[gi]
-        chosen = rng.choice(len(area), size=int(count), p=area / total)
+        chosen = (_stratified_triangle_indices(area, int(count), rng) if g.object_id is not None
+                  else rng.choice(len(area), size=int(count), p=area / total))
         tri = triangles[chosen]
         u, v = np.sqrt(rng.random(int(count))), rng.random(int(count))
         points.extend((1 - u[:, None]) * tri[:, 0] + (u * (1 - v))[:, None] * tri[:, 1] + (u * v)[:, None] * tri[:, 2])
@@ -366,6 +384,8 @@ def sample_surface(scene: Scene, config: Config) -> Surface:
                 tile = "unnamed_" + tile
             regions[i] = tile
     audit = {"method": "geometry_named_region_area_stratified", "sample_count": len(points),
+             "object_triangle_sampling": "equal_area_cdf_stratified",
+             "structure_triangle_sampling": "iid_area_weighted",
              "partition_precision_barycentric": float(PARTITION_PRECISION),
              "stratum_count": len(strata), "min_region_samples": config.min_region_samples,
              "input_area_m2": float(totals.sum()), "declared_regions": [

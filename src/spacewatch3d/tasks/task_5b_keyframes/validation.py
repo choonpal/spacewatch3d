@@ -306,6 +306,16 @@ def validate_outputs(plan, requests):
         require(type(succeeded) is bool and (not succeeded or bool(trigger)), "feasibility repair status")
         if succeeded:
             require(not plan["failures"] and not plan["coverage_report"]["unmet_targets"], "successful repair has failures")
+    sampling_draws = [plan["coverage_report"].get("surface_sampling")]
+    for key in ("coverage_repair", "independent_validation"):
+        sampling_draws.extend(run.get("surface_sampling") for run in
+                              plan["coverage_report"].get(key, {}).get("runs", []))
+    for sampling in sampling_draws:
+        # Older saved plans predate these optional provenance fields. If either
+        # is present, require the complete supported policy in every draw role.
+        if sampling is not None and ("object_triangle_sampling" in sampling or "structure_triangle_sampling" in sampling):
+            require(sampling.get("object_triangle_sampling") == "equal_area_cdf_stratified"
+                    and sampling.get("structure_triangle_sampling") == "iid_area_weighted", "triangle sampling policy")
     if "surface_sampling" in plan["coverage_report"]:
         sampling = plan["coverage_report"]["surface_sampling"]
         config = plan["provenance"]["config"]

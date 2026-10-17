@@ -38,7 +38,7 @@ class LLMImportanceProvider:
 
 
 def resolve_importance(objects, config: Config, cache=None, provider: ImportanceProvider | None = None):
-    cache = cache or {}
+    cache = {} if cache is None else cache
     if not isinstance(cache, dict):
         raise InputError("Importance cache must be an object keyed by instance_id")
     warnings, supplied = [], {}

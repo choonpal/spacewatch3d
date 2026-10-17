@@ -78,7 +78,7 @@ class Config:
 
     @classmethod
     def from_dict(cls, values: dict | None = None):
-        values = values or {}
+        values = {} if values is None else values
         if not isinstance(values, dict):
             raise InputError("Config must be an object")
         unknown = set(values) - {f.name for f in fields(cls)}

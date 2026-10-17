@@ -289,7 +289,14 @@ def _clip_parameter_triangle(xy, region_triangle):
             return None
         polygon = np.asarray(clipped)
     result = shapely.Polygon(polygon)
-    return result if result.area > 0 else None
+    if not result.is_valid:
+        # Intersecting a triangle with half planes is necessarily convex.
+        # Roundoff can emit near-duplicate boundary vertices in crossing order,
+        # making GEOS precision reduction fail on an otherwise valid input.
+        # Restore that convex invariant only for invalid rings; keep valid
+        # coordinates unchanged and do not discard small positive-area pieces.
+        result = result.convex_hull
+    return result if result.geom_type == "Polygon" and result.area > 0 else None
 
 
 def _surface_strata(geometries, regions, config):

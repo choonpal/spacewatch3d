@@ -11,17 +11,19 @@
 
 ## 객체 그림자
 
-그림자는 새 모양을 생성하거나 사진 사각형 전체를 반투명하게 붙인 것이 아니다. 해당 촬영의 객체 삼각형을 대상 원본 카메라에 투영하고, 원래 촬영의 여러 RGB 사진에서 같은 표면을 관측한 픽셀만 가져온다. 전체 원본 메시를 이용해 가려진 원본 표면을 제외하고, 캐시된 YOLO 객체 마스크 안쪽 픽셀로 한 번 더 제한한다. 촬영자·배경이 객체에 잘려 들어오는 것을 줄이기 위한 조건이다. 관측·마스크가 부족한 부분은 투명하게 둔다. 주황/파랑 외곽선은 각각 이전/이후 촬영을 구별한다. 이전 그림자는 현재 배경 위에 겹치므로 현재 가림 뒤의 위치도 확인할 수 있다.
+그림자는 원본 사진의 **2D 객체 인스턴스 마스크 전체**를 알파 채널로 사용한다. 메시 삼각형의 교차 영역으로 자르거나 침식해 다리·등받이를 없애지 않는다. 객체 밖은 투명하게 두고 의자 사이·다리 사이의 실제 배경 구멍도 유지한다. 원본 마스크의 보이는 전체 모양을 그대로 쓰며 사진에 가려진 면을 새로 만들어 채우지는 않는다.
 
-사진 간 3D 재투영은 현재의 고정 구역 정합·카메라 자세를 따른다. 따라서 그림자의 어긋남 자체를 실제 객체 이동의 정답으로 읽으면 안 된다.
+같은 시점에서는 원본 실루엣과 RGB가 그대로 재현된다. 다른 시점에는 카메라 자세와 객체 위치 힌트로 자리를 정하고, 전체 실루엣에 동일한 확대·축소와 위치 이동만 적용한다. 다른 시점이라는 이유로 모양을 원근 절단하거나 메시로 깎지 않는다. 따라서 이는 객체 전체를 비교하기 위한 **2D 사진 겹침**이며, 정밀한 3D 객체 형상 복원이나 실제 이동량 측정이 아니다. 원본 후보 중 같은 방향과 충분한 객체 면적을 가진 마스크를 선택하고, 인스턴스 비교에는 기존 트랙의 관측 ID도 사용한다. 실제 관측되지 않은 이전 객체를 새로 만들지 않는다. 주황/파랑 테두리는 이전/이후를 구별한다.
+
+사진 배치는 현재의 고정 구역 정합·카메라 자세를 따른다. 따라서 그림자의 어긋남 자체를 실제 객체 이동의 정답으로 읽으면 안 된다.
 
 ## 실행
 
 ```powershell
-python -m spacewatch3d.tasks.task_5a_change_detection.object_photo_tour --source D:/ChatGPT/Workspaces/Projects/jonghap_project/outputs/registration-benchmark-20261019/new-meshfirst-20261022 --surfaces outputs/dorm-surface-change-20261023/run-v10/published --instances outputs/dorm-change-tour-20261023/published --output outputs/dorm-object-photo-tour-20261023/run-v3/published
-python apps/autotour360/server.py --port 8768 --dorm-tour-dir outputs/dorm-object-photo-tour-20261023/run-v3/published
+python -m spacewatch3d.tasks.task_5a_change_detection.object_photo_tour --source D:/ChatGPT/Workspaces/Projects/jonghap_project/outputs/registration-benchmark-20261019/new-meshfirst-20261022 --surfaces outputs/dorm-surface-change-20261023/run-v10/published --instances outputs/dorm-change-tour-20261023/published --output outputs/dorm-object-photo-tour-20261023/run-v6/published
+python apps/autotour360/server.py --port 8768 --dorm-tour-dir outputs/dorm-object-photo-tour-20261023/run-v6/published
 ```
 
-출력은 새 경로를 지정한다. 원래 메시·사진·분할·탐지 결과는 읽기 전용이다. 캐시된 영상 마스크는 준비된 소스 내부 또는 소스 상위의 `image-lifecycle-v4/masks`에서 읽는다. 이들 원본과 산출물은 Git 제외 데이터다. 원본 표면 ID와 배경·중복 필터 기록은 비공개 `object-presentation-audit.json`에 보존하며, 뷰어는 정해진 객체 PNG와 사진·메시만 공개한다.
+출력은 새 경로를 지정한다. 원래 메시·사진·분할·탐지 결과는 읽기 전용이다. 캐시된 영상 마스크는 준비된 소스 내부 또는 소스 상위의 `image-lifecycle-v4/masks`에서 읽는다. 이들 원본과 산출물은 Git 제외 데이터다. 전체 사진 레이어의 원본 마스크 ID·프레임·크기·배치 방법은 비공개 `whole-object-photo-audit.json`에 기록한다. 원본 표면 ID와 배경·중복 필터 기록은 비공개 `object-presentation-audit.json`에 보존하며, 뷰어는 정해진 객체 PNG와 사진·메시만 공개한다.
 
-계산은 `src/spacewatch3d/tasks/task_5a_change_detection/object_photo_tour.py`, 화면은 `apps/autotour360/dorm-change-tour.js`에 있다. 객체/배경 필터, 가림·영상 마스크 밖 픽셀 투명 처리, 두 목록 분리 및 PNG 공개 경로를 확인했다. 이는 정답 대비 변화 탐지 성능 평가가 아니다.
+계산은 `src/spacewatch3d/tasks/task_5a_change_detection/object_photo_tour.py`, 전체 객체 사진 처리는 같은 폴더의 `whole_object_photo.py`, 화면은 `apps/autotour360/dorm-change-tour.js`에 있다. 객체/배경 필터, 전체 실루엣·얇은 의자 다리 보존, 마스크 밖 배경 색상 차단, 파노라마 경계, 두 목록 분리 및 PNG 공개 경로를 확인했다. 이는 정답 대비 변화 탐지 성능 평가가 아니다.

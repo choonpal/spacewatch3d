@@ -1,6 +1,6 @@
 import {Panorama} from './panorama.js';
-import {DormTourMap} from './dorm-tour-map.js?v=object-photo-tour-1';
-import {validateDormTour,decisionLabel,className,itemsForFilter,combineBounds,panoramaView} from './dorm-tour-model.js?v=object-photo-tour-1';
+import {DormTourMap} from './dorm-tour-map.js?v=whole-object-photo-1';
+import {validateDormTour,decisionLabel,className,itemsForFilter,combineBounds,panoramaView} from './dorm-tour-model.js?v=whole-object-photo-1';
 
 const ROOT='/dorm-tour/';
 const $=id=>document.getElementById(id),el=(tag,text,cls)=>{const e=document.createElement(tag);if(text!=null)e.textContent=text;if(cls)e.className=cls;return e;};
@@ -30,7 +30,7 @@ export function createDormChangeTour({onFrame=()=>{},onError=()=>{}}={}){
     if(token!==photoToken||!active||!ghostEnabled)return;
     panos[e].setMedia(composed);panos[e].render();
     const count=overlays.reduce((n,o)=>n+o.meta.visible_pixels,0);
-    $('dorm-ghost-status').textContent=count?'주황 테두리: 이전 · 파랑 테두리: 이후 · 원본 객체만 반투명 표시':'이 항목·시점에는 겹칠 수 있는 객체 원본이 없습니다.';
+    $('dorm-ghost-status').textContent=count?'주황: 이전 · 파랑: 이후 · 배경을 뺀 원본 객체 전체':'이 시점에 연결된 객체 원본이 없습니다.';
   }
   async function toggleGhost(){if(!selected||!data.photo_first)return;ghostEnabled=!ghostEnabled;$('dorm-ghost-toggle').setAttribute('aria-pressed',String(ghostEnabled));$('dorm-ghost-toggle').textContent=ghostEnabled?'객체 그림자 끄기':'객체 그림자 켜기';if(!ghostEnabled)$('dorm-ghost-status').textContent='박스를 누르면 이전·이후 객체를 겹쳐 봅니다.';const token=++photoToken;drawPhotoBox(0);drawPhotoBox(1);await Promise.all([0,1].map(e=>applyGhost(e,token)));}
   function itemName(item){return `구역 ${Number(item.zone.slice(1)).toString().padStart(2,'0')} · ${item.geometry_first?className(item.object_class||'surface_patch')+' '+item.id:className(item.class_name)+(item.is_group?' 묶음':'')}`;}

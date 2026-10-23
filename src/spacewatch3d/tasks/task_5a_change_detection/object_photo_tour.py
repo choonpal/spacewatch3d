@@ -11,9 +11,6 @@ from pathlib import Path
 import shutil
 
 import numpy as np
-import open3d as o3d
-from PIL import Image
-from scipy.ndimage import binary_erosion
 from scipy.spatial import cKDTree
 
 from .dorm_surface import decode, export, panorama_box, read, write
@@ -47,45 +44,6 @@ def camera_matrix(context, pose, epoch, zone):
     result = region_matrix(context, epoch, zone) @ np.asarray(pose['camera_to_world'])
     result[:3, :3] /= np.cbrt(np.linalg.det(result[:3, :3]))
     return result
-
-
-def photo_ghost(object_scene, source_scene, target_camera, sources, height, width=1036, image_height=518):
-    """Texture object hits with visible source RGB; leave missing pixels clear."""
-    yy, xx = np.mgrid[:image_height, :width]
-    yaw = ((xx+.5)/width-.5)*2*np.pi; lat = ((yy+.5)/image_height-.5)*np.pi
-    direction = np.stack([np.sin(yaw)*np.cos(lat), np.sin(lat), np.cos(yaw)*np.cos(lat)], axis=-1).reshape(-1, 3)
-    direction = direction @ target_camera[:3, :3].T
-    direction /= np.linalg.norm(direction, axis=1)[:, None]
-    origin = target_camera[:3, 3]
-    rays = np.c_[np.broadcast_to(origin, direction.shape), direction].astype('f4')
-    hit = object_scene.cast_rays(o3d.core.Tensor(rays), nthreads=2)['t_hit'].numpy()
-    valid = np.flatnonzero(np.isfinite(hit) & (hit > .05*height))
-    rgba = np.zeros((width*image_height, 4), 'uint8')
-    world = origin + hit[valid, None]*direction[valid]
-    remaining = np.ones(len(valid), bool); frames = []
-    for source in sources:
-        ids = np.flatnonzero(remaining)
-        if not len(ids): break
-        camera, rgb, frame, foreground_mask = source
-        delta = world[ids]-camera[:3, 3]; radius = np.linalg.norm(delta, axis=1)
-        view = delta @ camera[:3, :3]
-        sx = np.floor((np.arctan2(view[:, 0], view[:, 2])/(2*np.pi)+.5)*width).astype(int) % width
-        sy = np.floor((np.arcsin(np.clip(view[:, 1]/np.maximum(radius, 1e-9), -1, 1))/np.pi+.5)*image_height).astype(int)
-        rays = np.c_[np.broadcast_to(camera[:3, 3], delta.shape), delta/np.maximum(radius[:, None], 1e-9)].astype('f4')
-        depth = source_scene.cast_rays(o3d.core.Tensor(rays), nthreads=2)['t_hit'].numpy()
-        seen = ((sy >= 1) & (sy < image_height-1) & np.isfinite(depth)
-                & (np.abs(depth-radius) <= np.maximum(.006*height, radius*.004)))
-        if foreground_mask is not None:
-            seen &= foreground_mask[np.clip(sy,0,image_height-1),sx]
-        take = ids[seen]
-        if len(take):
-            rgba[valid[take], :3] = rgb[sy[seen], sx[seen], :3]
-            rgba[valid[take], 3] = 255; remaining[take] = False; frames.append(frame)
-    mask = rgba[:, 3].reshape(image_height, width) > 0
-    # Trim the silhouette's pixel edge to avoid borrowing adjacent background.
-    mask = binary_erosion(mask, iterations=1)
-    rgba[:, 3] = mask.ravel()*255
-    return rgba.reshape(image_height, width, 4), frames
 
 
 def build(source, surfaces, instances, output):
@@ -195,54 +153,13 @@ def build(source, surfaces, instances, output):
     data['scope_note'] = '인스턴스 비교와 나머지 객체 표면의 변화 의심을 구분합니다. 분할·복원 오차 가능성이 있어 실제 이동·추가·소실 확정은 아닙니다.'
     data['protocol']['object_only_presentation'] = True
     data['protocol']['foreground_labels_used_for_presentation'] = True
-    poses = [{p['frame']:p for p in read(source/f'new-inputs/poses-{e}.json')['poses']} for e in [0, 1]]
-    photo_cache = {}
-    detections = {(f['epoch'],f['frame']):f['objects'] for f in read(source/'image-lifecycle-newmesh-v1/detections.json')['frames']}
-    mask_cache = {}
-    compatible = {'cabinet':{'refrigerator'}, 'table':{'dining table'}, 'unclassified':FOREGROUND}
-    for item in events:
-        sources = [[], []]
-        pairs = ([item['photo_review']['views']] if item.get('photo_review') else [])+item['views']
-        for e in [0, 1]:
-            used = set()
-            for pair in pairs:
-                view = pair[e]
-                if not view or view['frame'] in used: continue
-                used.add(view['frame']); name = view['file']
-                if name not in photo_cache: photo_cache[name] = np.asarray(Image.open(output/name).convert('RGB'))
-                cls = item.get('object_class', item['class_name']); allowed = compatible.get(cls,{cls})
-                mask_key = (e,view['frame'],cls)
-                if mask_key not in mask_cache:
-                    mask = np.zeros((518,1036),bool)
-                    for ob in detections.get((e,view['frame']),[]):
-                        if ob['class_name'] not in allowed: continue
-                        mask_path = source/ob['mask_url']
-                        if not mask_path.exists(): mask_path = source.parent/ob['mask_url']
-                        if mask_path.exists(): mask |= np.asarray(Image.open(mask_path))>0
-                    mask_cache[mask_key] = binary_erosion(mask)
-                sources[e].append((camera_matrix(context, poses[e][view['frame']], e, item['zone']), photo_cache[name], view['frame'],mask_cache[mask_key]))
-        object_scenes = []
-        for mid in item['meshes']:
-            object_scenes.append(triangle_scene(*decode((output/registry[mid]['file']).read_bytes())) if mid else None)
-        for index, pair in enumerate(pairs):
-            for target_epoch, view in enumerate(pair):
-                if not view: continue
-                target = camera_matrix(context, poses[target_epoch][view['frame']], target_epoch, item['zone'])
-                view['ghosts'] = []
-                for e in [0, 1]:
-                    if object_scenes[e] is None: continue
-                    rgba, frames = photo_ghost(object_scenes[e], scenes[e], target, sources[e], height)
-                    color = [255,173,115] if e==0 else [120,202,255]
-                    mask = rgba[:,:,3]>0; edge = mask & ~binary_erosion(mask)
-                    rgba[edge,:3] = color
-                    filename = f'ghost-{item["id"]}-{e}-{target_epoch}-{index:02d}.png'
-                    Image.fromarray(rgba).save(output/filename)
-                    view['ghosts'].append({'epoch':e,'file':filename,'visible_pixels':int(mask.sum()),'source_frames':frames})
-        print('PHOTO',item['id'],item['category'],flush=True)
+    from .whole_object_photo import publish_whole_cutouts
+    whole_photo_audit = publish_whole_cutouts(source, data, output)
+    write(output/'whole-object-photo-audit.json', whole_photo_audit)
     write(output/'tour.json', data)
     write(output/'object-presentation-audit.json', {'filtering':decisions,'retained_face_ids':retained,'foreground_ids':sorted(foreground_ids),
           'geometry_detector_recomputed':False,'physical_instance_match_invented':False,
-          'ghost_source':'original RGB pixels inside cached foreground instance masks, source whole-mesh occlusion check, no generated pixels'})
+          'ghost_source':'complete original RGB instance masks; no mesh clipping; approximate photo-plane placement'})
     print('COMPLETE',data['summary'],flush=True)
 
 

@@ -9,13 +9,15 @@ from collections import deque
 import hashlib
 import numpy as np
 import shapely
+from scipy.stats import qmc
 
 from .models import Config, InputError, Scene
+from .spatial_sampling import partition_signature, spatialize_strata
 
 
 # Dimensionless triangle-coordinate grid; a power of two keeps unit vertices
-# exact. GEOS overlays share this precision instead of manufacturing 1e-17 m2
-# residual regions. This is not an absolute physical-area cutoff.
+# exact. GEOS overlays share this precision; physical region containment also
+# guards against triangulation-seam residuals. This is not an area cutoff.
 PARTITION_PRECISION = 64 * np.finfo(float).eps
 # Bound temporary ray/triangle arrays independently of scene and sample size.
 # This is a computation chunk, never a sampling or visibility truncation limit.
@@ -92,11 +94,17 @@ class BVH:
                 or not np.isfinite(origin).all() or not np.isfinite(targets).all()):
             raise InputError("Occlusion queries require a finite origin 3-vector and target Nx3 array")
         result = np.zeros(len(targets), dtype=bool)
+        # Terms depending on the origin and one leaf, but not the ray, are
+        # shared across chunks in this query only. No cross-camera/draw cache.
+        leaf_terms = {}
         for start in range(0, len(targets), RAY_BATCH_SIZE):
-            result[start:start + RAY_BATCH_SIZE] = self._blocked_batch(origin, targets[start:start + RAY_BATCH_SIZE])
+            result[start:start + RAY_BATCH_SIZE] = self._blocked_batch(
+                origin, targets[start:start + RAY_BATCH_SIZE], leaf_terms)
         return result
 
-    def _blocked_batch(self, origin, targets):
+    def _blocked_batch(self, origin, targets, leaf_terms=None):
+        if leaf_terms is None:
+            leaf_terms = {}
         delta = targets - origin
         distances = np.linalg.norm(delta, axis=1)
         directions = np.divide(delta, distances[:, None], out=np.zeros_like(delta), where=distances[:, None] > 1e-8)
@@ -127,17 +135,29 @@ class BVH:
                 continue
             # At most RAY_BATCH_SIZE rays by 24 leaf triangles. Avoid a
             # full samples-by-scene-triangles tensor and retain two-sided hits.
-            tri = self.triangles[indices]
-            e1, e2 = tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0]
-            h = np.cross(directions[rays, None, :], e2[None, :, :])
+            terms = leaf_terms.get(id(indices))
+            if terms is None:
+                tri = self.triangles[indices]
+                e1, e2 = tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0]
+                s = origin - tri[:, 0]
+                q = np.cross(s, e1)
+                t_numerator = np.einsum("ij,ij->i", e2, q)
+                terms = leaf_terms[id(indices)] = e1, e2, s, q, t_numerator
+            e1, e2, s, q, t_numerator = terms
+            # All vectors here are known 3-vectors. Explicit components avoid
+            # np.cross's general dimension/axis dispatch, with identical
+            # multiply/subtract order and without fused/reordered arithmetic.
+            direction = directions[rays]
+            h = np.empty((len(rays), len(indices), 3))
+            h[:, :, 0] = direction[:, 1, None] * e2[None, :, 2] - direction[:, 2, None] * e2[None, :, 1]
+            h[:, :, 1] = direction[:, 2, None] * e2[None, :, 0] - direction[:, 0, None] * e2[None, :, 2]
+            h[:, :, 2] = direction[:, 0, None] * e2[None, :, 1] - direction[:, 1, None] * e2[None, :, 0]
             determinant = np.einsum("tj,rtj->rt", e1, h)
             valid = np.abs(determinant) > 1e-12
             inverse = np.divide(1., determinant, out=np.zeros_like(determinant), where=valid)
-            s = origin - tri[:, 0]
             u = inverse * np.einsum("tj,rtj->rt", s, h)
-            q = np.cross(s, e1)
             v = inverse * np.einsum("tj,rj->rt", q, directions[rays])
-            t = inverse * np.einsum("ij,ij->i", e2, q)[None, :]
+            t = inverse * t_numerator[None, :]
             blocked[rays] = np.any(valid & (u >= -1e-10) & (v >= -1e-10) & (u + v <= 1 + 1e-10)
                                    & (t > 1e-7) & (t < end[rays, None]), axis=1)
         return blocked
@@ -154,11 +174,13 @@ class Surface:
     object_areas: dict
     sampling_report: dict | None = None
     prepared: "PreparedSurface | None" = None
+    object_bvhs: dict | None = None
 
 
 @dataclass(frozen=True)
 class _SamplingGeometry:
     object_id: str | None
+    object_ids: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -174,12 +196,16 @@ class PreparedSurface:
     bvh: BVH
     input_triangle_count: int
     partition_triangle_count: int
+    object_bvhs: dict
+    spatial_partition_signature: tuple | None = None
 
     def validate(self, scene, config):
         if scene is not self.scene:
             raise InputError("prepared surface belongs to a different scene")
         if _geometry_signature(scene) != self.signature:
             raise InputError("prepared surface input geometry, objects or regions changed; prepare again")
+        if self.spatial_partition_signature != partition_signature(scene, config):
+            raise InputError("prepared spatial partition settings changed; prepare again")
         if self.input_triangle_count > config.max_triangles:
             raise InputError("max_triangles exceeded by prepared input geometry")
         if self.partition_triangle_count > config.max_triangles:
@@ -191,6 +217,8 @@ def _geometry_signature(scene):
     for geometry in scene.geometries:
         triangles = np.ascontiguousarray(geometry.triangles)
         digest.update(repr((geometry.geometry_id, geometry.object_id, triangles.shape, triangles.dtype.str)).encode())
+        if geometry.object_ids:
+            digest.update(repr(geometry.object_ids).encode())
         digest.update(triangles.view(np.uint8))
     for rid, region in scene.regions:
         digest.update(repr(rid).encode())
@@ -204,7 +232,7 @@ def prepare_surface(scene, config):
     triangle_count = sum(len(g.triangles) for g in geometries)
     if triangle_count > config.max_triangles:
         raise InputError("max_triangles exceeded by input surface geometry")
-    strata = tuple(_surface_strata(geometries, scene.regions, config))
+    strata = spatialize_strata(_surface_strata(geometries, scene.regions, config), scene, config)
     totals = np.asarray([s[4] for s in strata])
     # Keep invalid-budget failures ahead of BVH construction, as before.
     # Every actual draw still recomputes its own minimum allocation.
@@ -224,9 +252,15 @@ def prepare_surface(scene, config):
             stack.extend((left, right))
         else:
             indices.setflags(write=False)
-    return PreparedSurface(scene, _geometry_signature(scene), tuple(_SamplingGeometry(g.object_id) for g in geometries),
+    object_pieces = {}
+    for geometry in geometries:
+        owners = geometry.object_ids or ((geometry.object_id,) if geometry.object_id is not None else ())
+        for oid in owners:
+            object_pieces.setdefault(oid, []).append(geometry.triangles)
+    object_bvhs = {oid: BVH(np.concatenate(pieces)) for oid, pieces in object_pieces.items()}
+    return PreparedSurface(scene, _geometry_signature(scene), tuple(_SamplingGeometry(g.object_id, g.object_ids) for g in geometries),
                            tuple(scene.regions), strata, totals, bvh, triangle_count,
-                           sum(len(s[2]) for s in strata))
+                           sum(len(s[2]) for s in strata), object_bvhs, partition_signature(scene, config))
 
 
 def _apportion(count, areas):
@@ -268,7 +302,14 @@ def _clip_parameter_triangle(xy, region_triangle):
             return None
         polygon = np.asarray(clipped)
     result = shapely.Polygon(polygon)
-    return result if result.area > 0 else None
+    if not result.is_valid:
+        # Intersecting a triangle with half planes is necessarily convex.
+        # Roundoff can emit near-duplicate boundary vertices in crossing order,
+        # making GEOS precision reduction fail on an otherwise valid input.
+        # Restore that convex invariant only for invalid rings; keep valid
+        # coordinates unchanged and do not discard small positive-area pieces.
+        result = result.convex_hull
+    return result if result.geom_type == "Polygon" and result.area > 0 else None
 
 
 def _surface_strata(geometries, regions, config):
@@ -306,16 +347,33 @@ def _surface_strata(geometries, regions, config):
                                           & np.all(low <= high_xy, axis=1))
                     pieces = [_clip_parameter_triangle(xy, region_triangles[i]) for i in hits]
                     pieces = [shapely.set_precision(p, PARTITION_PRECISION) for p in pieces if p is not None]
-                    if not pieces:
-                        continue
                     assigned = remaining.intersection(shapely.union_all(pieces, grid_size=PARTITION_PRECISION))
+                    # A region containing the physical XY footprint owns all
+                    # remaining parameter-space area, including roundoff gaps
+                    # between its triangulation pieces. Test the entire convex
+                    # footprint (also a line/point for vertical faces), not only
+                    # vertices: a concavity or hole may cut through the face.
+                    # No area tolerance discards a real small residual/region.
+                    if (not assigned.covers(remaining)
+                            and regions[region_number][1].covers(shapely.MultiPoint(xy).convex_hull)):
+                        assigned = remaining
                     if assigned.area:
                         buckets.setdefault(rid, []).extend(_lift_triangles(assigned, triangle))
                         remaining = remaining.difference(assigned)
                     if remaining.is_empty:
                         break
                 if remaining.area:
-                    buckets.setdefault(None, []).extend(_lift_triangles(remaining, triangle))
+                    # A face crossing several regions can leave seam fragments
+                    # even though no single region contains the whole face.
+                    # Relabel only fragments whose entire physical footprint
+                    # is covered by a named region. Keep every fragment and
+                    # use input order for overlapping/boundary ownership; true
+                    # outside surfaces retain the unnamed-tile denominator.
+                    for fragment in _lift_triangles(remaining, triangle):
+                        footprint = shapely.MultiPoint(fragment[:, :2]).convex_hull
+                        owner = next((regions[i][0] for i in nearby
+                                      if regions[i][1].covers(footprint)), None)
+                        buckets.setdefault(owner, []).append(fragment)
         for rid, pieces in buckets.items():
             triangles = np.asarray(pieces)
             areas = np.linalg.norm(np.cross(triangles[:, 1] - triangles[:, 0],
@@ -412,6 +470,19 @@ def _minimum_counts(strata, geometries, regions, totals, config):
             counts[indices] += _apportion(max(0, config.min_region_samples - counts[indices].sum()), totals[indices])
     if counts.sum() > config.surface_samples:
         raise InputError(error)
+    if config.spatially_stratified_sampling and config.balance_automatic_region_samples:
+        # Equal-weight automatic regions need samples too. Use only the budget
+        # left after original object/named-region minima; do not reject a formerly
+        # valid input or silently discard a tiny region when that budget is small.
+        automatic = sorted({s[1] for s in strata if s[1] is not None} - set(columns))
+        indices = [[i for i,s in enumerate(strata) if s[1] == rid] for rid in automatic]
+        deficit = np.array([max(0, config.min_region_samples-int(counts[ix].sum())) for ix in indices])
+        budget = min(config.surface_samples-int(counts.sum()), int(deficit.sum()))
+        if budget:
+            allocation = _apportion(budget, deficit)
+            for ix, number in zip(indices, allocation):
+                if number:
+                    counts[ix] += _apportion(int(number), totals[ix])
     return counts
 
 
@@ -432,6 +503,26 @@ def _stratified_triangle_indices(areas, count, rng):
     return np.searchsorted(cdf, probability, side="right")
 
 
+def _structure_triangle_parameters(areas, count, rng):
+    """Randomized space-filling draws in area-CDF/barycentric coordinates.
+
+    Halton supports arbitrary sample counts, without padding the public budget.
+    Scrambling is fresh for every stratum/draw; this is not a confidence bound
+    or an exact per-tile area partition. The triangle CDF and sqrt transform
+    retain uniform physical-area marginals, including non-horizontal surfaces.
+
+    Consume the same 3*count uniforms as the released IID structure sampler.
+    Keeping this small RNG cost isolates the change: subsequent object draws
+    retain their exact random stream, not just their sampling policy.
+    """
+    seed = int(rng.random(3 * count)[0] * (1 << 53))
+    coordinates = qmc.Halton(d=3, scramble=True, seed=seed).random(count)
+    cdf = np.cumsum(areas, dtype=float)
+    cdf /= cdf[-1]
+    chosen = np.searchsorted(cdf, coordinates[:, 0], side="right")
+    return chosen, np.sqrt(coordinates[:, 1]), coordinates[:, 2]
+
+
 def sample_surface(scene: Scene, config: Config, prepared: PreparedSurface | None = None) -> Surface:
     if prepared is None:
         prepared = prepare_surface(scene, config)
@@ -449,45 +540,80 @@ def sample_surface(scene: Scene, config: Config, prepared: PreparedSurface | Non
     regions = []
     for (gi, rid, triangles, area, total), count in zip(strata, counts):
         g = geometries[gi]
-        chosen = (_stratified_triangle_indices(area, int(count), rng) if g.object_id is not None
-                  else rng.choice(len(area), size=int(count), p=area / total))
+        if g.object_id is not None:
+            chosen = _stratified_triangle_indices(area, int(count), rng)
+            u, v = np.sqrt(rng.random(int(count))), rng.random(int(count))
+        else:
+            chosen, u, v = _structure_triangle_parameters(area, int(count), rng)
         tri = triangles[chosen]
-        u, v = np.sqrt(rng.random(int(count))), rng.random(int(count))
         points.extend((1 - u[:, None]) * tri[:, 0] + (u * (1 - v))[:, None] * tri[:, 1] + (u * v)[:, None] * tri[:, 2])
         normal = np.cross(tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0])
         normals.extend(normal / np.linalg.norm(normal, axis=1)[:, None])
         weights.extend([float(total / count)] * int(count))
-        object_ids.extend([g.object_id] * int(count))
+        owners = g.object_ids or ((g.object_id,) if g.object_id is not None else ())
+        object_ids.extend([frozenset(owners) if len(owners) > 1 else g.object_id] * int(count))
         regions.extend([rid] * int(count))
-        if g.object_id is not None:
-            object_areas[g.object_id] = object_areas.get(g.object_id, 0) + float(total)
+        for oid in owners:
+            object_areas[oid] = object_areas.get(oid, 0) + float(total)
     points = np.asarray(points)
     declared_ids = {rid for rid, _ in scene.regions}
+    tile_origin = (scene.floor.bounds[:2] if scene.fallback_tile_origin_xy_m is None
+                   else scene.fallback_tile_origin_xy_m)
+    tile_coordinates = (points[:, :2] - tile_origin) / config.tile_m
+    if scene.fallback_tile_boundary_policy == "roundoff_snap":
+        # Three weighted vertex terms, their sum, origin subtraction and
+        # division can displace an exact grid boundary by a few ulps. Bound
+        # that arithmetic error by its operand scale, not a physical strip.
+        # Genuine nearby patches beyond roundoff retain their original cell.
+        xy_scale = np.maximum(np.abs(prepared.bvh.low[:, :2]).max(axis=0),
+                              np.abs(prepared.bvh.high[:, :2]).max(axis=0))
+        roundoff = 8 * np.finfo(float).eps * (xy_scale + np.abs(tile_origin) + config.tile_m) / config.tile_m
+        nearest = np.rint(tile_coordinates)
+        tile_coordinates = np.where(np.abs(tile_coordinates-nearest) <= roundoff, nearest, tile_coordinates)
     for i, p in enumerate(points):
         if regions[i] is None:
             # Remaining surfaces always have a denominator, even outside named rooms.
-            tile = "tile_%d_%d" % tuple(np.floor(p[:2] / config.tile_m).astype(int))
+            # Moving a space in world XY must not change its balanced coverage.
+            tile = "tile_%d_%d" % tuple(np.floor(tile_coordinates[i]).astype(int))
             while tile in declared_ids:
                 tile = "unnamed_" + tile
             regions[i] = tile
     audit = {"method": "geometry_named_region_area_stratified", "sample_count": len(points),
+             "fallback_tiles": {"origin_xy_m": [float(v) for v in tile_origin], "tile_m": config.tile_m,
+                                "boundary_policy": scene.fallback_tile_boundary_policy,
+                                "anchor_source": "floor_bounds" if scene.fallback_tile_origin_xy_m is None
+                                                 else "reference_route"},
              "object_triangle_sampling": "equal_area_cdf_stratified",
-             "structure_triangle_sampling": "iid_area_weighted",
+             "structure_triangle_sampling": "scrambled_halton_area_weighted",
              "partition_precision_barycentric": float(PARTITION_PRECISION),
              "stratum_count": len(strata), "min_region_samples": config.min_region_samples,
              "input_area_m2": float(totals.sum()), "declared_regions": [
                  {"region_id": rid, "sample_count": sum(int(n) for s, n in zip(strata, counts) if s[1] == rid),
                   "input_area_m2": float(sum(s[4] for s in strata if s[1] == rid)),
-                  "status": "sampled" if any(s[1] == rid for s in strata) else "no_surface"}
+                 "status": "sampled" if any(s[1] == rid for s in strata) else "no_surface"}
                  for rid, _ in scene.regions]}
+    if config.spatially_stratified_sampling:
+        audit["fallback_tiles"]["area_partition"] = "exact_physical_area_strata"
+        audit["fallback_tiles"]["occlusion_mesh_changed"] = False
+        if config.balance_automatic_region_samples:
+            automatic = sorted(set(regions) - declared_ids)
+            records = [{"region_id":rid,"sample_count":regions.count(rid)} for rid in automatic]
+            under = sum(item['sample_count'] < config.min_region_samples for item in records)
+            audit['automatic_region_sampling'] = {
+                'method':'within_existing_budget_after_object_and_named_minima',
+                'requested_min_region_samples':config.min_region_samples,
+                'status':'budget_limited' if under else 'target_met',
+                'under_target_region_count':under,'regions':records,
+                'input_acceptance_constraints_unchanged':True}
     return Surface(points, np.asarray(normals), np.asarray(weights), object_ids, regions,
-                   prepared.bvh, object_areas, audit, prepared)
+                   prepared.bvh, object_areas, audit, prepared, prepared.object_bvhs)
 
 
 def evaluate_positions(positions, surface: Surface, objects: list[dict], config: Config):
     visible = np.zeros((len(positions), len(surface.points)), dtype=bool)
     quality = np.zeros((len(positions), len(objects)))
-    masks = [np.asarray([oid == obj["instance_id"] for oid in surface.object_ids]) for obj in objects]
+    masks = [np.asarray([obj["instance_id"] in oid if isinstance(oid, frozenset)
+                         else oid == obj["instance_id"] for oid in surface.object_ids]) for obj in objects]
     for index, position in enumerate(positions):
         delta = surface.points - position
         distances = np.linalg.norm(delta, axis=1)
@@ -497,10 +623,24 @@ def evaluate_positions(positions, surface: Surface, objects: list[dict], config:
         visible[index, patches] = ~surface.bvh.blocked_many(position, surface.points[patches])
         for j, (obj, mask) in enumerate(zip(objects, masks)):
             seen = mask & visible[index]
+            if not seen.any():
+                continue
             total = surface.object_areas.get(obj["instance_id"], 0)
             if total == 0:
                 continue
+            object_bvh = (surface.object_bvhs or {}).get(obj["instance_id"])
+            if config.shape_normalized_object_quality and object_bvh is not None:
+                # Shape-only reference: remove other objects/structures, not
+                # the object's own self-occlusion. Do NOT derive this denominator
+                # from the actually observed pixels or candidate-pool maximum.
+                # Keep out-of-range front patches in the reference, so seeing
+                # only the near tip of a long object cannot normalize to 100%.
+                potential = np.flatnonzero(mask & (distances > 1e-6) & (incidence > 1e-5))
+                self_visible = ~object_bvh.blocked_many(position, surface.points[potential])
+                total = float(surface.weights[potential[self_visible]].sum())
+                if total == 0:
+                    continue
             fraction = surface.weights[seen].sum() / total
             solid_angle = np.sum(surface.weights[seen] * incidence[seen] / np.maximum(distances[seen] ** 2, 1e-12))
-            quality[index, j] = fraction * min(1, solid_angle / config.solid_angle_target_sr)
+            quality[index, j] = min(1, fraction) * min(1, solid_angle / config.solid_angle_target_sr)
     return visible, quality

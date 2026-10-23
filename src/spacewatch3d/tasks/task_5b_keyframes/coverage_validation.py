@@ -4,6 +4,7 @@ from dataclasses import replace
 from .models import InputError
 from .selection import Objective
 from .visibility import evaluate_positions, sample_surface
+from .object_quality import make_quality_refiner
 
 
 def validate_coverage(scene, route, selected_nodes, objects, config, banned=(), prepared_surface=None):
@@ -29,10 +30,15 @@ def validate_coverage(scene, route, selected_nodes, objects, config, banned=(), 
                    else sample_surface(scene, draw_config))
         prepared_surface = getattr(surface, "prepared", None)
         visible, quality = evaluate_positions(route.positions[eligible], surface, objects, config)
+        refiner = make_quality_refiner(scene, surface, objects, draw_config)
+        if refiner is not None:
+            quality = refiner.evaluate(route.positions[eligible], objects)
         objective = Objective(visible, quality, surface.weights, surface.regions, objects, config,
                               declared_regions=[rid for rid, _ in scene.regions])
         report = objective.measure(selected)[1]
         report["sample_role"] = "holdout"
+        if refiner is not None:
+            report["object_quality_precision"] = refiner.report(route.positions[selected_nodes], objects)
         runs.append({"seed": seed, "sample_count": sample_count, "coverage_report": report,
                      "surface_sampling": surface.sampling_report,
                      "unobservable_object_ids": [obj["instance_id"] for j, obj in enumerate(objects)

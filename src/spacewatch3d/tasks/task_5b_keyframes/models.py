@@ -54,6 +54,12 @@ class Config:
     surface_samples: int = 600
     min_object_samples: int = 12
     min_region_samples: int = 12
+    # Opt-in real-mesh profile. Legacy sampling remains reproducible.
+    spatially_stratified_sampling: bool = False
+    # Optional within-budget allocation, not another input acceptance minimum.
+    balance_automatic_region_samples: bool = False
+    # Add only useful, verified-safe observation spurs, not a dense route graph.
+    lateral_candidate_refinement: bool = False
     coverage_repair: bool = True
     coverage_repair_runs: int = 2
     coverage_repair_sample_multiplier: int = 2
@@ -65,6 +71,9 @@ class Config:
     space_target: float = 0.9
     region_target: float = 0.6
     object_target: float = 0.9
+    # Patrol completion is per object, independent of importance or ratio goals.
+    # False explicitly opts into the historical ratio-only comparison policy.
+    require_all_objects: bool = True
     object_quality_threshold: float = 0.35
     object_selection_margin: float = 0.05
     object_quality_refinement: bool = True
@@ -126,8 +135,6 @@ class Config:
             raise InputError("object_quality_threshold must be positive; zero would mark invisible objects observed")
         if result.seed < 0 or result.body_min_m >= result.body_max_m:
             raise InputError("Invalid seed or body height interval")
-        if result.camera_height_m is not None and not result.body_min_m < result.camera_height_m <= result.body_max_m:
-            raise InputError("Body interval must include camera height")
         if result.width != 2 * result.height:
             raise InputError("Equirectangular resolution must be 2:1")
         if result.max_link_m is not None and result.max_link_m < math.sqrt(2) * result.grid_m:
@@ -162,3 +169,10 @@ class Scene:
     start: Any
     provenance: dict
     camera_height_m: float = 1.5
+    # Resolved in the reference frame, not a new required scene input. None
+    # anchors a new space to its floor bounds; recaptures inherit the baseline.
+    fallback_tile_origin_xy_m: tuple[float, float] | None = None
+    fallback_tile_boundary_policy: str = "roundoff_snap"
+    # Task-local reference lattice, not a new required scene input. New spaces
+    # put a cell center at their bounds center; recaptures retain the old phase.
+    route_grid_anchor_xy_m: tuple[float, float] | None = None

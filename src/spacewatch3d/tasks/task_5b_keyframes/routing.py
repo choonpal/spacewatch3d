@@ -6,7 +6,7 @@ import math
 import numpy as np
 import shapely
 from shapely.geometry import MultiPoint
-from scipy.ndimage import distance_transform_edt, label
+from scipy.ndimage import distance_transform_edt
 from skimage.morphology import medial_axis
 
 from .models import Config, InputError, Scene
@@ -23,9 +23,22 @@ def clip_z(points, height, above):
     return result
 
 
+def collision_height_interval(scene, config):
+    """Above-floor union of the configured body and the actual camera lens.
+
+    Body limits describe collision geometry, not permitted viewing heights.
+    Including a taller/lower lens can only expand the checked vertical range.
+    """
+    height = scene.camera_height_m if config.camera_height_m is None else config.camera_height_m
+    if not np.isfinite(height) or height <= 0:
+        raise InputError("Camera height must be finite and above the floor")
+    return min(config.body_min_m, height), max(config.body_max_m, height)
+
+
 def footprint(scene, config):
     polygons = []
-    low, high = scene.floor_height + config.body_min_m, scene.floor_height + config.body_max_m
+    low, high = collision_height_interval(scene, config)
+    low, high = scene.floor_height + low, scene.floor_height + high
     for geometry in scene.geometries:
         triangles = geometry.collision_triangles if geometry.collision_triangles is not None else geometry.triangles
         if not geometry.obstacle or not len(triangles):
@@ -43,13 +56,68 @@ def footprint(scene, config):
     return shapely.union_all(polygons)
 
 
-def neighbors(cell, mask):
+def safe_segments(floor, obstacles, segments, clearance_m):
+    """Check actual straight camera motions, not raster corner adjacency.
+
+    Units and clearance are physical. No curve smoothing or wall-crossing
+    shortcut is licensed by a pair of individually safe endpoints.
+    """
+    segments = np.asarray(segments, dtype=float).reshape((-1, 2, 2))
+    if not len(segments):
+        return np.zeros(0, dtype=bool)
+    lines = shapely.linestrings(segments)
+    boundary_distance = shapely.distance(floor.boundary, lines)
+    safe = shapely.covers(floor, lines) & (boundary_distance >= clearance_m) & (boundary_distance > 0)
+    if not obstacles.is_empty:
+        safe &= ~shapely.intersects(obstacles, lines)
+        safe &= shapely.distance(obstacles, lines) >= clearance_m
+    return safe
+
+
+def raster_topology(mask, origin, grid_m, floor, obstacles, clearance_m):
+    """Validate every raster edge against continuous physical clearance."""
+    pairs = []
+    for r, c in np.argwhere(mask):
+        r, c = int(r), int(c)
+        for dr, dc in ((0, 1), (1, -1), (1, 0), (1, 1)):
+            nr, nc = r + dr, c + dc
+            if nr < mask.shape[0] and 0 <= nc < mask.shape[1] and mask[nr, nc]:
+                pairs.append(((r, c), (nr, nc)))
+    allowed_edges = set()
+    if pairs:
+        xy = np.asarray([[[origin[0] + (c + .5) * grid_m,
+                           origin[1] + (r + .5) * grid_m] for r, c in pair] for pair in pairs])
+        valid = safe_segments(floor, obstacles, xy, clearance_m)
+        for pair, accepted in zip(pairs, valid):
+            if accepted:
+                allowed_edges.add(pair)
+    allowed_edges = frozenset(allowed_edges)
+    labels, count = np.zeros(mask.shape, dtype=int), 0
+    for cell in map(tuple, np.argwhere(mask).tolist()):
+        if labels[cell]:
+            continue
+        count += 1
+        labels[cell] = count
+        stack = [cell]
+        while stack:
+            current = stack.pop()
+            for other, _ in neighbors(current, mask, allowed_edges):
+                if not labels[other]:
+                    labels[other] = count
+                    stack.append(other)
+    return labels, count, allowed_edges
+
+
+def neighbors(cell, mask, allowed_edges=None):
     r, c = cell
     h, w = mask.shape
     for dr, dc in ((-1, 0), (0, -1), (0, 1), (1, 0), (-1, -1), (-1, 1), (1, -1), (1, 1)):
         nr, nc = r + dr, c + dc
         if 0 <= nr < h and 0 <= nc < w and mask[nr, nc]:
-            if dr and dc and not (mask[r, nc] and mask[nr, c]):
+            if allowed_edges is not None:
+                if tuple(sorted((cell, (nr, nc)))) not in allowed_edges:
+                    continue
+            elif dr and dc and not (mask[r, nc] and mask[nr, c]):
                 continue
             yield (nr, nc), math.hypot(dr, dc)
 
@@ -144,6 +212,8 @@ class Route:
     node_ids: dict = field(default_factory=dict)
     viewpoint_ids: dict = field(default_factory=dict)
     camera_poses: dict = field(default_factory=dict)
+    raster_edges: object = None
+    raster_labels: object = None
 
     def node_id(self, node):
         if node in self.node_ids:
@@ -178,27 +248,51 @@ class Route:
                     edges.append({"from_node": self.node_id(node), "to_node": self.node_id(other),
                                   "length_m": length,
                                   "polyline_m": [self.positions[node].tolist(), self.positions[other].tolist()]})
-        return {"nodes": nodes, "edges": edges, "grid_m": self.grid_m,
-                "walkable_cells": int(self.walkable.sum()), "method": "medial_axis_grid_graph"}
+        result = {"nodes": nodes, "edges": edges, "grid_m": self.grid_m,
+                  "walkable_cells": int(self.walkable.sum()), "method": "medial_axis_grid_graph",
+                  "grid_origin_xy_m": self.origin.tolist()}
+        if self.candidate_sampling.get('lateral_spur_node_count'):
+            result['method']='medial_axis_grid_graph_with_safe_observation_spurs'
+            result['central_node_ids']=[self.node_id(i) for i in range(self.candidate_sampling['lateral_backbone_node_count'])]
+        return result
 
 
 def build_route(scene: Scene, config: Config) -> Route:
-    bounds = scene.floor.bounds
-    origin = np.floor(np.asarray(bounds[:2]) / config.grid_m) * config.grid_m - config.grid_m
-    size = np.ceil((np.asarray(bounds[2:]) - origin) / config.grid_m).astype(int) + 1
+    bounds = np.asarray(scene.floor.bounds)
+    # The world origin has no geometric meaning. Center a new lattice on the
+    # space, so a straight corridor's center is not missed merely by shifting
+    # its coordinates. This does not make finite grids resolution-complete.
+    anchor = (bounds[:2] + (bounds[2:] - bounds[:2]) / 2 - config.grid_m / 2
+              if scene.route_grid_anchor_xy_m is None else np.asarray(scene.route_grid_anchor_xy_m))
+    coordinates = (bounds.reshape(2, 2) - anchor) / config.grid_m
+    # Restore only arithmetic-near integer bounds, not a physical clearance
+    # allowance. Otherwise translation roundoff can add/remove a padding cell.
+    tolerance = 8 * np.finfo(float).eps * (np.abs(bounds.reshape(2, 2)) + np.abs(anchor) + config.grid_m) / config.grid_m
+    nearest = np.rint(coordinates)
+    coordinates = np.where(np.abs(coordinates - nearest) <= tolerance, nearest, coordinates)
+    first, last = np.floor(coordinates[0]).astype(int) - 1, np.ceil(coordinates[1]).astype(int) + 1
+    origin = anchor + first * config.grid_m
+    size = last - first + 1
     if int(size[0]) * int(size[1]) > config.max_grid_cells:
         raise InputError("max_grid_cells exceeded; crop the scene or increase grid_m")
     yy, xx = np.mgrid[:size[1], :size[0]]
     x, y = origin[0] + (xx + 0.5) * config.grid_m, origin[1] + (yy + 0.5) * config.grid_m
-    # Whole cell, not merely center, must fit inside confirmed free floor.
-    margin = config.clearance_m + config.grid_m / math.sqrt(2)
-    safe_floor = scene.floor.buffer(-margin)
+    # Camera/body clearance is checked at positions AND on every full edge.
+    # Requiring a whole square cell adds a grid-dependent safety margin and
+    # incorrectly erases safe diagonally oriented corridors.
     obstacles = footprint(scene, config)
-    walkable = shapely.contains_xy(safe_floor, x, y)
+    centers = shapely.points(x, y)
+    walkable = shapely.contains_xy(scene.floor, x, y)
+    # Exclude arithmetic-near clearance contacts consistently under translation.
+    # This is machine precision, not an additional physical safety allowance.
+    roundoff = 8 * np.finfo(float).eps * (np.abs(x) + np.abs(y) + np.max(np.abs(bounds)) + 1)
+    walkable &= shapely.distance(scene.floor.boundary, centers) > config.clearance_m + roundoff
     if not obstacles.is_empty:
-        walkable &= ~shapely.intersects_xy(obstacles.buffer(margin), x, y)
+        walkable &= ~shapely.intersects(obstacles, centers)
+        walkable &= shapely.distance(obstacles, centers) > config.clearance_m + roundoff
     clearance = distance_transform_edt(np.pad(walkable, 1), sampling=config.grid_m)[1:-1, 1:-1]
-    labels, count = label(walkable)  # Four-connected: corner touching is not a doorway.
+    labels, count, raster_edges = raster_topology(
+        walkable, origin, config.grid_m, scene.floor, obstacles, config.clearance_m)
     skeleton = medial_axis(np.pad(walkable, 1), rng=config.seed)[1:-1, 1:-1]
     # Repair rare skeleton disconnects using only confirmed free raster cells.
     for component in range(1, count + 1):
@@ -214,7 +308,7 @@ def build_route(scene: Scene, config: Config) -> Route:
             if cell in reached:
                 continue
             reached.add(cell)
-            stack.extend(other for other, _ in neighbors(cell, walkable) if other in marked and other not in reached)
+            stack.extend(other for other, _ in neighbors(cell, walkable, raster_edges) if other in marked and other not in reached)
         while marked - reached:
             queue = [(0.0, cell) for cell in sorted(reached)]
             heapq.heapify(queue)
@@ -228,7 +322,7 @@ def build_route(scene: Scene, config: Config) -> Route:
                 if cell in marked - reached:
                     target = cell
                     break
-                for other, length in neighbors(cell, walkable):
+                for other, length in neighbors(cell, walkable, raster_edges):
                     value = cost + length * (1 + config.grid_m / max(clearance[other], config.grid_m))
                     if value < distance.get(other, math.inf):
                         distance[other], previous[other] = value, cell
@@ -246,12 +340,12 @@ def build_route(scene: Scene, config: Config) -> Route:
                 if cell in reached:
                     continue
                 reached.add(cell)
-                stack.extend(other for other, _ in neighbors(cell, walkable) if other in marked and other not in reached)
+                stack.extend(other for other, _ in neighbors(cell, walkable, raster_edges) if other in marked and other not in reached)
     cells = [tuple(map(int, cell)) for cell in np.argwhere(skeleton)]
     if len(cells) > config.max_route_nodes:
         raise InputError("max_route_nodes exceeded")
     lookup = {cell: i for i, cell in enumerate(cells)}
-    adjacency = {i: [(lookup[other], length * config.grid_m) for other, length in neighbors(cell, walkable)
+    adjacency = {i: [(lookup[other], length * config.grid_m) for other, length in neighbors(cell, walkable, raster_edges)
                      if other in lookup] for i, cell in enumerate(cells)}
     camera_height = scene.camera_height_m if config.camera_height_m is None else config.camera_height_m
     positions = np.asarray([[origin[0] + (c + 0.5) * config.grid_m,
@@ -273,6 +367,7 @@ def build_route(scene: Scene, config: Config) -> Route:
             nearest[other] = min(nearest[other], value)
     route = Route(origin, config.grid_m, walkable, clearance, cells, positions, components,
                   adjacency, candidates, obstacles)
+    route.raster_edges, route.raster_labels = raster_edges, labels
     route.candidate_reasons = {node: ["uniform_seed"] for node in candidates}
     route.candidate_sampling = {"strategy": "adaptive" if config.adaptive_candidates else "uniform",
                                 "uniform_seed_count": len(candidates), "geometry_added_count": 0,

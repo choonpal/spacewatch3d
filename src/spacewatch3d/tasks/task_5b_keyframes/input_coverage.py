@@ -33,8 +33,9 @@ def summarize_input_coverage(report, objects, config):
                      if region["coverage_total"] is None)
         if object_coverage is not None and object_coverage + 1e-10 < config["object_target"]:
             unmet.append("object_target")
-        unmet.extend("must_see:" + obj["instance_id"] for obj in objects
-                     if obj["must_see"] and obj["instance_id"] not in observed)
+        unmet.extend(("must_see:" if obj["must_see"] else "object_unobserved:") + obj["instance_id"]
+                     for obj in objects if (config.get("require_all_objects", False) or obj["must_see"])
+                     and obj["instance_id"] not in observed)
         runs.append({"sample_role": role, "seed": seed,
                      "balanced_space_coverage_total": balanced,
                      "surface_coverage_total": measured["coverage_total"],

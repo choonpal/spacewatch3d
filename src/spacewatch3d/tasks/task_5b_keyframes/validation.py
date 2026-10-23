@@ -38,6 +38,11 @@ def validate_outputs(plan, requests):
     require(requests.get("geometry_sha256") == plan["provenance"]["geometry_sha256"], "request geometry identity")
     require(isinstance(plan["synthetic"], bool), "synthetic")
     require(isinstance(plan["route_version"], int) and plan["route_version"] >= 1, "route version")
+    if "grid_origin_xy_m" in plan["route_graph"]:
+        grid_origin = plan["route_graph"]["grid_origin_xy_m"]
+        require(isinstance(grid_origin, list) and len(grid_origin) == 2
+                and all(type(v) in (int, float) and math.isfinite(v) for v in grid_origin),
+                "planning grid origin")
     nodes = {n["node_id"]: n for n in plan["route_graph"]["nodes"]}
     require(len(nodes) == len(plan["route_graph"]["nodes"]), "duplicate route node")
     edges = set()
@@ -58,8 +63,32 @@ def validate_outputs(plan, requests):
         require(len(candidates) == len(sampling["candidates"]), "duplicate candidate")
         require(len(candidates) == sum(sampling[key] for key in ("uniform_seed_count", "geometry_added_count", "visibility_added_count"))
                 + sampling.get("visibility_audit_added_count", 0) + sampling.get("reference_added_count", 0)
-                + sampling.get("coverage_repair_added_count", 0), "candidate refinement counts")
+                + sampling.get("coverage_repair_added_count", 0) + sampling.get('lateral_added_count',0), "candidate refinement counts")
         require(len(candidates) == plan["coverage_report"]["candidate_count_before_feedback"], "candidate count/report")
+        if sampling.get('lateral_added_count',0):
+            lateral=sampling.get('lateral_refinement',{})
+            require(plan['provenance']['config'].get('lateral_candidate_refinement') is True
+                    and lateral.get('status')=='accepted' and lateral.get('uses_final_holdout') is False
+                    and lateral.get('object_probe_credit')=='none'
+                    and all(lateral.get(key) is True for key in ('original_goals_preserved','actual_object_scores_checked',
+                        'expanded_goals_met','original_collisions_and_observation_surfaces_unchanged',
+                        'newly_discovered_target_denominators_preserved')), 'lateral refinement policy')
+            actual={cid for cid,item in candidates.items() if 'lateral_observation' in item['reasons']}
+            require(actual==set(lateral.get('added_candidate_ids',[]))
+                    and len(actual)==sampling['lateral_added_count']==lateral.get('added_candidate_count'),
+                    'lateral candidate identities/count')
+            require(type(lateral.get('probe_count')) is int and lateral['probe_count']<=plan['provenance']['config']['max_visibility_probes']
+                    and lateral['probe_count']>=len(actual), 'lateral probe count')
+            require(type(lateral.get('original_routed_image_count')) is int
+                    and type(lateral.get('refined_routed_image_count')) is int
+                    and 0<lateral['refined_routed_image_count']<lateral['original_routed_image_count'],
+                    'lateral routed image reduction')
+            backbone=lateral['backbone_node_count']
+            require(type(backbone) is int and 0<backbone<=len(nodes)
+                    and lateral['spur_node_count']==len(nodes)-backbone, 'lateral spur count')
+            if lateral['spur_node_count']:
+                require(plan['route_graph'].get('central_node_ids')==[n['node_id'] for n in plan['route_graph']['nodes'][:backbone]],
+                        'lateral backbone identities')
         for candidate in candidates.values():
             require(candidate["route_node_id"] in nodes, "candidate route node")
             require(bool(candidate["reasons"]) and all(isinstance(reason, str) for reason in candidate["reasons"]), "candidate reasons")
@@ -76,9 +105,15 @@ def validate_outputs(plan, requests):
                 for field in ("eligible_route_node_count", "baseline_candidate_count", "excluded_route_node_count"):
                     require(type(audit[field]) is int and audit[field] >= 0, "visibility audit node counts")
                 require(audit["baseline_candidate_count"] + audit["probe_count"] == audit["eligible_route_node_count"], "visibility audit eligible count")
-                require(audit["eligible_route_node_count"] + audit["excluded_route_node_count"] == len(nodes), "visibility audit graph count")
+                audited_count=audit.get('audited_route_node_count',len(nodes))
+                if 'audited_route_node_count' in audit:
+                    require(audit.get('scope')=='backbone_before_lateral_refinement'
+                            and sampling.get('lateral_refinement',{}).get('status')=='accepted'
+                            and audited_count==sampling['lateral_refinement']['backbone_node_count']
+                            and type(audited_count) is int and 0<audited_count<=len(nodes), 'lateral backbone audit scope')
+                require(audit["eligible_route_node_count"] + audit["excluded_route_node_count"] == audited_count, "visibility audit graph count")
                 require(audit["excluded_route_node_count"] == len(plan["excluded_viewpoints"]), "visibility audit excluded count")
-                require(audit["baseline_candidate_count"] + added + sampling.get("coverage_repair_added_count", 0)
+                require(audit["baseline_candidate_count"] + added + sampling.get("coverage_repair_added_count", 0) + sampling.get('lateral_added_count',0)
                         == plan["coverage_report"]["candidate_count_after_feedback"], "visibility audit candidate count")
                 require(audit["probe_count"] <= plan["provenance"]["config"]["max_visibility_probes"], "visibility audit limit")
                 require(audit["sampled_observable_union_preserved"] is True and audit["best_object_quality_preserved"] is True,
@@ -116,13 +151,17 @@ def validate_outputs(plan, requests):
         require(len(promoted) == len(set(promoted)) and all(
             vid in viewpoints and viewpoints[vid]["roles"] == ["content"] for vid in promoted), "promoted core cameras")
     config = plan["provenance"]["config"]
+    all_objects = config.get("require_all_objects", False)  # Archived ratio-policy plans remain readable.
+    require(type(all_objects) is bool, "require all objects flag")
     if "shape_normalized_object_quality" in config or "input_coverage_status" in plan:
         model = "self_visible_exterior" if config["shape_normalized_object_quality"] else "whole_mesh_surface"
         require(plan["coverage_report"].get("object_observation_policy") == {
             "model": model, "aggregation": "single_best_view", "image_readability_validated": False},
             "object observation policy")
         expected_input = summarize_input_coverage(plan["coverage_report"], plan["object_importances"], config)
-        require(plan.get("planning_status_scope") == "observable_geometry_targets_and_safe_connections",
+        expected_scope = ("space_geometry_targets_all_objects_and_safe_connections" if all_objects
+                          else "observable_geometry_targets_and_safe_connections")
+        require(plan.get("planning_status_scope") == expected_scope,
                 "input coverage/planning scope")
         require(plan.get("input_coverage_status") == expected_input["status"]
                 and plan["coverage_report"].get("input_coverage") == expected_input, "input coverage report/status")
@@ -131,7 +170,8 @@ def validate_outputs(plan, requests):
             "input coverage deficit warning")
     def check_draw(report, count, role):
         require(report.get("sample_role") == role, role + " coverage sample role")
-        require(sum(r["sample_count"] for r in report["regions"]) == count, role + " region samples")
+        if count is not None:
+            require(sum(r["sample_count"] for r in report["regions"]) == count, role + " region samples")
         values = [r["coverage_observable"] for r in report["regions"] if r["coverage_observable"] is not None]
         require(math.isclose(report["balanced_space_coverage"], sum(values) / len(values) if values else 0,
                              abs_tol=1e-10), role + " balanced coverage")
@@ -148,9 +188,21 @@ def validate_outputs(plan, requests):
         object_coverage = report["object_importance_coverage_observable"]
         if object_coverage is not None and object_coverage + 1e-10 < config["object_target"]:
             expected.append("object_target")
-        expected.extend("must_see:" + o["instance_id"] for o in plan["object_importances"]
-                        if o["must_see"] and report["object_best_quality"][o["instance_id"]] < config["object_quality_threshold"])
+        expected.extend(("must_see:" if o["must_see"] else "object_unobserved:") + o["instance_id"]
+                        for o in plan["object_importances"] if (all_objects or o["must_see"])
+                        and report["object_best_quality"][o["instance_id"]] < config["object_quality_threshold"])
         require(report["unmet_targets"] == expected, role + " target results")
+        if "require_all_objects" in config:
+            objects = plan["object_importances"]
+            observed = {o["instance_id"] for o in objects
+                        if report["object_best_quality"][o["instance_id"]] >= config["object_quality_threshold"]}
+            require(report.get("object_observation_requirements") == {
+                "policy": "all_input_objects" if all_objects else "explicit_must_see_only",
+                "required_object_count": sum(all_objects or o["must_see"] for o in objects),
+                "unobserved_required_object_ids": [o["instance_id"] for o in objects
+                    if (all_objects or o["must_see"]) and o["instance_id"] not in observed],
+                "observed_object_count": len(observed), "input_object_count": len(objects)},
+                role + " individual object requirements")
         return expected
 
     if "coverage_repair" in config:
@@ -172,7 +224,7 @@ def validate_outputs(plan, requests):
                     "coverage repair optimization role")
             require(len(repair["runs"]) == config["coverage_repair_runs"], "coverage repair run count")
             seen_added, bad_runs = set(), []
-            before_count = plan["coverage_report"]["candidate_count_after_feedback"] - added
+            before_count = plan["coverage_report"]["candidate_count_after_feedback"] - added - plan.get('candidate_report',{}).get('lateral_added_count',0)
             multiplier = config["coverage_repair_sample_multiplier"]
             for index, run in enumerate(repair["runs"]):
                 require(type(run["seed"]) is int and run["seed"] == config["seed"] + index + 1, "coverage repair seed")
@@ -187,8 +239,13 @@ def validate_outputs(plan, requests):
                 if config["adaptive_candidates"]:
                     require(audit["status"] == "complete" and audit["baseline_candidate_count"] == before_count,
                             "coverage repair audit baseline")
+                    audited_count=audit.get('audited_route_node_count',len(nodes))
+                    if 'audited_route_node_count' in audit:
+                        require(audit.get('scope')=='backbone_before_lateral_refinement'
+                                and audited_count==plan['candidate_report']['lateral_refinement']['backbone_node_count'],
+                                'coverage repair lateral audit scope')
                     require(audit["baseline_candidate_count"] + audit["probe_count"] == audit["eligible_route_node_count"]
-                            == len(nodes) - len(excluded), "coverage repair eligible denominator")
+                            == audited_count - len(excluded), "coverage repair eligible denominator")
                     require(audit["probe_count"] <= config["max_visibility_probes"], "coverage repair probe limit")
                     require(all(audit[field] is True for field in ("sampled_observable_union_preserved",
                             "best_object_quality_preserved", "joint_object_threshold_patterns_preserved",
@@ -213,6 +270,13 @@ def validate_outputs(plan, requests):
                         and repair_failures[0]["runs"] == bad_runs, "coverage repair failure cannot be complete")
             else:
                 require(not repair_failures, "spurious coverage repair failure")
+    identity=plan["coverage_report"].get("observation_identity")
+    if identity is not None:
+        require(identity.get("observation_unit_count")==len(plan["object_importances"])
+                and identity.get("automatic_class_based_merging") is False,"observation identity report")
+        if identity.get("unit")=="semantic_region":
+            require(identity.get("physical_identity_verified") is False and any(
+                w["code"]=="object_identity_unverified" for w in plan["warnings"]),"unverified semantic identity warning")
     if "object_selection_margin" in config:
         margin, nominal = config["object_selection_margin"], config["object_quality_threshold"]
         require(type(margin) in (int, float) and 0 <= margin <= 1, "object selection margin")
@@ -258,8 +322,9 @@ def validate_outputs(plan, requests):
                         denominator += obj["importance"]
                         numerator += obj["importance"] * met
                         nominal_numerator += obj["importance"] * (selected >= nominal)
-                    if obj["must_see"] and not met:
-                        must_see.append("must_see:" + obj["instance_id"])
+                    if (all_objects or obj["must_see"]) and not met:
+                        prefix = "must_see:" if obj["must_see"] else "object_unobserved:"
+                        must_see.append(prefix + obj["instance_id"])
                 coverage = numerator / denominator if denominator else None
                 expected_nominal = nominal_numerator / denominator if denominator else None
                 for actual, expected in ((run["object_importance_coverage_observable"], coverage),
@@ -379,19 +444,59 @@ def validate_outputs(plan, requests):
                 and len(set(unreachable)) == len(unreachable), "attainable goal failure identities")
         require(not unreachable or plan["planning_status"] == "incomplete", "unreachable goals cannot be complete")
     sampling_draws = [plan["coverage_report"].get("surface_sampling")]
+    sampled_reports = [plan['coverage_report']]
     for key in ("coverage_repair", "independent_validation"):
         sampling_draws.extend(run.get("surface_sampling") for run in
                               plan["coverage_report"].get(key, {}).get("runs", []))
+        sampled_reports.extend(run['coverage_report'] for run in plan['coverage_report'].get(key,{}).get('runs',[]))
+    if config.get('spatially_stratified_sampling') and config.get('balance_automatic_region_samples'):
+        for sampling,coverage in zip(sampling_draws,sampled_reports):
+            require(isinstance(sampling,dict), 'automatic region sampling provenance missing')
+            allocation=sampling.get('automatic_region_sampling',{})
+            require(allocation.get('method')=='within_existing_budget_after_object_and_named_minima'
+                    and allocation.get('input_acceptance_constraints_unchanged') is True
+                    and allocation.get('requested_min_region_samples')==sampling['min_region_samples'],
+                    'automatic region allocation policy')
+            expected={r['region_id']:r['sample_count'] for r in coverage['regions'] if not r.get('declared',False)}
+            items=allocation.get('regions',[])
+            require(len(items)==len(expected) and {item['region_id']:item['sample_count'] for item in items}==expected,
+                    'automatic region allocation counts')
+            under=sum(count<sampling['min_region_samples'] for count in expected.values())
+            require(allocation.get('under_target_region_count')==under
+                    and allocation.get('status')==('budget_limited' if under else 'target_met'),
+                    'automatic region allocation status')
     for sampling in sampling_draws:
         # Older saved plans predate these optional provenance fields. If either
         # is present, require the complete supported policy in every draw role.
         if sampling is not None and ("object_triangle_sampling" in sampling or "structure_triangle_sampling" in sampling):
             require(sampling.get("object_triangle_sampling") == "equal_area_cdf_stratified"
-                    and sampling.get("structure_triangle_sampling") == "iid_area_weighted", "triangle sampling policy")
+                    and sampling.get("structure_triangle_sampling") in
+                    ("iid_area_weighted", "scrambled_halton_area_weighted"), "triangle sampling policy")
+    # Optional for archived plans, but a new plan must use the same resolved
+    # partition for selection, repair and untouched final samples.
+    partitions = [sampling.get("fallback_tiles") if isinstance(sampling, dict) else None
+                  for sampling in sampling_draws]
+    if any(isinstance(sampling, dict) and "fallback_tiles" in sampling for sampling in sampling_draws):
+        for partition in partitions:
+            require(isinstance(partition, dict), "missing fallback tile partition")
+            origin = partition.get("origin_xy_m")
+            require(isinstance(origin, list) and len(origin) == 2
+                    and all(type(v) in (int, float) and math.isfinite(v) for v in origin),
+                    "fallback tile origin")
+            require(type(partition.get("tile_m")) in (int, float)
+                    and partition["tile_m"] == plan["provenance"]["config"]["tile_m"]
+                    and partition.get("boundary_policy") in ("raw_floor", "roundoff_snap")
+                    and partition.get("anchor_source") in ("floor_bounds", "reference_route"),
+                    "fallback tile width/source")
+            require(partition == partitions[0], "fallback tile partition differs between sample roles")
     if "surface_sampling" in plan["coverage_report"]:
         sampling = plan["coverage_report"]["surface_sampling"]
         config = plan["provenance"]["config"]
         require(sampling["method"] == "geometry_named_region_area_stratified", "surface sampling method")
+        if config.get("spatially_stratified_sampling",False):
+            require(all(isinstance(s,dict) and s.get("fallback_tiles",{}).get("area_partition")=="exact_physical_area_strata"
+                        and s["fallback_tiles"].get("occlusion_mesh_changed") is False for s in sampling_draws),
+                    "real-mesh spatial partition provenance")
         require(type(sampling["sample_count"]) is int and sampling["sample_count"] == config["surface_samples"], "surface sample count")
         require(type(sampling["stratum_count"]) is int and 0 < sampling["stratum_count"] <= sampling["sample_count"], "surface stratum count")
         require(sampling["min_region_samples"] == config["min_region_samples"], "region sample minimum")
@@ -441,6 +546,13 @@ def validate_outputs(plan, requests):
         require(request["capture_id"] == plan["capture_id"] and request["reference_frame_id"] == plan["reference_frame_id"], "request frame")
         require(request["projection"] == "equirectangular" and request["media_origin"] == "novel_view", "request projection")
         require(request["render_required"] == (viewpoints[vid]["render_status"] == "pending"), "render_required")
+        if "require_all_objects" in config:
+            qualities = {observation["instance_id"]: observation["geometry_quality"]
+                         for observation in viewpoints[vid]["object_observations"]}
+            required_ids = [obj["instance_id"] for obj in plan["object_importances"]
+                            if (all_objects or obj["must_see"])
+                            and qualities.get(obj["instance_id"], 0.) >= config["object_quality_threshold"]]
+            require(request.get("required_object_ids") == required_ids, "request required objects")
         require(isinstance(request["width"], int) and isinstance(request["height"], int)
                 and request["height"] > 0 and request["width"] == 2 * request["height"], "resolution")
     if "reference_reuse" in plan:
@@ -495,6 +607,11 @@ def validate_outputs(plan, requests):
                 require(config["max_link_m"] is None, "unspaced connection requires disabled image spacing")
         if plan["planning_status"] == "complete" and config["max_link_m"] is not None:
             require(measured <= plan["provenance"]["config"]["max_link_m"] + 1e-8, "complete tour has oversized jump")
+    if "require_all_objects" in config:
+        # Real planner draws always carry sampling provenance. Matrix-injected
+        # diagnostic callers may omit it; still verify their actual targets.
+        count = config["surface_samples"] if "surface_sampling" in plan["coverage_report"] else None
+        check_draw(plan["coverage_report"], count, "selection")
     if plan["planning_status"] == "complete":
         require(not plan["coverage_report"]["unmet_targets"] and not plan["failures"], "complete plan has failures")
         require(bool(viewpoints), "empty plan cannot be complete")

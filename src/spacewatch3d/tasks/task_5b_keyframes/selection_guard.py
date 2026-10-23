@@ -41,7 +41,7 @@ def finish_guard_report(objectives, selected, seeds):
         runs.append({"seed": seed, "sample_role": "selection_guard", "objects": objects,
                      "object_importance_coverage_observable": measured["object_importance_coverage_observable"],
                      "unmet_targets": [t for t in measured["unmet_targets"]
-                                       if t == "object_target" or t.startswith("must_see:")]})
+                                       if t == "object_target" or t.startswith(("must_see:", "object_unobserved:"))]})
     return {"status": "targets_unmet" if any(r["unmet_targets"] for r in runs) else "targets_met",
             "used_for_selection": True, "method": "capped_quality_headroom",
             "margin": config.object_selection_margin, "nominal_threshold": config.object_quality_threshold,

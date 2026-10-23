@@ -15,7 +15,7 @@ from .coverage_repair import JointObjective, finish_repair_report, make_objectiv
 from .candidates import audit_visibility_candidates, refine_visibility_candidates
 from .loader import load_scene
 from .models import Config, InputError, read_json
-from .routing import build_route, camera_components, connect_tour, shortest
+from .routing import build_route, camera_components, collision_height_interval, connect_tour, shortest
 from .selection import AttainableGoals, repair_connected_selection, select_keyframes
 from .object_quality import make_quality_refiner
 from .selection_guard import finish_guard_report, guard_objectives
@@ -23,6 +23,7 @@ from .validation import validate_outputs
 from .visibility import evaluate_positions, sample_surface
 from .reference import export_reference, finish_reuse, load_reference, reuse_route
 from .input_coverage import summarize_input_coverage
+from .lateral_candidates import refine_lateral_plan
 
 
 def read_feedback(path, scene, route):
@@ -97,6 +98,13 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
         raise InputError("registration requires reference_route_path")
     reference = load_reference(reference_route_path, scene, config, registration_path) if reference_route_path else None
     config = replace(config, camera_height_m=scene.camera_height_m)
+    low, high = collision_height_interval(scene, config)
+    scene.provenance["collision_height_interval"] = {
+        "policy": "body_interval_union_camera_height",
+        "configured_above_floor_m": [config.body_min_m, config.body_max_m],
+        "effective_above_floor_m": [low, high],
+        "camera_height_above_floor_m": scene.camera_height_m,
+        "expanded": low < config.body_min_m or high > config.body_max_m}
     objects, warnings = resolve_importance(scene.objects, config, importance_cache, importance_provider)
     warnings.extend(scene.provenance.get("input_warnings", []))
     if scene.provenance["camera_height"]["source"] == "fallback_unverified":
@@ -163,19 +171,57 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
         selection_report.update(selection_image_count=len(final),
                                 selection_tour_length_m=sum(link["length_m"] for link in tour_links),
                                 selection_connection_failures=[f["code"] for f in connection_failures])
+        # Without transition gaps every physical component has a connected
+        # tour. Keep core identities so incomplete pruning can prove that no
+        # surviving pair loses its connection (a boolean failure is too weak).
+        if not any(f["code"] == "transition_gap" for f in connection_failures):
+            selection_report["selection_connection_groups"] = [
+                [i for i in key if route.components[candidates[i]] == component]
+                for component in sorted({route.components[n] for n in nodes})]
         return utility, selection_report
 
     evaluator = (lambda selected: evaluate_routed_set(tuple(sorted(selected)))) if config.route_aware_selection else None
     required_indices = [lookup[n] for n in required_nodes if n not in banned]
     chosen, history, selection_report = select_keyframes(optimization, evaluator, required=required_indices)
+    original_route_node_count=len(route.positions)
+    route, refined_datasets, lateral_chosen, lateral_report = refine_lateral_plan(
+        route,datasets,guarded_objectives if config.coverage_repair else guarded_objectives[:1],
+        chosen,candidates,objects,config,required_indices,banned)
+    route.candidate_sampling['lateral_refinement']=lateral_report
+    if lateral_report['status']=='accepted':
+        datasets=refined_datasets;chosen=lateral_chosen
+        all_visible,all_quality=datasets[0]['visible'],datasets[0]['quality']
+        allowed_indices=[i for i,n in enumerate(route.candidates) if n not in banned]
+        candidates=[route.candidates[i] for i in allowed_indices]
+        visible,quality=all_visible[allowed_indices],all_quality[allowed_indices]
+        objectives=make_objectives(datasets,allowed_indices,objects,config,[rid for rid,_ in scene.regions])
+        objective=objectives[0];guarded_objectives=guard_objectives(objectives)
+        optimization=JointObjective(guarded_objectives) if config.coverage_repair else guarded_objectives[0]
+        lookup={node:i for i,node in enumerate(candidates)}
+        paths_from.cache_clear();hop_paths_from.cache_clear();evaluate_routed_set.cache_clear()
+        for i in chosen:
+            if i not in history:
+                history[i]={'selection_step':None,'marginal_gain_at_selection':None,
+                    'marginal_image_count_at_selection':None,'selection_method':'lateral_coverage_refinement'}
+        selection_report=(evaluator(chosen) if evaluator else optimization.measure(chosen))[1]
+        # Earlier visibility audits remain evidence about the original backbone,
+        # not a claim that every newly attached path-only connector was sampled.
+        audits=[route.candidate_sampling.get('visibility_audit')]+[
+            run.get('candidate_audit') for run in coverage_repair.get('runs',[])]
+        for audit in audits:
+            if audit is not None:
+                audit['scope']='backbone_before_lateral_refinement'
+                audit['audited_route_node_count']=original_route_node_count
     repair_trigger = []
+    consolidation_report = None
     if evaluator and (selection_report["selection_connection_failures"] or selection_report["unmet_targets"]):
         repair_trigger = (["connection_failure"] if selection_report["selection_connection_failures"] else [])
         if selection_report["unmet_targets"]:
             repair_trigger.append("targets_unmet")
         groups = [[lookup[n] for n in sorted(group)] for group in
                   camera_components(route, candidates, config, hop_paths_from)]
-        chosen, history, _ = repair_connected_selection(optimization, evaluator, chosen, history, groups, required_indices)
+        chosen, history, repaired = repair_connected_selection(optimization, evaluator, chosen, history, groups, required_indices)
+        consolidation_report = repaired.get("component_consolidation")
     selected_nodes = [candidates[i] for i in chosen]
     visits, links, transitions, failures = connect_tour(route, selected_nodes, config, banned, scene.start, paths_from, hop_paths_from)
     final_nodes = sorted(set(selected_nodes) | set(transitions))
@@ -195,6 +241,9 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
     report["object_observation_policy"] = {
         "model": "self_visible_exterior" if config.shape_normalized_object_quality else "whole_mesh_surface",
         "aggregation": "single_best_view", "image_readability_validated": False}
+    report["observation_identity"]=scene.provenance.get("observation_identity",{
+        "unit":"input_object","physical_identity_verified":None,
+        "observation_unit_count":len(objects),"automatic_class_based_merging":False})
     report["core_role_classification"] = {"policy": "optimization_goal_preserving_core_with_connection_only_transitions",
         "uses_final_holdout": False, "promoted_viewpoint_ids": [route.viewpoint_id(n) for n in sorted(promoted_nodes)]}
     report["selection"] = {"strategy": "routed_gain_per_added_image_with_one_swap" if evaluator else "marginal_gain",
@@ -205,6 +254,8 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
                            "feasibility_repair_trigger": repair_trigger,
                            "feasibility_repair_succeeded": bool(repair_trigger) and not failures and not report["unmet_targets"],
                            "local_swap_applied": any(history[i]["selection_method"] == "route_cost_local_swap" for i in chosen)}
+    if consolidation_report is not None:
+        report["selection"]["component_consolidation"] = consolidation_report
     report["candidate_count_before_feedback"] = len(route.candidates)
     report["candidate_count_after_feedback"] = len(candidates)
     report["observable_area_before_feedback_m2"] = float(surface.weights[np.any(all_visible, axis=0)].sum()) if len(all_visible) else 0
@@ -296,7 +347,8 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
             "reference_frame_id": scene.reference_frame_id, "units": "m", "up_axis": "+Z",
             "route_id": f"route_{route_digest}", "route_version": 1,
             "planning_status": "incomplete" if failures else "complete",
-            "planning_status_scope": "observable_geometry_targets_and_safe_connections",
+            "planning_status_scope": ("space_geometry_targets_all_objects_and_safe_connections" if config.require_all_objects
+                                      else "observable_geometry_targets_and_safe_connections"),
             "input_coverage_status": input_coverage["status"],
             "quality_status": "partial" if any(v["render_status"] == "succeeded" for v in viewpoints) else "unverified",
             "publication_ready": False, "route_graph": route.export(), "viewpoints": viewpoints,
@@ -308,8 +360,10 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
                              "component_id": route.component_id(n)} for i, n in enumerate(visits)],
             "tour_links": links, "coverage_report": report, "unobservable_items": unobservable,
             "failures": failures, "warnings": warnings,
-            "excluded_viewpoints": [{"viewpoint_id": route.viewpoint_id(n), "reason": "renderer_failure_or_quality_rejection"} for n in sorted(banned)],
-            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.25.0",
+            "excluded_viewpoints": [{"viewpoint_id": route.viewpoint_id(n), "route_node_id": route.node_id(n),
+                                     "reason": "renderer_failure_or_quality_rejection"} for n in sorted(banned)],
+            "provenance": {**scene.provenance, "config": asdict(config), "implementation": "task5b-cpu-prototype-0.36.0",
+                           "execution_profile": "real_mesh" if config.spatially_stratified_sampling else "standard",
                            "dependency_versions": versions, "importance_cache": importance_cache or {},
                            "feedback_manifest": str(Path(feedback_path).resolve()) if feedback_path else None,
                            "coordinate_policy": "externally_normalized_metric_z_up",
@@ -329,7 +383,8 @@ def create_plan(scene_path, config=None, importance_cache=None, importance_provi
                               "width": config.width, "height": config.height, "media_origin": "novel_view",
                               "render_required": v["render_status"] == "pending",
                               "required_object_ids": [obj["instance_id"] for i, obj in enumerate(objects)
-                                                      if obj["must_see"] and v["object_observations"][i]["geometry_quality"] >= config.object_quality_threshold]}
+                                                      if (config.require_all_objects or obj["must_see"])
+                                                      and v["object_observations"][i]["geometry_quality"] >= config.object_quality_threshold]}
                              for v in viewpoints]}
     if reference:
         transform = scene.provenance["canonical_route_reuse"]

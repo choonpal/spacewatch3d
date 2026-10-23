@@ -57,8 +57,9 @@ class Objective:
         if object_feasible is not None and object_feasible + 1e-10 < self.config.object_target:
             unmet.append("object_target")
         for j, obj in enumerate(self.objects):
-            if obj["must_see"] and not observed[j]:
-                unmet.append("must_see:" + obj["instance_id"])
+            if (self.config.require_all_objects or obj["must_see"]) and not observed[j]:
+                prefix = "must_see:" if obj["must_see"] else "object_unobserved:"
+                unmet.append(prefix + obj["instance_id"])
         possible_area = float(self.weights[self.observable].sum())
         seen_area = float(self.weights[covered].sum())
         report = {"utility": utility, "balanced_space_coverage": c_space,
@@ -68,6 +69,12 @@ class Objective:
                   "coverage_total": seen_area / float(self.weights.sum()),
                   "object_importance_coverage_observable": object_feasible,
                   "object_importance_coverage_total": observed_weight / importance_sum if importance_sum else None,
+                  "object_observation_requirements": {
+                      "policy": "all_input_objects" if self.config.require_all_objects else "explicit_must_see_only",
+                      "required_object_count": sum(self.config.require_all_objects or obj["must_see"] for obj in self.objects),
+                      "unobserved_required_object_ids": [obj["instance_id"] for j, obj in enumerate(self.objects)
+                          if (self.config.require_all_objects or obj["must_see"]) and not observed[j]],
+                      "observed_object_count": int(observed.sum()), "input_object_count": len(self.objects)},
                   "regions": per_region, "unmet_targets": unmet,
                   "object_best_quality": {obj["instance_id"]: float(best[j]) for j, obj in enumerate(self.objects)}}
         return utility, report
@@ -82,8 +89,14 @@ class Objective:
         object_coverage = report["object_importance_coverage_observable"]
         if object_coverage is not None:
             deficit += max(0., self.config.object_target - object_coverage)
-        deficit += sum(max(0., threshold - report["object_best_quality"][obj["instance_id"]]) / threshold
-                       for obj, threshold in zip(self.objects, self.object_thresholds) if obj["must_see"])
+        for j, (obj, threshold) in enumerate(zip(self.objects, self.object_thresholds)):
+            if self.config.require_all_objects or obj["must_see"]:
+                if self.config.require_all_objects and not self.possible_objects[j]:
+                    # Keep an unavoidable failed target, but do not force extra
+                    # partial-only images to reproduce its exact full-pool max.
+                    deficit += 1.
+                else:
+                    deficit += max(0., threshold - report["object_best_quality"][obj["instance_id"]]) / threshold
         return deficit
 
 
@@ -113,6 +126,28 @@ This is feasibility under current estimates, NOT proof about physical geometry.
                 "original_targets_and_denominators_preserved": True}
 
 
+def _connection_not_worse(current, trial):
+    """Preserve retained-view reachability, not just a failure-code count.
+
+    Only an existing disconnected_tour is eligible for incomplete pruning.
+    Missing evidence or transition-gap failures retain the conservative policy.
+    """
+    after = trial.get("selection_connection_failures", [])
+    if not after:
+        return True
+    before = current.get("selection_connection_failures", [])
+    if set(before) != {"disconnected_tour"} or set(after) != {"disconnected_tour"}:
+        return False
+    old_groups = current.get("selection_connection_groups")
+    new_groups = trial.get("selection_connection_groups")
+    if old_groups is None or new_groups is None:
+        return False
+    owner = {view: i for i, group in enumerate(new_groups) for view in group}
+    # Removing a redundant island entirely is fine; splitting a surviving
+    # island is not, even when the top-level failure code stays the same.
+    return all(len({owner[view] for view in group if view in owner}) <= 1 for group in old_groups)
+
+
 def _prune_redundant(selected, measure, required=(), goal_met=None):
     """Recheck routed goals after each deletion until no core view is removable.
 
@@ -130,7 +165,7 @@ def _prune_redundant(selected, measure, required=(), goal_met=None):
             trial = [i for i in selected if i != chosen]
             current_report = measure(selected)[1]
             trial_report = measure(trial)[1]
-            if (goal_met(trial_report) and not trial_report.get("selection_connection_failures")
+            if (goal_met(trial_report) and _connection_not_worse(current_report, trial_report)
                     and trial_report.get("selection_image_count", len(trial)) <= current_report.get("selection_image_count", len(selected))):
                 selected = trial
                 changed = True
@@ -138,7 +173,50 @@ def _prune_redundant(selected, measure, required=(), goal_met=None):
             return selected
 
 
-def select_keyframes(objective: Objective, evaluate=None, required=()):
+def _exchange_incomplete(selected, history, measure, eligible, required, goal_met):
+    """Try one added camera plus goal-preserving deletions on a fixed failure.
+
+    A completely connected result is not a prerequisite for removing images
+    from an already disconnected plan. Retained reachability and the number of
+    remaining islands must not worsen. This is a bounded heuristic, not proof
+    of a minimum image count or permission to invent a connection.
+    """
+    current = measure(selected)[1]
+    if (set(current.get("selection_connection_failures", ())) != {"disconnected_tour"}
+            or current.get("selection_connection_groups") is None):
+        return selected
+    best_cost = (True, current["selection_image_count"], current["selection_tour_length_m"])
+    best = None
+    for new in sorted(set(eligible) - set(selected)):
+        # Keep the proposed camera during this pruning pass; otherwise the
+        # first deletion would simply discard the newly added redundant image.
+        trial = _prune_redundant(selected + [new], measure,
+                                 set(required) | {new}, goal_met)
+        report = measure(trial)[1]
+        if not goal_met(report) or not _connection_not_worse(current, report):
+            continue
+        groups = report.get("selection_connection_groups")
+        if (report.get("selection_connection_failures")
+                and (groups is None or len(groups) > len(current["selection_connection_groups"]))):
+            continue
+        cost = (bool(report["selection_connection_failures"]),
+                report["selection_image_count"], report["selection_tour_length_m"])
+        if cost < best_cost:
+            best_cost, best = cost, (new, trial)
+    if best is not None:
+        new, trial = best
+        removed = [i for i in selected if i not in trial]
+        history[new] = {"selection_step": None, "marginal_gain_at_selection": None,
+                        "selection_method": "route_cost_local_swap",
+                        "replaced_index": removed[0] if removed else None,
+                        "replaced_indices": removed,
+                        "exchange_policy": "incomplete_add_prune_preserving_reachability",
+                        "marginal_image_count_at_selection": None}
+        return _prune_redundant(trial, measure, required, goal_met)
+    return selected
+
+
+def select_keyframes(objective: Objective, evaluate=None, required=(), allowed=None):
     """Use pure gain, or exact routed-set gain per additional unique image.
 
     The injected evaluator may include transition viewpoints in utility/goals.
@@ -150,7 +228,8 @@ def select_keyframes(objective: Objective, evaluate=None, required=()):
     history = {i: {"selection_step": None, "marginal_gain_at_selection": None,
                    "selection_method": "reference_viewpoint_reuse",
                    "marginal_image_count_at_selection": None} for i in selected}
-    candidates = [i for i in range(len(objective.visible)) if i not in selected]
+    eligible = set(range(len(objective.visible))) if allowed is None else set(allowed)
+    candidates = [i for i in sorted(eligible) if i not in selected]
     while candidates:
         utility, report = measure(selected)
         if attainable.met(report):
@@ -202,9 +281,18 @@ def select_keyframes(objective: Objective, evaluate=None, required=()):
             best_cost = (bool(current_report["selection_connection_failures"]),
                          current_report["selection_image_count"], current_report["selection_tour_length_m"])
             best_swap = None
-            available = [i for i in range(len(objective.visible)) if i not in selected]
+            available = [i for i in sorted(eligible) if i not in selected]
             for old in selected:
                 if old in required:
+                    continue
+                groups = current_report.get("selection_connection_groups")
+                if (set(current_report["selection_connection_failures"]) == {"disconnected_tour"}
+                        and groups is not None
+                        and sum(bool(set(group) - {old}) for group in groups) > 1):
+                    # The legacy exchange requires a connected trial before
+                    # pruning. Replacing one view cannot connect the retained
+                    # views from two physical islands, so no trial is skipped
+                    # that the legacy policy could have accepted.
                     continue
                 for new in available:
                     trial = [new if i == old else i for i in selected]
@@ -230,6 +318,10 @@ def select_keyframes(objective: Objective, evaluate=None, required=()):
                 # routed set for every deletion; never delete transition images
                 # independently of their required graph connection.
                 selected = _prune_redundant(selected, measure, required, attainable.met)
+            # Preserve the established connected repair first. Add-prune can
+            # choose a different redundant deletion and miss that repair.
+            selected = _exchange_incomplete(selected, history, measure,
+                                            eligible, required, attainable.met)
     report = dict(measure(selected)[1])
     report["attainable_goals"] = attainable.report(report)
     return selected, history, report
@@ -261,10 +353,74 @@ def repair_connected_selection(objective, evaluate, selected, history, groups, r
         if best is None or rank < best[0]:
             best = rank, trial, report
     if best is None:
-        return selected, history, current
+        return _consolidate_components(objective,evaluate,selected,history,groups,required,attainable)
     _, selected, report = best
     history = {i: history[i] if i in required else {
         "selection_step": None, "marginal_gain_at_selection": None,
         "selection_method": "connected_component_repair", "marginal_image_count_at_selection": None}
         for i in selected}
     return selected, history, report
+
+
+def _consolidate_components(objective,evaluate,selected,history,groups,required,attainable):
+    """Reduce avoidable islands even when one island cannot be eliminated.
+
+    No geometry, target or denominator changes. Complete single-component
+    repair has priority. A fallback migration may use more images, but must
+    strictly reduce the number of selected camera components and preserve
+    every globally attainable goal on all optimization/guard draws.
+    """
+    selected=list(selected)
+    initial=evaluate(selected)[1]
+    if set(initial.get('selection_connection_failures',()))!={'disconnected_tour'}:
+        return selected,history,initial
+    owner={i:g for g,group in enumerate(groups) for i in group}
+    if any(i not in owner for i in selected):
+        return selected,history,initial
+    initial_count=len({owner[i] for i in selected})
+    migrations=[]
+    while True:
+        present={owner[i] for i in selected}
+        best=None
+        for destination in sorted(present,key=lambda g:(-len(groups[g]),g)):
+            for source in sorted(present-{destination}):
+                removed={i for i in selected if owner[i]==source}
+                if removed & required:
+                    continue
+                fixed=set(selected)-removed
+                pool=sorted(set(groups[destination])|fixed)
+                # Use the original full-pool ceiling, never one recomputed on
+                # this restricted pool; an impossible target cannot disappear.
+                if not attainable.met(objective.measure(pool)[1]):
+                    continue
+                trial,_,_=select_keyframes(objective,required=fixed,allowed=pool)
+                measured=evaluate(trial)[1]
+                if (not attainable.met(measured) or
+                        set(measured.get('selection_connection_failures',()))-{'disconnected_tour'}):
+                    continue
+                trial=_prune_redundant(trial,evaluate,required,attainable.met)
+                measured=evaluate(trial)[1]
+                count=len({owner[i] for i in trial})
+                if count>=len(present) or not attainable.met(measured):
+                    continue
+                rank=(count,measured['selection_image_count'],measured['selection_tour_length_m'],tuple(trial))
+                if best is None or rank<best[0]:
+                    best=rank,trial,source,destination
+        if best is None:
+            break
+        _,trial,source,destination=best
+        migrations.append({'source_group':source,'destination_group':destination,
+                           'components_before':len(present),'components_after':len({owner[i] for i in trial}),
+                           'images_before':evaluate(selected)[1]['selection_image_count'],
+                           'images_after':evaluate(trial)[1]['selection_image_count']})
+        for i in trial:
+            if i not in history:
+                history[i]={'selection_step':None,'marginal_gain_at_selection':None,
+                    'selection_method':'connected_component_repair','marginal_image_count_at_selection':None}
+        selected=trial
+    report=dict(evaluate(selected)[1])
+    report['component_consolidation']={'method':'goal_preserving_component_migration',
+        'components_before':initial_count,'components_after':len({owner[i] for i in selected}),
+        'migrations':migrations,'global_targets_and_denominators_preserved':True,
+        'physical_graph_unchanged':True,'global_optimum_claimed':False}
+    return selected,history,report

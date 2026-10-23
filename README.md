@@ -221,6 +221,8 @@ git push -u origin task/3-instance-segmentation/mv3dis-adapter
 
 ## Dorm 정합 맵과 변화 투어 (2026-10-23)
 
+변화 탐지 계산은 이제 [`src/spacewatch3d/tasks/task_5a_change_detection/`](src/spacewatch3d/tasks/task_5a_change_detection/)에 있다. 기존 `tools/`는 같은 패키지 구현을 호출하며 패키지 명령과 공통 `TaskRequest` 실행 경로를 제공한다. 준비된 전후 메시·정합·카메라 입력이 필요하다. 입력 및 표면 구역 출력 규약은 해당 task README에 설명했다.
+
 기존 Auto Tour의 **변화 투어**에서 최신 Dorm2 / Dorm3 mesh-first 맵, 13구역 정합, 원본 360° 사진과 자동 변화 후보를 함께 볼 수 있습니다. `http://127.0.0.1:8768/?mode=changes&source=dorm`을 엽니다. 맵의 후보 또는 목록을 누르면 해당 객체 메시와 원본이 연결되고, 겹침/나란히 보기, 객체 메시만 보기, 구역 이동과 확인 시점 전환을 지원합니다.
 
 현재 Dorm 기본 화면은 **객체 분할 없이 전체 메시에서 먼저 찾은 변화 의심 구역**입니다. 두 맵의 294,860개 삼각형을 양방향 비교하고 구역별 정합 오차·표면 잡음·공간적 연속성·카메라 관측 조건을 반영해 **변화 의심 21구역 / 판단 보류 19구역 / 벽·유리 제외 10구역**으로 표시합니다. 붙어 있는 의자도 차이가 난 삼각형만 강조하고 전후 원본 사진을 연결합니다. 이 구역 수는 변경된 물체 수가 아닙니다. [계산·한계·재현](docs/dorm-geometry-first-changes-20261023.md)

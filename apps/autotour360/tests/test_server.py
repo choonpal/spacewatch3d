@@ -22,6 +22,7 @@ class RangeTests(unittest.TestCase):
             (dorm/'object-P0022-1.bin').write_bytes(b'changed-triangles')
             (dorm/'changes-1.bin').write_bytes(b'only-change-surfaces')
             (dorm/'review-P0022.jpg').write_bytes(b'original-photo-comparison')
+            (dorm/'ghost-P0027-0-1-00.png').write_bytes(b'object-only-png')
             (dorm/'surface-audit.json').write_text('{"private":true}')
             (dorm/'import-audit.json').write_text('{"private":true}')
             (rescan/'changes.json').write_text('{"original":true}')
@@ -31,7 +32,7 @@ class RangeTests(unittest.TestCase):
                 c=HTTPConnection('127.0.0.1',server.server_port)
                 c.request('GET','/dorm-tour/tour.json');r=c.getresponse();self.assertEqual(r.status,200);self.assertEqual(json.loads(r.read())['kind'],'dorm_change_tour')
                 c.request('GET','/dorm-tour/map-1.bin',headers={'Range':'bytes=12-23'});r=c.getresponse();self.assertEqual(r.status,206);self.assertEqual(r.read(),bytes(range(12,24)))
-                for path in ['/dorm-tour/Dorm3-00107.jpg','/dorm-tour/object-E001-1.bin','/dorm-tour/object-P0022-1.bin','/dorm-tour/changes-1.bin','/dorm-tour/review-P0022.jpg']:
+                for path in ['/dorm-tour/Dorm3-00107.jpg','/dorm-tour/object-E001-1.bin','/dorm-tour/object-P0022-1.bin','/dorm-tour/changes-1.bin','/dorm-tour/review-P0022.jpg','/dorm-tour/ghost-P0027-0-1-00.png']:
                     c.request('GET',path);r=c.getresponse();self.assertEqual(r.status,200);r.read()
                 for path in ['/dorm-tour/import-audit.json','/dorm-tour/surface-audit.json','/dorm-tour/%2e%2e/server.py','/dorm-tour/map-2.bin','/dorm-tour/Dorm3-00107.raw']:
                     c.request('GET',path);r=c.getresponse();self.assertEqual(r.status,404);r.read()

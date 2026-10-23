@@ -37,3 +37,16 @@ test('mesh decoding rejects a truncated asset and out-of-range triangle indices'
   assert.throws(()=>decodeIndexedMesh(bytes.slice(0,-1)));
   indices[2]=3;assert.throws(()=>decodeIndexedMesh(bytes),/정점 연결/);
 });
+
+
+test('photo tour keeps instance comparisons separate from object-only suspicions',()=>{
+  const a={id:'E001',category:'instance',decision:'candidate',alternatives:['possible_added']};
+  const b={id:'P0027',category:'suspect',decision:'candidate',alternatives:[],geometry_first:true};
+  const c={id:'P0040',category:'suspect',decision:'deferred',alternatives:[]};
+  const data={events:[a,b],records:[c]};
+  assert.deepEqual(itemsForFilter(data,'all','instance'),[a]);
+  assert.deepEqual(itemsForFilter(data,'all','suspect'),[b]);
+  assert.deepEqual(itemsForFilter(data,'added','suspect'),[]);
+  assert.deepEqual(itemsForFilter(data,'deferred','instance'),[]);
+  assert.deepEqual(itemsForFilter(data,'deferred','suspect'),[c]);
+});

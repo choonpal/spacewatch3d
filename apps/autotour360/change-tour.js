@@ -1,5 +1,5 @@
 import {decodeObjectMesh,objectPhotoVisibility,reprojectObjectPhoto} from './object-photo.js?v=1';
-import {createDormChangeTour} from './dorm-change-tour.js?v=surface-review-1';
+import {createDormChangeTour} from './dorm-change-tour.js?v=object-photo-tour-1';
 
 const TYPES={moved:'이동',added:'추가',removed:'소실'};
 const COLORS=['#ffad73','#78caff'];

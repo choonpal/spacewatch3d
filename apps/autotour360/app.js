@@ -4,7 +4,7 @@ import {Panorama} from './panorama.js';
 import {TrajectoryController} from './trajectory.js';
 import {KeyframeController} from './keyframe-controller.js';
 import {KeyframeTransition} from './keyframe-transition.js';
-import {createChangeTour} from './change-tour.js?v=surface-review-1';
+import {createChangeTour} from './change-tour.js?v=object-photo-tour-1';
 import {uid,clamp,escapeHTML as esc,formatTime,newScene,emptyProject,validateProject,removeScene} from './core.js';
 
 const paths={

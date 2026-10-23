@@ -1,5 +1,5 @@
 const TYPES={possible_relocation:'이동',possible_added:'추가',possible_removed:'소실'};
-export const CLASS_NAMES={surface_patch:'표면 차이',chair:'의자','swivel chair':'의자',table:'테이블','dining table':'테이블',cabinet:'수납장',door:'문',windowpane:'창문',blind:'블라인드',refrigerator:'냉장고·정수기',lamp:'조명',light:'조명',sofa:'소파',couch:'소파',bench:'벤치',shelf:'선반',television:'TV',tv:'TV',painting:'액자',curtain:'커튼',plant:'화분',screen:'화면',board:'게시판'};
+export const CLASS_NAMES={unclassified:'객체 부분',surface_patch:'표면 차이',chair:'의자','swivel chair':'의자',table:'테이블','dining table':'테이블',cabinet:'수납장',door:'문',windowpane:'창문',blind:'블라인드',refrigerator:'냉장고·정수기',lamp:'조명',light:'조명',sofa:'소파',couch:'소파',bench:'벤치',shelf:'선반',television:'TV',tv:'TV',painting:'액자',curtain:'커튼',plant:'화분',screen:'화면',board:'게시판'};
 export function className(value){return CLASS_NAMES[value]||value;}
 export function decisionLabel(item){
   if(item.decision==='deferred')return '판단 보류';
@@ -8,11 +8,12 @@ export function decisionLabel(item){
   const labels=Object.keys(TYPES).filter(k=>item.alternatives.includes(k)).map(k=>TYPES[k]);
   return labels.length?labels.join('·')+' 가능':'배치 차이 후보';
 }
-export function itemsForFilter(data,filter){
-  if(filter==='deferred')return data.records.filter(r=>r.decision==='deferred');
-  if(filter==='excluded')return data.records.filter(r=>r.decision==='suppressed');
+export function itemsForFilter(data,filter,category=null){
+  const inCategory=r=>!category||r.category===category;
+  if(filter==='deferred')return data.records.filter(r=>r.decision==='deferred'&&inCategory(r));
+  if(filter==='excluded')return data.records.filter(r=>r.decision==='suppressed'&&inCategory(r));
   const alternative={moved:'possible_relocation',added:'possible_added',removed:'possible_removed'}[filter];
-  return data.events.filter(e=>!alternative||e.alternatives.includes(alternative));
+  return data.events.filter(e=>inCategory(e)&&(!alternative||e.alternatives.includes(alternative)));
 }
 export function validateDormTour(data){
   if(data.kind!=='dorm_change_tour'||data.units!=='reference_units'||!Array.isArray(data.zones)||data.zones.length!==13||data.maps?.length!==2)throw new Error('Dorm 맵 자료 형식이 다릅니다.');

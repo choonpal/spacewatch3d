@@ -10,6 +10,7 @@
 - `surface_materials.py`: 공통 벽면과 명시적으로 지정한 유리 면 제외.
 - `dorm_surface.py`: 실제 전체 메시 입력부터 전후 원본 사진이 연결된 뷰어 산출물까지 생성.
 - `surface_review.py`: 사진 검토 설명과 주변 구조 오차 진단을 기존 결과에 연결.
+- `object_photo_tour.py`: 인스턴스 비교와 나머지 객체 의심 구역을 통합하고 원본 객체의 반투명 사진 레이어를 생성.
 - `local_surface_diagnostic.py`: 객체에 맞추지 않고 주변 벽·바닥의 오차와 패치 차이를 비교. 기준면 방향이 부족하면 미확인 방향을 기록한다.
 - `pipeline.py` / `dorm_backend.py`: 공통 `TaskRequest → changes.json` 실행 경로. 무거운 수치 라이브러리는 실행 시에만 불러온다.
 

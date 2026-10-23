@@ -1,4 +1,4 @@
-import {decodeIndexedMesh,combineBounds} from './dorm-tour-model.js?v=surface-review-1';
+import {decodeIndexedMesh,combineBounds} from './dorm-tour-model.js?v=object-photo-tour-1';
 const dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0),sub=(a,b)=>a.map((v,i)=>v-b[i]);
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 

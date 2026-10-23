@@ -1,9 +1,10 @@
 const TYPES={possible_relocation:'이동',possible_added:'추가',possible_removed:'소실'};
-export const CLASS_NAMES={chair:'의자','swivel chair':'의자',table:'테이블','dining table':'테이블',cabinet:'수납장',door:'문',windowpane:'창문',blind:'블라인드',refrigerator:'냉장고·정수기',lamp:'조명',light:'조명',sofa:'소파',couch:'소파',bench:'벤치',shelf:'선반',television:'TV',tv:'TV',painting:'액자',curtain:'커튼',plant:'화분',screen:'화면',board:'게시판'};
+export const CLASS_NAMES={surface_patch:'표면 차이',chair:'의자','swivel chair':'의자',table:'테이블','dining table':'테이블',cabinet:'수납장',door:'문',windowpane:'창문',blind:'블라인드',refrigerator:'냉장고·정수기',lamp:'조명',light:'조명',sofa:'소파',couch:'소파',bench:'벤치',shelf:'선반',television:'TV',tv:'TV',painting:'액자',curtain:'커튼',plant:'화분',screen:'화면',board:'게시판'};
 export function className(value){return CLASS_NAMES[value]||value;}
 export function decisionLabel(item){
   if(item.decision==='deferred')return '판단 보류';
-  if(item.decision!=='candidate')return '후보 제외';
+  if(item.decision!=='candidate')return item.geometry_first?'판단 제외':'후보 제외';
+  if(item.geometry_first)return '변화 의심 구역';
   const labels=Object.keys(TYPES).filter(k=>item.alternatives.includes(k)).map(k=>TYPES[k]);
   return labels.length?labels.join('·')+' 가능':'배치 차이 후보';
 }

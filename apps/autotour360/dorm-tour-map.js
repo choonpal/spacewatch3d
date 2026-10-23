@@ -1,11 +1,11 @@
-import {decodeIndexedMesh,combineBounds} from './dorm-tour-model.js?v=3';
+import {decodeIndexedMesh,combineBounds} from './dorm-tour-model.js?v=surface-review-1';
 const dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0),sub=(a,b)=>a.map((v,i)=>v-b[i]);
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 
 // Two self-occluded passes are composited so neither epoch hides the other.
 export class DormTourMap{
   constructor(canvas,onProject=()=>{}){
-    this.canvas=canvas;this.onProject=onProject;this.yaw=Math.PI/2;this.pitch=1.06;this.radius=8;this.center=[0,0,0];this.zone='all';this.layout='overlay';this.cut=true;this.onlyObjects=false;this.visible=[true,true];this.blend=.5;this.meshes=[];this.objects=[null,null];this.parts=[];this.height=2.35;this.bounds=null;this.active=true;
+    this.canvas=canvas;this.onProject=onProject;this.yaw=Math.PI/2;this.pitch=1.06;this.radius=8;this.center=[0,0,0];this.zone='all';this.layout='overlay';this.cut=true;this.onlyObjects=false;this.visible=[true,true];this.blend=.5;this.meshes=[];this.objects=[null,null];this.highlights=[null,null];this.geometryFirst=false;this.parts=[];this.height=2.35;this.bounds=null;this.active=true;
     const gl=this.gl=canvas.getContext('webgl2',{antialias:true,alpha:false,preserveDrawingBuffer:true});if(!gl)throw Error('WebGL2를 사용할 수 없습니다.');
     const program=(vs,fs)=>{const p=gl.createProgram();for(const [type,source]of [[gl.VERTEX_SHADER,vs],[gl.FRAGMENT_SHADER,fs]]){const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));gl.attachShader(p,s);}gl.linkProgram(p);if(!gl.getProgramParameter(p,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(p));return p;};
     this.program=program(`#version 300 es
@@ -36,10 +36,10 @@ export class DormTourMap{
   fit(bounds=this.bounds){if(!bounds)return;this.resize();this.center=bounds[0].map((v,k)=>(v+bounds[1][k])/2);const basis=this.basis(),aspect=this.width/this.pixelHeight/(this.layout==='split'?2:1);let size=.5;for(let i=0;i<8;i++){const p=bounds[0].map((_,k)=>bounds[(i>>k)&1][k]-this.center[k]);size=Math.max(size,Math.abs(dot(p,basis.right))/aspect,Math.abs(dot(p,basis.up)));}this.radius=size*1.14;this.render();}
   setMaps(buffers,meta,height){this.meshes=buffers.map(b=>this.upload(b));this.parts=meta.map(m=>m.parts);this.height=height;}
   render(){if(!this.active||!this.meshes.length)return;this.resize();const gl=this.gl,basis=this.basis(),split=this.layout==='split';gl.viewport(0,0,this.width,this.pixelHeight);gl.disable(gl.BLEND);gl.disable(gl.CULL_FACE);gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);
-    const colors=[[1.,.65,.43],[.40,.80,.90]],context=this.objects.some(Boolean)?[[.58,.44,.34],[.28,.53,.64]]:colors;
+    const colors=[[1.,.65,.43],[.40,.80,.90]],context=this.geometryFirst?[[.25,.29,.32],[.30,.34,.38]]:this.objects.some(Boolean)?[[.58,.44,.34],[.28,.53,.64]]:colors;
     for(let e=0;e<2;e++){gl.bindFramebuffer(gl.FRAMEBUFFER,this.targets[e].fbo);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.useProgram(this.program);for(const k of ['right','up','forward'])gl.uniform3fv(this.u[k],basis[k]);gl.uniform3fv(this.u.center,this.center);gl.uniform1f(this.u.radius,this.radius);gl.uniform1f(this.u.aspect,this.width/this.pixelHeight/(split?2:1));gl.uniform1f(this.u.cut,this.cut?this.height*.86:1e5);
       if(!this.onlyObjects){const part=this.parts[e][this.zone];gl.bindVertexArray(this.meshes[e].vao);gl.uniform3fv(this.u.color,context[e]);gl.drawElements(gl.TRIANGLES,(part?part.faces:this.meshes[e].nf)*3,gl.UNSIGNED_INT,(part?part.face_start:0)*12);}
-      if(this.objects[e]){gl.enable(gl.POLYGON_OFFSET_FILL);gl.polygonOffset(-2,-2);gl.bindVertexArray(this.objects[e].vao);gl.uniform3fv(this.u.color,colors[e]);gl.drawElements(gl.TRIANGLES,this.objects[e].nf*3,gl.UNSIGNED_INT,0);gl.disable(gl.POLYGON_OFFSET_FILL);}}
+      const highlight=this.selectionActive?this.objects[e]:this.highlights[e]||this.objects[e];if(highlight){const part=highlight.parts?.[this.zone];if(!highlight.parts||this.zone==='all'||part){gl.enable(gl.POLYGON_OFFSET_FILL);gl.polygonOffset(-2,-2);gl.bindVertexArray(highlight.vao);gl.uniform3fv(this.u.color,colors[e]);gl.drawElements(gl.TRIANGLES,(part?part.faces:highlight.nf)*3,gl.UNSIGNED_INT,(part?part.face_start:0)*12);gl.disable(gl.POLYGON_OFFSET_FILL);}}}
     gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.disable(gl.DEPTH_TEST);gl.useProgram(this.composite);gl.bindVertexArray(this.quad);for(let e=0;e<2;e++){gl.activeTexture(gl.TEXTURE0+e);gl.bindTexture(gl.TEXTURE_2D,this.targets[e].texture);}gl.uniform1i(this.cu.first,0);gl.uniform1i(this.cu.second,1);gl.uniform1f(this.cu.split,split?1:0);gl.uniform1f(this.cu.blend,this.blend);gl.uniform2f(this.cu.enabled,...this.visible.map(Number));gl.drawArrays(gl.TRIANGLES,0,6);this.onProject();}
   project(point){const p=sub(point,this.center),b=this.basis(),aspect=this.canvas.clientWidth/this.canvas.clientHeight/(this.layout==='split'?2:1);return {x:(dot(p,b.right)/this.radius/aspect+1)*this.canvas.clientWidth/2,y:(1-dot(p,b.up)/this.radius)*this.canvas.clientHeight/2};}
 }

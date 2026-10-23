@@ -56,7 +56,7 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
     residual_root = Path(residual_dir).resolve() if residual_dir is not None else ROOT.parents[1] / "outputs/all-surfaces-rescan-v2-20261016/published"
     transfer_root = Path(transfer_dir).resolve() if transfer_dir is not None else ROOT.parents[1] / "outputs/frozen-transfer-bonn-placement-20261016/run-v1/published"
     dorm_root = Path(dorm_dir).resolve() if dorm_dir is not None else ROOT.parents[1] / "outputs/dorm2-dorm3-20261019/alignment-v9/published"
-    dorm_tour_root = Path(dorm_tour_dir).resolve() if dorm_tour_dir is not None else ROOT.parents[1] / "outputs/dorm-change-tour-20261023/published"
+    dorm_tour_root = Path(dorm_tour_dir).resolve() if dorm_tour_dir is not None else ROOT.parents[1] / "outputs/dorm-surface-change-20261023/run-v10/published"
     motion_report = Path(motion_assessment_path).resolve() if motion_assessment_path is not None else ROOT.parents[1] / "outputs/local-motion-expanded-20261019/run-v1/motion-assessment.json"
     class Handler(BaseHTTPRequestHandler):
         def send_json(self, data, code=200, head_only=False):
@@ -153,7 +153,7 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
             residual_match = re.fullmatch(r"/residual-comparison/(comparison\.json|[01]-(?:comparison|fixed|empirical)\.bin|frame-[01]-\d{6}\.jpg)", route)
             transfer_match = re.fullmatch(r"/residual-comparison/bonn-placement/(comparison\.json|[01]-(?:comparison|fixed|empirical)\.bin|frame-[01]-\d{6}\.jpg)", route)
             dorm_match = re.fullmatch(r"/residual-comparison/dorm2-dorm3/((?:comparison|alignment-view)\.json|[01]-(?:comparison|empirical|alignment)\.bin|frame-[01]-\d{6}\.jpg)", route)
-            dorm_tour_match = re.fullmatch(r"/dorm-tour/(tour\.json|map-[01]\.bin|object-(?:E\d{3}-[01]|[SI][01]-\d{3})\.bin|Dorm[23]-\d{5}\.jpg)", route)
+            dorm_tour_match = re.fullmatch(r"/dorm-tour/(tour\.json|(?:map|changes)-[01]\.bin|object-(?:E\d{3}-[01]|P\d{4}-[01]|[SI][01]-\d{3})\.bin|(?:Dorm[23]-\d{5}|review-P\d{4})\.jpg)", route)
             if route == "/rescan/motion-assessment.json":
                 path = motion_report
             elif dorm_tour_match:

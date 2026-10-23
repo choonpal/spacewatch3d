@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "annotation_type": "human_material_surface",
+  "change_ground_truth": false,
+  "note": "원본 사진에서 유리·반사성 창 면만 지정. 객체 마스크나 변화 정답이 아님. 창틀 주변 메시로 평면을 추정해 그 면과 뒤쪽만 제외하고 앞쪽 가구는 유지한다.",
+  "panes": [
+    {"id":"R05-glass-0","zone":"R05","epoch":0,"frame":176,"polygon_px":[[548,217],[603,216],[604,361],[548,363]]},
+    {"id":"R05-glass-1","zone":"R05","epoch":1,"frame":184,"polygon_px":[[482,195],[564,196],[565,386],[481,389]]},
+    {"id":"R12-glass-0","zone":"R12","epoch":0,"frame":30,"polygon_px":[[502,251],[554,250],[555,273],[502,274]]},
+    {"id":"R12-glass-1","zone":"R12","epoch":1,"frame":40,"polygon_px":[[536,246],[581,247],[580,267],[536,267]]}
+  ]
+}

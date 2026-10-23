@@ -218,6 +218,9 @@ git push -u origin task/3-instance-segmentation/mv3dis-adapter
 
 기존 Auto Tour의 **변화 투어**에서 최신 Dorm2 / Dorm3 mesh-first 맵, 13구역 정합, 원본 360° 사진과 자동 변화 후보를 함께 볼 수 있습니다. `http://127.0.0.1:8768/?mode=changes&source=dorm`을 엽니다. 맵의 후보 또는 목록을 누르면 해당 객체 메시와 원본이 연결되고, 겹침/나란히 보기, 객체 메시만 보기, 구역 이동과 확인 시점 전환을 지원합니다.
 
-`Find Existing Map Alignment`의 `new-meshfirst-20261022/automatic-lifecycle-v2`에서 후보 2묶음과 판단 보류 97항목을 가져왔습니다. 후보의 이동·추가 가능성을 확정 유형으로 바꾸지 않았습니다. 서로 다른 층의 배치 비교라는 원본 범위도 유지합니다. 기존 Rescan은 촬영 데이터 선택 또는 `?mode=changes&source=rescan`에서 열 수 있습니다.
+현재 Dorm 기본 화면은 **객체 분할 없이 전체 메시에서 먼저 찾은 변화 의심 구역**입니다. 두 맵의 294,860개 삼각형을 양방향 비교하고 구역별 정합 오차·표면 잡음·공간적 연속성·카메라 관측 조건을 반영해 **변화 의심 21구역 / 판단 보류 19구역 / 벽·유리 제외 10구역**으로 표시합니다. 붙어 있는 의자도 차이가 난 삼각형만 강조하고 전후 원본 사진을 연결합니다. 이 구역 수는 변경된 물체 수가 아닙니다. [계산·한계·재현](docs/dorm-geometry-first-changes-20261023.md)
 
-실제 데이터는 Git 제외 폴더 `outputs/dorm-change-tour-20261023/published`에 있습니다. 입력 폴더와 가져오기 명령, 맵/객체 좌표 보존 및 확인 결과는 `docs/dorm-change-tour-import-20261023.md`에 정리했습니다. `--dorm-tour-dir`로 다른 산출물 경로를 지정할 수 있습니다.
+기본 데이터는 Git 제외 폴더 `outputs/dorm-surface-change-20261023/run-v10/published`입니다. 이전 객체 중심 자동 후보 2묶음/보류 97항목과 가져오기 기록도 보존했습니다. [이전 이식 기록](docs/dorm-change-tour-import-20261023.md). `--dorm-tour-dir`로 다른 산출물을 선택할 수 있으며 기존 Rescan은 `?mode=changes&source=rescan`에서 열 수 있습니다.
+
+
+R08의 원래 8개 영역은 **R08 8개 사진 비교 · 맵 오차 설명**에서 전후 사진·거리·정합 기준과 함께 볼 수 있습니다. 의자만 8개가 아니며 테이블·정수기 표면도 포함됩니다. 구역 5의 창문은 주변 창틀 차이로 보정하면 0.171 → 0.039 u로 줄어 맵 쪽 오차가 주원인으로 보입니다. 공통 벽면은 기하로 제외하고 유리 면은 원본에 수동 지정한 재질 영역으로 제외합니다. [사진 검토·원인 진단·재현](docs/dorm-r08-review-and-map-error-20261023.md)

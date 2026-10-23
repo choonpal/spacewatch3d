@@ -19,6 +19,10 @@ class RangeTests(unittest.TestCase):
             (dorm/'map-1.bin').write_bytes(bytes(range(60)))
             (dorm/'Dorm3-00107.jpg').write_bytes(b'original-photo')
             (dorm/'object-E001-1.bin').write_bytes(b'original-objects')
+            (dorm/'object-P0022-1.bin').write_bytes(b'changed-triangles')
+            (dorm/'changes-1.bin').write_bytes(b'only-change-surfaces')
+            (dorm/'review-P0022.jpg').write_bytes(b'original-photo-comparison')
+            (dorm/'surface-audit.json').write_text('{"private":true}')
             (dorm/'import-audit.json').write_text('{"private":true}')
             (rescan/'changes.json').write_text('{"original":true}')
             server=ThreadingHTTPServer(('127.0.0.1',0),make_handler([],[],dorm_tour_dir=dorm,rescan_dir=rescan))
@@ -27,9 +31,9 @@ class RangeTests(unittest.TestCase):
                 c=HTTPConnection('127.0.0.1',server.server_port)
                 c.request('GET','/dorm-tour/tour.json');r=c.getresponse();self.assertEqual(r.status,200);self.assertEqual(json.loads(r.read())['kind'],'dorm_change_tour')
                 c.request('GET','/dorm-tour/map-1.bin',headers={'Range':'bytes=12-23'});r=c.getresponse();self.assertEqual(r.status,206);self.assertEqual(r.read(),bytes(range(12,24)))
-                for path in ['/dorm-tour/Dorm3-00107.jpg','/dorm-tour/object-E001-1.bin']:
+                for path in ['/dorm-tour/Dorm3-00107.jpg','/dorm-tour/object-E001-1.bin','/dorm-tour/object-P0022-1.bin','/dorm-tour/changes-1.bin','/dorm-tour/review-P0022.jpg']:
                     c.request('GET',path);r=c.getresponse();self.assertEqual(r.status,200);r.read()
-                for path in ['/dorm-tour/import-audit.json','/dorm-tour/%2e%2e/server.py','/dorm-tour/map-2.bin','/dorm-tour/Dorm3-00107.raw']:
+                for path in ['/dorm-tour/import-audit.json','/dorm-tour/surface-audit.json','/dorm-tour/%2e%2e/server.py','/dorm-tour/map-2.bin','/dorm-tour/Dorm3-00107.raw']:
                     c.request('GET',path);r=c.getresponse();self.assertEqual(r.status,404);r.read()
                 c.request('GET','/rescan/changes.json');r=c.getresponse();self.assertEqual(json.loads(r.read()),{'original':True})
                 c.close()

@@ -80,3 +80,15 @@ test('a transfer with labels or retuning cannot be presented as frozen',()=>{
   assert.throws(()=>validate({...data,transfer:{...data.transfer,parameters_retuned:true}}));
   assert.throws(()=>validate({...data,transfer:{...data.transfer,labels_used_for_detection:true}}));
 });
+
+test('Dorm relative units and a new similarity cannot masquerade as metric frozen results',()=>{
+  const data={kind:'aligned_mesh_pair_comparison',dataset_id:'dorm2-dorm3',new_registration:true,
+    units:'reference_units',physical_scale_known:false,labels_used_for_detection:false,source_hashes:['a','b'],displays:[{},{}],
+    registration:{after_to_before:[[1],[1],[1],[1]],quality:{relative_scale_after_to_before:1.1}}};
+  assert.equal(validate(data),data);
+  for(const mutation of [{units:'meters'},{labels_used_for_detection:true},{physical_scale_known:true}])assert.throws(()=>validate({...data,...mutation}));
+  assert.equal(resultRoot('?dataset=dorm2-dorm3'),'/residual-comparison/dorm2-dorm3/');
+  const frames={dataset_id:'dorm2-dorm3',keyframes:[{id:'right',epoch:0,url:'/residual-comparison/dorm2-dorm3/frame-0-000001.jpg'},
+    {id:'other',epoch:0,url:'/residual-comparison/frame-0-000001.jpg'},{id:'wrongEpoch',epoch:1,url:'/residual-comparison/dorm2-dorm3/frame-1-000002.jpg'}]};
+  assert.deepEqual(linkedPhotos(frames,{keyframes:[[{frame_id:'right'},{frame_id:'other'},{frame_id:'wrongEpoch'}],[]]},0).map(x=>x.frame.id),['right']);
+});

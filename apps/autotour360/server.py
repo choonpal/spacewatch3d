@@ -46,7 +46,7 @@ def inspect_media(path, index):
     return result
 
 
-def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_dir=None, rescan_dir=None, mesh_comparison_dir=None, independent_dir=None, rgbd_dir=None, residual_dir=None, transfer_dir=None):
+def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_dir=None, rescan_dir=None, mesh_comparison_dir=None, independent_dir=None, rgbd_dir=None, residual_dir=None, transfer_dir=None, motion_assessment_path=None, dorm_dir=None, dorm_tour_dir=None):
     tours_dir = Path(export_dir).resolve() if export_dir is not None else StoragePaths.for_app(ROOT).tours
     evidence_root = Path(evidence_dir).resolve() if evidence_dir is not None else ROOT.parents[1] / "outputs/change_evidence_demo"
     rescan_root = Path(rescan_dir).resolve() if rescan_dir is not None else ROOT.parents[1] / "outputs/rescan-review"
@@ -55,6 +55,9 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
     rgbd_root = Path(rgbd_dir).resolve() if rgbd_dir is not None else ROOT.parents[1] / "outputs/bonn-removal-20261015/published"
     residual_root = Path(residual_dir).resolve() if residual_dir is not None else ROOT.parents[1] / "outputs/all-surfaces-rescan-v2-20261016/published"
     transfer_root = Path(transfer_dir).resolve() if transfer_dir is not None else ROOT.parents[1] / "outputs/frozen-transfer-bonn-placement-20261016/run-v1/published"
+    dorm_root = Path(dorm_dir).resolve() if dorm_dir is not None else ROOT.parents[1] / "outputs/dorm2-dorm3-20261019/alignment-v9/published"
+    dorm_tour_root = Path(dorm_tour_dir).resolve() if dorm_tour_dir is not None else ROOT.parents[1] / "outputs/dorm-change-tour-20261023/published"
+    motion_report = Path(motion_assessment_path).resolve() if motion_assessment_path is not None else ROOT.parents[1] / "outputs/local-motion-expanded-20261019/run-v1/motion-assessment.json"
     class Handler(BaseHTTPRequestHandler):
         def send_json(self, data, code=200, head_only=False):
             payload = json.dumps(data, ensure_ascii=False).encode()
@@ -149,7 +152,15 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
             rgbd_match = re.fullmatch(r"/datasets/bonn-removal/((?:comparison|reference|changes)\.json|[01]-(?:comparison|region-ids)\.bin|frame-[01]-\d{6}\.jpg)", route)
             residual_match = re.fullmatch(r"/residual-comparison/(comparison\.json|[01]-(?:comparison|fixed|empirical)\.bin|frame-[01]-\d{6}\.jpg)", route)
             transfer_match = re.fullmatch(r"/residual-comparison/bonn-placement/(comparison\.json|[01]-(?:comparison|fixed|empirical)\.bin|frame-[01]-\d{6}\.jpg)", route)
-            if transfer_match:
+            dorm_match = re.fullmatch(r"/residual-comparison/dorm2-dorm3/((?:comparison|alignment-view)\.json|[01]-(?:comparison|empirical|alignment)\.bin|frame-[01]-\d{6}\.jpg)", route)
+            dorm_tour_match = re.fullmatch(r"/dorm-tour/(tour\.json|map-[01]\.bin|object-(?:E\d{3}-[01]|[SI][01]-\d{3})\.bin|Dorm[23]-\d{5}\.jpg)", route)
+            if route == "/rescan/motion-assessment.json":
+                path = motion_report
+            elif dorm_tour_match:
+                path = dorm_tour_root / dorm_tour_match[1]
+            elif dorm_match:
+                path = dorm_root / dorm_match[1]
+            elif transfer_match:
                 path = transfer_root / transfer_match[1]
             elif residual_match:
                 path = residual_root / residual_match[1]
@@ -180,7 +191,7 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
             else:
                 name = "index.html" if route == "/" else route.lstrip("/")
                 # Never expose source video directories, local config, repository, or test files.
-                allowed = name in {"index.html", "styles.css", "app.js", "core.js", "panorama.js", "trajectory.js", "trajectory-math.js", "tour-keyframes.js", "keyframe-controller.js", "keyframe-transition.js", "autotour.js", "autotour.css", "changes.html", "change-evidence.js", "change-evidence.css", "change-tour.html", "change-tour.js", "change-tour.css", "rescan.html", "rescan-review.js", "rescan-review.css", "mesh-comparison.html", "mesh-comparison.js", "mesh-comparison.css", "mesh-change-context.js", "residual-comparison.html", "residual-comparison.js", "residual-comparison.css", "residual-context.js"} or re.fullmatch(r"assets/[a-zA-Z0-9_-]+\.(jpg|png|webp|svg)", name)
+                allowed = name in {"index.html", "styles.css", "app.js", "core.js", "panorama.js", "trajectory.js", "trajectory-math.js", "tour-keyframes.js", "keyframe-controller.js", "keyframe-transition.js", "object-photo.js", "motion-assessment.js", "autotour.js", "autotour.css", "changes.html", "change-evidence.js", "change-evidence.css", "change-tour.html", "change-tour.js", "change-tour.css", "rescan.html", "rescan-review.js", "rescan-review.css", "mesh-comparison.html", "mesh-comparison.js", "mesh-comparison.css", "mesh-change-context.js", "residual-comparison.html", "residual-comparison.js", "residual-comparison.css", "residual-context.js", "dorm-alignment-viewer.js", "dorm-change-tour.js", "dorm-change-tour.css", "dorm-tour-map.js", "dorm-tour-model.js"} or re.fullmatch(r"assets/[a-zA-Z0-9_-]+\.(jpg|png|webp|svg)", name)
                 if not allowed:
                     self.send_error(404)
                     return
@@ -245,6 +256,9 @@ def main():
     parser.add_argument("--rgbd-dir", type=Path, help="Published Bonn RGB-D comparison and original frames")
     parser.add_argument("--residual-dir", type=Path, help="Optional structural-plane residual comparison experiment")
     parser.add_argument("--transfer-dir", type=Path, help="Published frozen-setting transfer to the unused Bonn placement capture")
+    parser.add_argument("--motion-assessment", type=Path, help="Object motion assessment against nearby structural-background residuals")
+    parser.add_argument("--dorm-dir", type=Path, help="Published geometry-only Dorm2/Dorm3 aligned mesh comparison")
+    parser.add_argument("--dorm-tour-dir", type=Path, help="Adapted Dorm mesh-first maps and frozen automatic event results")
     args = parser.parse_args()
     entries = args.media
     if entries is None and (ROOT / ".local.json").exists():
@@ -264,7 +278,7 @@ def main():
     if jobs.available:
         for meta in metadata:
             jobs.start(meta["trajectoryKey"])
-    server = ThreadingHTTPServer((args.host, args.port), make_handler(paths, metadata, jobs, export_dir=jobs.storage.tours, evidence_dir=args.evidence_dir, rescan_dir=args.rescan_dir, mesh_comparison_dir=args.mesh_comparison_dir, independent_dir=args.independent_dir, rgbd_dir=args.rgbd_dir, residual_dir=args.residual_dir, transfer_dir=args.transfer_dir))
+    server = ThreadingHTTPServer((args.host, args.port), make_handler(paths, metadata, jobs, export_dir=jobs.storage.tours, evidence_dir=args.evidence_dir, rescan_dir=args.rescan_dir, mesh_comparison_dir=args.mesh_comparison_dir, independent_dir=args.independent_dir, rgbd_dir=args.rgbd_dir, residual_dir=args.residual_dir, transfer_dir=args.transfer_dir, motion_assessment_path=args.motion_assessment, dorm_dir=args.dorm_dir, dorm_tour_dir=args.dorm_tour_dir))
     server.daemon_threads = True
     url = f"http://{'127.0.0.1' if args.host == '0.0.0.0' else args.host}:{server.server_port}"
     print(f"AUTO TOUR 360: {url}\nLocal media: {len(jobs.sources)} file(s). Trajectory analysis: {'ready' if jobs.available else 'setup required'}.\nVideos: {jobs.storage.data}\nOutputs: {jobs.storage.output}\nPress Ctrl+C to stop.", flush=True)

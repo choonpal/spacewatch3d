@@ -12,6 +12,74 @@ from server import make_handler, parse_range
 
 
 class RangeTests(unittest.TestCase):
+    def test_dorm_tour_only_exposes_adapted_public_assets_and_preserves_other_datasets(self):
+        with TemporaryDirectory() as directory:
+            root=Path(directory);dorm=root/'dorm';rescan=root/'rescan';dorm.mkdir();rescan.mkdir()
+            (dorm/'tour.json').write_text('{"kind":"dorm_change_tour"}')
+            (dorm/'map-1.bin').write_bytes(bytes(range(60)))
+            (dorm/'Dorm3-00107.jpg').write_bytes(b'original-photo')
+            (dorm/'object-E001-1.bin').write_bytes(b'original-objects')
+            (dorm/'import-audit.json').write_text('{"private":true}')
+            (rescan/'changes.json').write_text('{"original":true}')
+            server=ThreadingHTTPServer(('127.0.0.1',0),make_handler([],[],dorm_tour_dir=dorm,rescan_dir=rescan))
+            threading.Thread(target=server.serve_forever,daemon=True).start()
+            try:
+                c=HTTPConnection('127.0.0.1',server.server_port)
+                c.request('GET','/dorm-tour/tour.json');r=c.getresponse();self.assertEqual(r.status,200);self.assertEqual(json.loads(r.read())['kind'],'dorm_change_tour')
+                c.request('GET','/dorm-tour/map-1.bin',headers={'Range':'bytes=12-23'});r=c.getresponse();self.assertEqual(r.status,206);self.assertEqual(r.read(),bytes(range(12,24)))
+                for path in ['/dorm-tour/Dorm3-00107.jpg','/dorm-tour/object-E001-1.bin']:
+                    c.request('GET',path);r=c.getresponse();self.assertEqual(r.status,200);r.read()
+                for path in ['/dorm-tour/import-audit.json','/dorm-tour/%2e%2e/server.py','/dorm-tour/map-2.bin','/dorm-tour/Dorm3-00107.raw']:
+                    c.request('GET',path);r=c.getresponse();self.assertEqual(r.status,404);r.read()
+                c.request('GET','/rescan/changes.json');r=c.getresponse();self.assertEqual(json.loads(r.read()),{'original':True})
+                c.close()
+            finally:server.shutdown();server.server_close()
+
+    def test_dorm_published_assets_are_isolated_from_other_captures_and_private_arrays(self):
+        with TemporaryDirectory() as directory:
+            root=Path(directory);dorm=root/'dorm';legacy=root/'legacy';dorm.mkdir();legacy.mkdir()
+            (dorm/'comparison.json').write_text('{"dataset_id":"dorm2-dorm3"}')
+            (dorm/'0-comparison.bin').write_bytes(bytes(range(32)))
+            (dorm/'alignment-view.json').write_text('{"kind":"dorm_structural_alignment_view"}')
+            (dorm/'1-alignment.bin').write_bytes(bytes(range(60)))
+            (dorm/'detection.npz').write_bytes(b'private')
+            (legacy/'comparison.json').write_text('{"dataset_id":"rescan"}')
+            server=ThreadingHTTPServer(('127.0.0.1',0),make_handler([],[],dorm_dir=dorm,residual_dir=legacy))
+            threading.Thread(target=server.serve_forever,daemon=True).start()
+            try:
+                connection=HTTPConnection('127.0.0.1',server.server_port)
+                for route,dataset in [('/residual-comparison/dorm2-dorm3/comparison.json','dorm2-dorm3'),('/residual-comparison/comparison.json','rescan')]:
+                    connection.request('GET',route);response=connection.getresponse()
+                    self.assertEqual(response.status,200);self.assertEqual(json.loads(response.read())['dataset_id'],dataset)
+                connection.request('GET','/residual-comparison/dorm2-dorm3/0-comparison.bin',headers={'Range':'bytes=2-5'})
+                response=connection.getresponse();self.assertEqual(response.status,206);self.assertEqual(response.read(),bytes(range(2,6)))
+                connection.request('GET','/residual-comparison/dorm2-dorm3/alignment-view.json')
+                response=connection.getresponse();self.assertEqual(response.status,200);self.assertEqual(json.loads(response.read())['kind'],'dorm_structural_alignment_view')
+                connection.request('GET','/residual-comparison/dorm2-dorm3/1-alignment.bin',headers={'Range':'bytes=12-23'})
+                response=connection.getresponse();self.assertEqual(response.status,206);self.assertEqual(response.read(),bytes(range(12,24)))
+                for route in ['/residual-comparison/dorm2-dorm3/detection.npz','/residual-comparison/dorm2-dorm3/%2e%2e/comparison.json']:
+                    connection.request('GET',route);response=connection.getresponse();self.assertEqual(response.status,404);response.read()
+                connection.close()
+            finally:server.shutdown();server.server_close()
+
+    def test_motion_assessment_is_separate_and_only_the_public_report_is_served(self):
+        with TemporaryDirectory() as directory:
+            root=Path(directory);legacy=root/'rescan';legacy.mkdir()
+            (legacy/'changes.json').write_text('{"original":true}')
+            report=root/'motion-assessment.json';report.write_text('{"kind":"local_background_motion_assessment"}')
+            (root/'support-audit.json').write_text('{"private":true}')
+            server=ThreadingHTTPServer(('127.0.0.1',0),make_handler([],[],rescan_dir=legacy,motion_assessment_path=report))
+            threading.Thread(target=server.serve_forever,daemon=True).start()
+            try:
+                c=HTTPConnection('127.0.0.1',server.server_port)
+                c.request('GET','/rescan/motion-assessment.json');r=c.getresponse()
+                self.assertEqual(r.status,200);self.assertEqual(json.loads(r.read())['kind'],'local_background_motion_assessment')
+                c.request('GET','/rescan/changes.json');r=c.getresponse();self.assertTrue(json.loads(r.read())['original'])
+                for url in ('/rescan/support-audit.json','/rescan/../support-audit.json'):
+                    c.request('GET',url);r=c.getresponse();self.assertEqual(r.status,404);r.read()
+                c.close()
+            finally:server.shutdown();server.server_close()
+
     def test_frozen_transfer_route_keeps_previous_result_and_private_data_separate(self):
         with TemporaryDirectory() as directory:
             root=Path(directory);original=root/'original';transfer=root/'transfer'

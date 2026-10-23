@@ -3,13 +3,21 @@ export const REFERENCE_OUTCOMES={captured:'위치 포착',partial:'일부 표면
 export const REFERENCE_TYPES={added:'추가',removed:'소실',moved:'이동'};
 export const REASONS={all_direction_surface_difference:'여러 크기에서 노이즈 기준을 넘는 3D 표면 차이',within_local_noise_budget:'국소 노이즈 기준 이내',insufficient_source_surface_support:'원본 표면 지지 표본 부족',common_structural_surface_excluded:'전후 공통 구조면 · 후보 제외',insufficient_connected_exceedance:'연결된 변화 표면의 근거 부족',no_comparable_reference:'비슷한 조건의 기준 없음',insufficient_paired_surface_observation:'전후 유효 깊이 관측 부족',below_empirical_reference:'경험적 기준 이내',exceeds_comparable_reference:'비슷한 조건의 기준 초과',reference_does_not_transfer_to_check:'독립 확인 영역으로 기준이 전달되지 않음',insufficient_check_support:'독립 확인 표본 부족',insufficient_reference_support:'기준 추정 표본 부족',paired_original_photos_unavailable:'전후 원본 사진 검토 불가',reference_accepted_on_spatial_check:'독립 확인 통과',fit_check_surface_support_overlap:'추정·확인 영역의 실제 표면 표본이 겹침'};
 export function validate(data){
+  if(data.kind==='aligned_mesh_pair_comparison'){
+    if(data.dataset_id!=='dorm2-dorm3'||data.new_registration!==true||data.units!=='reference_units'||data.physical_scale_known!==false||
+       data.labels_used_for_detection!==false||data.source_hashes?.length!==2||data.displays?.length!==2||
+       data.registration?.after_to_before?.length!==4||!Number.isFinite(data.registration?.quality?.relative_scale_after_to_before)||
+       data.registration.quality.relative_scale_after_to_before<=0)throw new Error('Dorm 정합·축척·라벨 제외 기록이 올바르지 않습니다.');
+    if(data.registration.registration_status==='provisional_corridor_ambiguity'&&data.registration.independent_photo_check_passed!==false)throw new Error('임시 정합을 확인된 결과로 표시할 수 없습니다.');
+    return data;
+  }
   if(!['reviewed_roi_residual_comparison','structural_plane_residual_comparison','all_surface_residual_comparison','frozen_indoor_transfer'].includes(data.kind)||data.new_registration!==false||data.same_input_meshes_and_poses!==true||data.units!=='meters'||data.source_hashes?.length!==2||data.displays?.length!==2)throw new Error('정합 맵 또는 실험 결과가 다릅니다.');
   if(data.kind==='frozen_indoor_transfer'&&(data.dataset_id!=='bonn-placement'||data.transfer?.parameters_retuned!==false||data.transfer?.frozen_source_verified!==true||data.transfer?.labels_used_for_detection!==false))throw new Error('고정 설정 적용 기록을 확인할 수 없습니다.');
   return data;
 }
 export function linkedPhotos(data,region,epoch){
   const frames=new Map(data.keyframes.map(frame=>[frame.id,frame])),seen=new Set();
-  const prefix=data.dataset_id==='bonn-placement'?'/residual-comparison/bonn-placement/':'/residual-comparison/';
+  const prefix=data.dataset_id==='dorm2-dorm3'?'/residual-comparison/dorm2-dorm3/':data.dataset_id==='bonn-placement'?'/residual-comparison/bonn-placement/':'/residual-comparison/';
   return (region.keyframes?.[epoch]||[]).flatMap(link=>{
     const frame=frames.get(link.frame_id);
     if(!frame||frame.epoch!==epoch||seen.has(frame.id)||!frame.url?.startsWith(prefix)||!/^frame-[01]-\d{6}\.jpg$/.test(frame.url.slice(prefix.length)))return [];
@@ -20,6 +28,7 @@ export function resultRoot(search){
   const dataset=new URLSearchParams(search).get('dataset')||'rescan';
   if(dataset==='rescan')return '/residual-comparison/';
   if(dataset==='bonn-placement')return '/residual-comparison/bonn-placement/';
+  if(dataset==='dorm2-dorm3')return '/residual-comparison/dorm2-dorm3/';
   throw new Error('알 수 없는 촬영 쌍입니다.');
 }
 export function filtered(regions,filter){

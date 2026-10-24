@@ -1,0 +1,26 @@
+{
+  "samples": 256,
+  "perspective_frames": 1536,
+  "faces_per_sample": 6,
+  "face_counts": {
+    "front": 256,
+    "right": 256,
+    "back": 256,
+    "left": 256,
+    "up": 256,
+    "down": 256
+  },
+  "face_size": 1024,
+  "horizontal_and_vertical_fov_deg": 90.0,
+  "focal_length_px": 512.0000000000001,
+  "source_erp_size": [
+    3840,
+    1920
+  ],
+  "source_erp_images": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_frames_3840x1920",
+  "exclusion_masks_resized_to_source_erp": true,
+  "point_cloud_points": 888671,
+  "point_cloud_stride": 5,
+  "camera_centers_preserved": true,
+  "mask_convention": "white=use, black=ignore"
+}

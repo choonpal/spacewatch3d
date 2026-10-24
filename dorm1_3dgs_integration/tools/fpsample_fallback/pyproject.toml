@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=71,<82"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fpsample"
+version = "1.0.2"
+description = "Portable NumPy fallback for Nerfstudio camera farthest-point sampling"
+requires-python = ">=3.9"
+dependencies = ["numpy>=1.16"]
+
+[tool.setuptools]
+py-modules = ["fpsample"]

@@ -1,0 +1,17 @@
+{
+  "input": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\input\\dorm1_3dgs_camera_package_20261018\\dorm1_3dgs_camera_package_20261018\\cameras.npz",
+  "output": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_refined_poses\\cameras_refined.npz",
+  "samples": 256,
+  "method": "shared-frame Savitzky-Golay SE(3) regularization with bounded corrections",
+  "window": 9,
+  "polyorder": 2,
+  "translation_correction_m": {
+    "mean": 0.026599822501569052,
+    "max": 0.08000000000000002
+  },
+  "rotation_correction_deg": {
+    "mean": 0.7395464218996017,
+    "max": 2.000000000000013
+  },
+  "six_cubemap_faces_share_one_refined_pose": true
+}

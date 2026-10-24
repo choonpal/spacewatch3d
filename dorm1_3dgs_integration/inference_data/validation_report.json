@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "frames": 1536,
+  "missing_or_unreadable": [],
+  "image_shapes": [
+    [
+      1024,
+      1024
+    ]
+  ],
+  "mask_shapes": [
+    [
+      1024,
+      1024
+    ]
+  ],
+  "mask_values": [
+    0,
+    255
+  ],
+  "mean_excluded_fraction": 0.11169859208166599,
+  "faces_per_sample_min": 6,
+  "faces_per_sample_max": 6,
+  "max_camera_center_error": 0.0,
+  "max_rotation_orthogonality_error": 8.881784197001252e-16,
+  "rotation_determinant_min": 0.9999999999999992,
+  "rotation_determinant_max": 1.0000000000000013,
+  "point_cloud_exists": true
+}

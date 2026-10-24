@@ -1,0 +1,53 @@
+{
+  "projection": "equirectangular",
+  "camera_axes": {
+    "x": "+right at panorama centre",
+    "y": "+down",
+    "z": "+forward at panorama centre"
+  },
+  "handedness": "right-handed",
+  "pixel_index_origin": "top-left pixel centre has index (0,0)",
+  "pixel_directions": "u increases rightward, v increases downward; horizontal coordinate wraps at seam",
+  "angular_mapping": {
+    "longitude": "lambda = 2*pi*((u+0.5)/W - 0.5)",
+    "latitude_down": "beta = pi*((v+0.5)/H - 0.5)",
+    "camera_unit_ray": "[cos(beta)*sin(lambda), sin(beta), cos(beta)*cos(lambda)]",
+    "inverse_u": "u = W*(atan2(x,z)/(2*pi)+0.5)-0.5, wrapped modulo W",
+    "inverse_v": "v = H*(asin(y/length(ray))/pi+0.5)-0.5"
+  },
+  "landmarks": {
+    "centre": "+Z",
+    "quarter_width": "-X at equator",
+    "three_quarter_width": "+X at equator",
+    "left_right_seam": "-Z at equator",
+    "top": "-Y",
+    "bottom": "+Y"
+  },
+  "matrices": "JSON rows, column-vector convention: X_world = R_c2w @ X_camera + t_c2w",
+  "rotation_columns": "camera +X, +Y, +Z axes expressed in the chosen world frame",
+  "translation": "camera centre in chosen world coordinates",
+  "world_to_camera": "Exact numerical inverse of the supplied camera_to_world matrix",
+  "native_world": "Original merged PanoVGGT world, same as PLY in companion ZIP; arbitrary monocular scale, not necessarily level",
+  "glb_world": "Same as companion ZIP GLB: Y-up alignment, horizontal PCA, floor proxy, estimated scale from assumed 2.7m room height",
+  "glb_pose_formula": "If X_glb=s*Q*X_native+b: R_glb=Q*R_native, t_glb=s*Q*t_native+b. Camera-local lengths must also scale by s.",
+  "opengl_camera_conversion": "camera_to_world_glb_opengl = camera_to_world_glb @ diag(1,-1,-1,1); +X right,+Y up,-Z forward",
+  "original_video_size": {
+    "width": 3840,
+    "height": 1920
+  },
+  "reconstruction_image_size": {
+    "width": 1036,
+    "height": 518
+  },
+  "crop_rotation_applied_to_input": false,
+  "depth_type": "radial distance from camera centre, not pinhole optical-axis Z depth",
+  "pose_direction_not_robot_heading": true,
+  "verified_against": {
+    "repository": "https://github.com/YijingGuo-June/PanoVGGT",
+    "revision": "556bb7d2ec2d02bd3ee4ed535542e74290ba22cf",
+    "direction_code": "panovggt/models/panovggt_model.py:255-275",
+    "world_point_code": "panovggt/models/panovggt_model.py:344-354",
+    "fusion_code": "source_code/dorm1_engine.py:233-236"
+  },
+  "inverse_mapping_note": "The inverse formula above is derived from the forward pixel-centre convention; do not substitute width-1/height-1 endpoint normalization."
+}

@@ -1,0 +1,24 @@
+{
+  "package": "Dorm1_3DGS_Integration",
+  "version": "2026-10-24",
+  "checkpoint_included": false,
+  "checkpoint_delivery": "USB full integration ZIP; copy to the checkpoint path before rendering",
+  "purpose": "Model and implementation handoff for 3DGS novel-view ERP rendering",
+  "framework": "nerfstudio",
+  "method": "splatfacto",
+  "training_steps": 60000,
+  "checkpoint": "model/dorm1_nerfstudio_refined_1024/splatfacto/2026-10-19_221340/nerfstudio_models/step-000059999.ckpt",
+  "checkpoint_bytes": 782272513,
+  "torch": "2.7.1+cu128",
+  "nerfstudio": "1.1.5",
+  "gsplat": "1.4.0",
+  "default_render": {
+    "cube_face_size": 1024,
+    "cube_face_fov_deg": 100.0,
+    "erp_width": 4096,
+    "erp_height": 2048
+  },
+  "coordinate_space": "GLB world coordinates, +Y up, metres",
+  "camera_matrix_convention": "CV camera-to-world: +X right, +Y down, +Z forward",
+  "reference_sharpening": "optional; valid only where a matching captured ERP sample exists"
+}

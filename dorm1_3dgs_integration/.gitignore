@@ -1,0 +1,9 @@
+*.ckpt
+*.zip
+__pycache__/
+*.pyc
+.venv/
+outputs/
+validation_render/
+data/
+user_output/

@@ -1,0 +1,949 @@
+{
+  "source": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\input\\dorm1_3dgs_camera_package_20261018\\dorm1_3dgs_camera_package_20261018\\cameras.json",
+  "pose_source": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_refined_poses\\cameras_refined.npz",
+  "selection_method": "explicit_sample_indices",
+  "requested_count": 20,
+  "selected_count": 20,
+  "keyframes": [
+    {
+      "camera_json": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_map_keyframes_refined\\map_keyframe_01_camera.json",
+      "title": "맵 키프레임 01 · 프레임 0",
+      "description": "전체 맵 공간 커버리지 지점 · 원본 0.0초",
+      "camera_mode": "map_coverage",
+      "selection_method": "explicit_sample_indices",
+      "sequence_order": 0,
+      "sample_index": 0,
+      "source_frame_index": 0,
+      "timestamp_s": 0.0,
+      "camera_position_glb": [
+        5.465769569698877,
+        1.7273784320646275,
+        10.638549681801772
+      ],
+      "look_at_glb": [
+        6.465653190862763,
+        1.7273784320646275,
+        10.653805635662321
+      ],
+      "camera_to_world_glb": [
+        [
+          -0.015228485856533419,
+          -0.004360999286519677,
+          0.9998745295804572,
+          5.465769569698877
+        ],
+        [
+          0.006369333283129122,
+          -0.9999706227649718,
+          -0.004264410928029242,
+          1.7273784320646275
+        ],
+        [
+          0.9998637531244174,
+          0.00630359359870594,
+          0.015255815143628665,
+          10.638549681801772
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "camera_json": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_map_keyframes_refined\\map_keyframe_02_camera.json",
+      "title": "맵 키프레임 02 · 프레임 225",
+      "description": "전체 맵 공간 커버리지 지점 · 원본 7.5초",
+      "camera_mode": "map_coverage",
+      "selection_method": "explicit_sample_indices",
+      "sequence_order": 1,
+      "sample_index": 15,
+      "source_frame_index": 225,
+      "timestamp_s": 7.498744444444445,
+      "camera_position_glb": [
+        10.659468682173653,
+        1.6594451266620105,
+        10.228702278887152
+      ],
+      "look_at_glb": [
+        11.658577941329934,
+        1.6594451266620105,
+        10.270900481078575
+      ],
+      "camera_to_world_glb": [
+        [
+          -0.042274675827294265,
+          -0.018999738000904594,
+          0.9989253534371796,
+          10.659468682173653
+        ],
+        [
+          -0.004006382510251517,
+          -0.9998079032623548,
+          -0.01918607498461576,
+          1.6594451266620105
+        ],
+        [
+          0.9990979935336066,
+          -0.004813162165430323,
+          0.042190434781956616,
+          10.228702278887152
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "camera_json": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_map_keyframes_refined\\map_keyframe_03_camera.json",
+      "title": "맵 키프레임 03 · 프레임 405",
+      "description": "전체 맵 공간 커버리지 지점 · 원본 13.5초",
+      "camera_mode": "map_coverage",
+      "selection_method": "explicit_sample_indices",
+      "sequence_order": 2,
+      "sample_index": 27,
+      "source_frame_index": 405,
+      "timestamp_s": 13.497722222222222,
+      "camera_position_glb": [
+        15.696478668274843,
+        1.6370199081298036,
+        9.044722011233706
+      ],
+      "look_at_glb": [
+        16.64050842453495,
+        1.6370199081298036,
+        8.71486170853652
+      ],
+      "camera_to_world_glb": [
+        [
+          0.32967272059489416,
+          0.015306855281880463,
+          0.9439711846645218,
+          15.696478668274843
+        ],
+        [
+          0.014526791119044894,
+          -0.9998324298287127,
+          0.011139326846641755,
+          1.6370199081298036
+        ],
+        [
+          0.9439835113153963,
+          0.010040540034890733,
+          -0.3298398367700046,
+          9.044722011233706
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "camera_json": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_map_keyframes_refined\\map_keyframe_04_camera.json",
+      "title": "맵 키프레임 04 · 프레임 870",
+      "description": "전체 맵 공간 커버리지 지점 · 원본 29.0초",
+      "camera_mode": "map_coverage",
+      "selection_method": "explicit_sample_indices",
+      "sequence_order": 3,
+      "sample_index": 58,
+      "source_frame_index": 870,
+      "timestamp_s": 28.99521111111111,
+      "camera_position_glb": [
+        6.798913015768189,
+        1.671249611426749,
+        5.6052819212155285
+      ],
+      "look_at_glb": [
+        5.838687978161266,
+        1.671249611426749,
+        5.3260546353841045
+      ],
+      "camera_to_world_glb": [
+        [
+          0.2791298699331631,
+          0.009024793901461334,
+          -0.9602109501594595,
+          6.798913015768189
+        ],
+        [
+          0.01369449130141622,
+          -0.9998915536959622,
+          -0.005416803067377135,
+          1.671249611426749
+        ],
+        [
+          -0.9601557043621057,
+          -0.01163760896883278,
+          -0.2792231892920028,
+          5.6052819212155285
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "camera_json": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_map_keyframes_refined\\map_keyframe_05_camera.json",
+      "title": "맵 키프레임 05 · 프레임 1035",
+      "description": "전체 맵 공간 커버리지 지점 · 원본 34.5초",
+      "camera_mode": "map_coverage",
+      "selection_method": "explicit_sample_indices",
+      "sequence_order": 4,
+      "sample_index": 69,
+      "source_frame_index": 1035,
+      "timestamp_s": 34.49428888888889,
+      "camera_position_glb": [
+        3.4825151416544817,
+        1.6590423906648386,
+        4.9312491122896
+      ],
+      "look_at_glb": [
+        3.223357513438179,
+        1.6590423906648386,
+        3.965414072680195
+      ],
+      "camera_to_world_glb": [
+        [
+          0.9658114934881599,
+          -0.007295635421180649,
+          -0.259142688011782,
+          3.4825151416544817
+        ],
+        [
+          -0.010434100336212773,
+          -0.9998879110529173,
+          -0.010737545362300437,
+          1.6590423906648386
+        ],
+        [
+          -0.2590353037644568,
+          0.013074365530871063,
+          -0.9657793600867752,
+          4.9312491122896
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "camera_json": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_map_keyframes_refined\\map_keyframe_06_camera.json",
+      "title": "맵 키프레임 06 · 프레임 1260",
+      "description": "전체 맵 공간 커버리지 지점 · 원본 42.0초",
+      "camera_mode": "map_coverage",
+      "selection_method": "explicit_sample_indices",
+      "sequence_order": 5,
+      "sample_index": 84,
+      "source_frame_index": 1260,
+      "timestamp_s": 41.99304444444444,
+      "camera_position_glb": [
+        9.606444652999791,
+        1.7095935697258753,
+        3.659179954293508
+      ],
+      "look_at_glb": [
+        10.599739521700476,
+        1.7095935697258753,
+        3.7747883614829845
+      ],
+      "camera_to_world_glb": [
+        [
+          -0.11570627530718029,
+          0.011617021727776577,
+          0.993215536860311,
+          9.606444652999791
+        ],
+        [
+          0.008097316866319749,
+          -0.9998873462122227,
+          0.012638367942310554,
+          1.7095935697258753
+        ],
+        [
+          0.9932504675629938,
+          0.009504719399076246,
+          0.11559917385102454,
+          3.659179954293508
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "camera_json": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_map_keyframes_refined\\map_keyframe_07_camera.json",
+      "title": "맵 키프레임 07 · 프레임 1380",
+      "description": "전체 맵 공간 커버리지 지점 · 원본 46.0초",
+      "camera_mode": "map_coverage",
+      "selection_method": "explicit_sample_indices",
+      "sequence_order": 6,
+      "sample_index": 92,
+      "source_frame_index": 1380,
+      "timestamp_s": 45.99246666666667,
+      "camera_position_glb": [
+        9.814394207077186,
+        1.7408185061224772,
+        0.21574079051606307
+      ],
+      "look_at_glb": [
+        10.27642673535461,
+        1.7408185061224772,
+        -0.6711221880852376
+      ],
+      "camera_to_world_glb": [
+        [
+          0.8868385557206775,
+          0.007923903922562264,
+          0.462011458552587,
+          9.814394207077186
+        ],
+        [
+          0.013908939412626149,
+          -0.9998576593572879,
+          -0.009549996281774992,
+          1.7408185061224772
+        ],
+        [
+          0.4618700222916386,
+          0.014895394294614143,
+          -0.8868225356502446,
+          0.21574079051606307
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "camera_json": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_map_keyframes_refined\\map_keyframe_08_camera.json",
+      "title": "맵 키프레임 08 · 프레임 1680",
+      "description": "전체 맵 공간 커버리지 지점 · 원본 56.0초",
+      "camera_mode": "map_coverage",
+      "selection_method": "explicit_sample_indices",
+      "sequence_order": 7,
+      "sample_index": 112,
+      "source_frame_index": 1680,
+      "timestamp_s": 55.990722222222225,
+      "camera_position_glb": [
+        13.946150132539698,
+        1.7222248905297124,
+        -3.524355221948523
+      ],
+      "look_at_glb": [
+        14.804575193251114,
+        1.7222248905297124,
+        -4.037294219435164
+      ],
+      "camera_to_world_glb": [
+        [
+          0.5128080346504084,
+          0.012797182283952045,
+          0.8584079168574679,
+          13.946150132539698
+        ],
+        [
+          0.014372789501595087,
+          -0.9998767327751857,
+          0.0063199823388281505,
+          1.7222248905297124
+        ],
+        [
+          0.8583829812618193,
+          0.009096778573295364,
+          -0.5129287534342951,
+          -3.524355221948523
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "camera_json": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_map_keyframes_refined\\map_keyframe_09_camera.json",
+      "title": "맵 키프레임 09 · 프레임 1890",
+      "description": "전체 맵 공간 커버리지 지점 · 원본 63.0초",
+      "camera_mode": "map_coverage",
+      "selection_method": "explicit_sample_indices",
+      "sequence_order": 8,
+      "sample_index": 126,
+      "source_frame_index": 1890,
+      "timestamp_s": 62.98958888888889,
+      "camera_position_glb": [
+        7.821163079773381,
+        1.7364727354212501,
+        -2.9213793274099453
+      ],
+      "look_at_glb": [
+        6.859209498410336,
+        1.7364727354212501,
+        -3.1945922614061444
+      ],
+      "camera_to_world_glb": [
+        [
+          0.27319077618873255,
+          0.014086456329108588,
+          -0.9618567313033091,
+          7.821163079773381
+        ],
+        [
+          0.0015975798701711738,
+          -0.9998980431441366,
+          -0.014189822235855989,
+          1.7364727354212501
+        ],
+        [
+          -0.9619585477264374,
+          0.002339885598674824,
+          -0.27318542675521484,
+          -2.9213793274099453
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "camera_json": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_map_keyframes_refined\\map_keyframe_10_camera.json",
+      "title": "맵 키프레임 10 · 프레임 2100",
+      "description": "전체 맵 공간 커버리지 지점 · 원본 70.0초",
+      "camera_mode": "map_coverage",
+      "selection_method": "explicit_sample_indices",
+      "sequence_order": 9,
+      "sample_index": 140,
+      "source_frame_index": 2100,
+      "timestamp_s": 69.9884888888889,
+      "camera_position_glb": [
+        1.4172402890184035,
+        1.751835312789606,
+        -1.4990583437163252
+      ],
+      "look_at_glb": [
+        0.42189965867043566,
+        1.751835312789606,
+        -1.595479449178304
+      ],
+      "camera_to_world_glb": [
+        [
+          0.0965230033939566,
+          -0.006028691762413649,
+          -0.9953124959988416,
+          1.4172402890184035
+        ],
+        [
+          0.015080864625040671,
+          -0.9998580080285986,
+          0.007518730161688478,
+          1.751835312789606
+        ],
+        [
+          -0.9952164977219639,
+          -0.015735903428684764,
+          -0.0964183800180841,
+          -1.4990583437163252
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "camera_json": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_map_keyframes_refined\\map_keyframe_11_camera.json",
+      "title": "맵 키프레임 11 · 프레임 2250",
+      "description": "전체 맵 공간 커버리지 지점 · 원본 75.0초",
+      "camera_mode": "map_coverage",
+      "selection_method": "explicit_sample_indices",
+      "sequence_order": 10,
+      "sample_index": 150,
+      "source_frame_index": 2250,
+      "timestamp_s": 74.97763333333334,
+      "camera_position_glb": [
+        0.8607623747598079,
+        1.7529177383761654,
+        2.0352529611823593
+      ],
+      "look_at_glb": [
+        0.09313140377117368,
+        1.7529177383761654,
+        2.6761450678423233
+      ],
+      "camera_to_world_glb": [
+        [
+          -0.6406320310528685,
+          0.019710843956385133,
+          -0.767594999605654,
+          0.8607623747598079
+        ],
+        [
+          -0.01916131288244106,
+          -0.9997695363305873,
+          -0.009680821966348927,
+          1.7529177383761654
+        ],
+        [
+          -0.7676089140165702,
+          0.00850628331587782,
+          0.6408620742924738,
+          2.0352529611823593
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "camera_json": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_map_keyframes_refined\\map_keyframe_12_camera.json",
+      "title": "맵 키프레임 12 · 프레임 2550",
+      "description": "전체 맵 공간 커버리지 지점 · 원본 85.0초",
+      "camera_mode": "map_coverage",
+      "selection_method": "explicit_sample_indices",
+      "sequence_order": 11,
+      "sample_index": 170,
+      "source_frame_index": 2550,
+      "timestamp_s": 84.98603333333334,
+      "camera_position_glb": [
+        -5.234035337495825,
+        1.7639064309933705,
+        -1.0223937223283668
+      ],
+      "look_at_glb": [
+        -6.133763032671786,
+        1.7639064309933705,
+        -1.45884540869623
+      ],
+      "camera_to_world_glb": [
+        [
+          0.4363519684352966,
+          0.010965792419661486,
+          -0.899709236942275,
+          -5.234035337495825
+        ],
+        [
+          0.011920905415228963,
+          -0.9999084266689575,
+          -0.006405489090722437,
+          1.7639064309933705
+        ],
+        [
+          -0.8996970888341937,
+          -0.007930300941269132,
+          -0.4364427324062778,
+          -1.0223937223283668
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "camera_json": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_map_keyframes_refined\\map_keyframe_13_camera.json",
+      "title": "맵 키프레임 13 · 프레임 2655",
+      "description": "전체 맵 공간 커버리지 지점 · 원본 88.5초",
+      "camera_mode": "map_coverage",
+      "selection_method": "explicit_sample_indices",
+      "sequence_order": 12,
+      "sample_index": 177,
+      "source_frame_index": 2655,
+      "timestamp_s": 88.48553333333334,
+      "camera_position_glb": [
+        -8.710988994909293,
+        1.765518145791775,
+        -0.6396686523744504
+      ],
+      "look_at_glb": [
+        -9.627609725757983,
+        1.765518145791775,
+        -1.0394266238752252
+      ],
+      "camera_to_world_glb": [
+        [
+          0.39967549189652724,
+          0.013102394479404804,
+          -0.916563052078893,
+          -8.710988994909293
+        ],
+        [
+          0.007053473167616137,
+          -0.9999121969356229,
+          -0.01121815206040824,
+          1.765518145791775
+        ],
+        [
+          -0.9166295596878509,
+          -0.0019813324513531204,
+          -0.39973281655147413,
+          -0.6396686523744504
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "camera_json": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_map_keyframes_refined\\map_keyframe_14_camera.json",
+      "title": "맵 키프레임 14 · 프레임 2760",
+      "description": "전체 맵 공간 커버리지 지점 · 원본 92.0초",
+      "camera_mode": "map_coverage",
+      "selection_method": "explicit_sample_indices",
+      "sequence_order": 13,
+      "sample_index": 184,
+      "source_frame_index": 2760,
+      "timestamp_s": 91.98490000000001,
+      "camera_position_glb": [
+        -12.257816117981989,
+        1.7594587366590067,
+        -0.24479574969395035
+      ],
+      "look_at_glb": [
+        -13.197415084100554,
+        1.7594587366590067,
+        -0.5870730975697991
+      ],
+      "camera_to_world_glb": [
+        [
+          0.34221845134832973,
+          0.007099127284413517,
+          -0.9395936004191126,
+          -12.257816117981989
+        ],
+        [
+          0.011464126507934533,
+          -0.999928573739914,
+          -0.0033795298300016326,
+          1.7594587366590067
+        ],
+        [
+          -0.9395504804746584,
+          -0.009615082436541751,
+          -0.3422753932575019,
+          -0.24479574969395035
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "camera_json": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_map_keyframes_refined\\map_keyframe_15_camera.json",
+      "title": "맵 키프레임 15 · 프레임 2955",
+      "description": "전체 맵 공간 커버리지 지점 · 원본 98.5초",
+      "camera_mode": "map_coverage",
+      "selection_method": "explicit_sample_indices",
+      "sequence_order": 14,
+      "sample_index": 197,
+      "source_frame_index": 2955,
+      "timestamp_s": 98.4838888888889,
+      "camera_position_glb": [
+        -17.62496561761514,
+        1.8160863435888364,
+        0.662607161749794
+      ],
+      "look_at_glb": [
+        -18.566085119373913,
+        1.8160863435888364,
+        0.3245330819842501
+      ],
+      "camera_to_world_glb": [
+        [
+          0.33805541052151966,
+          -0.014153904522565004,
+          -0.9410197694012028,
+          -17.62496561761514
+        ],
+        [
+          -0.0013403337027483456,
+          -0.9998931296128395,
+          0.014557913951061478,
+          1.8160863435888364
+        ],
+        [
+          -0.9411252535782324,
+          -0.003660101065182139,
+          -0.3380382533641726,
+          0.662607161749794
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "camera_json": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_map_keyframes_refined\\map_keyframe_16_camera.json",
+      "title": "맵 키프레임 16 · 프레임 3105",
+      "description": "전체 맵 공간 커버리지 지점 · 원본 103.5초",
+      "camera_mode": "map_coverage",
+      "selection_method": "explicit_sample_indices",
+      "sequence_order": 15,
+      "sample_index": 207,
+      "source_frame_index": 3105,
+      "timestamp_s": 103.4829888888889,
+      "camera_position_glb": [
+        -22.702476063678645,
+        1.9472695831982993,
+        1.5796553843322192
+      ],
+      "look_at_glb": [
+        -23.653269596771214,
+        1.9472695831982993,
+        1.2698301796936153
+      ],
+      "camera_to_world_glb": [
+        [
+          0.3097581136995597,
+          -0.01740138143623575,
+          -0.9506561433669913,
+          -22.702476063678645
+        ],
+        [
+          -0.0039971633036224325,
+          -0.9998475100931585,
+          0.01699938957832392,
+          1.9472695831982993
+        ],
+        [
+          -0.9508069907624865,
+          -0.0014657709991958076,
+          -0.30978043487696755,
+          1.5796553843322192
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "camera_json": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_map_keyframes_refined\\map_keyframe_17_camera.json",
+      "title": "맵 키프레임 17 · 프레임 3315",
+      "description": "전체 맵 공간 커버리지 지점 · 원본 110.5초",
+      "camera_mode": "map_coverage",
+      "selection_method": "explicit_sample_indices",
+      "sequence_order": 16,
+      "sample_index": 221,
+      "source_frame_index": 3315,
+      "timestamp_s": 110.4719,
+      "camera_position_glb": [
+        -25.573511788669727,
+        1.9561105559119116,
+        5.7442699107030695
+      ],
+      "look_at_glb": [
+        -26.37357969641009,
+        1.9561105559119116,
+        6.344179356372964
+      ],
+      "camera_to_world_glb": [
+        [
+          -0.5998959654992062,
+          -0.012159142118068757,
+          -0.7999856160211432,
+          -25.573511788669727
+        ],
+        [
+          0.0011406287390484564,
+          -0.9998964934977792,
+          0.014342289110367274,
+          1.9561105559119116
+        ],
+        [
+          -0.8000772022397933,
+          0.007691394788873427,
+          0.5998477414330631,
+          5.7442699107030695
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "camera_json": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_map_keyframes_refined\\map_keyframe_18_camera.json",
+      "title": "맵 키프레임 18 · 프레임 3465",
+      "description": "전체 맵 공간 커버리지 지점 · 원본 115.5초",
+      "camera_mode": "map_coverage",
+      "selection_method": "explicit_sample_indices",
+      "sequence_order": 17,
+      "sample_index": 231,
+      "source_frame_index": 3465,
+      "timestamp_s": 115.47615555555556,
+      "camera_position_glb": [
+        -28.250054603004752,
+        2.0526758299349686,
+        3.2255268887379023
+      ],
+      "look_at_glb": [
+        -29.0027414723213,
+        2.0526758299349686,
+        2.567148215967853
+      ],
+      "camera_to_world_glb": [
+        [
+          0.6584607696674369,
+          -0.009814266102774782,
+          -0.7525510580617311,
+          -28.250054603004752
+        ],
+        [
+          0.006808292032167438,
+          -0.9997963838633579,
+          0.018995735662464486,
+          2.0526758299349686
+        ],
+        [
+          -0.7525842557272718,
+          -0.017631534097106404,
+          -0.6582598780396776,
+          3.2255268887379023
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "camera_json": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_map_keyframes_refined\\map_keyframe_19_camera.json",
+      "title": "맵 키프레임 19 · 프레임 3645",
+      "description": "전체 맵 공간 커버리지 지점 · 원본 121.5초",
+      "camera_mode": "map_coverage",
+      "selection_method": "explicit_sample_indices",
+      "sequence_order": 18,
+      "sample_index": 243,
+      "source_frame_index": 3645,
+      "timestamp_s": 121.48014444444445,
+      "camera_position_glb": [
+        -29.53465940966808,
+        2.016131756558297,
+        6.555597696610139
+      ],
+      "look_at_glb": [
+        -30.534549780349373,
+        2.016131756558297,
+        6.5407907178896725
+      ],
+      "camera_to_world_glb": [
+        [
+          0.0147936878935797,
+          -0.0070616398080299405,
+          -0.9998656309933498,
+          -29.53465940966808
+        ],
+        [
+          -0.0018857947862870967,
+          -0.9999734794430005,
+          0.007034499888671553,
+          2.016131756558297
+        ],
+        [
+          -0.9998887891043342,
+          0.001781475198074489,
+          -0.014806612360269377,
+          6.555597696610139
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "camera_json": "C:\\Users\\gwanw\\Documents\\ChatGPT\\spacewatch3D\\outputs\\dorm1_map_keyframes_refined\\map_keyframe_20_camera.json",
+      "title": "맵 키프레임 20 · 프레임 3821",
+      "description": "전체 맵 공간 커버리지 지점 · 원본 127.3초",
+      "camera_mode": "map_coverage",
+      "selection_method": "explicit_sample_indices",
+      "sequence_order": 19,
+      "sample_index": 255,
+      "source_frame_index": 3821,
+      "timestamp_s": 127.34582222222222,
+      "camera_position_glb": [
+        -32.61307961423639,
+        2.11693735769117,
+        3.952141211045912
+      ],
+      "look_at_glb": [
+        -33.543886716408494,
+        2.11693735769117,
+        3.5866304197606684
+      ],
+      "camera_to_world_glb": [
+        [
+          0.36552027235231577,
+          -0.010197567547157543,
+          -0.9307475168463303,
+          -32.61307961423639
+        ],
+        [
+          0.0009146833128338208,
+          -0.9999355669628416,
+          0.01131482554604627,
+          2.11693735769117
+        ],
+        [
+          -0.9308029296547825,
+          -0.004987137337330626,
+          -0.3654873932261584,
+          3.952141211045912
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  ]
+}

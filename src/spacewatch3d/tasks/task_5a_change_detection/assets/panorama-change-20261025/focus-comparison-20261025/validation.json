@@ -222,7 +222,9 @@
     "outputs\\registration-benchmark-20261019\\new-meshfirst-20261022\\new-inputs\\labeled-mesh-1.npz": "feecec17303b7143b9ca6ac2023e0a64b53dd95f784e387376b62592cb8b5587",
     "outputs\\registration-benchmark-20261019\\new-meshfirst-20261022\\new-inputs\\poses-1.json": "9422adc0c224d4010365b07f581737563403212532fe03990bedfb672acd32cb",
     "outputs\\scenediff-mesh-rgb-20261024\\model-comparison-20261025\\results\\simsac\\common_view_probabilities.npz": "f414f83f863a61689e16b3a64aae2d42e816824a28aa79741f2ee2489fb7d895",
-    "outputs\\scenediff-mesh-rgb-20261024\\model-comparison-20261025\\results\\viewdelta\\common_view_probabilities.npz": "c9b877c6e2550d8ed9f261c9d69189b67dfb6b4627d344c1f6cca127ae7afd06"
+    "outputs\\scenediff-mesh-rgb-20261024\\model-comparison-20261025\\results\\simsac\\erp_probabilities.npz": "40eb50a6581626b6c7dbacc0bfecf45a96592f2aa98d50993f8d601382743948",
+    "outputs\\scenediff-mesh-rgb-20261024\\model-comparison-20261025\\results\\viewdelta\\common_view_probabilities.npz": "c9b877c6e2550d8ed9f261c9d69189b67dfb6b4627d344c1f6cca127ae7afd06",
+    "outputs\\scenediff-mesh-rgb-20261024\\model-comparison-20261025\\results\\viewdelta\\erp_probabilities.npz": "aa9f6dabb97e7601490e08596d73795a6921585d88423371db431ff409f253b6"
   },
   "person_mask_hashes": {
     "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E0-F00130-V0-D0.png": "6d8874427ea0096b18fe39479f248316da3018765331e62307c6fa86a41e57aa",
@@ -259,5 +261,23 @@
   },
   "candidate_face_source": "event_groups.entry_ids -> face-audit.original_face_ids",
   "context_never_promoted_to_candidate": true,
-  "model_threshold_fixed": 0.5
+  "model_threshold_fixed": 0.5,
+  "person_filter": {
+    "default_enabled": true,
+    "models": [
+      "simsac",
+      "viewdelta"
+    ],
+    "method": "candidate AND NOT query-frame person mask or wrapped detection box",
+    "source": "Existing YOLO11l original-frame person segmentation + conservative detection box",
+    "query_segmentation_and_box_union": true,
+    "box_padding_fraction": 0.1,
+    "applies_to_baseline_projection": true,
+    "missing_mask": "Filtered results unavailable; label raw fallback explicitly",
+    "probabilities_unchanged": true,
+    "reference_warp_filter": false
+  },
+  "filtered_views": 30,
+  "filtered_person_candidate_pixels": 0,
+  "outside_person_masks_unchanged": true
 }

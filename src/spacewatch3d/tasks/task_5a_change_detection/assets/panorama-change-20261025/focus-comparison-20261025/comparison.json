@@ -1,5 +1,5 @@
 {
-  "schema": "frozen-occupancy-vs-pair-models-v1",
+  "schema": "frozen-occupancy-vs-pair-models-v2",
   "views": [
     {
       "key": "R01-00",
@@ -28,9 +28,20 @@
         "unaudited": 41151,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 0,
+        "suppressed": 9025,
+        "unaudited": 39734,
+        "no_mesh": 0,
+        "person_excluded": 1417
+      },
       "person": {
         "available": true,
-        "pixels": 0
+        "pixels": 1417,
+        "segmentation_pixels": 0,
+        "box_margin_pixels": 1417
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -44,7 +55,8 @@
             "S0-022",
             "S1-073"
           ],
-          "visible_pixels": 6374
+          "visible_pixels": 6374,
+          "visible_pixels_filtered": 6374
         },
         {
           "id": "C022",
@@ -56,10 +68,12 @@
             "S0-023",
             "S1-076"
           ],
-          "visible_pixels": 2651
+          "visible_pixels": 2651,
+          "visible_pixels_filtered": 2651
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -121,6 +135,76 @@
           "model_intersection": 0,
           "model_disagreement": 0
         }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
       }
     },
     {
@@ -150,9 +234,20 @@
         "unaudited": 34938,
         "no_mesh": 133
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 22,
+        "suppressed": 6889,
+        "unaudited": 18914,
+        "no_mesh": 133,
+        "person_excluded": 24218
+      },
       "person": {
         "available": true,
-        "pixels": 9420
+        "pixels": 24218,
+        "segmentation_pixels": 9420,
+        "box_margin_pixels": 14798
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -166,7 +261,8 @@
             "S0-018",
             "S1-020"
           ],
-          "visible_pixels": 3
+          "visible_pixels": 3,
+          "visible_pixels_filtered": 3
         },
         {
           "id": "C020",
@@ -178,7 +274,8 @@
             "S0-021",
             "S1-070"
           ],
-          "visible_pixels": 205
+          "visible_pixels": 205,
+          "visible_pixels_filtered": 123
         },
         {
           "id": "C021",
@@ -190,7 +287,8 @@
             "S0-022",
             "S1-073"
           ],
-          "visible_pixels": 9719
+          "visible_pixels": 9719,
+          "visible_pixels_filtered": 4151
         },
         {
           "id": "C022",
@@ -202,7 +300,8 @@
             "S0-023",
             "S1-076"
           ],
-          "visible_pixels": 4281
+          "visible_pixels": 4281,
+          "visible_pixels_filtered": 2031
         },
         {
           "id": "C035",
@@ -214,7 +313,8 @@
             "S0-037",
             "S1-021"
           ],
-          "visible_pixels": 30
+          "visible_pixels": 30,
+          "visible_pixels_filtered": 24
         },
         {
           "id": "C042",
@@ -226,7 +326,8 @@
             "S0-045",
             "S1-026"
           ],
-          "visible_pixels": 17
+          "visible_pixels": 17,
+          "visible_pixels_filtered": 17
         },
         {
           "id": "C043",
@@ -238,7 +339,8 @@
             "S0-047",
             "S1-054"
           ],
-          "visible_pixels": 88
+          "visible_pixels": 88,
+          "visible_pixels_filtered": 81
         },
         {
           "id": "C044",
@@ -250,7 +352,8 @@
             "S0-048",
             "S1-055"
           ],
-          "visible_pixels": 716
+          "visible_pixels": 716,
+          "visible_pixels_filtered": 435
         },
         {
           "id": "C061",
@@ -262,7 +365,8 @@
             "S0-074",
             "S1-040"
           ],
-          "visible_pixels": 4
+          "visible_pixels": 4,
+          "visible_pixels_filtered": 4
         },
         {
           "id": "C064",
@@ -274,7 +378,8 @@
             "S0-077",
             "S1-079"
           ],
-          "visible_pixels": 5
+          "visible_pixels": 5,
+          "visible_pixels_filtered": 5
         },
         {
           "id": "C066",
@@ -286,7 +391,8 @@
             "S0-084",
             "S1-052"
           ],
-          "visible_pixels": 8
+          "visible_pixels": 8,
+          "visible_pixels_filtered": 8
         },
         {
           "id": "C068",
@@ -298,7 +404,8 @@
             "S0-098",
             "S1-092"
           ],
-          "visible_pixels": 4
+          "visible_pixels": 4,
+          "visible_pixels_filtered": 4
         },
         {
           "id": "C077",
@@ -310,7 +417,8 @@
             "S0-020",
             "S1-003"
           ],
-          "visible_pixels": 22
+          "visible_pixels": 22,
+          "visible_pixels_filtered": 22
         },
         {
           "id": "N005",
@@ -322,10 +430,12 @@
             "I0-028",
             "I1-092"
           ],
-          "visible_pixels": 25
+          "visible_pixels": 25,
+          "visible_pixels_filtered": 25
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -339,7 +449,7 @@
               "unaudited": 7988,
               "no_mesh": 0
             },
-            "on_person_pixels": 9216
+            "on_person_pixels": 9745
           },
           "viewdelta": {
             "pixels": 9316,
@@ -352,7 +462,7 @@
               "unaudited": 7296,
               "no_mesh": 0
             },
-            "on_person_pixels": 8848
+            "on_person_pixels": 9312
           },
           "model_intersection": 8790,
           "model_disagreement": 1841
@@ -387,6 +497,76 @@
           "model_intersection": 0,
           "model_disagreement": 0
         }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 360,
+            "fraction": 0.007174744897959184,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 141,
+              "unaudited": 219,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 9745
+          },
+          "viewdelta": {
+            "pixels": 4,
+            "fraction": 7.971938775510203e-05,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 4,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 9312
+          },
+          "model_intersection": 0,
+          "model_disagreement": 364
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
       }
     },
     {
@@ -416,9 +596,20 @@
         "unaudited": 31581,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 0,
+        "suppressed": 17048,
+        "unaudited": 31484,
+        "no_mesh": 0,
+        "person_excluded": 1644
+      },
       "person": {
         "available": true,
-        "pixels": 0
+        "pixels": 1644,
+        "segmentation_pixels": 0,
+        "box_margin_pixels": 1644
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -432,7 +623,8 @@
             "S0-026",
             "S1-071"
           ],
-          "visible_pixels": 15014
+          "visible_pixels": 15014,
+          "visible_pixels_filtered": 13467
         },
         {
           "id": "C045",
@@ -444,10 +636,12 @@
             "S0-049",
             "S1-074"
           ],
-          "visible_pixels": 3581
+          "visible_pixels": 3581,
+          "visible_pixels_filtered": 3581
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -461,7 +655,7 @@
               "unaudited": 768,
               "no_mesh": 0
             },
-            "on_person_pixels": 0
+            "on_person_pixels": 858
           },
           "viewdelta": {
             "pixels": 10992,
@@ -474,7 +668,7 @@
               "unaudited": 30,
               "no_mesh": 0
             },
-            "on_person_pixels": 0
+            "on_person_pixels": 349
           },
           "model_intersection": 7097,
           "model_disagreement": 7065
@@ -509,6 +703,76 @@
           "model_intersection": 0,
           "model_disagreement": 0
         }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 9409,
+            "fraction": 0.18751992984693877,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 8642,
+              "unaudited": 767,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 858
+          },
+          "viewdelta": {
+            "pixels": 10643,
+            "fraction": 0.21211336096938777,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 10613,
+              "unaudited": 30,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 349
+          },
+          "model_intersection": 6748,
+          "model_disagreement": 6556
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
       }
     },
     {
@@ -539,9 +803,20 @@
         "unaudited": 46586,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 889,
+        "group_context": 0,
+        "suppressed": 2701,
+        "unaudited": 46586,
+        "no_mesh": 0,
+        "person_excluded": 0
+      },
       "person": {
         "available": true,
-        "pixels": 0
+        "pixels": 0,
+        "segmentation_pixels": 0,
+        "box_margin_pixels": 0
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -555,7 +830,8 @@
             "S0-026",
             "S1-071"
           ],
-          "visible_pixels": 2701
+          "visible_pixels": 2701,
+          "visible_pixels_filtered": 2701
         },
         {
           "id": "C098",
@@ -566,10 +842,12 @@
           "ids": [
             "S0-078"
           ],
-          "visible_pixels": 889
+          "visible_pixels": 889,
+          "visible_pixels_filtered": 889
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -631,6 +909,76 @@
           "model_intersection": 0,
           "model_disagreement": 0
         }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 852,
+            "fraction": 0.016980229591836735,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 79,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 773,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 852
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
       }
     },
     {
@@ -659,9 +1007,20 @@
         "unaudited": 27258,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 0,
+        "suppressed": 19301,
+        "unaudited": 27258,
+        "no_mesh": 0,
+        "person_excluded": 3617
+      },
       "person": {
         "available": true,
-        "pixels": 0
+        "pixels": 3617,
+        "segmentation_pixels": 0,
+        "box_margin_pixels": 3617
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -675,7 +1034,8 @@
             "S0-022",
             "S1-073"
           ],
-          "visible_pixels": 21481
+          "visible_pixels": 21481,
+          "visible_pixels_filtered": 17864
         },
         {
           "id": "C045",
@@ -687,10 +1047,12 @@
             "S0-049",
             "S1-074"
           ],
-          "visible_pixels": 1437
+          "visible_pixels": 1437,
+          "visible_pixels_filtered": 1437
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -748,6 +1110,76 @@
               "no_mesh": 0
             },
             "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
           },
           "model_intersection": 0,
           "model_disagreement": 0
@@ -778,9 +1210,20 @@
         "unaudited": 38326,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 0,
+        "suppressed": 11831,
+        "unaudited": 38326,
+        "no_mesh": 0,
+        "person_excluded": 19
+      },
       "person": {
         "available": true,
-        "pixels": 0
+        "pixels": 19,
+        "segmentation_pixels": 0,
+        "box_margin_pixels": 19
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -794,7 +1237,8 @@
             "S0-022",
             "S1-073"
           ],
-          "visible_pixels": 6815
+          "visible_pixels": 6815,
+          "visible_pixels_filtered": 6796
         },
         {
           "id": "C025",
@@ -806,7 +1250,8 @@
             "S0-026",
             "S1-071"
           ],
-          "visible_pixels": 71
+          "visible_pixels": 71,
+          "visible_pixels_filtered": 71
         },
         {
           "id": "C045",
@@ -818,10 +1263,12 @@
             "S0-049",
             "S1-074"
           ],
-          "visible_pixels": 4964
+          "visible_pixels": 4964,
+          "visible_pixels_filtered": 4964
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -879,6 +1326,76 @@
               "no_mesh": 0
             },
             "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
           },
           "model_intersection": 0,
           "model_disagreement": 0
@@ -910,9 +1427,20 @@
         "unaudited": 46341,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 576,
+        "group_context": 0,
+        "suppressed": 3259,
+        "unaudited": 46341,
+        "no_mesh": 0,
+        "person_excluded": 0
+      },
       "person": {
         "available": true,
-        "pixels": 0
+        "pixels": 0,
+        "segmentation_pixels": 0,
+        "box_margin_pixels": 0
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -926,7 +1454,8 @@
             "S0-022",
             "S1-073"
           ],
-          "visible_pixels": 575
+          "visible_pixels": 575,
+          "visible_pixels_filtered": 575
         },
         {
           "id": "C023",
@@ -938,7 +1467,8 @@
             "S0-024",
             "S1-042"
           ],
-          "visible_pixels": 1770
+          "visible_pixels": 1770,
+          "visible_pixels_filtered": 1770
         },
         {
           "id": "C025",
@@ -950,7 +1480,8 @@
             "S0-026",
             "S1-071"
           ],
-          "visible_pixels": 152
+          "visible_pixels": 152,
+          "visible_pixels_filtered": 152
         },
         {
           "id": "C045",
@@ -962,7 +1493,8 @@
             "S0-049",
             "S1-074"
           ],
-          "visible_pixels": 603
+          "visible_pixels": 603,
+          "visible_pixels_filtered": 603
         },
         {
           "id": "C121",
@@ -973,7 +1505,8 @@
           "ids": [
             "S1-044"
           ],
-          "visible_pixels": 142
+          "visible_pixels": 142,
+          "visible_pixels_filtered": 142
         },
         {
           "id": "C124",
@@ -984,7 +1517,8 @@
           "ids": [
             "S1-080"
           ],
-          "visible_pixels": 13
+          "visible_pixels": 13,
+          "visible_pixels_filtered": 13
         },
         {
           "id": "C125",
@@ -995,7 +1529,8 @@
           "ids": [
             "S1-081"
           ],
-          "visible_pixels": 4
+          "visible_pixels": 4,
+          "visible_pixels_filtered": 4
         },
         {
           "id": "C126",
@@ -1006,10 +1541,12 @@
           "ids": [
             "S1-084"
           ],
-          "visible_pixels": 576
+          "visible_pixels": 576,
+          "visible_pixels_filtered": 576
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -1071,6 +1608,76 @@
           "model_intersection": 0,
           "model_disagreement": 0
         }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 609,
+            "fraction": 0.012137276785714286,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 9,
+              "unaudited": 600,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 609
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
       }
     },
     {
@@ -1097,9 +1704,20 @@
         "unaudited": 42964,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 0,
+        "suppressed": 7212,
+        "unaudited": 42743,
+        "no_mesh": 0,
+        "person_excluded": 221
+      },
       "person": {
         "available": true,
-        "pixels": 0
+        "pixels": 221,
+        "segmentation_pixels": 0,
+        "box_margin_pixels": 221
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -1113,7 +1731,8 @@
             "S0-022",
             "S1-073"
           ],
-          "visible_pixels": 4964
+          "visible_pixels": 4964,
+          "visible_pixels_filtered": 4964
         },
         {
           "id": "C022",
@@ -1125,10 +1744,12 @@
             "S0-023",
             "S1-076"
           ],
-          "visible_pixels": 2248
+          "visible_pixels": 2248,
+          "visible_pixels_filtered": 2248
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -1190,6 +1811,76 @@
           "model_intersection": 0,
           "model_disagreement": 0
         }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
       }
     },
     {
@@ -1220,9 +1911,20 @@
         "unaudited": 48306,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 338,
+        "group_context": 0,
+        "suppressed": 1532,
+        "unaudited": 48306,
+        "no_mesh": 0,
+        "person_excluded": 0
+      },
       "person": {
         "available": true,
-        "pixels": 0
+        "pixels": 0,
+        "segmentation_pixels": 0,
+        "box_margin_pixels": 0
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -1236,7 +1938,8 @@
             "S0-022",
             "S1-073"
           ],
-          "visible_pixels": 507
+          "visible_pixels": 507,
+          "visible_pixels_filtered": 507
         },
         {
           "id": "C022",
@@ -1248,7 +1951,8 @@
             "S0-023",
             "S1-076"
           ],
-          "visible_pixels": 147
+          "visible_pixels": 147,
+          "visible_pixels_filtered": 147
         },
         {
           "id": "C023",
@@ -1260,7 +1964,8 @@
             "S0-024",
             "S1-042"
           ],
-          "visible_pixels": 617
+          "visible_pixels": 617,
+          "visible_pixels_filtered": 617
         },
         {
           "id": "C025",
@@ -1272,7 +1977,8 @@
             "S0-026",
             "S1-071"
           ],
-          "visible_pixels": 42
+          "visible_pixels": 42,
+          "visible_pixels_filtered": 42
         },
         {
           "id": "C045",
@@ -1284,7 +1990,8 @@
             "S0-049",
             "S1-074"
           ],
-          "visible_pixels": 120
+          "visible_pixels": 120,
+          "visible_pixels_filtered": 120
         },
         {
           "id": "C121",
@@ -1295,7 +2002,8 @@
           "ids": [
             "S1-044"
           ],
-          "visible_pixels": 88
+          "visible_pixels": 88,
+          "visible_pixels_filtered": 88
         },
         {
           "id": "C124",
@@ -1306,7 +2014,8 @@
           "ids": [
             "S1-080"
           ],
-          "visible_pixels": 9
+          "visible_pixels": 9,
+          "visible_pixels_filtered": 9
         },
         {
           "id": "C125",
@@ -1317,7 +2026,8 @@
           "ids": [
             "S1-081"
           ],
-          "visible_pixels": 2
+          "visible_pixels": 2,
+          "visible_pixels_filtered": 2
         },
         {
           "id": "C126",
@@ -1328,10 +2038,12 @@
           "ids": [
             "S1-084"
           ],
-          "visible_pixels": 338
+          "visible_pixels": 338,
+          "visible_pixels_filtered": 338
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -1393,6 +2105,76 @@
           "model_intersection": 0,
           "model_disagreement": 0
         }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 2444,
+            "fraction": 0.048708545918367346,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 318,
+              "group_context": 0,
+              "suppressed": 775,
+              "unaudited": 1351,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 2444
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
       }
     },
     {
@@ -1423,9 +2205,20 @@
         "unaudited": 41822,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 223,
+        "group_context": 0,
+        "suppressed": 8131,
+        "unaudited": 41822,
+        "no_mesh": 0,
+        "person_excluded": 0
+      },
       "person": {
         "available": true,
-        "pixels": 0
+        "pixels": 0,
+        "segmentation_pixels": 0,
+        "box_margin_pixels": 0
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -1439,7 +2232,8 @@
             "S0-021",
             "S1-070"
           ],
-          "visible_pixels": 1745
+          "visible_pixels": 1745,
+          "visible_pixels_filtered": 1745
         },
         {
           "id": "C021",
@@ -1451,7 +2245,8 @@
             "S0-022",
             "S1-073"
           ],
-          "visible_pixels": 127
+          "visible_pixels": 127,
+          "visible_pixels_filtered": 127
         },
         {
           "id": "C022",
@@ -1463,7 +2258,8 @@
             "S0-023",
             "S1-076"
           ],
-          "visible_pixels": 21
+          "visible_pixels": 21,
+          "visible_pixels_filtered": 21
         },
         {
           "id": "C025",
@@ -1475,7 +2271,8 @@
             "S0-026",
             "S1-071"
           ],
-          "visible_pixels": 16
+          "visible_pixels": 16,
+          "visible_pixels_filtered": 16
         },
         {
           "id": "C044",
@@ -1487,7 +2284,8 @@
             "S0-048",
             "S1-055"
           ],
-          "visible_pixels": 6110
+          "visible_pixels": 6110,
+          "visible_pixels_filtered": 6110
         },
         {
           "id": "C045",
@@ -1499,7 +2297,8 @@
             "S0-049",
             "S1-074"
           ],
-          "visible_pixels": 44
+          "visible_pixels": 44,
+          "visible_pixels_filtered": 44
         },
         {
           "id": "C121",
@@ -1510,7 +2309,8 @@
           "ids": [
             "S1-044"
           ],
-          "visible_pixels": 59
+          "visible_pixels": 59,
+          "visible_pixels_filtered": 59
         },
         {
           "id": "C124",
@@ -1521,7 +2321,8 @@
           "ids": [
             "S1-080"
           ],
-          "visible_pixels": 6
+          "visible_pixels": 6,
+          "visible_pixels_filtered": 6
         },
         {
           "id": "C125",
@@ -1532,7 +2333,8 @@
           "ids": [
             "S1-081"
           ],
-          "visible_pixels": 3
+          "visible_pixels": 3,
+          "visible_pixels_filtered": 3
         },
         {
           "id": "C126",
@@ -1543,10 +2345,12 @@
           "ids": [
             "S1-084"
           ],
-          "visible_pixels": 223
+          "visible_pixels": 223,
+          "visible_pixels_filtered": 223
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -1608,6 +2412,76 @@
           "model_intersection": 0,
           "model_disagreement": 16
         }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 676,
+            "fraction": 0.013472576530612245,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 201,
+              "unaudited": 475,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 6053,
+            "fraction": 0.12063536352040816,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 5617,
+              "unaudited": 436,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 210,
+          "model_disagreement": 6309
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 16,
+            "fraction": 0.00031887755102040814,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 16,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 16
+        }
       }
     },
     {
@@ -1639,9 +2513,20 @@
         "unaudited": 40222,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 120,
+        "group_context": 0,
+        "suppressed": 9834,
+        "unaudited": 40222,
+        "no_mesh": 0,
+        "person_excluded": 0
+      },
       "person": {
         "available": true,
-        "pixels": 0
+        "pixels": 0,
+        "segmentation_pixels": 0,
+        "box_margin_pixels": 0
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -1655,7 +2540,8 @@
             "S0-021",
             "S1-070"
           ],
-          "visible_pixels": 73
+          "visible_pixels": 73,
+          "visible_pixels_filtered": 73
         },
         {
           "id": "C021",
@@ -1667,7 +2553,8 @@
             "S0-022",
             "S1-073"
           ],
-          "visible_pixels": 175
+          "visible_pixels": 175,
+          "visible_pixels_filtered": 175
         },
         {
           "id": "C022",
@@ -1679,7 +2566,8 @@
             "S0-023",
             "S1-076"
           ],
-          "visible_pixels": 19
+          "visible_pixels": 19,
+          "visible_pixels_filtered": 19
         },
         {
           "id": "C025",
@@ -1691,7 +2579,8 @@
             "S0-026",
             "S1-071"
           ],
-          "visible_pixels": 15
+          "visible_pixels": 15,
+          "visible_pixels_filtered": 15
         },
         {
           "id": "C044",
@@ -1703,7 +2592,8 @@
             "S0-048",
             "S1-055"
           ],
-          "visible_pixels": 9506
+          "visible_pixels": 9506,
+          "visible_pixels_filtered": 9506
         },
         {
           "id": "C045",
@@ -1715,7 +2605,8 @@
             "S0-049",
             "S1-074"
           ],
-          "visible_pixels": 46
+          "visible_pixels": 46,
+          "visible_pixels_filtered": 46
         },
         {
           "id": "C098",
@@ -1726,10 +2617,12 @@
           "ids": [
             "S0-078"
           ],
-          "visible_pixels": 120
+          "visible_pixels": 120,
+          "visible_pixels_filtered": 120
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -1791,6 +2684,76 @@
           "model_intersection": 0,
           "model_disagreement": 0
         }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 79,
+            "fraction": 0.0015744579081632653,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 79,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 89,
+            "fraction": 0.0017737563775510204,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 21,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 68,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 168
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
       }
     },
     {
@@ -1826,9 +2789,20 @@
         "unaudited": 47313,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 65,
+        "group_context": 0,
+        "suppressed": 2798,
+        "unaudited": 47313,
+        "no_mesh": 0,
+        "person_excluded": 0
+      },
       "person": {
         "available": true,
-        "pixels": 0
+        "pixels": 0,
+        "segmentation_pixels": 0,
+        "box_margin_pixels": 0
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -1842,7 +2816,8 @@
             "S0-021",
             "S1-070"
           ],
-          "visible_pixels": 211
+          "visible_pixels": 211,
+          "visible_pixels_filtered": 211
         },
         {
           "id": "C021",
@@ -1854,7 +2829,8 @@
             "S0-022",
             "S1-073"
           ],
-          "visible_pixels": 31
+          "visible_pixels": 31,
+          "visible_pixels_filtered": 31
         },
         {
           "id": "C025",
@@ -1866,7 +2842,8 @@
             "S0-026",
             "S1-071"
           ],
-          "visible_pixels": 7
+          "visible_pixels": 7,
+          "visible_pixels_filtered": 7
         },
         {
           "id": "C035",
@@ -1878,7 +2855,8 @@
             "S0-037",
             "S1-021"
           ],
-          "visible_pixels": 1989
+          "visible_pixels": 1989,
+          "visible_pixels_filtered": 1989
         },
         {
           "id": "C043",
@@ -1890,7 +2868,8 @@
             "S0-047",
             "S1-054"
           ],
-          "visible_pixels": 3
+          "visible_pixels": 3,
+          "visible_pixels_filtered": 3
         },
         {
           "id": "C044",
@@ -1902,7 +2881,8 @@
             "S0-048",
             "S1-055"
           ],
-          "visible_pixels": 290
+          "visible_pixels": 290,
+          "visible_pixels_filtered": 290
         },
         {
           "id": "C045",
@@ -1914,7 +2894,8 @@
             "S0-049",
             "S1-074"
           ],
-          "visible_pixels": 10
+          "visible_pixels": 10,
+          "visible_pixels_filtered": 10
         },
         {
           "id": "C064",
@@ -1926,7 +2907,8 @@
             "S0-077",
             "S1-079"
           ],
-          "visible_pixels": 208
+          "visible_pixels": 208,
+          "visible_pixels_filtered": 208
         },
         {
           "id": "C068",
@@ -1938,7 +2920,8 @@
             "S0-098",
             "S1-092"
           ],
-          "visible_pixels": 42
+          "visible_pixels": 42,
+          "visible_pixels_filtered": 42
         },
         {
           "id": "C098",
@@ -1949,7 +2932,8 @@
           "ids": [
             "S0-078"
           ],
-          "visible_pixels": 65
+          "visible_pixels": 65,
+          "visible_pixels_filtered": 65
         },
         {
           "id": "C108",
@@ -1960,10 +2944,12 @@
           "ids": [
             "S0-097"
           ],
-          "visible_pixels": 7
+          "visible_pixels": 7,
+          "visible_pixels_filtered": 7
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -2025,6 +3011,76 @@
           "model_intersection": 0,
           "model_disagreement": 0
         }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 58,
+            "fraction": 0.0011559311224489796,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 35,
+              "unaudited": 23,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 58
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
       }
     },
     {
@@ -2053,9 +3109,20 @@
         "unaudited": 41249,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 0,
+        "suppressed": 8927,
+        "unaudited": 38714,
+        "no_mesh": 0,
+        "person_excluded": 2535
+      },
       "person": {
         "available": true,
-        "pixels": 0
+        "pixels": 2535,
+        "segmentation_pixels": 0,
+        "box_margin_pixels": 2535
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -2069,10 +3136,12 @@
             "S0-048",
             "S1-055"
           ],
-          "visible_pixels": 8927
+          "visible_pixels": 8927,
+          "visible_pixels_filtered": 8927
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -2134,6 +3203,76 @@
           "model_intersection": 0,
           "model_disagreement": 2
         }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 2064,
+            "fraction": 0.041135204081632654,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 2064,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 2064
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 2,
+            "fraction": 3.985969387755102e-05,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 2,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 2
+        }
       }
     },
     {
@@ -2161,9 +3300,20 @@
         "unaudited": 45500,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 0,
+        "suppressed": 3057,
+        "unaudited": 39344,
+        "no_mesh": 0,
+        "person_excluded": 7775
+      },
       "person": {
         "available": true,
-        "pixels": 0
+        "pixels": 7775,
+        "segmentation_pixels": 0,
+        "box_margin_pixels": 7775
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -2177,7 +3327,8 @@
             "S0-024",
             "S1-042"
           ],
-          "visible_pixels": 2037
+          "visible_pixels": 2037,
+          "visible_pixels_filtered": 2037
         },
         {
           "id": "C024",
@@ -2189,7 +3340,8 @@
             "S0-025",
             "S1-010"
           ],
-          "visible_pixels": 110
+          "visible_pixels": 110,
+          "visible_pixels_filtered": 110
         },
         {
           "id": "C037",
@@ -2201,7 +3353,8 @@
             "S0-039",
             "S1-032"
           ],
-          "visible_pixels": 32
+          "visible_pixels": 32,
+          "visible_pixels_filtered": 32
         },
         {
           "id": "C038",
@@ -2213,7 +3366,8 @@
             "S0-040",
             "S1-101"
           ],
-          "visible_pixels": 101
+          "visible_pixels": 101,
+          "visible_pixels_filtered": 101
         },
         {
           "id": "C044",
@@ -2225,7 +3379,8 @@
             "S0-048",
             "S1-055"
           ],
-          "visible_pixels": 2198
+          "visible_pixels": 2198,
+          "visible_pixels_filtered": 579
         },
         {
           "id": "C056",
@@ -2237,7 +3392,8 @@
             "S0-065",
             "S1-043"
           ],
-          "visible_pixels": 13
+          "visible_pixels": 13,
+          "visible_pixels_filtered": 13
         },
         {
           "id": "C057",
@@ -2249,7 +3405,8 @@
             "S0-066",
             "S1-064"
           ],
-          "visible_pixels": 86
+          "visible_pixels": 86,
+          "visible_pixels_filtered": 86
         },
         {
           "id": "C080",
@@ -2261,7 +3418,8 @@
             "S0-087",
             "S1-090"
           ],
-          "visible_pixels": 4
+          "visible_pixels": 4,
+          "visible_pixels_filtered": 4
         },
         {
           "id": "C093",
@@ -2272,7 +3430,8 @@
           "ids": [
             "S0-059"
           ],
-          "visible_pixels": 3
+          "visible_pixels": 3,
+          "visible_pixels_filtered": 3
         },
         {
           "id": "C096",
@@ -2283,7 +3442,8 @@
           "ids": [
             "S0-072"
           ],
-          "visible_pixels": 8
+          "visible_pixels": 8,
+          "visible_pixels_filtered": 8
         },
         {
           "id": "C107",
@@ -2294,7 +3454,8 @@
           "ids": [
             "S0-096"
           ],
-          "visible_pixels": 82
+          "visible_pixels": 82,
+          "visible_pixels_filtered": 82
         },
         {
           "id": "C111",
@@ -2305,10 +3466,12 @@
           "ids": [
             "S0-105"
           ],
-          "visible_pixels": 2
+          "visible_pixels": 2,
+          "visible_pixels_filtered": 2
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -2322,7 +3485,7 @@
               "unaudited": 2292,
               "no_mesh": 0
             },
-            "on_person_pixels": 0
+            "on_person_pixels": 1760
           },
           "viewdelta": {
             "pixels": 2105,
@@ -2335,7 +3498,7 @@
               "unaudited": 179,
               "no_mesh": 0
             },
-            "on_person_pixels": 0
+            "on_person_pixels": 1739
           },
           "model_intersection": 1625,
           "model_disagreement": 3289
@@ -2366,6 +3529,76 @@
               "no_mesh": 0
             },
             "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 2674,
+            "fraction": 0.05329241071428571,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 857,
+              "unaudited": 1817,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 1760
+          },
+          "viewdelta": {
+            "pixels": 366,
+            "fraction": 0.007294323979591837,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 343,
+              "unaudited": 23,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 1739
+          },
+          "model_intersection": 346,
+          "model_disagreement": 2348
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
           },
           "model_intersection": 0,
           "model_disagreement": 0
@@ -2402,9 +3635,20 @@
         "unaudited": 47649,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 87,
+        "group_context": 0,
+        "suppressed": 2440,
+        "unaudited": 47649,
+        "no_mesh": 0,
+        "person_excluded": 0
+      },
       "person": {
         "available": true,
-        "pixels": 0
+        "pixels": 0,
+        "segmentation_pixels": 0,
+        "box_margin_pixels": 0
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -2418,7 +3662,8 @@
             "S0-021",
             "S1-070"
           ],
-          "visible_pixels": 1095
+          "visible_pixels": 1095,
+          "visible_pixels_filtered": 1095
         },
         {
           "id": "C021",
@@ -2430,7 +3675,8 @@
             "S0-022",
             "S1-073"
           ],
-          "visible_pixels": 50
+          "visible_pixels": 50,
+          "visible_pixels_filtered": 50
         },
         {
           "id": "C022",
@@ -2442,7 +3688,8 @@
             "S0-023",
             "S1-076"
           ],
-          "visible_pixels": 2
+          "visible_pixels": 2,
+          "visible_pixels_filtered": 2
         },
         {
           "id": "C025",
@@ -2454,7 +3701,8 @@
             "S0-026",
             "S1-071"
           ],
-          "visible_pixels": 5
+          "visible_pixels": 5,
+          "visible_pixels_filtered": 5
         },
         {
           "id": "C044",
@@ -2466,7 +3714,8 @@
             "S0-048",
             "S1-055"
           ],
-          "visible_pixels": 1247
+          "visible_pixels": 1247,
+          "visible_pixels_filtered": 1247
         },
         {
           "id": "C045",
@@ -2478,7 +3727,8 @@
             "S0-049",
             "S1-074"
           ],
-          "visible_pixels": 25
+          "visible_pixels": 25,
+          "visible_pixels_filtered": 25
         },
         {
           "id": "C064",
@@ -2490,7 +3740,8 @@
             "S0-077",
             "S1-079"
           ],
-          "visible_pixels": 16
+          "visible_pixels": 16,
+          "visible_pixels_filtered": 16
         },
         {
           "id": "C098",
@@ -2501,10 +3752,12 @@
           "ids": [
             "S0-078"
           ],
-          "visible_pixels": 87
+          "visible_pixels": 87,
+          "visible_pixels_filtered": 87
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -2566,6 +3819,76 @@
           "model_intersection": 0,
           "model_disagreement": 6
         }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 1844,
+            "fraction": 0.03675063775510204,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 1197,
+              "unaudited": 647,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 252,
+            "fraction": 0.005022321428571429,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 252,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 20,
+          "model_disagreement": 2056
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 6,
+            "fraction": 0.00011957908163265306,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 6,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 6
+        }
       }
     },
     {
@@ -2600,9 +3923,20 @@
         "unaudited": 41822,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 223,
+        "group_context": 0,
+        "suppressed": 8131,
+        "unaudited": 41822,
+        "no_mesh": 0,
+        "person_excluded": 0
+      },
       "person": {
         "available": true,
-        "pixels": 0
+        "pixels": 0,
+        "segmentation_pixels": 0,
+        "box_margin_pixels": 0
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -2616,7 +3950,8 @@
             "S0-021",
             "S1-070"
           ],
-          "visible_pixels": 1745
+          "visible_pixels": 1745,
+          "visible_pixels_filtered": 1745
         },
         {
           "id": "C021",
@@ -2628,7 +3963,8 @@
             "S0-022",
             "S1-073"
           ],
-          "visible_pixels": 127
+          "visible_pixels": 127,
+          "visible_pixels_filtered": 127
         },
         {
           "id": "C022",
@@ -2640,7 +3976,8 @@
             "S0-023",
             "S1-076"
           ],
-          "visible_pixels": 21
+          "visible_pixels": 21,
+          "visible_pixels_filtered": 21
         },
         {
           "id": "C025",
@@ -2652,7 +3989,8 @@
             "S0-026",
             "S1-071"
           ],
-          "visible_pixels": 16
+          "visible_pixels": 16,
+          "visible_pixels_filtered": 16
         },
         {
           "id": "C044",
@@ -2664,7 +4002,8 @@
             "S0-048",
             "S1-055"
           ],
-          "visible_pixels": 6110
+          "visible_pixels": 6110,
+          "visible_pixels_filtered": 6110
         },
         {
           "id": "C045",
@@ -2676,7 +4015,8 @@
             "S0-049",
             "S1-074"
           ],
-          "visible_pixels": 44
+          "visible_pixels": 44,
+          "visible_pixels_filtered": 44
         },
         {
           "id": "C121",
@@ -2687,7 +4027,8 @@
           "ids": [
             "S1-044"
           ],
-          "visible_pixels": 59
+          "visible_pixels": 59,
+          "visible_pixels_filtered": 59
         },
         {
           "id": "C124",
@@ -2698,7 +4039,8 @@
           "ids": [
             "S1-080"
           ],
-          "visible_pixels": 6
+          "visible_pixels": 6,
+          "visible_pixels_filtered": 6
         },
         {
           "id": "C125",
@@ -2709,7 +4051,8 @@
           "ids": [
             "S1-081"
           ],
-          "visible_pixels": 3
+          "visible_pixels": 3,
+          "visible_pixels_filtered": 3
         },
         {
           "id": "C126",
@@ -2720,10 +4063,12 @@
           "ids": [
             "S1-084"
           ],
-          "visible_pixels": 223
+          "visible_pixels": 223,
+          "visible_pixels_filtered": 223
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -2785,6 +4130,76 @@
           "model_intersection": 0,
           "model_disagreement": 16
         }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 257,
+            "fraction": 0.005121970663265306,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 8,
+              "unaudited": 249,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 35,
+            "fraction": 0.0006975446428571429,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 35,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 35,
+          "model_disagreement": 222
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 16,
+            "fraction": 0.00031887755102040814,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 16,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 16
+        }
       }
     },
     {
@@ -2815,9 +4230,20 @@
         "unaudited": 42323,
         "no_mesh": 135
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 0,
+        "suppressed": 2606,
+        "unaudited": 23274,
+        "no_mesh": 135,
+        "person_excluded": 24161
+      },
       "person": {
         "available": true,
-        "pixels": 10610
+        "pixels": 24161,
+        "segmentation_pixels": 10610,
+        "box_margin_pixels": 13551
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -2831,7 +4257,8 @@
             "S0-018",
             "S1-020"
           ],
-          "visible_pixels": 35
+          "visible_pixels": 35,
+          "visible_pixels_filtered": 21
         },
         {
           "id": "C033",
@@ -2843,7 +4270,8 @@
             "S0-035",
             "S1-019"
           ],
-          "visible_pixels": 7
+          "visible_pixels": 7,
+          "visible_pixels_filtered": 7
         },
         {
           "id": "C034",
@@ -2855,7 +4283,8 @@
             "S0-036",
             "S1-008"
           ],
-          "visible_pixels": 13
+          "visible_pixels": 13,
+          "visible_pixels_filtered": 6
         },
         {
           "id": "C035",
@@ -2867,7 +4296,8 @@
             "S0-037",
             "S1-021"
           ],
-          "visible_pixels": 965
+          "visible_pixels": 965,
+          "visible_pixels_filtered": 265
         },
         {
           "id": "C042",
@@ -2879,7 +4309,8 @@
             "S0-045",
             "S1-026"
           ],
-          "visible_pixels": 60
+          "visible_pixels": 60,
+          "visible_pixels_filtered": 26
         },
         {
           "id": "C043",
@@ -2891,7 +4322,8 @@
             "S0-047",
             "S1-054"
           ],
-          "visible_pixels": 1988
+          "visible_pixels": 1988,
+          "visible_pixels_filtered": 451
         },
         {
           "id": "C058",
@@ -2903,7 +4335,8 @@
             "S0-068",
             "S1-039"
           ],
-          "visible_pixels": 6
+          "visible_pixels": 6,
+          "visible_pixels_filtered": 6
         },
         {
           "id": "C059",
@@ -2915,7 +4348,8 @@
             "S0-069",
             "S1-007"
           ],
-          "visible_pixels": 8
+          "visible_pixels": 8,
+          "visible_pixels_filtered": 8
         },
         {
           "id": "C061",
@@ -2927,7 +4361,8 @@
             "S0-074",
             "S1-040"
           ],
-          "visible_pixels": 9
+          "visible_pixels": 9,
+          "visible_pixels_filtered": 3
         },
         {
           "id": "C063",
@@ -2939,7 +4374,8 @@
             "S0-076",
             "S1-072"
           ],
-          "visible_pixels": 7
+          "visible_pixels": 7,
+          "visible_pixels_filtered": 5
         },
         {
           "id": "C064",
@@ -2951,7 +4387,8 @@
             "S0-077",
             "S1-079"
           ],
-          "visible_pixels": 3152
+          "visible_pixels": 3152,
+          "visible_pixels_filtered": 521
         },
         {
           "id": "C066",
@@ -2963,7 +4400,8 @@
             "S0-084",
             "S1-052"
           ],
-          "visible_pixels": 33
+          "visible_pixels": 33,
+          "visible_pixels_filtered": 12
         },
         {
           "id": "C068",
@@ -2975,7 +4413,8 @@
             "S0-098",
             "S1-092"
           ],
-          "visible_pixels": 1275
+          "visible_pixels": 1275,
+          "visible_pixels_filtered": 1275
         },
         {
           "id": "C077",
@@ -2987,7 +4426,8 @@
             "S0-020",
             "S1-003"
           ],
-          "visible_pixels": 128
+          "visible_pixels": 128,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "N005",
@@ -2999,7 +4439,8 @@
             "I0-028",
             "I1-092"
           ],
-          "visible_pixels": 107
+          "visible_pixels": 107,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "N006",
@@ -3011,10 +4452,12 @@
             "I0-035",
             "I1-099"
           ],
-          "visible_pixels": 53
+          "visible_pixels": 53,
+          "visible_pixels_filtered": 0
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -3028,7 +4471,7 @@
               "unaudited": 9487,
               "no_mesh": 0
             },
-            "on_person_pixels": 10441
+            "on_person_pixels": 11102
           },
           "viewdelta": {
             "pixels": 10393,
@@ -3041,7 +4484,7 @@
               "unaudited": 9363,
               "no_mesh": 0
             },
-            "on_person_pixels": 10308
+            "on_person_pixels": 10393
           },
           "model_intersection": 10260,
           "model_disagreement": 975
@@ -3072,6 +4515,76 @@
               "no_mesh": 0
             },
             "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 11102
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 10393
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
           },
           "model_intersection": 0,
           "model_disagreement": 0
@@ -3107,9 +4620,20 @@
         "unaudited": 32350,
         "no_mesh": 148
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 0,
+        "suppressed": 7824,
+        "unaudited": 15749,
+        "no_mesh": 148,
+        "person_excluded": 26455
+      },
       "person": {
         "available": true,
-        "pixels": 10547
+        "pixels": 26455,
+        "segmentation_pixels": 10547,
+        "box_margin_pixels": 15908
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -3123,7 +4647,8 @@
             "S0-018",
             "S1-020"
           ],
-          "visible_pixels": 27
+          "visible_pixels": 27,
+          "visible_pixels_filtered": 15
         },
         {
           "id": "C020",
@@ -3135,7 +4660,8 @@
             "S0-021",
             "S1-070"
           ],
-          "visible_pixels": 16449
+          "visible_pixels": 16449,
+          "visible_pixels_filtered": 7416
         },
         {
           "id": "C030",
@@ -3147,7 +4673,8 @@
             "S0-032",
             "S1-025"
           ],
-          "visible_pixels": 3
+          "visible_pixels": 3,
+          "visible_pixels_filtered": 3
         },
         {
           "id": "C033",
@@ -3159,7 +4686,8 @@
             "S0-035",
             "S1-019"
           ],
-          "visible_pixels": 2
+          "visible_pixels": 2,
+          "visible_pixels_filtered": 2
         },
         {
           "id": "C034",
@@ -3171,7 +4699,8 @@
             "S0-036",
             "S1-008"
           ],
-          "visible_pixels": 8
+          "visible_pixels": 8,
+          "visible_pixels_filtered": 7
         },
         {
           "id": "C035",
@@ -3183,7 +4712,8 @@
             "S0-037",
             "S1-021"
           ],
-          "visible_pixels": 230
+          "visible_pixels": 230,
+          "visible_pixels_filtered": 71
         },
         {
           "id": "C042",
@@ -3195,7 +4725,8 @@
             "S0-045",
             "S1-026"
           ],
-          "visible_pixels": 32
+          "visible_pixels": 32,
+          "visible_pixels_filtered": 13
         },
         {
           "id": "C043",
@@ -3207,7 +4738,8 @@
             "S0-047",
             "S1-054"
           ],
-          "visible_pixels": 640
+          "visible_pixels": 640,
+          "visible_pixels_filtered": 236
         },
         {
           "id": "C058",
@@ -3219,7 +4751,8 @@
             "S0-068",
             "S1-039"
           ],
-          "visible_pixels": 4
+          "visible_pixels": 4,
+          "visible_pixels_filtered": 4
         },
         {
           "id": "C059",
@@ -3231,7 +4764,8 @@
             "S0-069",
             "S1-007"
           ],
-          "visible_pixels": 5
+          "visible_pixels": 5,
+          "visible_pixels_filtered": 5
         },
         {
           "id": "C061",
@@ -3243,7 +4777,8 @@
             "S0-074",
             "S1-040"
           ],
-          "visible_pixels": 7
+          "visible_pixels": 7,
+          "visible_pixels_filtered": 4
         },
         {
           "id": "C063",
@@ -3255,7 +4790,8 @@
             "S0-076",
             "S1-072"
           ],
-          "visible_pixels": 7
+          "visible_pixels": 7,
+          "visible_pixels_filtered": 5
         },
         {
           "id": "C064",
@@ -3267,7 +4803,8 @@
             "S0-077",
             "S1-079"
           ],
-          "visible_pixels": 132
+          "visible_pixels": 132,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "C066",
@@ -3279,7 +4816,8 @@
             "S0-084",
             "S1-052"
           ],
-          "visible_pixels": 10
+          "visible_pixels": 10,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "C068",
@@ -3291,7 +4829,8 @@
             "S0-098",
             "S1-092"
           ],
-          "visible_pixels": 43
+          "visible_pixels": 43,
+          "visible_pixels_filtered": 43
         },
         {
           "id": "C077",
@@ -3303,7 +4842,8 @@
             "S0-020",
             "S1-003"
           ],
-          "visible_pixels": 66
+          "visible_pixels": 66,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "N005",
@@ -3315,7 +4855,8 @@
             "I0-028",
             "I1-092"
           ],
-          "visible_pixels": 75
+          "visible_pixels": 75,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "N006",
@@ -3327,10 +4868,12 @@
             "I0-035",
             "I1-099"
           ],
-          "visible_pixels": 4
+          "visible_pixels": 4,
+          "visible_pixels_filtered": 0
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -3344,7 +4887,7 @@
               "unaudited": 7904,
               "no_mesh": 0
             },
-            "on_person_pixels": 10243
+            "on_person_pixels": 10682
           },
           "viewdelta": {
             "pixels": 12386,
@@ -3357,7 +4900,7 @@
               "unaudited": 383,
               "no_mesh": 0
             },
-            "on_person_pixels": 283
+            "on_person_pixels": 6243
           },
           "model_intersection": 396,
           "model_disagreement": 22276
@@ -3388,6 +4931,76 @@
               "no_mesh": 0
             },
             "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 10682
+          },
+          "viewdelta": {
+            "pixels": 6143,
+            "fraction": 0.12242904974489796,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 5941,
+              "unaudited": 202,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 6243
+          },
+          "model_intersection": 0,
+          "model_disagreement": 6143
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
           },
           "model_intersection": 0,
           "model_disagreement": 0
@@ -3428,9 +5041,20 @@
         "unaudited": 35919,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 107,
+        "group_context": 0,
+        "suppressed": 14150,
+        "unaudited": 35919,
+        "no_mesh": 0,
+        "person_excluded": 0
+      },
       "person": {
         "available": true,
-        "pixels": 0
+        "pixels": 0,
+        "segmentation_pixels": 0,
+        "box_margin_pixels": 0
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -3444,7 +5068,8 @@
             "S0-021",
             "S1-070"
           ],
-          "visible_pixels": 241
+          "visible_pixels": 241,
+          "visible_pixels_filtered": 241
         },
         {
           "id": "C021",
@@ -3456,7 +5081,8 @@
             "S0-022",
             "S1-073"
           ],
-          "visible_pixels": 37
+          "visible_pixels": 37,
+          "visible_pixels_filtered": 37
         },
         {
           "id": "C022",
@@ -3468,7 +5094,8 @@
             "S0-023",
             "S1-076"
           ],
-          "visible_pixels": 2
+          "visible_pixels": 2,
+          "visible_pixels_filtered": 2
         },
         {
           "id": "C025",
@@ -3480,7 +5107,8 @@
             "S0-026",
             "S1-071"
           ],
-          "visible_pixels": 20
+          "visible_pixels": 20,
+          "visible_pixels_filtered": 20
         },
         {
           "id": "C035",
@@ -3492,7 +5120,8 @@
             "S0-037",
             "S1-021"
           ],
-          "visible_pixels": 7606
+          "visible_pixels": 7606,
+          "visible_pixels_filtered": 7606
         },
         {
           "id": "C043",
@@ -3504,7 +5133,8 @@
             "S0-047",
             "S1-054"
           ],
-          "visible_pixels": 5889
+          "visible_pixels": 5889,
+          "visible_pixels_filtered": 5889
         },
         {
           "id": "C044",
@@ -3516,7 +5146,8 @@
             "S0-048",
             "S1-055"
           ],
-          "visible_pixels": 147
+          "visible_pixels": 147,
+          "visible_pixels_filtered": 147
         },
         {
           "id": "C045",
@@ -3528,7 +5159,8 @@
             "S0-049",
             "S1-074"
           ],
-          "visible_pixels": 19
+          "visible_pixels": 19,
+          "visible_pixels_filtered": 19
         },
         {
           "id": "C064",
@@ -3540,7 +5172,8 @@
             "S0-077",
             "S1-079"
           ],
-          "visible_pixels": 113
+          "visible_pixels": 113,
+          "visible_pixels_filtered": 113
         },
         {
           "id": "C068",
@@ -3552,7 +5185,8 @@
             "S0-098",
             "S1-092"
           ],
-          "visible_pixels": 39
+          "visible_pixels": 39,
+          "visible_pixels_filtered": 39
         },
         {
           "id": "C121",
@@ -3563,7 +5197,8 @@
           "ids": [
             "S1-044"
           ],
-          "visible_pixels": 31
+          "visible_pixels": 31,
+          "visible_pixels_filtered": 31
         },
         {
           "id": "C124",
@@ -3574,7 +5209,8 @@
           "ids": [
             "S1-080"
           ],
-          "visible_pixels": 4
+          "visible_pixels": 4,
+          "visible_pixels_filtered": 4
         },
         {
           "id": "C125",
@@ -3585,7 +5221,8 @@
           "ids": [
             "S1-081"
           ],
-          "visible_pixels": 2
+          "visible_pixels": 2,
+          "visible_pixels_filtered": 2
         },
         {
           "id": "C126",
@@ -3596,10 +5233,12 @@
           "ids": [
             "S1-084"
           ],
-          "visible_pixels": 107
+          "visible_pixels": 107,
+          "visible_pixels_filtered": 107
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -3661,6 +5300,76 @@
           "model_intersection": 0,
           "model_disagreement": 0
         }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 132,
+            "fraction": 0.0026307397959183672,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 38,
+              "unaudited": 94,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 5745,
+            "fraction": 0.11449697066326531,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 5726,
+              "unaudited": 19,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 5877
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
       }
     },
     {
@@ -3689,9 +5398,20 @@
         "unaudited": 38406,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 0,
+        "suppressed": 6483,
+        "unaudited": 38406,
+        "no_mesh": 0,
+        "person_excluded": 5287
+      },
       "person": {
         "available": true,
-        "pixels": 12
+        "pixels": 5287,
+        "segmentation_pixels": 12,
+        "box_margin_pixels": 5275
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -3705,7 +5425,8 @@
             "S0-037",
             "S1-021"
           ],
-          "visible_pixels": 10242
+          "visible_pixels": 10242,
+          "visible_pixels_filtered": 4955
         },
         {
           "id": "C064",
@@ -3717,7 +5438,8 @@
             "S0-077",
             "S1-079"
           ],
-          "visible_pixels": 1254
+          "visible_pixels": 1254,
+          "visible_pixels_filtered": 1254
         },
         {
           "id": "C068",
@@ -3729,10 +5451,12 @@
             "S0-098",
             "S1-092"
           ],
-          "visible_pixels": 274
+          "visible_pixels": 274,
+          "visible_pixels_filtered": 274
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -3746,7 +5470,7 @@
               "unaudited": 193,
               "no_mesh": 0
             },
-            "on_person_pixels": 0
+            "on_person_pixels": 107
           },
           "viewdelta": {
             "pixels": 473,
@@ -3794,6 +5518,76 @@
           "model_intersection": 0,
           "model_disagreement": 146
         }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 193,
+            "fraction": 0.0038464604591836736,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 193,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 107
+          },
+          "viewdelta": {
+            "pixels": 473,
+            "fraction": 0.009426817602040817,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 473,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 666
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 146,
+            "fraction": 0.0029097576530612247,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 146,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 146
+        }
       }
     },
     {
@@ -3827,9 +5621,20 @@
         "unaudited": 42361,
         "no_mesh": 142
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 1205,
+        "group_context": 25,
+        "suppressed": 5108,
+        "unaudited": 30544,
+        "no_mesh": 142,
+        "person_excluded": 13152
+      },
       "person": {
         "available": true,
-        "pixels": 9438
+        "pixels": 13152,
+        "segmentation_pixels": 9438,
+        "box_margin_pixels": 3714
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -3843,7 +5648,8 @@
             "S0-083",
             "S1-063"
           ],
-          "visible_pixels": 556
+          "visible_pixels": 556,
+          "visible_pixels_filtered": 556
         },
         {
           "id": "C007",
@@ -3855,7 +5661,8 @@
             "S0-019",
             "S1-004"
           ],
-          "visible_pixels": 3666
+          "visible_pixels": 3666,
+          "visible_pixels_filtered": 3666
         },
         {
           "id": "C016",
@@ -3867,7 +5674,8 @@
             "S0-013",
             "S1-018"
           ],
-          "visible_pixels": 9
+          "visible_pixels": 9,
+          "visible_pixels_filtered": 9
         },
         {
           "id": "C018",
@@ -3879,7 +5687,8 @@
             "S0-017",
             "S1-009"
           ],
-          "visible_pixels": 386
+          "visible_pixels": 386,
+          "visible_pixels_filtered": 256
         },
         {
           "id": "C019",
@@ -3891,7 +5700,8 @@
             "S0-018",
             "S1-020"
           ],
-          "visible_pixels": 51
+          "visible_pixels": 51,
+          "visible_pixels_filtered": 37
         },
         {
           "id": "C030",
@@ -3903,7 +5713,8 @@
             "S0-032",
             "S1-025"
           ],
-          "visible_pixels": 25
+          "visible_pixels": 25,
+          "visible_pixels_filtered": 25
         },
         {
           "id": "C033",
@@ -3915,7 +5726,8 @@
             "S0-035",
             "S1-019"
           ],
-          "visible_pixels": 64
+          "visible_pixels": 64,
+          "visible_pixels_filtered": 60
         },
         {
           "id": "C034",
@@ -3927,7 +5739,8 @@
             "S0-036",
             "S1-008"
           ],
-          "visible_pixels": 1
+          "visible_pixels": 1,
+          "visible_pixels_filtered": 1
         },
         {
           "id": "C040",
@@ -3939,7 +5752,8 @@
             "S0-042",
             "S1-062"
           ],
-          "visible_pixels": 6
+          "visible_pixels": 6,
+          "visible_pixels_filtered": 6
         },
         {
           "id": "C041",
@@ -3951,7 +5765,8 @@
             "S0-043",
             "S1-051"
           ],
-          "visible_pixels": 1
+          "visible_pixels": 1,
+          "visible_pixels_filtered": 1
         },
         {
           "id": "C051",
@@ -3963,7 +5778,8 @@
             "S0-055",
             "S1-017"
           ],
-          "visible_pixels": 7
+          "visible_pixels": 7,
+          "visible_pixels_filtered": 7
         },
         {
           "id": "C060",
@@ -3975,7 +5791,8 @@
             "S0-071",
             "S1-078"
           ],
-          "visible_pixels": 10
+          "visible_pixels": 10,
+          "visible_pixels_filtered": 10
         },
         {
           "id": "C061",
@@ -3987,7 +5804,8 @@
             "S0-074",
             "S1-040"
           ],
-          "visible_pixels": 29
+          "visible_pixels": 29,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "C063",
@@ -3999,7 +5817,8 @@
             "S0-076",
             "S1-072"
           ],
-          "visible_pixels": 13
+          "visible_pixels": 13,
+          "visible_pixels_filtered": 13
         },
         {
           "id": "C069",
@@ -4011,7 +5830,8 @@
             "S0-104",
             "S1-005"
           ],
-          "visible_pixels": 9
+          "visible_pixels": 9,
+          "visible_pixels_filtered": 9
         },
         {
           "id": "C072",
@@ -4023,7 +5843,8 @@
             "S0-007",
             "S1-002"
           ],
-          "visible_pixels": 62
+          "visible_pixels": 62,
+          "visible_pixels_filtered": 62
         },
         {
           "id": "C074",
@@ -4035,7 +5856,8 @@
             "S0-064",
             "S1-041"
           ],
-          "visible_pixels": 128
+          "visible_pixels": 128,
+          "visible_pixels_filtered": 128
         },
         {
           "id": "C077",
@@ -4047,7 +5869,8 @@
             "S0-020",
             "S1-003"
           ],
-          "visible_pixels": 1118
+          "visible_pixels": 1118,
+          "visible_pixels_filtered": 290
         },
         {
           "id": "C081",
@@ -4059,7 +5882,8 @@
             "S0-091",
             "S1-086"
           ],
-          "visible_pixels": 733
+          "visible_pixels": 733,
+          "visible_pixels_filtered": 733
         },
         {
           "id": "C087",
@@ -4070,7 +5894,8 @@
           "ids": [
             "S0-006"
           ],
-          "visible_pixels": 105
+          "visible_pixels": 105,
+          "visible_pixels_filtered": 43
         },
         {
           "id": "C091",
@@ -4081,7 +5906,8 @@
           "ids": [
             "S0-046"
           ],
-          "visible_pixels": 164
+          "visible_pixels": 164,
+          "visible_pixels_filtered": 164
         },
         {
           "id": "C092",
@@ -4092,7 +5918,8 @@
           "ids": [
             "S0-056"
           ],
-          "visible_pixels": 276
+          "visible_pixels": 276,
+          "visible_pixels_filtered": 133
         },
         {
           "id": "C097",
@@ -4103,7 +5930,8 @@
           "ids": [
             "S0-073"
           ],
-          "visible_pixels": 1
+          "visible_pixels": 1,
+          "visible_pixels_filtered": 1
         },
         {
           "id": "C103",
@@ -4114,7 +5942,8 @@
           "ids": [
             "S0-090"
           ],
-          "visible_pixels": 2
+          "visible_pixels": 2,
+          "visible_pixels_filtered": 2
         },
         {
           "id": "C106",
@@ -4125,7 +5954,8 @@
           "ids": [
             "S0-095"
           ],
-          "visible_pixels": 1
+          "visible_pixels": 1,
+          "visible_pixels_filtered": 1
         },
         {
           "id": "C112",
@@ -4136,7 +5966,8 @@
           "ids": [
             "S0-109"
           ],
-          "visible_pixels": 13
+          "visible_pixels": 13,
+          "visible_pixels_filtered": 13
         },
         {
           "id": "N005",
@@ -4148,7 +5979,8 @@
             "I0-028",
             "I1-092"
           ],
-          "visible_pixels": 454
+          "visible_pixels": 454,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "N006",
@@ -4160,7 +5992,8 @@
             "I0-035",
             "I1-099"
           ],
-          "visible_pixels": 390
+          "visible_pixels": 390,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "N007",
@@ -4172,7 +6005,8 @@
             "I0-039",
             "I1-098"
           ],
-          "visible_pixels": 128
+          "visible_pixels": 128,
+          "visible_pixels_filtered": 21
         },
         {
           "id": "N011",
@@ -4184,7 +6018,8 @@
             "I0-029",
             "I1-102"
           ],
-          "visible_pixels": 3264
+          "visible_pixels": 3264,
+          "visible_pixels_filtered": 3264
         },
         {
           "id": "N014",
@@ -4195,7 +6030,8 @@
           "ids": [
             "I0-031"
           ],
-          "visible_pixels": 188
+          "visible_pixels": 188,
+          "visible_pixels_filtered": 188
         },
         {
           "id": "N015",
@@ -4206,7 +6042,8 @@
           "ids": [
             "I0-032"
           ],
-          "visible_pixels": 254
+          "visible_pixels": 254,
+          "visible_pixels_filtered": 254
         },
         {
           "id": "N017",
@@ -4217,7 +6054,8 @@
           "ids": [
             "I0-042"
           ],
-          "visible_pixels": 89
+          "visible_pixels": 89,
+          "visible_pixels_filtered": 89
         },
         {
           "id": "N018",
@@ -4228,7 +6066,8 @@
           "ids": [
             "I0-044"
           ],
-          "visible_pixels": 382
+          "visible_pixels": 382,
+          "visible_pixels_filtered": 189
         },
         {
           "id": "WI0-034",
@@ -4239,7 +6078,8 @@
           "ids": [
             "I0-034"
           ],
-          "visible_pixels": 187
+          "visible_pixels": 187,
+          "visible_pixels_filtered": 187
         },
         {
           "id": "WI0-047",
@@ -4250,10 +6090,12 @@
           "ids": [
             "I0-047"
           ],
-          "visible_pixels": 298
+          "visible_pixels": 298,
+          "visible_pixels_filtered": 298
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -4267,7 +6109,7 @@
               "unaudited": 4776,
               "no_mesh": 0
             },
-            "on_person_pixels": 4804
+            "on_person_pixels": 5702
           },
           "viewdelta": {
             "pixels": 0,
@@ -4315,6 +6157,76 @@
           "model_intersection": 0,
           "model_disagreement": 212
         }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 658,
+            "fraction": 0.013113839285714286,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 404,
+              "group_context": 21,
+              "suppressed": 44,
+              "unaudited": 189,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 5702
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 658
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 212
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
       }
     },
     {
@@ -4346,9 +6258,20 @@
         "unaudited": 42390,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 81,
+        "group_context": 1877,
+        "suppressed": 1893,
+        "unaudited": 35933,
+        "no_mesh": 0,
+        "person_excluded": 10392
+      },
       "person": {
         "available": true,
-        "pixels": 5389
+        "pixels": 10392,
+        "segmentation_pixels": 5389,
+        "box_margin_pixels": 5003
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -4362,7 +6285,8 @@
             "S0-083",
             "S1-063"
           ],
-          "visible_pixels": 694
+          "visible_pixels": 694,
+          "visible_pixels_filtered": 694
         },
         {
           "id": "C069",
@@ -4374,7 +6298,8 @@
             "S0-104",
             "S1-005"
           ],
-          "visible_pixels": 78
+          "visible_pixels": 78,
+          "visible_pixels_filtered": 78
         },
         {
           "id": "C072",
@@ -4386,7 +6311,8 @@
             "S0-007",
             "S1-002"
           ],
-          "visible_pixels": 135
+          "visible_pixels": 135,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "C074",
@@ -4398,7 +6324,8 @@
             "S0-064",
             "S1-041"
           ],
-          "visible_pixels": 295
+          "visible_pixels": 295,
+          "visible_pixels_filtered": 23
         },
         {
           "id": "C077",
@@ -4410,7 +6337,8 @@
             "S0-020",
             "S1-003"
           ],
-          "visible_pixels": 3512
+          "visible_pixels": 3512,
+          "visible_pixels_filtered": 1877
         },
         {
           "id": "C081",
@@ -4422,7 +6350,8 @@
             "S0-091",
             "S1-086"
           ],
-          "visible_pixels": 932
+          "visible_pixels": 932,
+          "visible_pixels_filtered": 932
         },
         {
           "id": "C087",
@@ -4433,7 +6362,8 @@
           "ids": [
             "S0-006"
           ],
-          "visible_pixels": 364
+          "visible_pixels": 364,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "C091",
@@ -4444,7 +6374,8 @@
           "ids": [
             "S0-046"
           ],
-          "visible_pixels": 241
+          "visible_pixels": 241,
+          "visible_pixels_filtered": 10
         },
         {
           "id": "C092",
@@ -4455,7 +6386,8 @@
           "ids": [
             "S0-056"
           ],
-          "visible_pixels": 1021
+          "visible_pixels": 1021,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "C112",
@@ -4466,7 +6398,8 @@
           "ids": [
             "S0-109"
           ],
-          "visible_pixels": 23
+          "visible_pixels": 23,
+          "visible_pixels_filtered": 23
         },
         {
           "id": "N005",
@@ -4478,7 +6411,8 @@
             "I0-028",
             "I1-092"
           ],
-          "visible_pixels": 1792
+          "visible_pixels": 1792,
+          "visible_pixels_filtered": 1792
         },
         {
           "id": "N006",
@@ -4490,7 +6424,8 @@
             "I0-035",
             "I1-099"
           ],
-          "visible_pixels": 1102
+          "visible_pixels": 1102,
+          "visible_pixels_filtered": 250
         },
         {
           "id": "N007",
@@ -4502,7 +6437,8 @@
             "I0-039",
             "I1-098"
           ],
-          "visible_pixels": 370
+          "visible_pixels": 370,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "N014",
@@ -4513,7 +6449,8 @@
           "ids": [
             "I0-031"
           ],
-          "visible_pixels": 280
+          "visible_pixels": 280,
+          "visible_pixels_filtered": 38
         },
         {
           "id": "N015",
@@ -4524,7 +6461,8 @@
           "ids": [
             "I0-032"
           ],
-          "visible_pixels": 547
+          "visible_pixels": 547,
+          "visible_pixels_filtered": 43
         },
         {
           "id": "N017",
@@ -4535,7 +6473,8 @@
           "ids": [
             "I0-042"
           ],
-          "visible_pixels": 148
+          "visible_pixels": 148,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "N018",
@@ -4546,7 +6485,8 @@
           "ids": [
             "I0-044"
           ],
-          "visible_pixels": 1370
+          "visible_pixels": 1370,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "WI0-034",
@@ -4557,7 +6497,8 @@
           "ids": [
             "I0-034"
           ],
-          "visible_pixels": 375
+          "visible_pixels": 375,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "WI0-038",
@@ -4568,7 +6509,8 @@
           "ids": [
             "I0-038"
           ],
-          "visible_pixels": 4
+          "visible_pixels": 4,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "WI0-041",
@@ -4579,10 +6521,12 @@
           "ids": [
             "I0-041"
           ],
-          "visible_pixels": 7
+          "visible_pixels": 7,
+          "visible_pixels_filtered": 0
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -4596,7 +6540,7 @@
               "unaudited": 1484,
               "no_mesh": 0
             },
-            "on_person_pixels": 1797
+            "on_person_pixels": 3492
           },
           "viewdelta": {
             "pixels": 0,
@@ -4626,7 +6570,7 @@
               "unaudited": 8322,
               "no_mesh": 0
             },
-            "on_person_pixels": 1244
+            "on_person_pixels": 3056
           },
           "viewdelta": {
             "pixels": 0,
@@ -4643,6 +6587,76 @@
           },
           "model_intersection": 0,
           "model_disagreement": 9295
+        }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 2402,
+            "fraction": 0.04787149234693878,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 56,
+              "group_context": 1635,
+              "suppressed": 87,
+              "unaudited": 624,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 3492
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 2402
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 6239,
+            "fraction": 0.1243423150510204,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 56,
+              "group_context": 4,
+              "suppressed": 1,
+              "unaudited": 6178,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 3056
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 6239
         }
       }
     },
@@ -4670,9 +6684,20 @@
         "unaudited": 45395,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 11,
+        "group_context": 0,
+        "suppressed": 4770,
+        "unaudited": 45395,
+        "no_mesh": 0,
+        "person_excluded": 0
+      },
       "person": {
         "available": true,
-        "pixels": 0
+        "pixels": 0,
+        "segmentation_pixels": 0,
+        "box_margin_pixels": 0
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -4686,7 +6711,8 @@
             "S0-019",
             "S1-004"
           ],
-          "visible_pixels": 4781
+          "visible_pixels": 4781,
+          "visible_pixels_filtered": 4781
         },
         {
           "id": "N011",
@@ -4698,7 +6724,8 @@
             "I0-029",
             "I1-102"
           ],
-          "visible_pixels": 4714
+          "visible_pixels": 4714,
+          "visible_pixels_filtered": 4714
         },
         {
           "id": "WI0-047",
@@ -4709,10 +6736,12 @@
           "ids": [
             "I0-047"
           ],
-          "visible_pixels": 11
+          "visible_pixels": 11,
+          "visible_pixels_filtered": 11
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -4774,6 +6803,76 @@
           "model_intersection": 0,
           "model_disagreement": 1435
         }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 2027,
+            "fraction": 0.04039779974489796,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 738,
+              "unaudited": 1289,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 707,
+            "fraction": 0.014090401785714286,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 707,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 95,
+          "model_disagreement": 2544
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 1435,
+            "fraction": 0.028599330357142856,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 1435,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 1435
+        }
       }
     },
     {
@@ -4799,9 +6898,20 @@
         "unaudited": 44844,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 191,
+        "group_context": 0,
+        "suppressed": 5141,
+        "unaudited": 44844,
+        "no_mesh": 0,
+        "person_excluded": 0
+      },
       "person": {
         "available": true,
-        "pixels": 0
+        "pixels": 0,
+        "segmentation_pixels": 0,
+        "box_margin_pixels": 0
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -4815,7 +6925,8 @@
             "S0-019",
             "S1-004"
           ],
-          "visible_pixels": 1772
+          "visible_pixels": 1772,
+          "visible_pixels_filtered": 1772
         },
         {
           "id": "C043",
@@ -4827,7 +6938,8 @@
             "S0-047",
             "S1-054"
           ],
-          "visible_pixels": 3560
+          "visible_pixels": 3560,
+          "visible_pixels_filtered": 3560
         },
         {
           "id": "N011",
@@ -4839,7 +6951,8 @@
             "I0-029",
             "I1-102"
           ],
-          "visible_pixels": 1526
+          "visible_pixels": 1526,
+          "visible_pixels_filtered": 1526
         },
         {
           "id": "WI0-047",
@@ -4850,10 +6963,12 @@
           "ids": [
             "I0-047"
           ],
-          "visible_pixels": 191
+          "visible_pixels": 191,
+          "visible_pixels_filtered": 191
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -4915,6 +7030,76 @@
           "model_intersection": 0,
           "model_disagreement": 0
         }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 291,
+            "fraction": 0.005799585459183673,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 50,
+              "unaudited": 241,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 291
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
       }
     },
     {
@@ -4944,9 +7129,20 @@
         "unaudited": 48425,
         "no_mesh": 131
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 136,
+        "group_context": 234,
+        "suppressed": 640,
+        "unaudited": 33936,
+        "no_mesh": 131,
+        "person_excluded": 15099
+      },
       "person": {
         "available": true,
-        "pixels": 9440
+        "pixels": 15099,
+        "segmentation_pixels": 9440,
+        "box_margin_pixels": 5659
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -4960,7 +7156,8 @@
             "S0-013",
             "S1-018"
           ],
-          "visible_pixels": 7
+          "visible_pixels": 7,
+          "visible_pixels_filtered": 7
         },
         {
           "id": "C018",
@@ -4972,7 +7169,8 @@
             "S0-017",
             "S1-009"
           ],
-          "visible_pixels": 82
+          "visible_pixels": 82,
+          "visible_pixels_filtered": 70
         },
         {
           "id": "C019",
@@ -4984,7 +7182,8 @@
             "S0-018",
             "S1-020"
           ],
-          "visible_pixels": 29
+          "visible_pixels": 29,
+          "visible_pixels_filtered": 25
         },
         {
           "id": "C030",
@@ -4996,7 +7195,8 @@
             "S0-032",
             "S1-025"
           ],
-          "visible_pixels": 8
+          "visible_pixels": 8,
+          "visible_pixels_filtered": 8
         },
         {
           "id": "C033",
@@ -5008,7 +7208,8 @@
             "S0-035",
             "S1-019"
           ],
-          "visible_pixels": 22
+          "visible_pixels": 22,
+          "visible_pixels_filtered": 22
         },
         {
           "id": "C034",
@@ -5020,7 +7221,8 @@
             "S0-036",
             "S1-008"
           ],
-          "visible_pixels": 7
+          "visible_pixels": 7,
+          "visible_pixels_filtered": 7
         },
         {
           "id": "C042",
@@ -5032,7 +7234,8 @@
             "S0-045",
             "S1-026"
           ],
-          "visible_pixels": 329
+          "visible_pixels": 329,
+          "visible_pixels_filtered": 177
         },
         {
           "id": "C051",
@@ -5044,7 +7247,8 @@
             "S0-055",
             "S1-017"
           ],
-          "visible_pixels": 3
+          "visible_pixels": 3,
+          "visible_pixels_filtered": 3
         },
         {
           "id": "C058",
@@ -5056,7 +7260,8 @@
             "S0-068",
             "S1-039"
           ],
-          "visible_pixels": 1
+          "visible_pixels": 1,
+          "visible_pixels_filtered": 1
         },
         {
           "id": "C059",
@@ -5068,7 +7273,8 @@
             "S0-069",
             "S1-007"
           ],
-          "visible_pixels": 1
+          "visible_pixels": 1,
+          "visible_pixels_filtered": 1
         },
         {
           "id": "C060",
@@ -5080,7 +7286,8 @@
             "S0-071",
             "S1-078"
           ],
-          "visible_pixels": 7
+          "visible_pixels": 7,
+          "visible_pixels_filtered": 7
         },
         {
           "id": "C061",
@@ -5092,7 +7299,8 @@
             "S0-074",
             "S1-040"
           ],
-          "visible_pixels": 74
+          "visible_pixels": 74,
+          "visible_pixels_filtered": 53
         },
         {
           "id": "C063",
@@ -5104,7 +7312,8 @@
             "S0-076",
             "S1-072"
           ],
-          "visible_pixels": 12
+          "visible_pixels": 12,
+          "visible_pixels_filtered": 12
         },
         {
           "id": "C066",
@@ -5116,7 +7325,8 @@
             "S0-084",
             "S1-052"
           ],
-          "visible_pixels": 357
+          "visible_pixels": 357,
+          "visible_pixels_filtered": 188
         },
         {
           "id": "C077",
@@ -5128,7 +7338,8 @@
             "S0-020",
             "S1-003"
           ],
-          "visible_pixels": 453
+          "visible_pixels": 453,
+          "visible_pixels_filtered": 234
         },
         {
           "id": "C087",
@@ -5139,7 +7350,8 @@
           "ids": [
             "S0-006"
           ],
-          "visible_pixels": 44
+          "visible_pixels": 44,
+          "visible_pixels_filtered": 44
         },
         {
           "id": "C092",
@@ -5150,7 +7362,8 @@
           "ids": [
             "S0-056"
           ],
-          "visible_pixels": 90
+          "visible_pixels": 90,
+          "visible_pixels_filtered": 90
         },
         {
           "id": "C103",
@@ -5161,7 +7374,8 @@
           "ids": [
             "S0-090"
           ],
-          "visible_pixels": 3
+          "visible_pixels": 3,
+          "visible_pixels_filtered": 3
         },
         {
           "id": "N005",
@@ -5173,7 +7387,8 @@
             "I0-028",
             "I1-092"
           ],
-          "visible_pixels": 225
+          "visible_pixels": 225,
+          "visible_pixels_filtered": 22
         },
         {
           "id": "N006",
@@ -5185,7 +7400,8 @@
             "I0-035",
             "I1-099"
           ],
-          "visible_pixels": 245
+          "visible_pixels": 245,
+          "visible_pixels_filtered": 196
         },
         {
           "id": "N007",
@@ -5197,7 +7413,8 @@
             "I0-039",
             "I1-098"
           ],
-          "visible_pixels": 67
+          "visible_pixels": 67,
+          "visible_pixels_filtered": 67
         },
         {
           "id": "N018",
@@ -5208,10 +7425,12 @@
           "ids": [
             "I0-044"
           ],
-          "visible_pixels": 134
+          "visible_pixels": 134,
+          "visible_pixels_filtered": 134
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -5225,7 +7444,7 @@
               "unaudited": 9834,
               "no_mesh": 19
             },
-            "on_person_pixels": 9296
+            "on_person_pixels": 9557
           },
           "viewdelta": {
             "pixels": 0,
@@ -5255,7 +7474,7 @@
               "unaudited": 7663,
               "no_mesh": 0
             },
-            "on_person_pixels": 7813
+            "on_person_pixels": 7847
           },
           "viewdelta": {
             "pixels": 0,
@@ -5272,6 +7491,76 @@
           },
           "model_intersection": 0,
           "model_disagreement": 7847
+        }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 531,
+            "fraction": 0.010582748724489796,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 28,
+              "unaudited": 484,
+              "no_mesh": 19,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 9557
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 531
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 7847
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
         }
       }
     },
@@ -5311,9 +7600,20 @@
         "unaudited": 39059,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 0,
+        "suppressed": 730,
+        "unaudited": 28711,
+        "no_mesh": 0,
+        "person_excluded": 20735
+      },
       "person": {
         "available": true,
-        "pixels": 9684
+        "pixels": 20735,
+        "segmentation_pixels": 9684,
+        "box_margin_pixels": 11051
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -5327,7 +7627,8 @@
             "S0-083",
             "S1-063"
           ],
-          "visible_pixels": 576
+          "visible_pixels": 576,
+          "visible_pixels_filtered": 576
         },
         {
           "id": "C074",
@@ -5339,7 +7640,8 @@
             "S0-064",
             "S1-041"
           ],
-          "visible_pixels": 6756
+          "visible_pixels": 6756,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "C077",
@@ -5351,7 +7653,8 @@
             "S0-020",
             "S1-003"
           ],
-          "visible_pixels": 3504
+          "visible_pixels": 3504,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "C081",
@@ -5363,7 +7666,8 @@
             "S0-091",
             "S1-086"
           ],
-          "visible_pixels": 154
+          "visible_pixels": 154,
+          "visible_pixels_filtered": 154
         },
         {
           "id": "N006",
@@ -5375,7 +7679,8 @@
             "I0-035",
             "I1-099"
           ],
-          "visible_pixels": 1095
+          "visible_pixels": 1095,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "N007",
@@ -5387,7 +7692,8 @@
             "I0-039",
             "I1-098"
           ],
-          "visible_pixels": 1005
+          "visible_pixels": 1005,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "N022",
@@ -5398,7 +7704,8 @@
           "ids": [
             "I1-097"
           ],
-          "visible_pixels": 760
+          "visible_pixels": 760,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "WI1-094",
@@ -5409,7 +7716,8 @@
           "ids": [
             "I1-094"
           ],
-          "visible_pixels": 3506
+          "visible_pixels": 3506,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "WI1-100",
@@ -5420,7 +7728,8 @@
           "ids": [
             "I1-100"
           ],
-          "visible_pixels": 3110
+          "visible_pixels": 3110,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "WI1-103",
@@ -5431,7 +7740,8 @@
           "ids": [
             "I1-103"
           ],
-          "visible_pixels": 11
+          "visible_pixels": 11,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "WI1-104",
@@ -5442,7 +7752,8 @@
           "ids": [
             "I1-104"
           ],
-          "visible_pixels": 406
+          "visible_pixels": 406,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "WI1-105",
@@ -5453,10 +7764,12 @@
           "ids": [
             "I1-105"
           ],
-          "visible_pixels": 51
+          "visible_pixels": 51,
+          "visible_pixels_filtered": 0
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -5500,7 +7813,7 @@
               "unaudited": 2305,
               "no_mesh": 0
             },
-            "on_person_pixels": 9548
+            "on_person_pixels": 12374
           },
           "viewdelta": {
             "pixels": 0,
@@ -5517,6 +7830,76 @@
           },
           "model_intersection": 0,
           "model_disagreement": 12374
+        }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 22,
+            "fraction": 0.0004384566326530612,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 22,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 22
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 12374
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
         }
       }
     },
@@ -5552,9 +7935,20 @@
         "unaudited": 39111,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 1989,
+        "deferred": 4889,
+        "group_context": 414,
+        "suppressed": 3773,
+        "unaudited": 39111,
+        "no_mesh": 0,
+        "person_excluded": 0
+      },
       "person": {
         "available": true,
-        "pixels": 0
+        "pixels": 0,
+        "segmentation_pixels": 0,
+        "box_margin_pixels": 0
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -5568,7 +7962,8 @@
             "S0-083",
             "S1-063"
           ],
-          "visible_pixels": 1641
+          "visible_pixels": 1641,
+          "visible_pixels_filtered": 1641
         },
         {
           "id": "C074",
@@ -5580,7 +7975,8 @@
             "S0-064",
             "S1-041"
           ],
-          "visible_pixels": 3146
+          "visible_pixels": 3146,
+          "visible_pixels_filtered": 3146
         },
         {
           "id": "C077",
@@ -5592,7 +7988,8 @@
             "S0-020",
             "S1-003"
           ],
-          "visible_pixels": 2126
+          "visible_pixels": 2126,
+          "visible_pixels_filtered": 2126
         },
         {
           "id": "C081",
@@ -5604,7 +8001,8 @@
             "S0-091",
             "S1-086"
           ],
-          "visible_pixels": 1823
+          "visible_pixels": 1823,
+          "visible_pixels_filtered": 1823
         },
         {
           "id": "C116",
@@ -5615,7 +8013,8 @@
           "ids": [
             "S1-006"
           ],
-          "visible_pixels": 178
+          "visible_pixels": 178,
+          "visible_pixels_filtered": 178
         },
         {
           "id": "C118",
@@ -5626,7 +8025,8 @@
           "ids": [
             "S1-027"
           ],
-          "visible_pixels": 1248
+          "visible_pixels": 1248,
+          "visible_pixels_filtered": 1248
         },
         {
           "id": "C122",
@@ -5637,7 +8037,8 @@
           "ids": [
             "S1-053"
           ],
-          "visible_pixels": 290
+          "visible_pixels": 290,
+          "visible_pixels_filtered": 290
         },
         {
           "id": "N021",
@@ -5648,7 +8049,8 @@
           "ids": [
             "I1-096"
           ],
-          "visible_pixels": 1989
+          "visible_pixels": 1989,
+          "visible_pixels_filtered": 1989
         },
         {
           "id": "N022",
@@ -5659,7 +8061,8 @@
           "ids": [
             "I1-097"
           ],
-          "visible_pixels": 1576
+          "visible_pixels": 1576,
+          "visible_pixels_filtered": 1576
         },
         {
           "id": "WI1-094",
@@ -5670,7 +8073,8 @@
           "ids": [
             "I1-094"
           ],
-          "visible_pixels": 18
+          "visible_pixels": 18,
+          "visible_pixels_filtered": 18
         },
         {
           "id": "WI1-100",
@@ -5681,7 +8085,8 @@
           "ids": [
             "I1-100"
           ],
-          "visible_pixels": 3127
+          "visible_pixels": 3127,
+          "visible_pixels_filtered": 3127
         },
         {
           "id": "WI1-104",
@@ -5692,7 +8097,8 @@
           "ids": [
             "I1-104"
           ],
-          "visible_pixels": 12
+          "visible_pixels": 12,
+          "visible_pixels_filtered": 12
         },
         {
           "id": "WI1-105",
@@ -5703,10 +8109,17 @@
           "ids": [
             "I1-105"
           ],
-          "visible_pixels": 156
+          "visible_pixels": 156,
+          "visible_pixels_filtered": 156
         }
       ],
       "visible_groups": [
+        {
+          "id": "E001",
+          "pixels": 1989
+        }
+      ],
+      "visible_groups_filtered": [
         {
           "id": "E001",
           "pixels": 1989
@@ -5773,6 +8186,76 @@
           "model_intersection": 0,
           "model_disagreement": 4745
         }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 1610,
+            "fraction": 0.03208705357142857,
+            "by_baseline": {
+              "candidate": 930,
+              "deferred": 0,
+              "group_context": 1,
+              "suppressed": 0,
+              "unaudited": 679,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 1610
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 4745,
+            "fraction": 0.09456712372448979,
+            "by_baseline": {
+              "candidate": 1725,
+              "deferred": 79,
+              "group_context": 1,
+              "suppressed": 0,
+              "unaudited": 2940,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 4745
+        }
       }
     },
     {
@@ -5807,9 +8290,20 @@
         "unaudited": 42628,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 5,
+        "group_context": 0,
+        "suppressed": 2126,
+        "unaudited": 24643,
+        "no_mesh": 0,
+        "person_excluded": 23402
+      },
       "person": {
         "available": true,
-        "pixels": 10484
+        "pixels": 23402,
+        "segmentation_pixels": 10484,
+        "box_margin_pixels": 12918
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -5823,7 +8317,8 @@
             "S0-083",
             "S1-063"
           ],
-          "visible_pixels": 1354
+          "visible_pixels": 1354,
+          "visible_pixels_filtered": 703
         },
         {
           "id": "C069",
@@ -5835,7 +8330,8 @@
             "S0-104",
             "S1-005"
           ],
-          "visible_pixels": 30
+          "visible_pixels": 30,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "C072",
@@ -5847,7 +8343,8 @@
             "S0-007",
             "S1-002"
           ],
-          "visible_pixels": 2
+          "visible_pixels": 2,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "C074",
@@ -5859,7 +8356,8 @@
             "S0-064",
             "S1-041"
           ],
-          "visible_pixels": 1909
+          "visible_pixels": 1909,
+          "visible_pixels_filtered": 5
         },
         {
           "id": "C077",
@@ -5871,7 +8369,8 @@
             "S0-020",
             "S1-003"
           ],
-          "visible_pixels": 885
+          "visible_pixels": 885,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "C081",
@@ -5883,7 +8382,8 @@
             "S0-091",
             "S1-086"
           ],
-          "visible_pixels": 1423
+          "visible_pixels": 1423,
+          "visible_pixels_filtered": 1423
         },
         {
           "id": "C116",
@@ -5894,7 +8394,8 @@
           "ids": [
             "S1-006"
           ],
-          "visible_pixels": 178
+          "visible_pixels": 178,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "C118",
@@ -5905,7 +8406,8 @@
           "ids": [
             "S1-027"
           ],
-          "visible_pixels": 1041
+          "visible_pixels": 1041,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "C122",
@@ -5916,7 +8418,8 @@
           "ids": [
             "S1-053"
           ],
-          "visible_pixels": 247
+          "visible_pixels": 247,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "N021",
@@ -5927,7 +8430,8 @@
           "ids": [
             "I1-096"
           ],
-          "visible_pixels": 1651
+          "visible_pixels": 1651,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "N022",
@@ -5938,7 +8442,8 @@
           "ids": [
             "I1-097"
           ],
-          "visible_pixels": 885
+          "visible_pixels": 885,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "WI1-100",
@@ -5949,7 +8454,8 @@
           "ids": [
             "I1-100"
           ],
-          "visible_pixels": 1855
+          "visible_pixels": 1855,
+          "visible_pixels_filtered": 5
         },
         {
           "id": "WI1-105",
@@ -5960,7 +8466,8 @@
           "ids": [
             "I1-105"
           ],
-          "visible_pixels": 20
+          "visible_pixels": 20,
+          "visible_pixels_filtered": 0
         }
       ],
       "visible_groups": [
@@ -5969,6 +8476,7 @@
           "pixels": 1651
         }
       ],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -5982,7 +8490,7 @@
               "unaudited": 4012,
               "no_mesh": 0
             },
-            "on_person_pixels": 3492
+            "on_person_pixels": 4618
           },
           "viewdelta": {
             "pixels": 0,
@@ -6012,7 +8520,7 @@
               "unaudited": 6388,
               "no_mesh": 0
             },
-            "on_person_pixels": 8175
+            "on_person_pixels": 9518
           },
           "viewdelta": {
             "pixels": 0,
@@ -6029,6 +8537,76 @@
           },
           "model_intersection": 0,
           "model_disagreement": 9521
+        }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 4618
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 3,
+            "fraction": 5.978954081632653e-05,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 3,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 9518
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 3
         }
       }
     },
@@ -6070,9 +8648,20 @@
         "unaudited": 38903,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 137,
+        "group_context": 3625,
+        "suppressed": 2000,
+        "unaudited": 29289,
+        "no_mesh": 0,
+        "person_excluded": 15125
+      },
       "person": {
         "available": true,
-        "pixels": 10021
+        "pixels": 15125,
+        "segmentation_pixels": 10021,
+        "box_margin_pixels": 5104
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -6086,7 +8675,8 @@
             "S0-083",
             "S1-063"
           ],
-          "visible_pixels": 1124
+          "visible_pixels": 1124,
+          "visible_pixels_filtered": 656
         },
         {
           "id": "C072",
@@ -6098,7 +8688,8 @@
             "S0-007",
             "S1-002"
           ],
-          "visible_pixels": 139
+          "visible_pixels": 139,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "C074",
@@ -6110,7 +8701,8 @@
             "S0-064",
             "S1-041"
           ],
-          "visible_pixels": 2363
+          "visible_pixels": 2363,
+          "visible_pixels_filtered": 137
         },
         {
           "id": "C077",
@@ -6122,7 +8714,8 @@
             "S0-020",
             "S1-003"
           ],
-          "visible_pixels": 4499
+          "visible_pixels": 4499,
+          "visible_pixels_filtered": 3625
         },
         {
           "id": "C081",
@@ -6134,7 +8727,8 @@
             "S0-091",
             "S1-086"
           ],
-          "visible_pixels": 936
+          "visible_pixels": 936,
+          "visible_pixels_filtered": 936
         },
         {
           "id": "C115",
@@ -6145,7 +8739,8 @@
           "ids": [
             "S1-001"
           ],
-          "visible_pixels": 375
+          "visible_pixels": 375,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "C118",
@@ -6156,7 +8751,8 @@
           "ids": [
             "S1-027"
           ],
-          "visible_pixels": 771
+          "visible_pixels": 771,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "C122",
@@ -6167,7 +8763,8 @@
           "ids": [
             "S1-053"
           ],
-          "visible_pixels": 223
+          "visible_pixels": 223,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "N021",
@@ -6178,7 +8775,8 @@
           "ids": [
             "I1-096"
           ],
-          "visible_pixels": 1041
+          "visible_pixels": 1041,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "N005",
@@ -6190,7 +8788,8 @@
             "I0-028",
             "I1-092"
           ],
-          "visible_pixels": 1818
+          "visible_pixels": 1818,
+          "visible_pixels_filtered": 1818
         },
         {
           "id": "N006",
@@ -6202,7 +8801,8 @@
             "I0-035",
             "I1-099"
           ],
-          "visible_pixels": 1727
+          "visible_pixels": 1727,
+          "visible_pixels_filtered": 1727
         },
         {
           "id": "N007",
@@ -6214,7 +8814,8 @@
             "I0-039",
             "I1-098"
           ],
-          "visible_pixels": 860
+          "visible_pixels": 860,
+          "visible_pixels_filtered": 488
         },
         {
           "id": "N022",
@@ -6225,7 +8826,8 @@
           "ids": [
             "I1-097"
           ],
-          "visible_pixels": 277
+          "visible_pixels": 277,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "WI1-094",
@@ -6236,7 +8838,8 @@
           "ids": [
             "I1-094"
           ],
-          "visible_pixels": 2173
+          "visible_pixels": 2173,
+          "visible_pixels_filtered": 137
         },
         {
           "id": "WI1-100",
@@ -6247,7 +8850,8 @@
           "ids": [
             "I1-100"
           ],
-          "visible_pixels": 645
+          "visible_pixels": 645,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "WI1-104",
@@ -6258,7 +8862,8 @@
           "ids": [
             "I1-104"
           ],
-          "visible_pixels": 158
+          "visible_pixels": 158,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "WI1-105",
@@ -6269,7 +8874,8 @@
           "ids": [
             "I1-105"
           ],
-          "visible_pixels": 10
+          "visible_pixels": 10,
+          "visible_pixels_filtered": 0
         }
       ],
       "visible_groups": [
@@ -6278,6 +8884,7 @@
           "pixels": 1041
         }
       ],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -6291,7 +8898,7 @@
               "unaudited": 1375,
               "no_mesh": 0
             },
-            "on_person_pixels": 1786
+            "on_person_pixels": 2820
           },
           "viewdelta": {
             "pixels": 522,
@@ -6304,7 +8911,7 @@
               "unaudited": 0,
               "no_mesh": 0
             },
-            "on_person_pixels": 0
+            "on_person_pixels": 510
           },
           "model_intersection": 4,
           "model_disagreement": 4297
@@ -6321,7 +8928,7 @@
               "unaudited": 5094,
               "no_mesh": 0
             },
-            "on_person_pixels": 4368
+            "on_person_pixels": 6134
           },
           "viewdelta": {
             "pixels": 0,
@@ -6338,6 +8945,76 @@
           },
           "model_intersection": 0,
           "model_disagreement": 12503
+        }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 963,
+            "fraction": 0.019192442602040817,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 24,
+              "group_context": 862,
+              "suppressed": 15,
+              "unaudited": 62,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 2820
+          },
+          "viewdelta": {
+            "pixels": 12,
+            "fraction": 0.00023915816326530612,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 12,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 510
+          },
+          "model_intersection": 0,
+          "model_disagreement": 975
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 6369,
+            "fraction": 0.12693319515306123,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 137,
+              "group_context": 3613,
+              "suppressed": 378,
+              "unaudited": 2241,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 6134
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 6369
         }
       }
     },
@@ -6375,9 +9052,20 @@
         "unaudited": 38158,
         "no_mesh": 0
       },
+      "baseline_filtered": {
+        "candidate": 0,
+        "deferred": 4813,
+        "group_context": 5889,
+        "suppressed": 1076,
+        "unaudited": 35988,
+        "no_mesh": 0,
+        "person_excluded": 2410
+      },
       "person": {
         "available": true,
-        "pixels": 0
+        "pixels": 2410,
+        "segmentation_pixels": 0,
+        "box_margin_pixels": 2410
       },
       "map_error_u": 0.11747797410935164,
       "records": [
@@ -6391,7 +9079,8 @@
             "S0-017",
             "S1-009"
           ],
-          "visible_pixels": 671
+          "visible_pixels": 671,
+          "visible_pixels_filtered": 671
         },
         {
           "id": "C061",
@@ -6403,7 +9092,8 @@
             "S0-074",
             "S1-040"
           ],
-          "visible_pixels": 32
+          "visible_pixels": 32,
+          "visible_pixels_filtered": 0
         },
         {
           "id": "C074",
@@ -6415,7 +9105,8 @@
             "S0-064",
             "S1-041"
           ],
-          "visible_pixels": 3301
+          "visible_pixels": 3301,
+          "visible_pixels_filtered": 3301
         },
         {
           "id": "C077",
@@ -6427,7 +9118,8 @@
             "S0-020",
             "S1-003"
           ],
-          "visible_pixels": 7592
+          "visible_pixels": 7592,
+          "visible_pixels_filtered": 7403
         },
         {
           "id": "N005",
@@ -6439,7 +9131,8 @@
             "I0-028",
             "I1-092"
           ],
-          "visible_pixels": 1232
+          "visible_pixels": 1232,
+          "visible_pixels_filtered": 1024
         },
         {
           "id": "N006",
@@ -6451,7 +9144,8 @@
             "I0-035",
             "I1-099"
           ],
-          "visible_pixels": 2236
+          "visible_pixels": 2236,
+          "visible_pixels_filtered": 2236
         },
         {
           "id": "N007",
@@ -6463,7 +9157,8 @@
             "I0-039",
             "I1-098"
           ],
-          "visible_pixels": 2055
+          "visible_pixels": 2055,
+          "visible_pixels_filtered": 2055
         },
         {
           "id": "N022",
@@ -6474,7 +9169,8 @@
           "ids": [
             "I1-097"
           ],
-          "visible_pixels": 476
+          "visible_pixels": 476,
+          "visible_pixels_filtered": 476
         },
         {
           "id": "WI1-094",
@@ -6485,7 +9181,8 @@
           "ids": [
             "I1-094"
           ],
-          "visible_pixels": 2815
+          "visible_pixels": 2815,
+          "visible_pixels_filtered": 2815
         },
         {
           "id": "WI1-100",
@@ -6496,7 +9193,8 @@
           "ids": [
             "I1-100"
           ],
-          "visible_pixels": 484
+          "visible_pixels": 484,
+          "visible_pixels_filtered": 484
         },
         {
           "id": "WI1-103",
@@ -6507,7 +9205,8 @@
           "ids": [
             "I1-103"
           ],
-          "visible_pixels": 14
+          "visible_pixels": 14,
+          "visible_pixels_filtered": 14
         },
         {
           "id": "WI1-104",
@@ -6518,7 +9217,8 @@
           "ids": [
             "I1-104"
           ],
-          "visible_pixels": 898
+          "visible_pixels": 898,
+          "visible_pixels_filtered": 898
         },
         {
           "id": "WI1-105",
@@ -6529,10 +9229,12 @@
           "ids": [
             "I1-105"
           ],
-          "visible_pixels": 126
+          "visible_pixels": 126,
+          "visible_pixels_filtered": 126
         }
       ],
       "visible_groups": [],
+      "visible_groups_filtered": [],
       "stats": {
         "view": {
           "simsac": {
@@ -6546,7 +9248,7 @@
               "unaudited": 1239,
               "no_mesh": 0
             },
-            "on_person_pixels": 0
+            "on_person_pixels": 275
           },
           "viewdelta": {
             "pixels": 0,
@@ -6576,7 +9278,7 @@
               "unaudited": 2334,
               "no_mesh": 0
             },
-            "on_person_pixels": 0
+            "on_person_pixels": 928
           },
           "viewdelta": {
             "pixels": 0,
@@ -6593,6 +9295,76 @@
           },
           "model_intersection": 0,
           "model_disagreement": 5754
+        }
+      },
+      "stats_filtered": {
+        "view": {
+          "simsac": {
+            "pixels": 5039,
+            "fraction": 0.10042649872448979,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 194,
+              "group_context": 3466,
+              "suppressed": 237,
+              "unaudited": 1142,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 275
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 5039
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 4826,
+            "fraction": 0.09618144132653061,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 55,
+              "group_context": 2926,
+              "suppressed": 231,
+              "unaudited": 1614,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 928
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0,
+              "person_excluded": 0
+            },
+            "on_person_pixels": 0,
+            "removed_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 4826
         }
       }
     }
@@ -6857,6 +9629,21 @@
   },
   "threshold": 0.5,
   "pairing": "Exact upstream SceneDiff view-overlap weights from mesh-input branch; all nonzero counterparts used. No change scores used to choose frame pairs.",
+  "person_filter": {
+    "default_enabled": true,
+    "models": [
+      "simsac",
+      "viewdelta"
+    ],
+    "method": "candidate AND NOT query-frame person mask or wrapped detection box",
+    "source": "Existing YOLO11l original-frame person segmentation + conservative detection box",
+    "query_segmentation_and_box_union": true,
+    "box_padding_fraction": 0.1,
+    "applies_to_baseline_projection": true,
+    "missing_mask": "Filtered results unavailable; label raw fallback explicitly",
+    "probabilities_unchanged": true,
+    "reference_warp_filter": false
+  },
   "conditions": {
     "physical_event_ground_truth": false,
     "different_floors": true,

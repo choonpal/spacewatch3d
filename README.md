@@ -4,6 +4,7 @@
 
 **Task 5a는 현재 모델 비교를 진행 중입니다.** 기존 정합오차·관측검증 방식과 **SimSaC·ViewDelta**를 같은 RGB 관측 화면에서 비교하고 있으며, 앞서 실행한 SceneDiff의 원본 입력 / 메쉬·인스턴스 입력 결과도 함께 보관했습니다.
 
+- **사람 제외 기본 적용:** 기존 사람 분할·검출 박스로 RGB 모델 후보와 메쉬 투영의 가림 영역을 제외합니다. 토글로 원본과 비교할 수 있습니다.
 - [진행 상황·실행 방법](docs/task5a-model-comparison-20261025.md)
 - [Task 5a README](src/spacewatch3d/tasks/task_5a_change_detection/README.md)
 - [비교 화면 파일](src/spacewatch3d/tasks/task_5a_change_detection/assets/panorama-change-20261025/focus-comparison-20261025/index.html) · [실제 화면 캡처](src/spacewatch3d/tasks/task_5a_change_detection/assets/panorama-change-20261025/focus-comparison-20261025/viewer.png)

@@ -124,3 +124,5 @@ python tools/scenediff_mesh/build_focus_comparison.py
 `focus-comparison-20261025/index.html`은 저장된 `automatic-lifecycle-v2` 판정과 두 모델의 실제 추론 캐시를 비교한다. 기존 방식의 양성 표면은 `event_groups.entry_ids` 트랙의 `face-audit.original_face_ids`만 원본 메쉬에서 first-hit 투영한다. 그룹 문맥·보류·억제·판정 연결 없음·메쉬 hit 없음은 따로 집계한다. 주변 의자 메쉬 전체를 양성으로 만들지 않는다.
 
 같은 30개 RGB 뷰의 해시, 기존 준비 데이터와 깊이·유효 hit 일치, 후보 픽셀의 배타적 분해를 검증한다. 모델 원본 확률과 0.5 임계값은 고정한다. 기존 방식은 전체 촬영, 두 모델은 파일럿 20프레임이므로 관측량을 맞춘 정확도 비교가 아니다. `validation.json`에 검증·소스 해시, `baseline-projections.npz`에 투영된 원본 면 인덱스와 판정 bit를 저장한다.
+
+사람 제외가 기본값이다. 기존 YOLO11l의 대상 프레임 사람 분할과 ERP seam을 감싼 검출 박스를 합쳐 두 RGB 모델 후보와 메쉬 투영에 동일하게 적용한다. RGB 사람 뒤의 메쉬 면은 관측 가능한 것으로 세지 않는다. 원본 모델 확률·기존 객체 판정은 유지하며 화면 토글을 끄면 필터 전 결과를 볼 수 있다.

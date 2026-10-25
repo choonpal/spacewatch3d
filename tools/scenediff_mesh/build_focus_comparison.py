@@ -2,6 +2,7 @@
 
 No decisions, geometry, model probabilities, or thresholds are refitted here.
 Only candidate-trigger track faces are positive; event-group context is separate.
+Existing person masks exclude RGB occlusions from the displayed comparison.
 """
 from __future__ import annotations
 
@@ -58,6 +59,30 @@ def measure(mask, regions, person, person_available):
                 on_person_pixels=int((mask & person).sum()) if person_available else None)
 
 
+def exclude_person(mask, person):
+    """Post-filter in query RGB coordinates; do not alter model probabilities."""
+    assert mask.shape == person.shape and person.dtype == bool
+    filtered = mask & ~person
+    assert not (filtered & person).any()
+    assert np.array_equal(filtered[~person], mask[~person])
+    assert int(mask.sum()) == int(filtered.sum()) + int((mask & person).sum())
+    return filtered
+
+
+def wrapped_box_mask(shape, bounds):
+    """ERP unwrapped xyxy box, preserving seam wrap and clamping the poles."""
+    height, width = shape
+    x0, y0, x1, y1 = bounds
+    result = np.zeros(shape, bool)
+    top, bottom = max(0, int(np.floor(y0))), min(height, int(np.ceil(y1)))
+    left, right = int(np.floor(x0)), int(np.ceil(x1))
+    if bottom <= top or right <= left:
+        return result
+    columns = np.arange(left, min(right, left + width)) % width
+    result[top:bottom, columns] = True
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, default=Path("outputs/scenediff-mesh-rgb-20261024"))
@@ -82,6 +107,7 @@ def main():
     prepared = {z: np.load(root / "prepared" / z / "inputs.npz") for z in zones}
     probs = {m: np.load(source / "results" / m / "common_view_probabilities.npz")
              for m in ["simsac", "viewdelta"]}
+    erp_probs = {m: np.load(source / "results" / m / "erp_probabilities.npz") for m in probs}
     models = {}
     for m in probs:
         folder = source / "results" / m
@@ -127,9 +153,17 @@ def main():
                                      for key in entries}))
 
     _, directions = make_grid(224)
-    result = dict(schema="frozen-occupancy-vs-pair-models-v1", views=[], groups=groups,
+    result = dict(schema="frozen-occupancy-vs-pair-models-v2", views=[], groups=groups,
                   zones=zones, baseline_summary=review["summary"], policy=review["policy"],
                   models=models, threshold=.5, pairing=manifest["pairing"],
+                  person_filter=dict(default_enabled=True, models=list(probs),
+                                     method="candidate AND NOT query-frame person mask or wrapped detection box",
+                                     source="Existing YOLO11l original-frame person segmentation + conservative detection box",
+                                     query_segmentation_and_box_union=True,
+                                     box_padding_fraction=.10,
+                                     applies_to_baseline_projection=True,
+                                     missing_mask="Filtered results unavailable; label raw fallback explicitly",
+                                     probabilities_unchanged=True, reference_warp_filter=False),
                   conditions={"physical_event_ground_truth": False, "different_floors": True,
                               "baseline_observations": "Full previous capture; saved automatic decisions",
                               "pair_model_observations": "20 pilot ERP frames / 30 direction views",
@@ -166,31 +200,50 @@ def main():
         arrays[f"faces__{key}"] = np.where(valid, faces, -1).astype("i4")
         person = np.zeros(valid.shape, bool)
         detection = detection_frames.get((epoch, v["frame"]))
-        person_paths = [prior.parent / o["mask_url"] for o in detection["objects"]
-                        if o["class_name"] == "person"] if detection else []
+        person_objects = [o for o in detection['objects'] if o['class_name'] == 'person'] if detection else []
+        person_paths = [prior.parent / o['mask_url'] for o in person_objects]
         person_available = detection is not None and all(p.exists() for p in person_paths)
-        for path in person_paths:
+        erp_person = np.zeros(rgb[v['erp']].shape[:2], bool)
+        person_segmentation = np.zeros(valid.shape, bool)
+        for obj, path in zip(person_objects, person_paths):
             if path.exists():
                 mask = np.asarray(Image.open(path).convert("L")) > 127
+                person_segmentation |= project_mask(mask, rot, directions)
+                x0, y0, x1, y1 = obj['bbox_unwrapped_px']
+                margin_x, margin_y = (x1-x0)*.10, (y1-y0)*.10
+                mask |= wrapped_box_mask(mask.shape, [x0-margin_x, y0-margin_y, x1+margin_x, y1+margin_y])
                 person |= project_mask(mask, rot, directions)
+                erp_person |= np.asarray(Image.fromarray(mask).resize(
+                    (erp_person.shape[1], erp_person.shape[0]), Image.Resampling.NEAREST))
                 person_sources[str(path)] = sha(path)
+        filtered_regions = {k: exclude_person(mask, person) for k, mask in regions.items()}
+        filtered_regions['person_excluded'] = person
+        assert sum(int(mask.sum()) for mask in filtered_regions.values()) == 224 * 224
         arrays[f"person__{key}"] = person
+        arrays[f"person_segmentation__{key}"] = person_segmentation
         entry = dict(v, baseline={k: int(mask.sum()) for k, mask in regions.items()},
-                     person=dict(available=person_available, pixels=int(person.sum())),
+                     baseline_filtered={k: int(mask.sum()) for k, mask in filtered_regions.items()} if person_available else None,
+                     person=dict(available=person_available, pixels=int(person.sum()),
+                                 segmentation_pixels=int(person_segmentation.sum()),
+                                 box_margin_pixels=int((person & ~person_segmentation).sum())),
                      map_error_u=ctx["methods"]["structure"]["errors"]["regions"][zone]["tolerance_u"],
-                     records=[], visible_groups=[], stats={})
+                     records=[], visible_groups=[], visible_groups_filtered=[], stats={}, stats_filtered={})
         for rec in records:
             fs = [i for k in rec["ids"] if audit[k]["epoch"] == epoch
                   for i in audit[k]["original_face_ids"]]
             count = int((valid & np.isin(faces, fs)).sum()) if fs else 0
             if count:
-                entry["records"].append(dict(rec, visible_pixels=count))
+                filtered_count = int((valid & np.isin(faces, fs) & ~person).sum())
+                entry["records"].append(dict(rec, visible_pixels=count, visible_pixels_filtered=filtered_count))
         for group in groups:
             fs = [i for k in group["entries"] if audit[k]["epoch"] == epoch
                   for i in audit[k]["original_face_ids"]]
             count = int((valid & np.isin(faces, fs)).sum()) if fs else 0
             if count:
                 entry["visible_groups"].append(dict(id=group["id"], pixels=count))
+                filtered_count = int((valid & np.isin(faces, fs) & ~person).sum())
+                if filtered_count and person_available:
+                    entry['visible_groups_filtered'].append(dict(id=group['id'], pixels=filtered_count))
         Image.fromarray(frame_rgb).save(images / f"{key}-rgb.png")
         baseline = overlay(frame_rgb, regions["candidate"], COLORS["baseline"])
         Image.fromarray(baseline).save(images / f"{key}-baseline.png")
@@ -198,18 +251,39 @@ def main():
         with_review = overlay(with_review, regions["group_context"], COLORS["group_context"])
         with_review = overlay(with_review, regions["candidate"], COLORS["baseline"])
         Image.fromarray(with_review).save(images / f"{key}-baseline-review.png")
+        baseline_filtered = overlay(frame_rgb, filtered_regions['candidate'], COLORS['baseline'])
+        Image.fromarray(baseline_filtered).save(images / f"{key}-baseline-filtered.png")
+        with_review_filtered = overlay(frame_rgb, filtered_regions['deferred'], COLORS['deferred'])
+        with_review_filtered = overlay(with_review_filtered, filtered_regions['group_context'], COLORS['group_context'])
+        with_review_filtered = overlay(with_review_filtered, filtered_regions['candidate'], COLORS['baseline'])
+        Image.fromarray(with_review_filtered).save(images / f"{key}-baseline-review-filtered.png")
         Image.fromarray(overlay(frame_rgb, person, COLORS["person"])).save(images / f"{key}-person.png")
         for mode in ["view", "erp"]:
-            masks = {}
+            masks, filtered_masks = {}, {}
             for model in probs:
                 probability = probs[model][mode + "__" + key]
                 assert probability.shape == valid.shape and np.isfinite(probability).all()
                 masks[model] = probability > .5
                 Image.fromarray(overlay(frame_rgb, masks[model], COLORS[model])).save(images / f"{key}-{mode}-{model}.png")
+                filtered_masks[model] = exclude_person(masks[model], person)
+                Image.fromarray(overlay(frame_rgb, filtered_masks[model], COLORS[model])).save(
+                    images / f"{key}-{mode}-{model}-filtered.png")
             entry["stats"][mode] = {m: measure(mask, regions, person, person_available)
                                     for m, mask in masks.items()}
             entry["stats"][mode]["model_intersection"] = int((masks["simsac"] & masks["viewdelta"]).sum())
             entry["stats"][mode]["model_disagreement"] = int((masks["simsac"] ^ masks["viewdelta"]).sum())
+            if person_available:
+                entry['stats_filtered'][mode] = {
+                    m: dict(measure(mask, filtered_regions, person, True),
+                            removed_person_pixels=int((masks[m] & person).sum()))
+                    for m, mask in filtered_masks.items()}
+                entry['stats_filtered'][mode]['model_intersection'] = int((filtered_masks['simsac'] & filtered_masks['viewdelta']).sum())
+                entry['stats_filtered'][mode]['model_disagreement'] = int((filtered_masks['simsac'] ^ filtered_masks['viewdelta']).sum())
+        for model in probs:
+            erp_mask = erp_probs[model][key] > .5
+            erp_filtered = exclude_person(erp_mask, erp_person)
+            Image.fromarray(overlay(rgb[v['erp']], erp_filtered, COLORS[model])).save(
+                images / f'{key}-erp-full-{model}-filtered.jpg', quality=94)
         result["views"].append(entry)
         print(f"{key}: existing={entry['baseline']['candidate']} px; "
               f"SimSaC={entry['stats']['view']['simsac']['pixels']}; "
@@ -220,11 +294,16 @@ def main():
                     prior / "image-lifecycle-newmesh-v1/detections.json", source / "inputs/manifest.json"]
     source_paths += [prior / f"new-inputs/{kind}-{epoch}.{ext}"
                      for epoch in [0, 1] for kind, ext in [("labeled-mesh", "npz"), ("poses", "json")]]
-    source_paths += [source / "results" / model / "common_view_probabilities.npz" for model in probs]
+    source_paths += [source / "results" / model / filename for model in probs
+                     for filename in ['common_view_probabilities.npz', 'erp_probabilities.npz']]
     write(out / "validation.json", dict(views=validation, source_hashes={str(p): sha(p) for p in source_paths},
                                        person_mask_hashes=person_sources, bit_flags=BITS,
                                        candidate_face_source="event_groups.entry_ids -> face-audit.original_face_ids",
-                                       context_never_promoted_to_candidate=True, model_threshold_fixed=.5))
+                                       context_never_promoted_to_candidate=True, model_threshold_fixed=.5,
+                                       person_filter=result['person_filter'],
+                                       filtered_views=sum(v['person']['available'] for v in result['views']),
+                                       filtered_person_candidate_pixels=0,
+                                       outside_person_masks_unchanged=True))
     for filename in ["focus.html", "focus.js"]:
         shutil.copy2(Path(__file__).with_name(filename), out / ("index.html" if filename.endswith("html") else "focus.js"))
     aggregate = {}
@@ -235,6 +314,12 @@ def main():
     positive_pixels = sum(v["baseline"]["candidate"] for v in result["views"])
     coverage = {mode: {m: aggregate[mode][m]["by_baseline"]["candidate"] for m in probs}
                 for mode in aggregate}
+    filtered_totals = {mode: {
+        m: dict(pixels=sum(v['stats_filtered'][mode][m]['pixels'] for v in result['views'] if mode in v['stats_filtered']),
+                removed_person_pixels=sum(v['stats_filtered'][mode][m]['removed_person_pixels'] for v in result['views'] if mode in v['stats_filtered']),
+                on_candidate_pixels=sum(v['stats_filtered'][mode][m]['by_baseline']['candidate'] for v in result['views'] if mode in v['stats_filtered']))
+        for m in probs} for mode in ['view', 'erp']}
+    visible_filtered = sum(v['baseline_filtered']['candidate'] for v in result['views'] if v['baseline_filtered'])
     report = ["# 기존 정합오차·관측검증 / SimSaC / ViewDelta", "",
               "기존 occupancy-evidence-v2 자동 판정을 고정하고 원본 면을 동일 RGB 시점에 first-hit 투영했다.",
               "주황색 양성 영역은 후보를 발생시킨 트랙의 면만 포함한다. 그룹에 속한 주변 메시 전체를 양성으로 바꾸지 않았다.",
@@ -246,18 +331,25 @@ def main():
               "Dorm2와 Dorm3는 서로 다른 층이며 물리적 시간 변화 정답이 없다. 후보 픽셀 크기는 물체 수·정확도가 아니다.", "",
               "입력 기본값은 동일 방향 RGB. 새 모델의 모든 비영 대응 예측확률 평균 > 0.5를 그대로 사용했다.",
               "ERP 입력 결과도 유지한다. 자기 입력 비교 후보는 두 모델 모두 0이었다.",
-              "정확히 같은 프레임의 기존 person segmentation과 겹침은 참고용이며 후보를 삭제하지 않는다. 검출 없음은 사람 부재 정답이 아니다.", "",
-              "## 현재 관찰", "",
+              "기본 비교는 같은 프레임의 기존 person segmentation과 각 변에 10% 여유를 둔 검출 박스의 합집합에 겹치는 RGB 모델 후보를 제외한다. 박스는 ERP seam을 감싸며 사람 외곽·옷의 누락을 보수적으로 제외한다. 박스 안의 주변 표면도 비교에서 빠질 수 있다. 원본 출력은 사람 제외 토글을 끄면 볼 수 있다.",
+              "같은 마스크를 기존 메쉬 투영에도 적용한다. 정적 메쉬에서 사람이 빠지면 RGB 사람 뒤의 표면이 first-hit될 수 있어, 해당 픽셀을 관측 가능한 표면으로 세지 않는다. 저장된 기존 객체 판정은 바꾸지 않는다.",
+              "대상 RGB 프레임에서만 후처리한다. 반대 촬영 사람의 영향까지 모두 제거됐다는 뜻은 아니다. 검출 없음은 사람 부재 정답이 아니다.", "",
+              "## 사람 제외 후 기본 비교", "",
+              f"사람에 가려진 투영을 제외한 기존 후보 표면은 {visible_filtered:,}px이다. 원본 투영 {positive_pixels:,}px를 보존한다.",
+              "```json", json.dumps(filtered_totals, ensure_ascii=False, indent=2), "```", "",
+              "## 필터 전 원본 관찰 (보존)", "",
               f"- R08의 기존 의자 후보가 보이는 3개 시점의 표면 {positive_pixels:,}px 중, "
               f"동일 방향 RGB 입력 SimSaC는 {coverage['view']['simsac']:,}px와 겹쳤고 ViewDelta는 {coverage['view']['viewdelta']:,}px와 겹쳤다.",
               f"- ERP 전체 입력에서는 같은 표면에 SimSaC {coverage['erp']['simsac']:,}px, ViewDelta {coverage['erp']['viewdelta']:,}px가 겹쳤다. 입력 방식에 따라 반응이 달랐다.",
               "- SimSaC는 R08의 기존 보류 영역도 선택했다. ViewDelta가 선택한 보류 면도 있어 판정 이유와 상대 RGB를 함께 보여준다.",
               "- R07에서는 SimSaC가 촬영자 머리, ViewDelta가 머리 또는 주변 문·벽 영역을 선택한 사례가 있다. 두 모델의 원본 후보를 시설물 변화로 바로 채택하지 않았다.", "",
-              "## 후보 픽셀 분해", "", "```json", json.dumps(aggregate, ensure_ascii=False, indent=2), "```", "",
+              "## 필터 전 원본 후보 픽셀 분해", "", "```json", json.dumps(aggregate, ensure_ascii=False, indent=2), "```", "",
               "validation.json에 입력 해시·깊이 검증, baseline-projections.npz에 원본 면·판정 bit·사람 마스크를 보존했다.",
               "각 뷰 records에는 보이는 기존 객체 조각과 저장된 판정 이유가 있다. 픽셀 합계의 배타적 우선순위는 후보 > 보류 > 그룹 문맥 > 억제 > 미연결 > no hit이다."]
     (out / "REPORT.md").write_text("\n".join(report) + "\n", encoding="utf-8")
-    print(json.dumps(dict(candidate_projection_pixels=positive_pixels, totals=aggregate), indent=2))
+    print(json.dumps(dict(raw_candidate_projection_pixels=positive_pixels,
+                         visible_candidate_pixels_after_person_filter=visible_filtered,
+                         filtered_totals=filtered_totals), indent=2))
 
 
 if __name__ == "__main__":

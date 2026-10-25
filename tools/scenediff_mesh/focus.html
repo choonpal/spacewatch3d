@@ -15,13 +15,14 @@
 <body><main>
   <div class="eyebrow">PANORAMA / CHANGE REVIEW</div>
   <h1>기존 관측검증과 SimSaC · ViewDelta 비교</h1>
-  <p>같은 RGB 화면에서 기존 후보, 보류 영역, 두 모델이 선택한 영역을 확인합니다.</p>
+  <p>사람을 제외한 같은 관측 화면에서 기존 후보와 두 모델의 변화 후보를 비교합니다.</p>
   <p class="scope">기존 정합오차·관측검증의 저장된 판정을 사용했습니다. 기존 방식은 전체 촬영을, 두 모델은 파일럿 20프레임을 사용합니다. 서로 다른 층의 공간 차이 비교이며 정확도 평가는 아닙니다.</p>
   <div class="metrics" id="metrics"><div class="loading">비교 결과 읽는 중…</div></div>
   <section class="controls">
+    <label><input type="checkbox" id="exclude-person" checked aria-label="사람 제외"> 사람 제외 · 검출 박스 포함</label>
     <label>모델 입력<select id="mode" aria-label="모델 입력"><option value="view">동일 방향 RGB · 224×224</option><option value="erp">전체 파노라마 → 이 방향으로 투영</option></select></label>
     <label>구역<select id="zone" aria-label="구역"><option value="">전체 3구역</option><option>R01</option><option>R07</option><option>R08</option></select></label>
-    <label>살펴볼 차이<select id="filter" aria-label="살펴볼 차이"><option value="all">전체 장면</option><option value="candidate">기존 후보 표면이 보이는 장면</option><option value="deferred">기존 보류 영역을 모델이 선택</option><option value="outside">기존 후보 밖을 모델이 선택</option><option value="person">사람 마스크와 모델 후보가 겹침</option><option value="disagreement">SimSaC · ViewDelta가 다르게 선택</option></select></label>
+    <label>살펴볼 차이<select id="filter" aria-label="살펴볼 차이"><option value="all">전체 장면</option><option value="candidate">기존 후보 표면이 보이는 장면</option><option value="deferred">기존 보류 영역을 모델이 선택</option><option value="outside">기존 후보 밖을 모델이 선택</option><option value="person">사람 제외로 달라진 장면</option><option value="disagreement">SimSaC · ViewDelta가 다르게 선택</option></select></label>
     <label class="wide">관측 장면<select id="view" aria-label="관측 장면"></select></label>
     <button id="prev" aria-label="이전 장면">←</button><button id="next" aria-label="다음 장면">→</button>
   </section>
@@ -33,13 +34,13 @@
     <section class="explanation"><div><h2>이 장면에서 다른 점</h2><div id="observations"></div></div><div><h2>기존 판정과 겹치는 정도</h2><div id="overlap"></div><p class="note">원본 메쉬의 보이는 면만 집계합니다. 모델 영역과 메쉬 표면의 표현 범위가 달라 이 비율을 정확도로 해석할 수 없습니다.</p></div></section>
     <section><h2>관측 RGB와 실제로 비교한 상대</h2><p class="note">관측 RGB 다음의 모든 상대 예측확률을 평균한 결과가 위 모델 후보입니다. 썸네일을 누르면 원본 크기로 열립니다.</p><div class="refs" id="refs"></div>
       <details><summary>전체 파노라마 입력 결과 보기</summary><p class="note">전체 ERP를 입력했을 때의 결과입니다. 위 선택이 동일 방향 RGB라면 입력 조건이 다릅니다.</p><div class="refs" id="erps"></div></details>
-      <details><summary>사람 겹침 수치에 사용한 기존 마스크</summary><p class="note" id="person-note"></p><div class="refs" id="person-evidence"></div></details>
+      <details><summary>사람 제외에 사용한 기존 마스크</summary><p class="note" id="person-note"></p><div class="refs" id="person-evidence"></div></details>
       <details><summary>이 화면에 보이는 기존 객체 판정과 보류 이유</summary><p class="note">한 면에 여러 기록이 연결될 수 있습니다. ‘억제’도 변화 없음의 정답은 아닙니다.</p><div class="tablewrap"><table><thead><tr><th>기록 / 객체 ID</th><th>종류</th><th>기존 판정</th><th>저장된 이유</th></tr></thead><tbody id="records"></tbody></table></div></details>
       <details><summary>두 모델 후보의 기존 판정별 픽셀 분해</summary><div class="tablewrap"><table><thead><tr><th>기존 판정 / 관측 상태</th><th class="num">SimSaC</th><th class="num">ViewDelta</th></tr></thead><tbody id="breakdown"></tbody></table></div><p class="note">겹치는 기록은 후보 → 보류 → 문맥 → 억제 순으로 한 번만 집계합니다. ‘판정 연결 없음’과 ‘메쉬 hit 없음’은 부재나 비변화 판정이 아닙니다.</p></details>
     </section>
   </div>
   <section><h2>기존 후보는 무엇이었나</h2><div id="groups"></div>
-    <details><summary>입력 조건과 결과 해석</summary><p class="note">기존 자동 판정은 occupancy-evidence-v2의 반복 관측·구역별 정합오차·반대 촬영의 독립 비점유 관측을 사용했습니다. 이 페이지에서는 그 판정을 다시 계산하거나 임계값을 조정하지 않았습니다. 후보 그룹 전체의 의자 메쉬를 변화 영역으로 칠하지 않고, 실제 후보를 만든 트랙의 원본 면만 주황색으로 표시합니다.</p><p class="note">SimSaC·ViewDelta는 공개 학습 가중치가 전량 로드된 기존 추론 결과입니다. 상대 선택은 기존 SceneDiff의 메쉬 view-overlap으로 고정했으며 변화 점수로 상대를 고르지 않았습니다. 모든 비영 상대의 확률을 평균한 뒤 0.5 초과를 표시합니다. 두 모델의 동일 입력 자기 비교는 후보 0픽셀이었습니다.</p><p class="note">사람 겹침은 같은 프레임의 기존 person segmentation을 투영한 참고 수치입니다. 사람이 검출되지 않았다고 부재를 뜻하지 않으며, 모델 원본 후보에서 사람 영역을 지우지 않았습니다. 30뷰의 중복 관측 픽셀을 물리적 객체 수로 세지 않습니다.</p></details>
+    <details><summary>입력 조건과 결과 해석</summary><p class="note">기존 자동 판정은 occupancy-evidence-v2의 반복 관측·구역별 정합오차·반대 촬영의 독립 비점유 관측을 사용했습니다. 이 페이지에서는 그 판정을 다시 계산하거나 임계값을 조정하지 않았습니다. 후보 그룹 전체의 의자 메쉬를 변화 영역으로 칠하지 않고, 실제 후보를 만든 트랙의 원본 면만 주황색으로 표시합니다.</p><p class="note">SimSaC·ViewDelta는 공개 학습 가중치가 전량 로드된 기존 추론 결과입니다. 상대 선택은 기존 SceneDiff의 메쉬 view-overlap으로 고정했으며 변화 점수로 상대를 고르지 않았습니다. 모든 비영 상대의 확률을 평균한 뒤 0.5 초과를 표시합니다. 두 모델의 동일 입력 자기 비교는 후보 0픽셀이었습니다.</p><p class="note">기본적으로 대상 RGB 프레임의 기존 YOLO11l 사람 분할·검출 박스 합집합과 겹치는 모델 후보를 제외합니다. 외곽·옷의 누락을 줄이기 위해 박스 안의 주변 표면도 보수적으로 제외합니다. RGB 사람 뒤로 투영된 기존 메쉬 표면도 비교에서 제외합니다. ‘사람 제외’를 끄면 필터 전 원본으로 돌아갑니다. 확률·임계값·기존 객체 판정은 유지하며, 반대 촬영 사람의 영향까지 모두 제거됐다는 뜻은 아닙니다. 30뷰의 중복 관측 픽셀을 물리적 객체 수로 세지 않습니다.</p></details>
     <div class="links"><a href="REPORT.md">비교 설명</a><a href="comparison.json">수치·기존 판정</a><a href="validation.json">투영·입력 검증</a><a href="../model-comparison-20261025/index.html">SceneDiff 포함 이전 비교</a></div>
   </section>
   <pre id="error"></pre>

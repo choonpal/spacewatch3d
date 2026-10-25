@@ -1,45 +1,57 @@
 {
   "date": "2026-10-25",
   "timezone": "Asia/Seoul",
-  "source": "Existing measured comparison outputs; snapshots copied without changing model results",
+  "source": "Stored raw model outputs and frozen global decisions, with query person occlusion post-filter enabled by default",
   "full_input_meshes_included": false,
   "model_weights_included": false,
   "files": {
+    ".gitattributes": {
+      "bytes": 72,
+      "sha256": "308a40fa1d89ae5ea4390b4c9b46a0108b09f171f07898f25d451fa0c69c4e9f"
+    },
     "index.html": {
       "bytes": 285,
       "sha256": "cb99a9cb8048ac51799e8e930ba7dfedaecbd425f513407088c068cd9a76a044"
     },
     "focus-comparison-20261025/baseline-projections.npz": {
-      "bytes": 827098,
-      "sha256": "3dff7784945918a7d9ca653b14564353ff61eef74d838185fa6822f50d5c224f"
+      "bytes": 838825,
+      "sha256": "56717d5618b5b490cebabe0204825b933372691acf4a6d49bc8130ba27ef78f2"
     },
     "focus-comparison-20261025/comparison.json": {
-      "bytes": 216535,
-      "sha256": "1a86f2203ea834f16e8aa204351c2b6c7f81c6f1031ba4be281a4c2e0ba86798"
+      "bytes": 301718,
+      "sha256": "608d07c5810529b416160467018da3c943246efff2a2a6b22904b220b169f361"
     },
     "focus-comparison-20261025/focus.js": {
-      "bytes": 10738,
-      "sha256": "c82233a4d51dc403842b13082d530b96f03830f743848d4e9ec446c89a048b4c"
+      "bytes": 12327,
+      "sha256": "76457e5a4de9daa94cca673844c805d93947fc4a7d1915d9a0b7282d5ae51cf0"
     },
     "focus-comparison-20261025/index.html": {
-      "bytes": 10754,
-      "sha256": "9b25dd7ae972d8a3aacd1ae712e5cdfc6b3034aaec49c8b78f251f22806dfdf3"
+      "bytes": 11226,
+      "sha256": "01fee4d18f02d4e68882a43f11ee662a6bbd0ac2726867eb5b804572aef3bd96"
     },
     "focus-comparison-20261025/REPORT.md": {
-      "bytes": 3504,
-      "sha256": "417f9c669ee2af964e39e5dc6bbfb979d9d8b69e95563e08abb8b3bb6f7994a4"
+      "bytes": 4911,
+      "sha256": "5b6c0ab99787ea7ba29fc6e9a929b8ffa3856c066b3430290b0aafde40f5ddfa"
     },
     "focus-comparison-20261025/validation.json": {
-      "bytes": 11515,
-      "sha256": "d08ec2ebd447b40232ca3139f7c1e987b00514114f364e0845aabaf648eb3c52"
+      "bytes": 12575,
+      "sha256": "aff7e4fabe12d6a97cdd347dd1ae1884898de31a034eaafcac0652c40b24e512"
+    },
+    "focus-comparison-20261025/viewer-person-filtered.png": {
+      "bytes": 61214,
+      "sha256": "ceb7d5dfd126c6eb7dd789526be73640aea8c2421959501918447516aec35f94"
+    },
+    "focus-comparison-20261025/viewer-person-raw.png": {
+      "bytes": 67435,
+      "sha256": "e4e95d7b3fd1d73ead4e6ae903124b95314e8ef64a13be8634abc1723ddf82f3"
     },
     "focus-comparison-20261025/viewer-person.png": {
       "bytes": 62408,
       "sha256": "d2a2344748cbb3bdec2eb6928a63f0e88c38a957bedda95db4888d32fb0261cf"
     },
     "focus-comparison-20261025/viewer.png": {
-      "bytes": 59796,
-      "sha256": "1138db873edb9aa371301793044bea4f6821b41c0fa12b321ed0cdeb1af0863a"
+      "bytes": 63936,
+      "sha256": "5897bc265d012f6c37c2af64212d7d426bc6b3e90e5760a7857947ee37ec071e"
     },
     "model-comparison-20261025/comparison.json": {
       "bytes": 97613,
@@ -2181,6 +2193,14 @@
       "bytes": 402,
       "sha256": "709022269b807778bdb833e6260a91a48b36876fc5a7fc999f84b25ef38a9b12"
     },
+    "focus-comparison-20261025/images/R01-00-baseline-filtered.png": {
+      "bytes": 49617,
+      "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
+    },
+    "focus-comparison-20261025/images/R01-00-baseline-review-filtered.png": {
+      "bytes": 49617,
+      "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
+    },
     "focus-comparison-20261025/images/R01-00-baseline-review.png": {
       "bytes": 49617,
       "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
@@ -2189,7 +2209,23 @@
       "bytes": 49617,
       "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
     },
+    "focus-comparison-20261025/images/R01-00-erp-full-simsac-filtered.jpg": {
+      "bytes": 121583,
+      "sha256": "2fb0e4d2363902ead42982605e172e5cabe0fe199ad8b7cc6ac636c4c717f0c9"
+    },
+    "focus-comparison-20261025/images/R01-00-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 121583,
+      "sha256": "2fb0e4d2363902ead42982605e172e5cabe0fe199ad8b7cc6ac636c4c717f0c9"
+    },
+    "focus-comparison-20261025/images/R01-00-erp-simsac-filtered.png": {
+      "bytes": 49617,
+      "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
+    },
     "focus-comparison-20261025/images/R01-00-erp-simsac.png": {
+      "bytes": 49617,
+      "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
+    },
+    "focus-comparison-20261025/images/R01-00-erp-viewdelta-filtered.png": {
       "bytes": 49617,
       "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
     },
@@ -2198,10 +2234,14 @@
       "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
     },
     "focus-comparison-20261025/images/R01-00-person.png": {
+      "bytes": 49608,
+      "sha256": "7d516c410e900c917fad11053e2bc9ec9cf66a03133c448d9e4f23bf1115b3f0"
+    },
+    "focus-comparison-20261025/images/R01-00-rgb.png": {
       "bytes": 49617,
       "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
     },
-    "focus-comparison-20261025/images/R01-00-rgb.png": {
+    "focus-comparison-20261025/images/R01-00-view-simsac-filtered.png": {
       "bytes": 49617,
       "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
     },
@@ -2209,9 +2249,21 @@
       "bytes": 49617,
       "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
     },
+    "focus-comparison-20261025/images/R01-00-view-viewdelta-filtered.png": {
+      "bytes": 49617,
+      "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
+    },
     "focus-comparison-20261025/images/R01-00-view-viewdelta.png": {
       "bytes": 49617,
       "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
+    },
+    "focus-comparison-20261025/images/R01-01-baseline-filtered.png": {
+      "bytes": 65493,
+      "sha256": "7a2f4034af19067bda5736eb0c99803d8859674385ebd09ba6f60aa757feabfc"
+    },
+    "focus-comparison-20261025/images/R01-01-baseline-review-filtered.png": {
+      "bytes": 65445,
+      "sha256": "f0124e3171e3377a35cf3391e965ca47719d418be5080855f3afe29c88a64bcf"
     },
     "focus-comparison-20261025/images/R01-01-baseline-review.png": {
       "bytes": 65445,
@@ -2221,7 +2273,23 @@
       "bytes": 65493,
       "sha256": "7a2f4034af19067bda5736eb0c99803d8859674385ebd09ba6f60aa757feabfc"
     },
+    "focus-comparison-20261025/images/R01-01-erp-full-simsac-filtered.jpg": {
+      "bytes": 110806,
+      "sha256": "e51bf91a7be031393f8f5b06ce9f06ee753eefae111c7b1d24e2955f5ecf1e51"
+    },
+    "focus-comparison-20261025/images/R01-01-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 111248,
+      "sha256": "8fbfbb41765488954bf1955b14b3d5ecbeacb00be56bcee1d5bdb078420d5b57"
+    },
+    "focus-comparison-20261025/images/R01-01-erp-simsac-filtered.png": {
+      "bytes": 65493,
+      "sha256": "7a2f4034af19067bda5736eb0c99803d8859674385ebd09ba6f60aa757feabfc"
+    },
     "focus-comparison-20261025/images/R01-01-erp-simsac.png": {
+      "bytes": 65493,
+      "sha256": "7a2f4034af19067bda5736eb0c99803d8859674385ebd09ba6f60aa757feabfc"
+    },
+    "focus-comparison-20261025/images/R01-01-erp-viewdelta-filtered.png": {
       "bytes": 65493,
       "sha256": "7a2f4034af19067bda5736eb0c99803d8859674385ebd09ba6f60aa757feabfc"
     },
@@ -2230,20 +2298,36 @@
       "sha256": "7a2f4034af19067bda5736eb0c99803d8859674385ebd09ba6f60aa757feabfc"
     },
     "focus-comparison-20261025/images/R01-01-person.png": {
-      "bytes": 62842,
-      "sha256": "c349f6e1f7df1e03642ee14c1b7fc5fc9060d1deccd203d79f364a8c899176d5"
+      "bytes": 58688,
+      "sha256": "3d4709910d9ceb377bbf507d02391966fabd71adcf7a9f423227f8596e2cfdb2"
     },
     "focus-comparison-20261025/images/R01-01-rgb.png": {
       "bytes": 65493,
       "sha256": "7a2f4034af19067bda5736eb0c99803d8859674385ebd09ba6f60aa757feabfc"
     },
+    "focus-comparison-20261025/images/R01-01-view-simsac-filtered.png": {
+      "bytes": 65459,
+      "sha256": "5a9c77bf40e248db8dd696051db71ec270fe8703023dd8bd9501d729c0f7475d"
+    },
     "focus-comparison-20261025/images/R01-01-view-simsac.png": {
       "bytes": 62727,
       "sha256": "6fc85e20b77987ca45ae8f7dc5266522a5cad74419d3698017b478f2e1495273"
     },
+    "focus-comparison-20261025/images/R01-01-view-viewdelta-filtered.png": {
+      "bytes": 65503,
+      "sha256": "b465f74914c5ffd00fa6638fe878887cb0267191f28512b3af712c72fa0e3270"
+    },
     "focus-comparison-20261025/images/R01-01-view-viewdelta.png": {
       "bytes": 63927,
       "sha256": "22857c043679abc29afc273a90bf6a408ecc98a0761740fdc7daeb7ec13fc98c"
+    },
+    "focus-comparison-20261025/images/R01-02-baseline-filtered.png": {
+      "bytes": 56684,
+      "sha256": "d11be7a0c69a7cc37deaa4c9fbe2be6d31c94e21f1a10a59a6bf2a2b6fb2026a"
+    },
+    "focus-comparison-20261025/images/R01-02-baseline-review-filtered.png": {
+      "bytes": 56684,
+      "sha256": "d11be7a0c69a7cc37deaa4c9fbe2be6d31c94e21f1a10a59a6bf2a2b6fb2026a"
     },
     "focus-comparison-20261025/images/R01-02-baseline-review.png": {
       "bytes": 56684,
@@ -2253,7 +2337,23 @@
       "bytes": 56684,
       "sha256": "d11be7a0c69a7cc37deaa4c9fbe2be6d31c94e21f1a10a59a6bf2a2b6fb2026a"
     },
+    "focus-comparison-20261025/images/R01-02-erp-full-simsac-filtered.jpg": {
+      "bytes": 115331,
+      "sha256": "f8f4eb2fab84d6df98b0d012b19ce708fdff182122197f73ac7135a74f904f7c"
+    },
+    "focus-comparison-20261025/images/R01-02-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 115730,
+      "sha256": "b18898537d70a41115e74a39bcedca12dec08b07893d64512b80e5dc349aefa0"
+    },
+    "focus-comparison-20261025/images/R01-02-erp-simsac-filtered.png": {
+      "bytes": 56684,
+      "sha256": "d11be7a0c69a7cc37deaa4c9fbe2be6d31c94e21f1a10a59a6bf2a2b6fb2026a"
+    },
     "focus-comparison-20261025/images/R01-02-erp-simsac.png": {
+      "bytes": 56684,
+      "sha256": "d11be7a0c69a7cc37deaa4c9fbe2be6d31c94e21f1a10a59a6bf2a2b6fb2026a"
+    },
+    "focus-comparison-20261025/images/R01-02-erp-viewdelta-filtered.png": {
       "bytes": 56684,
       "sha256": "d11be7a0c69a7cc37deaa4c9fbe2be6d31c94e21f1a10a59a6bf2a2b6fb2026a"
     },
@@ -2262,20 +2362,36 @@
       "sha256": "d11be7a0c69a7cc37deaa4c9fbe2be6d31c94e21f1a10a59a6bf2a2b6fb2026a"
     },
     "focus-comparison-20261025/images/R01-02-person.png": {
-      "bytes": 56684,
-      "sha256": "d11be7a0c69a7cc37deaa4c9fbe2be6d31c94e21f1a10a59a6bf2a2b6fb2026a"
+      "bytes": 56253,
+      "sha256": "5db44f2de757cdeef98f47bad1f771f78e6f6928a76c1e2da9ebc8c1eb13c4b5"
     },
     "focus-comparison-20261025/images/R01-02-rgb.png": {
       "bytes": 56684,
       "sha256": "d11be7a0c69a7cc37deaa4c9fbe2be6d31c94e21f1a10a59a6bf2a2b6fb2026a"
     },
+    "focus-comparison-20261025/images/R01-02-view-simsac-filtered.png": {
+      "bytes": 56131,
+      "sha256": "10c9c0c05ac71fe8cad609be554ddf2a1295dada3ca4061ab457b8bf0168f7ee"
+    },
     "focus-comparison-20261025/images/R01-02-view-simsac.png": {
       "bytes": 56008,
       "sha256": "a781fcaa231124a79ac2be99e3a99937ef3ed1001c60d77ba23d1e37f61b3189"
     },
+    "focus-comparison-20261025/images/R01-02-view-viewdelta-filtered.png": {
+      "bytes": 56685,
+      "sha256": "8d583d157028521afea02da1cdd9c388c047bb27d856c8899fd0425eecd96314"
+    },
     "focus-comparison-20261025/images/R01-02-view-viewdelta.png": {
       "bytes": 56700,
       "sha256": "f47206859b1dd10e40d8973f6788f6fc4c826edec2a90c72093dc242c0c58078"
+    },
+    "focus-comparison-20261025/images/R01-03-baseline-filtered.png": {
+      "bytes": 63698,
+      "sha256": "e9936a22a9167a68755938eaf4b0e0fc4c4359843ad204bad8d78969ae8f627a"
+    },
+    "focus-comparison-20261025/images/R01-03-baseline-review-filtered.png": {
+      "bytes": 63782,
+      "sha256": "44d13d578c62fe76a4c7fa155e3f6f78256ab40c3bbde7a1f643790c3026aa7f"
     },
     "focus-comparison-20261025/images/R01-03-baseline-review.png": {
       "bytes": 63782,
@@ -2285,7 +2401,23 @@
       "bytes": 63698,
       "sha256": "e9936a22a9167a68755938eaf4b0e0fc4c4359843ad204bad8d78969ae8f627a"
     },
+    "focus-comparison-20261025/images/R01-03-erp-full-simsac-filtered.jpg": {
+      "bytes": 120142,
+      "sha256": "0b3e556353ec27ca08b4fa754fb9716e81f31d497f6f9cfb5d2abef682c05bcb"
+    },
+    "focus-comparison-20261025/images/R01-03-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 120050,
+      "sha256": "ab814aa18ba03839ca3b83b84c01fb4f4f05f029afe732581fa5db02717adb5d"
+    },
+    "focus-comparison-20261025/images/R01-03-erp-simsac-filtered.png": {
+      "bytes": 63698,
+      "sha256": "e9936a22a9167a68755938eaf4b0e0fc4c4359843ad204bad8d78969ae8f627a"
+    },
     "focus-comparison-20261025/images/R01-03-erp-simsac.png": {
+      "bytes": 63698,
+      "sha256": "e9936a22a9167a68755938eaf4b0e0fc4c4359843ad204bad8d78969ae8f627a"
+    },
+    "focus-comparison-20261025/images/R01-03-erp-viewdelta-filtered.png": {
       "bytes": 63698,
       "sha256": "e9936a22a9167a68755938eaf4b0e0fc4c4359843ad204bad8d78969ae8f627a"
     },
@@ -2301,13 +2433,29 @@
       "bytes": 63698,
       "sha256": "e9936a22a9167a68755938eaf4b0e0fc4c4359843ad204bad8d78969ae8f627a"
     },
+    "focus-comparison-20261025/images/R01-03-view-simsac-filtered.png": {
+      "bytes": 63726,
+      "sha256": "42eb1ade12fadcf08487110dfecdce5480c953d105695577427770e13ea14a25"
+    },
     "focus-comparison-20261025/images/R01-03-view-simsac.png": {
       "bytes": 63726,
       "sha256": "42eb1ade12fadcf08487110dfecdce5480c953d105695577427770e13ea14a25"
     },
+    "focus-comparison-20261025/images/R01-03-view-viewdelta-filtered.png": {
+      "bytes": 63698,
+      "sha256": "e9936a22a9167a68755938eaf4b0e0fc4c4359843ad204bad8d78969ae8f627a"
+    },
     "focus-comparison-20261025/images/R01-03-view-viewdelta.png": {
       "bytes": 63698,
       "sha256": "e9936a22a9167a68755938eaf4b0e0fc4c4359843ad204bad8d78969ae8f627a"
+    },
+    "focus-comparison-20261025/images/R01-04-baseline-filtered.png": {
+      "bytes": 66042,
+      "sha256": "8a18daf60f706689c01b4f61d39efd12056d8b4b7892549c311540c7645863e7"
+    },
+    "focus-comparison-20261025/images/R01-04-baseline-review-filtered.png": {
+      "bytes": 66042,
+      "sha256": "8a18daf60f706689c01b4f61d39efd12056d8b4b7892549c311540c7645863e7"
     },
     "focus-comparison-20261025/images/R01-04-baseline-review.png": {
       "bytes": 66042,
@@ -2317,7 +2465,23 @@
       "bytes": 66042,
       "sha256": "8a18daf60f706689c01b4f61d39efd12056d8b4b7892549c311540c7645863e7"
     },
+    "focus-comparison-20261025/images/R01-04-erp-full-simsac-filtered.jpg": {
+      "bytes": 110806,
+      "sha256": "e51bf91a7be031393f8f5b06ce9f06ee753eefae111c7b1d24e2955f5ecf1e51"
+    },
+    "focus-comparison-20261025/images/R01-04-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 111170,
+      "sha256": "13284a8a1b136f16bb89a9a5d06a1146bd68cb79e3fdcbe1ef14efaec48f22b1"
+    },
+    "focus-comparison-20261025/images/R01-04-erp-simsac-filtered.png": {
+      "bytes": 66042,
+      "sha256": "8a18daf60f706689c01b4f61d39efd12056d8b4b7892549c311540c7645863e7"
+    },
     "focus-comparison-20261025/images/R01-04-erp-simsac.png": {
+      "bytes": 66042,
+      "sha256": "8a18daf60f706689c01b4f61d39efd12056d8b4b7892549c311540c7645863e7"
+    },
+    "focus-comparison-20261025/images/R01-04-erp-viewdelta-filtered.png": {
       "bytes": 66042,
       "sha256": "8a18daf60f706689c01b4f61d39efd12056d8b4b7892549c311540c7645863e7"
     },
@@ -2326,10 +2490,14 @@
       "sha256": "8a18daf60f706689c01b4f61d39efd12056d8b4b7892549c311540c7645863e7"
     },
     "focus-comparison-20261025/images/R01-04-person.png": {
+      "bytes": 65240,
+      "sha256": "796533b0e0538e5a2d7ba224b1f063e9e145506f0190cc70dbb6ba8c4d6a851c"
+    },
+    "focus-comparison-20261025/images/R01-04-rgb.png": {
       "bytes": 66042,
       "sha256": "8a18daf60f706689c01b4f61d39efd12056d8b4b7892549c311540c7645863e7"
     },
-    "focus-comparison-20261025/images/R01-04-rgb.png": {
+    "focus-comparison-20261025/images/R01-04-view-simsac-filtered.png": {
       "bytes": 66042,
       "sha256": "8a18daf60f706689c01b4f61d39efd12056d8b4b7892549c311540c7645863e7"
     },
@@ -2337,9 +2505,21 @@
       "bytes": 66042,
       "sha256": "8a18daf60f706689c01b4f61d39efd12056d8b4b7892549c311540c7645863e7"
     },
+    "focus-comparison-20261025/images/R01-04-view-viewdelta-filtered.png": {
+      "bytes": 66042,
+      "sha256": "8a18daf60f706689c01b4f61d39efd12056d8b4b7892549c311540c7645863e7"
+    },
     "focus-comparison-20261025/images/R01-04-view-viewdelta.png": {
       "bytes": 66042,
       "sha256": "8a18daf60f706689c01b4f61d39efd12056d8b4b7892549c311540c7645863e7"
+    },
+    "focus-comparison-20261025/images/R01-05-baseline-filtered.png": {
+      "bytes": 57223,
+      "sha256": "c1db72305749a078c6993451ad7743225b8e2a08abcc1921c2c25e1ca5cba2a4"
+    },
+    "focus-comparison-20261025/images/R01-05-baseline-review-filtered.png": {
+      "bytes": 57223,
+      "sha256": "c1db72305749a078c6993451ad7743225b8e2a08abcc1921c2c25e1ca5cba2a4"
     },
     "focus-comparison-20261025/images/R01-05-baseline-review.png": {
       "bytes": 57223,
@@ -2349,7 +2529,23 @@
       "bytes": 57223,
       "sha256": "c1db72305749a078c6993451ad7743225b8e2a08abcc1921c2c25e1ca5cba2a4"
     },
+    "focus-comparison-20261025/images/R01-05-erp-full-simsac-filtered.jpg": {
+      "bytes": 117183,
+      "sha256": "cf7fa5cbc09b5c35ed49271193cb8c8cb77a60dfef692978e4002550d580a06e"
+    },
+    "focus-comparison-20261025/images/R01-05-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 117183,
+      "sha256": "cf7fa5cbc09b5c35ed49271193cb8c8cb77a60dfef692978e4002550d580a06e"
+    },
+    "focus-comparison-20261025/images/R01-05-erp-simsac-filtered.png": {
+      "bytes": 57223,
+      "sha256": "c1db72305749a078c6993451ad7743225b8e2a08abcc1921c2c25e1ca5cba2a4"
+    },
     "focus-comparison-20261025/images/R01-05-erp-simsac.png": {
+      "bytes": 57223,
+      "sha256": "c1db72305749a078c6993451ad7743225b8e2a08abcc1921c2c25e1ca5cba2a4"
+    },
+    "focus-comparison-20261025/images/R01-05-erp-viewdelta-filtered.png": {
       "bytes": 57223,
       "sha256": "c1db72305749a078c6993451ad7743225b8e2a08abcc1921c2c25e1ca5cba2a4"
     },
@@ -2358,10 +2554,14 @@
       "sha256": "c1db72305749a078c6993451ad7743225b8e2a08abcc1921c2c25e1ca5cba2a4"
     },
     "focus-comparison-20261025/images/R01-05-person.png": {
+      "bytes": 57226,
+      "sha256": "754ce9154e317c233ce9fbb1c5b331a011de6c820cfc4d677af98f404b555284"
+    },
+    "focus-comparison-20261025/images/R01-05-rgb.png": {
       "bytes": 57223,
       "sha256": "c1db72305749a078c6993451ad7743225b8e2a08abcc1921c2c25e1ca5cba2a4"
     },
-    "focus-comparison-20261025/images/R01-05-rgb.png": {
+    "focus-comparison-20261025/images/R01-05-view-simsac-filtered.png": {
       "bytes": 57223,
       "sha256": "c1db72305749a078c6993451ad7743225b8e2a08abcc1921c2c25e1ca5cba2a4"
     },
@@ -2369,9 +2569,21 @@
       "bytes": 57223,
       "sha256": "c1db72305749a078c6993451ad7743225b8e2a08abcc1921c2c25e1ca5cba2a4"
     },
+    "focus-comparison-20261025/images/R01-05-view-viewdelta-filtered.png": {
+      "bytes": 57223,
+      "sha256": "c1db72305749a078c6993451ad7743225b8e2a08abcc1921c2c25e1ca5cba2a4"
+    },
     "focus-comparison-20261025/images/R01-05-view-viewdelta.png": {
       "bytes": 57223,
       "sha256": "c1db72305749a078c6993451ad7743225b8e2a08abcc1921c2c25e1ca5cba2a4"
+    },
+    "focus-comparison-20261025/images/R01-06-baseline-filtered.png": {
+      "bytes": 58334,
+      "sha256": "4352bf0820a30b3629deffaf8d81acb84776926d93268d7d636b69dbe2212be7"
+    },
+    "focus-comparison-20261025/images/R01-06-baseline-review-filtered.png": {
+      "bytes": 58143,
+      "sha256": "a42b4a7c83500f99560dfb6e86e07326e35c7405f45df48ae35671f759ab3c1a"
     },
     "focus-comparison-20261025/images/R01-06-baseline-review.png": {
       "bytes": 58143,
@@ -2381,7 +2593,23 @@
       "bytes": 58334,
       "sha256": "4352bf0820a30b3629deffaf8d81acb84776926d93268d7d636b69dbe2212be7"
     },
+    "focus-comparison-20261025/images/R01-06-erp-full-simsac-filtered.jpg": {
+      "bytes": 115642,
+      "sha256": "0c9b0ba28367e14d8869f10429606cea78107a8965454791655431457b8492b0"
+    },
+    "focus-comparison-20261025/images/R01-06-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 114916,
+      "sha256": "b7029952ac358aad1c2a7daf98f8bb9785dbd30fd476ca0945635c3cf80f8c63"
+    },
+    "focus-comparison-20261025/images/R01-06-erp-simsac-filtered.png": {
+      "bytes": 58334,
+      "sha256": "4352bf0820a30b3629deffaf8d81acb84776926d93268d7d636b69dbe2212be7"
+    },
     "focus-comparison-20261025/images/R01-06-erp-simsac.png": {
+      "bytes": 58334,
+      "sha256": "4352bf0820a30b3629deffaf8d81acb84776926d93268d7d636b69dbe2212be7"
+    },
+    "focus-comparison-20261025/images/R01-06-erp-viewdelta-filtered.png": {
       "bytes": 58334,
       "sha256": "4352bf0820a30b3629deffaf8d81acb84776926d93268d7d636b69dbe2212be7"
     },
@@ -2397,13 +2625,29 @@
       "bytes": 58334,
       "sha256": "4352bf0820a30b3629deffaf8d81acb84776926d93268d7d636b69dbe2212be7"
     },
+    "focus-comparison-20261025/images/R01-06-view-simsac-filtered.png": {
+      "bytes": 58455,
+      "sha256": "b60199b8e492871b8ee9b57238cca77f37b9ce75c6ace7de101b381243b2b97d"
+    },
     "focus-comparison-20261025/images/R01-06-view-simsac.png": {
       "bytes": 58455,
       "sha256": "b60199b8e492871b8ee9b57238cca77f37b9ce75c6ace7de101b381243b2b97d"
     },
+    "focus-comparison-20261025/images/R01-06-view-viewdelta-filtered.png": {
+      "bytes": 58334,
+      "sha256": "4352bf0820a30b3629deffaf8d81acb84776926d93268d7d636b69dbe2212be7"
+    },
     "focus-comparison-20261025/images/R01-06-view-viewdelta.png": {
       "bytes": 58334,
       "sha256": "4352bf0820a30b3629deffaf8d81acb84776926d93268d7d636b69dbe2212be7"
+    },
+    "focus-comparison-20261025/images/R01-07-baseline-filtered.png": {
+      "bytes": 59072,
+      "sha256": "c76b4e722ce2e511f4d014b761b1f4f0fd65a5fb4a1da84b72de2e1b8c7d727c"
+    },
+    "focus-comparison-20261025/images/R01-07-baseline-review-filtered.png": {
+      "bytes": 59072,
+      "sha256": "c76b4e722ce2e511f4d014b761b1f4f0fd65a5fb4a1da84b72de2e1b8c7d727c"
     },
     "focus-comparison-20261025/images/R01-07-baseline-review.png": {
       "bytes": 59072,
@@ -2413,7 +2657,23 @@
       "bytes": 59072,
       "sha256": "c76b4e722ce2e511f4d014b761b1f4f0fd65a5fb4a1da84b72de2e1b8c7d727c"
     },
+    "focus-comparison-20261025/images/R01-07-erp-full-simsac-filtered.jpg": {
+      "bytes": 114554,
+      "sha256": "fce247e8fd7f6e50316138f4057b351c00135c4a8a78bb0baed2d51a2d280da5"
+    },
+    "focus-comparison-20261025/images/R01-07-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 114893,
+      "sha256": "11e826303a63fcd2f66681d12cebebf55f2c9c3e39e5425b95c5db32c0459c00"
+    },
+    "focus-comparison-20261025/images/R01-07-erp-simsac-filtered.png": {
+      "bytes": 59072,
+      "sha256": "c76b4e722ce2e511f4d014b761b1f4f0fd65a5fb4a1da84b72de2e1b8c7d727c"
+    },
     "focus-comparison-20261025/images/R01-07-erp-simsac.png": {
+      "bytes": 59072,
+      "sha256": "c76b4e722ce2e511f4d014b761b1f4f0fd65a5fb4a1da84b72de2e1b8c7d727c"
+    },
+    "focus-comparison-20261025/images/R01-07-erp-viewdelta-filtered.png": {
       "bytes": 59072,
       "sha256": "c76b4e722ce2e511f4d014b761b1f4f0fd65a5fb4a1da84b72de2e1b8c7d727c"
     },
@@ -2422,10 +2682,14 @@
       "sha256": "c76b4e722ce2e511f4d014b761b1f4f0fd65a5fb4a1da84b72de2e1b8c7d727c"
     },
     "focus-comparison-20261025/images/R01-07-person.png": {
+      "bytes": 59087,
+      "sha256": "e7f2fe2de3e2118595ea87e0a2a7386a0c3e793fb6d3136d948100a53b47637c"
+    },
+    "focus-comparison-20261025/images/R01-07-rgb.png": {
       "bytes": 59072,
       "sha256": "c76b4e722ce2e511f4d014b761b1f4f0fd65a5fb4a1da84b72de2e1b8c7d727c"
     },
-    "focus-comparison-20261025/images/R01-07-rgb.png": {
+    "focus-comparison-20261025/images/R01-07-view-simsac-filtered.png": {
       "bytes": 59072,
       "sha256": "c76b4e722ce2e511f4d014b761b1f4f0fd65a5fb4a1da84b72de2e1b8c7d727c"
     },
@@ -2433,9 +2697,21 @@
       "bytes": 59072,
       "sha256": "c76b4e722ce2e511f4d014b761b1f4f0fd65a5fb4a1da84b72de2e1b8c7d727c"
     },
+    "focus-comparison-20261025/images/R01-07-view-viewdelta-filtered.png": {
+      "bytes": 59072,
+      "sha256": "c76b4e722ce2e511f4d014b761b1f4f0fd65a5fb4a1da84b72de2e1b8c7d727c"
+    },
     "focus-comparison-20261025/images/R01-07-view-viewdelta.png": {
       "bytes": 59072,
       "sha256": "c76b4e722ce2e511f4d014b761b1f4f0fd65a5fb4a1da84b72de2e1b8c7d727c"
+    },
+    "focus-comparison-20261025/images/R01-08-baseline-filtered.png": {
+      "bytes": 54090,
+      "sha256": "b057c61a3b3bb7c34b1dd5fcffaf59fc6b44315fa7351385430dee630cfe7f32"
+    },
+    "focus-comparison-20261025/images/R01-08-baseline-review-filtered.png": {
+      "bytes": 53985,
+      "sha256": "e29b1dce37c1c20450bfb6016bf307e2f48ff813b6658078f9a880167a23b7ce"
     },
     "focus-comparison-20261025/images/R01-08-baseline-review.png": {
       "bytes": 53985,
@@ -2445,7 +2721,23 @@
       "bytes": 54090,
       "sha256": "b057c61a3b3bb7c34b1dd5fcffaf59fc6b44315fa7351385430dee630cfe7f32"
     },
+    "focus-comparison-20261025/images/R01-08-erp-full-simsac-filtered.jpg": {
+      "bytes": 124224,
+      "sha256": "a031303b5294d906a86da8ba2adf6aea48952deeaa9a86728a39bcd38bce7edf"
+    },
+    "focus-comparison-20261025/images/R01-08-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 124118,
+      "sha256": "7cacf31d5b542963ce8a276e69928719b31edc18d3732f61dfff8e997b280ce7"
+    },
+    "focus-comparison-20261025/images/R01-08-erp-simsac-filtered.png": {
+      "bytes": 54090,
+      "sha256": "b057c61a3b3bb7c34b1dd5fcffaf59fc6b44315fa7351385430dee630cfe7f32"
+    },
     "focus-comparison-20261025/images/R01-08-erp-simsac.png": {
+      "bytes": 54090,
+      "sha256": "b057c61a3b3bb7c34b1dd5fcffaf59fc6b44315fa7351385430dee630cfe7f32"
+    },
+    "focus-comparison-20261025/images/R01-08-erp-viewdelta-filtered.png": {
       "bytes": 54090,
       "sha256": "b057c61a3b3bb7c34b1dd5fcffaf59fc6b44315fa7351385430dee630cfe7f32"
     },
@@ -2461,13 +2753,29 @@
       "bytes": 54090,
       "sha256": "b057c61a3b3bb7c34b1dd5fcffaf59fc6b44315fa7351385430dee630cfe7f32"
     },
+    "focus-comparison-20261025/images/R01-08-view-simsac-filtered.png": {
+      "bytes": 54061,
+      "sha256": "c7a0d1a7a0c168f55fc4d7ac29c7a02f19b97b0515063054e7d90940c2382d2a"
+    },
     "focus-comparison-20261025/images/R01-08-view-simsac.png": {
       "bytes": 54061,
       "sha256": "c7a0d1a7a0c168f55fc4d7ac29c7a02f19b97b0515063054e7d90940c2382d2a"
     },
+    "focus-comparison-20261025/images/R01-08-view-viewdelta-filtered.png": {
+      "bytes": 54090,
+      "sha256": "b057c61a3b3bb7c34b1dd5fcffaf59fc6b44315fa7351385430dee630cfe7f32"
+    },
     "focus-comparison-20261025/images/R01-08-view-viewdelta.png": {
       "bytes": 54090,
       "sha256": "b057c61a3b3bb7c34b1dd5fcffaf59fc6b44315fa7351385430dee630cfe7f32"
+    },
+    "focus-comparison-20261025/images/R01-09-baseline-filtered.png": {
+      "bytes": 57386,
+      "sha256": "a2752d9686bfc7c14edbad430ea87f745f2b28e0acb9dfbf408f4e00eec192b7"
+    },
+    "focus-comparison-20261025/images/R01-09-baseline-review-filtered.png": {
+      "bytes": 57244,
+      "sha256": "6e67ed347d0eb3917a36c9013249f9128173b3d67c8c5cf69afaf466cc165837"
     },
     "focus-comparison-20261025/images/R01-09-baseline-review.png": {
       "bytes": 57244,
@@ -2477,9 +2785,25 @@
       "bytes": 57386,
       "sha256": "a2752d9686bfc7c14edbad430ea87f745f2b28e0acb9dfbf408f4e00eec192b7"
     },
+    "focus-comparison-20261025/images/R01-09-erp-full-simsac-filtered.jpg": {
+      "bytes": 110179,
+      "sha256": "48543923401eddc84a9c0b1d3a10248c865444c225f17296f02b0f1d8088af48"
+    },
+    "focus-comparison-20261025/images/R01-09-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 110128,
+      "sha256": "0dcbdd797082df487cfd50d861ab482af45f2cb127163ae37dcfd2017969807f"
+    },
+    "focus-comparison-20261025/images/R01-09-erp-simsac-filtered.png": {
+      "bytes": 57385,
+      "sha256": "9d4a0c06b67d28415ed73ecb849914fda6f912b53eaebdf095111efb8c330657"
+    },
     "focus-comparison-20261025/images/R01-09-erp-simsac.png": {
       "bytes": 57385,
       "sha256": "9d4a0c06b67d28415ed73ecb849914fda6f912b53eaebdf095111efb8c330657"
+    },
+    "focus-comparison-20261025/images/R01-09-erp-viewdelta-filtered.png": {
+      "bytes": 57386,
+      "sha256": "a2752d9686bfc7c14edbad430ea87f745f2b28e0acb9dfbf408f4e00eec192b7"
     },
     "focus-comparison-20261025/images/R01-09-erp-viewdelta.png": {
       "bytes": 57386,
@@ -2493,13 +2817,29 @@
       "bytes": 57386,
       "sha256": "a2752d9686bfc7c14edbad430ea87f745f2b28e0acb9dfbf408f4e00eec192b7"
     },
+    "focus-comparison-20261025/images/R01-09-view-simsac-filtered.png": {
+      "bytes": 57255,
+      "sha256": "b33e84953019dd15e6f3ff362b192b4f7ca68abcf24b2b207fa2ee68088e0dca"
+    },
     "focus-comparison-20261025/images/R01-09-view-simsac.png": {
       "bytes": 57255,
       "sha256": "b33e84953019dd15e6f3ff362b192b4f7ca68abcf24b2b207fa2ee68088e0dca"
     },
+    "focus-comparison-20261025/images/R01-09-view-viewdelta-filtered.png": {
+      "bytes": 56877,
+      "sha256": "1a286ffd83ed1e7ddcbbbd3ff0a3da00b988de610ff84fd2c87524a69c279281"
+    },
     "focus-comparison-20261025/images/R01-09-view-viewdelta.png": {
       "bytes": 56877,
       "sha256": "1a286ffd83ed1e7ddcbbbd3ff0a3da00b988de610ff84fd2c87524a69c279281"
+    },
+    "focus-comparison-20261025/images/R07-00-baseline-filtered.png": {
+      "bytes": 57427,
+      "sha256": "b0ed6175f5c2124c5a7dd4e0448459be58fc1e5ec9194e6924b72d2653e57458"
+    },
+    "focus-comparison-20261025/images/R07-00-baseline-review-filtered.png": {
+      "bytes": 57503,
+      "sha256": "e22ce80f511aa0a6b0462f81f3d83eb6acaa9ad427e688f2c9fccd9183a9c7b9"
     },
     "focus-comparison-20261025/images/R07-00-baseline-review.png": {
       "bytes": 57503,
@@ -2509,7 +2849,23 @@
       "bytes": 57427,
       "sha256": "b0ed6175f5c2124c5a7dd4e0448459be58fc1e5ec9194e6924b72d2653e57458"
     },
+    "focus-comparison-20261025/images/R07-00-erp-full-simsac-filtered.jpg": {
+      "bytes": 120272,
+      "sha256": "e6a2f52c25cb3273fef17724e2b7068f0a1cfd7717d0bc35f5f1108dcc3d9326"
+    },
+    "focus-comparison-20261025/images/R07-00-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 120272,
+      "sha256": "e6a2f52c25cb3273fef17724e2b7068f0a1cfd7717d0bc35f5f1108dcc3d9326"
+    },
+    "focus-comparison-20261025/images/R07-00-erp-simsac-filtered.png": {
+      "bytes": 57427,
+      "sha256": "b0ed6175f5c2124c5a7dd4e0448459be58fc1e5ec9194e6924b72d2653e57458"
+    },
     "focus-comparison-20261025/images/R07-00-erp-simsac.png": {
+      "bytes": 57427,
+      "sha256": "b0ed6175f5c2124c5a7dd4e0448459be58fc1e5ec9194e6924b72d2653e57458"
+    },
+    "focus-comparison-20261025/images/R07-00-erp-viewdelta-filtered.png": {
       "bytes": 57427,
       "sha256": "b0ed6175f5c2124c5a7dd4e0448459be58fc1e5ec9194e6924b72d2653e57458"
     },
@@ -2525,13 +2881,29 @@
       "bytes": 57427,
       "sha256": "b0ed6175f5c2124c5a7dd4e0448459be58fc1e5ec9194e6924b72d2653e57458"
     },
+    "focus-comparison-20261025/images/R07-00-view-simsac-filtered.png": {
+      "bytes": 57491,
+      "sha256": "a9c21dcf2380ab81ab58c0f5ec0e671715967fc4737532c921b998c73d1ac823"
+    },
     "focus-comparison-20261025/images/R07-00-view-simsac.png": {
       "bytes": 57491,
       "sha256": "a9c21dcf2380ab81ab58c0f5ec0e671715967fc4737532c921b998c73d1ac823"
     },
+    "focus-comparison-20261025/images/R07-00-view-viewdelta-filtered.png": {
+      "bytes": 57466,
+      "sha256": "8abfb0fe6623e33c92716a83387905c64ced529f7a895e585a4dc1e12909741c"
+    },
     "focus-comparison-20261025/images/R07-00-view-viewdelta.png": {
       "bytes": 57466,
       "sha256": "8abfb0fe6623e33c92716a83387905c64ced529f7a895e585a4dc1e12909741c"
+    },
+    "focus-comparison-20261025/images/R07-01-baseline-filtered.png": {
+      "bytes": 50708,
+      "sha256": "4b2fd4599c7332cbb7836383e873a1cbc5be9ca5672275cedb7440995e700f45"
+    },
+    "focus-comparison-20261025/images/R07-01-baseline-review-filtered.png": {
+      "bytes": 50840,
+      "sha256": "9ee53dcc25466bb42f713b501a2ae8a8d1ccfad2d43ad6c468ecb2d70732379a"
     },
     "focus-comparison-20261025/images/R07-01-baseline-review.png": {
       "bytes": 50840,
@@ -2541,7 +2913,23 @@
       "bytes": 50708,
       "sha256": "4b2fd4599c7332cbb7836383e873a1cbc5be9ca5672275cedb7440995e700f45"
     },
+    "focus-comparison-20261025/images/R07-01-erp-full-simsac-filtered.jpg": {
+      "bytes": 120966,
+      "sha256": "fd2aad1873345bda5cea4479fa4d32306d26386fbc0eb95176273732ec1f3876"
+    },
+    "focus-comparison-20261025/images/R07-01-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 120754,
+      "sha256": "0395a20c88f3134dadd38c9cd77721c7e7af2e1dda547d8eff6a81bd8ce70cbe"
+    },
+    "focus-comparison-20261025/images/R07-01-erp-simsac-filtered.png": {
+      "bytes": 50708,
+      "sha256": "4b2fd4599c7332cbb7836383e873a1cbc5be9ca5672275cedb7440995e700f45"
+    },
     "focus-comparison-20261025/images/R07-01-erp-simsac.png": {
+      "bytes": 50708,
+      "sha256": "4b2fd4599c7332cbb7836383e873a1cbc5be9ca5672275cedb7440995e700f45"
+    },
+    "focus-comparison-20261025/images/R07-01-erp-viewdelta-filtered.png": {
       "bytes": 50708,
       "sha256": "4b2fd4599c7332cbb7836383e873a1cbc5be9ca5672275cedb7440995e700f45"
     },
@@ -2557,13 +2945,29 @@
       "bytes": 50708,
       "sha256": "4b2fd4599c7332cbb7836383e873a1cbc5be9ca5672275cedb7440995e700f45"
     },
+    "focus-comparison-20261025/images/R07-01-view-simsac-filtered.png": {
+      "bytes": 50761,
+      "sha256": "2991564e7868d4bfbbc0c77e9b0c5630da4b821630efc609e51c68f15fa32bbe"
+    },
     "focus-comparison-20261025/images/R07-01-view-simsac.png": {
       "bytes": 50761,
       "sha256": "2991564e7868d4bfbbc0c77e9b0c5630da4b821630efc609e51c68f15fa32bbe"
     },
+    "focus-comparison-20261025/images/R07-01-view-viewdelta-filtered.png": {
+      "bytes": 50708,
+      "sha256": "4b2fd4599c7332cbb7836383e873a1cbc5be9ca5672275cedb7440995e700f45"
+    },
     "focus-comparison-20261025/images/R07-01-view-viewdelta.png": {
       "bytes": 50708,
       "sha256": "4b2fd4599c7332cbb7836383e873a1cbc5be9ca5672275cedb7440995e700f45"
+    },
+    "focus-comparison-20261025/images/R07-02-baseline-filtered.png": {
+      "bytes": 66111,
+      "sha256": "80516fd67904efb83863c1cd2a8b2f72170f58d73c2891b3e33a0bd4b40b3d27"
+    },
+    "focus-comparison-20261025/images/R07-02-baseline-review-filtered.png": {
+      "bytes": 66111,
+      "sha256": "80516fd67904efb83863c1cd2a8b2f72170f58d73c2891b3e33a0bd4b40b3d27"
     },
     "focus-comparison-20261025/images/R07-02-baseline-review.png": {
       "bytes": 66111,
@@ -2573,19 +2977,39 @@
       "bytes": 66111,
       "sha256": "80516fd67904efb83863c1cd2a8b2f72170f58d73c2891b3e33a0bd4b40b3d27"
     },
+    "focus-comparison-20261025/images/R07-02-erp-full-simsac-filtered.jpg": {
+      "bytes": 113134,
+      "sha256": "c63b77de4d78240e30c133cbfd61269f75f99a464e8cd8c8f24a118cca71af8a"
+    },
+    "focus-comparison-20261025/images/R07-02-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 112955,
+      "sha256": "a37e97c6ee74424e4f2b2e8f7b4244b16fd5d2ab87bbc6d4fd46b9c0ca528b2b"
+    },
+    "focus-comparison-20261025/images/R07-02-erp-simsac-filtered.png": {
+      "bytes": 66126,
+      "sha256": "6a793cba2243a150a41a368ebc91a4789ce6926346034b1d9845d1cb79f56d0c"
+    },
     "focus-comparison-20261025/images/R07-02-erp-simsac.png": {
       "bytes": 66126,
       "sha256": "6a793cba2243a150a41a368ebc91a4789ce6926346034b1d9845d1cb79f56d0c"
+    },
+    "focus-comparison-20261025/images/R07-02-erp-viewdelta-filtered.png": {
+      "bytes": 66111,
+      "sha256": "80516fd67904efb83863c1cd2a8b2f72170f58d73c2891b3e33a0bd4b40b3d27"
     },
     "focus-comparison-20261025/images/R07-02-erp-viewdelta.png": {
       "bytes": 66111,
       "sha256": "80516fd67904efb83863c1cd2a8b2f72170f58d73c2891b3e33a0bd4b40b3d27"
     },
     "focus-comparison-20261025/images/R07-02-person.png": {
+      "bytes": 65931,
+      "sha256": "b5ecd261b4c6937ab4888970c65c9f90be0b4d08d08041fce8c40d1558a6b65b"
+    },
+    "focus-comparison-20261025/images/R07-02-rgb.png": {
       "bytes": 66111,
       "sha256": "80516fd67904efb83863c1cd2a8b2f72170f58d73c2891b3e33a0bd4b40b3d27"
     },
-    "focus-comparison-20261025/images/R07-02-rgb.png": {
+    "focus-comparison-20261025/images/R07-02-view-simsac-filtered.png": {
       "bytes": 66111,
       "sha256": "80516fd67904efb83863c1cd2a8b2f72170f58d73c2891b3e33a0bd4b40b3d27"
     },
@@ -2593,9 +3017,21 @@
       "bytes": 66111,
       "sha256": "80516fd67904efb83863c1cd2a8b2f72170f58d73c2891b3e33a0bd4b40b3d27"
     },
+    "focus-comparison-20261025/images/R07-02-view-viewdelta-filtered.png": {
+      "bytes": 65453,
+      "sha256": "a0d2e793c50f34a9f9d18df2db8c82564ee5455eda52b726c062197817f0649d"
+    },
     "focus-comparison-20261025/images/R07-02-view-viewdelta.png": {
       "bytes": 65453,
       "sha256": "a0d2e793c50f34a9f9d18df2db8c82564ee5455eda52b726c062197817f0649d"
+    },
+    "focus-comparison-20261025/images/R07-03-baseline-filtered.png": {
+      "bytes": 66164,
+      "sha256": "4ba94712a254e978c72bf7299b881f84aaa1938ed289f3941d70ced8573912c4"
+    },
+    "focus-comparison-20261025/images/R07-03-baseline-review-filtered.png": {
+      "bytes": 66164,
+      "sha256": "4ba94712a254e978c72bf7299b881f84aaa1938ed289f3941d70ced8573912c4"
     },
     "focus-comparison-20261025/images/R07-03-baseline-review.png": {
       "bytes": 66164,
@@ -2605,7 +3041,23 @@
       "bytes": 66164,
       "sha256": "4ba94712a254e978c72bf7299b881f84aaa1938ed289f3941d70ced8573912c4"
     },
+    "focus-comparison-20261025/images/R07-03-erp-full-simsac-filtered.jpg": {
+      "bytes": 121583,
+      "sha256": "2fb0e4d2363902ead42982605e172e5cabe0fe199ad8b7cc6ac636c4c717f0c9"
+    },
+    "focus-comparison-20261025/images/R07-03-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 121808,
+      "sha256": "3b65fe26510a2280bcdc77ff146d68bb69d61b88a2574e4d833a1f7c32c8a6af"
+    },
+    "focus-comparison-20261025/images/R07-03-erp-simsac-filtered.png": {
+      "bytes": 66164,
+      "sha256": "4ba94712a254e978c72bf7299b881f84aaa1938ed289f3941d70ced8573912c4"
+    },
     "focus-comparison-20261025/images/R07-03-erp-simsac.png": {
+      "bytes": 66164,
+      "sha256": "4ba94712a254e978c72bf7299b881f84aaa1938ed289f3941d70ced8573912c4"
+    },
+    "focus-comparison-20261025/images/R07-03-erp-viewdelta-filtered.png": {
       "bytes": 66164,
       "sha256": "4ba94712a254e978c72bf7299b881f84aaa1938ed289f3941d70ced8573912c4"
     },
@@ -2614,20 +3066,36 @@
       "sha256": "4ba94712a254e978c72bf7299b881f84aaa1938ed289f3941d70ced8573912c4"
     },
     "focus-comparison-20261025/images/R07-03-person.png": {
-      "bytes": 66164,
-      "sha256": "4ba94712a254e978c72bf7299b881f84aaa1938ed289f3941d70ced8573912c4"
+      "bytes": 65042,
+      "sha256": "a7eba2f0ba9ab2b3bdef91af03dc3e48b027bf9734fae2d4b33fd8fb6f051e95"
     },
     "focus-comparison-20261025/images/R07-03-rgb.png": {
       "bytes": 66164,
       "sha256": "4ba94712a254e978c72bf7299b881f84aaa1938ed289f3941d70ced8573912c4"
     },
+    "focus-comparison-20261025/images/R07-03-view-simsac-filtered.png": {
+      "bytes": 66399,
+      "sha256": "795d83bd449bce860f3229d4bbb62d0b3d276e68791f1648ddb2a251c8d5cd30"
+    },
     "focus-comparison-20261025/images/R07-03-view-simsac.png": {
       "bytes": 66183,
       "sha256": "7b5e0f2c4485142da53896bc32832ebbac0ac4caabb441f6594ff14abfef0b1d"
     },
+    "focus-comparison-20261025/images/R07-03-view-viewdelta-filtered.png": {
+      "bytes": 66215,
+      "sha256": "f81e3f48aa6506bc624811f7636f8ef9291054c2a45b8d8325e28890def9ac95"
+    },
     "focus-comparison-20261025/images/R07-03-view-viewdelta.png": {
       "bytes": 65847,
       "sha256": "8aad7caec2db6fb3cb24f8a7507f1e37bc06f79279c723a04f55be2daa51b4e5"
+    },
+    "focus-comparison-20261025/images/R07-04-baseline-filtered.png": {
+      "bytes": 62212,
+      "sha256": "70ed8980a5c1b3c9862d2f16a77ee8fb45955b07aaacf5a6bab1a7c5644cc71c"
+    },
+    "focus-comparison-20261025/images/R07-04-baseline-review-filtered.png": {
+      "bytes": 62321,
+      "sha256": "0df8c7497d6bfa66df718d8063063eb311a67536577033b25a2735b18de91d69"
     },
     "focus-comparison-20261025/images/R07-04-baseline-review.png": {
       "bytes": 62321,
@@ -2637,9 +3105,25 @@
       "bytes": 62212,
       "sha256": "70ed8980a5c1b3c9862d2f16a77ee8fb45955b07aaacf5a6bab1a7c5644cc71c"
     },
+    "focus-comparison-20261025/images/R07-04-erp-full-simsac-filtered.jpg": {
+      "bytes": 114284,
+      "sha256": "70204f0021c9cf268eff89fbaf1cd9f08754eae4cd7c6aac9d3dd1f890005be2"
+    },
+    "focus-comparison-20261025/images/R07-04-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 115721,
+      "sha256": "0e25e43e4bea51387c530163b4fa8a0356de3378b304046eb6925a69d84a640e"
+    },
+    "focus-comparison-20261025/images/R07-04-erp-simsac-filtered.png": {
+      "bytes": 62212,
+      "sha256": "70ed8980a5c1b3c9862d2f16a77ee8fb45955b07aaacf5a6bab1a7c5644cc71c"
+    },
     "focus-comparison-20261025/images/R07-04-erp-simsac.png": {
       "bytes": 62212,
       "sha256": "70ed8980a5c1b3c9862d2f16a77ee8fb45955b07aaacf5a6bab1a7c5644cc71c"
+    },
+    "focus-comparison-20261025/images/R07-04-erp-viewdelta-filtered.png": {
+      "bytes": 62232,
+      "sha256": "bb768266fc389926054761a2d04fb548c897382cde784b20fbe24c86c2cfbc70"
     },
     "focus-comparison-20261025/images/R07-04-erp-viewdelta.png": {
       "bytes": 62232,
@@ -2653,13 +3137,29 @@
       "bytes": 62212,
       "sha256": "70ed8980a5c1b3c9862d2f16a77ee8fb45955b07aaacf5a6bab1a7c5644cc71c"
     },
+    "focus-comparison-20261025/images/R07-04-view-simsac-filtered.png": {
+      "bytes": 62163,
+      "sha256": "f704f5a24239ffd2d85a5996fdd3a7601abb254d8ae2b78a2294815fe5384fb9"
+    },
     "focus-comparison-20261025/images/R07-04-view-simsac.png": {
       "bytes": 62163,
       "sha256": "f704f5a24239ffd2d85a5996fdd3a7601abb254d8ae2b78a2294815fe5384fb9"
     },
+    "focus-comparison-20261025/images/R07-04-view-viewdelta-filtered.png": {
+      "bytes": 62332,
+      "sha256": "b5933985af944d246c6a256d58ee9dae0e86b9a9db9a7f2340e4e97bbe78c2b4"
+    },
     "focus-comparison-20261025/images/R07-04-view-viewdelta.png": {
       "bytes": 62332,
       "sha256": "b5933985af944d246c6a256d58ee9dae0e86b9a9db9a7f2340e4e97bbe78c2b4"
+    },
+    "focus-comparison-20261025/images/R07-05-baseline-filtered.png": {
+      "bytes": 57386,
+      "sha256": "a2752d9686bfc7c14edbad430ea87f745f2b28e0acb9dfbf408f4e00eec192b7"
+    },
+    "focus-comparison-20261025/images/R07-05-baseline-review-filtered.png": {
+      "bytes": 57244,
+      "sha256": "6e67ed347d0eb3917a36c9013249f9128173b3d67c8c5cf69afaf466cc165837"
     },
     "focus-comparison-20261025/images/R07-05-baseline-review.png": {
       "bytes": 57244,
@@ -2669,9 +3169,25 @@
       "bytes": 57386,
       "sha256": "a2752d9686bfc7c14edbad430ea87f745f2b28e0acb9dfbf408f4e00eec192b7"
     },
+    "focus-comparison-20261025/images/R07-05-erp-full-simsac-filtered.jpg": {
+      "bytes": 110160,
+      "sha256": "bac0b164949fc9670acc57a39e976c99d869646445d528a9733e8512de074cb0"
+    },
+    "focus-comparison-20261025/images/R07-05-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 110128,
+      "sha256": "0dcbdd797082df487cfd50d861ab482af45f2cb127163ae37dcfd2017969807f"
+    },
+    "focus-comparison-20261025/images/R07-05-erp-simsac-filtered.png": {
+      "bytes": 57382,
+      "sha256": "a9ce0279452e74c4af3e9e71b8f410d35cbe2d6d8851e43c84f86f0e8c05bc95"
+    },
     "focus-comparison-20261025/images/R07-05-erp-simsac.png": {
       "bytes": 57382,
       "sha256": "a9ce0279452e74c4af3e9e71b8f410d35cbe2d6d8851e43c84f86f0e8c05bc95"
+    },
+    "focus-comparison-20261025/images/R07-05-erp-viewdelta-filtered.png": {
+      "bytes": 57386,
+      "sha256": "a2752d9686bfc7c14edbad430ea87f745f2b28e0acb9dfbf408f4e00eec192b7"
     },
     "focus-comparison-20261025/images/R07-05-erp-viewdelta.png": {
       "bytes": 57386,
@@ -2685,13 +3201,29 @@
       "bytes": 57386,
       "sha256": "a2752d9686bfc7c14edbad430ea87f745f2b28e0acb9dfbf408f4e00eec192b7"
     },
+    "focus-comparison-20261025/images/R07-05-view-simsac-filtered.png": {
+      "bytes": 57268,
+      "sha256": "de557476fa681238d879814097f68ed39b222a27d7e73d33c6b2f9d4b86058a2"
+    },
     "focus-comparison-20261025/images/R07-05-view-simsac.png": {
       "bytes": 57268,
       "sha256": "de557476fa681238d879814097f68ed39b222a27d7e73d33c6b2f9d4b86058a2"
     },
+    "focus-comparison-20261025/images/R07-05-view-viewdelta-filtered.png": {
+      "bytes": 57419,
+      "sha256": "33811d34ccedb579d1376e50a63f783f927150e5a43a653395e24e062f9ac032"
+    },
     "focus-comparison-20261025/images/R07-05-view-viewdelta.png": {
       "bytes": 57419,
       "sha256": "33811d34ccedb579d1376e50a63f783f927150e5a43a653395e24e062f9ac032"
+    },
+    "focus-comparison-20261025/images/R07-06-baseline-filtered.png": {
+      "bytes": 71352,
+      "sha256": "46dbbce057152ef1e412fc93bacf48a36795c2e8720ade260a99c2df76877b0e"
+    },
+    "focus-comparison-20261025/images/R07-06-baseline-review-filtered.png": {
+      "bytes": 71352,
+      "sha256": "46dbbce057152ef1e412fc93bacf48a36795c2e8720ade260a99c2df76877b0e"
     },
     "focus-comparison-20261025/images/R07-06-baseline-review.png": {
       "bytes": 71369,
@@ -2701,7 +3233,23 @@
       "bytes": 71352,
       "sha256": "46dbbce057152ef1e412fc93bacf48a36795c2e8720ade260a99c2df76877b0e"
     },
+    "focus-comparison-20261025/images/R07-06-erp-full-simsac-filtered.jpg": {
+      "bytes": 110182,
+      "sha256": "91e8d25f20011f9d0eadcd47f34e9233692bd2fa50e3dd8c477d60185a6183e9"
+    },
+    "focus-comparison-20261025/images/R07-06-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 110128,
+      "sha256": "0dcbdd797082df487cfd50d861ab482af45f2cb127163ae37dcfd2017969807f"
+    },
+    "focus-comparison-20261025/images/R07-06-erp-simsac-filtered.png": {
+      "bytes": 71352,
+      "sha256": "46dbbce057152ef1e412fc93bacf48a36795c2e8720ade260a99c2df76877b0e"
+    },
     "focus-comparison-20261025/images/R07-06-erp-simsac.png": {
+      "bytes": 71352,
+      "sha256": "46dbbce057152ef1e412fc93bacf48a36795c2e8720ade260a99c2df76877b0e"
+    },
+    "focus-comparison-20261025/images/R07-06-erp-viewdelta-filtered.png": {
       "bytes": 71352,
       "sha256": "46dbbce057152ef1e412fc93bacf48a36795c2e8720ade260a99c2df76877b0e"
     },
@@ -2710,10 +3258,14 @@
       "sha256": "46dbbce057152ef1e412fc93bacf48a36795c2e8720ade260a99c2df76877b0e"
     },
     "focus-comparison-20261025/images/R07-06-person.png": {
-      "bytes": 67935,
-      "sha256": "2c12d87e9c547e6e6637a0abc373b61e336a7cbbc0aa6062cc255aa65de227db"
+      "bytes": 64198,
+      "sha256": "e4897808bd143f6162a7a61eda5ef8eace17f68bce250c4777f882fc1cd8531f"
     },
     "focus-comparison-20261025/images/R07-06-rgb.png": {
+      "bytes": 71352,
+      "sha256": "46dbbce057152ef1e412fc93bacf48a36795c2e8720ade260a99c2df76877b0e"
+    },
+    "focus-comparison-20261025/images/R07-06-view-simsac-filtered.png": {
       "bytes": 71352,
       "sha256": "46dbbce057152ef1e412fc93bacf48a36795c2e8720ade260a99c2df76877b0e"
     },
@@ -2721,9 +3273,21 @@
       "bytes": 67505,
       "sha256": "7205e1f85598b46433f1a61dd880eb183ae986f60fd783f490607419b95f50e9"
     },
+    "focus-comparison-20261025/images/R07-06-view-viewdelta-filtered.png": {
+      "bytes": 71352,
+      "sha256": "46dbbce057152ef1e412fc93bacf48a36795c2e8720ade260a99c2df76877b0e"
+    },
     "focus-comparison-20261025/images/R07-06-view-viewdelta.png": {
       "bytes": 68148,
       "sha256": "5b63748bf70fcaaac3be38b6d0e090caed66509dd5b2844a7594e37ceded1689"
+    },
+    "focus-comparison-20261025/images/R07-07-baseline-filtered.png": {
+      "bytes": 74287,
+      "sha256": "cd423bbf3d4b77accdc7629a64d226d2c47740d21182624f3494cdff2bacc7ad"
+    },
+    "focus-comparison-20261025/images/R07-07-baseline-review-filtered.png": {
+      "bytes": 74287,
+      "sha256": "cd423bbf3d4b77accdc7629a64d226d2c47740d21182624f3494cdff2bacc7ad"
     },
     "focus-comparison-20261025/images/R07-07-baseline-review.png": {
       "bytes": 74365,
@@ -2733,7 +3297,23 @@
       "bytes": 74287,
       "sha256": "cd423bbf3d4b77accdc7629a64d226d2c47740d21182624f3494cdff2bacc7ad"
     },
+    "focus-comparison-20261025/images/R07-07-erp-full-simsac-filtered.jpg": {
+      "bytes": 124233,
+      "sha256": "bc8b2e22ba3bb938e82a8b8172537e0e99f725b19bfa5c177c71cb531be03aa1"
+    },
+    "focus-comparison-20261025/images/R07-07-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 124118,
+      "sha256": "7cacf31d5b542963ce8a276e69928719b31edc18d3732f61dfff8e997b280ce7"
+    },
+    "focus-comparison-20261025/images/R07-07-erp-simsac-filtered.png": {
+      "bytes": 74287,
+      "sha256": "cd423bbf3d4b77accdc7629a64d226d2c47740d21182624f3494cdff2bacc7ad"
+    },
     "focus-comparison-20261025/images/R07-07-erp-simsac.png": {
+      "bytes": 74287,
+      "sha256": "cd423bbf3d4b77accdc7629a64d226d2c47740d21182624f3494cdff2bacc7ad"
+    },
+    "focus-comparison-20261025/images/R07-07-erp-viewdelta-filtered.png": {
       "bytes": 74287,
       "sha256": "cd423bbf3d4b77accdc7629a64d226d2c47740d21182624f3494cdff2bacc7ad"
     },
@@ -2742,10 +3322,14 @@
       "sha256": "cd423bbf3d4b77accdc7629a64d226d2c47740d21182624f3494cdff2bacc7ad"
     },
     "focus-comparison-20261025/images/R07-07-person.png": {
-      "bytes": 70250,
-      "sha256": "9f41cb8b761835ae0ac413ef9ac159e4fc8ad1a7f9c3f886ac986433a0b0249f"
+      "bytes": 67463,
+      "sha256": "9ff92ef6d24fddd4b89170c272ea16ab7cbf22d0867228791f07fea72951a738"
     },
     "focus-comparison-20261025/images/R07-07-rgb.png": {
+      "bytes": 74287,
+      "sha256": "cd423bbf3d4b77accdc7629a64d226d2c47740d21182624f3494cdff2bacc7ad"
+    },
+    "focus-comparison-20261025/images/R07-07-view-simsac-filtered.png": {
       "bytes": 74287,
       "sha256": "cd423bbf3d4b77accdc7629a64d226d2c47740d21182624f3494cdff2bacc7ad"
     },
@@ -2753,9 +3337,21 @@
       "bytes": 70300,
       "sha256": "bd17731e35344a62d5d7f2e1fd7b608f21a1878cecedac8559bfa3549b32f949"
     },
+    "focus-comparison-20261025/images/R07-07-view-viewdelta-filtered.png": {
+      "bytes": 73966,
+      "sha256": "6e7a97495a23efef5477c2fb1c00f8929fd52cae1030ddb6c9461f96c8ec6f23"
+    },
     "focus-comparison-20261025/images/R07-07-view-viewdelta.png": {
       "bytes": 74095,
       "sha256": "fda3719a696890aeccfcdcf1fd96b40befbbb5eb2fca97122e68ca15fa9862d5"
+    },
+    "focus-comparison-20261025/images/R07-08-baseline-filtered.png": {
+      "bytes": 62933,
+      "sha256": "025f9b3060fe2b1bc5e80f8e2207c1123f4a983fd2a01282c49eb8be606a09a4"
+    },
+    "focus-comparison-20261025/images/R07-08-baseline-review-filtered.png": {
+      "bytes": 62875,
+      "sha256": "9828f41fa4c46ee6eae7af5b3f9350b16ff20d7ee13f3ce8e4e832c4b3774de3"
     },
     "focus-comparison-20261025/images/R07-08-baseline-review.png": {
       "bytes": 62875,
@@ -2765,7 +3361,23 @@
       "bytes": 62933,
       "sha256": "025f9b3060fe2b1bc5e80f8e2207c1123f4a983fd2a01282c49eb8be606a09a4"
     },
+    "focus-comparison-20261025/images/R07-08-erp-full-simsac-filtered.jpg": {
+      "bytes": 117209,
+      "sha256": "55794a0bb0085ca9229c8ba6163a6eb4bd63e5f3e10642c1ecdbab73357b865c"
+    },
+    "focus-comparison-20261025/images/R07-08-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 116598,
+      "sha256": "b0eda182bf6442a12674f9ecb6cc072ed19962019aecdfb1cbbe6d9262bdfe1e"
+    },
+    "focus-comparison-20261025/images/R07-08-erp-simsac-filtered.png": {
+      "bytes": 62933,
+      "sha256": "025f9b3060fe2b1bc5e80f8e2207c1123f4a983fd2a01282c49eb8be606a09a4"
+    },
     "focus-comparison-20261025/images/R07-08-erp-simsac.png": {
+      "bytes": 62933,
+      "sha256": "025f9b3060fe2b1bc5e80f8e2207c1123f4a983fd2a01282c49eb8be606a09a4"
+    },
+    "focus-comparison-20261025/images/R07-08-erp-viewdelta-filtered.png": {
       "bytes": 62933,
       "sha256": "025f9b3060fe2b1bc5e80f8e2207c1123f4a983fd2a01282c49eb8be606a09a4"
     },
@@ -2781,13 +3393,29 @@
       "bytes": 62933,
       "sha256": "025f9b3060fe2b1bc5e80f8e2207c1123f4a983fd2a01282c49eb8be606a09a4"
     },
+    "focus-comparison-20261025/images/R07-08-view-simsac-filtered.png": {
+      "bytes": 62843,
+      "sha256": "bb6774938a06144b7952d6917447c3b9988e629a3e1eb74ea9f50419e8e3b399"
+    },
     "focus-comparison-20261025/images/R07-08-view-simsac.png": {
       "bytes": 62843,
       "sha256": "bb6774938a06144b7952d6917447c3b9988e629a3e1eb74ea9f50419e8e3b399"
     },
+    "focus-comparison-20261025/images/R07-08-view-viewdelta-filtered.png": {
+      "bytes": 61766,
+      "sha256": "566e1fd69f753a24535640c3f3b4792ba9bb806706e45f89b246f7057d7d7d1d"
+    },
     "focus-comparison-20261025/images/R07-08-view-viewdelta.png": {
       "bytes": 61766,
       "sha256": "566e1fd69f753a24535640c3f3b4792ba9bb806706e45f89b246f7057d7d7d1d"
+    },
+    "focus-comparison-20261025/images/R07-09-baseline-filtered.png": {
+      "bytes": 59272,
+      "sha256": "828f02475622686ad58bccea7349af31974b713b48687c3a24da62c1ccfb0753"
+    },
+    "focus-comparison-20261025/images/R07-09-baseline-review-filtered.png": {
+      "bytes": 59272,
+      "sha256": "828f02475622686ad58bccea7349af31974b713b48687c3a24da62c1ccfb0753"
     },
     "focus-comparison-20261025/images/R07-09-baseline-review.png": {
       "bytes": 59272,
@@ -2797,29 +3425,61 @@
       "bytes": 59272,
       "sha256": "828f02475622686ad58bccea7349af31974b713b48687c3a24da62c1ccfb0753"
     },
+    "focus-comparison-20261025/images/R07-09-erp-full-simsac-filtered.jpg": {
+      "bytes": 122386,
+      "sha256": "0a30910b82cd7f2d174998f7f4c18e8c992456ba3e1212cb48bab015cbd8a7aa"
+    },
+    "focus-comparison-20261025/images/R07-09-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 122319,
+      "sha256": "cefd9313a4811babdef9a21555ca7849c335af9a3b2fdadb85b7bed0814ac09e"
+    },
+    "focus-comparison-20261025/images/R07-09-erp-simsac-filtered.png": {
+      "bytes": 59296,
+      "sha256": "b2661175b548944d57ed507fa50e7ef6b24469e7a7deb28a464ebec063d66a41"
+    },
     "focus-comparison-20261025/images/R07-09-erp-simsac.png": {
       "bytes": 59296,
       "sha256": "b2661175b548944d57ed507fa50e7ef6b24469e7a7deb28a464ebec063d66a41"
+    },
+    "focus-comparison-20261025/images/R07-09-erp-viewdelta-filtered.png": {
+      "bytes": 59272,
+      "sha256": "828f02475622686ad58bccea7349af31974b713b48687c3a24da62c1ccfb0753"
     },
     "focus-comparison-20261025/images/R07-09-erp-viewdelta.png": {
       "bytes": 59272,
       "sha256": "828f02475622686ad58bccea7349af31974b713b48687c3a24da62c1ccfb0753"
     },
     "focus-comparison-20261025/images/R07-09-person.png": {
-      "bytes": 59312,
-      "sha256": "9eb829c3a77682384669fe1c045e5f27e11b935eb876a6821ab87158817ad000"
+      "bytes": 58499,
+      "sha256": "40c295732e4a867aeae2d9efba7aae047835f8439a8d2fe03843bd1c3d0fc2a7"
     },
     "focus-comparison-20261025/images/R07-09-rgb.png": {
       "bytes": 59272,
       "sha256": "828f02475622686ad58bccea7349af31974b713b48687c3a24da62c1ccfb0753"
     },
+    "focus-comparison-20261025/images/R07-09-view-simsac-filtered.png": {
+      "bytes": 59201,
+      "sha256": "9ea2a48601dbe0c08d7a087a7248a38c8e89e70dd97f792342670edfa7afaf8f"
+    },
     "focus-comparison-20261025/images/R07-09-view-simsac.png": {
       "bytes": 59318,
       "sha256": "59b799859bfd4f9ed89a139914623a735058a71755e17f32daef98d5df9b658a"
     },
+    "focus-comparison-20261025/images/R07-09-view-viewdelta-filtered.png": {
+      "bytes": 59408,
+      "sha256": "81eb0b36ed341758bfc157f8958e15e53347b69a66e242b1a1ddfc05eb683720"
+    },
     "focus-comparison-20261025/images/R07-09-view-viewdelta.png": {
       "bytes": 59408,
       "sha256": "81eb0b36ed341758bfc157f8958e15e53347b69a66e242b1a1ddfc05eb683720"
+    },
+    "focus-comparison-20261025/images/R08-00-baseline-filtered.png": {
+      "bytes": 79125,
+      "sha256": "59b14c092482a5c1efed338d27c643b1bde57537b0774afea195687844baeb49"
+    },
+    "focus-comparison-20261025/images/R08-00-baseline-review-filtered.png": {
+      "bytes": 79808,
+      "sha256": "7959a56b800d95983821fab80583c9f3fb88610d2134ae4d1753e4aaa5e30a1a"
     },
     "focus-comparison-20261025/images/R08-00-baseline-review.png": {
       "bytes": 79620,
@@ -2829,29 +3489,61 @@
       "bytes": 79125,
       "sha256": "59b14c092482a5c1efed338d27c643b1bde57537b0774afea195687844baeb49"
     },
+    "focus-comparison-20261025/images/R08-00-erp-full-simsac-filtered.jpg": {
+      "bytes": 120478,
+      "sha256": "55627db493e5d7bb34ec3f34193dd2b3631f4acf02f92c7c6ab1f9438185b409"
+    },
+    "focus-comparison-20261025/images/R08-00-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 121227,
+      "sha256": "513c514366f36bf16a42a51a7e3c38cd9172c0d4c2d37724867afe0867bdf7b6"
+    },
+    "focus-comparison-20261025/images/R08-00-erp-simsac-filtered.png": {
+      "bytes": 79125,
+      "sha256": "59b14c092482a5c1efed338d27c643b1bde57537b0774afea195687844baeb49"
+    },
     "focus-comparison-20261025/images/R08-00-erp-simsac.png": {
       "bytes": 79269,
       "sha256": "d6fdbf76ecbd3b0747ee9ff1e8f0b05bffc7fcc1fce3fb94de7f669a85dd340d"
+    },
+    "focus-comparison-20261025/images/R08-00-erp-viewdelta-filtered.png": {
+      "bytes": 79125,
+      "sha256": "59b14c092482a5c1efed338d27c643b1bde57537b0774afea195687844baeb49"
     },
     "focus-comparison-20261025/images/R08-00-erp-viewdelta.png": {
       "bytes": 79125,
       "sha256": "59b14c092482a5c1efed338d27c643b1bde57537b0774afea195687844baeb49"
     },
     "focus-comparison-20261025/images/R08-00-person.png": {
-      "bytes": 75246,
-      "sha256": "cdf8b8e2910a230a1f54ca53a45e06063dd6c116c7ffa7fd23fa7e9fb2ccbf41"
+      "bytes": 74056,
+      "sha256": "8cf4f37f29bf8e0e19ca76e4b59d22d1250a24ec0725ac61f21065dfdb64a4e6"
     },
     "focus-comparison-20261025/images/R08-00-rgb.png": {
       "bytes": 79125,
       "sha256": "59b14c092482a5c1efed338d27c643b1bde57537b0774afea195687844baeb49"
     },
+    "focus-comparison-20261025/images/R08-00-view-simsac-filtered.png": {
+      "bytes": 79311,
+      "sha256": "fc15167cd25648ee87280c07f3880d92460e44e4d586ce139e84aa7de1040300"
+    },
     "focus-comparison-20261025/images/R08-00-view-simsac.png": {
       "bytes": 77693,
       "sha256": "68b21125456441da9348834a825b477a4b0c983b1dfe4e6c24c5601d6a5706c0"
     },
+    "focus-comparison-20261025/images/R08-00-view-viewdelta-filtered.png": {
+      "bytes": 79125,
+      "sha256": "59b14c092482a5c1efed338d27c643b1bde57537b0774afea195687844baeb49"
+    },
     "focus-comparison-20261025/images/R08-00-view-viewdelta.png": {
       "bytes": 79125,
       "sha256": "59b14c092482a5c1efed338d27c643b1bde57537b0774afea195687844baeb49"
+    },
+    "focus-comparison-20261025/images/R08-01-baseline-filtered.png": {
+      "bytes": 74519,
+      "sha256": "99463ea1008c443d59e92957106889a5483def15ca2b05ac54d85bf2860ecbb1"
+    },
+    "focus-comparison-20261025/images/R08-01-baseline-review-filtered.png": {
+      "bytes": 74348,
+      "sha256": "7687192d542c4c08aa824ac99ca5d51faedc9d84dfb428b2f5d9f44084407475"
     },
     "focus-comparison-20261025/images/R08-01-baseline-review.png": {
       "bytes": 74508,
@@ -2861,29 +3553,61 @@
       "bytes": 74519,
       "sha256": "99463ea1008c443d59e92957106889a5483def15ca2b05ac54d85bf2860ecbb1"
     },
+    "focus-comparison-20261025/images/R08-01-erp-full-simsac-filtered.jpg": {
+      "bytes": 127548,
+      "sha256": "2f52a44b4023f44772314b420982be6ea40d3c29bae5e65f426b75f08e8c501a"
+    },
+    "focus-comparison-20261025/images/R08-01-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 126548,
+      "sha256": "f10dea7de15289daabf121b4127369f9068b44eb666c774d4372c09b648e6da1"
+    },
+    "focus-comparison-20261025/images/R08-01-erp-simsac-filtered.png": {
+      "bytes": 73316,
+      "sha256": "9219fb9e0fa74536f84d5bc75e7def15cc4319060eb760abcebf9171ea67d732"
+    },
     "focus-comparison-20261025/images/R08-01-erp-simsac.png": {
       "bytes": 72507,
       "sha256": "ce34770b71814e9f87362eb49e71e4b1f67d3024f5c1ed5f6a3b9411df7bad9c"
+    },
+    "focus-comparison-20261025/images/R08-01-erp-viewdelta-filtered.png": {
+      "bytes": 74519,
+      "sha256": "99463ea1008c443d59e92957106889a5483def15ca2b05ac54d85bf2860ecbb1"
     },
     "focus-comparison-20261025/images/R08-01-erp-viewdelta.png": {
       "bytes": 74519,
       "sha256": "99463ea1008c443d59e92957106889a5483def15ca2b05ac54d85bf2860ecbb1"
     },
     "focus-comparison-20261025/images/R08-01-person.png": {
-      "bytes": 73295,
-      "sha256": "3d8e9ad34b8e7f3d4c508b10f44b344d700df00f6f099a161358f21971e4e9f4"
+      "bytes": 71537,
+      "sha256": "860309e215811a963f88132b72455f71d291ddcd2ab631fed940a9526d835420"
     },
     "focus-comparison-20261025/images/R08-01-rgb.png": {
       "bytes": 74519,
       "sha256": "99463ea1008c443d59e92957106889a5483def15ca2b05ac54d85bf2860ecbb1"
     },
+    "focus-comparison-20261025/images/R08-01-view-simsac-filtered.png": {
+      "bytes": 74196,
+      "sha256": "97be6888f62f2ea8c98cb4fd5482242ffdf08a8b16d3f3791e2fb9d006efcf74"
+    },
     "focus-comparison-20261025/images/R08-01-view-simsac.png": {
       "bytes": 74073,
       "sha256": "6693ddee0c7a2760b8badf792de4e885adb78508c66e63d805fd5cdbb4d7eda6"
     },
+    "focus-comparison-20261025/images/R08-01-view-viewdelta-filtered.png": {
+      "bytes": 74519,
+      "sha256": "99463ea1008c443d59e92957106889a5483def15ca2b05ac54d85bf2860ecbb1"
+    },
     "focus-comparison-20261025/images/R08-01-view-viewdelta.png": {
       "bytes": 74519,
       "sha256": "99463ea1008c443d59e92957106889a5483def15ca2b05ac54d85bf2860ecbb1"
+    },
+    "focus-comparison-20261025/images/R08-02-baseline-filtered.png": {
+      "bytes": 67916,
+      "sha256": "f6b242e03ed615d0493fbf3a2d6de27bdca65d7bb86a247f9b8f7751eed27747"
+    },
+    "focus-comparison-20261025/images/R08-02-baseline-review-filtered.png": {
+      "bytes": 67918,
+      "sha256": "ed7ce662dded5d49b31c8827f5d6b42278364342c7b28f3c439f222e25b3841d"
     },
     "focus-comparison-20261025/images/R08-02-baseline-review.png": {
       "bytes": 67918,
@@ -2893,9 +3617,25 @@
       "bytes": 67916,
       "sha256": "f6b242e03ed615d0493fbf3a2d6de27bdca65d7bb86a247f9b8f7751eed27747"
     },
+    "focus-comparison-20261025/images/R08-02-erp-full-simsac-filtered.jpg": {
+      "bytes": 128719,
+      "sha256": "0c6b3e9d39066aa0a005fb34fc8b75fd9a3260b919b844c29da8e65495c8ca02"
+    },
+    "focus-comparison-20261025/images/R08-02-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 126852,
+      "sha256": "b1bab9e6a9966c199b9c5e0b03cc9d34778383887256de3f9fc39f1e3c3d3c20"
+    },
+    "focus-comparison-20261025/images/R08-02-erp-simsac-filtered.png": {
+      "bytes": 68236,
+      "sha256": "a6573b4ba2a5c8b3dcf0d3650d6eeffa3e06ee9e0f948d4dad3c288440db2233"
+    },
     "focus-comparison-20261025/images/R08-02-erp-simsac.png": {
       "bytes": 68236,
       "sha256": "a6573b4ba2a5c8b3dcf0d3650d6eeffa3e06ee9e0f948d4dad3c288440db2233"
+    },
+    "focus-comparison-20261025/images/R08-02-erp-viewdelta-filtered.png": {
+      "bytes": 67916,
+      "sha256": "f6b242e03ed615d0493fbf3a2d6de27bdca65d7bb86a247f9b8f7751eed27747"
     },
     "focus-comparison-20261025/images/R08-02-erp-viewdelta.png": {
       "bytes": 67916,
@@ -2909,13 +3649,29 @@
       "bytes": 67916,
       "sha256": "f6b242e03ed615d0493fbf3a2d6de27bdca65d7bb86a247f9b8f7751eed27747"
     },
+    "focus-comparison-20261025/images/R08-02-view-simsac-filtered.png": {
+      "bytes": 67667,
+      "sha256": "b1bc76dfefbebd32b38dcebfca9605ccd0cb7102240d04a8a72acd3e3a6d4ad3"
+    },
     "focus-comparison-20261025/images/R08-02-view-simsac.png": {
       "bytes": 67667,
       "sha256": "b1bc76dfefbebd32b38dcebfca9605ccd0cb7102240d04a8a72acd3e3a6d4ad3"
     },
+    "focus-comparison-20261025/images/R08-02-view-viewdelta-filtered.png": {
+      "bytes": 68120,
+      "sha256": "92fa32cb385f61edb67ebaa2c46596475ac43e4e7d07e7ac2efc4bad65cd7e84"
+    },
     "focus-comparison-20261025/images/R08-02-view-viewdelta.png": {
       "bytes": 68120,
       "sha256": "92fa32cb385f61edb67ebaa2c46596475ac43e4e7d07e7ac2efc4bad65cd7e84"
+    },
+    "focus-comparison-20261025/images/R08-03-baseline-filtered.png": {
+      "bytes": 65581,
+      "sha256": "35d94dd5ce0ee777d24f1fa8f9084a13f882918c7e0f5dd28a54021ed720a2f3"
+    },
+    "focus-comparison-20261025/images/R08-03-baseline-review-filtered.png": {
+      "bytes": 65757,
+      "sha256": "3433cc6aeb380285aad4633b0d35806fae3f4ba58aed45cbeff45b50fc3986ba"
     },
     "focus-comparison-20261025/images/R08-03-baseline-review.png": {
       "bytes": 65757,
@@ -2925,7 +3681,23 @@
       "bytes": 65581,
       "sha256": "35d94dd5ce0ee777d24f1fa8f9084a13f882918c7e0f5dd28a54021ed720a2f3"
     },
+    "focus-comparison-20261025/images/R08-03-erp-full-simsac-filtered.jpg": {
+      "bytes": 120277,
+      "sha256": "dc1ba7bd0b14ae7eed99357777e6d1a470366180ab0a63543bb53671df8353c4"
+    },
+    "focus-comparison-20261025/images/R08-03-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 121144,
+      "sha256": "987b3fcd48407c70af9a6b6c43ee309e1a03b45d25884cd07fb7ebc4b5740f45"
+    },
+    "focus-comparison-20261025/images/R08-03-erp-simsac-filtered.png": {
+      "bytes": 65581,
+      "sha256": "35d94dd5ce0ee777d24f1fa8f9084a13f882918c7e0f5dd28a54021ed720a2f3"
+    },
     "focus-comparison-20261025/images/R08-03-erp-simsac.png": {
+      "bytes": 65581,
+      "sha256": "35d94dd5ce0ee777d24f1fa8f9084a13f882918c7e0f5dd28a54021ed720a2f3"
+    },
+    "focus-comparison-20261025/images/R08-03-erp-viewdelta-filtered.png": {
       "bytes": 65581,
       "sha256": "35d94dd5ce0ee777d24f1fa8f9084a13f882918c7e0f5dd28a54021ed720a2f3"
     },
@@ -2941,13 +3713,29 @@
       "bytes": 65581,
       "sha256": "35d94dd5ce0ee777d24f1fa8f9084a13f882918c7e0f5dd28a54021ed720a2f3"
     },
+    "focus-comparison-20261025/images/R08-03-view-simsac-filtered.png": {
+      "bytes": 65543,
+      "sha256": "416f78a81f9f037eeb35245c3cdfe876bce696f481ab87a7fbd0285a41ec8c36"
+    },
     "focus-comparison-20261025/images/R08-03-view-simsac.png": {
       "bytes": 65543,
       "sha256": "416f78a81f9f037eeb35245c3cdfe876bce696f481ab87a7fbd0285a41ec8c36"
     },
+    "focus-comparison-20261025/images/R08-03-view-viewdelta-filtered.png": {
+      "bytes": 65581,
+      "sha256": "35d94dd5ce0ee777d24f1fa8f9084a13f882918c7e0f5dd28a54021ed720a2f3"
+    },
     "focus-comparison-20261025/images/R08-03-view-viewdelta.png": {
       "bytes": 65581,
       "sha256": "35d94dd5ce0ee777d24f1fa8f9084a13f882918c7e0f5dd28a54021ed720a2f3"
+    },
+    "focus-comparison-20261025/images/R08-04-baseline-filtered.png": {
+      "bytes": 55181,
+      "sha256": "a7d91d40acce45fe3942763ac3ad0dff3d1f0154c62b17cfe29e6c22d32393d3"
+    },
+    "focus-comparison-20261025/images/R08-04-baseline-review-filtered.png": {
+      "bytes": 55224,
+      "sha256": "f9931ae48e0948e4fb1c137d5ab27211f13e89e5ee94b28cf99bbfff66fd8a2b"
     },
     "focus-comparison-20261025/images/R08-04-baseline-review.png": {
       "bytes": 55204,
@@ -2957,29 +3745,61 @@
       "bytes": 55181,
       "sha256": "a7d91d40acce45fe3942763ac3ad0dff3d1f0154c62b17cfe29e6c22d32393d3"
     },
+    "focus-comparison-20261025/images/R08-04-erp-full-simsac-filtered.jpg": {
+      "bytes": 120780,
+      "sha256": "1d8ab7f03ff384e8f9c1adba5c2fdbbcc522400121aa2ed2b55cbafde7667ac6"
+    },
+    "focus-comparison-20261025/images/R08-04-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 120839,
+      "sha256": "e89d2bb07dc5833c8f89a712c9e4305cb21cb9b8dcd11d349f095e3b39878988"
+    },
+    "focus-comparison-20261025/images/R08-04-erp-simsac-filtered.png": {
+      "bytes": 55181,
+      "sha256": "a7d91d40acce45fe3942763ac3ad0dff3d1f0154c62b17cfe29e6c22d32393d3"
+    },
     "focus-comparison-20261025/images/R08-04-erp-simsac.png": {
       "bytes": 53795,
       "sha256": "47ffad1ca6002a75b9c1416faf1de948d646b067af208ae3d05d506cfb46f24e"
+    },
+    "focus-comparison-20261025/images/R08-04-erp-viewdelta-filtered.png": {
+      "bytes": 55181,
+      "sha256": "a7d91d40acce45fe3942763ac3ad0dff3d1f0154c62b17cfe29e6c22d32393d3"
     },
     "focus-comparison-20261025/images/R08-04-erp-viewdelta.png": {
       "bytes": 55181,
       "sha256": "a7d91d40acce45fe3942763ac3ad0dff3d1f0154c62b17cfe29e6c22d32393d3"
     },
     "focus-comparison-20261025/images/R08-04-person.png": {
-      "bytes": 53308,
-      "sha256": "b05258d6f27555f5b08a9641a326ea07571d5e6f18962cd042768bb05300bf16"
+      "bytes": 52762,
+      "sha256": "ea5e9d5d58a5e6a27d6d4a5bde32d7051c73812354db724c4d42896c807d4679"
     },
     "focus-comparison-20261025/images/R08-04-rgb.png": {
       "bytes": 55181,
       "sha256": "a7d91d40acce45fe3942763ac3ad0dff3d1f0154c62b17cfe29e6c22d32393d3"
     },
+    "focus-comparison-20261025/images/R08-04-view-simsac-filtered.png": {
+      "bytes": 55133,
+      "sha256": "46607c22c92e1ef8b9e97e58606cf907ace6833f41e6ab8c1ecd37c9f2d6cf85"
+    },
     "focus-comparison-20261025/images/R08-04-view-simsac.png": {
       "bytes": 53225,
       "sha256": "4b92679c2474d5125877c127e805cf436ee55ae1dcfd658cd24b6e0ea353ad9a"
     },
+    "focus-comparison-20261025/images/R08-04-view-viewdelta-filtered.png": {
+      "bytes": 55181,
+      "sha256": "a7d91d40acce45fe3942763ac3ad0dff3d1f0154c62b17cfe29e6c22d32393d3"
+    },
     "focus-comparison-20261025/images/R08-04-view-viewdelta.png": {
       "bytes": 55181,
       "sha256": "a7d91d40acce45fe3942763ac3ad0dff3d1f0154c62b17cfe29e6c22d32393d3"
+    },
+    "focus-comparison-20261025/images/R08-05-baseline-filtered.png": {
+      "bytes": 61017,
+      "sha256": "ae21875457f4b87b9b511ade8eb9177f85ba3df577132ab3c4aad2b246e3d1d1"
+    },
+    "focus-comparison-20261025/images/R08-05-baseline-review-filtered.png": {
+      "bytes": 61017,
+      "sha256": "ae21875457f4b87b9b511ade8eb9177f85ba3df577132ab3c4aad2b246e3d1d1"
     },
     "focus-comparison-20261025/images/R08-05-baseline-review.png": {
       "bytes": 60830,
@@ -2989,19 +3809,39 @@
       "bytes": 61017,
       "sha256": "ae21875457f4b87b9b511ade8eb9177f85ba3df577132ab3c4aad2b246e3d1d1"
     },
+    "focus-comparison-20261025/images/R08-05-erp-full-simsac-filtered.jpg": {
+      "bytes": 101644,
+      "sha256": "edc3885dcad3bf38dcccb3a8efc32d1365af3dbaf3baaa02b54be9ba2bb70b38"
+    },
+    "focus-comparison-20261025/images/R08-05-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 100739,
+      "sha256": "ac563e1aa3dbd4fa6cb6baa88e5ec87116c3600967ff170a6a9cb8c98851008e"
+    },
+    "focus-comparison-20261025/images/R08-05-erp-simsac-filtered.png": {
+      "bytes": 61017,
+      "sha256": "ae21875457f4b87b9b511ade8eb9177f85ba3df577132ab3c4aad2b246e3d1d1"
+    },
     "focus-comparison-20261025/images/R08-05-erp-simsac.png": {
       "bytes": 58135,
       "sha256": "5780fa27083f0ad37ea028c33fa9388893ca542b1d607baa5d46f153715e8f2c"
+    },
+    "focus-comparison-20261025/images/R08-05-erp-viewdelta-filtered.png": {
+      "bytes": 61017,
+      "sha256": "ae21875457f4b87b9b511ade8eb9177f85ba3df577132ab3c4aad2b246e3d1d1"
     },
     "focus-comparison-20261025/images/R08-05-erp-viewdelta.png": {
       "bytes": 61017,
       "sha256": "ae21875457f4b87b9b511ade8eb9177f85ba3df577132ab3c4aad2b246e3d1d1"
     },
     "focus-comparison-20261025/images/R08-05-person.png": {
-      "bytes": 58943,
-      "sha256": "b8fa9758eeff66226420034b01ed7888894a2395aa0c9b5c2206fc39d991f4e6"
+      "bytes": 55419,
+      "sha256": "fef88910c88d7f6752e48f1221795c495c8fe5056de239f8c52b919cdfd466f9"
     },
     "focus-comparison-20261025/images/R08-05-rgb.png": {
+      "bytes": 61017,
+      "sha256": "ae21875457f4b87b9b511ade8eb9177f85ba3df577132ab3c4aad2b246e3d1d1"
+    },
+    "focus-comparison-20261025/images/R08-05-view-simsac-filtered.png": {
       "bytes": 61017,
       "sha256": "ae21875457f4b87b9b511ade8eb9177f85ba3df577132ab3c4aad2b246e3d1d1"
     },
@@ -3009,9 +3849,21 @@
       "bytes": 61017,
       "sha256": "ae21875457f4b87b9b511ade8eb9177f85ba3df577132ab3c4aad2b246e3d1d1"
     },
+    "focus-comparison-20261025/images/R08-05-view-viewdelta-filtered.png": {
+      "bytes": 61076,
+      "sha256": "1287fb7cc64319a75049b492f29b8b9c3f5c17dcaf88db41c778244f626b3c08"
+    },
     "focus-comparison-20261025/images/R08-05-view-viewdelta.png": {
       "bytes": 61076,
       "sha256": "1287fb7cc64319a75049b492f29b8b9c3f5c17dcaf88db41c778244f626b3c08"
+    },
+    "focus-comparison-20261025/images/R08-06-baseline-filtered.png": {
+      "bytes": 67163,
+      "sha256": "e299134adbb0a529ca9418d2f2082fa7cf303bfc29f69a808fec5fbe874b9a6a"
+    },
+    "focus-comparison-20261025/images/R08-06-baseline-review-filtered.png": {
+      "bytes": 66673,
+      "sha256": "ef02b240bd2b465eb1e0a5df1d7a0f5faa20d07a498d674a076078ed44e4ff92"
     },
     "focus-comparison-20261025/images/R08-06-baseline-review.png": {
       "bytes": 66673,
@@ -3021,9 +3873,25 @@
       "bytes": 67163,
       "sha256": "e299134adbb0a529ca9418d2f2082fa7cf303bfc29f69a808fec5fbe874b9a6a"
     },
+    "focus-comparison-20261025/images/R08-06-erp-full-simsac-filtered.jpg": {
+      "bytes": 116177,
+      "sha256": "f9d9f5443d13bbc912aa8a03b4fb1264acffa9f6ebf0f2e3f5d2dc6072c9f45b"
+    },
+    "focus-comparison-20261025/images/R08-06-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 112966,
+      "sha256": "b2ca4051184d61ba205a78376d2836f6bffa78c94ff63328f93653b9dfadf95f"
+    },
+    "focus-comparison-20261025/images/R08-06-erp-simsac-filtered.png": {
+      "bytes": 66121,
+      "sha256": "c3d714a6ff1a41b99545fbe8fedf37c516f43241d1a6f95f587a26ba6cbdca04"
+    },
     "focus-comparison-20261025/images/R08-06-erp-simsac.png": {
       "bytes": 66121,
       "sha256": "c3d714a6ff1a41b99545fbe8fedf37c516f43241d1a6f95f587a26ba6cbdca04"
+    },
+    "focus-comparison-20261025/images/R08-06-erp-viewdelta-filtered.png": {
+      "bytes": 66454,
+      "sha256": "29f22933855696e5faa9cb9777a4cb8811519f838b32764374328d70824f6321"
     },
     "focus-comparison-20261025/images/R08-06-erp-viewdelta.png": {
       "bytes": 66454,
@@ -3037,13 +3905,29 @@
       "bytes": 66454,
       "sha256": "29f22933855696e5faa9cb9777a4cb8811519f838b32764374328d70824f6321"
     },
+    "focus-comparison-20261025/images/R08-06-view-simsac-filtered.png": {
+      "bytes": 67030,
+      "sha256": "0005a3065afd1271a2b244d22fde55d646632a82d915f10348eac5ed5234cc7d"
+    },
     "focus-comparison-20261025/images/R08-06-view-simsac.png": {
       "bytes": 67030,
       "sha256": "0005a3065afd1271a2b244d22fde55d646632a82d915f10348eac5ed5234cc7d"
     },
+    "focus-comparison-20261025/images/R08-06-view-viewdelta-filtered.png": {
+      "bytes": 66454,
+      "sha256": "29f22933855696e5faa9cb9777a4cb8811519f838b32764374328d70824f6321"
+    },
     "focus-comparison-20261025/images/R08-06-view-viewdelta.png": {
       "bytes": 66454,
       "sha256": "29f22933855696e5faa9cb9777a4cb8811519f838b32764374328d70824f6321"
+    },
+    "focus-comparison-20261025/images/R08-07-baseline-filtered.png": {
+      "bytes": 62256,
+      "sha256": "95da8b7588c44d4704c99af0713ca12481168d0166852c35103074a811fd1bb3"
+    },
+    "focus-comparison-20261025/images/R08-07-baseline-review-filtered.png": {
+      "bytes": 62258,
+      "sha256": "55fd450ef6298195a1d02f556b13de79df24a1ea3e1b733fb1ef80cef6be3696"
     },
     "focus-comparison-20261025/images/R08-07-baseline-review.png": {
       "bytes": 63545,
@@ -3053,19 +3937,39 @@
       "bytes": 63296,
       "sha256": "71cd75b10ff3ca22f48c1232172bc2bb2590470d10837a8899d575450b6cc5f4"
     },
+    "focus-comparison-20261025/images/R08-07-erp-full-simsac-filtered.jpg": {
+      "bytes": 113650,
+      "sha256": "54ef2d66cb6a44c2b00e1d004fadb4cf13f7aeb69c38965aef7a03bb17f6a7ac"
+    },
+    "focus-comparison-20261025/images/R08-07-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 113740,
+      "sha256": "aeb9ee9053d314fda09aa2ee1d5bc95774fb2ff255c929369c09bb0af32fbb35"
+    },
+    "focus-comparison-20261025/images/R08-07-erp-simsac-filtered.png": {
+      "bytes": 62267,
+      "sha256": "17051787d3cbd7f9e8055fa628f978e9438205fd17c7d6f164e9249be0fbd0b8"
+    },
     "focus-comparison-20261025/images/R08-07-erp-simsac.png": {
       "bytes": 62816,
       "sha256": "777a19d6f8ed0d6464a8cfdc065cb6f970c5c9f34f777e8062bfc56ddfea7683"
+    },
+    "focus-comparison-20261025/images/R08-07-erp-viewdelta-filtered.png": {
+      "bytes": 62256,
+      "sha256": "95da8b7588c44d4704c99af0713ca12481168d0166852c35103074a811fd1bb3"
     },
     "focus-comparison-20261025/images/R08-07-erp-viewdelta.png": {
       "bytes": 62256,
       "sha256": "95da8b7588c44d4704c99af0713ca12481168d0166852c35103074a811fd1bb3"
     },
     "focus-comparison-20261025/images/R08-07-person.png": {
-      "bytes": 61218,
-      "sha256": "68362f6084bf6f07fc63dd9d82314a90b5f07fec6423f490910b159af2fcbb93"
+      "bytes": 57796,
+      "sha256": "1432432705a6c8e5efb4728015a2fe1e0522c2cc106d1c1ed5788c748045f297"
     },
     "focus-comparison-20261025/images/R08-07-rgb.png": {
+      "bytes": 62256,
+      "sha256": "95da8b7588c44d4704c99af0713ca12481168d0166852c35103074a811fd1bb3"
+    },
+    "focus-comparison-20261025/images/R08-07-view-simsac-filtered.png": {
       "bytes": 62256,
       "sha256": "95da8b7588c44d4704c99af0713ca12481168d0166852c35103074a811fd1bb3"
     },
@@ -3073,9 +3977,21 @@
       "bytes": 63023,
       "sha256": "02806e6a715911be830adf26deed5efb99a48f5a6d01bd14f7498ff557041b5c"
     },
+    "focus-comparison-20261025/images/R08-07-view-viewdelta-filtered.png": {
+      "bytes": 62256,
+      "sha256": "95da8b7588c44d4704c99af0713ca12481168d0166852c35103074a811fd1bb3"
+    },
     "focus-comparison-20261025/images/R08-07-view-viewdelta.png": {
       "bytes": 62256,
       "sha256": "95da8b7588c44d4704c99af0713ca12481168d0166852c35103074a811fd1bb3"
+    },
+    "focus-comparison-20261025/images/R08-08-baseline-filtered.png": {
+      "bytes": 73255,
+      "sha256": "5d51ee5fb6c0f2837d3cead4c010ebabf98eca934580c4f4c53e58707c9091ff"
+    },
+    "focus-comparison-20261025/images/R08-08-baseline-review-filtered.png": {
+      "bytes": 72342,
+      "sha256": "d9a269b0be007b308084379773013b0699d7d7fd93648168f124f4250808ec03"
     },
     "focus-comparison-20261025/images/R08-08-baseline-review.png": {
       "bytes": 72083,
@@ -3085,29 +4001,61 @@
       "bytes": 73752,
       "sha256": "a0d28bc390356c62c16da5c30edc9d84dfe1295a80c8349c74ff96ba3fe20fe9"
     },
+    "focus-comparison-20261025/images/R08-08-erp-full-simsac-filtered.jpg": {
+      "bytes": 113262,
+      "sha256": "78457b166ebca4fa8e1bf74d38edc56cf6f0954900cedd785f9238a96be8a208"
+    },
+    "focus-comparison-20261025/images/R08-08-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 111299,
+      "sha256": "93770de738c4aad5879b4b8621b7155322a42116cfe65c64813cb15c7ddcaff5"
+    },
+    "focus-comparison-20261025/images/R08-08-erp-simsac-filtered.png": {
+      "bytes": 70892,
+      "sha256": "82460ca6f1912dd5ebeeb7debb89b9cb2040ae47adcc36e4d8dd9cc5959ede98"
+    },
     "focus-comparison-20261025/images/R08-08-erp-simsac.png": {
       "bytes": 68579,
       "sha256": "ec428b416aa5d62f421432cef7ba0820342197534940bcbc38c0475883eb5e9e"
+    },
+    "focus-comparison-20261025/images/R08-08-erp-viewdelta-filtered.png": {
+      "bytes": 73255,
+      "sha256": "5d51ee5fb6c0f2837d3cead4c010ebabf98eca934580c4f4c53e58707c9091ff"
     },
     "focus-comparison-20261025/images/R08-08-erp-viewdelta.png": {
       "bytes": 73255,
       "sha256": "5d51ee5fb6c0f2837d3cead4c010ebabf98eca934580c4f4c53e58707c9091ff"
     },
     "focus-comparison-20261025/images/R08-08-person.png": {
-      "bytes": 70680,
-      "sha256": "17571499997184077af657db9ddaf91a56437e9b38f71e7d1738be593f3055d0"
+      "bytes": 68630,
+      "sha256": "c973597431ddf82904ffaf6cf408dc7c943cf3405ec909e20054b0c2fa23ba3b"
     },
     "focus-comparison-20261025/images/R08-08-rgb.png": {
       "bytes": 73255,
       "sha256": "5d51ee5fb6c0f2837d3cead4c010ebabf98eca934580c4f4c53e58707c9091ff"
     },
+    "focus-comparison-20261025/images/R08-08-view-simsac-filtered.png": {
+      "bytes": 73142,
+      "sha256": "51d6bd7389730af46946a337c31baa2d7be68ec11294484ccbabe59813c958a1"
+    },
     "focus-comparison-20261025/images/R08-08-view-simsac.png": {
       "bytes": 72764,
       "sha256": "94a98be44e4fd192cfba8c29a3ba48f9df0a58d3df2b9a816bcbede077197fb6"
     },
+    "focus-comparison-20261025/images/R08-08-view-viewdelta-filtered.png": {
+      "bytes": 73266,
+      "sha256": "435c1f672a55c9e3f7e115c06c973ea5ae8eb56d6dff8492701745e4471cb1e9"
+    },
     "focus-comparison-20261025/images/R08-08-view-viewdelta.png": {
       "bytes": 73418,
       "sha256": "a2e6f91d46471cd11753100e7f6ca21db4b323d723b779cce670a93b8e91464c"
+    },
+    "focus-comparison-20261025/images/R08-09-baseline-filtered.png": {
+      "bytes": 60283,
+      "sha256": "d8d941fde24b17cb843a2a6cb5b68c481ff288fd98127c0e85e3c9c983b3cb20"
+    },
+    "focus-comparison-20261025/images/R08-09-baseline-review-filtered.png": {
+      "bytes": 58532,
+      "sha256": "cdeae89624b40bf828eb435ab02eacdb6705a3010a0cf1c00e38cd1cb387c038"
     },
     "focus-comparison-20261025/images/R08-09-baseline-review.png": {
       "bytes": 58520,
@@ -3117,33 +4065,68 @@
       "bytes": 60283,
       "sha256": "d8d941fde24b17cb843a2a6cb5b68c481ff288fd98127c0e85e3c9c983b3cb20"
     },
+    "focus-comparison-20261025/images/R08-09-erp-full-simsac-filtered.jpg": {
+      "bytes": 116177,
+      "sha256": "f9d9f5443d13bbc912aa8a03b4fb1264acffa9f6ebf0f2e3f5d2dc6072c9f45b"
+    },
+    "focus-comparison-20261025/images/R08-09-erp-full-viewdelta-filtered.jpg": {
+      "bytes": 112966,
+      "sha256": "b2ca4051184d61ba205a78376d2836f6bffa78c94ff63328f93653b9dfadf95f"
+    },
+    "focus-comparison-20261025/images/R08-09-erp-simsac-filtered.png": {
+      "bytes": 59544,
+      "sha256": "5a7142c5250442912d313ac93a1ea2c6334536ab49e5df581aedcea2b0786145"
+    },
     "focus-comparison-20261025/images/R08-09-erp-simsac.png": {
       "bytes": 59314,
       "sha256": "a55fd614566ecb088fdf42febbdefe9b611cb20f83bd78bc53850916683b318a"
+    },
+    "focus-comparison-20261025/images/R08-09-erp-viewdelta-filtered.png": {
+      "bytes": 60283,
+      "sha256": "d8d941fde24b17cb843a2a6cb5b68c481ff288fd98127c0e85e3c9c983b3cb20"
     },
     "focus-comparison-20261025/images/R08-09-erp-viewdelta.png": {
       "bytes": 60283,
       "sha256": "d8d941fde24b17cb843a2a6cb5b68c481ff288fd98127c0e85e3c9c983b3cb20"
     },
     "focus-comparison-20261025/images/R08-09-person.png": {
-      "bytes": 60283,
-      "sha256": "d8d941fde24b17cb843a2a6cb5b68c481ff288fd98127c0e85e3c9c983b3cb20"
+      "bytes": 60109,
+      "sha256": "ce6da99fc511b6cbc30e2c372c401c1aea3cba3e055059f507c181135fade7d6"
     },
     "focus-comparison-20261025/images/R08-09-rgb.png": {
       "bytes": 60283,
       "sha256": "d8d941fde24b17cb843a2a6cb5b68c481ff288fd98127c0e85e3c9c983b3cb20"
     },
+    "focus-comparison-20261025/images/R08-09-view-simsac-filtered.png": {
+      "bytes": 59625,
+      "sha256": "886ea09583d767ae20da28f8e540da73a783b469458fc15495be4cee534283aa"
+    },
     "focus-comparison-20261025/images/R08-09-view-simsac.png": {
       "bytes": 59532,
       "sha256": "928e3f4877f744b3bd000176fe12deea98fd28e25600eb0f935ddbcbbb91c94c"
     },
-    "focus-comparison-20261025/images/R08-09-view-viewdelta.png": {
+    "focus-comparison-20261025/images/R08-09-view-viewdelta-filtered.png": {
       "bytes": 60283,
       "sha256": "d8d941fde24b17cb843a2a6cb5b68c481ff288fd98127c0e85e3c9c983b3cb20"
     },
-    ".gitattributes": {
-      "bytes": 72,
-      "sha256": "308a40fa1d89ae5ea4390b4c9b46a0108b09f171f07898f25d451fa0c69c4e9f"
+    "focus-comparison-20261025/images/R08-09-view-viewdelta.png": {
+      "bytes": 60283,
+      "sha256": "d8d941fde24b17cb843a2a6cb5b68c481ff288fd98127c0e85e3c9c983b3cb20"
     }
+  },
+  "person_filter": {
+    "default_enabled": true,
+    "models": [
+      "simsac",
+      "viewdelta"
+    ],
+    "method": "candidate AND NOT query-frame person mask or wrapped detection box",
+    "source": "Existing YOLO11l original-frame person segmentation + conservative detection box",
+    "query_segmentation_and_box_union": true,
+    "box_padding_fraction": 0.1,
+    "applies_to_baseline_projection": true,
+    "missing_mask": "Filtered results unavailable; label raw fallback explicitly",
+    "probabilities_unchanged": true,
+    "reference_warp_filter": false
   }
 }

@@ -220,6 +220,15 @@ def build(directory):
     for source, dest in [('panorama_review.html','index.html'), ('panorama_review.js','panorama_review.js'),
                          ('panorama_canvas.js','panorama_canvas.js')]:
         shutil.copy2(Path(__file__).with_name(source), out/dest)
+    # Regenerating the archived RGB experiment must preserve the GS entry point.
+    if (out.parent/'gaussian-map-comparison-20261025/gaussian-data.json').exists():
+        shutil.copy2(out/'index.html',out/'candidate-review-rgb.html')
+        (out/'index.html').write_text(
+            '<!doctype html><html lang="ko"><head><meta charset="utf-8">'
+            '<meta http-equiv="refresh" content="0;url=../gaussian-map-comparison-20261025/index.html">'
+            '<title>가우시안 맵 비교로 이동</title></head><body>'
+            '<a href="../gaussian-map-comparison-20261025/index.html">가우시안 맵 변화 후보</a>'
+            '<p><a href="candidate-review-rgb.html">이전 RGB 입력 결과</a></p></body></html>\n',encoding='utf-8')
     print('Single-before candidate interactions ready', len(result['cases']), flush=True)
 
 

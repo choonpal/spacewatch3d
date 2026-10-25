@@ -2,14 +2,14 @@
 
 ## Task 5a · 모델 비교 진행 중 (2026-10-25)
 
-**Task 5a는 현재 모델 비교를 진행 중입니다.** 집중 화면은 **전 360° 영상 하나에 기존 정합오차·관측검증과 SimSaC의 후보 박스**를 먼저 표시합니다. 박스를 누르면 선택 영역에 후 RGB가 반투명하게 겹쳐집니다. 둘러보기·드래그·확대·전체 화면, 방식 선택, 후보가 남은 쌍만 보기를 지원합니다. 후에서만 검출된 후보도 전 시점에 투영합니다. 앞서 실행한 ViewDelta와 SceneDiff 입력 비교는 별도 자료로 보관했습니다.
+**Task 5a는 현재 모델 비교를 진행 중입니다.** 현재 화면은 **서로 다른 Dorm2·Dorm3 가우시안 맵**에서 기존 메쉬 정합·관측검증 후보와 새 SimSaC 후보를 비교합니다. 기존 정합·판정은 메쉬에 유지하고, SimSaC는 두 3DGS 맵을 같은 정합 카메라로 렌더링해 다시 추론했습니다. 전 맵의 후보 박스를 누르면 해당 3D 영역에 후 가우시안이 반투명하게 겹칩니다. 실제 Gaussian 386,826 / 369,446개 전체를 사용하며, 원본 영상·체크포인트 해시가 서로 다른 두 맵임을 확인했습니다. 이전 RGB·ViewDelta·SceneDiff 비교는 보관했습니다.
 
-- **사람 제외 기본 적용:** 기존 사람 분할·검출 박스로 RGB 모델 후보와 메쉬 투영의 가림 영역을 제외합니다. 토글로 원본과 비교할 수 있습니다.
+- **사람 제외 기본 적용:** 새 3DGS 렌더의 사람 분할·검출 박스와 양쪽 관측 가능 영역을 확인합니다. 사람 제외 토글을 지원합니다. 현재 기존 후보 2묶음 / SimSaC 5영역이며 정확도 수치가 아닙니다.
 - [진행 상황·실행 방법](docs/task5a-model-comparison-20261025.md)
 - [Task 5a README](src/spacewatch3d/tasks/task_5a_change_detection/README.md)
-- [비교 화면 파일](src/spacewatch3d/tasks/task_5a_change_detection/assets/panorama-change-20261025/focus-comparison-20261025/index.html) · [실제 화면 캡처](src/spacewatch3d/tasks/task_5a_change_detection/assets/panorama-change-20261025/focus-comparison-20261025/viewer.png)
+- [비교 화면 파일](src/spacewatch3d/tasks/task_5a_change_detection/assets/panorama-change-20261025/gaussian-map-comparison-20261025/index.html) · [실제 화면 캡처](src/spacewatch3d/tasks/task_5a_change_detection/assets/panorama-change-20261025/gaussian-map-comparison-20261025/viewer-gaussian-ghost.png)
 
-현재는 변화 후보와 입력 방식의 차이를 확인하는 실험 단계입니다. 서로 다른 층의 파일럿이며, 공통 Task 5a backend 통합과 정확도 평가는 진행 과제로 남아 있습니다.
+전체 Gaussian PLY와 원본 확률 NPZ는 별도 입력으로 보존합니다. 실행 방법의 다운로드 안내를 확인해 주세요. 현재는 변화 후보와 입력 방식의 차이를 확인하는 실험 단계입니다. 서로 다른 층의 파일럿이며, 공통 Task 5a backend 통합과 정확도 평가는 진행 과제로 남아 있습니다.
 
 ## 최근 변경 · 2026-10-14
 

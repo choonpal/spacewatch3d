@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "metadata_only": false,
+  "distinct_original_videos": true,
+  "distinct_trained_maps": true,
+  "gaussians": [
+    386826,
+    369446
+  ],
+  "frozen_mesh_candidate_groups": 2,
+  "new_simsac_regions": 5,
+  "registered_camera_pairs": 13,
+  "exact_raw_probability_masks_verified": true,
+  "all_pixel_decompositions_verified": true,
+  "person_exclusion_verified": true,
+  "self_controls_zero": 13,
+  "original_mesh_sources_unchanged_verified": true
+}

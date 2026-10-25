@@ -1,0 +1,29 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>가우시안 맵 변화 후보 · 메쉬 정합 / SimSaC</title><link rel="stylesheet" href="viewer.css">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/","@sparkjsdev/spark":"./vendor/spark.module.js"}}</script></head>
+<body><main>
+<div class="eyebrow">TWO TRAINED GAUSSIAN MAPS</div><h1>가우시안 맵에서 변화 후보 둘러보기</h1>
+<p>전 맵의 후보 박스를 누르면 <b>해당 3D 영역의 후 맵이 반투명하게 겹쳐집니다.</b></p>
+<div class="sources" id="sources"></div>
+<div class="controls">
+ <label>구역<select id="zone" aria-label="구역"></select></label>
+ <label>비교 방식<select id="method" aria-label="비교 방식"><option value="both">기존 + SimSaC</option><option value="baseline">기존 메쉬 정합·관측검증</option><option value="simsac">SimSaC · 3DGS 렌더 입력</option></select></label>
+ <label><input id="exclude-person" type="checkbox" checked aria-label="사람 제외"> 사람 제외</label>
+ <label><input id="only-candidates" type="checkbox" checked aria-label="후보 있는 구역만"> 후보 있는 구역만</label>
+ <label><input id="show-boxes" type="checkbox" checked aria-label="후보 박스 표시"> 후보 박스</label>
+</div>
+<div class="summary" id="summary" role="status">가우시안 맵과 새 변화 후보를 읽는 중…</div>
+<div class="stage" id="stage">
+ <canvas id="gaussian-canvas" role="img" aria-label="실제 가우시안 맵 둘러보기" tabindex="0"></canvas>
+ <div class="box-layer" id="box-layer"></div>
+ <div class="stage-title" id="stage-title">전 · Dorm2 · 실제 3DGS</div>
+ <div class="load-state" id="load-state">가우시안 데이터를 읽는 중…</div>
+ <div class="stage-tools"><button id="zoom-out" aria-label="축소">−</button><button id="zoom-in" aria-label="확대">＋</button><button id="reset">구역 시야</button><button id="fullscreen">전체 화면</button></div>
+ <div class="ghost-controls" id="ghost-controls" hidden><b id="ghost-title"></b><label>후 겹침 <input id="opacity" type="range" min="0" max="100" value="55" aria-label="후 맵 겹침 비율"><output id="opacity-value">55%</output></label><button id="before-only">전만</button><button id="ghost-half">반투명</button><button id="after-only">영역 후만</button><button id="close-ghost">닫기</button></div>
+</div>
+<div class="view-tools"><button id="map-before" aria-pressed="true">전 맵 보기</button><button id="map-after" aria-pressed="false">후 맵 보기</button><span class="note">드래그: 시선 · 우클릭 드래그: 위치 이동 · W/A/S/D: 이동 · Q/E: 높이 · 클릭 후 휠: 확대</span></div>
+<p class="legend"><span class="baseline">■ 기존 메쉬 후보</span> · <span class="simsac">■ SimSaC 후보</span> · 박스는 변화 의심 영역이며 확정 객체 변화가 아닙니다.</p>
+<div class="detail" id="selection" hidden><h2 id="selection-title"></h2><p id="selection-note"></p></div>
+<div class="detail"><h2>이 구역의 후보 <span id="candidate-count"></span></h2><div id="candidates" class="candidate-list"></div><p id="empty" hidden>현재 선택한 방식·사람 제외 조건에서 남은 후보가 없습니다.</p></div>
+<details class="detail"><summary>입력 맵 두 개와 검증 정보</summary><div id="audit"></div><p class="note">기존 정합·오차·관측검증 판정은 메쉬에서 유지합니다. 3DGS에는 기록된 좌표 변환만 적용합니다. SimSaC는 두 가우시안 맵을 같은 정합 카메라에서 렌더링해 새로 추론했습니다. RGB 사진의 기존 확률을 재사용하지 않았습니다.</p><p class="note">두 맵은 서로 다른 층의 Dorm2·Dorm3입니다. 정합 잔차·가림·재구성 차이가 후보에 포함될 수 있습니다. 가우시안 예상 깊이는 실측 표면 깊이나 물리적 객체 이동의 정답이 아닙니다. 구역 경계에는 기존 구역별 정합의 단차가 남을 수 있습니다.</p><div class="links"><a href="gaussian-validation.json">검증</a><a href="gaussian-data.json">맵·좌표·입력</a><a href="simsac-candidates.json">새 SimSaC 결과</a><a href="README.md">설명</a><a href="../focus-comparison-20261025/candidate-review-rgb.html">이전 RGB 입력 결과</a></div></details>
+<pre id="error" role="alert"></pre>
+</main><script type="module" src="viewer.js"></script></body></html>

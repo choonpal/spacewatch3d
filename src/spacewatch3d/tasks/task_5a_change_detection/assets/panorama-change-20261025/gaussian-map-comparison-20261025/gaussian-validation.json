@@ -1,0 +1,103 @@
+{
+  "distinct_source_videos": true,
+  "distinct_checkpoints": true,
+  "source_gaussians": [
+    386826,
+    369446
+  ],
+  "exported_gaussians": {
+    "before": 386826,
+    "after": 369446
+  },
+  "native_to_mesh_camera_checks": {
+    "dorm2": {
+      "cameras": 233,
+      "max_position_residual_u": 1.3354095566024866e-14,
+      "max_rotation_matrix_residual": 2.220446049250313e-16,
+      "recorded_transform_verified": true
+    },
+    "dorm3": {
+      "cameras": 248,
+      "max_position_residual_u": 1.0986160316453369e-14,
+      "max_rotation_matrix_residual": 2.220446049250313e-16,
+      "recorded_transform_verified": true
+    }
+  },
+  "registration_and_decision_hashes_unchanged": {
+    "outputs\\registration-benchmark-20261019\\new-meshfirst-20261022\\alignment-context.json": "3b84a7022bdc1d0cc50a2dcb39806e349e8d52627b3c7ea476b0b1dc9d390b43",
+    "outputs\\registration-benchmark-20261019\\new-meshfirst-20261022\\automatic-lifecycle-v2\\review.json": "722a94d2f9f1d45035091f7e5b475153d637982424aa7898ea0f96bf876d43f3",
+    "outputs\\registration-benchmark-20261019\\new-meshfirst-20261022\\all-object-review-v1\\face-audit.json": "79067ad11957ad557e21c14e8e74b5fde15adae9375b50efc92315d2b984324d",
+    "outputs\\registration-benchmark-20261019\\new-meshfirst-20261022\\input-provenance.json": "3887399cd73e58e5427dbd599c731a894fdd3e43de63b1c7a3a989a228e74fd1",
+    "outputs\\registration-benchmark-20261019\\regional-analysis-v1\\partition.npz": "ef63da755be5d4d04fdc79d24994c1f520cb33e8498e5cd5fea1ea280dcdb494",
+    "outputs\\registration-benchmark-20261019\\new-meshfirst-20261022\\new-inputs\\labeled-mesh-0.npz": "b244f7060fe8a432184ba739959bb339451b928b1baa6fc893c4a82f0a2a4adf",
+    "outputs\\registration-benchmark-20261019\\new-meshfirst-20261022\\new-inputs\\poses-0.json": "144c9209a4e884c8c808a693665b8f66492381256dfe24415bd70e396bc813ca",
+    "outputs\\gaussian-change-20261025\\source\\data\\dorm2\\original_poses_glb.npy": "6f2af8829c7e3d831a7be7e1c3dc77db0daa4063e80cc33e3ac1a50f664daa80",
+    "outputs\\gaussian-change-20261025\\source\\data\\dorm2\\mesh_to_glb.npy": "42b4093c7f23a331fcede90efb3af201bfc4aa87c70a25b1e4b8995c9a46862f",
+    "outputs\\registration-benchmark-20261019\\new-meshfirst-20261022\\new-inputs\\labeled-mesh-1.npz": "feecec17303b7143b9ca6ac2023e0a64b53dd95f784e387376b62592cb8b5587",
+    "outputs\\registration-benchmark-20261019\\new-meshfirst-20261022\\new-inputs\\poses-1.json": "9422adc0c224d4010365b07f581737563403212532fe03990bedfb672acd32cb",
+    "outputs\\gaussian-change-20261025\\source\\data\\dorm3\\original_poses_glb.npy": "383cf9ab823333e2d53801a939d132507d6199066aca269892b30859ca7b5d8e",
+    "outputs\\gaussian-change-20261025\\source\\data\\dorm3\\mesh_to_glb.npy": "42b4093c7f23a331fcede90efb3af201bfc4aa87c70a25b1e4b8995c9a46862f"
+  },
+  "new_input_inference": true,
+  "identical_registered_camera_poses": true,
+  "person_candidate_overlap_pixels": 0,
+  "all_candidate_pixel_decompositions_exact": true,
+  "self_controls": {
+    "R01": {
+      "candidate_pixels": 0,
+      "max_probability": 0.08700300008058548
+    },
+    "R02": {
+      "candidate_pixels": 0,
+      "max_probability": 0.08169122785329819
+    },
+    "R03": {
+      "candidate_pixels": 0,
+      "max_probability": 0.08210854977369308
+    },
+    "R04": {
+      "candidate_pixels": 0,
+      "max_probability": 0.08436352014541626
+    },
+    "R05": {
+      "candidate_pixels": 0,
+      "max_probability": 0.08191181719303131
+    },
+    "R06": {
+      "candidate_pixels": 0,
+      "max_probability": 0.0874064713716507
+    },
+    "R07": {
+      "candidate_pixels": 0,
+      "max_probability": 0.082663394510746
+    },
+    "R08": {
+      "candidate_pixels": 0,
+      "max_probability": 0.08791588991880417
+    },
+    "R09": {
+      "candidate_pixels": 0,
+      "max_probability": 0.08138850331306458
+    },
+    "R10": {
+      "candidate_pixels": 0,
+      "max_probability": 0.08485259860754013
+    },
+    "R11": {
+      "candidate_pixels": 0,
+      "max_probability": 0.08549962192773819
+    },
+    "R12": {
+      "candidate_pixels": 0,
+      "max_probability": 0.08007761836051941
+    },
+    "R13": {
+      "candidate_pixels": 0,
+      "max_probability": 0.08272258937358856
+    }
+  },
+  "model_checkpoint_sha256": "55f28690989603b5b01723d255bbc63157bacc704e635100ae517b0ad4d1f99a",
+  "display_is_true_gaussian_splats": true,
+  "gaussian_depth_is_expected_depth_not_measured_surface": true,
+  "ground_truth_accuracy_claimed": false
+}

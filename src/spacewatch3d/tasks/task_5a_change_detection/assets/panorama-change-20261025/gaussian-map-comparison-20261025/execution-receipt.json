@@ -1,0 +1,29 @@
+{
+  "programs_sha256_lf_normalized": {
+    "prepare.py": "f437ef05b16cb0299335fcb79396e17e3d1197731f037e4d02eba09dd541de89",
+    "render_maps.py": "a08043a1675fe3a8258c745c6b48db6aba4b97c53f54f793954ac274146f3819",
+    "infer_simsac.py": "68563d9aae1583227ed3a12d23738ff79a07e8edb68580190c187cea3703ec29"
+  },
+  "render": {
+    "state": "complete",
+    "seconds": 36.16745352745056,
+    "views": 26,
+    "source_gaussians": [
+      386826,
+      369446
+    ],
+    "all_gaussians_exported": true,
+    "original_models_unchanged": true
+  },
+  "inference": {
+    "state": "complete",
+    "seconds": 19.433988094329834,
+    "zones": 13,
+    "boxes": {
+      "raw": 6,
+      "filtered": 5
+    },
+    "self_candidate_pixels": 0
+  },
+  "both_own_gpu_jobs_finished": true
+}

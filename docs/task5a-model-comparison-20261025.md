@@ -2,31 +2,40 @@
 
 2026-10-25 기준, **기존 정합오차·관측검증 방식과 SimSaC·ViewDelta의 변화 후보를 비교하고 있다.** 현재까지의 코드, 측정 결과 JSON, 비교 화면, 가중치 로딩 검사와 캡처를 이 브랜치에 보관한다. 공통 Task 5a backend의 통합 완료를 뜻하지 않는다.
 
-## 현재 화면: 전 360° 후보 박스와 선택 영역 반투명 비교
+## 현재 화면: 실제 가우시안 맵의 메쉬 기준선 / 새 SimSaC 후보
 
-처음에는 **전(Dorm2) 360° 영상 하나**를 둘러보기 모드로 표시한다. 기존 정합오차·관측검증과 SimSaC의 후보 박스를 미리 그린다. 박스를 누르면 해당 영역 안에만 후(Dorm3) RGB를 55% 겹친다. 전만 보기·반투명·선택 영역 후만 및 슬라이더로 비교한다. 드래그·방향키·확대·전체 화면을 지원하고, 박스 위에서도 드래그할 수 있다.
+공통 `dorm1_3dgs_integration` 코드를 사용해 각각 학습한 **Dorm2·Dorm3 두 맵**을 비교한다. 원본 영상·데이터 receipt·체크포인트 SHA-256이 다르다. 각각 60,000 step, 386,826 / 369,446 Gaussians이며 전체를 유지한다. 큰 PLY와 원본 float32 확률 NPZ는 Git에 포함하지 않고 `large-inputs.json`에 경로·해시를 기록했다.
 
-목록 기본값은 사람 제외 후 선택한 방식의 후보가 남은 쌍이다. 전/후 후보 수를 표시하며 전체 쌍·사람 제외 비교에서는 0인 쌍도 볼 수 있다. R01 전 133 ↔ 후 142의 SimSaC는 원본 전 0 / 후 156픽셀이고, 후의 156픽셀이 모두 사람 제외 영역에 들어가 표시 후보 0이다. 필터를 끄면 복원된다. 현재 기본값은 36쌍 중 28쌍이다.
+기존 정합·오차·관측검증은 메쉬에 그대로 유지한다. 기존 후보 2묶음의 양성 트랙·원본 면 번호와 경계를 보존했다. 기존 메쉬 정규화와 GS 좌표 변환을 합성해 233 / 248개 원본 카메라에서 위치·회전을 확인했고 새 정합은 피팅하지 않았다. 후 맵은 고정 구역 소속별로 13개 PLY로 나누어 기존 구역 정합·이동 편향을 적용한다. 전체 Gaussian 개수는 변하지 않는다.
 
-전후 양쪽의 후보를 전 영상에 표시한다. 후에서만 검출된 영역은 후 메쉬 깊이와 저장된 카메라 정합으로 전으로 투영한다. 후 깊이가 없으면 방향만 맞춘 근사 투영임을 기록한다. 사람 제외 시 원본 후의 사람 영역뿐 아니라 투영 위치의 전 사람 영역도 제외한다. 이 때문에 전 시점 박스에 포함된 후 후보 수가 원본 필터 후 수보다 작을 수 있다. 박스는 1024×512 ERP의 연결 후보 영역을 3픽셀 여유로 묶으며 객체 단위의 확정 판정이 아니다. 모든 보존 후보 픽셀이 정확히 한 박스에 포함되는지 검사한다.
+SimSaC는 두 GS 맵을 13구역의 동일 정합 카메라에서 새로 렌더링해 양방향 추론했다. 원래 SH3·opacity·scale·회전을 사용하고 원본 사진 덧씌우기나 선명화는 하지 않았다. 기존 RGB의 확률은 재사용하지 않는다. 공개 synthetic+ChangeSim 가중치 strict 로드, 기존 520/256 전처리·0.5 임계값을 유지한다. 13개 동일 입력 대조에서 후보 0이다.
 
-반투명 후 영상은 전 메쉬의 첫 표면 깊이와 저장된 구역 Sim3·이동 편향·카메라 포즈로 원래 후 RGB를 샘플링한다. 전 깊이가 없는 곳은 겹침이 투명하다. 새 관측 내용을 생성하지 않는다. 촬영 위치·메쉬·가림·정합 잔차는 남고, 겹침 경계 차이를 객체 이동의 증거로 해석하지 않는다.
+새 렌더의 YOLO11l-seg 사람 분할과 각 변 10% 여유 박스를 양쪽 합집합으로 제외한다. 양쪽 alpha ≥ 0.85, 유한한 예상 깊이와 고정 공간 구역에서 표시한다. 원본 후보는 구역 밖·미관측·사람·남은 픽셀로 분해하며 기존 양성 메쉬로 SimSaC를 제한하지 않는다. 현재 사람 제외 후 SimSaC 5영역: R01 1, R08 2, R12 1, R13 1이다. R12에서 필터를 끄면 2영역으로 복원된다.
 
-전체 ERP 20프레임·구역별 36쌍을 사용한다. SimSaC는 기존 전체 ERP(1024×512) 양방향 예측이며 새 추론·재학습은 없다. `panorama-review.json`은 카메라·원본 수치, `panorama-interactions.json`은 후보 박스와 겹침, `interaction-validation.json`은 픽셀 분해·입력 해시를 담는다. 기존 224px 방향 비교는 `cropped-review.html`, 이전 다중 상대 평균은 `comparison.json`과 `REPORT.md`로 보관한다.
+처음에는 전 GS 맵 하나와 후보 박스만 보인다. 박스를 누르면 해당 3D volume 안에서만 후 가우시안이 겹친다. 전/후 맵 전환, 시선·위치 이동, 전체 화면과 0–100% 겹침을 지원한다. 브라우저는 Spark 2.4.0 / Three.js 0.180.0을 로컬로 로드한다. 이전 RGB 단일 파노라마는 `focus-comparison-20261025/candidate-review-rgb.html`에 보관했고 예전 URL은 새 GS 화면으로 이동한다.
+
+이 실험은 서로 다른 층의 공간 차이 파일럿이다. 이전 RGB 20프레임·36쌍과 관측량·카메라 선택을 맞춘 통제 평가는 아니다. 13구역별 기존 reference 카메라 중 기하 중심/기존 후보에 가까운 위치를 미리 골랐다. Gaussian 예상 깊이·재구성 차이·정합 잔차·가림 때문에 후보가 생길 수 있으며 2묶음과 5영역을 객체 수나 정확도 순위로 해석하지 않는다.
 
 ## 비교 화면 실행
 
-저장소 루트에서 다음 명령을 실행한다. 저장된 결과를 보는 데 GPU나 모델 설치는 필요하지 않다.
+저장소 루트에서 실행한다. 브라우저 표시에는 WebGL2가 필요하다. 대형 Gaussian PLY는 별도로 서버에서 가져온다. SSH 비밀번호는 로컬 프롬프트에서 입력하며 저장하지 않는다.
+
+```bash
+scp -P 4444 -r root@155.230.28.172:/workspace/gaussian_change_20261025/published/models src/spacewatch3d/tasks/task_5a_change_detection/assets/panorama-change-20261025/gaussian-map-comparison-20261025/
+```
+
+이후 로컬 HTTP 서버를 실행한다. 이전 RGB 결과와 정적 캡처는 대형 입력 없이도 확인할 수 있다.
 
 ```bash
 python -m http.server 4190 --bind 127.0.0.1 --directory src/spacewatch3d/tasks/task_5a_change_detection/assets/panorama-change-20261025
 ```
 
-브라우저에서 [http://127.0.0.1:4190/focus-comparison-20261025/index.html](http://127.0.0.1:4190/focus-comparison-20261025/index.html)을 연다. GitHub에서 HTML 링크를 누르면 소스 보기로 열리므로 로컬 HTTP 서버를 사용한다.
+브라우저에서 [http://127.0.0.1:4190/gaussian-map-comparison-20261025/index.html](http://127.0.0.1:4190/gaussian-map-comparison-20261025/index.html)을 연다. GitHub에서 HTML 링크를 누르면 소스 보기로 열리므로 로컬 HTTP 서버를 사용한다.
 
 | 화면 | 내용 |
 |---|---|
-| `focus-comparison-20261025/index.html` | 전 360° 영상의 기존 / SimSaC 후보 박스. 선택 영역 후 반투명 비교·사람 제외 |
+| `gaussian-map-comparison-20261025/index.html` | 실제 두 GS 맵의 기존 메쉬 / 새 SimSaC 후보와 3D 영역 겹침 |
+| `focus-comparison-20261025/candidate-review-rgb.html` | 이전 RGB 입력의 단일 전 파노라마·후 겹침 |
 | `model-comparison-20261025/index.html` | 앞서 실행한 SceneDiff 두 입력 경로까지 포함한 비교 |
 | `paired/index.html` | 동일 RGB에서 SceneDiff 원본 Pi3/SAM 입력과 외부 메쉬·인스턴스 입력의 후보 차이 |
 
@@ -112,7 +121,7 @@ node --test tests/task_5a_change_detection/model_comparison/test_panorama_candid
 
 검증 범위는 correlation의 offset·padding·채널 평균, ERP 투영의 방향·주기성, 카메라 round-trip, 첫 표면 가림·미관측 유지, 비연속/빈 인스턴스 ID, 관측 없는 voxel 평균이다. 실제 30뷰 메쉬 투영은 기존 깊이·유효 hit와 정확히 일치했고 후보 픽셀의 배타적 분해를 확인했다. 이는 모델 변화 탐지 정확도의 검증과 구분한다.
 
-이번 업로드에서 공통 fixture 7종, 공통 규약 테스트 19개, 모델·메쉬·사람 제외·360° 기하/재투영 어댑터 테스트 18개와 후보 필터·화면 기본값 Node 테스트 7개를 통과했다. 스냅샷 해시, 화면의 로컬 링크, 30뷰 집계, 모델 커밋·체크포인트 해시와 HTTP 미리보기도 확인했다. 스냅샷은 `.gitattributes`로 줄바꿈 자동 변환을 끄고 원래 바이트를 유지한다.
+이번 업로드에서 공통 fixture 7종, 공통 규약 테스트 19개, 모델·메쉬·사람 제외·360°/Gaussian 기하 어댑터 테스트 23개와 후보 필터·화면 기본값 Node 테스트 7개를 통과했다. 스냅샷 해시, 화면의 로컬 링크, 30뷰 집계, 모델 커밋·체크포인트 해시와 HTTP 미리보기도 확인했다. 스냅샷은 `.gitattributes`로 줄바꿈 자동 변환을 끄고 원래 바이트를 유지한다.
 
 ## 진행 중인 작업
 
@@ -134,3 +143,11 @@ node --test tests/task_5a_change_detection/model_comparison/test_panorama_candid
 ```bash
 python tools/scenediff_mesh/build_panorama_interactions.py --directory src/spacewatch3d/tasks/task_5a_change_detection/assets/panorama-change-20261025/focus-comparison-20261025
 ```
+
+Gaussian 갱신에서는 원본 두 영상과 두 checkpoint의 서로 다른 SHA-256, 481개 카메라 좌표 변환, 모든 Gaussian 보존, 26개 실제 RGB 입력·float32 확률·사람/관측 마스크의 해시와 픽셀 분해, 기존 양성 원본 면·박스 보존을 확인했다. Gaussian 공분산 회전·축척, 원래 SH 방향, 기존 구역 변환·bias, level ERP 카메라, voxel 후보의 전후 픽셀 보존 테스트 5개를 추가했다. 브라우저에서 두 전체 맵 개수, 기존/SimSaC 박스 선택, 영역 후만·반투명, 사람 제외, 전체 화면과 실제 위치 이동을 확인했다.
+
+```bash
+python tools/gaussian_change/validate.py --directory src/spacewatch3d/tasks/task_5a_change_detection/assets/panorama-change-20261025/gaussian-map-comparison-20261025 --metadata-only
+```
+
+전체 검증은 `models/`, `predictions/*.npz`와 보존된 원본 메쉬를 갖춘 원래 작업 환경에서 `python tools/gaussian_change/validate.py`로 실행한다. 원본 GS·SimSaC 학습 가중치는 수정하지 않았고 실행한 GPU 작업은 완료됐다. 자세한 단계·서버 경로·한계는 `tools/gaussian_change/README.md`, 실제 실행 소스 해시는 `execution-receipt.json`, 원본 포함 로컬 검증은 `local-verification.json`에 있다.

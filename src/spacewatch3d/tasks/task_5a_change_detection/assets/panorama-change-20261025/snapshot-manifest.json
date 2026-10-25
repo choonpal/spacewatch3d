@@ -1,7 +1,7 @@
 {
   "date": "2026-10-25",
   "timezone": "Asia/Seoul",
-  "source": "Frozen registration/observation decisions and cached SimSaC predictions; single before 360 panorama with candidate boxes and selected-region observed-after reprojection, person exclusion enabled by default",
+  "source": "Frozen mesh registration/observation decisions displayed on two verified original Gaussian maps; fresh SimSaC inference on same-pose GS renders",
   "full_input_meshes_included": false,
   "model_weights_included": false,
   "files": {
@@ -28,6 +28,10 @@
     "focus-comparison-20261025/BEFORE_AFTER.md": {
       "bytes": 1344,
       "sha256": "772b8b3c8ac1f7850c3dbaf958022b587843dcec545d4a6f28fe3c53c60287b4"
+    },
+    "focus-comparison-20261025/candidate-review-rgb.html": {
+      "bytes": 10733,
+      "sha256": "2785a808ed81686d742c2d615f929181c0d61c8605d89d83b0c8fd839149940a"
     },
     "focus-comparison-20261025/comparison.json": {
       "bytes": 301718,
@@ -1962,8 +1966,8 @@
       "sha256": "d8d941fde24b17cb843a2a6cb5b68c481ff288fd98127c0e85e3c9c983b3cb20"
     },
     "focus-comparison-20261025/index.html": {
-      "bytes": 10733,
-      "sha256": "2785a808ed81686d742c2d615f929181c0d61c8605d89d83b0c8fd839149940a"
+      "bytes": 388,
+      "sha256": "d081336a6c1f1ac1bdb3397c44620c6eeaf5c4d5954b471fe512ccb30c240018"
     },
     "focus-comparison-20261025/interaction-validation.json": {
       "bytes": 14683,
@@ -4253,6 +4257,306 @@
       "bytes": 72139,
       "sha256": "eb8e0e31f9c6127d03e36adeecae5b0824851b26a10c87df233addf15d8ff212"
     },
+    "gaussian-map-comparison-20261025/.gitignore": {
+      "bytes": 28,
+      "sha256": "17ff4305de7e7c4092d9719c9e16bcf49baa97f3c26e29ca632786cfc22241e9"
+    },
+    "gaussian-map-comparison-20261025/execution-receipt.json": {
+      "bytes": 795,
+      "sha256": "7a982ba09ad3205d215cb69791906991cd342e73646f77056a3d3ab34d1451a6"
+    },
+    "gaussian-map-comparison-20261025/gaussian-data.json": {
+      "bytes": 85082,
+      "sha256": "277c739df154a885954827a3ab73133704ff5b147ebb8a4e0d9bbe5dc69d369a"
+    },
+    "gaussian-map-comparison-20261025/gaussian-validation.json": {
+      "bytes": 4468,
+      "sha256": "6cd09deb5f5fa28923d691a7f53f5c8a8b8e3212c6d09077267270dd019bcce1"
+    },
+    "gaussian-map-comparison-20261025/index.html": {
+      "bytes": 4585,
+      "sha256": "bb332fd4e77ec34cc01b3177be653a5b9897d1ae770ace9a1e4aa532f929f172"
+    },
+    "gaussian-map-comparison-20261025/large-inputs.json": {
+      "bytes": 19210,
+      "sha256": "7928dcb6ccba1ea2c8630547a3f5dc76035bb109bd4e67f2e73dc7346544bb74"
+    },
+    "gaussian-map-comparison-20261025/local-verification.json": {
+      "bytes": 486,
+      "sha256": "8f036e001ab63ffa36c5a367d27c1a23ebd8e5fd3847c34274d062035781cb94"
+    },
+    "gaussian-map-comparison-20261025/protocol.json": {
+      "bytes": 157086,
+      "sha256": "550623789e294e1cf76dbaea3d8fbbcf3c0deed63515be61545b2a7c1f66224a"
+    },
+    "gaussian-map-comparison-20261025/README.md": {
+      "bytes": 4594,
+      "sha256": "720434d975044c65172493148ab2df7f75ee741041dafc7d8fb9c2ad028a0c7b"
+    },
+    "gaussian-map-comparison-20261025/renders/R01/after-candidates.png": {
+      "bytes": 4345,
+      "sha256": "6dec80433720b7a9d4518558433cabb9e4cb7500366a4da4b6087a9488d7360b"
+    },
+    "gaussian-map-comparison-20261025/renders/R01/after.jpg": {
+      "bytes": 54520,
+      "sha256": "90a69d373b223ffe5342f073bf1217961c15c726bd04f55f57484ded9d162a4f"
+    },
+    "gaussian-map-comparison-20261025/renders/R01/before-candidates.png": {
+      "bytes": 4472,
+      "sha256": "1656003e4c894000941a2bf1d7ed257429a71eddcdc1f2ecbc7ef7007da124af"
+    },
+    "gaussian-map-comparison-20261025/renders/R01/before.jpg": {
+      "bytes": 57716,
+      "sha256": "977567d684873ad6144108d3376627fd2295fee39f6f514d2a6d90e6a07e5a5a"
+    },
+    "gaussian-map-comparison-20261025/renders/R02/after-candidates.png": {
+      "bytes": 3989,
+      "sha256": "d385f27865c9d3774ad75e39aea88e56404d02a50484baa75e23e4f4f2ffa060"
+    },
+    "gaussian-map-comparison-20261025/renders/R02/after.jpg": {
+      "bytes": 53490,
+      "sha256": "c83b1f03f77efa8c715078c98752499e05f849fb90333cda18a270ef43bbec40"
+    },
+    "gaussian-map-comparison-20261025/renders/R02/before-candidates.png": {
+      "bytes": 4505,
+      "sha256": "a8fc5253e0bea366b87307d58161e88123b2fa6f35ab644aeaf05d981a7479cb"
+    },
+    "gaussian-map-comparison-20261025/renders/R02/before.jpg": {
+      "bytes": 55685,
+      "sha256": "d650e4d5b1d1a8ede85c0366d13775f02d0347721f262447181fdcf3fd0a44b2"
+    },
+    "gaussian-map-comparison-20261025/renders/R03/after-candidates.png": {
+      "bytes": 5166,
+      "sha256": "8ec3df69741fa7eb92753bbc0a7afe624d2d7a05aeb7cb050f3b74264ecc5ac5"
+    },
+    "gaussian-map-comparison-20261025/renders/R03/after.jpg": {
+      "bytes": 54119,
+      "sha256": "4b2f955ad9868089a05466b9fc215c895274152c59bc0f5d15aa192adfd100be"
+    },
+    "gaussian-map-comparison-20261025/renders/R03/before-candidates.png": {
+      "bytes": 5407,
+      "sha256": "93cbdae51b4f2761e26b778042e319339801f8709356a5a75165434dab548ebe"
+    },
+    "gaussian-map-comparison-20261025/renders/R03/before.jpg": {
+      "bytes": 54351,
+      "sha256": "34f6e943ceabe2109cfdff04814e890128c3f23ed672e8bc4558eee1d9055d76"
+    },
+    "gaussian-map-comparison-20261025/renders/R04/after-candidates.png": {
+      "bytes": 6940,
+      "sha256": "4b84c816e7d10c2db920e76ef9eb529d8c58692450a4f51acd8d132fbc287bd3"
+    },
+    "gaussian-map-comparison-20261025/renders/R04/after.jpg": {
+      "bytes": 58223,
+      "sha256": "2f3b1cda5fb20dc2adcd4c43a2435695e3e14a607b52b63053e1ee86a0f87f96"
+    },
+    "gaussian-map-comparison-20261025/renders/R04/before-candidates.png": {
+      "bytes": 7608,
+      "sha256": "bd06df616518396179a77e9c38683ffd7c4e68d0e3d245302fa13e776886d610"
+    },
+    "gaussian-map-comparison-20261025/renders/R04/before.jpg": {
+      "bytes": 62545,
+      "sha256": "d103abad82d46d8e2995c07c0df9bf4eb17b89cef010471ba8f2a86b8fdba920"
+    },
+    "gaussian-map-comparison-20261025/renders/R05/after-candidates.png": {
+      "bytes": 5129,
+      "sha256": "a32c47a6771d720386657b1acd07e004b606bbbee0553916043b3674efbf9862"
+    },
+    "gaussian-map-comparison-20261025/renders/R05/after.jpg": {
+      "bytes": 67967,
+      "sha256": "806a1ec2e93f297da0b1632660aa3665e4e6e8e18d7c168c7bfdce27f7caf3c3"
+    },
+    "gaussian-map-comparison-20261025/renders/R05/before-candidates.png": {
+      "bytes": 5352,
+      "sha256": "e6bdb718be5a70a3bf09e7082f82e30fdeba78236e335e09170861fbc7436b0e"
+    },
+    "gaussian-map-comparison-20261025/renders/R05/before.jpg": {
+      "bytes": 69039,
+      "sha256": "3d4073aa02155c1960d6c7749aa4cd17128d52157a4093f4c9a57f267b79fb5f"
+    },
+    "gaussian-map-comparison-20261025/renders/R06/after-candidates.png": {
+      "bytes": 4323,
+      "sha256": "957d10d58a0e23cf354a47169b042e16028b8f07f519a4bf7fa5e1d9372050ba"
+    },
+    "gaussian-map-comparison-20261025/renders/R06/after.jpg": {
+      "bytes": 52400,
+      "sha256": "31c68b94bc9150035a6a3307c17a5db0cb026a623c25138734c9f64520d04a6c"
+    },
+    "gaussian-map-comparison-20261025/renders/R06/before-candidates.png": {
+      "bytes": 4290,
+      "sha256": "cc99e56253e6885a8cdf4aeef95a7cfc4e6faeb598fbe9145d243a18729b4800"
+    },
+    "gaussian-map-comparison-20261025/renders/R06/before.jpg": {
+      "bytes": 51023,
+      "sha256": "679432ed730b8fc2d21cb840aa43e4cef18796e3d301d529fc5a2a9327e136ca"
+    },
+    "gaussian-map-comparison-20261025/renders/R07/after-candidates.png": {
+      "bytes": 4674,
+      "sha256": "5272f0b806ec6388e55562969894fa91459c296f895358082a51edce0b653424"
+    },
+    "gaussian-map-comparison-20261025/renders/R07/after.jpg": {
+      "bytes": 53532,
+      "sha256": "05d5389158493d730fbc855bbc639aec02b357106cb9c8b82ff0d7689ed456a5"
+    },
+    "gaussian-map-comparison-20261025/renders/R07/before-candidates.png": {
+      "bytes": 5017,
+      "sha256": "bb81349c2e7d08d4b1f780d968954dab9cf735654a1613d790275f2319f9860e"
+    },
+    "gaussian-map-comparison-20261025/renders/R07/before.jpg": {
+      "bytes": 58228,
+      "sha256": "8f774d7b3b094d0ef7164520c2d1c4b5261d92362173a486cdd6b074bde79b69"
+    },
+    "gaussian-map-comparison-20261025/renders/R08/after-candidates.png": {
+      "bytes": 6209,
+      "sha256": "546880dd2ccf971f4e96757b56b85fd75f3645b9da46713ed4012be74ea89ecb"
+    },
+    "gaussian-map-comparison-20261025/renders/R08/after.jpg": {
+      "bytes": 50692,
+      "sha256": "46abe07e7ba2647c7fbec86693a32a67bc259a49f1428a2b9ea22fe9fc7cf6a3"
+    },
+    "gaussian-map-comparison-20261025/renders/R08/before-candidates.png": {
+      "bytes": 6334,
+      "sha256": "ab7f73a0d760cbbc41da46d3cefd79ac6988476c76a926c3b57809e7b7cbc148"
+    },
+    "gaussian-map-comparison-20261025/renders/R08/before.jpg": {
+      "bytes": 52118,
+      "sha256": "87a49205000ddd0dbb1ab5b9d762a6d379b81ef44e6e4bda288b487bc22ad458"
+    },
+    "gaussian-map-comparison-20261025/renders/R09/after-candidates.png": {
+      "bytes": 4558,
+      "sha256": "77a412017ec7902b77177a186916686df6e7e73f7548b320efcb3c57ffdd3231"
+    },
+    "gaussian-map-comparison-20261025/renders/R09/after.jpg": {
+      "bytes": 50998,
+      "sha256": "af108f1dc5fdf71bf0524673ad8d6ee0e82ee8d13bcda99a9e987a2850b6da05"
+    },
+    "gaussian-map-comparison-20261025/renders/R09/before-candidates.png": {
+      "bytes": 4260,
+      "sha256": "69df7d30272ccbb5be452a4f54251d864ac8179cbaff8d76292bd45e55593572"
+    },
+    "gaussian-map-comparison-20261025/renders/R09/before.jpg": {
+      "bytes": 60064,
+      "sha256": "d7083048fff460c3d3bc92be12fd1c2dca897109e4433282c88cf30a4a5ee391"
+    },
+    "gaussian-map-comparison-20261025/renders/R10/after-candidates.png": {
+      "bytes": 4951,
+      "sha256": "223738016f9ebc7b4e52b031d8344c3083f644750404f9d2a0eadc3972cef3af"
+    },
+    "gaussian-map-comparison-20261025/renders/R10/after.jpg": {
+      "bytes": 64301,
+      "sha256": "f50a49ec347583d9f3714fa2d0e56b82fe7cc512955df95e88e9fbce2178128a"
+    },
+    "gaussian-map-comparison-20261025/renders/R10/before-candidates.png": {
+      "bytes": 4778,
+      "sha256": "282760f0442750d0abc338ac75627f641347fe05460606b6379d4e5d4733b7e4"
+    },
+    "gaussian-map-comparison-20261025/renders/R10/before.jpg": {
+      "bytes": 65524,
+      "sha256": "32d2cc0ef454b1f6b10bd61f4efa4c728ae0fa84b62665912401a609da140582"
+    },
+    "gaussian-map-comparison-20261025/renders/R11/after-candidates.png": {
+      "bytes": 4509,
+      "sha256": "f75c0b1e44c6d156017c52ba96e69b761dd80adca16b8687eda3ce6e1a04f694"
+    },
+    "gaussian-map-comparison-20261025/renders/R11/after.jpg": {
+      "bytes": 51481,
+      "sha256": "caa21c1a5dd1dff8f9f1c43b5b76b50e9c324cabf3559003c097f6eac567f1d5"
+    },
+    "gaussian-map-comparison-20261025/renders/R11/before-candidates.png": {
+      "bytes": 4493,
+      "sha256": "2bffc3f5b291cc21d9be5a91b2f427462fbae63fa8b83e8e8fb50cc0bda2a4e2"
+    },
+    "gaussian-map-comparison-20261025/renders/R11/before.jpg": {
+      "bytes": 55394,
+      "sha256": "0218f46a5bd5af39d02710038c919530876edb2ef6b8fca600d776bac7ce1df1"
+    },
+    "gaussian-map-comparison-20261025/renders/R12/after-candidates.png": {
+      "bytes": 6635,
+      "sha256": "24f3f3d305917ca6476b3e19ab367b4ff193cf5256bc965d9ef4465b3dd995fa"
+    },
+    "gaussian-map-comparison-20261025/renders/R12/after.jpg": {
+      "bytes": 58414,
+      "sha256": "76ebb9d74c29af953a19749b85c7ebac9c69522ff00597fc908aed61bd42df8e"
+    },
+    "gaussian-map-comparison-20261025/renders/R12/before-candidates.png": {
+      "bytes": 6396,
+      "sha256": "59532d2957e270352428699029826168377ca90bf2998e218212d434ce26bdfa"
+    },
+    "gaussian-map-comparison-20261025/renders/R12/before.jpg": {
+      "bytes": 61517,
+      "sha256": "c2f035d7e3e0322bff1ca3b79daedfdb8940cb5edf5f193875972d4d73ed10d0"
+    },
+    "gaussian-map-comparison-20261025/renders/R13/after-candidates.png": {
+      "bytes": 5594,
+      "sha256": "ed5b784aacab2103114dc408618c9bb09a06f7c679bd89c30cded816374e25dd"
+    },
+    "gaussian-map-comparison-20261025/renders/R13/after.jpg": {
+      "bytes": 46997,
+      "sha256": "e76098d12454ec0a2f845a6f9bfcc2c343127b4c2c79830a7f0cc8bb788c4b60"
+    },
+    "gaussian-map-comparison-20261025/renders/R13/before-candidates.png": {
+      "bytes": 4513,
+      "sha256": "0798ee5b43bf141bc44703d1c97b7ab5030aa0967b759a4ccc990dd12cf97cd2"
+    },
+    "gaussian-map-comparison-20261025/renders/R13/before.jpg": {
+      "bytes": 48973,
+      "sha256": "ac8f7e31d82da87e4c56bed9a27774534200d241be722be563b30d18ba79ae83"
+    },
+    "gaussian-map-comparison-20261025/simsac-candidates.json": {
+      "bytes": 27575,
+      "sha256": "ca83ec2fb07af79fb38fb6f00db1130f07676811c82d58dd418c94e46b5a74d5"
+    },
+    "gaussian-map-comparison-20261025/simsac-model.json": {
+      "bytes": 1032,
+      "sha256": "aa2b8a6e3c07c8e944a701d4ae98ee74f62b842d731ffb5ffefa982be072d532"
+    },
+    "gaussian-map-comparison-20261025/THIRD_PARTY_NOTICES.md": {
+      "bytes": 728,
+      "sha256": "f9f8d2ff99c3ac7de19ff1420fa859aec74de491b7d1a70e04a1fd5523ce9ed7"
+    },
+    "gaussian-map-comparison-20261025/vendor/.gitattributes": {
+      "bytes": 15,
+      "sha256": "50b8945a29c1090ea744b8f1b761eb4af6136f91203cf5850bc9a915270532eb"
+    },
+    "gaussian-map-comparison-20261025/vendor/addons/postprocessing/Pass.js": {
+      "bytes": 4218,
+      "sha256": "444b409c235ead986893c472e720da1b779a56985c7d10b279c7944b52bd61c5"
+    },
+    "gaussian-map-comparison-20261025/vendor/Spark-LICENSE.txt": {
+      "bytes": 1088,
+      "sha256": "51829693e5dccd9ca1daa093991faac3aaa93238eb8fd5f5cb4130af85791d64"
+    },
+    "gaussian-map-comparison-20261025/vendor/spark.module.js": {
+      "bytes": 2997944,
+      "sha256": "5ae86ab35d4ceb655db486dcc336299775bb314c280d7e5b39f64e4539f8e0e9"
+    },
+    "gaussian-map-comparison-20261025/vendor/Three-LICENSE.txt": {
+      "bytes": 1081,
+      "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601"
+    },
+    "gaussian-map-comparison-20261025/vendor/three.core.js": {
+      "bytes": 1403455,
+      "sha256": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20"
+    },
+    "gaussian-map-comparison-20261025/vendor/three.module.js": {
+      "bytes": 603113,
+      "sha256": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a"
+    },
+    "gaussian-map-comparison-20261025/viewer-gaussian-before.png": {
+      "bytes": 58170,
+      "sha256": "7fa05cc0d812010ae5ddd8a9050d3b880fb46c97b3efd31e45cd4a203f15211d"
+    },
+    "gaussian-map-comparison-20261025/viewer-gaussian-ghost.png": {
+      "bytes": 62212,
+      "sha256": "886fcad743b60861465cb4cb62c5f1fb9ace301be8b784499c7ecddebf479a89"
+    },
+    "gaussian-map-comparison-20261025/viewer.css": {
+      "bytes": 4507,
+      "sha256": "4109ea3053e838c5a720e72e957373d5f0211b022f8910866db8c21a51ffffd9"
+    },
+    "gaussian-map-comparison-20261025/viewer.js": {
+      "bytes": 16216,
+      "sha256": "f092d4312db76349be60d989a6ac9ae9af2ddf976d67c86b2d5419f0bcf946d6"
+    },
     "index.html": {
       "bytes": 285,
       "sha256": "cb99a9cb8048ac51799e8e930ba7dfedaecbd425f513407088c068cd9a76a044"
@@ -6413,5 +6717,7 @@
     "probabilities_unchanged": true,
     "reference_warp_filter": false
   },
-  "current_viewer": "Full original 360 ERP; frozen baseline and SimSaC; registered common-point view linkage with original camera positions preserved"
+  "current_viewer": "Full original 360 ERP; frozen baseline and SimSaC; registered common-point view linkage with original camera positions preserved",
+  "full_gaussian_maps_included": false,
+  "raw_model_probabilities_included": false
 }

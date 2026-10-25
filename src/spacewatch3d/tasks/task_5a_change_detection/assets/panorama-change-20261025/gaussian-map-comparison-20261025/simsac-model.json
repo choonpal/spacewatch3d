@@ -1,0 +1,13 @@
+{
+  "model": "SimSaC",
+  "source_commit": "43abe282231dc7d8c8cb829a92f9ebc014fa6cb6",
+  "checkpoint": "/workspace/pano_change_models_20261025/simsac_changesim.pth",
+  "checkpoint_sha256": "55f28690989603b5b01723d255bbc63157bacc704e635100ae517b0ad4d1f99a",
+  "loaded_strict": true,
+  "checkpoint_selection": "Official synthetic+ChangeSim checkpoint selected before inference because target imagery is indoors.",
+  "input_preprocessing": "RGB float/255, ImageNet z-score, full branch 520x520 and low branch 256x256; no test augmentation",
+  "compatibility": "Native PyTorch equivalent of upstream zero-padded 9x9 channel-mean correlation. Original train.py architecture, use_pac=False; no head replaced.",
+  "input_source": "New registered Gaussian render RGB; no original-photo probability reused",
+  "person_checkpoint_sha256": "cabe90049795dfc9a370b7934d6dec7f6b9e44a20e573b0ff81b7e205512c872",
+  "person_policy": "Six rendered cube views, YOLO11l-seg person masks OR boxes with 10% margin on each side; union across both epochs"
+}

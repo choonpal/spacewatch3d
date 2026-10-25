@@ -350,6 +350,10 @@ def main():
     print(json.dumps(dict(raw_candidate_projection_pixels=positive_pixels,
                          visible_candidate_pixels_after_person_filter=visible_filtered,
                          filtered_totals=filtered_totals), indent=2))
+    from build_before_after import build
+    build(root)
+    from build_panorama_review import build as build_panorama
+    build_panorama(root, prior)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,3481 @@
+{
+  "schema": "registered-360-baseline-simsac-v1",
+  "frames": {
+    "D2-f112": {
+      "epoch": 0,
+      "frame": 112,
+      "rgb": "panoramas/D2-f112-rgb.jpg",
+      "baseline": "panoramas/D2-f112-baseline.png",
+      "depth": "panoramas/D2-f112-depth.bin",
+      "depth_width": 256,
+      "depth_height": 128,
+      "person_available": true,
+      "person_pixels": 22632,
+      "candidate_pixels": 0,
+      "candidate_pixels_filtered": 0,
+      "source_sha256": "60f41476d6056edfa04fc241490039107f4bfd9c5fd34aaa05ed058b3e988d1b"
+    },
+    "D2-f115": {
+      "epoch": 0,
+      "frame": 115,
+      "rgb": "panoramas/D2-f115-rgb.jpg",
+      "baseline": "panoramas/D2-f115-baseline.png",
+      "depth": "panoramas/D2-f115-depth.bin",
+      "depth_width": 256,
+      "depth_height": 128,
+      "person_available": true,
+      "person_pixels": 34427,
+      "candidate_pixels": 0,
+      "candidate_pixels_filtered": 0,
+      "source_sha256": "64fa58d8c19a58280796ab1e401d3a39b4f6de2d5943c9439ecd7312271c2e1e"
+    },
+    "D2-f118": {
+      "epoch": 0,
+      "frame": 118,
+      "rgb": "panoramas/D2-f118-rgb.jpg",
+      "baseline": "panoramas/D2-f118-baseline.png",
+      "depth": "panoramas/D2-f118-depth.bin",
+      "depth_width": 256,
+      "depth_height": 128,
+      "person_available": true,
+      "person_pixels": 39377,
+      "candidate_pixels": 0,
+      "candidate_pixels_filtered": 0,
+      "source_sha256": "b350f3191d4a0f3da488f7a5ae58bb9a2d7c73f04b32679172eb48feaef88471"
+    },
+    "D2-f121": {
+      "epoch": 0,
+      "frame": 121,
+      "rgb": "panoramas/D2-f121-rgb.jpg",
+      "baseline": "panoramas/D2-f121-baseline.png",
+      "depth": "panoramas/D2-f121-depth.bin",
+      "depth_width": 256,
+      "depth_height": 128,
+      "person_available": true,
+      "person_pixels": 57408,
+      "candidate_pixels": 0,
+      "candidate_pixels_filtered": 0,
+      "source_sha256": "dca55f9310e6a208e7ad96163a85ad37f6ca0b26be8df347a21f0aa559c0649e"
+    },
+    "D2-f124": {
+      "epoch": 0,
+      "frame": 124,
+      "rgb": "panoramas/D2-f124-rgb.jpg",
+      "baseline": "panoramas/D2-f124-baseline.png",
+      "depth": "panoramas/D2-f124-depth.bin",
+      "depth_width": 256,
+      "depth_height": 128,
+      "person_available": true,
+      "person_pixels": 59878,
+      "candidate_pixels": 0,
+      "candidate_pixels_filtered": 0,
+      "source_sha256": "77b225f610e2801dbea148516d982d1f6b80ae81f5a7e576e331baa19cef798d"
+    },
+    "D2-f127": {
+      "epoch": 0,
+      "frame": 127,
+      "rgb": "panoramas/D2-f127-rgb.jpg",
+      "baseline": "panoramas/D2-f127-baseline.png",
+      "depth": "panoramas/D2-f127-depth.bin",
+      "depth_width": 256,
+      "depth_height": 128,
+      "person_available": true,
+      "person_pixels": 44080,
+      "candidate_pixels": 0,
+      "candidate_pixels_filtered": 0,
+      "source_sha256": "8e2247dda5dbac7c56e043cab6572d33d2cd749f22232b4d7c874d8f3452077c"
+    },
+    "D2-f130": {
+      "epoch": 0,
+      "frame": 130,
+      "rgb": "panoramas/D2-f130-rgb.jpg",
+      "baseline": "panoramas/D2-f130-baseline.png",
+      "depth": "panoramas/D2-f130-depth.bin",
+      "depth_width": 256,
+      "depth_height": 128,
+      "person_available": true,
+      "person_pixels": 58218,
+      "candidate_pixels": 0,
+      "candidate_pixels_filtered": 0,
+      "source_sha256": "19953892886e73d08b21eca996b27ed6262b9c1bfceaa8f02cd8711ca3e63bba"
+    },
+    "D2-f133": {
+      "epoch": 0,
+      "frame": 133,
+      "rgb": "panoramas/D2-f133-rgb.jpg",
+      "baseline": "panoramas/D2-f133-baseline.png",
+      "depth": "panoramas/D2-f133-depth.bin",
+      "depth_width": 256,
+      "depth_height": 128,
+      "person_available": true,
+      "person_pixels": 56270,
+      "candidate_pixels": 0,
+      "candidate_pixels_filtered": 0,
+      "source_sha256": "fb2218de05c04df04512ba2830878f55ad09f562f7f4458227bee4a76d47b435"
+    },
+    "D2-f136": {
+      "epoch": 0,
+      "frame": 136,
+      "rgb": "panoramas/D2-f136-rgb.jpg",
+      "baseline": "panoramas/D2-f136-baseline.png",
+      "depth": "panoramas/D2-f136-depth.bin",
+      "depth_width": 256,
+      "depth_height": 128,
+      "person_available": true,
+      "person_pixels": 53618,
+      "candidate_pixels": 0,
+      "candidate_pixels_filtered": 0,
+      "source_sha256": "dec0f89819c88ac418d0c947954bc3284fde90b4c3133591ef0b3b4adb2d7d9f"
+    },
+    "D2-f142": {
+      "epoch": 0,
+      "frame": 142,
+      "rgb": "panoramas/D2-f142-rgb.jpg",
+      "baseline": "panoramas/D2-f142-baseline.png",
+      "depth": "panoramas/D2-f142-depth.bin",
+      "depth_width": 256,
+      "depth_height": 128,
+      "person_available": true,
+      "person_pixels": 36800,
+      "candidate_pixels": 0,
+      "candidate_pixels_filtered": 0,
+      "source_sha256": "1cf2695ef860f79a0b90a68dd9dc74c7cc71fc8ee95c0c74c44727c08338ee64"
+    },
+    "D3-f112": {
+      "epoch": 1,
+      "frame": 112,
+      "rgb": "panoramas/D3-f112-rgb.jpg",
+      "baseline": "panoramas/D3-f112-baseline.png",
+      "depth": "panoramas/D3-f112-depth.bin",
+      "depth_width": 256,
+      "depth_height": 128,
+      "person_available": true,
+      "person_pixels": 64800,
+      "candidate_pixels": 3276,
+      "candidate_pixels_filtered": 3276,
+      "source_sha256": "b0a1000720ee7ed31c50e7e9c97dcb7ae6383eb395aed19379bc0675d1770f67"
+    },
+    "D3-f115": {
+      "epoch": 1,
+      "frame": 115,
+      "rgb": "panoramas/D3-f115-rgb.jpg",
+      "baseline": "panoramas/D3-f115-baseline.png",
+      "depth": "panoramas/D3-f115-depth.bin",
+      "depth_width": 256,
+      "depth_height": 128,
+      "person_available": true,
+      "person_pixels": 59530,
+      "candidate_pixels": 6359,
+      "candidate_pixels_filtered": 6250,
+      "source_sha256": "d7e250cd4e1867cfa721295b18aa07d5d2e3956aea62d35bf29745878000fa26"
+    },
+    "D3-f118": {
+      "epoch": 1,
+      "frame": 118,
+      "rgb": "panoramas/D3-f118-rgb.jpg",
+      "baseline": "panoramas/D3-f118-baseline.png",
+      "depth": "panoramas/D3-f118-depth.bin",
+      "depth_width": 256,
+      "depth_height": 128,
+      "person_available": true,
+      "person_pixels": 45657,
+      "candidate_pixels": 2943,
+      "candidate_pixels_filtered": 0,
+      "source_sha256": "defd207ee3452a2d81d93e46fae40bb3b43061bbfae74f09409444c850e4c1b6"
+    },
+    "D3-f121": {
+      "epoch": 1,
+      "frame": 121,
+      "rgb": "panoramas/D3-f121-rgb.jpg",
+      "baseline": "panoramas/D3-f121-baseline.png",
+      "depth": "panoramas/D3-f121-depth.bin",
+      "depth_width": 256,
+      "depth_height": 128,
+      "person_available": true,
+      "person_pixels": 40482,
+      "candidate_pixels": 1181,
+      "candidate_pixels_filtered": 0,
+      "source_sha256": "1f7530a7e90fada1ad13ff14b4a081d05cb2fe766b3ec60ca483a42fb99536b8"
+    },
+    "D3-f127": {
+      "epoch": 1,
+      "frame": 127,
+      "rgb": "panoramas/D3-f127-rgb.jpg",
+      "baseline": "panoramas/D3-f127-baseline.png",
+      "depth": "panoramas/D3-f127-depth.bin",
+      "depth_width": 256,
+      "depth_height": 128,
+      "person_available": true,
+      "person_pixels": 60450,
+      "candidate_pixels": 0,
+      "candidate_pixels_filtered": 0,
+      "source_sha256": "188cf53d5dc7492a05266967028b16416d282ac0bdd4231eba9ee37d9d863342"
+    },
+    "D3-f130": {
+      "epoch": 1,
+      "frame": 130,
+      "rgb": "panoramas/D3-f130-rgb.jpg",
+      "baseline": "panoramas/D3-f130-baseline.png",
+      "depth": "panoramas/D3-f130-depth.bin",
+      "depth_width": 256,
+      "depth_height": 128,
+      "person_available": true,
+      "person_pixels": 61288,
+      "candidate_pixels": 0,
+      "candidate_pixels_filtered": 0,
+      "source_sha256": "84ce35db4f10b433383653f8c759dbc1df72ae69852c8f8af93aff95d48e9a6e"
+    },
+    "D3-f133": {
+      "epoch": 1,
+      "frame": 133,
+      "rgb": "panoramas/D3-f133-rgb.jpg",
+      "baseline": "panoramas/D3-f133-baseline.png",
+      "depth": "panoramas/D3-f133-depth.bin",
+      "depth_width": 256,
+      "depth_height": 128,
+      "person_available": true,
+      "person_pixels": 54390,
+      "candidate_pixels": 0,
+      "candidate_pixels_filtered": 0,
+      "source_sha256": "780d8ed260d6c48de74fbef8e74ef2ab5623385b3430cc717da965a7e0ac95b4"
+    },
+    "D3-f136": {
+      "epoch": 1,
+      "frame": 136,
+      "rgb": "panoramas/D3-f136-rgb.jpg",
+      "baseline": "panoramas/D3-f136-baseline.png",
+      "depth": "panoramas/D3-f136-depth.bin",
+      "depth_width": 256,
+      "depth_height": 128,
+      "person_available": true,
+      "person_pixels": 59334,
+      "candidate_pixels": 0,
+      "candidate_pixels_filtered": 0,
+      "source_sha256": "344260bf3558b737ba05f6e0a3ef36d135b8384be9020183f6063ce0f7421b58"
+    },
+    "D3-f139": {
+      "epoch": 1,
+      "frame": 139,
+      "rgb": "panoramas/D3-f139-rgb.jpg",
+      "baseline": "panoramas/D3-f139-baseline.png",
+      "depth": "panoramas/D3-f139-depth.bin",
+      "depth_width": 256,
+      "depth_height": 128,
+      "person_available": true,
+      "person_pixels": 59346,
+      "candidate_pixels": 0,
+      "candidate_pixels_filtered": 0,
+      "source_sha256": "5ba910ebcaeae12af00d51632c682f9f75873657c11f574a6c1fc99dd629beab"
+    },
+    "D3-f142": {
+      "epoch": 1,
+      "frame": 142,
+      "rgb": "panoramas/D3-f142-rgb.jpg",
+      "baseline": "panoramas/D3-f142-baseline.png",
+      "depth": "panoramas/D3-f142-depth.bin",
+      "depth_width": 256,
+      "depth_height": 128,
+      "person_available": true,
+      "person_pixels": 58520,
+      "candidate_pixels": 0,
+      "candidate_pixels_filtered": 0,
+      "source_sha256": "eb5c84e40dca3a7d9f1bfb279514c4cb14ccd1f79c182e4445eb2c9c025eadea"
+    }
+  },
+  "cases": [
+    {
+      "id": "R01--D2-f130--D3-f139",
+      "zone": "R01",
+      "before": "D2-f130",
+      "after": "D3-f139",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.705248749823324,
+            1.5634165176262707,
+            -6.936416252774851
+          ],
+          "rotation": [
+            [
+              0.9744260112049975,
+              -0.028172023822152125,
+              0.22293560900152876
+            ],
+            [
+              -0.027462983691385567,
+              -0.9996030897651852,
+              -0.006280721189620832
+            ],
+            [
+              0.22302406420358567,
+              -2.378897945163645e-06,
+              -0.9748129393788615
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.743453975773152,
+            1.5770340658648436,
+            -6.910847712798536
+          ],
+          "rotation": [
+            [
+              0.9271998552750315,
+              -0.03282836489020571,
+              0.3731256180384759
+            ],
+            [
+              -0.030257852028282763,
+              -0.9994608647990887,
+              -0.012745278564758494
+            ],
+            [
+              0.3733428595387807,
+              0.0005274407021142813,
+              -0.9276932850019517
+            ]
+          ],
+          "scale": 0.9779938487741129
+        }
+      },
+      "anchor": [
+        -5.280646820603361,
+        1.4929856204953715,
+        -7.12575623332699
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 1663,
+          "filtered_pixels": 586,
+          "removed_person_pixels": 1077
+        },
+        "after": {
+          "raw_pixels": 397,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 397
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f130--D3-f139-simsac.png",
+        "after": "panoramas/D3-f139--D2-f130-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 0.0479460858301034,
+      "camera_gap_h": 0.020406414986980412,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R01--D2-f133--D3-f142",
+      "zone": "R01",
+      "before": "D2-f133",
+      "after": "D3-f142",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.815131297992224,
+            1.6042204644464275,
+            -8.219614277665638
+          ],
+          "rotation": [
+            [
+              0.9681914021299817,
+              -0.03406393025004944,
+              0.24788113582420845
+            ],
+            [
+              -0.031965276657848575,
+              -0.9994109710645959,
+              -0.012487273677971724
+            ],
+            [
+              0.2481604922822469,
+              0.004166481926173691,
+              -0.9687099723336141
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.815730442119504,
+            1.5780880799665775,
+            -8.466828841633767
+          ],
+          "rotation": [
+            [
+              0.9154418959357621,
+              -0.032011837979451625,
+              0.401174995973968
+            ],
+            [
+              -0.02659761507232382,
+              -0.9994645111179834,
+              -0.019059325490562818
+            ],
+            [
+              0.4015702952634826,
+              0.0067774069427809615,
+              -0.9158031255226917
+            ]
+          ],
+          "scale": 0.9779938487741129
+        }
+      },
+      "anchor": [
+        -5.460899888585784,
+        1.4732771855465483,
+        -8.747269274713032
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 0,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 0
+        },
+        "after": {
+          "raw_pixels": 156,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 156
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f133--D3-f142-simsac.png",
+        "after": "panoramas/D3-f142--D2-f133-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 0.24859264094144048,
+      "camera_gap_h": 0.1058039359403848,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R07--D2-f124--D3-f133",
+      "zone": "R07",
+      "before": "D2-f124",
+      "after": "D3-f133",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.439442477515188,
+            1.5523161794839757,
+            -4.2248640954266214
+          ],
+          "rotation": [
+            [
+              0.9858838317992594,
+              -0.028965300199702008,
+              0.16490628120587378
+            ],
+            [
+              -0.0264610583008769,
+              -0.9994990446169886,
+              -0.017362954913401413
+            ],
+            [
+              0.16532659371803182,
+              0.012754261800212552,
+              -0.9861564004839823
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.439110689213379,
+            1.6060629209707002,
+            -3.8975393220601573
+          ],
+          "rotation": [
+            [
+              0.9649738859179963,
+              -0.03521710197779334,
+              0.25997145078760014
+            ],
+            [
+              -0.03198483436455412,
+              -0.9993495892792964,
+              -0.016654392152638947
+            ],
+            [
+              0.2603888819957477,
+              0.007755909720179944,
+              -0.965472669730953
+            ]
+          ],
+          "scale": 0.9779938487741131
+        }
+      },
+      "anchor": [
+        -3.325346746501702,
+        0.7595681933268525,
+        -8.129010746658
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 0,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 0
+        },
+        "after": {
+          "raw_pixels": 63,
+          "filtered_pixels": 63,
+          "removed_person_pixels": 0
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f124--D3-f133-simsac.png",
+        "after": "panoramas/D3-f133--D2-f124-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 0.33170819942130636,
+      "camera_gap_h": 0.1411788898881349,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R08--D2-f112--D3-f121",
+      "zone": "R08",
+      "before": "D2-f112",
+      "after": "D3-f121",
+      "cameras": {
+        "before": {
+          "center": [
+            -2.954110544796393,
+            1.5835203838199354,
+            0.37953045596449897
+          ],
+          "rotation": [
+            [
+              0.6314696525670592,
+              -0.016025334641346464,
+              -0.7752349750472244
+            ],
+            [
+              -0.03396283955654654,
+              -0.9993985442988742,
+              -0.0070053681236046175
+            ],
+            [
+              -0.7746564421833035,
+              0.0307528584512692,
+              -0.6316341174136989
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -2.58450699650907,
+            1.5718012329348632,
+            0.5500353362294206
+          ],
+          "rotation": [
+            [
+              0.7445950268995049,
+              -0.007531853799900283,
+              -0.6674739823355386
+            ],
+            [
+              -0.012201042964885746,
+              -0.9999228556106435,
+              -0.0023275261599963936
+            ],
+            [
+              -0.6674049598760072,
+              0.009876943140131126,
+              -0.7446294820426539
+            ]
+          ],
+          "scale": 0.9779938487741133
+        }
+      },
+      "anchor": [
+        0.0670719191475904,
+        0.2669186326796331,
+        0.7455259085291841
+      ],
+      "anchor_kind": "existing_candidate_location",
+      "stats": {
+        "before": {
+          "raw_pixels": 23668,
+          "filtered_pixels": 19038,
+          "removed_person_pixels": 4630
+        },
+        "after": {
+          "raw_pixels": 20847,
+          "filtered_pixels": 19146,
+          "removed_person_pixels": 1701
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f112--D3-f121-simsac.png",
+        "after": "panoramas/D3-f121--D2-f112-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": true
+      },
+      "camera_gap_u": 0.4072051517333759,
+      "camera_gap_h": 0.17331127593089854,
+      "has_existing_candidate": true
+    },
+    {
+      "id": "R07--D2-f118--D3-f127",
+      "zone": "R07",
+      "before": "D2-f118",
+      "after": "D3-f127",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.057190999709231,
+            1.5793336524404866,
+            -1.5491728496411348
+          ],
+          "rotation": [
+            [
+              0.9902044046566313,
+              -0.03234996704960022,
+              -0.13582605284147914
+            ],
+            [
+              -0.03453514697215236,
+              -0.9993087253262486,
+              -0.013762089610222494
+            ],
+            [
+              -0.13528695658568987,
+              0.018318054446849395,
+              -0.9906371122964573
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -3.947032377160331,
+            1.5796884447106894,
+            -1.0335640543475941
+          ],
+          "rotation": [
+            [
+              0.9865159639261014,
+              -0.03112140713438102,
+              -0.1606789063223083
+            ],
+            [
+              -0.03326216979889004,
+              -0.9993899159704454,
+              -0.010650066518889764
+            ],
+            [
+              -0.16024943363153188,
+              0.015850989702952154,
+              -0.9869492718200906
+            ]
+          ],
+          "scale": 0.9779938487741131
+        }
+      },
+      "anchor": [
+        -5.246468892713094,
+        0.11835243685265295,
+        -8.729738900809089
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 0,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 0
+        },
+        "after": {
+          "raw_pixels": 0,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 0
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f118--D3-f127-simsac.png",
+        "after": "panoramas/D3-f127--D2-f118-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 0.52724517805617,
+      "camera_gap_h": 0.22440171532299158,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R07--D2-f118--D3-f130",
+      "zone": "R07",
+      "before": "D2-f118",
+      "after": "D3-f130",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.057190999709231,
+            1.5793336524404866,
+            -1.5491728496411348
+          ],
+          "rotation": [
+            [
+              0.9902044046566313,
+              -0.03234996704960022,
+              -0.13582605284147914
+            ],
+            [
+              -0.03453514697215236,
+              -0.9993087253262486,
+              -0.013762089610222494
+            ],
+            [
+              -0.13528695658568987,
+              0.018318054446849395,
+              -0.9906371122964573
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.2514749200098105,
+            1.581671853706781,
+            -2.3804680792060564
+          ],
+          "rotation": [
+            [
+              0.9903463899618838,
+              -0.03518218203290103,
+              0.13407550841548163
+            ],
+            [
+              -0.033792029508774926,
+              -0.9993490703238922,
+              -0.012630692160395354
+            ],
+            [
+              0.13443260999900278,
+              0.007978076846987424,
+              -0.9908906214404678
+            ]
+          ],
+          "scale": 0.9779938487741131
+        }
+      },
+      "anchor": [
+        -4.931476358575445,
+        1.4844906507640256,
+        -2.471239018797801
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 15786,
+          "filtered_pixels": 6889,
+          "removed_person_pixels": 8897
+        },
+        "after": {
+          "raw_pixels": 352,
+          "filtered_pixels": 249,
+          "removed_person_pixels": 103
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f118--D3-f130-simsac.png",
+        "after": "panoramas/D3-f130--D2-f118-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 0.8536998697258419,
+      "camera_gap_h": 0.36334465085820905,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R07--D2-f121--D3-f133",
+      "zone": "R07",
+      "before": "D2-f121",
+      "after": "D3-f133",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.292097848459376,
+            1.5890934341720504,
+            -2.8948073668586964
+          ],
+          "rotation": [
+            [
+              0.9976696888639339,
+              -0.020531569151514665,
+              0.06506647823816826
+            ],
+            [
+              -0.019582150467810918,
+              -0.9996927649296805,
+              -0.015195891889150602
+            ],
+            [
+              0.06535848303929236,
+              0.013886339165788502,
+              -0.9977652220233854
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.439110689213379,
+            1.6060629209707002,
+            -3.8975393220601573
+          ],
+          "rotation": [
+            [
+              0.9649738859179963,
+              -0.03521710197779334,
+              0.25997145078760014
+            ],
+            [
+              -0.03198483436455412,
+              -0.9993495892792964,
+              -0.016654392152638947
+            ],
+            [
+              0.2603888819957477,
+              0.007755909720179944,
+              -0.965472669730953
+            ]
+          ],
+          "scale": 0.9779938487741131
+        }
+      },
+      "anchor": [
+        -3.325346746501702,
+        0.7595681933268525,
+        -8.129010746658
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 0,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 0
+        },
+        "after": {
+          "raw_pixels": 0,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 0
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f121--D3-f133-simsac.png",
+        "after": "panoramas/D3-f133--D2-f121-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 1.0135936625743651,
+      "camera_gap_h": 0.4313973194800266,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R01--D2-f133--D3-f139",
+      "zone": "R01",
+      "before": "D2-f133",
+      "after": "D3-f139",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.815131297992224,
+            1.6042204644464275,
+            -8.219614277665638
+          ],
+          "rotation": [
+            [
+              0.9681914021299817,
+              -0.03406393025004944,
+              0.24788113582420845
+            ],
+            [
+              -0.031965276657848575,
+              -0.9994109710645959,
+              -0.012487273677971724
+            ],
+            [
+              0.2481604922822469,
+              0.004166481926173691,
+              -0.9687099723336141
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.743453975773152,
+            1.5770340658648436,
+            -6.910847712798536
+          ],
+          "rotation": [
+            [
+              0.9271998552750315,
+              -0.03282836489020571,
+              0.3731256180384759
+            ],
+            [
+              -0.030257852028282763,
+              -0.9994608647990887,
+              -0.012745278564758494
+            ],
+            [
+              0.3733428595387807,
+              0.0005274407021142813,
+              -0.9276932850019517
+            ]
+          ],
+          "scale": 0.9779938487741129
+        }
+      },
+      "anchor": [
+        -5.280646820603361,
+        1.4929856204953715,
+        -7.12575623332699
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 0,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 0
+        },
+        "after": {
+          "raw_pixels": 524,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 524
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f133--D3-f139-simsac.png",
+        "after": "panoramas/D3-f139--D2-f133-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 1.3110097864250927,
+      "camera_gap_h": 0.5579811008677975,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R08--D2-f112--D3-f118",
+      "zone": "R08",
+      "before": "D2-f112",
+      "after": "D3-f118",
+      "cameras": {
+        "before": {
+          "center": [
+            -2.954110544796393,
+            1.5835203838199354,
+            0.37953045596449897
+          ],
+          "rotation": [
+            [
+              0.6314696525670592,
+              -0.016025334641346464,
+              -0.7752349750472244
+            ],
+            [
+              -0.03396283955654654,
+              -0.9993985442988742,
+              -0.0070053681236046175
+            ],
+            [
+              -0.7746564421833035,
+              0.0307528584512692,
+              -0.6316341174136989
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -1.4869275986622312,
+            1.5170555366422809,
+            0.3044307973980498
+          ],
+          "rotation": [
+            [
+              0.9882292282431064,
+              0.00408929946499783,
+              0.15292570116210252
+            ],
+            [
+              0.006362703693913182,
+              -0.9998763633953611,
+              -0.01437963577324249
+            ],
+            [
+              0.15284799131077423,
+              0.015183397286286763,
+              -0.9881330659375323
+            ]
+          ],
+          "scale": 0.9779938487741133
+        }
+      },
+      "anchor": [
+        0.0670719191475904,
+        0.2669186326796331,
+        0.7455259085291841
+      ],
+      "anchor_kind": "existing_candidate_location",
+      "stats": {
+        "before": {
+          "raw_pixels": 9443,
+          "filtered_pixels": 5809,
+          "removed_person_pixels": 3634
+        },
+        "after": {
+          "raw_pixels": 40753,
+          "filtered_pixels": 19746,
+          "removed_person_pixels": 21007
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f112--D3-f118-simsac.png",
+        "after": "panoramas/D3-f118--D2-f112-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": true
+      },
+      "camera_gap_u": 1.4706064504326317,
+      "camera_gap_h": 0.6259073079791757,
+      "has_existing_candidate": true
+    },
+    {
+      "id": "R08--D2-f115--D3-f121",
+      "zone": "R08",
+      "before": "D2-f115",
+      "after": "D3-f121",
+      "cameras": {
+        "before": {
+          "center": [
+            -3.7217600214916318,
+            1.6057691729078913,
+            -0.39551631861801795
+          ],
+          "rotation": [
+            [
+              0.8138933503426468,
+              -0.03343163101933584,
+              -0.5800516703841212
+            ],
+            [
+              -0.04317718657436953,
+              -0.9990629201821772,
+              -0.003002012089025302
+            ],
+            [
+              -0.5794077535100338,
+              0.027488316871855805,
+              -0.8145741510801878
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -2.58450699650907,
+            1.5718012329348632,
+            0.5500353362294206
+          ],
+          "rotation": [
+            [
+              0.7445950268995049,
+              -0.007531853799900283,
+              -0.6674739823355386
+            ],
+            [
+              -0.012201042964885746,
+              -0.9999228556106435,
+              -0.0023275261599963936
+            ],
+            [
+              -0.6674049598760072,
+              0.009876943140131126,
+              -0.7446294820426539
+            ]
+          ],
+          "scale": 0.9779938487741133
+        }
+      },
+      "anchor": [
+        0.0670719191475904,
+        0.2669186326796331,
+        0.7455259085291841
+      ],
+      "anchor_kind": "existing_candidate_location",
+      "stats": {
+        "before": {
+          "raw_pixels": 25522,
+          "filtered_pixels": 3231,
+          "removed_person_pixels": 22291
+        },
+        "after": {
+          "raw_pixels": 51398,
+          "filtered_pixels": 22519,
+          "removed_person_pixels": 28879
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f115--D3-f121-simsac.png",
+        "after": "panoramas/D3-f121--D2-f115-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": true
+      },
+      "camera_gap_u": 1.4793803418197524,
+      "camera_gap_h": 0.6296415787876567,
+      "has_existing_candidate": true
+    },
+    {
+      "id": "R01--D2-f130--D3-f136",
+      "zone": "R01",
+      "before": "D2-f130",
+      "after": "D3-f136",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.705248749823324,
+            1.5634165176262707,
+            -6.936416252774851
+          ],
+          "rotation": [
+            [
+              0.9744260112049975,
+              -0.028172023822152125,
+              0.22293560900152876
+            ],
+            [
+              -0.027462983691385567,
+              -0.9996030897651852,
+              -0.006280721189620832
+            ],
+            [
+              0.22302406420358567,
+              -2.378897945163645e-06,
+              -0.9748129393788615
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.632276738005527,
+            1.5709164942334453,
+            -5.372943303236162
+          ],
+          "rotation": [
+            [
+              0.9492291979117133,
+              -0.012513026252139941,
+              0.3143363707971078
+            ],
+            [
+              -0.01272206007972263,
+              -0.9999181099467885,
+              -0.0013865741129142025
+            ],
+            [
+              0.31432798001325246,
+              -0.0026828295614761116,
+              -0.949310656953946
+            ]
+          ],
+          "scale": 0.9779938487741129
+        }
+      },
+      "anchor": [
+        -3.7233615675083014,
+        1.0534608550108078,
+        -8.138691105754411
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 34,
+          "filtered_pixels": 34,
+          "removed_person_pixels": 0
+        },
+        "after": {
+          "raw_pixels": 1527,
+          "filtered_pixels": 1527,
+          "removed_person_pixels": 0
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f130--D3-f136-simsac.png",
+        "after": "panoramas/D3-f136--D2-f130-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 1.5651929044360808,
+      "camera_gap_h": 0.6661644092445608,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R08--D2-f112--D3-f112",
+      "zone": "R08",
+      "before": "D2-f112",
+      "after": "D3-f112",
+      "cameras": {
+        "before": {
+          "center": [
+            -2.954110544796393,
+            1.5835203838199354,
+            0.37953045596449897
+          ],
+          "rotation": [
+            [
+              0.6314696525670592,
+              -0.016025334641346464,
+              -0.7752349750472244
+            ],
+            [
+              -0.03396283955654654,
+              -0.9993985442988742,
+              -0.0070053681236046175
+            ],
+            [
+              -0.7746564421833035,
+              0.0307528584512692,
+              -0.6316341174136989
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -1.4526767536234397,
+            1.5167296021032821,
+            0.9670208678986949
+          ],
+          "rotation": [
+            [
+              -0.12288072407484806,
+              -0.024590499035848527,
+              0.9921167446465208
+            ],
+            [
+              0.02554987110976886,
+              -0.9994400036695363,
+              -0.021607479059608584
+            ],
+            [
+              0.9920925016031088,
+              0.022693312279285238,
+              0.12344019540117211
+            ]
+          ],
+          "scale": 0.9779938487741133
+        }
+      },
+      "anchor": [
+        0.0670719191475904,
+        0.2669186326796331,
+        0.7455259085291841
+      ],
+      "anchor_kind": "existing_candidate_location",
+      "stats": {
+        "before": {
+          "raw_pixels": 21036,
+          "filtered_pixels": 13864,
+          "removed_person_pixels": 7172
+        },
+        "after": {
+          "raw_pixels": 53664,
+          "filtered_pixels": 24904,
+          "removed_person_pixels": 28760
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f112--D3-f112-simsac.png",
+        "after": "panoramas/D3-f112--D2-f112-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 1.6136633545795478,
+      "camera_gap_h": 0.6867939998171516,
+      "has_existing_candidate": true
+    },
+    {
+      "id": "R07--D2-f127--D3-f133",
+      "zone": "R07",
+      "before": "D2-f127",
+      "after": "D3-f133",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.5756894153938745,
+            1.571822098158941,
+            -5.578587261278994
+          ],
+          "rotation": [
+            [
+              0.9779169802580191,
+              -0.03459764289808402,
+              0.20611012306273016
+            ],
+            [
+              -0.03155249347625535,
+              -0.9993392078370247,
+              -0.01804405262402937
+            ],
+            [
+              0.20659820879782081,
+              0.011142297140380609,
+              -0.9783624222832598
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.439110689213379,
+            1.6060629209707002,
+            -3.8975393220601573
+          ],
+          "rotation": [
+            [
+              0.9649738859179963,
+              -0.03521710197779334,
+              0.25997145078760014
+            ],
+            [
+              -0.03198483436455412,
+              -0.9993495892792964,
+              -0.016654392152638947
+            ],
+            [
+              0.2603888819957477,
+              0.007755909720179944,
+              -0.965472669730953
+            ]
+          ],
+          "scale": 0.9779938487741131
+        }
+      },
+      "anchor": [
+        -3.325346746501702,
+        0.7595681933268525,
+        -8.129010746658
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 258,
+          "filtered_pixels": 258,
+          "removed_person_pixels": 0
+        },
+        "after": {
+          "raw_pixels": 1393,
+          "filtered_pixels": 1393,
+          "removed_person_pixels": 0
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f127--D3-f133-simsac.png",
+        "after": "panoramas/D3-f133--D2-f127-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 1.6869346034579435,
+      "camera_gap_h": 0.7179791004429902,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R07--D2-f121--D3-f127",
+      "zone": "R07",
+      "before": "D2-f121",
+      "after": "D3-f127",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.292097848459376,
+            1.5890934341720504,
+            -2.8948073668586964
+          ],
+          "rotation": [
+            [
+              0.9976696888639339,
+              -0.020531569151514665,
+              0.06506647823816826
+            ],
+            [
+              -0.019582150467810918,
+              -0.9996927649296805,
+              -0.015195891889150602
+            ],
+            [
+              0.06535848303929236,
+              0.013886339165788502,
+              -0.9977652220233854
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -3.947032377160331,
+            1.5796884447106894,
+            -1.0335640543475941
+          ],
+          "rotation": [
+            [
+              0.9865159639261014,
+              -0.03112140713438102,
+              -0.1606789063223083
+            ],
+            [
+              -0.03326216979889004,
+              -0.9993899159704454,
+              -0.010650066518889764
+            ],
+            [
+              -0.16024943363153188,
+              0.015850989702952154,
+              -0.9869492718200906
+            ]
+          ],
+          "scale": 0.9779938487741131
+        }
+      },
+      "anchor": [
+        -5.246468892713094,
+        0.11835243685265295,
+        -8.729738900809089
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 4172,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 4172
+        },
+        "after": {
+          "raw_pixels": 24210,
+          "filtered_pixels": 12006,
+          "removed_person_pixels": 12204
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f121--D3-f127-simsac.png",
+        "after": "panoramas/D3-f127--D2-f121-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 1.892983175222881,
+      "camera_gap_h": 0.8056757828751974,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R08--D2-f112--D3-f115",
+      "zone": "R08",
+      "before": "D2-f112",
+      "after": "D3-f115",
+      "cameras": {
+        "before": {
+          "center": [
+            -2.954110544796393,
+            1.5835203838199354,
+            0.37953045596449897
+          ],
+          "rotation": [
+            [
+              0.6314696525670592,
+              -0.016025334641346464,
+              -0.7752349750472244
+            ],
+            [
+              -0.03396283955654654,
+              -0.9993985442988742,
+              -0.0070053681236046175
+            ],
+            [
+              -0.7746564421833035,
+              0.0307528584512692,
+              -0.6316341174136989
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -0.8293012034676643,
+            1.5161094717921757,
+            0.38340430955217286
+          ],
+          "rotation": [
+            [
+              0.21391196574935703,
+              -0.009926408390794363,
+              0.976802506817886
+            ],
+            [
+              0.030209323650511922,
+              -0.9994028755157499,
+              -0.016771677776209342
+            ],
+            [
+              0.9763857166477927,
+              0.03309620563311663,
+              -0.21348436359336936
+            ]
+          ],
+          "scale": 0.9779938487741133
+        }
+      },
+      "anchor": [
+        0.0670719191475904,
+        0.2669186326796331,
+        0.7455259085291841
+      ],
+      "anchor_kind": "existing_candidate_location",
+      "stats": {
+        "before": {
+          "raw_pixels": 35886,
+          "filtered_pixels": 28593,
+          "removed_person_pixels": 7293
+        },
+        "after": {
+          "raw_pixels": 46200,
+          "filtered_pixels": 14359,
+          "removed_person_pixels": 31841
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f112--D3-f115-simsac.png",
+        "after": "panoramas/D3-f115--D2-f112-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 2.1258819287062627,
+      "camera_gap_h": 0.9048002167314508,
+      "has_existing_candidate": true
+    },
+    {
+      "id": "R08--D2-f115--D3-f118",
+      "zone": "R08",
+      "before": "D2-f115",
+      "after": "D3-f118",
+      "cameras": {
+        "before": {
+          "center": [
+            -3.7217600214916318,
+            1.6057691729078913,
+            -0.39551631861801795
+          ],
+          "rotation": [
+            [
+              0.8138933503426468,
+              -0.03343163101933584,
+              -0.5800516703841212
+            ],
+            [
+              -0.04317718657436953,
+              -0.9990629201821772,
+              -0.003002012089025302
+            ],
+            [
+              -0.5794077535100338,
+              0.027488316871855805,
+              -0.8145741510801878
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -1.4869275986622312,
+            1.5170555366422809,
+            0.3044307973980498
+          ],
+          "rotation": [
+            [
+              0.9882292282431064,
+              0.00408929946499783,
+              0.15292570116210252
+            ],
+            [
+              0.006362703693913182,
+              -0.9998763633953611,
+              -0.01437963577324249
+            ],
+            [
+              0.15284799131077423,
+              0.015183397286286763,
+              -0.9881330659375323
+            ]
+          ],
+          "scale": 0.9779938487741133
+        }
+      },
+      "anchor": [
+        0.0670719191475904,
+        0.2669186326796331,
+        0.7455259085291841
+      ],
+      "anchor_kind": "existing_candidate_location",
+      "stats": {
+        "before": {
+          "raw_pixels": 2973,
+          "filtered_pixels": 455,
+          "removed_person_pixels": 2518
+        },
+        "after": {
+          "raw_pixels": 31341,
+          "filtered_pixels": 11565,
+          "removed_person_pixels": 19776
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f115--D3-f118-simsac.png",
+        "after": "panoramas/D3-f118--D2-f115-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": true
+      },
+      "camera_gap_u": 2.3435596925634745,
+      "camera_gap_h": 0.9974464193526297,
+      "has_existing_candidate": true
+    },
+    {
+      "id": "R07--D2-f118--D3-f133",
+      "zone": "R07",
+      "before": "D2-f118",
+      "after": "D3-f133",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.057190999709231,
+            1.5793336524404866,
+            -1.5491728496411348
+          ],
+          "rotation": [
+            [
+              0.9902044046566313,
+              -0.03234996704960022,
+              -0.13582605284147914
+            ],
+            [
+              -0.03453514697215236,
+              -0.9993087253262486,
+              -0.013762089610222494
+            ],
+            [
+              -0.13528695658568987,
+              0.018318054446849395,
+              -0.9906371122964573
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.439110689213379,
+            1.6060629209707002,
+            -3.8975393220601573
+          ],
+          "rotation": [
+            [
+              0.9649738859179963,
+              -0.03521710197779334,
+              0.25997145078760014
+            ],
+            [
+              -0.03198483436455412,
+              -0.9993495892792964,
+              -0.016654392152638947
+            ],
+            [
+              0.2603888819957477,
+              0.007755909720179944,
+              -0.965472669730953
+            ]
+          ],
+          "scale": 0.9779938487741131
+        }
+      },
+      "anchor": [
+        -3.325346746501702,
+        0.7595681933268525,
+        -8.129010746658
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 8385,
+          "filtered_pixels": 3517,
+          "removed_person_pixels": 4868
+        },
+        "after": {
+          "raw_pixels": 89,
+          "filtered_pixels": 89,
+          "removed_person_pixels": 0
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f118--D3-f133-simsac.png",
+        "after": "panoramas/D3-f133--D2-f118-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 2.3793701250139434,
+      "camera_gap_h": 1.0126877583023188,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R07--D2-f121--D3-f136",
+      "zone": "R07",
+      "before": "D2-f121",
+      "after": "D3-f136",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.292097848459376,
+            1.5890934341720504,
+            -2.8948073668586964
+          ],
+          "rotation": [
+            [
+              0.9976696888639339,
+              -0.020531569151514665,
+              0.06506647823816826
+            ],
+            [
+              -0.019582150467810918,
+              -0.9996927649296805,
+              -0.015195891889150602
+            ],
+            [
+              0.06535848303929236,
+              0.013886339165788502,
+              -0.9977652220233854
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.583846872102133,
+            1.596044430902207,
+            -5.326445728486367
+          ],
+          "rotation": [
+            [
+              0.9451313577575873,
+              -0.0338770527864752,
+              0.3249293182798435
+            ],
+            [
+              -0.0310728506516385,
+              -0.9994216176073254,
+              -0.013816953772016739
+            ],
+            [
+              0.32520946255556854,
+              0.0029623560993716877,
+              -0.9456373670232451
+            ]
+          ],
+          "scale": 0.9779938487741131
+        }
+      },
+      "anchor": [
+        -5.034956912272997,
+        1.3746383014671342,
+        -4.036573896728715
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 0,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 0
+        },
+        "after": {
+          "raw_pixels": 1382,
+          "filtered_pixels": 1382,
+          "removed_person_pixels": 0
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f121--D3-f136-simsac.png",
+        "after": "panoramas/D3-f136--D2-f121-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": true
+      },
+      "camera_gap_u": 2.4490877752525217,
+      "camera_gap_h": 1.0423604057782123,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R08--D2-f118--D3-f121",
+      "zone": "R08",
+      "before": "D2-f118",
+      "after": "D3-f121",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.057190999709231,
+            1.5793336524404866,
+            -1.5491728496411348
+          ],
+          "rotation": [
+            [
+              0.9902044046566313,
+              -0.03234996704960022,
+              -0.13582605284147914
+            ],
+            [
+              -0.03453514697215236,
+              -0.9993087253262486,
+              -0.013762089610222494
+            ],
+            [
+              -0.13528695658568987,
+              0.018318054446849395,
+              -0.9906371122964573
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -2.58450699650907,
+            1.5718012329348632,
+            0.5500353362294206
+          ],
+          "rotation": [
+            [
+              0.7445950268995049,
+              -0.007531853799900283,
+              -0.6674739823355386
+            ],
+            [
+              -0.012201042964885746,
+              -0.9999228556106435,
+              -0.0023275261599963936
+            ],
+            [
+              -0.6674049598760072,
+              0.009876943140131126,
+              -0.7446294820426539
+            ]
+          ],
+          "scale": 0.9779938487741133
+        }
+      },
+      "anchor": [
+        0.0670719191475904,
+        0.2669186326796331,
+        0.7455259085291841
+      ],
+      "anchor_kind": "existing_candidate_location",
+      "stats": {
+        "before": {
+          "raw_pixels": 25852,
+          "filtered_pixels": 5610,
+          "removed_person_pixels": 20242
+        },
+        "after": {
+          "raw_pixels": 38240,
+          "filtered_pixels": 12253,
+          "removed_person_pixels": 25987
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f118--D3-f121-simsac.png",
+        "after": "panoramas/D3-f121--D2-f118-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": true
+      },
+      "camera_gap_u": 2.564279609997944,
+      "camera_gap_h": 1.0913873981224107,
+      "has_existing_candidate": true
+    },
+    {
+      "id": "R01--D2-f136--D3-f139",
+      "zone": "R01",
+      "before": "D2-f136",
+      "after": "D3-f139",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.994032891687768,
+            1.6084958323294443,
+            -9.510334585934718
+          ],
+          "rotation": [
+            [
+              0.958272994927655,
+              -0.029895866747813228,
+              0.28428701050835886
+            ],
+            [
+              -0.026406973502811994,
+              -0.9995216472979552,
+              -0.016098084768192366
+            ],
+            [
+              0.2846322872458508,
+              0.007919200349727092,
+              -0.9586040618122877
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.743453975773152,
+            1.5770340658648436,
+            -6.910847712798536
+          ],
+          "rotation": [
+            [
+              0.9271998552750315,
+              -0.03282836489020571,
+              0.3731256180384759
+            ],
+            [
+              -0.030257852028282763,
+              -0.9994608647990887,
+              -0.012745278564758494
+            ],
+            [
+              0.3733428595387807,
+              0.0005274407021142813,
+              -0.9276932850019517
+            ]
+          ],
+          "scale": 0.9779938487741129
+        }
+      },
+      "anchor": [
+        -3.883995040244992,
+        1.1348839461443876,
+        -9.08115495942519
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 914,
+          "filtered_pixels": 914,
+          "removed_person_pixels": 0
+        },
+        "after": {
+          "raw_pixels": 272,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 272
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f136--D3-f139-simsac.png",
+        "after": "panoramas/D3-f139--D2-f136-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 2.6117257971420624,
+      "camera_gap_h": 1.111581050380984,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R08--D2-f115--D3-f112",
+      "zone": "R08",
+      "before": "D2-f115",
+      "after": "D3-f112",
+      "cameras": {
+        "before": {
+          "center": [
+            -3.7217600214916318,
+            1.6057691729078913,
+            -0.39551631861801795
+          ],
+          "rotation": [
+            [
+              0.8138933503426468,
+              -0.03343163101933584,
+              -0.5800516703841212
+            ],
+            [
+              -0.04317718657436953,
+              -0.9990629201821772,
+              -0.003002012089025302
+            ],
+            [
+              -0.5794077535100338,
+              0.027488316871855805,
+              -0.8145741510801878
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -1.4526767536234397,
+            1.5167296021032821,
+            0.9670208678986949
+          ],
+          "rotation": [
+            [
+              -0.12288072407484806,
+              -0.024590499035848527,
+              0.9921167446465208
+            ],
+            [
+              0.02554987110976886,
+              -0.9994400036695363,
+              -0.021607479059608584
+            ],
+            [
+              0.9920925016031088,
+              0.022693312279285238,
+              0.12344019540117211
+            ]
+          ],
+          "scale": 0.9779938487741133
+        }
+      },
+      "anchor": [
+        0.0670719191475904,
+        0.2669186326796331,
+        0.7455259085291841
+      ],
+      "anchor_kind": "existing_candidate_location",
+      "stats": {
+        "before": {
+          "raw_pixels": 5153,
+          "filtered_pixels": 5153,
+          "removed_person_pixels": 0
+        },
+        "after": {
+          "raw_pixels": 33024,
+          "filtered_pixels": 13279,
+          "removed_person_pixels": 19745
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f115--D3-f112-simsac.png",
+        "after": "panoramas/D3-f112--D2-f115-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 2.6482398883653535,
+      "camera_gap_h": 1.1271218747355574,
+      "has_existing_candidate": true
+    },
+    {
+      "id": "R01--D2-f133--D3-f136",
+      "zone": "R01",
+      "before": "D2-f133",
+      "after": "D3-f136",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.815131297992224,
+            1.6042204644464275,
+            -8.219614277665638
+          ],
+          "rotation": [
+            [
+              0.9681914021299817,
+              -0.03406393025004944,
+              0.24788113582420845
+            ],
+            [
+              -0.031965276657848575,
+              -0.9994109710645959,
+              -0.012487273677971724
+            ],
+            [
+              0.2481604922822469,
+              0.004166481926173691,
+              -0.9687099723336141
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.632276738005527,
+            1.5709164942334453,
+            -5.372943303236162
+          ],
+          "rotation": [
+            [
+              0.9492291979117133,
+              -0.012513026252139941,
+              0.3143363707971078
+            ],
+            [
+              -0.01272206007972263,
+              -0.9999181099467885,
+              -0.0013865741129142025
+            ],
+            [
+              0.31432798001325246,
+              -0.0026828295614761116,
+              -0.949310656953946
+            ]
+          ],
+          "scale": 0.9779938487741129
+        }
+      },
+      "anchor": [
+        -3.7233615675083014,
+        1.0534608550108078,
+        -8.138691105754411
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 0,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 0
+        },
+        "after": {
+          "raw_pixels": 1798,
+          "filtered_pixels": 1798,
+          "removed_person_pixels": 0
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f133--D3-f136-simsac.png",
+        "after": "panoramas/D3-f136--D2-f133-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 2.852732125734756,
+      "camera_gap_h": 1.2141561630435322,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R08--D2-f115--D3-f115",
+      "zone": "R08",
+      "before": "D2-f115",
+      "after": "D3-f115",
+      "cameras": {
+        "before": {
+          "center": [
+            -3.7217600214916318,
+            1.6057691729078913,
+            -0.39551631861801795
+          ],
+          "rotation": [
+            [
+              0.8138933503426468,
+              -0.03343163101933584,
+              -0.5800516703841212
+            ],
+            [
+              -0.04317718657436953,
+              -0.9990629201821772,
+              -0.003002012089025302
+            ],
+            [
+              -0.5794077535100338,
+              0.027488316871855805,
+              -0.8145741510801878
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -0.8293012034676643,
+            1.5161094717921757,
+            0.38340430955217286
+          ],
+          "rotation": [
+            [
+              0.21391196574935703,
+              -0.009926408390794363,
+              0.976802506817886
+            ],
+            [
+              0.030209323650511922,
+              -0.9994028755157499,
+              -0.016771677776209342
+            ],
+            [
+              0.9763857166477927,
+              0.03309620563311663,
+              -0.21348436359336936
+            ]
+          ],
+          "scale": 0.9779938487741133
+        }
+      },
+      "anchor": [
+        0.0670719191475904,
+        0.2669186326796331,
+        0.7455259085291841
+      ],
+      "anchor_kind": "existing_candidate_location",
+      "stats": {
+        "before": {
+          "raw_pixels": 25338,
+          "filtered_pixels": 22552,
+          "removed_person_pixels": 2786
+        },
+        "after": {
+          "raw_pixels": 43795,
+          "filtered_pixels": 7864,
+          "removed_person_pixels": 35931
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f115--D3-f115-simsac.png",
+        "after": "panoramas/D3-f115--D2-f115-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 2.996844043482712,
+      "camera_gap_h": 1.275491881011316,
+      "has_existing_candidate": true
+    },
+    {
+      "id": "R01--D2-f130--D3-f133",
+      "zone": "R01",
+      "before": "D2-f130",
+      "after": "D3-f133",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.705248749823324,
+            1.5634165176262707,
+            -6.936416252774851
+          ],
+          "rotation": [
+            [
+              0.9744260112049975,
+              -0.028172023822152125,
+              0.22293560900152876
+            ],
+            [
+              -0.027462983691385567,
+              -0.9996030897651852,
+              -0.006280721189620832
+            ],
+            [
+              0.22302406420358567,
+              -2.378897945163645e-06,
+              -0.9748129393788615
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.4714884885823185,
+            1.5757589665799472,
+            -3.9457270826110866
+          ],
+          "rotation": [
+            [
+              0.9683455736317125,
+              -0.013799510771904418,
+              0.249231666387569
+            ],
+            [
+              -0.012833997253483553,
+              -0.9999025222945801,
+              -0.0054985837662985025
+            ],
+            [
+              0.24928324962252482,
+              0.0021258907294391424,
+              -0.9684282844104879
+            ]
+          ],
+          "scale": 0.9779938487741129
+        }
+      },
+      "anchor": [
+        -3.397222239782801,
+        0.7843819935384625,
+        -8.159477899868278
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 0,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 0
+        },
+        "after": {
+          "raw_pixels": 0,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 0
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f130--D3-f133-simsac.png",
+        "after": "panoramas/D3-f133--D2-f130-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 2.999836313587204,
+      "camera_gap_h": 1.2767654261703885,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R07--D2-f130--D3-f133",
+      "zone": "R07",
+      "before": "D2-f130",
+      "after": "D3-f133",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.705248749823324,
+            1.5634165176262707,
+            -6.936416252774851
+          ],
+          "rotation": [
+            [
+              0.9744260112049975,
+              -0.028172023822152125,
+              0.22293560900152876
+            ],
+            [
+              -0.027462983691385567,
+              -0.9996030897651852,
+              -0.006280721189620832
+            ],
+            [
+              0.22302406420358567,
+              -2.378897945163645e-06,
+              -0.9748129393788615
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.439110689213379,
+            1.6060629209707002,
+            -3.8975393220601573
+          ],
+          "rotation": [
+            [
+              0.9649738859179963,
+              -0.03521710197779334,
+              0.25997145078760014
+            ],
+            [
+              -0.03198483436455412,
+              -0.9993495892792964,
+              -0.016654392152638947
+            ],
+            [
+              0.2603888819957477,
+              0.007755909720179944,
+              -0.965472669730953
+            ]
+          ],
+          "scale": 0.9779938487741131
+        }
+      },
+      "anchor": [
+        -3.325346746501702,
+        0.7595681933268525,
+        -8.129010746658
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 0,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 0
+        },
+        "after": {
+          "raw_pixels": 0,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 0
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f130--D3-f133-simsac.png",
+        "after": "panoramas/D3-f133--D2-f130-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 3.050806644652099,
+      "camera_gap_h": 1.2984589953059313,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R08--D2-f118--D3-f118",
+      "zone": "R08",
+      "before": "D2-f118",
+      "after": "D3-f118",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.057190999709231,
+            1.5793336524404866,
+            -1.5491728496411348
+          ],
+          "rotation": [
+            [
+              0.9902044046566313,
+              -0.03234996704960022,
+              -0.13582605284147914
+            ],
+            [
+              -0.03453514697215236,
+              -0.9993087253262486,
+              -0.013762089610222494
+            ],
+            [
+              -0.13528695658568987,
+              0.018318054446849395,
+              -0.9906371122964573
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -1.4869275986622312,
+            1.5170555366422809,
+            0.3044307973980498
+          ],
+          "rotation": [
+            [
+              0.9882292282431064,
+              0.00408929946499783,
+              0.15292570116210252
+            ],
+            [
+              0.006362703693913182,
+              -0.9998763633953611,
+              -0.01437963577324249
+            ],
+            [
+              0.15284799131077423,
+              0.015183397286286763,
+              -0.9881330659375323
+            ]
+          ],
+          "scale": 0.9779938487741133
+        }
+      },
+      "anchor": [
+        0.0670719191475904,
+        0.2669186326796331,
+        0.7455259085291841
+      ],
+      "anchor_kind": "existing_candidate_location",
+      "stats": {
+        "before": {
+          "raw_pixels": 24056,
+          "filtered_pixels": 4182,
+          "removed_person_pixels": 19874
+        },
+        "after": {
+          "raw_pixels": 8918,
+          "filtered_pixels": 4386,
+          "removed_person_pixels": 4532
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f118--D3-f118-simsac.png",
+        "after": "panoramas/D3-f118--D2-f118-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": true
+      },
+      "camera_gap_u": 3.169539240139808,
+      "camera_gap_h": 1.3489929768407123,
+      "has_existing_candidate": true
+    },
+    {
+      "id": "R07--D2-f124--D3-f127",
+      "zone": "R07",
+      "before": "D2-f124",
+      "after": "D3-f127",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.439442477515188,
+            1.5523161794839757,
+            -4.2248640954266214
+          ],
+          "rotation": [
+            [
+              0.9858838317992594,
+              -0.028965300199702008,
+              0.16490628120587378
+            ],
+            [
+              -0.0264610583008769,
+              -0.9994990446169886,
+              -0.017362954913401413
+            ],
+            [
+              0.16532659371803182,
+              0.012754261800212552,
+              -0.9861564004839823
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -3.947032377160331,
+            1.5796884447106894,
+            -1.0335640543475941
+          ],
+          "rotation": [
+            [
+              0.9865159639261014,
+              -0.03112140713438102,
+              -0.1606789063223083
+            ],
+            [
+              -0.03326216979889004,
+              -0.9993899159704454,
+              -0.010650066518889764
+            ],
+            [
+              -0.16024943363153188,
+              0.015850989702952154,
+              -0.9869492718200906
+            ]
+          ],
+          "scale": 0.9779938487741131
+        }
+      },
+      "anchor": [
+        -5.246468892713094,
+        0.11835243685265295,
+        -8.729738900809089
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 0,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 0
+        },
+        "after": {
+          "raw_pixels": 6824,
+          "filtered_pixels": 2218,
+          "removed_person_pixels": 4606
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f124--D3-f127-simsac.png",
+        "after": "panoramas/D3-f127--D2-f124-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 3.229181459755107,
+      "camera_gap_h": 1.3743774031842337,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R08--D2-f118--D3-f112",
+      "zone": "R08",
+      "before": "D2-f118",
+      "after": "D3-f112",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.057190999709231,
+            1.5793336524404866,
+            -1.5491728496411348
+          ],
+          "rotation": [
+            [
+              0.9902044046566313,
+              -0.03234996704960022,
+              -0.13582605284147914
+            ],
+            [
+              -0.03453514697215236,
+              -0.9993087253262486,
+              -0.013762089610222494
+            ],
+            [
+              -0.13528695658568987,
+              0.018318054446849395,
+              -0.9906371122964573
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -1.4526767536234397,
+            1.5167296021032821,
+            0.9670208678986949
+          ],
+          "rotation": [
+            [
+              -0.12288072407484806,
+              -0.024590499035848527,
+              0.9921167446465208
+            ],
+            [
+              0.02554987110976886,
+              -0.9994400036695363,
+              -0.021607479059608584
+            ],
+            [
+              0.9920925016031088,
+              0.022693312279285238,
+              0.12344019540117211
+            ]
+          ],
+          "scale": 0.9779938487741133
+        }
+      },
+      "anchor": [
+        0.0670719191475904,
+        0.2669186326796331,
+        0.7455259085291841
+      ],
+      "anchor_kind": "existing_candidate_location",
+      "stats": {
+        "before": {
+          "raw_pixels": 32282,
+          "filtered_pixels": 24653,
+          "removed_person_pixels": 7629
+        },
+        "after": {
+          "raw_pixels": 43107,
+          "filtered_pixels": 22014,
+          "removed_person_pixels": 21093
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f118--D3-f112-simsac.png",
+        "after": "panoramas/D3-f112--D2-f118-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 3.6219669448200893,
+      "camera_gap_h": 1.5415515003045022,
+      "has_existing_candidate": true
+    },
+    {
+      "id": "R07--D2-f118--D3-f136",
+      "zone": "R07",
+      "before": "D2-f118",
+      "after": "D3-f136",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.057190999709231,
+            1.5793336524404866,
+            -1.5491728496411348
+          ],
+          "rotation": [
+            [
+              0.9902044046566313,
+              -0.03234996704960022,
+              -0.13582605284147914
+            ],
+            [
+              -0.03453514697215236,
+              -0.9993087253262486,
+              -0.013762089610222494
+            ],
+            [
+              -0.13528695658568987,
+              0.018318054446849395,
+              -0.9906371122964573
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.583846872102133,
+            1.596044430902207,
+            -5.326445728486367
+          ],
+          "rotation": [
+            [
+              0.9451313577575873,
+              -0.0338770527864752,
+              0.3249293182798435
+            ],
+            [
+              -0.0310728506516385,
+              -0.9994216176073254,
+              -0.013816953772016739
+            ],
+            [
+              0.32520946255556854,
+              0.0029623560993716877,
+              -0.9456373670232451
+            ]
+          ],
+          "scale": 0.9779938487741131
+        }
+      },
+      "anchor": [
+        -5.034956912272997,
+        1.3746383014671342,
+        -4.036573896728715
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 8395,
+          "filtered_pixels": 2541,
+          "removed_person_pixels": 5854
+        },
+        "after": {
+          "raw_pixels": 1223,
+          "filtered_pixels": 1113,
+          "removed_person_pixels": 110
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f118--D3-f136-simsac.png",
+        "after": "panoramas/D3-f136--D2-f118-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": true
+      },
+      "camera_gap_u": 3.8138479334266164,
+      "camera_gap_h": 1.6232182936167188,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R01--D2-f142--D3-f139",
+      "zone": "R01",
+      "before": "D2-f142",
+      "after": "D3-f139",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.596492694287013,
+            1.6060541263154895,
+            -10.969722893395552
+          ],
+          "rotation": [
+            [
+              0.37344140043955126,
+              -0.025175371701388775,
+              0.9273120947649954
+            ],
+            [
+              -0.01948663005050661,
+              -0.9996239933115897,
+              -0.019291014619916794
+            ],
+            [
+              0.9274490776786732,
+              -0.01086612421648419,
+              -0.37379156712998557
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.743453975773152,
+            1.5770340658648436,
+            -6.910847712798536
+          ],
+          "rotation": [
+            [
+              0.9271998552750315,
+              -0.03282836489020571,
+              0.3731256180384759
+            ],
+            [
+              -0.030257852028282763,
+              -0.9994608647990887,
+              -0.012745278564758494
+            ],
+            [
+              0.3733428595387807,
+              0.0005274407021142813,
+              -0.9276932850019517
+            ]
+          ],
+          "scale": 0.9779938487741129
+        }
+      },
+      "anchor": [
+        -3.883995040244992,
+        1.1348839461443876,
+        -9.08115495942519
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 0,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 0
+        },
+        "after": {
+          "raw_pixels": 15139,
+          "filtered_pixels": 6760,
+          "removed_person_pixels": 8379
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f142--D3-f139-simsac.png",
+        "after": "panoramas/D3-f139--D2-f142-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 4.061638525746853,
+      "camera_gap_h": 1.7286808682818156,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R01--D2-f136--D3-f136",
+      "zone": "R01",
+      "before": "D2-f136",
+      "after": "D3-f136",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.994032891687768,
+            1.6084958323294443,
+            -9.510334585934718
+          ],
+          "rotation": [
+            [
+              0.958272994927655,
+              -0.029895866747813228,
+              0.28428701050835886
+            ],
+            [
+              -0.026406973502811994,
+              -0.9995216472979552,
+              -0.016098084768192366
+            ],
+            [
+              0.2846322872458508,
+              0.007919200349727092,
+              -0.9586040618122877
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.632276738005527,
+            1.5709164942334453,
+            -5.372943303236162
+          ],
+          "rotation": [
+            [
+              0.9492291979117133,
+              -0.012513026252139941,
+              0.3143363707971078
+            ],
+            [
+              -0.01272206007972263,
+              -0.9999181099467885,
+              -0.0013865741129142025
+            ],
+            [
+              0.31432798001325246,
+              -0.0026828295614761116,
+              -0.949310656953946
+            ]
+          ],
+          "scale": 0.9779938487741129
+        }
+      },
+      "anchor": [
+        -3.7233615675083014,
+        1.0534608550108078,
+        -8.138691105754411
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 0,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 0
+        },
+        "after": {
+          "raw_pixels": 1406,
+          "filtered_pixels": 1406,
+          "removed_person_pixels": 0
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f136--D3-f136-simsac.png",
+        "after": "panoramas/D3-f136--D2-f136-simsac.png"
+      },
+      "anchor_person": {
+        "before": true,
+        "after": false
+      },
+      "camera_gap_u": 4.153346403507502,
+      "camera_gap_h": 1.7677128138256182,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R01--D2-f133--D3-f133",
+      "zone": "R01",
+      "before": "D2-f133",
+      "after": "D3-f133",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.815131297992224,
+            1.6042204644464275,
+            -8.219614277665638
+          ],
+          "rotation": [
+            [
+              0.9681914021299817,
+              -0.03406393025004944,
+              0.24788113582420845
+            ],
+            [
+              -0.031965276657848575,
+              -0.9994109710645959,
+              -0.012487273677971724
+            ],
+            [
+              0.2481604922822469,
+              0.004166481926173691,
+              -0.9687099723336141
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.4714884885823185,
+            1.5757589665799472,
+            -3.9457270826110866
+          ],
+          "rotation": [
+            [
+              0.9683455736317125,
+              -0.013799510771904418,
+              0.249231666387569
+            ],
+            [
+              -0.012833997253483553,
+              -0.9999025222945801,
+              -0.0054985837662985025
+            ],
+            [
+              0.24928324962252482,
+              0.0021258907294391424,
+              -0.9684282844104879
+            ]
+          ],
+          "scale": 0.9779938487741129
+        }
+      },
+      "anchor": [
+        -3.397222239782801,
+        0.7843819935384625,
+        -8.159477899868278
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 2588,
+          "filtered_pixels": 2588,
+          "removed_person_pixels": 0
+        },
+        "after": {
+          "raw_pixels": 610,
+          "filtered_pixels": 354,
+          "removed_person_pixels": 256
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f133--D3-f133-simsac.png",
+        "after": "panoramas/D3-f133--D2-f133-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 4.287774736780279,
+      "camera_gap_h": 1.8249270849653503,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R07--D2-f127--D3-f127",
+      "zone": "R07",
+      "before": "D2-f127",
+      "after": "D3-f127",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.5756894153938745,
+            1.571822098158941,
+            -5.578587261278994
+          ],
+          "rotation": [
+            [
+              0.9779169802580191,
+              -0.03459764289808402,
+              0.20611012306273016
+            ],
+            [
+              -0.03155249347625535,
+              -0.9993392078370247,
+              -0.01804405262402937
+            ],
+            [
+              0.20659820879782081,
+              0.011142297140380609,
+              -0.9783624222832598
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -3.947032377160331,
+            1.5796884447106894,
+            -1.0335640543475941
+          ],
+          "rotation": [
+            [
+              0.9865159639261014,
+              -0.03112140713438102,
+              -0.1606789063223083
+            ],
+            [
+              -0.03326216979889004,
+              -0.9993899159704454,
+              -0.010650066518889764
+            ],
+            [
+              -0.16024943363153188,
+              0.015850989702952154,
+              -0.9869492718200906
+            ]
+          ],
+          "scale": 0.9779938487741131
+        }
+      },
+      "anchor": [
+        -5.246468892713094,
+        0.11835243685265295,
+        -8.729738900809089
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 7773,
+          "filtered_pixels": 644,
+          "removed_person_pixels": 7129
+        },
+        "after": {
+          "raw_pixels": 41998,
+          "filtered_pixels": 17984,
+          "removed_person_pixels": 24014
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f127--D3-f127-simsac.png",
+        "after": "panoramas/D3-f127--D2-f127-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 4.58830115649285,
+      "camera_gap_h": 1.9528346446551492,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R01--D2-f136--D3-f133",
+      "zone": "R01",
+      "before": "D2-f136",
+      "after": "D3-f133",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.994032891687768,
+            1.6084958323294443,
+            -9.510334585934718
+          ],
+          "rotation": [
+            [
+              0.958272994927655,
+              -0.029895866747813228,
+              0.28428701050835886
+            ],
+            [
+              -0.026406973502811994,
+              -0.9995216472979552,
+              -0.016098084768192366
+            ],
+            [
+              0.2846322872458508,
+              0.007919200349727092,
+              -0.9586040618122877
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.4714884885823185,
+            1.5757589665799472,
+            -3.9457270826110866
+          ],
+          "rotation": [
+            [
+              0.9683455736317125,
+              -0.013799510771904418,
+              0.249231666387569
+            ],
+            [
+              -0.012833997253483553,
+              -0.9999025222945801,
+              -0.0054985837662985025
+            ],
+            [
+              0.24928324962252482,
+              0.0021258907294391424,
+              -0.9684282844104879
+            ]
+          ],
+          "scale": 0.9779938487741129
+        }
+      },
+      "anchor": [
+        -3.397222239782801,
+        0.7843819935384625,
+        -8.159477899868278
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 698,
+          "filtered_pixels": 698,
+          "removed_person_pixels": 0
+        },
+        "after": {
+          "raw_pixels": 563,
+          "filtered_pixels": 83,
+          "removed_person_pixels": 480
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f136--D3-f133-simsac.png",
+        "after": "panoramas/D3-f133--D2-f136-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 5.589184289468508,
+      "camera_gap_h": 2.3788222140543325,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R01--D2-f142--D3-f136",
+      "zone": "R01",
+      "before": "D2-f142",
+      "after": "D3-f136",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.596492694287013,
+            1.6060541263154895,
+            -10.969722893395552
+          ],
+          "rotation": [
+            [
+              0.37344140043955126,
+              -0.025175371701388775,
+              0.9273120947649954
+            ],
+            [
+              -0.01948663005050661,
+              -0.9996239933115897,
+              -0.019291014619916794
+            ],
+            [
+              0.9274490776786732,
+              -0.01086612421648419,
+              -0.37379156712998557
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.632276738005527,
+            1.5709164942334453,
+            -5.372943303236162
+          ],
+          "rotation": [
+            [
+              0.9492291979117133,
+              -0.012513026252139941,
+              0.3143363707971078
+            ],
+            [
+              -0.01272206007972263,
+              -0.9999181099467885,
+              -0.0013865741129142025
+            ],
+            [
+              0.31432798001325246,
+              -0.0026828295614761116,
+              -0.949310656953946
+            ]
+          ],
+          "scale": 0.9779938487741129
+        }
+      },
+      "anchor": [
+        -3.7233615675083014,
+        1.0534608550108078,
+        -8.138691105754411
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 28268,
+          "filtered_pixels": 11021,
+          "removed_person_pixels": 17247
+        },
+        "after": {
+          "raw_pixels": 31799,
+          "filtered_pixels": 16610,
+          "removed_person_pixels": 15189
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f142--D3-f136-simsac.png",
+        "after": "panoramas/D3-f136--D2-f142-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 5.59700428191706,
+      "camera_gap_h": 2.3821504943161593,
+      "has_existing_candidate": false
+    },
+    {
+      "id": "R01--D2-f142--D3-f133",
+      "zone": "R01",
+      "before": "D2-f142",
+      "after": "D3-f133",
+      "cameras": {
+        "before": {
+          "center": [
+            -4.596492694287013,
+            1.6060541263154895,
+            -10.969722893395552
+          ],
+          "rotation": [
+            [
+              0.37344140043955126,
+              -0.025175371701388775,
+              0.9273120947649954
+            ],
+            [
+              -0.01948663005050661,
+              -0.9996239933115897,
+              -0.019291014619916794
+            ],
+            [
+              0.9274490776786732,
+              -0.01086612421648419,
+              -0.37379156712998557
+            ]
+          ],
+          "scale": 1.0
+        },
+        "after": {
+          "center": [
+            -4.4714884885823185,
+            1.5757589665799472,
+            -3.9457270826110866
+          ],
+          "rotation": [
+            [
+              0.9683455736317125,
+              -0.013799510771904418,
+              0.249231666387569
+            ],
+            [
+              -0.012833997253483553,
+              -0.9999025222945801,
+              -0.0054985837662985025
+            ],
+            [
+              0.24928324962252482,
+              0.0021258907294391424,
+              -0.9684282844104879
+            ]
+          ],
+          "scale": 0.9779938487741129
+        }
+      },
+      "anchor": [
+        -3.397222239782801,
+        0.7843819935384625,
+        -8.159477899868278
+      ],
+      "anchor_kind": "registered_mesh_view_center",
+      "stats": {
+        "before": {
+          "raw_pixels": 0,
+          "filtered_pixels": 0,
+          "removed_person_pixels": 0
+        },
+        "after": {
+          "raw_pixels": 15299,
+          "filtered_pixels": 5862,
+          "removed_person_pixels": 9437
+        }
+      },
+      "model_masks": {
+        "before": "panoramas/D2-f142--D3-f133-simsac.png",
+        "after": "panoramas/D3-f133--D2-f142-simsac.png"
+      },
+      "anchor_person": {
+        "before": false,
+        "after": false
+      },
+      "camera_gap_u": 7.025173378505686,
+      "camera_gap_h": 2.98999596808099,
+      "has_existing_candidate": false
+    }
+  ],
+  "height_u": 2.3495594821870327,
+  "threshold": 0.5,
+  "projection": "Complete ERP sphere, not a 224x224 crop",
+  "displayed_rgb_resolution": [
+    2048,
+    1024
+  ],
+  "model_resolution": [
+    1024,
+    512
+  ],
+  "model": {
+    "audit": {
+      "model": "SimSaC",
+      "source_commit": "43abe282231dc7d8c8cb829a92f9ebc014fa6cb6",
+      "checkpoint": "/workspace/pano_change_models_20261025/simsac_changesim.pth",
+      "checkpoint_sha256": "55f28690989603b5b01723d255bbc63157bacc704e635100ae517b0ad4d1f99a",
+      "loaded_strict": true,
+      "checkpoint_selection": "Official synthetic+ChangeSim checkpoint selected before inference because target imagery is indoors.",
+      "input_preprocessing": "RGB float/255, ImageNet z-score, full branch 520x520 and low branch 256x256; no test augmentation",
+      "compatibility": "Native PyTorch equivalent of upstream zero-padded 9x9 channel-mean correlation. Original train.py architecture, use_pac=False; no head replaced."
+    },
+    "status": {
+      "state": "complete",
+      "elapsed_seconds": 30.39309787750244,
+      "pair_predictions": 158,
+      "control": {
+        "view": {
+          "candidate_fraction": 0.0,
+          "mean_probability": 0.013222860172390938,
+          "max_probability": 0.11631235480308533
+        },
+        "erp": {
+          "candidate_fraction": 0.0,
+          "mean_probability": 0.006943448446691036,
+          "max_probability": 0.08929136395454407
+        }
+      }
+    },
+    "control": {
+      "view": {
+        "candidate_fraction": 0.0,
+        "mean_probability": 0.013222860172390938,
+        "max_probability": 0.11631235480308533
+      },
+      "erp": {
+        "candidate_fraction": 0.0,
+        "mean_probability": 0.006943448446691036,
+        "max_probability": 0.08929136395454407
+      }
+    }
+  },
+  "conditions": {
+    "physical_event_ground_truth": false,
+    "different_floors": true,
+    "baseline_observations": "Full previous capture; saved automatic decisions",
+    "pair_model_observations": "20 pilot ERP frames / 30 direction views",
+    "candidate_projection": "First-hit original faces of candidate-trigger tracks only",
+    "unselected_is_unchanged": false
+  },
+  "alignment": "Saved region Sim3 and translation bias; same 3D point looking directions, not identical camera positions",
+  "height_reference": "Frozen alignment-context.height_u, a scene vertical reference, not camera height"
+}

@@ -2,6 +2,16 @@
 
 2026-10-25 기준, **기존 정합오차·관측검증 방식과 SimSaC·ViewDelta의 변화 후보를 비교하고 있다.** 현재까지의 코드, 측정 결과 JSON, 비교 화면, 가중치 로딩 검사와 캡처를 이 브랜치에 보관한다. 공통 Task 5a backend의 통합 완료를 뜻하지 않는다.
 
+## 현재 화면: 원본 360° 전후 비교
+
+기존 정합오차·관측검증과 SimSaC만 표시한다. 원본 ERP 20프레임 전체를 2048×1024로 표시하며, 구역별 36개 전후 쌍을 사용한다. 전체 펼침·드래그·같은 지점 확대·원본 전체 열기를 지원한다. ‘사람 제외로 달라진 장면’에서도 전후 양쪽을 유지한다.
+
+이전 화면이 딱 맞지 않았던 이유는 모델 입력용 224×224 방향 뷰를 겹침이 있는 사진 쌍으로 붙였기 때문이다. 현재는 저장된 구역별 Sim3·이동 편향과 원본 포즈를 사용해 같은 3D 지점을 바라보도록 시야를 연결한다. 카메라 위치는 바꾸지 않으므로 원근·정합 잔차·가림 차이는 남는다. 간격이 작은 촬영 쌍부터 표시하고, 간격을 맵 단위와 기준높이 대비 비율로 표시한다. 객체 이동 거리로 해석하지 않는다.
+
+SimSaC는 전체 ERP(1024×512) 쌍의 기존 양방향 예측을 사용한다. 새 추론·재학습은 없다. 현재 화면의 `panorama-review.json`은 쌍·카메라·전체 화면 수치, `panorama-validation.json`은 입력·기하·캐시 해시, `PANORAMA_REVIEW.md`는 표시 방법이다. 입력 영상에 없는 새 RGB를 생성하거나 가려진 부분을 채우지 않는다.
+
+기존 44개 224px 방향 쌍의 2×2 비교는 `cropped-review.html`과 `before-after.json`으로 보관했다. `comparison.json`과 `REPORT.md`는 이전 다중 상대 평균 실험 자료다.
+
 ## 비교 화면 실행
 
 저장소 루트에서 다음 명령을 실행한다. 저장된 결과를 보는 데 GPU나 모델 설치는 필요하지 않다.
@@ -14,13 +24,13 @@ python -m http.server 4190 --bind 127.0.0.1 --directory src/spacewatch3d/tasks/t
 
 | 화면 | 내용 |
 |---|---|
-| `focus-comparison-20261025/index.html` | 기존 정합오차·관측검증 / SimSaC / ViewDelta 중심 비교. 기존 후보·보류·사람 겹침 필터, 상대 RGB, 입력 방식 전환 |
+| `focus-comparison-20261025/index.html` | 기존 정합오차·관측검증 / SimSaC의 원본 360° 전후 비교. 같은 3D 지점 연동·드래그·확대·사람 제외 |
 | `model-comparison-20261025/index.html` | 앞서 실행한 SceneDiff 두 입력 경로까지 포함한 비교 |
 | `paired/index.html` | 동일 RGB에서 SceneDiff 원본 Pi3/SAM 입력과 외부 메쉬·인스턴스 입력의 후보 차이 |
 
 각 화면의 `REPORT.md`, `comparison.json`, `validation.json`에 수치·조건·검증을 보관했다. [스냅샷 파일 해시](../src/spacewatch3d/tasks/task_5a_change_detection/assets/panorama-change-20261025/snapshot-manifest.json)로 복사된 결과 파일을 확인할 수 있다.
 
-## 현재 입력과 비교 방법
+## 입력과 이전 다중 상대 평균 실험 (보관)
 
 - Dorm2 / Dorm3의 서로 다른 층을 비교한 공간 차이 파일럿이다. 시간 변화의 물리적 정답은 없다.
 - R01·R07·R08의 30개 방향 RGB를 사용한다. 대응하는 전체 ERP는 20프레임이다. 방향 RGB는 기존 SceneDiff 입력과 바이트·해시가 같다.
@@ -31,7 +41,7 @@ python -m http.server 4190 --bind 127.0.0.1 --directory src/spacewatch3d/tasks/t
 
 기존 전체 13구역에는 의자 관련 후보 묶음 2개가 있고 현재 모델 범위에는 R08의 E001 / I1-096이 포함된다. 후보 묶음을 물리적 객체 변화 건수로 해석하지 않는다.
 
-## 사람 제외를 적용한 현재 비교
+## 이전 다중 상대 평균의 사람 제외 비교 (보관)
 
 기존 정적 메쉬 객체 목록은 이미 `person`을 제외했다. 기존 관측검증도 `person_box_iou < 0.15`인 관측만 비점유 근거로 사용한다. RGB에는 촬영자가 남아 있으므로 SimSaC 출력에는 별도의 사람 제외가 필요했다.
 
@@ -77,7 +87,9 @@ ViewDelta는 공개 [hoskerelab/ViewDelta](https://huggingface.co/hoskerelab/Vie
 | `compare_inputs.py` | SceneDiff 원본 / 외부 입력 후 후속 후보 탐지 비교 |
 | `prepare_model_comparison.py`, `run_pair_models.py` | 공통 상대 고정, ViewDelta / SimSaC 실제 추론 |
 | `report_pair_models.py`, `report_inputs.py` | 이전 비교 화면 생성 |
-| `build_focus_comparison.py`, `focus.html`, `focus.js` | 저장된 기존 판정과 두 모델의 집중 비교 화면 생성 |
+| `build_focus_comparison.py` | 저장된 기존 판정과 투영을 준비하고 마지막에 전후 뷰어 생성 |
+| `build_before_after.py`, `before_after.html`, `before_after.js` | 선택한 전후 쌍과 기존 방식 / SimSaC의 양방향 후보 표시 |
+| `build_panorama_review.py`, `panorama_canvas.js`, `panorama_review.*` | 원본 360° 텍스처·전체 메쉬 투영·저장 포즈·깊이로 전후 시야 연결 |
 | `frozen_object_event_policy.py` | 기존 판정 정책의 소스 스냅샷. 이 화면에서 판정을 다시 계산하지 않음 |
 
 실제 추론·화면 재생성에는 별도로 보존된 입력과 확률 캐시가 필요하다. 일부 서버용 스크립트는 실행 당시 `/workspace/...` 배치를 고정하므로 새 환경에서는 외부 소스·가중치·입력 경로를 맞춰야 한다. 이 커밋만으로 원본 전체 촬영을 재추론할 수 있다고 설명하지 않는다. `run.py`의 이전 기하/RGB 실험은 현재 요청한 기존 정합오차·관측검증 기준선이 아니다.
@@ -96,7 +108,7 @@ python -m unittest discover -s tests/task_5a_change_detection/model_comparison -
 
 검증 범위는 correlation의 offset·padding·채널 평균, ERP 투영의 방향·주기성, 카메라 round-trip, 첫 표면 가림·미관측 유지, 비연속/빈 인스턴스 ID, 관측 없는 voxel 평균이다. 실제 30뷰 메쉬 투영은 기존 깊이·유효 hit와 정확히 일치했고 후보 픽셀의 배타적 분해를 확인했다. 이는 모델 변화 탐지 정확도의 검증과 구분한다.
 
-이번 업로드에서 공통 fixture 7종, 공통 규약 테스트 19개, 모델·메쉬·사람 제외 어댑터 테스트 11개를 통과했다. 스냅샷 해시, 화면의 로컬 링크, 30뷰 집계, 모델 커밋·체크포인트 해시와 HTTP 미리보기도 확인했다. 스냅샷은 `.gitattributes`로 줄바꿈 자동 변환을 끄고 원래 바이트를 유지한다.
+이번 업로드에서 공통 fixture 7종, 공통 규약 테스트 19개, 모델·메쉬·사람 제외·360° 기하 어댑터 테스트 14개를 통과했다. 스냅샷 해시, 화면의 로컬 링크, 30뷰 집계, 모델 커밋·체크포인트 해시와 HTTP 미리보기도 확인했다. 스냅샷은 `.gitattributes`로 줄바꿈 자동 변환을 끄고 원래 바이트를 유지한다.
 
 ## 진행 중인 작업
 
@@ -106,3 +118,7 @@ python -m unittest discover -s tests/task_5a_change_detection/model_comparison -
 - 동일 관측량과 변화 정답이 있는 자료에서 별도로 평가한다.
 
 조사 기록: [파노라마 모델](panoramic-change-models-20261024.md), [메쉬·RGB 모델](mesh-rgb-instance-change-models-20261023.md), [CYWS와 두 촬영 영상 비교](360-video-change-comparison-20261025.md).
+
+전후 뷰어 갱신에서 44쌍의 반대 촬영 연결과 176개 방향·입력별 예측 맵, 사람 제외 영역 밖 후보 보존을 확인했다. 쌍별 사진·마스크 파일과 UI의 전후 동시 표시도 확인했다.
+
+360° 갱신에서는 전체 구면 ray·카메라 Sim3·입력 방향 벡터 보존 테스트를 추가했다. 원본 20프레임 해시, 카메라 회전의 정규성, 공통 지점 round-trip, 구역별 36쌍의 70개 ERP 방향 예측 캐시와 360° 전체/확대/시야 연동을 검증했다. 이는 광학적 픽셀 정합이나 탐지 정확도 검증이 아니다.

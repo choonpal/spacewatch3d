@@ -1,0 +1,38 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>360° 전후 비교 · 기존 정합오차 / SimSaC</title>
+<style>
+:root{color-scheme:dark;--bg:#10161e;--panel:#19232e;--line:#31404f;--muted:#a7b6c6;--old:#ffb454;--sim:#cb99ff}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#eef3f8;font:14px/1.6 system-ui,"Malgun Gothic",sans-serif}main{max-width:1320px;margin:auto;padding:22px 24px 40px}.eyebrow{font-size:10px;letter-spacing:2px;color:#7ba4c5}h1{font-size:25px;letter-spacing:-1px;margin:5px 0}h2{font-size:16px;margin:0}h3{font-size:13px;margin:13px 0 7px}p{color:var(--muted);margin:5px 0}a{color:#a8d8ff}.note{font-size:11px;color:#94a7b9}.controls{display:flex;align-items:end;gap:11px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px;margin:15px 0}button,select,input{font:inherit}button,select{color:#eef3f8;background:#233342;border:1px solid #495c6e;border-radius:6px;padding:7px 9px}button{cursor:pointer}button:disabled{opacity:.4}select{display:block;margin-top:3px;font-size:12px;max-width:100%}label{font-size:11px;color:var(--muted)}.wide{flex:1;min-width:250px}.wide select{width:100%}.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:12px 0;font-size:11px}input{accent-color:#91c6ef;vertical-align:middle}.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.phase{padding:8px 11px;background:#223140;border-radius:6px;font-size:12px;display:flex;justify-content:space-between;gap:5px}.phase b{font-size:14px;margin-right:6px}.phase a{font-size:10px}.viewer{background:#0d151e;border:1px solid #344453;border-radius:8px;overflow:hidden;position:relative}.viewer canvas{display:block;width:100%;aspect-ratio:2/1;touch-action:none;cursor:grab}.viewer canvas:active{cursor:grabbing}body[data-projection="look"] .viewer canvas{aspect-ratio:4/3}.viewer:after{content:'+';position:absolute;left:50%;top:calc((100% - 26px)/2);transform:translate(-50%,-50%);color:#fff9;text-shadow:0 0 3px #000;pointer-events:none;font-size:18px}.viewer footer{padding:5px 9px;font-size:10px;color:#b2c6d8;display:flex;justify-content:space-between;gap:5px}.tag{color:#88c4ed}.old{color:var(--old)}.sim{color:var(--sim)}.status{padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel);font-size:12px;color:#b6ccdf;margin:12px 0}.case-head{display:flex;justify-content:space-between;gap:8px;align-items:center}.pill{font-size:10px;border:1px solid #415a70;padding:3px 7px;border-radius:5px;color:#bcd4e7}.legend{font-size:10px;color:#9bb0c2;margin:10px 0}.swatch{display:inline-block;width:8px;height:8px;background:var(--old);margin:0 5px 0 12px}.swatch:first-child{margin-left:0}.detail{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:15px;margin-top:15px}.numbers{display:grid;grid-template-columns:1fr 1fr;gap:15px;font-size:12px}.numbers p{font-size:12px}summary{color:#b7d8ef;cursor:pointer;font-size:12px}.links{display:flex;gap:15px;flex-wrap:wrap;font-size:11px;margin-top:12px}#error{color:#ffb4bd;white-space:pre-wrap}.loading{opacity:.45;pointer-events:none}#empty{padding:25px;text-align:center;color:var(--muted)}
+@media(max-width:800px){main{padding:16px 14px 30px}h1{font-size:22px}.row{gap:9px}.controls{gap:9px}.phase{font-size:10px;padding:7px}.phase b{font-size:12px}.viewer footer{font-size:10px;padding:4px 6px}.toolbar{gap:9px}}
+@media(max-width:450px){main{padding:12px 9px}.row{gap:7px}.phase{display:block}.phase a{display:block}.wide{min-width:100%}.viewer footer{display:block}.numbers{grid-template-columns:1fr}}
+</style></head><body data-projection="full"><main>
+<div class="eyebrow">360° PANORAMA / REGISTERED BEFORE &amp; AFTER</div>
+<h1>원본 360° 전후 비교 · 기존 정합오차 / SimSaC</h1>
+<p>전체 파노라마를 드래그해 둘러봅니다. 같은 3D 지점을 중심으로 전후 시야를 연결합니다.</p>
+<p class="note">전 = Dorm2 · 후 = Dorm3. 촬영 위치가 달라 원근·가림은 완전히 같아지지 않습니다. 서로 다른 층의 공간 차이 파일럿입니다.</p>
+<div class="controls">
+ <label>구역<select id="zone" aria-label="구역"><option value="">전체</option><option>R01</option><option>R07</option><option>R08</option></select></label>
+ <label>살펴볼 차이<select id="filter" aria-label="살펴볼 차이"><option value="all">전체 · 촬영 위치 가까운 순</option><option value="close">시점이 가까운 쌍만</option><option value="person">사람 제외로 달라진 장면</option><option value="candidate">기존 후보 구역</option></select></label>
+ <label class="wide">360° 전후 장면<select id="pair" aria-label="360도 전후 장면"></select></label>
+ <button id="prev" aria-label="이전 장면">←</button><button id="next" aria-label="다음 장면">→</button>
+</div>
+<div class="toolbar">
+ <label>화면<select id="projection" aria-label="화면 투영"><option value="full">360° 전체 펼침</option><option value="look">360° 둘러보기 · 확대</option></select></label>
+ <label><input type="checkbox" id="linked" checked> 동일 3D 지점 연동</label>
+ <label><input type="checkbox" id="exclude-person" checked aria-label="사람 제외"> 사람 제외</label>
+ <label><input type="checkbox" id="overlay" checked> 후보 표시</label>
+ <label><input type="checkbox" id="review"> 기존 보류 표시</label>
+ <button id="nearest">가장 가까운 촬영 쌍</button><button id="object-focus">같은 지점 확대</button><button id="reset">시야 초기화</button>
+</div>
+<div id="empty" hidden>이 조건에 해당하는 360° 전후 쌍이 없습니다.</div>
+<div id="case">
+ <div class="case-head"><h2 id="case-title"></h2><span class="pill" id="case-count"></span></div>
+ <div class="status" id="alignment-status">원본 360° 이미지와 정합 정보를 읽는 중…</div>
+ <div class="row" id="phases"></div>
+ <h3 class="old">기존 정합오차 · 관측검증</h3>
+ <div class="row"><div class="viewer"><canvas id="baseline-before" tabindex="0" role="img" aria-label="전 기존 정합오차 360도 파노라마"></canvas><footer><span class="tag">전 · 360°</span><span id="baseline-before-stat"></span></footer></div><div class="viewer"><canvas id="baseline-after" tabindex="0" role="img" aria-label="후 기존 정합오차 360도 파노라마"></canvas><footer><span class="tag">후 · 360°</span><span id="baseline-after-stat"></span></footer></div></div>
+ <h3 class="sim">SimSaC · 전체 파노라마 입력 결과</h3>
+ <div class="row"><div class="viewer"><canvas id="simsac-before" tabindex="0" role="img" aria-label="전 SimSaC 360도 파노라마"></canvas><footer><span class="tag">전 · 360°</span><span id="simsac-before-stat"></span></footer></div><div class="viewer"><canvas id="simsac-after" tabindex="0" role="img" aria-label="후 SimSaC 360도 파노라마"></canvas><footer><span class="tag">후 · 360°</span><span id="simsac-after-stat"></span></footer></div></div>
+ <p class="legend"><i class="swatch"></i>기존 후보<i class="swatch" style="background:var(--sim)"></i>SimSaC 후보 · 드래그 / 방향키: 시야 이동 · 클릭 후 휠 / 더블클릭: 확대</p>
+ <div class="detail"><h2>선택한 전후 쌍</h2><div class="numbers" id="numbers"></div><p class="note">현재 SimSaC 후보는 전체 ERP(1024×512) 쌍의 저장된 양방향 예측입니다. 화면에는 원본 프레임 전체를 2048×1024로 표시합니다. 정합 위치 차이를 물체 이동 거리로 해석하지 않습니다.</p></div>
+</div>
+<div class="detail"><details><summary>정합과 360° 표시 방식</summary><p class="note">저장된 구역별 Sim3·이동 편향과 원본 카메라 포즈를 사용합니다. 전후의 카메라 위치는 유지하고 동일한 3D 지점을 바라보도록 시야를 연결합니다. 같은 촬영 위치로 RGB를 재구성하거나 가려진 영역을 만들어 채우지 않습니다. 중심 표면의 깊이가 없으면 공통 좌표계 방향으로 연결합니다.</p><p class="note">기존 변화 판정과 SimSaC 확률은 변경하지 않았습니다. 사람 분할과 여유를 둔 검출 박스는 후보·메쉬 투영의 제외 영역입니다. 박스 안의 주변 표면도 보수적으로 제외됩니다. 기존 방식은 전체 촬영의 관측검증을 사용하므로 정확도 순위 비교가 아닙니다.</p></details><div class="links"><a href="PANORAMA_REVIEW.md">360° 비교 설명</a><a href="panorama-review.json">360° 쌍·카메라 정보</a><a href="panorama-validation.json">입력·정합 검증</a><a href="cropped-review.html">이전 224px 방향 뷰 비교</a></div></div>
+<pre id="error"></pre></main><script type="module" src="panorama_review.js"></script></body></html>

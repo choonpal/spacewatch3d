@@ -126,3 +126,7 @@ python tools/scenediff_mesh/build_focus_comparison.py
 같은 30개 RGB 뷰의 해시, 기존 준비 데이터와 깊이·유효 hit 일치, 후보 픽셀의 배타적 분해를 검증한다. 모델 원본 확률과 0.5 임계값은 고정한다. 기존 방식은 전체 촬영, 두 모델은 파일럿 20프레임이므로 관측량을 맞춘 정확도 비교가 아니다. `validation.json`에 검증·소스 해시, `baseline-projections.npz`에 투영된 원본 면 인덱스와 판정 bit를 저장한다.
 
 사람 제외가 기본값이다. 기존 YOLO11l의 대상 프레임 사람 분할과 ERP seam을 감싼 검출 박스를 합쳐 두 RGB 모델 후보와 메쉬 투영에 동일하게 적용한다. RGB 사람 뒤의 메쉬 면은 관측 가능한 것으로 세지 않는다. 원본 모델 확률·기존 객체 판정은 유지하며 화면 토글을 끄면 필터 전 결과를 볼 수 있다.
+
+현재 집중 화면은 기존 정합오차·관측검증과 SimSaC만 원본 **360° 전후**로 표시한다. 전은 Dorm2, 후는 Dorm3로 고정한다. `build_focus_comparison.py`는 기존 투영을 준비하고 `build_before_after.build(root)`로 44개 방향 쌍의 보조 자료를 만든 뒤 `build_panorama_review.build(root, prior)`를 호출한다. 전체 ERP 중복을 제외한 구역별 36쌍의 저장된 양방향 SimSaC 예측을 사용한다. 이전 다중 상대 평균을 선택한 한 쌍의 결과로 표시하지 않는다.
+
+준비된 입력과 캐시가 있으면 `python tools/scenediff_mesh/build_panorama_review.py`만으로 360° 화면을 갱신할 수 있다. 원본 ERP 20프레임을 2048×1024로 표시하며 전체 펼침·드래그·확대·정합 좌표 기준 동일 지점 연동을 지원한다. 카메라 위치를 같게 만드는 새 RGB 생성이나 픽셀 단위 정합은 수행하지 않는다. 카메라 간격이 작은 쌍부터 표시하고 원근·가림 차이를 명시한다. `build_before_after.py`는 별도의 `cropped-review.html`을 갱신한다.

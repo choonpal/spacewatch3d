@@ -1,0 +1,12 @@
+{
+  "view": {
+    "candidate_fraction": 0.0,
+    "mean_probability": 0.023867398500442505,
+    "max_probability": 0.49433037638664246
+  },
+  "erp": {
+    "candidate_fraction": 0.0,
+    "mean_probability": 0.0244632288813591,
+    "max_probability": 0.3040613830089569
+  }
+}

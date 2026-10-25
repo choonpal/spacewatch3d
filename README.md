@@ -1,5 +1,15 @@
 # SpaceWatch3D
 
+## Task 5a · 모델 비교 진행 중 (2026-10-25)
+
+**Task 5a는 현재 모델 비교를 진행 중입니다.** 기존 정합오차·관측검증 방식과 **SimSaC·ViewDelta**를 같은 RGB 관측 화면에서 비교하고 있으며, 앞서 실행한 SceneDiff의 원본 입력 / 메쉬·인스턴스 입력 결과도 함께 보관했습니다.
+
+- [진행 상황·실행 방법](docs/task5a-model-comparison-20261025.md)
+- [Task 5a README](src/spacewatch3d/tasks/task_5a_change_detection/README.md)
+- [비교 화면 파일](src/spacewatch3d/tasks/task_5a_change_detection/assets/panorama-change-20261025/focus-comparison-20261025/index.html) · [실제 화면 캡처](src/spacewatch3d/tasks/task_5a_change_detection/assets/panorama-change-20261025/focus-comparison-20261025/viewer.png)
+
+현재는 변화 후보와 입력 방식의 차이를 확인하는 실험 단계입니다. 서로 다른 층의 파일럿이며, 공통 Task 5a backend 통합과 정확도 평가는 진행 과제로 남아 있습니다.
+
 ## 최근 변경 · 2026-10-14
 
 - **키프레임 이동 효과:** 바닥 화살표·방향키·키프레임 미리보기로 이동할 때 화면을 이동 방향으로 살짝 확대하고 도착 화면으로 약 0.42초 동안 부드럽게 전환합니다. 중간 영상을 재생하지 않으며 이동 후에는 정지 상태를 유지합니다. 일반 재생·타임라인 탐색은 기존 동작을 유지합니다.

@@ -1,0 +1,263 @@
+{
+  "views": [
+    {
+      "key": "R01-00",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R01-01",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R01-02",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R01-03",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R01-04",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R01-05",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R01-06",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R01-07",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R01-08",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R01-09",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R07-00",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R07-01",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R07-02",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R07-03",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R07-04",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R07-05",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R07-06",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R07-07",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R07-08",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R07-09",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R08-00",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R08-01",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R08-02",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R08-03",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R08-04",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R08-05",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R08-06",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R08-07",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R08-08",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    },
+    {
+      "key": "R08-09",
+      "valid_agreement": 1.0,
+      "depth_error_p99_u": 0.0,
+      "depth_error_max_u": 0.0,
+      "rgb_hash_preserved": true
+    }
+  ],
+  "source_hashes": {
+    "outputs\\registration-benchmark-20261019\\new-meshfirst-20261022\\automatic-lifecycle-v2\\review.json": "722a94d2f9f1d45035091f7e5b475153d637982424aa7898ea0f96bf876d43f3",
+    "outputs\\registration-benchmark-20261019\\new-meshfirst-20261022\\all-object-review-v1\\face-audit.json": "79067ad11957ad557e21c14e8e74b5fde15adae9375b50efc92315d2b984324d",
+    "outputs\\registration-benchmark-20261019\\new-meshfirst-20261022\\alignment-context.json": "3b84a7022bdc1d0cc50a2dcb39806e349e8d52627b3c7ea476b0b1dc9d390b43",
+    "outputs\\registration-benchmark-20261019\\new-meshfirst-20261022\\image-lifecycle-newmesh-v1\\detections.json": "2da541679d63af1bed66ac780d7c19964f4880178cb80d619f71eb7b19e58bd3",
+    "outputs\\scenediff-mesh-rgb-20261024\\model-comparison-20261025\\inputs\\manifest.json": "23a5fd373e7970d0c18b70516d716696487f822cf1b1bbf1e631c0cf9064acd2",
+    "outputs\\registration-benchmark-20261019\\new-meshfirst-20261022\\new-inputs\\labeled-mesh-0.npz": "b244f7060fe8a432184ba739959bb339451b928b1baa6fc893c4a82f0a2a4adf",
+    "outputs\\registration-benchmark-20261019\\new-meshfirst-20261022\\new-inputs\\poses-0.json": "144c9209a4e884c8c808a693665b8f66492381256dfe24415bd70e396bc813ca",
+    "outputs\\registration-benchmark-20261019\\new-meshfirst-20261022\\new-inputs\\labeled-mesh-1.npz": "feecec17303b7143b9ca6ac2023e0a64b53dd95f784e387376b62592cb8b5587",
+    "outputs\\registration-benchmark-20261019\\new-meshfirst-20261022\\new-inputs\\poses-1.json": "9422adc0c224d4010365b07f581737563403212532fe03990bedfb672acd32cb",
+    "outputs\\scenediff-mesh-rgb-20261024\\model-comparison-20261025\\results\\simsac\\common_view_probabilities.npz": "f414f83f863a61689e16b3a64aae2d42e816824a28aa79741f2ee2489fb7d895",
+    "outputs\\scenediff-mesh-rgb-20261024\\model-comparison-20261025\\results\\viewdelta\\common_view_probabilities.npz": "c9b877c6e2550d8ed9f261c9d69189b67dfb6b4627d344c1f6cca127ae7afd06"
+  },
+  "person_mask_hashes": {
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E0-F00130-V0-D0.png": "6d8874427ea0096b18fe39479f248316da3018765331e62307c6fa86a41e57aa",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E0-F00130-V1-D0.png": "e19ca1ced0967b849ec0e5b62af099a3b98647267a316ae618a3d5a9de213dbc",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E0-F00133-V0-D0.png": "9f7ec36c0796ea715e5a1429cc420a014f417ee411ea283d2d6416da9062f72e",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E0-F00133-V1-D0.png": "860bb535bfcbaba97d6233fdc79db2bea901604694fab5d3cbee2ab86cdb4dae",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E0-F00142-V3-D0.png": "ea4357f59d49eb40955ce57f1e43721a8d27d3484e50694448fb34a9c37e10d5",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E0-F00136-V0-D0.png": "4d9cc4e6f873771ae134eff7783eb59fff5b8e78100c52e564cfddae9dad611c",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E1-F00142-V0-D0.png": "923249c0d6209fec49e19608025796b8547c979d03773dbb35aeb7338c8fa84d",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E1-F00139-V0-D0.png": "0b115a96db539193096606ada0b3d8bf37ebdbab8d4de6442fa231470be5e073",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E1-F00136-V0-D0.png": "590564492fc0868eb77b5b47492a671ec02e6af8bccb9c83e4d9d9fa3521c157",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E1-F00133-V0-D0.png": "b684ca3a96987437e8abe645939dc97cee6273a231da5abcb4bd5746c4496831",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E0-F00124-V0-D0.png": "9d6c203af2d70b0f366f65d6883126ec96f07cfb05c662962eeb7e7c8c4050da",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E0-F00118-V0-D0.png": "c197bd6021ffe1b3be9eddcd051984124bf8bce5555874ef8c8833e1ebc8ff6f",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E0-F00127-V0-D0.png": "cb52234b62c3ac1f571b1451ed9f0c17c531152d7a8183d74f333f38da1d81db",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E0-F00121-V0-D0.png": "86a859b79fa0f26efe1117d799ac134af7a7dbed0e6b946865aa35a9c49ea69e",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E1-F00127-V0-D0.png": "c0435485149dd332f8d52ab7f685b5e1f264cca30a2850e55d82dbe8a8621333",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E1-F00130-V0-D0.png": "682707d169a479d25739a138d40158b4c613ddbbadfa5d881aa0d5f46d546366",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E0-F00115-V0-D0.png": "e4a464afe8ad491072be361af0be4d2f8b220c755a9194dd25b63d28f8d4999f",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E0-F00115-V5-D1.png": "d2096e0dc9f7a11785da3c199d23eaf4490f59e29f263c68b7ea43229bda29a4",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E0-F00112-V0-D1.png": "b2ec7734ec56f8124ea58e51d67dbcccba116bbb32531fa309ae5c69c8114804",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E1-F00115-V0-D0.png": "37dc47ebf0eb7f2477382bedb4ba95a89aaa5c3e18422a419ae10152bcaf0554",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E1-F00115-V3-D0.png": "0ebe991347795e24f15b4fc7bc1055c3e44671cb15c6d78d2fb505c3ab1f9e9c",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E1-F00112-V3-D0.png": "256709f0b276e33929f4a5f045b39c49cb97c76bb6112b60e04d9d9979bd5346",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E1-F00112-V4-D0.png": "80eed2a86a270790c9d97046b74ba643d9d1a56707b22331ae00758c1d7793d3",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E1-F00118-V1-D0.png": "2d23506cf0697a86dc0676048c26bec72ca61aaf842f2a02fffca687ada4b528",
+    "outputs\\registration-benchmark-20261019\\image-lifecycle-v4\\masks\\E1-F00121-V1-D0.png": "1e02925c08c662f27f0ac441d202e386d3b260a7a7b997df980c39941929bca6"
+  },
+  "bit_flags": {
+    "suppressed": 1,
+    "deferred": 2,
+    "group_context": 4,
+    "candidate": 8
+  },
+  "candidate_face_source": "event_groups.entry_ids -> face-audit.original_face_ids",
+  "context_never_promoted_to_candidate": true,
+  "model_threshold_fixed": 0.5
+}

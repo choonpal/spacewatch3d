@@ -1,0 +1,3191 @@
+{
+  "views": [
+    {
+      "key": "R01-00",
+      "zone": "R01",
+      "index": 0,
+      "epoch": 0,
+      "frame": 130,
+      "yaw": 270,
+      "rgb_sha256": "b3e4e33703b91ad4d112335cd257d988837a64476a34ca51db55be1edae80ebb",
+      "erp": "D2-f130",
+      "refs": [
+        "R01-07",
+        "R01-08",
+        "R01-09"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-022",
+        "1": "D2-SAM31-023",
+        "2": "D2-SAM31-027"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 17740,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 17740,
+            "fraction": 0.35355548469387754,
+            "intersection_pixels": 17740,
+            "union_pixels": 17740,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 1
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 17740,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 17740,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "disagreement": 35480
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 17740,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 17740,
+            "fraction": 0.35355548469387754,
+            "intersection_pixels": 17740,
+            "union_pixels": 17740,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 1
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 17740,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 17740,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "disagreement": 35480
+        }
+      }
+    },
+    {
+      "key": "R01-01",
+      "zone": "R01",
+      "index": 1,
+      "epoch": 0,
+      "frame": 133,
+      "yaw": 180,
+      "rgb_sha256": "b804550eec372a1354aa6ad767138fd69599fe95d59c846c250fc46f2308ed32",
+      "erp": "D2-f133",
+      "refs": [
+        "R01-07",
+        "R01-08",
+        "R01-09"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-022",
+        "1": "D2-SAM31-023",
+        "2": "D2-SAM31-027"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 15666,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 15666,
+            "fraction": 0.31222098214285715,
+            "intersection_pixels": 15666,
+            "union_pixels": 15666,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 1
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 15666,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 15666,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "disagreement": 31332
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 15666,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 15666,
+            "fraction": 0.31222098214285715,
+            "intersection_pixels": 15666,
+            "union_pixels": 15666,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 1
+          },
+          "viewdelta": {
+            "pixels": 9316,
+            "fraction": 0.18566645408163265,
+            "intersection_pixels": 4719,
+            "union_pixels": 20263,
+            "iou_with_scenediff_mesh": 0.2328875289937324,
+            "components_100px": 2
+          },
+          "simsac": {
+            "pixels": 10105,
+            "fraction": 0.20139110331632654,
+            "intersection_pixels": 4720,
+            "union_pixels": 21051,
+            "iou_with_scenediff_mesh": 0.22421737684670562,
+            "components_100px": 3
+          },
+          "disagreement": 31875
+        }
+      }
+    },
+    {
+      "key": "R01-02",
+      "zone": "R01",
+      "index": 2,
+      "epoch": 0,
+      "frame": 142,
+      "yaw": 180,
+      "rgb_sha256": "9f6534e0a0d5eebefda8192af404244fb1de508f95dbb94aa4a6d8dda743190a",
+      "erp": "D2-f142",
+      "refs": [
+        "R01-06",
+        "R01-08",
+        "R01-09"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-005",
+        "1": "D2-SAM31-023",
+        "2": "D2-SAM31-027"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "disagreement": 0
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 10992,
+            "fraction": 0.21906887755102042,
+            "intersection_pixels": 0,
+            "union_pixels": 10992,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 1
+          },
+          "simsac": {
+            "pixels": 10267,
+            "fraction": 0.20461973852040816,
+            "intersection_pixels": 0,
+            "union_pixels": 10267,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 1
+          },
+          "disagreement": 21259
+        }
+      }
+    },
+    {
+      "key": "R01-03",
+      "zone": "R01",
+      "index": 3,
+      "epoch": 0,
+      "frame": 136,
+      "yaw": 0,
+      "rgb_sha256": "745b154f49941df5d5fdb478c8fa8a0f20380c952040abae01f5c34383b7dbe7",
+      "erp": "D2-f136",
+      "refs": [
+        "R01-06",
+        "R01-08",
+        "R01-09"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-004",
+        "1": "D2-SAM31-023",
+        "2": "D2-SAM31-024",
+        "3": "D2-SAM31-027"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "disagreement": 0
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 852,
+            "fraction": 0.016980229591836735,
+            "intersection_pixels": 0,
+            "union_pixels": 852,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 1
+          },
+          "disagreement": 852
+        }
+      }
+    },
+    {
+      "key": "R01-04",
+      "zone": "R01",
+      "index": 4,
+      "epoch": 0,
+      "frame": 133,
+      "yaw": 270,
+      "rgb_sha256": "df97669430fd6bec4068cea30490831f039327140f9e53afd108a610fcdd41ac",
+      "erp": "D2-f133",
+      "refs": [
+        "R01-05",
+        "R01-08",
+        "R01-09"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-022",
+        "1": "D2-SAM31-023"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 19945,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 19945,
+            "fraction": 0.39750079719387754,
+            "intersection_pixels": 19945,
+            "union_pixels": 19945,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 1
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 19945,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 19945,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "disagreement": 39890
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 19945,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 19945,
+            "fraction": 0.39750079719387754,
+            "intersection_pixels": 19945,
+            "union_pixels": 19945,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 1
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 19945,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 19945,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "disagreement": 39890
+        }
+      }
+    },
+    {
+      "key": "R01-05",
+      "zone": "R01",
+      "index": 5,
+      "epoch": 1,
+      "frame": 142,
+      "yaw": 270,
+      "rgb_sha256": "cab4952d59ce99aba06869c1345cc2e5cdba945ffb989d521c1c466e67083ee3",
+      "erp": "D3-f142",
+      "refs": [
+        "R01-04"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-019",
+        "1": "D3-SAM31-025"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "disagreement": 0
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "disagreement": 0
+        }
+      }
+    },
+    {
+      "key": "R01-06",
+      "zone": "R01",
+      "index": 6,
+      "epoch": 1,
+      "frame": 139,
+      "yaw": 0,
+      "rgb_sha256": "1632dac34c78d311ed366873191787f4493f45eeda27545d3ffe526fb40dd719",
+      "erp": "D3-f139",
+      "refs": [
+        "R01-02",
+        "R01-03"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-019",
+        "1": "D3-SAM31-025"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "disagreement": 0
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 609,
+            "fraction": 0.012137276785714286,
+            "intersection_pixels": 0,
+            "union_pixels": 609,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 1
+          },
+          "disagreement": 609
+        }
+      }
+    },
+    {
+      "key": "R01-07",
+      "zone": "R01",
+      "index": 7,
+      "epoch": 1,
+      "frame": 139,
+      "yaw": 270,
+      "rgb_sha256": "9f9f7e69336766ba78207fe8dd22cccfa2a71d472a9527355a3914cf12d66e6e",
+      "erp": "D3-f139",
+      "refs": [
+        "R01-00",
+        "R01-01"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-025"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "disagreement": 0
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "disagreement": 0
+        }
+      }
+    },
+    {
+      "key": "R01-08",
+      "zone": "R01",
+      "index": 8,
+      "epoch": 1,
+      "frame": 136,
+      "yaw": 0,
+      "rgb_sha256": "e1913493a61cc2086f22c73bea60626bd0288c8158ea3370458ad18ab514c509",
+      "erp": "D3-f136",
+      "refs": [
+        "R01-00",
+        "R01-01",
+        "R01-02",
+        "R01-03",
+        "R01-04"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-019",
+        "1": "D3-SAM31-025"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "disagreement": 0
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 2444,
+            "fraction": 0.048708545918367346,
+            "intersection_pixels": 0,
+            "union_pixels": 2444,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 1
+          },
+          "disagreement": 2444
+        }
+      }
+    },
+    {
+      "key": "R01-09",
+      "zone": "R01",
+      "index": 9,
+      "epoch": 1,
+      "frame": 133,
+      "yaw": 0,
+      "rgb_sha256": "bfc83efc9092a2d0fb3c076f945533d015512b1c7ba480224d061f8f82d6d440",
+      "erp": "D3-f133",
+      "refs": [
+        "R01-00",
+        "R01-01",
+        "R01-02",
+        "R01-03",
+        "R01-04"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-019",
+        "1": "D3-SAM31-025"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 16,
+            "fraction": 0.00031887755102040814,
+            "intersection_pixels": 0,
+            "union_pixels": 16,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "disagreement": 16
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 6053,
+            "fraction": 0.12063536352040816,
+            "intersection_pixels": 0,
+            "union_pixels": 6053,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 1
+          },
+          "simsac": {
+            "pixels": 676,
+            "fraction": 0.013472576530612245,
+            "intersection_pixels": 0,
+            "union_pixels": 676,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 2
+          },
+          "disagreement": 6729
+        }
+      }
+    },
+    {
+      "key": "R07-00",
+      "zone": "R07",
+      "index": 0,
+      "epoch": 0,
+      "frame": 124,
+      "yaw": 0,
+      "rgb_sha256": "456bc12c494f57d57e7ce5d8ac13bc6aa6f4514619695d83fdeac29f204638ec",
+      "erp": "D2-f124",
+      "refs": [
+        "R07-05",
+        "R07-06",
+        "R07-08"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-003",
+        "1": "D2-SAM31-008",
+        "2": "D2-SAM31-019",
+        "3": "D2-SAM31-020",
+        "4": "D2-SAM31-026"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 9396,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 9396,
+            "fraction": 0.1872608418367347,
+            "intersection_pixels": 9396,
+            "union_pixels": 9396,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 1
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 9396,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 9396,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "disagreement": 18792
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 9396,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 9396,
+            "fraction": 0.1872608418367347,
+            "intersection_pixels": 9396,
+            "union_pixels": 9396,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 1
+          },
+          "viewdelta": {
+            "pixels": 89,
+            "fraction": 0.0017737563775510204,
+            "intersection_pixels": 0,
+            "union_pixels": 9485,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 79,
+            "fraction": 0.0015744579081632653,
+            "intersection_pixels": 0,
+            "union_pixels": 9475,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "disagreement": 18960
+        }
+      }
+    },
+    {
+      "key": "R07-01",
+      "zone": "R07",
+      "index": 1,
+      "epoch": 0,
+      "frame": 118,
+      "yaw": 0,
+      "rgb_sha256": "9900b6b7dde36c1f1d8c1f6b4be9e8f85a0f93a9f3169bed48f78c7a27ead13e",
+      "erp": "D2-f118",
+      "refs": [
+        "R07-05",
+        "R07-06",
+        "R07-07",
+        "R07-08",
+        "R07-09"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-003",
+        "1": "D2-SAM31-008",
+        "2": "D2-SAM31-009",
+        "3": "D2-SAM31-010",
+        "4": "D2-SAM31-019",
+        "5": "D2-SAM31-020",
+        "6": "D2-SAM31-026"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 3408,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 3408,
+            "fraction": 0.06792091836734694,
+            "intersection_pixels": 3408,
+            "union_pixels": 3408,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 2
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 3408,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 3408,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "disagreement": 6816
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 3408,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 3408,
+            "fraction": 0.06792091836734694,
+            "intersection_pixels": 3408,
+            "union_pixels": 3408,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 2
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 3408,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 58,
+            "fraction": 0.0011559311224489796,
+            "intersection_pixels": 0,
+            "union_pixels": 3466,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "disagreement": 6874
+        }
+      }
+    },
+    {
+      "key": "R07-02",
+      "zone": "R07",
+      "index": 2,
+      "epoch": 0,
+      "frame": 127,
+      "yaw": 90,
+      "rgb_sha256": "a1bc39d580ab75ba1e88faa6ed451451636f7a1da597e46887edc89b1615d946",
+      "erp": "D2-f127",
+      "refs": [
+        "R07-05",
+        "R07-08"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-003",
+        "1": "D2-SAM31-008",
+        "2": "D2-SAM31-026"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 2023,
+            "fraction": 0.040318080357142856,
+            "intersection_pixels": 0,
+            "union_pixels": 11575,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 1
+          },
+          "scenediff_mesh": {
+            "pixels": 9552,
+            "fraction": 0.1903698979591837,
+            "intersection_pixels": 9552,
+            "union_pixels": 9552,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 1
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 9552,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 2,
+            "fraction": 3.985969387755102e-05,
+            "intersection_pixels": 2,
+            "union_pixels": 9552,
+            "iou_with_scenediff_mesh": 0.00020938023450586265,
+            "components_100px": 0
+          },
+          "disagreement": 19102
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 2023,
+            "fraction": 0.040318080357142856,
+            "intersection_pixels": 0,
+            "union_pixels": 11575,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 1
+          },
+          "scenediff_mesh": {
+            "pixels": 9552,
+            "fraction": 0.1903698979591837,
+            "intersection_pixels": 9552,
+            "union_pixels": 9552,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 1
+          },
+          "viewdelta": {
+            "pixels": 2064,
+            "fraction": 0.041135204081632654,
+            "intersection_pixels": 0,
+            "union_pixels": 11616,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 1
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 9552,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "disagreement": 21168
+        }
+      }
+    },
+    {
+      "key": "R07-03",
+      "zone": "R07",
+      "index": 3,
+      "epoch": 0,
+      "frame": 130,
+      "yaw": 90,
+      "rgb_sha256": "ffdc5315f9685250da0bdd550fa4db0143a27a87cbf2a4be3e4563997c4fb577",
+      "erp": "D2-f130",
+      "refs": [
+        "R07-05"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-003",
+        "1": "D2-SAM31-008",
+        "2": "D2-SAM31-026"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 36659,
+            "fraction": 0.7306082589285714,
+            "intersection_pixels": 11,
+            "union_pixels": 38774,
+            "iou_with_scenediff_mesh": 0.000283695259710115,
+            "components_100px": 1
+          },
+          "scenediff_mesh": {
+            "pixels": 2126,
+            "fraction": 0.04237085459183673,
+            "intersection_pixels": 2126,
+            "union_pixels": 2126,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 1
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 2126,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 2126,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "disagreement": 4252
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 36659,
+            "fraction": 0.7306082589285714,
+            "intersection_pixels": 11,
+            "union_pixels": 38774,
+            "iou_with_scenediff_mesh": 0.000283695259710115,
+            "components_100px": 1
+          },
+          "scenediff_mesh": {
+            "pixels": 2126,
+            "fraction": 0.04237085459183673,
+            "intersection_pixels": 2126,
+            "union_pixels": 2126,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 1
+          },
+          "viewdelta": {
+            "pixels": 2105,
+            "fraction": 0.04195232780612245,
+            "intersection_pixels": 1873,
+            "union_pixels": 2358,
+            "iou_with_scenediff_mesh": 0.7943172179813401,
+            "components_100px": 1
+          },
+          "simsac": {
+            "pixels": 4434,
+            "fraction": 0.08836894132653061,
+            "intersection_pixels": 1847,
+            "union_pixels": 4713,
+            "iou_with_scenediff_mesh": 0.39189475917674516,
+            "components_100px": 5
+          },
+          "disagreement": 3351
+        }
+      }
+    },
+    {
+      "key": "R07-04",
+      "zone": "R07",
+      "index": 4,
+      "epoch": 0,
+      "frame": 121,
+      "yaw": 0,
+      "rgb_sha256": "02b88d6bf219af2959dfa0fe2a987c6808925a068316578d8d0a758fe74a0eb4",
+      "erp": "D2-f121",
+      "refs": [
+        "R07-05",
+        "R07-07",
+        "R07-08"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-001",
+        "1": "D2-SAM31-003",
+        "2": "D2-SAM31-008",
+        "3": "D2-SAM31-019",
+        "4": "D2-SAM31-020",
+        "5": "D2-SAM31-026"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 6,
+            "fraction": 0.00011957908163265306,
+            "intersection_pixels": 0,
+            "union_pixels": 6,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "disagreement": 6
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 252,
+            "fraction": 0.005022321428571429,
+            "intersection_pixels": 0,
+            "union_pixels": 252,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 1
+          },
+          "simsac": {
+            "pixels": 1844,
+            "fraction": 0.03675063775510204,
+            "intersection_pixels": 0,
+            "union_pixels": 1844,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 2
+          },
+          "disagreement": 2096
+        }
+      }
+    },
+    {
+      "key": "R07-05",
+      "zone": "R07",
+      "index": 5,
+      "epoch": 1,
+      "frame": 133,
+      "yaw": 0,
+      "rgb_sha256": "bfc83efc9092a2d0fb3c076f945533d015512b1c7ba480224d061f8f82d6d440",
+      "erp": "D3-f133",
+      "refs": [
+        "R07-00",
+        "R07-01",
+        "R07-02",
+        "R07-03",
+        "R07-04"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-004",
+        "1": "D3-SAM31-010",
+        "2": "D3-SAM31-016",
+        "3": "D3-SAM31-023",
+        "4": "D3-SAM31-024",
+        "5": "D3-SAM31-038"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 3122,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 3122,
+            "fraction": 0.062220982142857144,
+            "intersection_pixels": 3122,
+            "union_pixels": 3122,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 3
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 3122,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 16,
+            "fraction": 0.00031887755102040814,
+            "intersection_pixels": 13,
+            "union_pixels": 3125,
+            "iou_with_scenediff_mesh": 0.00416,
+            "components_100px": 0
+          },
+          "disagreement": 6234
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 3122,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 3122,
+            "fraction": 0.062220982142857144,
+            "intersection_pixels": 3122,
+            "union_pixels": 3122,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 3
+          },
+          "viewdelta": {
+            "pixels": 35,
+            "fraction": 0.0006975446428571429,
+            "intersection_pixels": 12,
+            "union_pixels": 3145,
+            "iou_with_scenediff_mesh": 0.0038155802861685214,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 257,
+            "fraction": 0.005121970663265306,
+            "intersection_pixels": 137,
+            "union_pixels": 3242,
+            "iou_with_scenediff_mesh": 0.04225786551511413,
+            "components_100px": 1
+          },
+          "disagreement": 6238
+        }
+      }
+    },
+    {
+      "key": "R07-06",
+      "zone": "R07",
+      "index": 6,
+      "epoch": 1,
+      "frame": 133,
+      "yaw": 180,
+      "rgb_sha256": "13df8ebb21535335336583d38e3e3f56e2bbeed51b6e8cd1c1997e2e331d2e94",
+      "erp": "D3-f133",
+      "refs": [
+        "R07-00",
+        "R07-01"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-009",
+        "1": "D3-SAM31-010",
+        "2": "D3-SAM31-012",
+        "3": "D3-SAM31-016",
+        "4": "D3-SAM31-023"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 10102,
+            "fraction": 0.2013313137755102,
+            "intersection_pixels": 4376,
+            "union_pixels": 23703,
+            "iou_with_scenediff_mesh": 0.18461798084630637,
+            "components_100px": 1
+          },
+          "scenediff_mesh": {
+            "pixels": 17977,
+            "fraction": 0.3582788584183674,
+            "intersection_pixels": 17977,
+            "union_pixels": 17977,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 1
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 17977,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 17977,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "disagreement": 35954
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 10102,
+            "fraction": 0.2013313137755102,
+            "intersection_pixels": 4376,
+            "union_pixels": 23703,
+            "iou_with_scenediff_mesh": 0.18461798084630637,
+            "components_100px": 1
+          },
+          "scenediff_mesh": {
+            "pixels": 17977,
+            "fraction": 0.3582788584183674,
+            "intersection_pixels": 17977,
+            "union_pixels": 17977,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 1
+          },
+          "viewdelta": {
+            "pixels": 10393,
+            "fraction": 0.20713089923469388,
+            "intersection_pixels": 4447,
+            "union_pixels": 23923,
+            "iou_with_scenediff_mesh": 0.18588805751786983,
+            "components_100px": 1
+          },
+          "simsac": {
+            "pixels": 11102,
+            "fraction": 0.22126116071428573,
+            "intersection_pixels": 4940,
+            "union_pixels": 24139,
+            "iou_with_scenediff_mesh": 0.2046480798707486,
+            "components_100px": 2
+          },
+          "disagreement": 38675
+        }
+      }
+    },
+    {
+      "key": "R07-07",
+      "zone": "R07",
+      "index": 7,
+      "epoch": 1,
+      "frame": 136,
+      "yaw": 180,
+      "rgb_sha256": "acff4d3a55e52781a85c27b2cbb1690e00a76d4dd6ac76e09566ff7e524a1bdd",
+      "erp": "D3-f136",
+      "refs": [
+        "R07-01",
+        "R07-04"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-009",
+        "1": "D3-SAM31-010",
+        "2": "D3-SAM31-011",
+        "3": "D3-SAM31-012",
+        "4": "D3-SAM31-016",
+        "5": "D3-SAM31-023"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 14495,
+            "fraction": 0.288883131377551,
+            "intersection_pixels": 11460,
+            "union_pixels": 19558,
+            "iou_with_scenediff_mesh": 0.5859494835872788,
+            "components_100px": 1
+          },
+          "scenediff_mesh": {
+            "pixels": 16523,
+            "fraction": 0.32930086096938777,
+            "intersection_pixels": 16523,
+            "union_pixels": 16523,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 2
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 16523,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 16523,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "disagreement": 33046
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 14495,
+            "fraction": 0.288883131377551,
+            "intersection_pixels": 11460,
+            "union_pixels": 19558,
+            "iou_with_scenediff_mesh": 0.5859494835872788,
+            "components_100px": 1
+          },
+          "scenediff_mesh": {
+            "pixels": 16523,
+            "fraction": 0.32930086096938777,
+            "intersection_pixels": 16523,
+            "union_pixels": 16523,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 2
+          },
+          "viewdelta": {
+            "pixels": 12386,
+            "fraction": 0.24685108418367346,
+            "intersection_pixels": 9502,
+            "union_pixels": 19407,
+            "iou_with_scenediff_mesh": 0.48961714845158966,
+            "components_100px": 1
+          },
+          "simsac": {
+            "pixels": 10682,
+            "fraction": 0.212890625,
+            "intersection_pixels": 4379,
+            "union_pixels": 22826,
+            "iou_with_scenediff_mesh": 0.19184263559099274,
+            "components_100px": 2
+          },
+          "disagreement": 28352
+        }
+      }
+    },
+    {
+      "key": "R07-08",
+      "zone": "R07",
+      "index": 8,
+      "epoch": 1,
+      "frame": 127,
+      "yaw": 0,
+      "rgb_sha256": "0667b9116cfc98a8317263c576a4e872773e4e8f57cba808c3309f726f58fa29",
+      "erp": "D3-f127",
+      "refs": [
+        "R07-00",
+        "R07-01",
+        "R07-02",
+        "R07-04"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-004",
+        "1": "D3-SAM31-009",
+        "2": "D3-SAM31-010",
+        "3": "D3-SAM31-011",
+        "4": "D3-SAM31-012",
+        "5": "D3-SAM31-016",
+        "6": "D3-SAM31-023",
+        "7": "D3-SAM31-024",
+        "8": "D3-SAM31-038"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 3072,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 3072,
+            "fraction": 0.061224489795918366,
+            "intersection_pixels": 3072,
+            "union_pixels": 3072,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 2
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 3072,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 3072,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "disagreement": 6144
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 3072,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 3072,
+            "fraction": 0.061224489795918366,
+            "intersection_pixels": 3072,
+            "union_pixels": 3072,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 2
+          },
+          "viewdelta": {
+            "pixels": 5745,
+            "fraction": 0.11449697066326531,
+            "intersection_pixels": 0,
+            "union_pixels": 8817,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 1
+          },
+          "simsac": {
+            "pixels": 132,
+            "fraction": 0.0026307397959183672,
+            "intersection_pixels": 0,
+            "union_pixels": 3204,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 1
+          },
+          "disagreement": 12021
+        }
+      }
+    },
+    {
+      "key": "R07-09",
+      "zone": "R07",
+      "index": 9,
+      "epoch": 1,
+      "frame": 130,
+      "yaw": 270,
+      "rgb_sha256": "30971097bcf8652ec44741ecf3337c22222f79ae03c23f2a64ca259969f1e634",
+      "erp": "D3-f130",
+      "refs": [
+        "R07-01"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-009",
+        "1": "D3-SAM31-012",
+        "2": "D3-SAM31-016",
+        "3": "D3-SAM31-023"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 39141,
+            "fraction": 0.7800741390306123,
+            "intersection_pixels": 14456,
+            "union_pixels": 39483,
+            "iou_with_scenediff_mesh": 0.36613225945343564,
+            "components_100px": 1
+          },
+          "scenediff_mesh": {
+            "pixels": 14798,
+            "fraction": 0.294921875,
+            "intersection_pixels": 14798,
+            "union_pixels": 14798,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 1
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 14798,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 146,
+            "fraction": 0.0029097576530612247,
+            "intersection_pixels": 146,
+            "union_pixels": 14798,
+            "iou_with_scenediff_mesh": 0.009866198134883092,
+            "components_100px": 1
+          },
+          "disagreement": 29450
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 39141,
+            "fraction": 0.7800741390306123,
+            "intersection_pixels": 14456,
+            "union_pixels": 39483,
+            "iou_with_scenediff_mesh": 0.36613225945343564,
+            "components_100px": 1
+          },
+          "scenediff_mesh": {
+            "pixels": 14798,
+            "fraction": 0.294921875,
+            "intersection_pixels": 14798,
+            "union_pixels": 14798,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 1
+          },
+          "viewdelta": {
+            "pixels": 473,
+            "fraction": 0.009426817602040817,
+            "intersection_pixels": 0,
+            "union_pixels": 15271,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 1
+          },
+          "simsac": {
+            "pixels": 300,
+            "fraction": 0.005978954081632653,
+            "intersection_pixels": 193,
+            "union_pixels": 14905,
+            "iou_with_scenediff_mesh": 0.012948674941294867,
+            "components_100px": 1
+          },
+          "disagreement": 29983
+        }
+      }
+    },
+    {
+      "key": "R08-00",
+      "zone": "R08",
+      "index": 0,
+      "epoch": 0,
+      "frame": 115,
+      "yaw": 180,
+      "rgb_sha256": "fcf06e2049c2535ebfe917fdc1b0157ff2f351b284637748dcc494a6283fd763",
+      "erp": "D2-f115",
+      "refs": [
+        "R08-05",
+        "R08-06",
+        "R08-07",
+        "R08-08",
+        "R08-09"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-007",
+        "1": "D2-SAM31-012",
+        "2": "D2-SAM31-013",
+        "3": "D2-SAM31-014",
+        "4": "D2-SAM31-015"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 1374,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 1374,
+            "fraction": 0.027383609693877552,
+            "intersection_pixels": 1374,
+            "union_pixels": 1374,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 1
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 1374,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 212,
+            "fraction": 0.0042251275510204085,
+            "intersection_pixels": 0,
+            "union_pixels": 1586,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 1
+          },
+          "disagreement": 2960
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 1374,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 1374,
+            "fraction": 0.027383609693877552,
+            "intersection_pixels": 1374,
+            "union_pixels": 1374,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 1
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 1374,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 6360,
+            "fraction": 0.12675382653061223,
+            "intersection_pixels": 0,
+            "union_pixels": 7734,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 2
+          },
+          "disagreement": 9108
+        }
+      }
+    },
+    {
+      "key": "R08-01",
+      "zone": "R08",
+      "index": 1,
+      "epoch": 0,
+      "frame": 112,
+      "yaw": 180,
+      "rgb_sha256": "dea1af248b01a364a5f64fd030f3b489e47c9b75127aa390fffc1fa823ba107a",
+      "erp": "D2-f112",
+      "refs": [
+        "R08-05",
+        "R08-06",
+        "R08-08",
+        "R08-09"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-007",
+        "1": "D2-SAM31-012",
+        "2": "D2-SAM31-013",
+        "3": "D2-SAM31-014"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 1869,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 1869,
+            "fraction": 0.03724888392857143,
+            "intersection_pixels": 1869,
+            "union_pixels": 1869,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 1
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 1869,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 9295,
+            "fraction": 0.18524792729591838,
+            "intersection_pixels": 36,
+            "union_pixels": 11128,
+            "iou_with_scenediff_mesh": 0.003235082674335011,
+            "components_100px": 1
+          },
+          "disagreement": 12961
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 1869,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 1869,
+            "fraction": 0.03724888392857143,
+            "intersection_pixels": 1869,
+            "union_pixels": 1869,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 1
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 1869,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 5894,
+            "fraction": 0.11746651785714286,
+            "intersection_pixels": 0,
+            "union_pixels": 7763,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 3
+          },
+          "disagreement": 9632
+        }
+      }
+    },
+    {
+      "key": "R08-02",
+      "zone": "R08",
+      "index": 2,
+      "epoch": 0,
+      "frame": 112,
+      "yaw": 90,
+      "rgb_sha256": "c3925d0018b09bf9806cb3cf2be1c7a5f336e0f7d3e23e5384caadea72adb5ce",
+      "erp": "D2-f112",
+      "refs": [
+        "R08-07"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-015",
+        "1": "D2-SAM31-017"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 1435,
+            "fraction": 0.028599330357142856,
+            "intersection_pixels": 0,
+            "union_pixels": 1435,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 2
+          },
+          "disagreement": 1435
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 707,
+            "fraction": 0.014090401785714286,
+            "intersection_pixels": 0,
+            "union_pixels": 707,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 2
+          },
+          "simsac": {
+            "pixels": 2027,
+            "fraction": 0.04039779974489796,
+            "intersection_pixels": 0,
+            "union_pixels": 2027,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 3
+          },
+          "disagreement": 2734
+        }
+      }
+    },
+    {
+      "key": "R08-03",
+      "zone": "R08",
+      "index": 3,
+      "epoch": 0,
+      "frame": 115,
+      "yaw": 90,
+      "rgb_sha256": "c276001cf309a22dad53a6bb2469dbfa7b9c3e1db57e1ebf607010f40e842468",
+      "erp": "D2-f115",
+      "refs": [
+        "R08-07"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-015"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "disagreement": 0
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 291,
+            "fraction": 0.005799585459183673,
+            "intersection_pixels": 0,
+            "union_pixels": 291,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 1
+          },
+          "disagreement": 291
+        }
+      }
+    },
+    {
+      "key": "R08-04",
+      "zone": "R08",
+      "index": 4,
+      "epoch": 0,
+      "frame": 118,
+      "yaw": 180,
+      "rgb_sha256": "12be991ef2262372609fe5b5184a9d6f8db655c9326698d2a6b769b540d6e06d",
+      "erp": "D2-f118",
+      "refs": [
+        "R08-06",
+        "R08-07",
+        "R08-08",
+        "R08-09"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-013",
+        "1": "D2-SAM31-014"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 7847,
+            "fraction": 0.15638950892857142,
+            "intersection_pixels": 0,
+            "union_pixels": 7847,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 1
+          },
+          "disagreement": 7847
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 0,
+            "iou_with_scenediff_mesh": null,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 10088,
+            "fraction": 0.20105229591836735,
+            "intersection_pixels": 0,
+            "union_pixels": 10088,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 2
+          },
+          "disagreement": 10088
+        }
+      }
+    },
+    {
+      "key": "R08-05",
+      "zone": "R08",
+      "index": 5,
+      "epoch": 1,
+      "frame": 115,
+      "yaw": 90,
+      "rgb_sha256": "c9bc0cb3e406ac981d6920dd5eb54c5ddd75a568f76b8fd68e5ef7bf0aff6916",
+      "erp": "D3-f115",
+      "refs": [
+        "R08-00",
+        "R08-01"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-006",
+        "1": "D3-SAM31-013",
+        "2": "D3-SAM31-015",
+        "3": "D3-SAM31-026",
+        "4": "D3-SAM31-027",
+        "5": "D3-SAM31-028",
+        "6": "D3-SAM31-029",
+        "7": "D3-SAM31-030",
+        "8": "D3-SAM31-031",
+        "9": "D3-SAM31-032",
+        "10": "D3-SAM31-033",
+        "11": "D3-SAM31-034",
+        "12": "D3-SAM31-036"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 6077,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 6077,
+            "fraction": 0.12111367984693877,
+            "intersection_pixels": 6077,
+            "union_pixels": 6077,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 2
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 6077,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 12374,
+            "fraction": 0.24661192602040816,
+            "intersection_pixels": 5550,
+            "union_pixels": 12901,
+            "iou_with_scenediff_mesh": 0.4301992093636152,
+            "components_100px": 1
+          },
+          "disagreement": 13428
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 6077,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 6077,
+            "fraction": 0.12111367984693877,
+            "intersection_pixels": 6077,
+            "union_pixels": 6077,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 2
+          },
+          "viewdelta": {
+            "pixels": 22,
+            "fraction": 0.0004384566326530612,
+            "intersection_pixels": 0,
+            "union_pixels": 6099,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 6077,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "disagreement": 12176
+        }
+      }
+    },
+    {
+      "key": "R08-06",
+      "zone": "R08",
+      "index": 6,
+      "epoch": 1,
+      "frame": 112,
+      "yaw": 0,
+      "rgb_sha256": "966fbcb405be8e32429af304127104417df8c65c02796afeac254f5261fd8d0c",
+      "erp": "D3-f112",
+      "refs": [
+        "R08-00",
+        "R08-01",
+        "R08-04"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-015",
+        "1": "D3-SAM31-022",
+        "2": "D3-SAM31-027",
+        "3": "D3-SAM31-029",
+        "4": "D3-SAM31-030",
+        "5": "D3-SAM31-031",
+        "6": "D3-SAM31-032",
+        "7": "D3-SAM31-034"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 6121,
+            "fraction": 0.1219905931122449,
+            "intersection_pixels": 4598,
+            "union_pixels": 6700,
+            "iou_with_scenediff_mesh": 0.6862686567164179,
+            "components_100px": 2
+          },
+          "scenediff_mesh": {
+            "pixels": 5177,
+            "fraction": 0.10317681760204081,
+            "intersection_pixels": 5177,
+            "union_pixels": 5177,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 3
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 5177,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 4745,
+            "fraction": 0.09456712372448979,
+            "intersection_pixels": 1819,
+            "union_pixels": 8103,
+            "iou_with_scenediff_mesh": 0.22448475873133408,
+            "components_100px": 3
+          },
+          "disagreement": 11461
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 6121,
+            "fraction": 0.1219905931122449,
+            "intersection_pixels": 4598,
+            "union_pixels": 6700,
+            "iou_with_scenediff_mesh": 0.6862686567164179,
+            "components_100px": 2
+          },
+          "scenediff_mesh": {
+            "pixels": 5177,
+            "fraction": 0.10317681760204081,
+            "intersection_pixels": 5177,
+            "union_pixels": 5177,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 3
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 5177,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 1610,
+            "fraction": 0.03208705357142857,
+            "intersection_pixels": 965,
+            "union_pixels": 5822,
+            "iou_with_scenediff_mesh": 0.1657506011679835,
+            "components_100px": 1
+          },
+          "disagreement": 10034
+        }
+      }
+    },
+    {
+      "key": "R08-07",
+      "zone": "R08",
+      "index": 7,
+      "epoch": 1,
+      "frame": 118,
+      "yaw": 90,
+      "rgb_sha256": "7722ff21ccff432c88e6587eda0a96260b97161826997d78e706961d07b4446b",
+      "erp": "D3-f118",
+      "refs": [
+        "R08-00",
+        "R08-02",
+        "R08-03",
+        "R08-04"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-015",
+        "1": "D3-SAM31-022",
+        "2": "D3-SAM31-027",
+        "3": "D3-SAM31-030",
+        "4": "D3-SAM31-031",
+        "5": "D3-SAM31-032",
+        "6": "D3-SAM31-034"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 11893,
+            "fraction": 0.23702566964285715,
+            "intersection_pixels": 3451,
+            "union_pixels": 12018,
+            "iou_with_scenediff_mesh": 0.28715260442669327,
+            "components_100px": 2
+          },
+          "scenediff_mesh": {
+            "pixels": 3576,
+            "fraction": 0.07126913265306123,
+            "intersection_pixels": 3576,
+            "union_pixels": 3576,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 4
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 3576,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 9521,
+            "fraction": 0.18975207270408162,
+            "intersection_pixels": 2810,
+            "union_pixels": 10287,
+            "iou_with_scenediff_mesh": 0.2731602994070186,
+            "components_100px": 2
+          },
+          "disagreement": 11053
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 11893,
+            "fraction": 0.23702566964285715,
+            "intersection_pixels": 3451,
+            "union_pixels": 12018,
+            "iou_with_scenediff_mesh": 0.28715260442669327,
+            "components_100px": 2
+          },
+          "scenediff_mesh": {
+            "pixels": 3576,
+            "fraction": 0.07126913265306123,
+            "intersection_pixels": 3576,
+            "union_pixels": 3576,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 4
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 3576,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 4618,
+            "fraction": 0.09203603316326531,
+            "intersection_pixels": 8,
+            "union_pixels": 8186,
+            "iou_with_scenediff_mesh": 0.0009772782799902272,
+            "components_100px": 3
+          },
+          "disagreement": 11754
+        }
+      }
+    },
+    {
+      "key": "R08-08",
+      "zone": "R08",
+      "index": 8,
+      "epoch": 1,
+      "frame": 121,
+      "yaw": 180,
+      "rgb_sha256": "f78bced34ad7639a4a31071af9bc412779efac408d5ae367d6d827747ce8b5fc",
+      "erp": "D3-f121",
+      "refs": [
+        "R08-00",
+        "R08-01",
+        "R08-04"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-006",
+        "1": "D3-SAM31-013",
+        "2": "D3-SAM31-015",
+        "3": "D3-SAM31-020",
+        "4": "D3-SAM31-026",
+        "5": "D3-SAM31-027",
+        "6": "D3-SAM31-028",
+        "7": "D3-SAM31-029",
+        "8": "D3-SAM31-030",
+        "9": "D3-SAM31-031",
+        "10": "D3-SAM31-032",
+        "11": "D3-SAM31-033",
+        "12": "D3-SAM31-034",
+        "13": "D3-SAM31-036"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 9612,
+            "fraction": 0.1915656887755102,
+            "intersection_pixels": 2167,
+            "union_pixels": 11991,
+            "iou_with_scenediff_mesh": 0.1807188724876991,
+            "components_100px": 1
+          },
+          "scenediff_mesh": {
+            "pixels": 4546,
+            "fraction": 0.09060108418367346,
+            "intersection_pixels": 4546,
+            "union_pixels": 4546,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 3
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 4546,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 12503,
+            "fraction": 0.2491828762755102,
+            "intersection_pixels": 3142,
+            "union_pixels": 13907,
+            "iou_with_scenediff_mesh": 0.22592938807794635,
+            "components_100px": 1
+          },
+          "disagreement": 15311
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 9612,
+            "fraction": 0.1915656887755102,
+            "intersection_pixels": 2167,
+            "union_pixels": 11991,
+            "iou_with_scenediff_mesh": 0.1807188724876991,
+            "components_100px": 1
+          },
+          "scenediff_mesh": {
+            "pixels": 4546,
+            "fraction": 0.09060108418367346,
+            "intersection_pixels": 4546,
+            "union_pixels": 4546,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 3
+          },
+          "viewdelta": {
+            "pixels": 522,
+            "fraction": 0.010403380102040817,
+            "intersection_pixels": 444,
+            "union_pixels": 4624,
+            "iou_with_scenediff_mesh": 0.09602076124567474,
+            "components_100px": 1
+          },
+          "simsac": {
+            "pixels": 3783,
+            "fraction": 0.07539461096938775,
+            "intersection_pixels": 503,
+            "union_pixels": 7826,
+            "iou_with_scenediff_mesh": 0.06427293636595963,
+            "components_100px": 3
+          },
+          "disagreement": 11503
+        }
+      }
+    },
+    {
+      "key": "R08-09",
+      "zone": "R08",
+      "index": 9,
+      "epoch": 1,
+      "frame": 112,
+      "yaw": 90,
+      "rgb_sha256": "e747e1f58a0ad8e317358dae75410fea69b12f559c22f7555bb9d904c96a5ec1",
+      "erp": "D3-f112",
+      "refs": [
+        "R08-00",
+        "R08-01",
+        "R08-04"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-006",
+        "1": "D3-SAM31-013",
+        "2": "D3-SAM31-020",
+        "3": "D3-SAM31-026",
+        "4": "D3-SAM31-028",
+        "5": "D3-SAM31-029",
+        "6": "D3-SAM31-030",
+        "7": "D3-SAM31-033",
+        "8": "D3-SAM31-034",
+        "9": "D3-SAM31-036"
+      },
+      "stats": {
+        "erp": {
+          "scenediff_original": {
+            "pixels": 5950,
+            "fraction": 0.11858258928571429,
+            "intersection_pixels": 239,
+            "union_pixels": 10250,
+            "iou_with_scenediff_mesh": 0.023317073170731707,
+            "components_100px": 1
+          },
+          "scenediff_mesh": {
+            "pixels": 4539,
+            "fraction": 0.09046157525510204,
+            "intersection_pixels": 4539,
+            "union_pixels": 4539,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 5
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 4539,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 5754,
+            "fraction": 0.11467633928571429,
+            "intersection_pixels": 1148,
+            "union_pixels": 9145,
+            "iou_with_scenediff_mesh": 0.12553307818480045,
+            "components_100px": 2
+          },
+          "disagreement": 12536
+        },
+        "view": {
+          "scenediff_original": {
+            "pixels": 5950,
+            "fraction": 0.11858258928571429,
+            "intersection_pixels": 239,
+            "union_pixels": 10250,
+            "iou_with_scenediff_mesh": 0.023317073170731707,
+            "components_100px": 1
+          },
+          "scenediff_mesh": {
+            "pixels": 4539,
+            "fraction": 0.09046157525510204,
+            "intersection_pixels": 4539,
+            "union_pixels": 4539,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 5
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 4539,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 5314,
+            "fraction": 0.10590720663265306,
+            "intersection_pixels": 976,
+            "union_pixels": 8877,
+            "iou_with_scenediff_mesh": 0.1099470541849724,
+            "components_100px": 3
+          },
+          "disagreement": 12440
+        }
+      }
+    }
+  ],
+  "modes": {
+    "erp": {
+      "total": {
+        "scenediff_original": {
+          "pixels": 135996,
+          "fraction": 0.09034598214285715,
+          "intersection_pixels": 40758,
+          "union_pixels": 255721,
+          "iou_with_scenediff_mesh": 0.1593846418557725,
+          "components_100px": 11
+        },
+        "scenediff_mesh": {
+          "pixels": 160483,
+          "fraction": 0.10661338754251701,
+          "intersection_pixels": 160483,
+          "union_pixels": 160483,
+          "iou_with_scenediff_mesh": 1.0,
+          "components_100px": 36
+        },
+        "viewdelta": {
+          "pixels": 6,
+          "fraction": 3.985969387755102e-06,
+          "intersection_pixels": 0,
+          "union_pixels": 160489,
+          "iou_with_scenediff_mesh": 0.0,
+          "components_100px": 0
+        },
+        "simsac": {
+          "pixels": 63866,
+          "fraction": 0.04242798681972789,
+          "intersection_pixels": 14666,
+          "union_pixels": 209683,
+          "iou_with_scenediff_mesh": 0.0699436768836768,
+          "components_100px": 15
+        }
+      },
+      "zones": {
+        "R01": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 53351,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 53351,
+            "fraction": 0.10632772640306122,
+            "intersection_pixels": 53351,
+            "union_pixels": 53351,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 3
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 53351,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 16,
+            "fraction": 3.188775510204082e-05,
+            "intersection_pixels": 0,
+            "union_pixels": 53367,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          }
+        },
+        "R07": {
+          "scenediff_original": {
+            "pixels": 102420,
+            "fraction": 0.20412149234693877,
+            "intersection_pixels": 30303,
+            "union_pixels": 152091,
+            "iou_with_scenediff_mesh": 0.19924255873128588,
+            "components_100px": 5
+          },
+          "scenediff_mesh": {
+            "pixels": 79974,
+            "fraction": 0.15938695790816326,
+            "intersection_pixels": 79974,
+            "union_pixels": 79974,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 14
+          },
+          "viewdelta": {
+            "pixels": 6,
+            "fraction": 1.1957908163265306e-05,
+            "intersection_pixels": 0,
+            "union_pixels": 79980,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 164,
+            "fraction": 0.0003268494897959184,
+            "intersection_pixels": 161,
+            "union_pixels": 79977,
+            "iou_with_scenediff_mesh": 0.002013078760143541,
+            "components_100px": 1
+          }
+        },
+        "R08": {
+          "scenediff_original": {
+            "pixels": 33576,
+            "fraction": 0.06691645408163266,
+            "intersection_pixels": 10455,
+            "union_pixels": 50279,
+            "iou_with_scenediff_mesh": 0.2079396964935659,
+            "components_100px": 6
+          },
+          "scenediff_mesh": {
+            "pixels": 27158,
+            "fraction": 0.05412547831632653,
+            "intersection_pixels": 27158,
+            "union_pixels": 27158,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 19
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 27158,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "simsac": {
+            "pixels": 63686,
+            "fraction": 0.1269252232142857,
+            "intersection_pixels": 14505,
+            "union_pixels": 76339,
+            "iou_with_scenediff_mesh": 0.19000772868389681,
+            "components_100px": 14
+          }
+        }
+      }
+    },
+    "view": {
+      "total": {
+        "scenediff_original": {
+          "pixels": 135996,
+          "fraction": 0.09034598214285715,
+          "intersection_pixels": 40758,
+          "union_pixels": 255721,
+          "iou_with_scenediff_mesh": 0.1593846418557725,
+          "components_100px": 11
+        },
+        "scenediff_mesh": {
+          "pixels": 160483,
+          "fraction": 0.10661338754251701,
+          "intersection_pixels": 160483,
+          "union_pixels": 160483,
+          "iou_with_scenediff_mesh": 1.0,
+          "components_100px": 36
+        },
+        "viewdelta": {
+          "pixels": 61154,
+          "fraction": 0.04062632865646258,
+          "intersection_pixels": 20997,
+          "union_pixels": 200640,
+          "iou_with_scenediff_mesh": 0.10465011961722488,
+          "components_100px": 14
+        },
+        "simsac": {
+          "pixels": 93826,
+          "fraction": 0.0623312606292517,
+          "intersection_pixels": 18668,
+          "union_pixels": 235641,
+          "iou_with_scenediff_mesh": 0.0792222066618288,
+          "components_100px": 44
+        }
+      },
+      "zones": {
+        "R01": {
+          "scenediff_original": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "intersection_pixels": 0,
+            "union_pixels": 53351,
+            "iou_with_scenediff_mesh": 0.0,
+            "components_100px": 0
+          },
+          "scenediff_mesh": {
+            "pixels": 53351,
+            "fraction": 0.10632772640306122,
+            "intersection_pixels": 53351,
+            "union_pixels": 53351,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 3
+          },
+          "viewdelta": {
+            "pixels": 26361,
+            "fraction": 0.05253706951530612,
+            "intersection_pixels": 4719,
+            "union_pixels": 74993,
+            "iou_with_scenediff_mesh": 0.0629258730814876,
+            "components_100px": 4
+          },
+          "simsac": {
+            "pixels": 24953,
+            "fraction": 0.04973094706632653,
+            "intersection_pixels": 4720,
+            "union_pixels": 73584,
+            "iou_with_scenediff_mesh": 0.06414437921287236,
+            "components_100px": 9
+          }
+        },
+        "R07": {
+          "scenediff_original": {
+            "pixels": 102420,
+            "fraction": 0.20412149234693877,
+            "intersection_pixels": 30303,
+            "union_pixels": 152091,
+            "iou_with_scenediff_mesh": 0.19924255873128588,
+            "components_100px": 5
+          },
+          "scenediff_mesh": {
+            "pixels": 79974,
+            "fraction": 0.15938695790816326,
+            "intersection_pixels": 79974,
+            "union_pixels": 79974,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 14
+          },
+          "viewdelta": {
+            "pixels": 33542,
+            "fraction": 0.06684869260204082,
+            "intersection_pixels": 15834,
+            "union_pixels": 97682,
+            "iou_with_scenediff_mesh": 0.16209741815278148,
+            "components_100px": 7
+          },
+          "simsac": {
+            "pixels": 28888,
+            "fraction": 0.057573341836734696,
+            "intersection_pixels": 11496,
+            "union_pixels": 97366,
+            "iou_with_scenediff_mesh": 0.11806996282069716,
+            "components_100px": 14
+          }
+        },
+        "R08": {
+          "scenediff_original": {
+            "pixels": 33576,
+            "fraction": 0.06691645408163266,
+            "intersection_pixels": 10455,
+            "union_pixels": 50279,
+            "iou_with_scenediff_mesh": 0.2079396964935659,
+            "components_100px": 6
+          },
+          "scenediff_mesh": {
+            "pixels": 27158,
+            "fraction": 0.05412547831632653,
+            "intersection_pixels": 27158,
+            "union_pixels": 27158,
+            "iou_with_scenediff_mesh": 1.0,
+            "components_100px": 19
+          },
+          "viewdelta": {
+            "pixels": 1251,
+            "fraction": 0.0024932238520408165,
+            "intersection_pixels": 444,
+            "union_pixels": 27965,
+            "iou_with_scenediff_mesh": 0.015876989093509743,
+            "components_100px": 3
+          },
+          "simsac": {
+            "pixels": 39985,
+            "fraction": 0.07968949298469388,
+            "intersection_pixels": 2452,
+            "union_pixels": 64691,
+            "iou_with_scenediff_mesh": 0.037903263205082624,
+            "components_100px": 21
+          }
+        }
+      }
+    }
+  },
+  "models": {
+    "viewdelta": {
+      "audit": {
+        "model": "ViewDelta",
+        "source_commit": "e86596ab505856ac2a454f38c519f52864b1c375",
+        "checkpoint": "/workspace/pano_change_models_20261025/hf_cache/models--hoskerelab--ViewDelta/snapshots/c2025ecca6781ad522eec953627396f2595add7b/viewdelta_checkpoint.pth",
+        "checkpoint_sha256": "708b19ee253686fe998b9ac9fe41b81d2b4d1e936800b17244bc5bd8a27da28f",
+        "loaded_strict": true,
+        "prompt": "What are the differences?",
+        "learned_parameters": 100687872,
+        "input_preprocessing": "Upstream PIL square resize 256, DINOv2 processor (224 crop/257 tokens), SigLIP text, FP32 eval",
+        "compatibility": "Unused DeepSpeed import omitted; activation checkpointing remains disabled as in official inference. No model layers changed.",
+        "feature_models": {
+          "dinov2": "/workspace/pano_change_models_20261025/hf_cache/models--facebook--dinov2-large/snapshots/47b73eefe95e8d44ec3623f8890bd894b6ea2d6c",
+          "siglip": "/workspace/pano_change_models_20261025/hf_cache/models--google--siglip-large-patch16-384/snapshots/ce005573a40965dfd21fd937fbdeeebf2439fc35"
+        }
+      },
+      "status": {
+        "state": "complete",
+        "elapsed_seconds": 106.36668419837952,
+        "pair_predictions": 158,
+        "control": {
+          "view": {
+            "candidate_fraction": 0.0,
+            "mean_probability": 0.023867398500442505,
+            "max_probability": 0.49433037638664246
+          },
+          "erp": {
+            "candidate_fraction": 0.0,
+            "mean_probability": 0.0244632288813591,
+            "max_probability": 0.3040613830089569
+          }
+        }
+      },
+      "control": {
+        "view": {
+          "candidate_fraction": 0.0,
+          "mean_probability": 0.023867398500442505,
+          "max_probability": 0.49433037638664246
+        },
+        "erp": {
+          "candidate_fraction": 0.0,
+          "mean_probability": 0.0244632288813591,
+          "max_probability": 0.3040613830089569
+        }
+      }
+    },
+    "simsac": {
+      "audit": {
+        "model": "SimSaC",
+        "source_commit": "43abe282231dc7d8c8cb829a92f9ebc014fa6cb6",
+        "checkpoint": "/workspace/pano_change_models_20261025/simsac_changesim.pth",
+        "checkpoint_sha256": "55f28690989603b5b01723d255bbc63157bacc704e635100ae517b0ad4d1f99a",
+        "loaded_strict": true,
+        "checkpoint_selection": "Official synthetic+ChangeSim checkpoint selected before inference because target imagery is indoors.",
+        "input_preprocessing": "RGB float/255, ImageNet z-score, full branch 520x520 and low branch 256x256; no test augmentation",
+        "compatibility": "Native PyTorch equivalent of upstream zero-padded 9x9 channel-mean correlation. Original train.py architecture, use_pac=False; no head replaced."
+      },
+      "status": {
+        "state": "complete",
+        "elapsed_seconds": 30.39309787750244,
+        "pair_predictions": 158,
+        "control": {
+          "view": {
+            "candidate_fraction": 0.0,
+            "mean_probability": 0.013222860172390938,
+            "max_probability": 0.11631235480308533
+          },
+          "erp": {
+            "candidate_fraction": 0.0,
+            "mean_probability": 0.006943448446691036,
+            "max_probability": 0.08929136395454407
+          }
+        }
+      },
+      "control": {
+        "view": {
+          "candidate_fraction": 0.0,
+          "mean_probability": 0.013222860172390938,
+          "max_probability": 0.11631235480308533
+        },
+        "erp": {
+          "candidate_fraction": 0.0,
+          "mean_probability": 0.006943448446691036,
+          "max_probability": 0.08929136395454407
+        }
+      }
+    }
+  },
+  "pairing": "Exact upstream SceneDiff view-overlap weights from mesh-input branch; all nonzero counterparts used. No change scores used to choose frame pairs.",
+  "scenediff_baseline": "Existing original and mesh SceneDiff outputs on the same 30 perspective views are fixed in both input-mode comparisons. SceneDiff was not rerun directly on full ERP.",
+  "conditions": "30 common views from 20 full ERP frames, two different floors, no temporal change ground truth. All new-model probability thresholds fixed at 0.5 before inference.",
+  "comparison": "Candidate pixel agreement, not precision/recall or object detection accuracy. SceneDiff merged IDs differ from per-image connected components."
+}

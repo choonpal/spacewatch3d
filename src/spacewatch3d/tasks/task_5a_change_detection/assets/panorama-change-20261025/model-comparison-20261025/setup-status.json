@@ -1,0 +1,15 @@
+{
+  "stage": "complete",
+  "sources": {
+    "viewdelta": "e86596ab505856ac2a454f38c519f52864b1c375",
+    "simsac": "43abe282231dc7d8c8cb829a92f9ebc014fa6cb6"
+  },
+  "checkpoints": {
+    "viewdelta": "/workspace/pano_change_models_20261025/hf_cache/models--hoskerelab--ViewDelta/snapshots/c2025ecca6781ad522eec953627396f2595add7b",
+    "dinov2": "/workspace/pano_change_models_20261025/hf_cache/models--facebook--dinov2-large/snapshots/47b73eefe95e8d44ec3623f8890bd894b6ea2d6c",
+    "siglip": "/workspace/pano_change_models_20261025/hf_cache/models--google--siglip-large-patch16-384/snapshots/ce005573a40965dfd21fd937fbdeeebf2439fc35",
+    "simsac_changesim": "/workspace/pano_change_models_20261025/simsac_changesim.pth",
+    "simsac_cmu": "/workspace/pano_change_models_20261025/simsac_cmu.pth",
+    "simsac_synthetic": "/workspace/pano_change_models_20261025/simsac_synthetic.pth"
+  }
+}

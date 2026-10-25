@@ -1,0 +1,14 @@
+{
+  "pi3_checkpoint": "/workspace/scenediff_input_ab_20261024/hf_cache/models--yyfz233--Pi3/snapshots/ae722e7039287d0c8fde9f11f197f804f44b510c",
+  "pi3_source": "0a505af9c261a7c8e44946fba5b1942cdc25914b",
+  "sam_source": "100f1cac9d57f74b5f8abcacb6daa2bf10e5cae4",
+  "gpu": "NVIDIA TITAN Xp",
+  "sam_checkpoint_sha256": "a7bf3b02f3ebf1267aba913ff637d9a2d5c33d3173bb679e46d9f338c26f262e",
+  "pi3_weights": [
+    {
+      "file": "model.safetensors",
+      "bytes": 3834909248,
+      "sha256": "33580e4702ac671558aedeab1148fd08118f7ce45bdbeb99f3e3cf340062875d"
+    }
+  ]
+}

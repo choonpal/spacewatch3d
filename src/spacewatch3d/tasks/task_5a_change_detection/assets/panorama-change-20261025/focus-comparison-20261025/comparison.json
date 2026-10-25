@@ -1,0 +1,6868 @@
+{
+  "schema": "frozen-occupancy-vs-pair-models-v1",
+  "views": [
+    {
+      "key": "R01-00",
+      "zone": "R01",
+      "index": 0,
+      "epoch": 0,
+      "frame": 130,
+      "yaw": 270,
+      "rgb_sha256": "b3e4e33703b91ad4d112335cd257d988837a64476a34ca51db55be1edae80ebb",
+      "erp": "D2-f130",
+      "refs": [
+        "R01-07",
+        "R01-08",
+        "R01-09"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-022",
+        "1": "D2-SAM31-023",
+        "2": "D2-SAM31-027"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 0,
+        "suppressed": 9025,
+        "unaudited": 41151,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 0
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C021",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-022",
+            "S1-073"
+          ],
+          "visible_pixels": 6374
+        },
+        {
+          "id": "C022",
+          "zone": "R03",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-023",
+            "S1-076"
+          ],
+          "visible_pixels": 2651
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      }
+    },
+    {
+      "key": "R01-01",
+      "zone": "R01",
+      "index": 1,
+      "epoch": 0,
+      "frame": 133,
+      "yaw": 180,
+      "rgb_sha256": "b804550eec372a1354aa6ad767138fd69599fe95d59c846c250fc46f2308ed32",
+      "erp": "D2-f133",
+      "refs": [
+        "R01-07",
+        "R01-08",
+        "R01-09"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-022",
+        "1": "D2-SAM31-023",
+        "2": "D2-SAM31-027"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 22,
+        "suppressed": 15083,
+        "unaudited": 34938,
+        "no_mesh": 133
+      },
+      "person": {
+        "available": true,
+        "pixels": 9420
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C019",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-018",
+            "S1-020"
+          ],
+          "visible_pixels": 3
+        },
+        {
+          "id": "C020",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-021",
+            "S1-070"
+          ],
+          "visible_pixels": 205
+        },
+        {
+          "id": "C021",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-022",
+            "S1-073"
+          ],
+          "visible_pixels": 9719
+        },
+        {
+          "id": "C022",
+          "zone": "R03",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-023",
+            "S1-076"
+          ],
+          "visible_pixels": 4281
+        },
+        {
+          "id": "C035",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-037",
+            "S1-021"
+          ],
+          "visible_pixels": 30
+        },
+        {
+          "id": "C042",
+          "zone": "R08",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-045",
+            "S1-026"
+          ],
+          "visible_pixels": 17
+        },
+        {
+          "id": "C043",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-047",
+            "S1-054"
+          ],
+          "visible_pixels": 88
+        },
+        {
+          "id": "C044",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-048",
+            "S1-055"
+          ],
+          "visible_pixels": 716
+        },
+        {
+          "id": "C061",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-074",
+            "S1-040"
+          ],
+          "visible_pixels": 4
+        },
+        {
+          "id": "C064",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-077",
+            "S1-079"
+          ],
+          "visible_pixels": 5
+        },
+        {
+          "id": "C066",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-084",
+            "S1-052"
+          ],
+          "visible_pixels": 8
+        },
+        {
+          "id": "C068",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-098",
+            "S1-092"
+          ],
+          "visible_pixels": 4
+        },
+        {
+          "id": "C077",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "같은 구역·객체 종류의 후보 묶음에 메시 성분을 통합했습니다. 각 성분을 별도 변화로 집계하지 않습니다.",
+          "ids": [
+            "S0-020",
+            "S1-003"
+          ],
+          "visible_pixels": 22
+        },
+        {
+          "id": "N005",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-028",
+            "I1-092"
+          ],
+          "visible_pixels": 25
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 10105,
+            "fraction": 0.20139110331632654,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 2117,
+              "unaudited": 7988,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 9216
+          },
+          "viewdelta": {
+            "pixels": 9316,
+            "fraction": 0.18566645408163265,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 2020,
+              "unaudited": 7296,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 8848
+          },
+          "model_intersection": 8790,
+          "model_disagreement": 1841
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      }
+    },
+    {
+      "key": "R01-02",
+      "zone": "R01",
+      "index": 2,
+      "epoch": 0,
+      "frame": 142,
+      "yaw": 180,
+      "rgb_sha256": "9f6534e0a0d5eebefda8192af404244fb1de508f95dbb94aa4a6d8dda743190a",
+      "erp": "D2-f142",
+      "refs": [
+        "R01-06",
+        "R01-08",
+        "R01-09"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-005",
+        "1": "D2-SAM31-023",
+        "2": "D2-SAM31-027"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 0,
+        "suppressed": 18595,
+        "unaudited": 31581,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 0
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C025",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-026",
+            "S1-071"
+          ],
+          "visible_pixels": 15014
+        },
+        {
+          "id": "C045",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-049",
+            "S1-074"
+          ],
+          "visible_pixels": 3581
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 10267,
+            "fraction": 0.20461973852040816,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 9499,
+              "unaudited": 768,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 10992,
+            "fraction": 0.21906887755102042,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 10962,
+              "unaudited": 30,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 7097,
+          "model_disagreement": 7065
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      }
+    },
+    {
+      "key": "R01-03",
+      "zone": "R01",
+      "index": 3,
+      "epoch": 0,
+      "frame": 136,
+      "yaw": 0,
+      "rgb_sha256": "745b154f49941df5d5fdb478c8fa8a0f20380c952040abae01f5c34383b7dbe7",
+      "erp": "D2-f136",
+      "refs": [
+        "R01-06",
+        "R01-08",
+        "R01-09"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-004",
+        "1": "D2-SAM31-023",
+        "2": "D2-SAM31-024",
+        "3": "D2-SAM31-027"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 889,
+        "group_context": 0,
+        "suppressed": 2701,
+        "unaudited": 46586,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 0
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C025",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-026",
+            "S1-071"
+          ],
+          "visible_pixels": 2701
+        },
+        {
+          "id": "C098",
+          "zone": "R01",
+          "class_name": "windowpane",
+          "decision": "deferred",
+          "reason": "메시 대응 차이는 있지만 독립적인 영상 객체·비점유 근거가 부족합니다. 기본 변화 목록에서 보류합니다.",
+          "ids": [
+            "S0-078"
+          ],
+          "visible_pixels": 889
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 852,
+            "fraction": 0.016980229591836735,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 79,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 773,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 852
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      }
+    },
+    {
+      "key": "R01-04",
+      "zone": "R01",
+      "index": 4,
+      "epoch": 0,
+      "frame": 133,
+      "yaw": 270,
+      "rgb_sha256": "df97669430fd6bec4068cea30490831f039327140f9e53afd108a610fcdd41ac",
+      "erp": "D2-f133",
+      "refs": [
+        "R01-05",
+        "R01-08",
+        "R01-09"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-022",
+        "1": "D2-SAM31-023"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 0,
+        "suppressed": 22918,
+        "unaudited": 27258,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 0
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C021",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-022",
+            "S1-073"
+          ],
+          "visible_pixels": 21481
+        },
+        {
+          "id": "C045",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-049",
+            "S1-074"
+          ],
+          "visible_pixels": 1437
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      }
+    },
+    {
+      "key": "R01-05",
+      "zone": "R01",
+      "index": 5,
+      "epoch": 1,
+      "frame": 142,
+      "yaw": 270,
+      "rgb_sha256": "cab4952d59ce99aba06869c1345cc2e5cdba945ffb989d521c1c466e67083ee3",
+      "erp": "D3-f142",
+      "refs": [
+        "R01-04"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-019",
+        "1": "D3-SAM31-025"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 0,
+        "suppressed": 11850,
+        "unaudited": 38326,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 0
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C021",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-022",
+            "S1-073"
+          ],
+          "visible_pixels": 6815
+        },
+        {
+          "id": "C025",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-026",
+            "S1-071"
+          ],
+          "visible_pixels": 71
+        },
+        {
+          "id": "C045",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-049",
+            "S1-074"
+          ],
+          "visible_pixels": 4964
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      }
+    },
+    {
+      "key": "R01-06",
+      "zone": "R01",
+      "index": 6,
+      "epoch": 1,
+      "frame": 139,
+      "yaw": 0,
+      "rgb_sha256": "1632dac34c78d311ed366873191787f4493f45eeda27545d3ffe526fb40dd719",
+      "erp": "D3-f139",
+      "refs": [
+        "R01-02",
+        "R01-03"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-019",
+        "1": "D3-SAM31-025"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 576,
+        "group_context": 0,
+        "suppressed": 3259,
+        "unaudited": 46341,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 0
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C021",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-022",
+            "S1-073"
+          ],
+          "visible_pixels": 575
+        },
+        {
+          "id": "C023",
+          "zone": "R03",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-024",
+            "S1-042"
+          ],
+          "visible_pixels": 1770
+        },
+        {
+          "id": "C025",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-026",
+            "S1-071"
+          ],
+          "visible_pixels": 152
+        },
+        {
+          "id": "C045",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-049",
+            "S1-074"
+          ],
+          "visible_pixels": 603
+        },
+        {
+          "id": "C121",
+          "zone": "R01",
+          "class_name": "windowpane",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S1-044"
+          ],
+          "visible_pixels": 142
+        },
+        {
+          "id": "C124",
+          "zone": "R01",
+          "class_name": "windowpane",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S1-080"
+          ],
+          "visible_pixels": 13
+        },
+        {
+          "id": "C125",
+          "zone": "R01",
+          "class_name": "box",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S1-081"
+          ],
+          "visible_pixels": 4
+        },
+        {
+          "id": "C126",
+          "zone": "R01",
+          "class_name": "windowpane",
+          "decision": "deferred",
+          "reason": "메시 대응 차이는 있지만 독립적인 영상 객체·비점유 근거가 부족합니다. 기본 변화 목록에서 보류합니다.",
+          "ids": [
+            "S1-084"
+          ],
+          "visible_pixels": 576
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 609,
+            "fraction": 0.012137276785714286,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 9,
+              "unaudited": 600,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 609
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      }
+    },
+    {
+      "key": "R01-07",
+      "zone": "R01",
+      "index": 7,
+      "epoch": 1,
+      "frame": 139,
+      "yaw": 270,
+      "rgb_sha256": "9f9f7e69336766ba78207fe8dd22cccfa2a71d472a9527355a3914cf12d66e6e",
+      "erp": "D3-f139",
+      "refs": [
+        "R01-00",
+        "R01-01"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-025"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 0,
+        "suppressed": 7212,
+        "unaudited": 42964,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 0
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C021",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-022",
+            "S1-073"
+          ],
+          "visible_pixels": 4964
+        },
+        {
+          "id": "C022",
+          "zone": "R03",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-023",
+            "S1-076"
+          ],
+          "visible_pixels": 2248
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      }
+    },
+    {
+      "key": "R01-08",
+      "zone": "R01",
+      "index": 8,
+      "epoch": 1,
+      "frame": 136,
+      "yaw": 0,
+      "rgb_sha256": "e1913493a61cc2086f22c73bea60626bd0288c8158ea3370458ad18ab514c509",
+      "erp": "D3-f136",
+      "refs": [
+        "R01-00",
+        "R01-01",
+        "R01-02",
+        "R01-03",
+        "R01-04"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-019",
+        "1": "D3-SAM31-025"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 338,
+        "group_context": 0,
+        "suppressed": 1532,
+        "unaudited": 48306,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 0
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C021",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-022",
+            "S1-073"
+          ],
+          "visible_pixels": 507
+        },
+        {
+          "id": "C022",
+          "zone": "R03",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-023",
+            "S1-076"
+          ],
+          "visible_pixels": 147
+        },
+        {
+          "id": "C023",
+          "zone": "R03",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-024",
+            "S1-042"
+          ],
+          "visible_pixels": 617
+        },
+        {
+          "id": "C025",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-026",
+            "S1-071"
+          ],
+          "visible_pixels": 42
+        },
+        {
+          "id": "C045",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-049",
+            "S1-074"
+          ],
+          "visible_pixels": 120
+        },
+        {
+          "id": "C121",
+          "zone": "R01",
+          "class_name": "windowpane",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S1-044"
+          ],
+          "visible_pixels": 88
+        },
+        {
+          "id": "C124",
+          "zone": "R01",
+          "class_name": "windowpane",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S1-080"
+          ],
+          "visible_pixels": 9
+        },
+        {
+          "id": "C125",
+          "zone": "R01",
+          "class_name": "box",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S1-081"
+          ],
+          "visible_pixels": 2
+        },
+        {
+          "id": "C126",
+          "zone": "R01",
+          "class_name": "windowpane",
+          "decision": "deferred",
+          "reason": "메시 대응 차이는 있지만 독립적인 영상 객체·비점유 근거가 부족합니다. 기본 변화 목록에서 보류합니다.",
+          "ids": [
+            "S1-084"
+          ],
+          "visible_pixels": 338
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 2444,
+            "fraction": 0.048708545918367346,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 318,
+              "group_context": 0,
+              "suppressed": 775,
+              "unaudited": 1351,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 2444
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      }
+    },
+    {
+      "key": "R01-09",
+      "zone": "R01",
+      "index": 9,
+      "epoch": 1,
+      "frame": 133,
+      "yaw": 0,
+      "rgb_sha256": "bfc83efc9092a2d0fb3c076f945533d015512b1c7ba480224d061f8f82d6d440",
+      "erp": "D3-f133",
+      "refs": [
+        "R01-00",
+        "R01-01",
+        "R01-02",
+        "R01-03",
+        "R01-04"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-019",
+        "1": "D3-SAM31-025"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 223,
+        "group_context": 0,
+        "suppressed": 8131,
+        "unaudited": 41822,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 0
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C020",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-021",
+            "S1-070"
+          ],
+          "visible_pixels": 1745
+        },
+        {
+          "id": "C021",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-022",
+            "S1-073"
+          ],
+          "visible_pixels": 127
+        },
+        {
+          "id": "C022",
+          "zone": "R03",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-023",
+            "S1-076"
+          ],
+          "visible_pixels": 21
+        },
+        {
+          "id": "C025",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-026",
+            "S1-071"
+          ],
+          "visible_pixels": 16
+        },
+        {
+          "id": "C044",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-048",
+            "S1-055"
+          ],
+          "visible_pixels": 6110
+        },
+        {
+          "id": "C045",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-049",
+            "S1-074"
+          ],
+          "visible_pixels": 44
+        },
+        {
+          "id": "C121",
+          "zone": "R01",
+          "class_name": "windowpane",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S1-044"
+          ],
+          "visible_pixels": 59
+        },
+        {
+          "id": "C124",
+          "zone": "R01",
+          "class_name": "windowpane",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S1-080"
+          ],
+          "visible_pixels": 6
+        },
+        {
+          "id": "C125",
+          "zone": "R01",
+          "class_name": "box",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S1-081"
+          ],
+          "visible_pixels": 3
+        },
+        {
+          "id": "C126",
+          "zone": "R01",
+          "class_name": "windowpane",
+          "decision": "deferred",
+          "reason": "메시 대응 차이는 있지만 독립적인 영상 객체·비점유 근거가 부족합니다. 기본 변화 목록에서 보류합니다.",
+          "ids": [
+            "S1-084"
+          ],
+          "visible_pixels": 223
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 676,
+            "fraction": 0.013472576530612245,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 201,
+              "unaudited": 475,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 6053,
+            "fraction": 0.12063536352040816,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 5617,
+              "unaudited": 436,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 210,
+          "model_disagreement": 6309
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 16,
+            "fraction": 0.00031887755102040814,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 16,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 16
+        }
+      }
+    },
+    {
+      "key": "R07-00",
+      "zone": "R07",
+      "index": 0,
+      "epoch": 0,
+      "frame": 124,
+      "yaw": 0,
+      "rgb_sha256": "456bc12c494f57d57e7ce5d8ac13bc6aa6f4514619695d83fdeac29f204638ec",
+      "erp": "D2-f124",
+      "refs": [
+        "R07-05",
+        "R07-06",
+        "R07-08"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-003",
+        "1": "D2-SAM31-008",
+        "2": "D2-SAM31-019",
+        "3": "D2-SAM31-020",
+        "4": "D2-SAM31-026"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 120,
+        "group_context": 0,
+        "suppressed": 9834,
+        "unaudited": 40222,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 0
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C020",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-021",
+            "S1-070"
+          ],
+          "visible_pixels": 73
+        },
+        {
+          "id": "C021",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-022",
+            "S1-073"
+          ],
+          "visible_pixels": 175
+        },
+        {
+          "id": "C022",
+          "zone": "R03",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-023",
+            "S1-076"
+          ],
+          "visible_pixels": 19
+        },
+        {
+          "id": "C025",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-026",
+            "S1-071"
+          ],
+          "visible_pixels": 15
+        },
+        {
+          "id": "C044",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-048",
+            "S1-055"
+          ],
+          "visible_pixels": 9506
+        },
+        {
+          "id": "C045",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-049",
+            "S1-074"
+          ],
+          "visible_pixels": 46
+        },
+        {
+          "id": "C098",
+          "zone": "R01",
+          "class_name": "windowpane",
+          "decision": "deferred",
+          "reason": "메시 대응 차이는 있지만 독립적인 영상 객체·비점유 근거가 부족합니다. 기본 변화 목록에서 보류합니다.",
+          "ids": [
+            "S0-078"
+          ],
+          "visible_pixels": 120
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 79,
+            "fraction": 0.0015744579081632653,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 79,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 89,
+            "fraction": 0.0017737563775510204,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 21,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 68,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 168
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      }
+    },
+    {
+      "key": "R07-01",
+      "zone": "R07",
+      "index": 1,
+      "epoch": 0,
+      "frame": 118,
+      "yaw": 0,
+      "rgb_sha256": "9900b6b7dde36c1f1d8c1f6b4be9e8f85a0f93a9f3169bed48f78c7a27ead13e",
+      "erp": "D2-f118",
+      "refs": [
+        "R07-05",
+        "R07-06",
+        "R07-07",
+        "R07-08",
+        "R07-09"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-003",
+        "1": "D2-SAM31-008",
+        "2": "D2-SAM31-009",
+        "3": "D2-SAM31-010",
+        "4": "D2-SAM31-019",
+        "5": "D2-SAM31-020",
+        "6": "D2-SAM31-026"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 65,
+        "group_context": 0,
+        "suppressed": 2798,
+        "unaudited": 47313,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 0
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C020",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-021",
+            "S1-070"
+          ],
+          "visible_pixels": 211
+        },
+        {
+          "id": "C021",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-022",
+            "S1-073"
+          ],
+          "visible_pixels": 31
+        },
+        {
+          "id": "C025",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-026",
+            "S1-071"
+          ],
+          "visible_pixels": 7
+        },
+        {
+          "id": "C035",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-037",
+            "S1-021"
+          ],
+          "visible_pixels": 1989
+        },
+        {
+          "id": "C043",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-047",
+            "S1-054"
+          ],
+          "visible_pixels": 3
+        },
+        {
+          "id": "C044",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-048",
+            "S1-055"
+          ],
+          "visible_pixels": 290
+        },
+        {
+          "id": "C045",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-049",
+            "S1-074"
+          ],
+          "visible_pixels": 10
+        },
+        {
+          "id": "C064",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-077",
+            "S1-079"
+          ],
+          "visible_pixels": 208
+        },
+        {
+          "id": "C068",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-098",
+            "S1-092"
+          ],
+          "visible_pixels": 42
+        },
+        {
+          "id": "C098",
+          "zone": "R01",
+          "class_name": "windowpane",
+          "decision": "deferred",
+          "reason": "메시 대응 차이는 있지만 독립적인 영상 객체·비점유 근거가 부족합니다. 기본 변화 목록에서 보류합니다.",
+          "ids": [
+            "S0-078"
+          ],
+          "visible_pixels": 65
+        },
+        {
+          "id": "C108",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S0-097"
+          ],
+          "visible_pixels": 7
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 58,
+            "fraction": 0.0011559311224489796,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 35,
+              "unaudited": 23,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 58
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      }
+    },
+    {
+      "key": "R07-02",
+      "zone": "R07",
+      "index": 2,
+      "epoch": 0,
+      "frame": 127,
+      "yaw": 90,
+      "rgb_sha256": "a1bc39d580ab75ba1e88faa6ed451451636f7a1da597e46887edc89b1615d946",
+      "erp": "D2-f127",
+      "refs": [
+        "R07-05",
+        "R07-08"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-003",
+        "1": "D2-SAM31-008",
+        "2": "D2-SAM31-026"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 0,
+        "suppressed": 8927,
+        "unaudited": 41249,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 0
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C044",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-048",
+            "S1-055"
+          ],
+          "visible_pixels": 8927
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 2064,
+            "fraction": 0.041135204081632654,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 2064,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 2064
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 2,
+            "fraction": 3.985969387755102e-05,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 2,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 2
+        }
+      }
+    },
+    {
+      "key": "R07-03",
+      "zone": "R07",
+      "index": 3,
+      "epoch": 0,
+      "frame": 130,
+      "yaw": 90,
+      "rgb_sha256": "ffdc5315f9685250da0bdd550fa4db0143a27a87cbf2a4be3e4563997c4fb577",
+      "erp": "D2-f130",
+      "refs": [
+        "R07-05"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-003",
+        "1": "D2-SAM31-008",
+        "2": "D2-SAM31-026"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 0,
+        "suppressed": 4676,
+        "unaudited": 45500,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 0
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C023",
+          "zone": "R03",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-024",
+            "S1-042"
+          ],
+          "visible_pixels": 2037
+        },
+        {
+          "id": "C024",
+          "zone": "R03",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-025",
+            "S1-010"
+          ],
+          "visible_pixels": 110
+        },
+        {
+          "id": "C037",
+          "zone": "R04",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-039",
+            "S1-032"
+          ],
+          "visible_pixels": 32
+        },
+        {
+          "id": "C038",
+          "zone": "R02",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-040",
+            "S1-101"
+          ],
+          "visible_pixels": 101
+        },
+        {
+          "id": "C044",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-048",
+            "S1-055"
+          ],
+          "visible_pixels": 2198
+        },
+        {
+          "id": "C056",
+          "zone": "R03",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-065",
+            "S1-043"
+          ],
+          "visible_pixels": 13
+        },
+        {
+          "id": "C057",
+          "zone": "R03",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-066",
+            "S1-064"
+          ],
+          "visible_pixels": 86
+        },
+        {
+          "id": "C080",
+          "zone": "R04",
+          "class_name": "signboard",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-087",
+            "S1-090"
+          ],
+          "visible_pixels": 4
+        },
+        {
+          "id": "C093",
+          "zone": "R04",
+          "class_name": "mirror",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S0-059"
+          ],
+          "visible_pixels": 3
+        },
+        {
+          "id": "C096",
+          "zone": "R03",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S0-072"
+          ],
+          "visible_pixels": 8
+        },
+        {
+          "id": "C107",
+          "zone": "R03",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S0-096"
+          ],
+          "visible_pixels": 82
+        },
+        {
+          "id": "C111",
+          "zone": "R04",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S0-105"
+          ],
+          "visible_pixels": 2
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 4434,
+            "fraction": 0.08836894132653061,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 2142,
+              "unaudited": 2292,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 2105,
+            "fraction": 0.04195232780612245,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 1926,
+              "unaudited": 179,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 1625,
+          "model_disagreement": 3289
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      }
+    },
+    {
+      "key": "R07-04",
+      "zone": "R07",
+      "index": 4,
+      "epoch": 0,
+      "frame": 121,
+      "yaw": 0,
+      "rgb_sha256": "02b88d6bf219af2959dfa0fe2a987c6808925a068316578d8d0a758fe74a0eb4",
+      "erp": "D2-f121",
+      "refs": [
+        "R07-05",
+        "R07-07",
+        "R07-08"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-001",
+        "1": "D2-SAM31-003",
+        "2": "D2-SAM31-008",
+        "3": "D2-SAM31-019",
+        "4": "D2-SAM31-020",
+        "5": "D2-SAM31-026"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 87,
+        "group_context": 0,
+        "suppressed": 2440,
+        "unaudited": 47649,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 0
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C020",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-021",
+            "S1-070"
+          ],
+          "visible_pixels": 1095
+        },
+        {
+          "id": "C021",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-022",
+            "S1-073"
+          ],
+          "visible_pixels": 50
+        },
+        {
+          "id": "C022",
+          "zone": "R03",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-023",
+            "S1-076"
+          ],
+          "visible_pixels": 2
+        },
+        {
+          "id": "C025",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-026",
+            "S1-071"
+          ],
+          "visible_pixels": 5
+        },
+        {
+          "id": "C044",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-048",
+            "S1-055"
+          ],
+          "visible_pixels": 1247
+        },
+        {
+          "id": "C045",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-049",
+            "S1-074"
+          ],
+          "visible_pixels": 25
+        },
+        {
+          "id": "C064",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-077",
+            "S1-079"
+          ],
+          "visible_pixels": 16
+        },
+        {
+          "id": "C098",
+          "zone": "R01",
+          "class_name": "windowpane",
+          "decision": "deferred",
+          "reason": "메시 대응 차이는 있지만 독립적인 영상 객체·비점유 근거가 부족합니다. 기본 변화 목록에서 보류합니다.",
+          "ids": [
+            "S0-078"
+          ],
+          "visible_pixels": 87
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 1844,
+            "fraction": 0.03675063775510204,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 1197,
+              "unaudited": 647,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 252,
+            "fraction": 0.005022321428571429,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 252,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 20,
+          "model_disagreement": 2056
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 6,
+            "fraction": 0.00011957908163265306,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 6,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 6
+        }
+      }
+    },
+    {
+      "key": "R07-05",
+      "zone": "R07",
+      "index": 5,
+      "epoch": 1,
+      "frame": 133,
+      "yaw": 0,
+      "rgb_sha256": "bfc83efc9092a2d0fb3c076f945533d015512b1c7ba480224d061f8f82d6d440",
+      "erp": "D3-f133",
+      "refs": [
+        "R07-00",
+        "R07-01",
+        "R07-02",
+        "R07-03",
+        "R07-04"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-004",
+        "1": "D3-SAM31-010",
+        "2": "D3-SAM31-016",
+        "3": "D3-SAM31-023",
+        "4": "D3-SAM31-024",
+        "5": "D3-SAM31-038"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 223,
+        "group_context": 0,
+        "suppressed": 8131,
+        "unaudited": 41822,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 0
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C020",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-021",
+            "S1-070"
+          ],
+          "visible_pixels": 1745
+        },
+        {
+          "id": "C021",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-022",
+            "S1-073"
+          ],
+          "visible_pixels": 127
+        },
+        {
+          "id": "C022",
+          "zone": "R03",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-023",
+            "S1-076"
+          ],
+          "visible_pixels": 21
+        },
+        {
+          "id": "C025",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-026",
+            "S1-071"
+          ],
+          "visible_pixels": 16
+        },
+        {
+          "id": "C044",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-048",
+            "S1-055"
+          ],
+          "visible_pixels": 6110
+        },
+        {
+          "id": "C045",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-049",
+            "S1-074"
+          ],
+          "visible_pixels": 44
+        },
+        {
+          "id": "C121",
+          "zone": "R01",
+          "class_name": "windowpane",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S1-044"
+          ],
+          "visible_pixels": 59
+        },
+        {
+          "id": "C124",
+          "zone": "R01",
+          "class_name": "windowpane",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S1-080"
+          ],
+          "visible_pixels": 6
+        },
+        {
+          "id": "C125",
+          "zone": "R01",
+          "class_name": "box",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S1-081"
+          ],
+          "visible_pixels": 3
+        },
+        {
+          "id": "C126",
+          "zone": "R01",
+          "class_name": "windowpane",
+          "decision": "deferred",
+          "reason": "메시 대응 차이는 있지만 독립적인 영상 객체·비점유 근거가 부족합니다. 기본 변화 목록에서 보류합니다.",
+          "ids": [
+            "S1-084"
+          ],
+          "visible_pixels": 223
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 257,
+            "fraction": 0.005121970663265306,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 8,
+              "unaudited": 249,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 35,
+            "fraction": 0.0006975446428571429,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 35,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 35,
+          "model_disagreement": 222
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 16,
+            "fraction": 0.00031887755102040814,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 16,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 16
+        }
+      }
+    },
+    {
+      "key": "R07-06",
+      "zone": "R07",
+      "index": 6,
+      "epoch": 1,
+      "frame": 133,
+      "yaw": 180,
+      "rgb_sha256": "13df8ebb21535335336583d38e3e3f56e2bbeed51b6e8cd1c1997e2e331d2e94",
+      "erp": "D3-f133",
+      "refs": [
+        "R07-00",
+        "R07-01"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-009",
+        "1": "D3-SAM31-010",
+        "2": "D3-SAM31-012",
+        "3": "D3-SAM31-016",
+        "4": "D3-SAM31-023"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 128,
+        "suppressed": 7590,
+        "unaudited": 42323,
+        "no_mesh": 135
+      },
+      "person": {
+        "available": true,
+        "pixels": 10610
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C019",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-018",
+            "S1-020"
+          ],
+          "visible_pixels": 35
+        },
+        {
+          "id": "C033",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-035",
+            "S1-019"
+          ],
+          "visible_pixels": 7
+        },
+        {
+          "id": "C034",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-036",
+            "S1-008"
+          ],
+          "visible_pixels": 13
+        },
+        {
+          "id": "C035",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-037",
+            "S1-021"
+          ],
+          "visible_pixels": 965
+        },
+        {
+          "id": "C042",
+          "zone": "R08",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-045",
+            "S1-026"
+          ],
+          "visible_pixels": 60
+        },
+        {
+          "id": "C043",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-047",
+            "S1-054"
+          ],
+          "visible_pixels": 1988
+        },
+        {
+          "id": "C058",
+          "zone": "R10",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-068",
+            "S1-039"
+          ],
+          "visible_pixels": 6
+        },
+        {
+          "id": "C059",
+          "zone": "R10",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-069",
+            "S1-007"
+          ],
+          "visible_pixels": 8
+        },
+        {
+          "id": "C061",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-074",
+            "S1-040"
+          ],
+          "visible_pixels": 9
+        },
+        {
+          "id": "C063",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-076",
+            "S1-072"
+          ],
+          "visible_pixels": 7
+        },
+        {
+          "id": "C064",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-077",
+            "S1-079"
+          ],
+          "visible_pixels": 3152
+        },
+        {
+          "id": "C066",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-084",
+            "S1-052"
+          ],
+          "visible_pixels": 33
+        },
+        {
+          "id": "C068",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-098",
+            "S1-092"
+          ],
+          "visible_pixels": 1275
+        },
+        {
+          "id": "C077",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "같은 구역·객체 종류의 후보 묶음에 메시 성분을 통합했습니다. 각 성분을 별도 변화로 집계하지 않습니다.",
+          "ids": [
+            "S0-020",
+            "S1-003"
+          ],
+          "visible_pixels": 128
+        },
+        {
+          "id": "N005",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-028",
+            "I1-092"
+          ],
+          "visible_pixels": 107
+        },
+        {
+          "id": "N006",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-035",
+            "I1-099"
+          ],
+          "visible_pixels": 53
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 11102,
+            "fraction": 0.22126116071428573,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 94,
+              "suppressed": 1521,
+              "unaudited": 9487,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 10441
+          },
+          "viewdelta": {
+            "pixels": 10393,
+            "fraction": 0.20713089923469388,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 1030,
+              "unaudited": 9363,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 10308
+          },
+          "model_intersection": 10260,
+          "model_disagreement": 975
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      }
+    },
+    {
+      "key": "R07-07",
+      "zone": "R07",
+      "index": 7,
+      "epoch": 1,
+      "frame": 136,
+      "yaw": 180,
+      "rgb_sha256": "acff4d3a55e52781a85c27b2cbb1690e00a76d4dd6ac76e09566ff7e524a1bdd",
+      "erp": "D3-f136",
+      "refs": [
+        "R07-01",
+        "R07-04"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-009",
+        "1": "D3-SAM31-010",
+        "2": "D3-SAM31-011",
+        "3": "D3-SAM31-012",
+        "4": "D3-SAM31-016",
+        "5": "D3-SAM31-023"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 66,
+        "suppressed": 17612,
+        "unaudited": 32350,
+        "no_mesh": 148
+      },
+      "person": {
+        "available": true,
+        "pixels": 10547
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C019",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-018",
+            "S1-020"
+          ],
+          "visible_pixels": 27
+        },
+        {
+          "id": "C020",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-021",
+            "S1-070"
+          ],
+          "visible_pixels": 16449
+        },
+        {
+          "id": "C030",
+          "zone": "R10",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-032",
+            "S1-025"
+          ],
+          "visible_pixels": 3
+        },
+        {
+          "id": "C033",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-035",
+            "S1-019"
+          ],
+          "visible_pixels": 2
+        },
+        {
+          "id": "C034",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-036",
+            "S1-008"
+          ],
+          "visible_pixels": 8
+        },
+        {
+          "id": "C035",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-037",
+            "S1-021"
+          ],
+          "visible_pixels": 230
+        },
+        {
+          "id": "C042",
+          "zone": "R08",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-045",
+            "S1-026"
+          ],
+          "visible_pixels": 32
+        },
+        {
+          "id": "C043",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-047",
+            "S1-054"
+          ],
+          "visible_pixels": 640
+        },
+        {
+          "id": "C058",
+          "zone": "R10",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-068",
+            "S1-039"
+          ],
+          "visible_pixels": 4
+        },
+        {
+          "id": "C059",
+          "zone": "R10",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-069",
+            "S1-007"
+          ],
+          "visible_pixels": 5
+        },
+        {
+          "id": "C061",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-074",
+            "S1-040"
+          ],
+          "visible_pixels": 7
+        },
+        {
+          "id": "C063",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-076",
+            "S1-072"
+          ],
+          "visible_pixels": 7
+        },
+        {
+          "id": "C064",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-077",
+            "S1-079"
+          ],
+          "visible_pixels": 132
+        },
+        {
+          "id": "C066",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-084",
+            "S1-052"
+          ],
+          "visible_pixels": 10
+        },
+        {
+          "id": "C068",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-098",
+            "S1-092"
+          ],
+          "visible_pixels": 43
+        },
+        {
+          "id": "C077",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "같은 구역·객체 종류의 후보 묶음에 메시 성분을 통합했습니다. 각 성분을 별도 변화로 집계하지 않습니다.",
+          "ids": [
+            "S0-020",
+            "S1-003"
+          ],
+          "visible_pixels": 66
+        },
+        {
+          "id": "N005",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-028",
+            "I1-092"
+          ],
+          "visible_pixels": 75
+        },
+        {
+          "id": "N006",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-035",
+            "I1-099"
+          ],
+          "visible_pixels": 4
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 10682,
+            "fraction": 0.212890625,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 40,
+              "suppressed": 2738,
+              "unaudited": 7904,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 10243
+          },
+          "viewdelta": {
+            "pixels": 12386,
+            "fraction": 0.24685108418367346,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 12003,
+              "unaudited": 383,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 283
+          },
+          "model_intersection": 396,
+          "model_disagreement": 22276
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      }
+    },
+    {
+      "key": "R07-08",
+      "zone": "R07",
+      "index": 8,
+      "epoch": 1,
+      "frame": 127,
+      "yaw": 0,
+      "rgb_sha256": "0667b9116cfc98a8317263c576a4e872773e4e8f57cba808c3309f726f58fa29",
+      "erp": "D3-f127",
+      "refs": [
+        "R07-00",
+        "R07-01",
+        "R07-02",
+        "R07-04"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-004",
+        "1": "D3-SAM31-009",
+        "2": "D3-SAM31-010",
+        "3": "D3-SAM31-011",
+        "4": "D3-SAM31-012",
+        "5": "D3-SAM31-016",
+        "6": "D3-SAM31-023",
+        "7": "D3-SAM31-024",
+        "8": "D3-SAM31-038"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 107,
+        "group_context": 0,
+        "suppressed": 14150,
+        "unaudited": 35919,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 0
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C020",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-021",
+            "S1-070"
+          ],
+          "visible_pixels": 241
+        },
+        {
+          "id": "C021",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-022",
+            "S1-073"
+          ],
+          "visible_pixels": 37
+        },
+        {
+          "id": "C022",
+          "zone": "R03",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-023",
+            "S1-076"
+          ],
+          "visible_pixels": 2
+        },
+        {
+          "id": "C025",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-026",
+            "S1-071"
+          ],
+          "visible_pixels": 20
+        },
+        {
+          "id": "C035",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-037",
+            "S1-021"
+          ],
+          "visible_pixels": 7606
+        },
+        {
+          "id": "C043",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-047",
+            "S1-054"
+          ],
+          "visible_pixels": 5889
+        },
+        {
+          "id": "C044",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-048",
+            "S1-055"
+          ],
+          "visible_pixels": 147
+        },
+        {
+          "id": "C045",
+          "zone": "R01",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-049",
+            "S1-074"
+          ],
+          "visible_pixels": 19
+        },
+        {
+          "id": "C064",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-077",
+            "S1-079"
+          ],
+          "visible_pixels": 113
+        },
+        {
+          "id": "C068",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-098",
+            "S1-092"
+          ],
+          "visible_pixels": 39
+        },
+        {
+          "id": "C121",
+          "zone": "R01",
+          "class_name": "windowpane",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S1-044"
+          ],
+          "visible_pixels": 31
+        },
+        {
+          "id": "C124",
+          "zone": "R01",
+          "class_name": "windowpane",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S1-080"
+          ],
+          "visible_pixels": 4
+        },
+        {
+          "id": "C125",
+          "zone": "R01",
+          "class_name": "box",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S1-081"
+          ],
+          "visible_pixels": 2
+        },
+        {
+          "id": "C126",
+          "zone": "R01",
+          "class_name": "windowpane",
+          "decision": "deferred",
+          "reason": "메시 대응 차이는 있지만 독립적인 영상 객체·비점유 근거가 부족합니다. 기본 변화 목록에서 보류합니다.",
+          "ids": [
+            "S1-084"
+          ],
+          "visible_pixels": 107
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 132,
+            "fraction": 0.0026307397959183672,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 38,
+              "unaudited": 94,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 5745,
+            "fraction": 0.11449697066326531,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 5726,
+              "unaudited": 19,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 5877
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      }
+    },
+    {
+      "key": "R07-09",
+      "zone": "R07",
+      "index": 9,
+      "epoch": 1,
+      "frame": 130,
+      "yaw": 270,
+      "rgb_sha256": "30971097bcf8652ec44741ecf3337c22222f79ae03c23f2a64ca259969f1e634",
+      "erp": "D3-f130",
+      "refs": [
+        "R07-01"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-009",
+        "1": "D3-SAM31-012",
+        "2": "D3-SAM31-016",
+        "3": "D3-SAM31-023"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 0,
+        "group_context": 0,
+        "suppressed": 11770,
+        "unaudited": 38406,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 12
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C035",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-037",
+            "S1-021"
+          ],
+          "visible_pixels": 10242
+        },
+        {
+          "id": "C064",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-077",
+            "S1-079"
+          ],
+          "visible_pixels": 1254
+        },
+        {
+          "id": "C068",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-098",
+            "S1-092"
+          ],
+          "visible_pixels": 274
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 300,
+            "fraction": 0.005978954081632653,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 107,
+              "unaudited": 193,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 473,
+            "fraction": 0.009426817602040817,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 473,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 773
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 146,
+            "fraction": 0.0029097576530612247,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 146,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 146
+        }
+      }
+    },
+    {
+      "key": "R08-00",
+      "zone": "R08",
+      "index": 0,
+      "epoch": 0,
+      "frame": 115,
+      "yaw": 180,
+      "rgb_sha256": "fcf06e2049c2535ebfe917fdc1b0157ff2f351b284637748dcc494a6283fd763",
+      "erp": "D2-f115",
+      "refs": [
+        "R08-05",
+        "R08-06",
+        "R08-07",
+        "R08-08",
+        "R08-09"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-007",
+        "1": "D2-SAM31-012",
+        "2": "D2-SAM31-013",
+        "3": "D2-SAM31-014",
+        "4": "D2-SAM31-015"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 1403,
+        "group_context": 853,
+        "suppressed": 5417,
+        "unaudited": 42361,
+        "no_mesh": 142
+      },
+      "person": {
+        "available": true,
+        "pixels": 9438
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C002",
+          "zone": "R08",
+          "class_name": "windowpane",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-083",
+            "S1-063"
+          ],
+          "visible_pixels": 556
+        },
+        {
+          "id": "C007",
+          "zone": "R08",
+          "class_name": "cabinet",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-019",
+            "S1-004"
+          ],
+          "visible_pixels": 3666
+        },
+        {
+          "id": "C016",
+          "zone": "R10",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-013",
+            "S1-018"
+          ],
+          "visible_pixels": 9
+        },
+        {
+          "id": "C018",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-017",
+            "S1-009"
+          ],
+          "visible_pixels": 386
+        },
+        {
+          "id": "C019",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-018",
+            "S1-020"
+          ],
+          "visible_pixels": 51
+        },
+        {
+          "id": "C030",
+          "zone": "R10",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-032",
+            "S1-025"
+          ],
+          "visible_pixels": 25
+        },
+        {
+          "id": "C033",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-035",
+            "S1-019"
+          ],
+          "visible_pixels": 64
+        },
+        {
+          "id": "C034",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-036",
+            "S1-008"
+          ],
+          "visible_pixels": 1
+        },
+        {
+          "id": "C040",
+          "zone": "R11",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-042",
+            "S1-062"
+          ],
+          "visible_pixels": 6
+        },
+        {
+          "id": "C041",
+          "zone": "R10",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-043",
+            "S1-051"
+          ],
+          "visible_pixels": 1
+        },
+        {
+          "id": "C051",
+          "zone": "R10",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-055",
+            "S1-017"
+          ],
+          "visible_pixels": 7
+        },
+        {
+          "id": "C060",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-071",
+            "S1-078"
+          ],
+          "visible_pixels": 10
+        },
+        {
+          "id": "C061",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-074",
+            "S1-040"
+          ],
+          "visible_pixels": 29
+        },
+        {
+          "id": "C063",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-076",
+            "S1-072"
+          ],
+          "visible_pixels": 13
+        },
+        {
+          "id": "C069",
+          "zone": "R08",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-104",
+            "S1-005"
+          ],
+          "visible_pixels": 9
+        },
+        {
+          "id": "C072",
+          "zone": "R08",
+          "class_name": "table",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-007",
+            "S1-002"
+          ],
+          "visible_pixels": 62
+        },
+        {
+          "id": "C074",
+          "zone": "R08",
+          "class_name": "table",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-064",
+            "S1-041"
+          ],
+          "visible_pixels": 128
+        },
+        {
+          "id": "C077",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "같은 구역·객체 종류의 후보 묶음에 메시 성분을 통합했습니다. 각 성분을 별도 변화로 집계하지 않습니다.",
+          "ids": [
+            "S0-020",
+            "S1-003"
+          ],
+          "visible_pixels": 1118
+        },
+        {
+          "id": "C081",
+          "zone": "R08",
+          "class_name": "blind",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-091",
+            "S1-086"
+          ],
+          "visible_pixels": 733
+        },
+        {
+          "id": "C087",
+          "zone": "R08",
+          "class_name": "table",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S0-006"
+          ],
+          "visible_pixels": 105
+        },
+        {
+          "id": "C091",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "같은 구역·객체 종류의 후보 묶음에 메시 성분을 통합했습니다. 각 성분을 별도 변화로 집계하지 않습니다.",
+          "ids": [
+            "S0-046"
+          ],
+          "visible_pixels": 164
+        },
+        {
+          "id": "C092",
+          "zone": "R08",
+          "class_name": "table",
+          "decision": "deferred",
+          "reason": "메시 대응 차이는 있지만 독립적인 영상 객체·비점유 근거가 부족합니다. 기본 변화 목록에서 보류합니다.",
+          "ids": [
+            "S0-056"
+          ],
+          "visible_pixels": 276
+        },
+        {
+          "id": "C097",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S0-073"
+          ],
+          "visible_pixels": 1
+        },
+        {
+          "id": "C103",
+          "zone": "R10",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S0-090"
+          ],
+          "visible_pixels": 2
+        },
+        {
+          "id": "C106",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S0-095"
+          ],
+          "visible_pixels": 1
+        },
+        {
+          "id": "C112",
+          "zone": "R08",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S0-109"
+          ],
+          "visible_pixels": 13
+        },
+        {
+          "id": "N005",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-028",
+            "I1-092"
+          ],
+          "visible_pixels": 454
+        },
+        {
+          "id": "N006",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-035",
+            "I1-099"
+          ],
+          "visible_pixels": 390
+        },
+        {
+          "id": "N007",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-039",
+            "I1-098"
+          ],
+          "visible_pixels": 128
+        },
+        {
+          "id": "N011",
+          "zone": "R08",
+          "class_name": "refrigerator",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-029",
+            "I1-102"
+          ],
+          "visible_pixels": 3264
+        },
+        {
+          "id": "N014",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "반대 촬영의 같은 자리 근방에 약한 트랙을 포함한 존재 가능성이 남아 있습니다. 소실·추가로 단정하지 않습니다.",
+          "ids": [
+            "I0-031"
+          ],
+          "visible_pixels": 188
+        },
+        {
+          "id": "N015",
+          "zone": "R08",
+          "class_name": "dining table",
+          "decision": "deferred",
+          "reason": "반대 촬영의 같은 자리 근방에 약한 트랙을 포함한 존재 가능성이 남아 있습니다. 소실·추가로 단정하지 않습니다.",
+          "ids": [
+            "I0-032"
+          ],
+          "visible_pixels": 254
+        },
+        {
+          "id": "N017",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "반대 촬영의 같은 자리 근방에 약한 트랙을 포함한 존재 가능성이 남아 있습니다. 소실·추가로 단정하지 않습니다.",
+          "ids": [
+            "I0-042"
+          ],
+          "visible_pixels": 89
+        },
+        {
+          "id": "N018",
+          "zone": "R08",
+          "class_name": "dining table",
+          "decision": "deferred",
+          "reason": "반대 촬영의 같은 자리 근방에 약한 트랙을 포함한 존재 가능성이 남아 있습니다. 소실·추가로 단정하지 않습니다.",
+          "ids": [
+            "I0-044"
+          ],
+          "visible_pixels": 382
+        },
+        {
+          "id": "WI0-034",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I0-034"
+          ],
+          "visible_pixels": 187
+        },
+        {
+          "id": "WI0-047",
+          "zone": "R07",
+          "class_name": "refrigerator",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I0-047"
+          ],
+          "visible_pixels": 298
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 6360,
+            "fraction": 0.12675382653061223,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 601,
+              "group_context": 817,
+              "suppressed": 166,
+              "unaudited": 4776,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 4804
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 6360
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 212,
+            "fraction": 0.0042251275510204085,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 212,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 212
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 212
+        }
+      }
+    },
+    {
+      "key": "R08-01",
+      "zone": "R08",
+      "index": 1,
+      "epoch": 0,
+      "frame": 112,
+      "yaw": 180,
+      "rgb_sha256": "dea1af248b01a364a5f64fd030f3b489e47c9b75127aa390fffc1fa823ba107a",
+      "erp": "D2-f112",
+      "refs": [
+        "R08-05",
+        "R08-06",
+        "R08-08",
+        "R08-09"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-007",
+        "1": "D2-SAM31-012",
+        "2": "D2-SAM31-013",
+        "3": "D2-SAM31-014"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 2744,
+        "group_context": 3000,
+        "suppressed": 2042,
+        "unaudited": 42390,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 5389
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C002",
+          "zone": "R08",
+          "class_name": "windowpane",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-083",
+            "S1-063"
+          ],
+          "visible_pixels": 694
+        },
+        {
+          "id": "C069",
+          "zone": "R08",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-104",
+            "S1-005"
+          ],
+          "visible_pixels": 78
+        },
+        {
+          "id": "C072",
+          "zone": "R08",
+          "class_name": "table",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-007",
+            "S1-002"
+          ],
+          "visible_pixels": 135
+        },
+        {
+          "id": "C074",
+          "zone": "R08",
+          "class_name": "table",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-064",
+            "S1-041"
+          ],
+          "visible_pixels": 295
+        },
+        {
+          "id": "C077",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "같은 구역·객체 종류의 후보 묶음에 메시 성분을 통합했습니다. 각 성분을 별도 변화로 집계하지 않습니다.",
+          "ids": [
+            "S0-020",
+            "S1-003"
+          ],
+          "visible_pixels": 3512
+        },
+        {
+          "id": "C081",
+          "zone": "R08",
+          "class_name": "blind",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-091",
+            "S1-086"
+          ],
+          "visible_pixels": 932
+        },
+        {
+          "id": "C087",
+          "zone": "R08",
+          "class_name": "table",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S0-006"
+          ],
+          "visible_pixels": 364
+        },
+        {
+          "id": "C091",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "같은 구역·객체 종류의 후보 묶음에 메시 성분을 통합했습니다. 각 성분을 별도 변화로 집계하지 않습니다.",
+          "ids": [
+            "S0-046"
+          ],
+          "visible_pixels": 241
+        },
+        {
+          "id": "C092",
+          "zone": "R08",
+          "class_name": "table",
+          "decision": "deferred",
+          "reason": "메시 대응 차이는 있지만 독립적인 영상 객체·비점유 근거가 부족합니다. 기본 변화 목록에서 보류합니다.",
+          "ids": [
+            "S0-056"
+          ],
+          "visible_pixels": 1021
+        },
+        {
+          "id": "C112",
+          "zone": "R08",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S0-109"
+          ],
+          "visible_pixels": 23
+        },
+        {
+          "id": "N005",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-028",
+            "I1-092"
+          ],
+          "visible_pixels": 1792
+        },
+        {
+          "id": "N006",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-035",
+            "I1-099"
+          ],
+          "visible_pixels": 1102
+        },
+        {
+          "id": "N007",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-039",
+            "I1-098"
+          ],
+          "visible_pixels": 370
+        },
+        {
+          "id": "N014",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "반대 촬영의 같은 자리 근방에 약한 트랙을 포함한 존재 가능성이 남아 있습니다. 소실·추가로 단정하지 않습니다.",
+          "ids": [
+            "I0-031"
+          ],
+          "visible_pixels": 280
+        },
+        {
+          "id": "N015",
+          "zone": "R08",
+          "class_name": "dining table",
+          "decision": "deferred",
+          "reason": "반대 촬영의 같은 자리 근방에 약한 트랙을 포함한 존재 가능성이 남아 있습니다. 소실·추가로 단정하지 않습니다.",
+          "ids": [
+            "I0-032"
+          ],
+          "visible_pixels": 547
+        },
+        {
+          "id": "N017",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "반대 촬영의 같은 자리 근방에 약한 트랙을 포함한 존재 가능성이 남아 있습니다. 소실·추가로 단정하지 않습니다.",
+          "ids": [
+            "I0-042"
+          ],
+          "visible_pixels": 148
+        },
+        {
+          "id": "N018",
+          "zone": "R08",
+          "class_name": "dining table",
+          "decision": "deferred",
+          "reason": "반대 촬영의 같은 자리 근방에 약한 트랙을 포함한 존재 가능성이 남아 있습니다. 소실·추가로 단정하지 않습니다.",
+          "ids": [
+            "I0-044"
+          ],
+          "visible_pixels": 1370
+        },
+        {
+          "id": "WI0-034",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I0-034"
+          ],
+          "visible_pixels": 375
+        },
+        {
+          "id": "WI0-038",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I0-038"
+          ],
+          "visible_pixels": 4
+        },
+        {
+          "id": "WI0-041",
+          "zone": "R08",
+          "class_name": "dining table",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I0-041"
+          ],
+          "visible_pixels": 7
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 5894,
+            "fraction": 0.11746651785714286,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 1831,
+              "group_context": 2483,
+              "suppressed": 96,
+              "unaudited": 1484,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 1797
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 5894
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 9295,
+            "fraction": 0.18524792729591838,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 961,
+              "group_context": 11,
+              "suppressed": 1,
+              "unaudited": 8322,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 1244
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 9295
+        }
+      }
+    },
+    {
+      "key": "R08-02",
+      "zone": "R08",
+      "index": 2,
+      "epoch": 0,
+      "frame": 112,
+      "yaw": 90,
+      "rgb_sha256": "c3925d0018b09bf9806cb3cf2be1c7a5f336e0f7d3e23e5384caadea72adb5ce",
+      "erp": "D2-f112",
+      "refs": [
+        "R08-07"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-015",
+        "1": "D2-SAM31-017"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 11,
+        "group_context": 0,
+        "suppressed": 4770,
+        "unaudited": 45395,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 0
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C007",
+          "zone": "R08",
+          "class_name": "cabinet",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-019",
+            "S1-004"
+          ],
+          "visible_pixels": 4781
+        },
+        {
+          "id": "N011",
+          "zone": "R08",
+          "class_name": "refrigerator",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-029",
+            "I1-102"
+          ],
+          "visible_pixels": 4714
+        },
+        {
+          "id": "WI0-047",
+          "zone": "R07",
+          "class_name": "refrigerator",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I0-047"
+          ],
+          "visible_pixels": 11
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 2027,
+            "fraction": 0.04039779974489796,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 738,
+              "unaudited": 1289,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 707,
+            "fraction": 0.014090401785714286,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 707,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 95,
+          "model_disagreement": 2544
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 1435,
+            "fraction": 0.028599330357142856,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 1435,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 1435
+        }
+      }
+    },
+    {
+      "key": "R08-03",
+      "zone": "R08",
+      "index": 3,
+      "epoch": 0,
+      "frame": 115,
+      "yaw": 90,
+      "rgb_sha256": "c276001cf309a22dad53a6bb2469dbfa7b9c3e1db57e1ebf607010f40e842468",
+      "erp": "D2-f115",
+      "refs": [
+        "R08-07"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-015"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 191,
+        "group_context": 0,
+        "suppressed": 5141,
+        "unaudited": 44844,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 0
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C007",
+          "zone": "R08",
+          "class_name": "cabinet",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-019",
+            "S1-004"
+          ],
+          "visible_pixels": 1772
+        },
+        {
+          "id": "C043",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-047",
+            "S1-054"
+          ],
+          "visible_pixels": 3560
+        },
+        {
+          "id": "N011",
+          "zone": "R08",
+          "class_name": "refrigerator",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-029",
+            "I1-102"
+          ],
+          "visible_pixels": 1526
+        },
+        {
+          "id": "WI0-047",
+          "zone": "R07",
+          "class_name": "refrigerator",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I0-047"
+          ],
+          "visible_pixels": 191
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 291,
+            "fraction": 0.005799585459183673,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 50,
+              "unaudited": 241,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 291
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 0
+        }
+      }
+    },
+    {
+      "key": "R08-04",
+      "zone": "R08",
+      "index": 4,
+      "epoch": 0,
+      "frame": 118,
+      "yaw": 180,
+      "rgb_sha256": "12be991ef2262372609fe5b5184a9d6f8db655c9326698d2a6b769b540d6e06d",
+      "erp": "D2-f118",
+      "refs": [
+        "R08-06",
+        "R08-07",
+        "R08-08",
+        "R08-09"
+      ],
+      "region_to_input_instance": {
+        "0": "D2-SAM31-013",
+        "1": "D2-SAM31-014"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 136,
+        "group_context": 453,
+        "suppressed": 1031,
+        "unaudited": 48425,
+        "no_mesh": 131
+      },
+      "person": {
+        "available": true,
+        "pixels": 9440
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C016",
+          "zone": "R10",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-013",
+            "S1-018"
+          ],
+          "visible_pixels": 7
+        },
+        {
+          "id": "C018",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-017",
+            "S1-009"
+          ],
+          "visible_pixels": 82
+        },
+        {
+          "id": "C019",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-018",
+            "S1-020"
+          ],
+          "visible_pixels": 29
+        },
+        {
+          "id": "C030",
+          "zone": "R10",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-032",
+            "S1-025"
+          ],
+          "visible_pixels": 8
+        },
+        {
+          "id": "C033",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-035",
+            "S1-019"
+          ],
+          "visible_pixels": 22
+        },
+        {
+          "id": "C034",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-036",
+            "S1-008"
+          ],
+          "visible_pixels": 7
+        },
+        {
+          "id": "C042",
+          "zone": "R08",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-045",
+            "S1-026"
+          ],
+          "visible_pixels": 329
+        },
+        {
+          "id": "C051",
+          "zone": "R10",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-055",
+            "S1-017"
+          ],
+          "visible_pixels": 3
+        },
+        {
+          "id": "C058",
+          "zone": "R10",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-068",
+            "S1-039"
+          ],
+          "visible_pixels": 1
+        },
+        {
+          "id": "C059",
+          "zone": "R10",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-069",
+            "S1-007"
+          ],
+          "visible_pixels": 1
+        },
+        {
+          "id": "C060",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-071",
+            "S1-078"
+          ],
+          "visible_pixels": 7
+        },
+        {
+          "id": "C061",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-074",
+            "S1-040"
+          ],
+          "visible_pixels": 74
+        },
+        {
+          "id": "C063",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-076",
+            "S1-072"
+          ],
+          "visible_pixels": 12
+        },
+        {
+          "id": "C066",
+          "zone": "R07",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-084",
+            "S1-052"
+          ],
+          "visible_pixels": 357
+        },
+        {
+          "id": "C077",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "같은 구역·객체 종류의 후보 묶음에 메시 성분을 통합했습니다. 각 성분을 별도 변화로 집계하지 않습니다.",
+          "ids": [
+            "S0-020",
+            "S1-003"
+          ],
+          "visible_pixels": 453
+        },
+        {
+          "id": "C087",
+          "zone": "R08",
+          "class_name": "table",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S0-006"
+          ],
+          "visible_pixels": 44
+        },
+        {
+          "id": "C092",
+          "zone": "R08",
+          "class_name": "table",
+          "decision": "deferred",
+          "reason": "메시 대응 차이는 있지만 독립적인 영상 객체·비점유 근거가 부족합니다. 기본 변화 목록에서 보류합니다.",
+          "ids": [
+            "S0-056"
+          ],
+          "visible_pixels": 90
+        },
+        {
+          "id": "C103",
+          "zone": "R10",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S0-090"
+          ],
+          "visible_pixels": 3
+        },
+        {
+          "id": "N005",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-028",
+            "I1-092"
+          ],
+          "visible_pixels": 225
+        },
+        {
+          "id": "N006",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-035",
+            "I1-099"
+          ],
+          "visible_pixels": 245
+        },
+        {
+          "id": "N007",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-039",
+            "I1-098"
+          ],
+          "visible_pixels": 67
+        },
+        {
+          "id": "N018",
+          "zone": "R08",
+          "class_name": "dining table",
+          "decision": "deferred",
+          "reason": "반대 촬영의 같은 자리 근방에 약한 트랙을 포함한 존재 가능성이 남아 있습니다. 소실·추가로 단정하지 않습니다.",
+          "ids": [
+            "I0-044"
+          ],
+          "visible_pixels": 134
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 10088,
+            "fraction": 0.20105229591836735,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 235,
+              "unaudited": 9834,
+              "no_mesh": 19
+            },
+            "on_person_pixels": 9296
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 10088
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 7847,
+            "fraction": 0.15638950892857142,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 184,
+              "unaudited": 7663,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 7813
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 7847
+        }
+      }
+    },
+    {
+      "key": "R08-05",
+      "zone": "R08",
+      "index": 5,
+      "epoch": 1,
+      "frame": 115,
+      "yaw": 90,
+      "rgb_sha256": "c9bc0cb3e406ac981d6920dd5eb54c5ddd75a568f76b8fd68e5ef7bf0aff6916",
+      "erp": "D3-f115",
+      "refs": [
+        "R08-00",
+        "R08-01"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-006",
+        "1": "D3-SAM31-013",
+        "2": "D3-SAM31-015",
+        "3": "D3-SAM31-026",
+        "4": "D3-SAM31-027",
+        "5": "D3-SAM31-028",
+        "6": "D3-SAM31-029",
+        "7": "D3-SAM31-030",
+        "8": "D3-SAM31-031",
+        "9": "D3-SAM31-032",
+        "10": "D3-SAM31-033",
+        "11": "D3-SAM31-034",
+        "12": "D3-SAM31-036"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 7844,
+        "group_context": 2322,
+        "suppressed": 951,
+        "unaudited": 39059,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 9684
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C002",
+          "zone": "R08",
+          "class_name": "windowpane",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-083",
+            "S1-063"
+          ],
+          "visible_pixels": 576
+        },
+        {
+          "id": "C074",
+          "zone": "R08",
+          "class_name": "table",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-064",
+            "S1-041"
+          ],
+          "visible_pixels": 6756
+        },
+        {
+          "id": "C077",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "같은 구역·객체 종류의 후보 묶음에 메시 성분을 통합했습니다. 각 성분을 별도 변화로 집계하지 않습니다.",
+          "ids": [
+            "S0-020",
+            "S1-003"
+          ],
+          "visible_pixels": 3504
+        },
+        {
+          "id": "C081",
+          "zone": "R08",
+          "class_name": "blind",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-091",
+            "S1-086"
+          ],
+          "visible_pixels": 154
+        },
+        {
+          "id": "N006",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-035",
+            "I1-099"
+          ],
+          "visible_pixels": 1095
+        },
+        {
+          "id": "N007",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-039",
+            "I1-098"
+          ],
+          "visible_pixels": 1005
+        },
+        {
+          "id": "N022",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "반대 촬영의 같은 자리 근방에 약한 트랙을 포함한 존재 가능성이 남아 있습니다. 소실·추가로 단정하지 않습니다.",
+          "ids": [
+            "I1-097"
+          ],
+          "visible_pixels": 760
+        },
+        {
+          "id": "WI1-094",
+          "zone": "R08",
+          "class_name": "dining table",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I1-094"
+          ],
+          "visible_pixels": 3506
+        },
+        {
+          "id": "WI1-100",
+          "zone": "R08",
+          "class_name": "dining table",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I1-100"
+          ],
+          "visible_pixels": 3110
+        },
+        {
+          "id": "WI1-103",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I1-103"
+          ],
+          "visible_pixels": 11
+        },
+        {
+          "id": "WI1-104",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I1-104"
+          ],
+          "visible_pixels": 406
+        },
+        {
+          "id": "WI1-105",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I1-105"
+          ],
+          "visible_pixels": 51
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 22,
+            "fraction": 0.0004384566326530612,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 22,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 22
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 12374,
+            "fraction": 0.24661192602040816,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 7584,
+              "group_context": 2299,
+              "suppressed": 186,
+              "unaudited": 2305,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 9548
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 12374
+        }
+      }
+    },
+    {
+      "key": "R08-06",
+      "zone": "R08",
+      "index": 6,
+      "epoch": 1,
+      "frame": 112,
+      "yaw": 0,
+      "rgb_sha256": "966fbcb405be8e32429af304127104417df8c65c02796afeac254f5261fd8d0c",
+      "erp": "D3-f112",
+      "refs": [
+        "R08-00",
+        "R08-01",
+        "R08-04"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-015",
+        "1": "D3-SAM31-022",
+        "2": "D3-SAM31-027",
+        "3": "D3-SAM31-029",
+        "4": "D3-SAM31-030",
+        "5": "D3-SAM31-031",
+        "6": "D3-SAM31-032",
+        "7": "D3-SAM31-034"
+      },
+      "baseline": {
+        "candidate": 1989,
+        "deferred": 4889,
+        "group_context": 414,
+        "suppressed": 3773,
+        "unaudited": 39111,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 0
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C002",
+          "zone": "R08",
+          "class_name": "windowpane",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-083",
+            "S1-063"
+          ],
+          "visible_pixels": 1641
+        },
+        {
+          "id": "C074",
+          "zone": "R08",
+          "class_name": "table",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-064",
+            "S1-041"
+          ],
+          "visible_pixels": 3146
+        },
+        {
+          "id": "C077",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "같은 구역·객체 종류의 후보 묶음에 메시 성분을 통합했습니다. 각 성분을 별도 변화로 집계하지 않습니다.",
+          "ids": [
+            "S0-020",
+            "S1-003"
+          ],
+          "visible_pixels": 2126
+        },
+        {
+          "id": "C081",
+          "zone": "R08",
+          "class_name": "blind",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-091",
+            "S1-086"
+          ],
+          "visible_pixels": 1823
+        },
+        {
+          "id": "C116",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "같은 구역·객체 종류의 후보 묶음에 메시 성분을 통합했습니다. 각 성분을 별도 변화로 집계하지 않습니다.",
+          "ids": [
+            "S1-006"
+          ],
+          "visible_pixels": 178
+        },
+        {
+          "id": "C118",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "같은 구역·객체 종류의 후보 묶음에 메시 성분을 통합했습니다. 각 성분을 별도 변화로 집계하지 않습니다.",
+          "ids": [
+            "S1-027"
+          ],
+          "visible_pixels": 1248
+        },
+        {
+          "id": "C122",
+          "zone": "R08",
+          "class_name": "windowpane",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S1-053"
+          ],
+          "visible_pixels": 290
+        },
+        {
+          "id": "N021",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "반복 관측된 영상 객체가 반대 촬영의 같은 자리에서 독립 2시점 이상 비점유 근거를 갖습니다. 이동·추가·소실의 물리적 유형은 미확정입니다.",
+          "ids": [
+            "I1-096"
+          ],
+          "visible_pixels": 1989
+        },
+        {
+          "id": "N022",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "반대 촬영의 같은 자리 근방에 약한 트랙을 포함한 존재 가능성이 남아 있습니다. 소실·추가로 단정하지 않습니다.",
+          "ids": [
+            "I1-097"
+          ],
+          "visible_pixels": 1576
+        },
+        {
+          "id": "WI1-094",
+          "zone": "R08",
+          "class_name": "dining table",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I1-094"
+          ],
+          "visible_pixels": 18
+        },
+        {
+          "id": "WI1-100",
+          "zone": "R08",
+          "class_name": "dining table",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I1-100"
+          ],
+          "visible_pixels": 3127
+        },
+        {
+          "id": "WI1-104",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I1-104"
+          ],
+          "visible_pixels": 12
+        },
+        {
+          "id": "WI1-105",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I1-105"
+          ],
+          "visible_pixels": 156
+        }
+      ],
+      "visible_groups": [
+        {
+          "id": "E001",
+          "pixels": 1989
+        }
+      ],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 1610,
+            "fraction": 0.03208705357142857,
+            "by_baseline": {
+              "candidate": 930,
+              "deferred": 0,
+              "group_context": 1,
+              "suppressed": 0,
+              "unaudited": 679,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 1610
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 4745,
+            "fraction": 0.09456712372448979,
+            "by_baseline": {
+              "candidate": 1725,
+              "deferred": 79,
+              "group_context": 1,
+              "suppressed": 0,
+              "unaudited": 2940,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 4745
+        }
+      }
+    },
+    {
+      "key": "R08-07",
+      "zone": "R08",
+      "index": 7,
+      "epoch": 1,
+      "frame": 118,
+      "yaw": 90,
+      "rgb_sha256": "7722ff21ccff432c88e6587eda0a96260b97161826997d78e706961d07b4446b",
+      "erp": "D3-f118",
+      "refs": [
+        "R08-00",
+        "R08-02",
+        "R08-03",
+        "R08-04"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-015",
+        "1": "D3-SAM31-022",
+        "2": "D3-SAM31-027",
+        "3": "D3-SAM31-030",
+        "4": "D3-SAM31-031",
+        "5": "D3-SAM31-032",
+        "6": "D3-SAM31-034"
+      },
+      "baseline": {
+        "candidate": 1651,
+        "deferred": 2760,
+        "group_context": 27,
+        "suppressed": 3110,
+        "unaudited": 42628,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 10484
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C002",
+          "zone": "R08",
+          "class_name": "windowpane",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-083",
+            "S1-063"
+          ],
+          "visible_pixels": 1354
+        },
+        {
+          "id": "C069",
+          "zone": "R08",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-104",
+            "S1-005"
+          ],
+          "visible_pixels": 30
+        },
+        {
+          "id": "C072",
+          "zone": "R08",
+          "class_name": "table",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-007",
+            "S1-002"
+          ],
+          "visible_pixels": 2
+        },
+        {
+          "id": "C074",
+          "zone": "R08",
+          "class_name": "table",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-064",
+            "S1-041"
+          ],
+          "visible_pixels": 1909
+        },
+        {
+          "id": "C077",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "같은 구역·객체 종류의 후보 묶음에 메시 성분을 통합했습니다. 각 성분을 별도 변화로 집계하지 않습니다.",
+          "ids": [
+            "S0-020",
+            "S1-003"
+          ],
+          "visible_pixels": 885
+        },
+        {
+          "id": "C081",
+          "zone": "R08",
+          "class_name": "blind",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-091",
+            "S1-086"
+          ],
+          "visible_pixels": 1423
+        },
+        {
+          "id": "C116",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "같은 구역·객체 종류의 후보 묶음에 메시 성분을 통합했습니다. 각 성분을 별도 변화로 집계하지 않습니다.",
+          "ids": [
+            "S1-006"
+          ],
+          "visible_pixels": 178
+        },
+        {
+          "id": "C118",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "같은 구역·객체 종류의 후보 묶음에 메시 성분을 통합했습니다. 각 성분을 별도 변화로 집계하지 않습니다.",
+          "ids": [
+            "S1-027"
+          ],
+          "visible_pixels": 1041
+        },
+        {
+          "id": "C122",
+          "zone": "R08",
+          "class_name": "windowpane",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S1-053"
+          ],
+          "visible_pixels": 247
+        },
+        {
+          "id": "N021",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "반복 관측된 영상 객체가 반대 촬영의 같은 자리에서 독립 2시점 이상 비점유 근거를 갖습니다. 이동·추가·소실의 물리적 유형은 미확정입니다.",
+          "ids": [
+            "I1-096"
+          ],
+          "visible_pixels": 1651
+        },
+        {
+          "id": "N022",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "반대 촬영의 같은 자리 근방에 약한 트랙을 포함한 존재 가능성이 남아 있습니다. 소실·추가로 단정하지 않습니다.",
+          "ids": [
+            "I1-097"
+          ],
+          "visible_pixels": 885
+        },
+        {
+          "id": "WI1-100",
+          "zone": "R08",
+          "class_name": "dining table",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I1-100"
+          ],
+          "visible_pixels": 1855
+        },
+        {
+          "id": "WI1-105",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I1-105"
+          ],
+          "visible_pixels": 20
+        }
+      ],
+      "visible_groups": [
+        {
+          "id": "E001",
+          "pixels": 1651
+        }
+      ],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 4618,
+            "fraction": 0.09203603316326531,
+            "by_baseline": {
+              "candidate": 108,
+              "deferred": 396,
+              "group_context": 0,
+              "suppressed": 102,
+              "unaudited": 4012,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 3492
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 4618
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 9521,
+            "fraction": 0.18975207270408162,
+            "by_baseline": {
+              "candidate": 1651,
+              "deferred": 1143,
+              "group_context": 17,
+              "suppressed": 322,
+              "unaudited": 6388,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 8175
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 9521
+        }
+      }
+    },
+    {
+      "key": "R08-08",
+      "zone": "R08",
+      "index": 8,
+      "epoch": 1,
+      "frame": 121,
+      "yaw": 180,
+      "rgb_sha256": "f78bced34ad7639a4a31071af9bc412779efac408d5ae367d6d827747ce8b5fc",
+      "erp": "D3-f121",
+      "refs": [
+        "R08-00",
+        "R08-01",
+        "R08-04"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-006",
+        "1": "D3-SAM31-013",
+        "2": "D3-SAM31-015",
+        "3": "D3-SAM31-020",
+        "4": "D3-SAM31-026",
+        "5": "D3-SAM31-027",
+        "6": "D3-SAM31-028",
+        "7": "D3-SAM31-029",
+        "8": "D3-SAM31-030",
+        "9": "D3-SAM31-031",
+        "10": "D3-SAM31-032",
+        "11": "D3-SAM31-033",
+        "12": "D3-SAM31-034",
+        "13": "D3-SAM31-036"
+      },
+      "baseline": {
+        "candidate": 1041,
+        "deferred": 3263,
+        "group_context": 4064,
+        "suppressed": 2905,
+        "unaudited": 38903,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 10021
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C002",
+          "zone": "R08",
+          "class_name": "windowpane",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-083",
+            "S1-063"
+          ],
+          "visible_pixels": 1124
+        },
+        {
+          "id": "C072",
+          "zone": "R08",
+          "class_name": "table",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-007",
+            "S1-002"
+          ],
+          "visible_pixels": 139
+        },
+        {
+          "id": "C074",
+          "zone": "R08",
+          "class_name": "table",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-064",
+            "S1-041"
+          ],
+          "visible_pixels": 2363
+        },
+        {
+          "id": "C077",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "같은 구역·객체 종류의 후보 묶음에 메시 성분을 통합했습니다. 각 성분을 별도 변화로 집계하지 않습니다.",
+          "ids": [
+            "S0-020",
+            "S1-003"
+          ],
+          "visible_pixels": 4499
+        },
+        {
+          "id": "C081",
+          "zone": "R08",
+          "class_name": "blind",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-091",
+            "S1-086"
+          ],
+          "visible_pixels": 936
+        },
+        {
+          "id": "C115",
+          "zone": "R08",
+          "class_name": "table",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S1-001"
+          ],
+          "visible_pixels": 375
+        },
+        {
+          "id": "C118",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "같은 구역·객체 종류의 후보 묶음에 메시 성분을 통합했습니다. 각 성분을 별도 변화로 집계하지 않습니다.",
+          "ids": [
+            "S1-027"
+          ],
+          "visible_pixels": 771
+        },
+        {
+          "id": "C122",
+          "zone": "R08",
+          "class_name": "windowpane",
+          "decision": "suppressed",
+          "reason": "라벨과 무관한 반대 전체 메시 표면이 정합 오차 안에 있습니다. 의미 라벨 누락·분할 차이만으로 변화 후보를 만들지 않습니다. 벽 위 공지물 등 얇은 물체의 존재를 확정하는 판정은 아닙니다.",
+          "ids": [
+            "S1-053"
+          ],
+          "visible_pixels": 223
+        },
+        {
+          "id": "N021",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "반복 관측된 영상 객체가 반대 촬영의 같은 자리에서 독립 2시점 이상 비점유 근거를 갖습니다. 이동·추가·소실의 물리적 유형은 미확정입니다.",
+          "ids": [
+            "I1-096"
+          ],
+          "visible_pixels": 1041
+        },
+        {
+          "id": "N005",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-028",
+            "I1-092"
+          ],
+          "visible_pixels": 1818
+        },
+        {
+          "id": "N006",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-035",
+            "I1-099"
+          ],
+          "visible_pixels": 1727
+        },
+        {
+          "id": "N007",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-039",
+            "I1-098"
+          ],
+          "visible_pixels": 860
+        },
+        {
+          "id": "N022",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "반대 촬영의 같은 자리 근방에 약한 트랙을 포함한 존재 가능성이 남아 있습니다. 소실·추가로 단정하지 않습니다.",
+          "ids": [
+            "I1-097"
+          ],
+          "visible_pixels": 277
+        },
+        {
+          "id": "WI1-094",
+          "zone": "R08",
+          "class_name": "dining table",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I1-094"
+          ],
+          "visible_pixels": 2173
+        },
+        {
+          "id": "WI1-100",
+          "zone": "R08",
+          "class_name": "dining table",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I1-100"
+          ],
+          "visible_pixels": 645
+        },
+        {
+          "id": "WI1-104",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I1-104"
+          ],
+          "visible_pixels": 158
+        },
+        {
+          "id": "WI1-105",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I1-105"
+          ],
+          "visible_pixels": 10
+        }
+      ],
+      "visible_groups": [
+        {
+          "id": "E001",
+          "pixels": 1041
+        }
+      ],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 3783,
+            "fraction": 0.07539461096938775,
+            "by_baseline": {
+              "candidate": 89,
+              "deferred": 1000,
+              "group_context": 1263,
+              "suppressed": 56,
+              "unaudited": 1375,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 1786
+          },
+          "viewdelta": {
+            "pixels": 522,
+            "fraction": 0.010403380102040817,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 520,
+              "group_context": 2,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 4,
+          "model_disagreement": 4297
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 12503,
+            "fraction": 0.2491828762755102,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 2807,
+              "group_context": 4024,
+              "suppressed": 578,
+              "unaudited": 5094,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 4368
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 12503
+        }
+      }
+    },
+    {
+      "key": "R08-09",
+      "zone": "R08",
+      "index": 9,
+      "epoch": 1,
+      "frame": 112,
+      "yaw": 90,
+      "rgb_sha256": "e747e1f58a0ad8e317358dae75410fea69b12f559c22f7555bb9d904c96a5ec1",
+      "erp": "D3-f112",
+      "refs": [
+        "R08-00",
+        "R08-01",
+        "R08-04"
+      ],
+      "region_to_input_instance": {
+        "0": "D3-SAM31-006",
+        "1": "D3-SAM31-013",
+        "2": "D3-SAM31-020",
+        "3": "D3-SAM31-026",
+        "4": "D3-SAM31-028",
+        "5": "D3-SAM31-029",
+        "6": "D3-SAM31-030",
+        "7": "D3-SAM31-033",
+        "8": "D3-SAM31-034",
+        "9": "D3-SAM31-036"
+      },
+      "baseline": {
+        "candidate": 0,
+        "deferred": 4813,
+        "group_context": 6078,
+        "suppressed": 1127,
+        "unaudited": 38158,
+        "no_mesh": 0
+      },
+      "person": {
+        "available": true,
+        "pixels": 0
+      },
+      "map_error_u": 0.11747797410935164,
+      "records": [
+        {
+          "id": "C018",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-017",
+            "S1-009"
+          ],
+          "visible_pixels": 671
+        },
+        {
+          "id": "C061",
+          "zone": "R09",
+          "class_name": "door",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-074",
+            "S1-040"
+          ],
+          "visible_pixels": 32
+        },
+        {
+          "id": "C074",
+          "zone": "R08",
+          "class_name": "table",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "S0-064",
+            "S1-041"
+          ],
+          "visible_pixels": 3301
+        },
+        {
+          "id": "C077",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "group_context",
+          "reason": "같은 구역·객체 종류의 후보 묶음에 메시 성분을 통합했습니다. 각 성분을 별도 변화로 집계하지 않습니다.",
+          "ids": [
+            "S0-020",
+            "S1-003"
+          ],
+          "visible_pixels": 7592
+        },
+        {
+          "id": "N005",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-028",
+            "I1-092"
+          ],
+          "visible_pixels": 1232
+        },
+        {
+          "id": "N006",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-035",
+            "I1-099"
+          ],
+          "visible_pixels": 2236
+        },
+        {
+          "id": "N007",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "suppressed",
+          "reason": "기존 자동 대응이 같은 자리에서 확보됐습니다. 형상 차이만으로 변화 후보를 만들지 않습니다.",
+          "ids": [
+            "I0-039",
+            "I1-098"
+          ],
+          "visible_pixels": 2055
+        },
+        {
+          "id": "N022",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "반대 촬영의 같은 자리 근방에 약한 트랙을 포함한 존재 가능성이 남아 있습니다. 소실·추가로 단정하지 않습니다.",
+          "ids": [
+            "I1-097"
+          ],
+          "visible_pixels": 476
+        },
+        {
+          "id": "WI1-094",
+          "zone": "R08",
+          "class_name": "dining table",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I1-094"
+          ],
+          "visible_pixels": 2815
+        },
+        {
+          "id": "WI1-100",
+          "zone": "R08",
+          "class_name": "dining table",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I1-100"
+          ],
+          "visible_pixels": 484
+        },
+        {
+          "id": "WI1-103",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I1-103"
+          ],
+          "visible_pixels": 14
+        },
+        {
+          "id": "WI1-104",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I1-104"
+          ],
+          "visible_pixels": 898
+        },
+        {
+          "id": "WI1-105",
+          "zone": "R08",
+          "class_name": "chair",
+          "decision": "deferred",
+          "reason": "영상 트랙의 반복 관측·크기·신뢰도 기준 미달. 추가·소실 근거로 사용하지 않습니다.",
+          "ids": [
+            "I1-105"
+          ],
+          "visible_pixels": 126
+        }
+      ],
+      "visible_groups": [],
+      "stats": {
+        "view": {
+          "simsac": {
+            "pixels": 5314,
+            "fraction": 0.10590720663265306,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 194,
+              "group_context": 3639,
+              "suppressed": 242,
+              "unaudited": 1239,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 5314
+        },
+        "erp": {
+          "simsac": {
+            "pixels": 5754,
+            "fraction": 0.11467633928571429,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 55,
+              "group_context": 3115,
+              "suppressed": 250,
+              "unaudited": 2334,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "viewdelta": {
+            "pixels": 0,
+            "fraction": 0.0,
+            "by_baseline": {
+              "candidate": 0,
+              "deferred": 0,
+              "group_context": 0,
+              "suppressed": 0,
+              "unaudited": 0,
+              "no_mesh": 0
+            },
+            "on_person_pixels": 0
+          },
+          "model_intersection": 0,
+          "model_disagreement": 5754
+        }
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "E001",
+      "title": "R08 의자 배치 차이 후보",
+      "zone": "R08",
+      "class_name": "chair",
+      "entries": [
+        "I1-096"
+      ],
+      "context_ids": [
+        [
+          "S0-020",
+          "S0-046"
+        ],
+        [
+          "S1-003",
+          "S1-006",
+          "S1-027"
+        ]
+      ],
+      "reason": "반복 관측된 영상 객체가 반대 촬영의 같은 자리에서 독립 2시점 이상 비점유 근거를 갖습니다. 이동·추가·소실의 물리적 유형은 미확정입니다. 같은 구역·종류의 메시 조각은 한 묶음으로 표시하며, 한 물리적 변화 건수나 객체별 이동 대응을 뜻하지 않습니다.",
+      "decisions": {
+        "I1-096": {
+          "vacancy_frames": [
+            104,
+            100
+          ],
+          "nearby_counterparts": [],
+          "physical_identity_confirmed": false,
+          "event_type_confirmed": false,
+          "decision": "candidate",
+          "reason_code": "repeated_presence_and_opposite_vacancy",
+          "event_alternatives": [
+            "possible_relocation",
+            "possible_added"
+          ]
+        }
+      },
+      "evidence": {
+        "I1-096": {
+          "epoch": 1,
+          "faces": 160,
+          "own_frames": [
+            105,
+            106,
+            107,
+            108,
+            109,
+            124
+          ],
+          "vacancy_frames": [
+            104,
+            100
+          ]
+        }
+      }
+    },
+    {
+      "id": "E002",
+      "title": "R12 의자 배치 차이 후보",
+      "zone": "R12",
+      "class_name": "chair",
+      "entries": [
+        "I1-067"
+      ],
+      "context_ids": [
+        [
+          "S0-010",
+          "S0-110"
+        ],
+        [
+          "S1-024",
+          "S1-033",
+          "S1-034",
+          "S1-035"
+        ]
+      ],
+      "reason": "반복 관측된 영상 객체가 반대 촬영의 같은 자리에서 독립 2시점 이상 비점유 근거를 갖습니다. 이동·추가·소실의 물리적 유형은 미확정입니다. 같은 구역·종류의 메시 조각은 한 묶음으로 표시하며, 한 물리적 변화 건수나 객체별 이동 대응을 뜻하지 않습니다.",
+      "decisions": {
+        "I1-067": {
+          "vacancy_frames": [
+            40,
+            30,
+            44
+          ],
+          "nearby_counterparts": [],
+          "physical_identity_confirmed": false,
+          "event_type_confirmed": false,
+          "decision": "candidate",
+          "reason_code": "repeated_presence_and_opposite_vacancy",
+          "event_alternatives": [
+            "possible_relocation",
+            "possible_added"
+          ]
+        }
+      },
+      "evidence": {
+        "I1-067": {
+          "epoch": 1,
+          "faces": 169,
+          "own_frames": [
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            40,
+            42,
+            45,
+            46,
+            51,
+            52,
+            54,
+            59,
+            60
+          ],
+          "vacancy_frames": [
+            40,
+            30,
+            44
+          ]
+        }
+      }
+    }
+  ],
+  "zones": [
+    "R01",
+    "R07",
+    "R08"
+  ],
+  "baseline_summary": {
+    "automatic_groups": 2,
+    "candidate_tracks": 2,
+    "record_dispositions": {
+      "suppressed": 130,
+      "group_context": 11,
+      "deferred": 97
+    },
+    "all_automatic_records": 238,
+    "semantic_components": 219,
+    "image_tracks": 116
+  },
+  "policy": {
+    "version": "occupancy-evidence-v2",
+    "minimum_own_frames": 3,
+    "minimum_frame_span": 4,
+    "minimum_large_views": 2,
+    "large_min_side_px": 20,
+    "large_min_area_px": 400,
+    "maximum_confidence_gate": 0.6,
+    "mean_confidence_gate": 0.45,
+    "mean_confidence_min_frames": 4,
+    "minimum_vacancy_views": 2,
+    "minimum_free_fraction": 0.35,
+    "maximum_occluded_fraction": 0.35,
+    "minimum_finite_fraction": 0.8,
+    "maximum_same_class_overlap": 0.2,
+    "maximum_person_iou": 0.15,
+    "minimum_frame_gap": 4,
+    "minimum_camera_baseline_h": 0.08,
+    "depth_error_multiplier": 1.5,
+    "nearby_guard_h": 0.08,
+    "minimum_counterpart_observations": 2,
+    "surface_consistency_quorum": 0.8,
+    "threshold_source": "tracking/vacancy gates inherited from image_object_lifecycle.py; surface quorum is a new unfitted audit-only setting, not a candidate gate; no candidate-ID exceptions"
+  },
+  "models": {
+    "simsac": {
+      "audit": {
+        "model": "SimSaC",
+        "source_commit": "43abe282231dc7d8c8cb829a92f9ebc014fa6cb6",
+        "checkpoint": "/workspace/pano_change_models_20261025/simsac_changesim.pth",
+        "checkpoint_sha256": "55f28690989603b5b01723d255bbc63157bacc704e635100ae517b0ad4d1f99a",
+        "loaded_strict": true,
+        "checkpoint_selection": "Official synthetic+ChangeSim checkpoint selected before inference because target imagery is indoors.",
+        "input_preprocessing": "RGB float/255, ImageNet z-score, full branch 520x520 and low branch 256x256; no test augmentation",
+        "compatibility": "Native PyTorch equivalent of upstream zero-padded 9x9 channel-mean correlation. Original train.py architecture, use_pac=False; no head replaced."
+      },
+      "status": {
+        "state": "complete",
+        "elapsed_seconds": 30.39309787750244,
+        "pair_predictions": 158,
+        "control": {
+          "view": {
+            "candidate_fraction": 0.0,
+            "mean_probability": 0.013222860172390938,
+            "max_probability": 0.11631235480308533
+          },
+          "erp": {
+            "candidate_fraction": 0.0,
+            "mean_probability": 0.006943448446691036,
+            "max_probability": 0.08929136395454407
+          }
+        }
+      },
+      "control": {
+        "view": {
+          "candidate_fraction": 0.0,
+          "mean_probability": 0.013222860172390938,
+          "max_probability": 0.11631235480308533
+        },
+        "erp": {
+          "candidate_fraction": 0.0,
+          "mean_probability": 0.006943448446691036,
+          "max_probability": 0.08929136395454407
+        }
+      }
+    },
+    "viewdelta": {
+      "audit": {
+        "model": "ViewDelta",
+        "source_commit": "e86596ab505856ac2a454f38c519f52864b1c375",
+        "checkpoint": "/workspace/pano_change_models_20261025/hf_cache/models--hoskerelab--ViewDelta/snapshots/c2025ecca6781ad522eec953627396f2595add7b/viewdelta_checkpoint.pth",
+        "checkpoint_sha256": "708b19ee253686fe998b9ac9fe41b81d2b4d1e936800b17244bc5bd8a27da28f",
+        "loaded_strict": true,
+        "prompt": "What are the differences?",
+        "learned_parameters": 100687872,
+        "input_preprocessing": "Upstream PIL square resize 256, DINOv2 processor (224 crop/257 tokens), SigLIP text, FP32 eval",
+        "compatibility": "Unused DeepSpeed import omitted; activation checkpointing remains disabled as in official inference. No model layers changed.",
+        "feature_models": {
+          "dinov2": "/workspace/pano_change_models_20261025/hf_cache/models--facebook--dinov2-large/snapshots/47b73eefe95e8d44ec3623f8890bd894b6ea2d6c",
+          "siglip": "/workspace/pano_change_models_20261025/hf_cache/models--google--siglip-large-patch16-384/snapshots/ce005573a40965dfd21fd937fbdeeebf2439fc35"
+        }
+      },
+      "status": {
+        "state": "complete",
+        "elapsed_seconds": 106.36668419837952,
+        "pair_predictions": 158,
+        "control": {
+          "view": {
+            "candidate_fraction": 0.0,
+            "mean_probability": 0.023867398500442505,
+            "max_probability": 0.49433037638664246
+          },
+          "erp": {
+            "candidate_fraction": 0.0,
+            "mean_probability": 0.0244632288813591,
+            "max_probability": 0.3040613830089569
+          }
+        }
+      },
+      "control": {
+        "view": {
+          "candidate_fraction": 0.0,
+          "mean_probability": 0.023867398500442505,
+          "max_probability": 0.49433037638664246
+        },
+        "erp": {
+          "candidate_fraction": 0.0,
+          "mean_probability": 0.0244632288813591,
+          "max_probability": 0.3040613830089569
+        }
+      }
+    }
+  },
+  "threshold": 0.5,
+  "pairing": "Exact upstream SceneDiff view-overlap weights from mesh-input branch; all nonzero counterparts used. No change scores used to choose frame pairs.",
+  "conditions": {
+    "physical_event_ground_truth": false,
+    "different_floors": true,
+    "baseline_observations": "Full previous capture; saved automatic decisions",
+    "pair_model_observations": "20 pilot ERP frames / 30 direction views",
+    "candidate_projection": "First-hit original faces of candidate-trigger tracks only",
+    "unselected_is_unchanged": false
+  }
+}

@@ -2,7 +2,20 @@
 
 같은 공간의 두 촬영 회차를 정합한 뒤 객체 대응 및 위치·형상 변화를 판별한다. 공간 정합도 이 task의 책임 범위다.
 
-상태: **개발 scaffold**. 실제 backend는 아직 연결되지 않았으며 `run`은 명시적으로 미구현 오류를 반환한다. 담당자 배정은 팀에서 정한다.
+상태: **Task 5a 모델 비교 진행 중 (2026-10-25)**. 기존 정합오차·관측검증 방식과 SimSaC·ViewDelta의 변화 후보를 비교하고 있다. SceneDiff의 원본 Pi3/SAM 입력과 메쉬·인스턴스 입력 비교도 수행했다. 공통 `pipeline.py` backend 통합은 아직 완료되지 않았으며 `run`은 미구현 오류를 반환한다.
+
+## 현재 모델 비교
+
+같은 30개 방향 RGB에서 기존 후보·보류 판정과 두 모델의 후보를 함께 확인한다. 전체 ERP 입력과 동일 방향 RGB 입력을 따로 실행했다. 후보를 생성한 객체 트랙의 원본 면만 기존 후보 표면으로 표시하며, 주변 의자 그룹 전체나 보류 영역을 변화로 확정하지 않는다.
+
+- [상세 진행 기록·재현 범위](../../../../docs/task5a-model-comparison-20261025.md)
+- [기존 관측검증 / SimSaC / ViewDelta 비교 화면](assets/panorama-change-20261025/focus-comparison-20261025/index.html)
+- [SceneDiff 포함 모델 비교](assets/panorama-change-20261025/model-comparison-20261025/index.html)
+- [SceneDiff 입력 교체 비교](assets/panorama-change-20261025/paired/index.html)
+
+![기존 관측검증과 SimSaC·ViewDelta 비교](assets/panorama-change-20261025/focus-comparison-20261025/viewer.png)
+
+진행 과제는 사람·시점·관측 범위에 따른 반응을 확인하고, 모델 후보를 기존 관측검증과 연결해 추가로 검증하는 것이다. 기존 방식은 전체 촬영을, 두 모델은 파일럿 20 ERP 프레임을 이용했으므로 현재 수치를 정확도 순위로 사용하지 않는다.
 
 ## 작업 범위
 

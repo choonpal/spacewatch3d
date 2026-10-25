@@ -1,0 +1,17 @@
+{
+  "state": "complete",
+  "elapsed_seconds": 30.39309787750244,
+  "pair_predictions": 158,
+  "control": {
+    "view": {
+      "candidate_fraction": 0.0,
+      "mean_probability": 0.013222860172390938,
+      "max_probability": 0.11631235480308533
+    },
+    "erp": {
+      "candidate_fraction": 0.0,
+      "mean_probability": 0.006943448446691036,
+      "max_probability": 0.08929136395454407
+    }
+  }
+}

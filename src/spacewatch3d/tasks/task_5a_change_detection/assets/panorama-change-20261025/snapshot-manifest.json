@@ -1,0 +1,3149 @@
+{
+  "date": "2026-10-25",
+  "timezone": "Asia/Seoul",
+  "source": "Existing measured comparison outputs; snapshots copied without changing model results",
+  "full_input_meshes_included": false,
+  "model_weights_included": false,
+  "files": {
+    "index.html": {
+      "bytes": 285,
+      "sha256": "cb99a9cb8048ac51799e8e930ba7dfedaecbd425f513407088c068cd9a76a044"
+    },
+    "focus-comparison-20261025/baseline-projections.npz": {
+      "bytes": 827098,
+      "sha256": "3dff7784945918a7d9ca653b14564353ff61eef74d838185fa6822f50d5c224f"
+    },
+    "focus-comparison-20261025/comparison.json": {
+      "bytes": 216535,
+      "sha256": "1a86f2203ea834f16e8aa204351c2b6c7f81c6f1031ba4be281a4c2e0ba86798"
+    },
+    "focus-comparison-20261025/focus.js": {
+      "bytes": 10738,
+      "sha256": "c82233a4d51dc403842b13082d530b96f03830f743848d4e9ec446c89a048b4c"
+    },
+    "focus-comparison-20261025/index.html": {
+      "bytes": 10754,
+      "sha256": "9b25dd7ae972d8a3aacd1ae712e5cdfc6b3034aaec49c8b78f251f22806dfdf3"
+    },
+    "focus-comparison-20261025/REPORT.md": {
+      "bytes": 3504,
+      "sha256": "417f9c669ee2af964e39e5dc6bbfb979d9d8b69e95563e08abb8b3bb6f7994a4"
+    },
+    "focus-comparison-20261025/validation.json": {
+      "bytes": 11515,
+      "sha256": "d08ec2ebd447b40232ca3139f7c1e987b00514114f364e0845aabaf648eb3c52"
+    },
+    "focus-comparison-20261025/viewer-person.png": {
+      "bytes": 62408,
+      "sha256": "d2a2344748cbb3bdec2eb6928a63f0e88c38a957bedda95db4888d32fb0261cf"
+    },
+    "focus-comparison-20261025/viewer.png": {
+      "bytes": 59796,
+      "sha256": "1138db873edb9aa371301793044bea4f6821b41c0fa12b321ed0cdeb1af0863a"
+    },
+    "model-comparison-20261025/comparison.json": {
+      "bytes": 97613,
+      "sha256": "032e1554b3caa189089700cbf55f46995ad1abe2f6917ba90e5a528f2e234c07"
+    },
+    "model-comparison-20261025/index.html": {
+      "bytes": 70705,
+      "sha256": "afd29f906019885fa2b3ed6ad5cd57a19a082439257a5306624b169e117a3baf"
+    },
+    "model-comparison-20261025/overview-erp.jpg": {
+      "bytes": 436199,
+      "sha256": "b884fcb6493767de62b282615f67fb47d0e72c1718dcfdf81c15e6e3073d776f"
+    },
+    "model-comparison-20261025/overview-view.jpg": {
+      "bytes": 438526,
+      "sha256": "70dedd985fbe56467af8ada02d49ecbf7a84fea98f5917b7a3c00602c928e575"
+    },
+    "model-comparison-20261025/REPORT.md": {
+      "bytes": 3398,
+      "sha256": "d1b8da150d60ae141b97350ae8d03e92bb4181e83ce2c863bdc65b4ebbf6d639"
+    },
+    "model-comparison-20261025/research.md": {
+      "bytes": 15119,
+      "sha256": "05deddda0bac08da89ba383342190b6ef6d5eb5d99b27a48017fdf44bcd0f7c9"
+    },
+    "model-comparison-20261025/setup-status.json": {
+      "bytes": 888,
+      "sha256": "ecbf5379012a2d7a82975200c1a487f36a20fe199cbc1192506b96c5ccde7a7d"
+    },
+    "model-comparison-20261025/validation.json": {
+      "bytes": 166,
+      "sha256": "171240b418aa6a55eba1229058fc972bb6eb56ac0ebc50543f89b2d399e68491"
+    },
+    "paired/comparison.json": {
+      "bytes": 35205,
+      "sha256": "c6919be1e17b949328d76fd731998c3b385e7556dc3d9588aeef2d9a7f9359d1"
+    },
+    "paired/index.html": {
+      "bytes": 32268,
+      "sha256": "4d63f20704b489b38802da22009e045b7d54f499d16c7b89486e7d1360bfe0ef"
+    },
+    "paired/native-model-audit.json": {
+      "bytes": 569,
+      "sha256": "0f2d0d9692dd03190963b9e7697b08df34c4d6aa335a2216fdd6fc43b3b81b2a"
+    },
+    "paired/overview.jpg": {
+      "bytes": 530133,
+      "sha256": "e3316d708c714ed8b3703378e184d8bfead6f4d699576de12c219b6448ad98b1"
+    },
+    "paired/REPORT.md": {
+      "bytes": 1683,
+      "sha256": "64db7cbffcb8d1c87f257c840cdb7d0a55f7baee8e64e285112ac3ed82652aef"
+    },
+    "paired/results.json": {
+      "bytes": 10823,
+      "sha256": "329e146b06563c96fe6bb2a04cb6e24b5e764b65c207f5fb6c75dd5cbb7bbf99"
+    },
+    "paired/run-status.json": {
+      "bytes": 83,
+      "sha256": "97ccbcd87d83ca7f5e69dddc9059ae492bcd032e4080acb6b0eedcdd047fea98"
+    },
+    "paired/validation.json": {
+      "bytes": 212,
+      "sha256": "d8ca999d545bef3e4d8297c567b52d223b361911d84c73afcfbcfe54b0722277"
+    },
+    "paired/images/R01-00-diff.png": {
+      "bytes": 140212,
+      "sha256": "013c69be2a9052f11b07adfe8bc6fde5ad49bbe8905596cb254baaba710db605"
+    },
+    "paired/images/R01-00-mesh.png": {
+      "bytes": 140212,
+      "sha256": "013c69be2a9052f11b07adfe8bc6fde5ad49bbe8905596cb254baaba710db605"
+    },
+    "paired/images/R01-00-original.png": {
+      "bytes": 131100,
+      "sha256": "2815c608d616b6c48ae70ffbfc5d56ade602c83f13eb9618512e2693f05493ea"
+    },
+    "paired/images/R01-00-rgb.png": {
+      "bytes": 131100,
+      "sha256": "2815c608d616b6c48ae70ffbfc5d56ade602c83f13eb9618512e2693f05493ea"
+    },
+    "paired/images/R01-01-diff.png": {
+      "bytes": 177677,
+      "sha256": "27d0e2bc1cf7c6c59992b0946c5e8fa5aa02dd47509f5541bb6bd53e40393965"
+    },
+    "paired/images/R01-01-mesh.png": {
+      "bytes": 177677,
+      "sha256": "27d0e2bc1cf7c6c59992b0946c5e8fa5aa02dd47509f5541bb6bd53e40393965"
+    },
+    "paired/images/R01-01-original.png": {
+      "bytes": 179455,
+      "sha256": "b2953a041808ba8b503991eed451cd8eb6f114b9e4a5be356d9758caaa953aaa"
+    },
+    "paired/images/R01-01-rgb.png": {
+      "bytes": 179455,
+      "sha256": "b2953a041808ba8b503991eed451cd8eb6f114b9e4a5be356d9758caaa953aaa"
+    },
+    "paired/images/R01-02-diff.png": {
+      "bytes": 150286,
+      "sha256": "a02b63c0712d237d18426d2a4817697cd44f882a82f352254e096be979d1dc1a"
+    },
+    "paired/images/R01-02-mesh.png": {
+      "bytes": 150286,
+      "sha256": "a02b63c0712d237d18426d2a4817697cd44f882a82f352254e096be979d1dc1a"
+    },
+    "paired/images/R01-02-original.png": {
+      "bytes": 150286,
+      "sha256": "a02b63c0712d237d18426d2a4817697cd44f882a82f352254e096be979d1dc1a"
+    },
+    "paired/images/R01-02-rgb.png": {
+      "bytes": 150286,
+      "sha256": "a02b63c0712d237d18426d2a4817697cd44f882a82f352254e096be979d1dc1a"
+    },
+    "paired/images/R01-03-diff.png": {
+      "bytes": 180558,
+      "sha256": "0ef6a90009baf16a24760ca05b20e2c1e9fb324eecec7416cc1aa5fe654dca1e"
+    },
+    "paired/images/R01-03-mesh.png": {
+      "bytes": 180558,
+      "sha256": "0ef6a90009baf16a24760ca05b20e2c1e9fb324eecec7416cc1aa5fe654dca1e"
+    },
+    "paired/images/R01-03-original.png": {
+      "bytes": 180558,
+      "sha256": "0ef6a90009baf16a24760ca05b20e2c1e9fb324eecec7416cc1aa5fe654dca1e"
+    },
+    "paired/images/R01-03-rgb.png": {
+      "bytes": 180558,
+      "sha256": "0ef6a90009baf16a24760ca05b20e2c1e9fb324eecec7416cc1aa5fe654dca1e"
+    },
+    "paired/images/R01-04-diff.png": {
+      "bytes": 170597,
+      "sha256": "5c8cd5d7de195ad84b393a91b393ef09361d58b9e35c4e899660677d7822423f"
+    },
+    "paired/images/R01-04-mesh.png": {
+      "bytes": 170597,
+      "sha256": "5c8cd5d7de195ad84b393a91b393ef09361d58b9e35c4e899660677d7822423f"
+    },
+    "paired/images/R01-04-original.png": {
+      "bytes": 172039,
+      "sha256": "379ade06468330cb0b0815e89da79c9cc63f17cbf6c10cd0dfecc81bb3ebc0c3"
+    },
+    "paired/images/R01-04-rgb.png": {
+      "bytes": 172039,
+      "sha256": "379ade06468330cb0b0815e89da79c9cc63f17cbf6c10cd0dfecc81bb3ebc0c3"
+    },
+    "paired/images/R01-05-diff.png": {
+      "bytes": 155779,
+      "sha256": "27c1d9d99fd353988be0a4838c316d72c0850d0f739da1be339f3f3ef3e440c7"
+    },
+    "paired/images/R01-05-mesh.png": {
+      "bytes": 155779,
+      "sha256": "27c1d9d99fd353988be0a4838c316d72c0850d0f739da1be339f3f3ef3e440c7"
+    },
+    "paired/images/R01-05-original.png": {
+      "bytes": 155779,
+      "sha256": "27c1d9d99fd353988be0a4838c316d72c0850d0f739da1be339f3f3ef3e440c7"
+    },
+    "paired/images/R01-05-rgb.png": {
+      "bytes": 155779,
+      "sha256": "27c1d9d99fd353988be0a4838c316d72c0850d0f739da1be339f3f3ef3e440c7"
+    },
+    "paired/images/R01-06-diff.png": {
+      "bytes": 155020,
+      "sha256": "0ccf06b1ad1513357fe1ce13b0873e492b02ab1d2b3951ed3ed4e3d7a9d1b6ee"
+    },
+    "paired/images/R01-06-mesh.png": {
+      "bytes": 155020,
+      "sha256": "0ccf06b1ad1513357fe1ce13b0873e492b02ab1d2b3951ed3ed4e3d7a9d1b6ee"
+    },
+    "paired/images/R01-06-original.png": {
+      "bytes": 155020,
+      "sha256": "0ccf06b1ad1513357fe1ce13b0873e492b02ab1d2b3951ed3ed4e3d7a9d1b6ee"
+    },
+    "paired/images/R01-06-rgb.png": {
+      "bytes": 155020,
+      "sha256": "0ccf06b1ad1513357fe1ce13b0873e492b02ab1d2b3951ed3ed4e3d7a9d1b6ee"
+    },
+    "paired/images/R01-07-diff.png": {
+      "bytes": 154273,
+      "sha256": "1f13ad94556daf39ead172fb0aeaf8a7995518b0745229fd69fb5cb9b03bb0f8"
+    },
+    "paired/images/R01-07-mesh.png": {
+      "bytes": 154273,
+      "sha256": "1f13ad94556daf39ead172fb0aeaf8a7995518b0745229fd69fb5cb9b03bb0f8"
+    },
+    "paired/images/R01-07-original.png": {
+      "bytes": 154273,
+      "sha256": "1f13ad94556daf39ead172fb0aeaf8a7995518b0745229fd69fb5cb9b03bb0f8"
+    },
+    "paired/images/R01-07-rgb.png": {
+      "bytes": 154273,
+      "sha256": "1f13ad94556daf39ead172fb0aeaf8a7995518b0745229fd69fb5cb9b03bb0f8"
+    },
+    "paired/images/R01-08-diff.png": {
+      "bytes": 149253,
+      "sha256": "130462468e914459e87cdb5bfdbf4a96381e9891ad20ee64945275e03491d893"
+    },
+    "paired/images/R01-08-mesh.png": {
+      "bytes": 149253,
+      "sha256": "130462468e914459e87cdb5bfdbf4a96381e9891ad20ee64945275e03491d893"
+    },
+    "paired/images/R01-08-original.png": {
+      "bytes": 149253,
+      "sha256": "130462468e914459e87cdb5bfdbf4a96381e9891ad20ee64945275e03491d893"
+    },
+    "paired/images/R01-08-rgb.png": {
+      "bytes": 149253,
+      "sha256": "130462468e914459e87cdb5bfdbf4a96381e9891ad20ee64945275e03491d893"
+    },
+    "paired/images/R01-09-diff.png": {
+      "bytes": 153569,
+      "sha256": "fa9da51b710634c0cf27a01e64bdb4fadc9ae901edba2623a8544f84a97082ec"
+    },
+    "paired/images/R01-09-mesh.png": {
+      "bytes": 153569,
+      "sha256": "fa9da51b710634c0cf27a01e64bdb4fadc9ae901edba2623a8544f84a97082ec"
+    },
+    "paired/images/R01-09-original.png": {
+      "bytes": 153569,
+      "sha256": "fa9da51b710634c0cf27a01e64bdb4fadc9ae901edba2623a8544f84a97082ec"
+    },
+    "paired/images/R01-09-rgb.png": {
+      "bytes": 153569,
+      "sha256": "fa9da51b710634c0cf27a01e64bdb4fadc9ae901edba2623a8544f84a97082ec"
+    },
+    "paired/images/R07-00-diff.png": {
+      "bytes": 160587,
+      "sha256": "604ec793366df840b471012c29d9604082b19b50ccd97fbd13ac62588417e841"
+    },
+    "paired/images/R07-00-mesh.png": {
+      "bytes": 160587,
+      "sha256": "604ec793366df840b471012c29d9604082b19b50ccd97fbd13ac62588417e841"
+    },
+    "paired/images/R07-00-original.png": {
+      "bytes": 161686,
+      "sha256": "6f0ef24df92d8877bd71803b945967edae5a5cf25b1e99d1c76c20985a8dc8be"
+    },
+    "paired/images/R07-00-rgb.png": {
+      "bytes": 161686,
+      "sha256": "6f0ef24df92d8877bd71803b945967edae5a5cf25b1e99d1c76c20985a8dc8be"
+    },
+    "paired/images/R07-01-diff.png": {
+      "bytes": 146095,
+      "sha256": "72717563ab3152cf40e186bcfffa3a0894fd61e39d5dbee0ca15e46d6309c1c2"
+    },
+    "paired/images/R07-01-mesh.png": {
+      "bytes": 146095,
+      "sha256": "72717563ab3152cf40e186bcfffa3a0894fd61e39d5dbee0ca15e46d6309c1c2"
+    },
+    "paired/images/R07-01-original.png": {
+      "bytes": 139584,
+      "sha256": "738117d35d85fdc9e20c166f57e4e3e46dbd578e0d98f60f49153c2d5e5ce40f"
+    },
+    "paired/images/R07-01-rgb.png": {
+      "bytes": 139584,
+      "sha256": "738117d35d85fdc9e20c166f57e4e3e46dbd578e0d98f60f49153c2d5e5ce40f"
+    },
+    "paired/images/R07-02-diff.png": {
+      "bytes": 166058,
+      "sha256": "94522a82642ad6d00157e0ff75353e1ae14feb96237a2f5da744f53472753ee0"
+    },
+    "paired/images/R07-02-mesh.png": {
+      "bytes": 167614,
+      "sha256": "9b07021fedd4a5c0d64301aff621b1192c350d506c2fae5df4111e003ae02afb"
+    },
+    "paired/images/R07-02-original.png": {
+      "bytes": 170432,
+      "sha256": "19ea031ed04afc903e41dc9e2ab2416d40c3289d6406caf911cf845d0ff7765e"
+    },
+    "paired/images/R07-02-rgb.png": {
+      "bytes": 171870,
+      "sha256": "a7c9af1a46fe05ae03d3ef9f8f2e7aca24fbbdc4cb56b9e8bd330f1a47338862"
+    },
+    "paired/images/R07-03-diff.png": {
+      "bytes": 164964,
+      "sha256": "99bd17a5fbf3f5aeabd2def9e7154874ac6eea8c115b9d4cfea7a71bee045948"
+    },
+    "paired/images/R07-03-mesh.png": {
+      "bytes": 187272,
+      "sha256": "e497965fca2f964e8f2f7d3b453b2692df89becfc0f49c4b7b9c310ae94fef23"
+    },
+    "paired/images/R07-03-original.png": {
+      "bytes": 165367,
+      "sha256": "509cdbe1f2bada92ad8472f4f95fc9cd324af0b4e16041f600e5043ed540fac8"
+    },
+    "paired/images/R07-03-rgb.png": {
+      "bytes": 186520,
+      "sha256": "0f3b52114d0409c2f482096a96ba5cf92babfab450dca65db92193ab5024ab06"
+    },
+    "paired/images/R07-04-diff.png": {
+      "bytes": 174004,
+      "sha256": "db057943d99a968b466c40f554aa976cb4e786340f1e9be53babeecdee29e95a"
+    },
+    "paired/images/R07-04-mesh.png": {
+      "bytes": 174004,
+      "sha256": "db057943d99a968b466c40f554aa976cb4e786340f1e9be53babeecdee29e95a"
+    },
+    "paired/images/R07-04-original.png": {
+      "bytes": 174004,
+      "sha256": "db057943d99a968b466c40f554aa976cb4e786340f1e9be53babeecdee29e95a"
+    },
+    "paired/images/R07-04-rgb.png": {
+      "bytes": 174004,
+      "sha256": "db057943d99a968b466c40f554aa976cb4e786340f1e9be53babeecdee29e95a"
+    },
+    "paired/images/R07-05-diff.png": {
+      "bytes": 155827,
+      "sha256": "83d8e73784af292ef7aa571d61e02b85d69f9571753cfc24ed1b04436df5a963"
+    },
+    "paired/images/R07-05-mesh.png": {
+      "bytes": 155827,
+      "sha256": "83d8e73784af292ef7aa571d61e02b85d69f9571753cfc24ed1b04436df5a963"
+    },
+    "paired/images/R07-05-original.png": {
+      "bytes": 153569,
+      "sha256": "fa9da51b710634c0cf27a01e64bdb4fadc9ae901edba2623a8544f84a97082ec"
+    },
+    "paired/images/R07-05-rgb.png": {
+      "bytes": 153569,
+      "sha256": "fa9da51b710634c0cf27a01e64bdb4fadc9ae901edba2623a8544f84a97082ec"
+    },
+    "paired/images/R07-06-diff.png": {
+      "bytes": 182485,
+      "sha256": "7ae81af3da6d5d068b77ec4ca10492205bc4d7e82ff220e0124bdabb1ff8b9cc"
+    },
+    "paired/images/R07-06-mesh.png": {
+      "bytes": 185700,
+      "sha256": "064847dc0fd4b9b234ff3803894611bac64aee1c0c1eb126fc23fdc00a3b56f5"
+    },
+    "paired/images/R07-06-original.png": {
+      "bytes": 188246,
+      "sha256": "b95da912a9e6182230cf4a6d0657a34f0622c1337d1794ebabceb0b2bc133fea"
+    },
+    "paired/images/R07-06-rgb.png": {
+      "bytes": 197142,
+      "sha256": "48df37dc0a5deacf87f62c49c19af290059401eb28866c74302e0c80c0e9a873"
+    },
+    "paired/images/R07-07-diff.png": {
+      "bytes": 214546,
+      "sha256": "81e01661fb16a94968ee715ec590d3ee7f5b7929b180988e162d0d2deb8cab91"
+    },
+    "paired/images/R07-07-mesh.png": {
+      "bytes": 214151,
+      "sha256": "2e6b73b0ac373b849d9a468783bb2cd1aa665a54302f26ab5ea385595f91660e"
+    },
+    "paired/images/R07-07-original.png": {
+      "bytes": 206985,
+      "sha256": "d4bed26fec92f9fc42fa56c96525cbc7d2357c1997789471fe4fb5922cf9b937"
+    },
+    "paired/images/R07-07-rgb.png": {
+      "bytes": 212553,
+      "sha256": "145ffb7ae0efd2d5273be0f9291352ea4794b28ea129f4c187eab8bc235c3a87"
+    },
+    "paired/images/R07-08-diff.png": {
+      "bytes": 175277,
+      "sha256": "6f70ab5d27b9ebd477a29cf13f13214b518c24eb97ed71c18b2b5788924435e7"
+    },
+    "paired/images/R07-08-mesh.png": {
+      "bytes": 175277,
+      "sha256": "6f70ab5d27b9ebd477a29cf13f13214b518c24eb97ed71c18b2b5788924435e7"
+    },
+    "paired/images/R07-08-original.png": {
+      "bytes": 171330,
+      "sha256": "8f36e1685f341fa39951e8387b3ebe5a6e8de16165ccabe53da4b4047aebd25c"
+    },
+    "paired/images/R07-08-rgb.png": {
+      "bytes": 171330,
+      "sha256": "8f36e1685f341fa39951e8387b3ebe5a6e8de16165ccabe53da4b4047aebd25c"
+    },
+    "paired/images/R07-09-diff.png": {
+      "bytes": 144787,
+      "sha256": "c7a034dd780666424e1e9dd6db5d65bc0dfc25ead3bd37a81a1fbd7e10215fe4"
+    },
+    "paired/images/R07-09-mesh.png": {
+      "bytes": 156183,
+      "sha256": "f7ab84036fa191fb49e50964566cd8d859f36ce565f252e188771a67091fd3e5"
+    },
+    "paired/images/R07-09-original.png": {
+      "bytes": 137117,
+      "sha256": "ad4ea6f0220fc52e98abbbc97545ff158807fbd74dbd288293c3409feb0a1936"
+    },
+    "paired/images/R07-09-rgb.png": {
+      "bytes": 160254,
+      "sha256": "d8377b05564541087f2d46474433d5a11f1adc2623d59640a0789b64cd56e70b"
+    },
+    "paired/images/R08-00-diff.png": {
+      "bytes": 217033,
+      "sha256": "63495f5d98ab469bd284df7dd22a2f41db6510effbc37140d8d01e28ee7fd0da"
+    },
+    "paired/images/R08-00-mesh.png": {
+      "bytes": 217033,
+      "sha256": "63495f5d98ab469bd284df7dd22a2f41db6510effbc37140d8d01e28ee7fd0da"
+    },
+    "paired/images/R08-00-original.png": {
+      "bytes": 214913,
+      "sha256": "61884a374b4c0876ea858a0df8ac19aa88e0ba483874c027fdf0b972a531b18a"
+    },
+    "paired/images/R08-00-rgb.png": {
+      "bytes": 214913,
+      "sha256": "61884a374b4c0876ea858a0df8ac19aa88e0ba483874c027fdf0b972a531b18a"
+    },
+    "paired/images/R08-01-diff.png": {
+      "bytes": 212096,
+      "sha256": "85d6386f3884c8d56e2dabddaa74472b4e168b35f9515f6512a83fd764f540e5"
+    },
+    "paired/images/R08-01-mesh.png": {
+      "bytes": 212096,
+      "sha256": "85d6386f3884c8d56e2dabddaa74472b4e168b35f9515f6512a83fd764f540e5"
+    },
+    "paired/images/R08-01-original.png": {
+      "bytes": 209636,
+      "sha256": "ecad3a66d535eadac5428bd74f5836299a149980e8b6e2533aacbd4d87f5e3fc"
+    },
+    "paired/images/R08-01-rgb.png": {
+      "bytes": 209636,
+      "sha256": "ecad3a66d535eadac5428bd74f5836299a149980e8b6e2533aacbd4d87f5e3fc"
+    },
+    "paired/images/R08-02-diff.png": {
+      "bytes": 191101,
+      "sha256": "6f88d1632bf94d71e2731c307dff31f4eedcd8b50717b70d678cfe5dcbc946a7"
+    },
+    "paired/images/R08-02-mesh.png": {
+      "bytes": 191101,
+      "sha256": "6f88d1632bf94d71e2731c307dff31f4eedcd8b50717b70d678cfe5dcbc946a7"
+    },
+    "paired/images/R08-02-original.png": {
+      "bytes": 191101,
+      "sha256": "6f88d1632bf94d71e2731c307dff31f4eedcd8b50717b70d678cfe5dcbc946a7"
+    },
+    "paired/images/R08-02-rgb.png": {
+      "bytes": 191101,
+      "sha256": "6f88d1632bf94d71e2731c307dff31f4eedcd8b50717b70d678cfe5dcbc946a7"
+    },
+    "paired/images/R08-03-diff.png": {
+      "bytes": 177471,
+      "sha256": "2ce1b29d8bb0422a01bea9b68219a038442791e1d959c8a3dbea9e75f525ae5a"
+    },
+    "paired/images/R08-03-mesh.png": {
+      "bytes": 177471,
+      "sha256": "2ce1b29d8bb0422a01bea9b68219a038442791e1d959c8a3dbea9e75f525ae5a"
+    },
+    "paired/images/R08-03-original.png": {
+      "bytes": 177471,
+      "sha256": "2ce1b29d8bb0422a01bea9b68219a038442791e1d959c8a3dbea9e75f525ae5a"
+    },
+    "paired/images/R08-03-rgb.png": {
+      "bytes": 177471,
+      "sha256": "2ce1b29d8bb0422a01bea9b68219a038442791e1d959c8a3dbea9e75f525ae5a"
+    },
+    "paired/images/R08-04-diff.png": {
+      "bytes": 150531,
+      "sha256": "d097b552afc3bbd1c520812eff75336a09c0b7fecf2379786a00c92ade8eaf04"
+    },
+    "paired/images/R08-04-mesh.png": {
+      "bytes": 150531,
+      "sha256": "d097b552afc3bbd1c520812eff75336a09c0b7fecf2379786a00c92ade8eaf04"
+    },
+    "paired/images/R08-04-original.png": {
+      "bytes": 150531,
+      "sha256": "d097b552afc3bbd1c520812eff75336a09c0b7fecf2379786a00c92ade8eaf04"
+    },
+    "paired/images/R08-04-rgb.png": {
+      "bytes": 150531,
+      "sha256": "d097b552afc3bbd1c520812eff75336a09c0b7fecf2379786a00c92ade8eaf04"
+    },
+    "paired/images/R08-05-diff.png": {
+      "bytes": 160930,
+      "sha256": "16ebce5727ac1d695f0118032b28fe809377a3ed3a537297d7c58189fffd90eb"
+    },
+    "paired/images/R08-05-mesh.png": {
+      "bytes": 160930,
+      "sha256": "16ebce5727ac1d695f0118032b28fe809377a3ed3a537297d7c58189fffd90eb"
+    },
+    "paired/images/R08-05-original.png": {
+      "bytes": 151782,
+      "sha256": "5d09a237e38e40ec94b04855f24f624e4adc7d4c9ef9164cd0baf55f63889a44"
+    },
+    "paired/images/R08-05-rgb.png": {
+      "bytes": 151782,
+      "sha256": "5d09a237e38e40ec94b04855f24f624e4adc7d4c9ef9164cd0baf55f63889a44"
+    },
+    "paired/images/R08-06-diff.png": {
+      "bytes": 191112,
+      "sha256": "b10004c348882beb4f249b80b1285fece0483011bf20fc14ee09131400775886"
+    },
+    "paired/images/R08-06-mesh.png": {
+      "bytes": 190644,
+      "sha256": "fe1abf716288ec53b2f1c786277947bfc23f7cb9a18297299ecb230a8d137957"
+    },
+    "paired/images/R08-06-original.png": {
+      "bytes": 180532,
+      "sha256": "3a88b5f1abb724fa6d6d6d2e82c7292bb56f0b7c10b1af047101e98491bda945"
+    },
+    "paired/images/R08-06-rgb.png": {
+      "bytes": 182846,
+      "sha256": "1c0dd1cb0594b537d469c7bc6920fe9338d55fd9b6bbd95ef7392b6eb0145d61"
+    },
+    "paired/images/R08-07-diff.png": {
+      "bytes": 185187,
+      "sha256": "78f9dd2ca26ae3a4ca27f8d6215db0ea14d1719be5c0185470c5abfa26c9698d"
+    },
+    "paired/images/R08-07-mesh.png": {
+      "bytes": 185622,
+      "sha256": "dccca3dcd3e34c61b18c5fab0a9816bc7d42f2f9a8adcb71f69737e1228f94ba"
+    },
+    "paired/images/R08-07-original.png": {
+      "bytes": 170920,
+      "sha256": "9350388faa8a0bcaa2f9f0b721b7ebf996c88af410fc6b305e9cafb1c9f7f5f4"
+    },
+    "paired/images/R08-07-rgb.png": {
+      "bytes": 174751,
+      "sha256": "79e6fa95c0098e3c5b4396337393b4983d4e20038d71e507d988cefaa02c5f2d"
+    },
+    "paired/images/R08-08-diff.png": {
+      "bytes": 203595,
+      "sha256": "0dcfa35ac058b2404fa139edea61cc785207fea1097d06d85644e0862323845a"
+    },
+    "paired/images/R08-08-mesh.png": {
+      "bytes": 207732,
+      "sha256": "10b6e796ddd87e1268bce5b6bc484e4b288bece97f95184bf66204540749a608"
+    },
+    "paired/images/R08-08-original.png": {
+      "bytes": 189627,
+      "sha256": "eea17a73e8a899527ee5f0e66057b486d19f7e8b19ab6a5e0cdfd68b0468a459"
+    },
+    "paired/images/R08-08-rgb.png": {
+      "bytes": 196507,
+      "sha256": "3b46b8dcc62c8a07c830ab8045d06056027abf2782aa8d09733767e97a257200"
+    },
+    "paired/images/R08-09-diff.png": {
+      "bytes": 174061,
+      "sha256": "d80db5f26f2b9449150a87f78f25d531b2a2db43f2684453d5bc1e3b5124eb39"
+    },
+    "paired/images/R08-09-mesh.png": {
+      "bytes": 170442,
+      "sha256": "0748a6890e6bcc4aa5753a10c8390e8bc88e63f4235d299da0d782de9eaba417"
+    },
+    "paired/images/R08-09-original.png": {
+      "bytes": 161324,
+      "sha256": "7f898afeda0dedb39ad602c9fa8c95c4462ac5be3ad9df0c1892973009981db5"
+    },
+    "paired/images/R08-09-rgb.png": {
+      "bytes": 156696,
+      "sha256": "1dafdab5f0ac36b9bb46f01b948b3a7ddcfc40cc2011a5eb4a46dec60d958959"
+    },
+    "model-comparison-20261025/images/R01-00-erp-full-simsac.jpg": {
+      "bytes": 121583,
+      "sha256": "2fb0e4d2363902ead42982605e172e5cabe0fe199ad8b7cc6ac636c4c717f0c9"
+    },
+    "model-comparison-20261025/images/R01-00-erp-full-viewdelta.jpg": {
+      "bytes": 121583,
+      "sha256": "2fb0e4d2363902ead42982605e172e5cabe0fe199ad8b7cc6ac636c4c717f0c9"
+    },
+    "model-comparison-20261025/images/R01-00-erp-reference.jpg": {
+      "bytes": 93437,
+      "sha256": "b17b078574dcb92addf275c136c6fd89d6b2067373c645dc5353ef953e3bc40d"
+    },
+    "model-comparison-20261025/images/R01-00-erp-rgb.jpg": {
+      "bytes": 99470,
+      "sha256": "0cbc9d667260de12be2ddde74a11fbca4f527eee19df56c02f7f4953e97bf1af"
+    },
+    "model-comparison-20261025/images/R01-00-erp-scenediff_mesh.jpg": {
+      "bytes": 42917,
+      "sha256": "6668adc1aa812832d697d79f2b6a5910f4230d6fcbeb4c2bef6fa4830c883ae8"
+    },
+    "model-comparison-20261025/images/R01-00-erp-scenediff_original.jpg": {
+      "bytes": 35058,
+      "sha256": "de1312669c928003a44bb5fa7f5539b7d186086357ff0831a48ebefb666c0d17"
+    },
+    "model-comparison-20261025/images/R01-00-erp-simsac.jpg": {
+      "bytes": 35058,
+      "sha256": "de1312669c928003a44bb5fa7f5539b7d186086357ff0831a48ebefb666c0d17"
+    },
+    "model-comparison-20261025/images/R01-00-erp-viewdelta.jpg": {
+      "bytes": 35058,
+      "sha256": "de1312669c928003a44bb5fa7f5539b7d186086357ff0831a48ebefb666c0d17"
+    },
+    "model-comparison-20261025/images/R01-00-rgb.jpg": {
+      "bytes": 31276,
+      "sha256": "9fcfd7552b3910ffb249ace95f8070bf841720c14adf70fab584caaf3e098390"
+    },
+    "model-comparison-20261025/images/R01-00-view-scenediff_mesh.jpg": {
+      "bytes": 42917,
+      "sha256": "6668adc1aa812832d697d79f2b6a5910f4230d6fcbeb4c2bef6fa4830c883ae8"
+    },
+    "model-comparison-20261025/images/R01-00-view-scenediff_original.jpg": {
+      "bytes": 35058,
+      "sha256": "de1312669c928003a44bb5fa7f5539b7d186086357ff0831a48ebefb666c0d17"
+    },
+    "model-comparison-20261025/images/R01-00-view-simsac.jpg": {
+      "bytes": 35058,
+      "sha256": "de1312669c928003a44bb5fa7f5539b7d186086357ff0831a48ebefb666c0d17"
+    },
+    "model-comparison-20261025/images/R01-00-view-viewdelta.jpg": {
+      "bytes": 35058,
+      "sha256": "de1312669c928003a44bb5fa7f5539b7d186086357ff0831a48ebefb666c0d17"
+    },
+    "model-comparison-20261025/images/R01-01-erp-full-simsac.jpg": {
+      "bytes": 110806,
+      "sha256": "e51bf91a7be031393f8f5b06ce9f06ee753eefae111c7b1d24e2955f5ecf1e51"
+    },
+    "model-comparison-20261025/images/R01-01-erp-full-viewdelta.jpg": {
+      "bytes": 111300,
+      "sha256": "8f601c1910fb48cbe3592053e2204bea59f6e3455211ed21d94f2a44686fd240"
+    },
+    "model-comparison-20261025/images/R01-01-erp-reference.jpg": {
+      "bytes": 93437,
+      "sha256": "b17b078574dcb92addf275c136c6fd89d6b2067373c645dc5353ef953e3bc40d"
+    },
+    "model-comparison-20261025/images/R01-01-erp-rgb.jpg": {
+      "bytes": 90456,
+      "sha256": "f59bf3bbdb205b4c1510bc7944ad467e1e56905d8560b48177de92cc70ed3d36"
+    },
+    "model-comparison-20261025/images/R01-01-erp-scenediff_mesh.jpg": {
+      "bytes": 48357,
+      "sha256": "08fb3a433462ad711f8588f7ce4b7a33c53bcf9f278c39ab227452c07c4d2411"
+    },
+    "model-comparison-20261025/images/R01-01-erp-scenediff_original.jpg": {
+      "bytes": 41367,
+      "sha256": "21cd8a133f3aa1b382c5a2761e11fdc45da2fe049a56f0a6397845197760057c"
+    },
+    "model-comparison-20261025/images/R01-01-erp-simsac.jpg": {
+      "bytes": 41367,
+      "sha256": "21cd8a133f3aa1b382c5a2761e11fdc45da2fe049a56f0a6397845197760057c"
+    },
+    "model-comparison-20261025/images/R01-01-erp-viewdelta.jpg": {
+      "bytes": 41367,
+      "sha256": "21cd8a133f3aa1b382c5a2761e11fdc45da2fe049a56f0a6397845197760057c"
+    },
+    "model-comparison-20261025/images/R01-01-rgb.jpg": {
+      "bytes": 37207,
+      "sha256": "d6bca1dd2efa3d4a411d32fc67ec5378ca8a004201c0653f904effacdf3ad6bc"
+    },
+    "model-comparison-20261025/images/R01-01-view-scenediff_mesh.jpg": {
+      "bytes": 48357,
+      "sha256": "08fb3a433462ad711f8588f7ce4b7a33c53bcf9f278c39ab227452c07c4d2411"
+    },
+    "model-comparison-20261025/images/R01-01-view-scenediff_original.jpg": {
+      "bytes": 41367,
+      "sha256": "21cd8a133f3aa1b382c5a2761e11fdc45da2fe049a56f0a6397845197760057c"
+    },
+    "model-comparison-20261025/images/R01-01-view-simsac.jpg": {
+      "bytes": 41508,
+      "sha256": "09c783baa4d94f57d6800b820fe315dfe615c457846c17abfe39bf065f206e62"
+    },
+    "model-comparison-20261025/images/R01-01-view-viewdelta.jpg": {
+      "bytes": 43706,
+      "sha256": "e026a76ecd462b93cd13b526908643d25998d0bab4e511f056283c9f34ee9d13"
+    },
+    "model-comparison-20261025/images/R01-02-erp-full-simsac.jpg": {
+      "bytes": 115331,
+      "sha256": "f8f4eb2fab84d6df98b0d012b19ce708fdff182122197f73ac7135a74f904f7c"
+    },
+    "model-comparison-20261025/images/R01-02-erp-full-viewdelta.jpg": {
+      "bytes": 115946,
+      "sha256": "ed7532fd9d4a696c6dc1cbb1d0aeb29c05d0c5c2009972c2b73578830866524e"
+    },
+    "model-comparison-20261025/images/R01-02-erp-reference.jpg": {
+      "bytes": 93437,
+      "sha256": "b17b078574dcb92addf275c136c6fd89d6b2067373c645dc5353ef953e3bc40d"
+    },
+    "model-comparison-20261025/images/R01-02-erp-rgb.jpg": {
+      "bytes": 94067,
+      "sha256": "f208b6741f94869054928a1e234e068ba018e81d133ec7e803317e3914e5137b"
+    },
+    "model-comparison-20261025/images/R01-02-erp-scenediff_mesh.jpg": {
+      "bytes": 37268,
+      "sha256": "830788a88608c4fe33d039dec383aa0550555d4a3694a988252d0937abaa1d50"
+    },
+    "model-comparison-20261025/images/R01-02-erp-scenediff_original.jpg": {
+      "bytes": 37268,
+      "sha256": "830788a88608c4fe33d039dec383aa0550555d4a3694a988252d0937abaa1d50"
+    },
+    "model-comparison-20261025/images/R01-02-erp-simsac.jpg": {
+      "bytes": 37268,
+      "sha256": "830788a88608c4fe33d039dec383aa0550555d4a3694a988252d0937abaa1d50"
+    },
+    "model-comparison-20261025/images/R01-02-erp-viewdelta.jpg": {
+      "bytes": 37268,
+      "sha256": "830788a88608c4fe33d039dec383aa0550555d4a3694a988252d0937abaa1d50"
+    },
+    "model-comparison-20261025/images/R01-02-rgb.jpg": {
+      "bytes": 33272,
+      "sha256": "1303ae5428317ad03d4a7338376e3e8c95ab9c78827b2c59ed6c98ba5bc3c180"
+    },
+    "model-comparison-20261025/images/R01-02-view-scenediff_mesh.jpg": {
+      "bytes": 37268,
+      "sha256": "830788a88608c4fe33d039dec383aa0550555d4a3694a988252d0937abaa1d50"
+    },
+    "model-comparison-20261025/images/R01-02-view-scenediff_original.jpg": {
+      "bytes": 37268,
+      "sha256": "830788a88608c4fe33d039dec383aa0550555d4a3694a988252d0937abaa1d50"
+    },
+    "model-comparison-20261025/images/R01-02-view-simsac.jpg": {
+      "bytes": 41730,
+      "sha256": "0af7018a0f9c1326536186bd2397651dc0bf10f68101eb64c4bf637c1203926d"
+    },
+    "model-comparison-20261025/images/R01-02-view-viewdelta.jpg": {
+      "bytes": 41466,
+      "sha256": "2707fa651b8dbfc4216ea1e1a8b2e75840a12101839431771536b684cda26278"
+    },
+    "model-comparison-20261025/images/R01-03-erp-full-simsac.jpg": {
+      "bytes": 120148,
+      "sha256": "df888f4f14d851ef5c8ae66ee619fd000e3d296636f28772196ba21196e8dd78"
+    },
+    "model-comparison-20261025/images/R01-03-erp-full-viewdelta.jpg": {
+      "bytes": 120050,
+      "sha256": "ab814aa18ba03839ca3b83b84c01fb4f4f05f029afe732581fa5db02717adb5d"
+    },
+    "model-comparison-20261025/images/R01-03-erp-reference.jpg": {
+      "bytes": 93437,
+      "sha256": "b17b078574dcb92addf275c136c6fd89d6b2067373c645dc5353ef953e3bc40d"
+    },
+    "model-comparison-20261025/images/R01-03-erp-rgb.jpg": {
+      "bytes": 97815,
+      "sha256": "d72f050c2920fac4f5ebcfe9b022da946589210af47d9082f3369d7ee19abf53"
+    },
+    "model-comparison-20261025/images/R01-03-erp-scenediff_mesh.jpg": {
+      "bytes": 43139,
+      "sha256": "66433a0732b69ce25f71fa4f6c5a3a9193e8b9eb8c96c71a4c3c4557301142d0"
+    },
+    "model-comparison-20261025/images/R01-03-erp-scenediff_original.jpg": {
+      "bytes": 43139,
+      "sha256": "66433a0732b69ce25f71fa4f6c5a3a9193e8b9eb8c96c71a4c3c4557301142d0"
+    },
+    "model-comparison-20261025/images/R01-03-erp-simsac.jpg": {
+      "bytes": 43139,
+      "sha256": "66433a0732b69ce25f71fa4f6c5a3a9193e8b9eb8c96c71a4c3c4557301142d0"
+    },
+    "model-comparison-20261025/images/R01-03-erp-viewdelta.jpg": {
+      "bytes": 43139,
+      "sha256": "66433a0732b69ce25f71fa4f6c5a3a9193e8b9eb8c96c71a4c3c4557301142d0"
+    },
+    "model-comparison-20261025/images/R01-03-rgb.jpg": {
+      "bytes": 38777,
+      "sha256": "45cddb0fed6b1096c3159e1d6b5b54a89f0ea462b4be6c3febfb32dbff13228d"
+    },
+    "model-comparison-20261025/images/R01-03-view-scenediff_mesh.jpg": {
+      "bytes": 43139,
+      "sha256": "66433a0732b69ce25f71fa4f6c5a3a9193e8b9eb8c96c71a4c3c4557301142d0"
+    },
+    "model-comparison-20261025/images/R01-03-view-scenediff_original.jpg": {
+      "bytes": 43139,
+      "sha256": "66433a0732b69ce25f71fa4f6c5a3a9193e8b9eb8c96c71a4c3c4557301142d0"
+    },
+    "model-comparison-20261025/images/R01-03-view-simsac.jpg": {
+      "bytes": 44073,
+      "sha256": "27ce4ff64d706d978a68f51df6e86ed772d32a902601b1b361b16b3ba41a1d0d"
+    },
+    "model-comparison-20261025/images/R01-03-view-viewdelta.jpg": {
+      "bytes": 43139,
+      "sha256": "66433a0732b69ce25f71fa4f6c5a3a9193e8b9eb8c96c71a4c3c4557301142d0"
+    },
+    "model-comparison-20261025/images/R01-04-erp-full-simsac.jpg": {
+      "bytes": 110806,
+      "sha256": "e51bf91a7be031393f8f5b06ce9f06ee753eefae111c7b1d24e2955f5ecf1e51"
+    },
+    "model-comparison-20261025/images/R01-04-erp-full-viewdelta.jpg": {
+      "bytes": 111193,
+      "sha256": "e332f4c7219a6ad70f17211617b2db55e94575f92e8434ccfd6cd552b245dd4d"
+    },
+    "model-comparison-20261025/images/R01-04-erp-reference.jpg": {
+      "bytes": 95857,
+      "sha256": "c2b11eabffb514125357e94f0d70df1da2864b0fd5b34ff494c1fcff3ddbe2d5"
+    },
+    "model-comparison-20261025/images/R01-04-erp-rgb.jpg": {
+      "bytes": 90456,
+      "sha256": "f59bf3bbdb205b4c1510bc7944ad467e1e56905d8560b48177de92cc70ed3d36"
+    },
+    "model-comparison-20261025/images/R01-04-erp-scenediff_mesh.jpg": {
+      "bytes": 47181,
+      "sha256": "84564857fb4a15bfb77a410685bd22ab7aca2e3eb737920d84763347ca19b16b"
+    },
+    "model-comparison-20261025/images/R01-04-erp-scenediff_original.jpg": {
+      "bytes": 36644,
+      "sha256": "dec73865f8c29f02dedfde0bca1c34f56277cd692c2cd0fd9522a6b596ad0dee"
+    },
+    "model-comparison-20261025/images/R01-04-erp-simsac.jpg": {
+      "bytes": 36644,
+      "sha256": "dec73865f8c29f02dedfde0bca1c34f56277cd692c2cd0fd9522a6b596ad0dee"
+    },
+    "model-comparison-20261025/images/R01-04-erp-viewdelta.jpg": {
+      "bytes": 36644,
+      "sha256": "dec73865f8c29f02dedfde0bca1c34f56277cd692c2cd0fd9522a6b596ad0dee"
+    },
+    "model-comparison-20261025/images/R01-04-rgb.jpg": {
+      "bytes": 32753,
+      "sha256": "8ced4b987d488c676880a092102577098ddb91401e6268a222258ec26ef853a5"
+    },
+    "model-comparison-20261025/images/R01-04-view-scenediff_mesh.jpg": {
+      "bytes": 47181,
+      "sha256": "84564857fb4a15bfb77a410685bd22ab7aca2e3eb737920d84763347ca19b16b"
+    },
+    "model-comparison-20261025/images/R01-04-view-scenediff_original.jpg": {
+      "bytes": 36644,
+      "sha256": "dec73865f8c29f02dedfde0bca1c34f56277cd692c2cd0fd9522a6b596ad0dee"
+    },
+    "model-comparison-20261025/images/R01-04-view-simsac.jpg": {
+      "bytes": 36644,
+      "sha256": "dec73865f8c29f02dedfde0bca1c34f56277cd692c2cd0fd9522a6b596ad0dee"
+    },
+    "model-comparison-20261025/images/R01-04-view-viewdelta.jpg": {
+      "bytes": 36644,
+      "sha256": "dec73865f8c29f02dedfde0bca1c34f56277cd692c2cd0fd9522a6b596ad0dee"
+    },
+    "model-comparison-20261025/images/R01-05-erp-full-simsac.jpg": {
+      "bytes": 117340,
+      "sha256": "1cf7315b0794dbb86e3f8193a49ade968d9ab7fc0a90630d7a24714bc41cc69f"
+    },
+    "model-comparison-20261025/images/R01-05-erp-full-viewdelta.jpg": {
+      "bytes": 117183,
+      "sha256": "cf7fa5cbc09b5c35ed49271193cb8c8cb77a60dfef692978e4002550d580a06e"
+    },
+    "model-comparison-20261025/images/R01-05-erp-reference.jpg": {
+      "bytes": 90456,
+      "sha256": "f59bf3bbdb205b4c1510bc7944ad467e1e56905d8560b48177de92cc70ed3d36"
+    },
+    "model-comparison-20261025/images/R01-05-erp-rgb.jpg": {
+      "bytes": 95857,
+      "sha256": "c2b11eabffb514125357e94f0d70df1da2864b0fd5b34ff494c1fcff3ddbe2d5"
+    },
+    "model-comparison-20261025/images/R01-05-erp-scenediff_mesh.jpg": {
+      "bytes": 38868,
+      "sha256": "772664d42e182b8f54bdd22c2b2caa4121eb159828f6a0f7ccb8fa763ff8b42a"
+    },
+    "model-comparison-20261025/images/R01-05-erp-scenediff_original.jpg": {
+      "bytes": 38868,
+      "sha256": "772664d42e182b8f54bdd22c2b2caa4121eb159828f6a0f7ccb8fa763ff8b42a"
+    },
+    "model-comparison-20261025/images/R01-05-erp-simsac.jpg": {
+      "bytes": 38868,
+      "sha256": "772664d42e182b8f54bdd22c2b2caa4121eb159828f6a0f7ccb8fa763ff8b42a"
+    },
+    "model-comparison-20261025/images/R01-05-erp-viewdelta.jpg": {
+      "bytes": 38868,
+      "sha256": "772664d42e182b8f54bdd22c2b2caa4121eb159828f6a0f7ccb8fa763ff8b42a"
+    },
+    "model-comparison-20261025/images/R01-05-rgb.jpg": {
+      "bytes": 34810,
+      "sha256": "86b23d391a6ad98fcd6fc5b5a7fe29ae841219be7614e0a149ea6fcde74cc477"
+    },
+    "model-comparison-20261025/images/R01-05-view-scenediff_mesh.jpg": {
+      "bytes": 38868,
+      "sha256": "772664d42e182b8f54bdd22c2b2caa4121eb159828f6a0f7ccb8fa763ff8b42a"
+    },
+    "model-comparison-20261025/images/R01-05-view-scenediff_original.jpg": {
+      "bytes": 38868,
+      "sha256": "772664d42e182b8f54bdd22c2b2caa4121eb159828f6a0f7ccb8fa763ff8b42a"
+    },
+    "model-comparison-20261025/images/R01-05-view-simsac.jpg": {
+      "bytes": 38868,
+      "sha256": "772664d42e182b8f54bdd22c2b2caa4121eb159828f6a0f7ccb8fa763ff8b42a"
+    },
+    "model-comparison-20261025/images/R01-05-view-viewdelta.jpg": {
+      "bytes": 38868,
+      "sha256": "772664d42e182b8f54bdd22c2b2caa4121eb159828f6a0f7ccb8fa763ff8b42a"
+    },
+    "model-comparison-20261025/images/R01-06-erp-full-simsac.jpg": {
+      "bytes": 115781,
+      "sha256": "7095780be85264daf1502b1532db79245b835aad309fe8a5c95c6f11162b5abc"
+    },
+    "model-comparison-20261025/images/R01-06-erp-full-viewdelta.jpg": {
+      "bytes": 115023,
+      "sha256": "46267af52aadf8d3aa28448f04acc65bf8ce7eacbe736ff19c0f7f5aac25e2bb"
+    },
+    "model-comparison-20261025/images/R01-06-erp-reference.jpg": {
+      "bytes": 94067,
+      "sha256": "f208b6741f94869054928a1e234e068ba018e81d133ec7e803317e3914e5137b"
+    },
+    "model-comparison-20261025/images/R01-06-erp-rgb.jpg": {
+      "bytes": 93437,
+      "sha256": "b17b078574dcb92addf275c136c6fd89d6b2067373c645dc5353ef953e3bc40d"
+    },
+    "model-comparison-20261025/images/R01-06-erp-scenediff_mesh.jpg": {
+      "bytes": 38394,
+      "sha256": "3c9ce4f8b1fdd09c510bbb19e6ecc53b6e03b103c5f3cc27427785ed2a9b48d0"
+    },
+    "model-comparison-20261025/images/R01-06-erp-scenediff_original.jpg": {
+      "bytes": 38394,
+      "sha256": "3c9ce4f8b1fdd09c510bbb19e6ecc53b6e03b103c5f3cc27427785ed2a9b48d0"
+    },
+    "model-comparison-20261025/images/R01-06-erp-simsac.jpg": {
+      "bytes": 38394,
+      "sha256": "3c9ce4f8b1fdd09c510bbb19e6ecc53b6e03b103c5f3cc27427785ed2a9b48d0"
+    },
+    "model-comparison-20261025/images/R01-06-erp-viewdelta.jpg": {
+      "bytes": 38394,
+      "sha256": "3c9ce4f8b1fdd09c510bbb19e6ecc53b6e03b103c5f3cc27427785ed2a9b48d0"
+    },
+    "model-comparison-20261025/images/R01-06-rgb.jpg": {
+      "bytes": 34446,
+      "sha256": "cd3567600fd95db6dbb4f4e144b3cc746ea1b5cffa6b615871bed67bdbff6163"
+    },
+    "model-comparison-20261025/images/R01-06-view-scenediff_mesh.jpg": {
+      "bytes": 38394,
+      "sha256": "3c9ce4f8b1fdd09c510bbb19e6ecc53b6e03b103c5f3cc27427785ed2a9b48d0"
+    },
+    "model-comparison-20261025/images/R01-06-view-scenediff_original.jpg": {
+      "bytes": 38394,
+      "sha256": "3c9ce4f8b1fdd09c510bbb19e6ecc53b6e03b103c5f3cc27427785ed2a9b48d0"
+    },
+    "model-comparison-20261025/images/R01-06-view-simsac.jpg": {
+      "bytes": 38907,
+      "sha256": "616f06d286430717f4fd38d4ceac80bc3a2737e16f5b97f9a892f8abbf3bce87"
+    },
+    "model-comparison-20261025/images/R01-06-view-viewdelta.jpg": {
+      "bytes": 38394,
+      "sha256": "3c9ce4f8b1fdd09c510bbb19e6ecc53b6e03b103c5f3cc27427785ed2a9b48d0"
+    },
+    "model-comparison-20261025/images/R01-07-erp-full-simsac.jpg": {
+      "bytes": 114663,
+      "sha256": "a500a19802e25200a04aae7b8463e5f966a7590ce2d55625b566141f5c4359f6"
+    },
+    "model-comparison-20261025/images/R01-07-erp-full-viewdelta.jpg": {
+      "bytes": 114949,
+      "sha256": "2acb34af8081d3bcdb74f306c82cc2ff523317428424be353c0dc8821017b95b"
+    },
+    "model-comparison-20261025/images/R01-07-erp-reference.jpg": {
+      "bytes": 99470,
+      "sha256": "0cbc9d667260de12be2ddde74a11fbca4f527eee19df56c02f7f4953e97bf1af"
+    },
+    "model-comparison-20261025/images/R01-07-erp-rgb.jpg": {
+      "bytes": 93437,
+      "sha256": "b17b078574dcb92addf275c136c6fd89d6b2067373c645dc5353ef953e3bc40d"
+    },
+    "model-comparison-20261025/images/R01-07-erp-scenediff_mesh.jpg": {
+      "bytes": 36886,
+      "sha256": "3b100ed31417cb54d3119dcd16c7edc8bcf4560f9c185b2ee6c2ac3ab144297c"
+    },
+    "model-comparison-20261025/images/R01-07-erp-scenediff_original.jpg": {
+      "bytes": 36886,
+      "sha256": "3b100ed31417cb54d3119dcd16c7edc8bcf4560f9c185b2ee6c2ac3ab144297c"
+    },
+    "model-comparison-20261025/images/R01-07-erp-simsac.jpg": {
+      "bytes": 36886,
+      "sha256": "3b100ed31417cb54d3119dcd16c7edc8bcf4560f9c185b2ee6c2ac3ab144297c"
+    },
+    "model-comparison-20261025/images/R01-07-erp-viewdelta.jpg": {
+      "bytes": 36886,
+      "sha256": "3b100ed31417cb54d3119dcd16c7edc8bcf4560f9c185b2ee6c2ac3ab144297c"
+    },
+    "model-comparison-20261025/images/R01-07-rgb.jpg": {
+      "bytes": 32964,
+      "sha256": "0ac57c2557ecc0eb34c08937025b3c44586f8d3cb7752844a028c52e51d1f5cf"
+    },
+    "model-comparison-20261025/images/R01-07-view-scenediff_mesh.jpg": {
+      "bytes": 36886,
+      "sha256": "3b100ed31417cb54d3119dcd16c7edc8bcf4560f9c185b2ee6c2ac3ab144297c"
+    },
+    "model-comparison-20261025/images/R01-07-view-scenediff_original.jpg": {
+      "bytes": 36886,
+      "sha256": "3b100ed31417cb54d3119dcd16c7edc8bcf4560f9c185b2ee6c2ac3ab144297c"
+    },
+    "model-comparison-20261025/images/R01-07-view-simsac.jpg": {
+      "bytes": 36886,
+      "sha256": "3b100ed31417cb54d3119dcd16c7edc8bcf4560f9c185b2ee6c2ac3ab144297c"
+    },
+    "model-comparison-20261025/images/R01-07-view-viewdelta.jpg": {
+      "bytes": 36886,
+      "sha256": "3b100ed31417cb54d3119dcd16c7edc8bcf4560f9c185b2ee6c2ac3ab144297c"
+    },
+    "model-comparison-20261025/images/R01-08-erp-full-simsac.jpg": {
+      "bytes": 124262,
+      "sha256": "35f2cc7aba9f06aba2d3924378a35d4d12e9b4351febdb56ac364c9a9589dc83"
+    },
+    "model-comparison-20261025/images/R01-08-erp-full-viewdelta.jpg": {
+      "bytes": 124118,
+      "sha256": "7cacf31d5b542963ce8a276e69928719b31edc18d3732f61dfff8e997b280ce7"
+    },
+    "model-comparison-20261025/images/R01-08-erp-reference.jpg": {
+      "bytes": 99470,
+      "sha256": "0cbc9d667260de12be2ddde74a11fbca4f527eee19df56c02f7f4953e97bf1af"
+    },
+    "model-comparison-20261025/images/R01-08-erp-rgb.jpg": {
+      "bytes": 101508,
+      "sha256": "cdbac56f56e62d27b2a131c6bf4953c0b0c48974e7213cce64f8c2c4bb6cbd3f"
+    },
+    "model-comparison-20261025/images/R01-08-erp-scenediff_mesh.jpg": {
+      "bytes": 39489,
+      "sha256": "5207683f6ef9b1942f4e18d008ca1e5cb1dab620805ec7a6b9dd3b0965712d42"
+    },
+    "model-comparison-20261025/images/R01-08-erp-scenediff_original.jpg": {
+      "bytes": 39489,
+      "sha256": "5207683f6ef9b1942f4e18d008ca1e5cb1dab620805ec7a6b9dd3b0965712d42"
+    },
+    "model-comparison-20261025/images/R01-08-erp-simsac.jpg": {
+      "bytes": 39489,
+      "sha256": "5207683f6ef9b1942f4e18d008ca1e5cb1dab620805ec7a6b9dd3b0965712d42"
+    },
+    "model-comparison-20261025/images/R01-08-erp-viewdelta.jpg": {
+      "bytes": 39489,
+      "sha256": "5207683f6ef9b1942f4e18d008ca1e5cb1dab620805ec7a6b9dd3b0965712d42"
+    },
+    "model-comparison-20261025/images/R01-08-rgb.jpg": {
+      "bytes": 35414,
+      "sha256": "cef90725958d63bcf8280e33294b4e5b42e6853d3e7add18b62ed26e8c77200b"
+    },
+    "model-comparison-20261025/images/R01-08-view-scenediff_mesh.jpg": {
+      "bytes": 39489,
+      "sha256": "5207683f6ef9b1942f4e18d008ca1e5cb1dab620805ec7a6b9dd3b0965712d42"
+    },
+    "model-comparison-20261025/images/R01-08-view-scenediff_original.jpg": {
+      "bytes": 39489,
+      "sha256": "5207683f6ef9b1942f4e18d008ca1e5cb1dab620805ec7a6b9dd3b0965712d42"
+    },
+    "model-comparison-20261025/images/R01-08-view-simsac.jpg": {
+      "bytes": 40352,
+      "sha256": "c532c18f5f0a019b3b09641ec42e549f35d24ea38c98d47cb2fda8ba5a60fcf2"
+    },
+    "model-comparison-20261025/images/R01-08-view-viewdelta.jpg": {
+      "bytes": 39489,
+      "sha256": "5207683f6ef9b1942f4e18d008ca1e5cb1dab620805ec7a6b9dd3b0965712d42"
+    },
+    "model-comparison-20261025/images/R01-09-erp-full-simsac.jpg": {
+      "bytes": 110224,
+      "sha256": "542ece60f5562b24d5285005e77b8e187b6d969dae6110d1a2d2a329702dae05"
+    },
+    "model-comparison-20261025/images/R01-09-erp-full-viewdelta.jpg": {
+      "bytes": 110128,
+      "sha256": "0dcbdd797082df487cfd50d861ab482af45f2cb127163ae37dcfd2017969807f"
+    },
+    "model-comparison-20261025/images/R01-09-erp-reference.jpg": {
+      "bytes": 99470,
+      "sha256": "0cbc9d667260de12be2ddde74a11fbca4f527eee19df56c02f7f4953e97bf1af"
+    },
+    "model-comparison-20261025/images/R01-09-erp-rgb.jpg": {
+      "bytes": 89640,
+      "sha256": "3e7bf99432f7ae12264f8993c526feeef2720519c549bafdbcb529d7307e4286"
+    },
+    "model-comparison-20261025/images/R01-09-erp-scenediff_mesh.jpg": {
+      "bytes": 38401,
+      "sha256": "1dab928b0231c3e920239d69fce7c504083e9478dd028d511d78954ed1164d3a"
+    },
+    "model-comparison-20261025/images/R01-09-erp-scenediff_original.jpg": {
+      "bytes": 38401,
+      "sha256": "1dab928b0231c3e920239d69fce7c504083e9478dd028d511d78954ed1164d3a"
+    },
+    "model-comparison-20261025/images/R01-09-erp-simsac.jpg": {
+      "bytes": 38476,
+      "sha256": "7e30e8513c72b3ac67064ab446937591f7eee4d3f48bc80b4886694b5c85b3c0"
+    },
+    "model-comparison-20261025/images/R01-09-erp-viewdelta.jpg": {
+      "bytes": 38401,
+      "sha256": "1dab928b0231c3e920239d69fce7c504083e9478dd028d511d78954ed1164d3a"
+    },
+    "model-comparison-20261025/images/R01-09-rgb.jpg": {
+      "bytes": 34463,
+      "sha256": "c3cbbdcf2e387dd409b208d5fddaac1fae125d4b8fdf717261eb9ce4c40f5520"
+    },
+    "model-comparison-20261025/images/R01-09-view-scenediff_mesh.jpg": {
+      "bytes": 38401,
+      "sha256": "1dab928b0231c3e920239d69fce7c504083e9478dd028d511d78954ed1164d3a"
+    },
+    "model-comparison-20261025/images/R01-09-view-scenediff_original.jpg": {
+      "bytes": 38401,
+      "sha256": "1dab928b0231c3e920239d69fce7c504083e9478dd028d511d78954ed1164d3a"
+    },
+    "model-comparison-20261025/images/R01-09-view-simsac.jpg": {
+      "bytes": 39134,
+      "sha256": "40d1c75a6c9db118b441404fb662ae978457501705ddfcb865da615670da7e69"
+    },
+    "model-comparison-20261025/images/R01-09-view-viewdelta.jpg": {
+      "bytes": 39682,
+      "sha256": "32efa2063a1c79f005f86e570c706b3934e916819619006879c13fa95d3c2101"
+    },
+    "model-comparison-20261025/images/R07-00-erp-full-simsac.jpg": {
+      "bytes": 120272,
+      "sha256": "e6a2f52c25cb3273fef17724e2b7068f0a1cfd7717d0bc35f5f1108dcc3d9326"
+    },
+    "model-comparison-20261025/images/R07-00-erp-full-viewdelta.jpg": {
+      "bytes": 120272,
+      "sha256": "e6a2f52c25cb3273fef17724e2b7068f0a1cfd7717d0bc35f5f1108dcc3d9326"
+    },
+    "model-comparison-20261025/images/R07-00-erp-reference.jpg": {
+      "bytes": 89640,
+      "sha256": "3e7bf99432f7ae12264f8993c526feeef2720519c549bafdbcb529d7307e4286"
+    },
+    "model-comparison-20261025/images/R07-00-erp-rgb.jpg": {
+      "bytes": 98176,
+      "sha256": "8c24502f4cc62c454b961f8cc42ea16985fdc0089dbd7e3dc072cb79920468c1"
+    },
+    "model-comparison-20261025/images/R07-00-erp-scenediff_mesh.jpg": {
+      "bytes": 42930,
+      "sha256": "ade96f17b32625028282ad84f4b34f20c3317646dabc88562d2e944484480957"
+    },
+    "model-comparison-20261025/images/R07-00-erp-scenediff_original.jpg": {
+      "bytes": 41933,
+      "sha256": "5451243a0a27ad69bd05726cd93c61dbd02d35e9e8baede8ffa985c37369f46a"
+    },
+    "model-comparison-20261025/images/R07-00-erp-simsac.jpg": {
+      "bytes": 41933,
+      "sha256": "5451243a0a27ad69bd05726cd93c61dbd02d35e9e8baede8ffa985c37369f46a"
+    },
+    "model-comparison-20261025/images/R07-00-erp-viewdelta.jpg": {
+      "bytes": 41933,
+      "sha256": "5451243a0a27ad69bd05726cd93c61dbd02d35e9e8baede8ffa985c37369f46a"
+    },
+    "model-comparison-20261025/images/R07-00-rgb.jpg": {
+      "bytes": 37724,
+      "sha256": "71cdfdc4935023757667086ab5759d29ae4f4c3c845db32981929171ab0d54e0"
+    },
+    "model-comparison-20261025/images/R07-00-view-scenediff_mesh.jpg": {
+      "bytes": 42930,
+      "sha256": "ade96f17b32625028282ad84f4b34f20c3317646dabc88562d2e944484480957"
+    },
+    "model-comparison-20261025/images/R07-00-view-scenediff_original.jpg": {
+      "bytes": 41933,
+      "sha256": "5451243a0a27ad69bd05726cd93c61dbd02d35e9e8baede8ffa985c37369f46a"
+    },
+    "model-comparison-20261025/images/R07-00-view-simsac.jpg": {
+      "bytes": 42129,
+      "sha256": "81f13ed6f37a7dc0cfb2a698e96ef9395e3781de789c740140e6eac0be85f896"
+    },
+    "model-comparison-20261025/images/R07-00-view-viewdelta.jpg": {
+      "bytes": 42066,
+      "sha256": "1a6315f74fbda0b937d09c0eb8d5129e9f41b0c5874ddc44b3e06947a5715c96"
+    },
+    "model-comparison-20261025/images/R07-01-erp-full-simsac.jpg": {
+      "bytes": 121537,
+      "sha256": "b26d021d023e15ac06bd468f70eb47051671d9974530bef2d3f1aa4776ddadbf"
+    },
+    "model-comparison-20261025/images/R07-01-erp-full-viewdelta.jpg": {
+      "bytes": 120999,
+      "sha256": "0c8089d2854e11184826e813c4cb805f9b6f3e93214e8173dad4df11f777a568"
+    },
+    "model-comparison-20261025/images/R07-01-erp-reference.jpg": {
+      "bytes": 89640,
+      "sha256": "3e7bf99432f7ae12264f8993c526feeef2720519c549bafdbcb529d7307e4286"
+    },
+    "model-comparison-20261025/images/R07-01-erp-rgb.jpg": {
+      "bytes": 98119,
+      "sha256": "cdd0bfba201c17ae73f6f64bcd1fc615212ba1e9f81a100a7b3676ad6bb2c241"
+    },
+    "model-comparison-20261025/images/R07-01-erp-scenediff_mesh.jpg": {
+      "bytes": 40847,
+      "sha256": "185284beb5af4bc81abcc21a60a7000921a52f53b8481e902bee6d2d39562749"
+    },
+    "model-comparison-20261025/images/R07-01-erp-scenediff_original.jpg": {
+      "bytes": 38081,
+      "sha256": "29eae6b8954ecf195c6a4685f6fabe2fcf1f11cb75a8a1ba3e5d78d010422da3"
+    },
+    "model-comparison-20261025/images/R07-01-erp-simsac.jpg": {
+      "bytes": 38081,
+      "sha256": "29eae6b8954ecf195c6a4685f6fabe2fcf1f11cb75a8a1ba3e5d78d010422da3"
+    },
+    "model-comparison-20261025/images/R07-01-erp-viewdelta.jpg": {
+      "bytes": 38081,
+      "sha256": "29eae6b8954ecf195c6a4685f6fabe2fcf1f11cb75a8a1ba3e5d78d010422da3"
+    },
+    "model-comparison-20261025/images/R07-01-rgb.jpg": {
+      "bytes": 34120,
+      "sha256": "3537d3a9af32ebe9807ea9a9882631b02912c9882340c54e2048714b6f5a491d"
+    },
+    "model-comparison-20261025/images/R07-01-view-scenediff_mesh.jpg": {
+      "bytes": 40847,
+      "sha256": "185284beb5af4bc81abcc21a60a7000921a52f53b8481e902bee6d2d39562749"
+    },
+    "model-comparison-20261025/images/R07-01-view-scenediff_original.jpg": {
+      "bytes": 38081,
+      "sha256": "29eae6b8954ecf195c6a4685f6fabe2fcf1f11cb75a8a1ba3e5d78d010422da3"
+    },
+    "model-comparison-20261025/images/R07-01-view-simsac.jpg": {
+      "bytes": 38304,
+      "sha256": "4cb3e3de0da6455077417687bfffc9e7020f592b518f25d5f9bdd73300b55f1b"
+    },
+    "model-comparison-20261025/images/R07-01-view-viewdelta.jpg": {
+      "bytes": 38081,
+      "sha256": "29eae6b8954ecf195c6a4685f6fabe2fcf1f11cb75a8a1ba3e5d78d010422da3"
+    },
+    "model-comparison-20261025/images/R07-02-erp-full-simsac.jpg": {
+      "bytes": 113206,
+      "sha256": "cdb7c14c9c28a6aead82ecf2e160a7447d6b3a126cdbb5059be3aaf32a3101e4"
+    },
+    "model-comparison-20261025/images/R07-02-erp-full-viewdelta.jpg": {
+      "bytes": 112955,
+      "sha256": "a37e97c6ee74424e4f2b2e8f7b4244b16fd5d2ab87bbc6d4fd46b9c0ca528b2b"
+    },
+    "model-comparison-20261025/images/R07-02-erp-reference.jpg": {
+      "bytes": 89640,
+      "sha256": "3e7bf99432f7ae12264f8993c526feeef2720519c549bafdbcb529d7307e4286"
+    },
+    "model-comparison-20261025/images/R07-02-erp-rgb.jpg": {
+      "bytes": 92173,
+      "sha256": "29b40c168d1b4b8f9bcf9ca5402c39280d589421e5891c35f6bff54922fb6753"
+    },
+    "model-comparison-20261025/images/R07-02-erp-scenediff_mesh.jpg": {
+      "bytes": 39548,
+      "sha256": "4e27545963c44d8b8c3ef76843dada5ee0198149de6bd982f0ac6c2fbef31149"
+    },
+    "model-comparison-20261025/images/R07-02-erp-scenediff_original.jpg": {
+      "bytes": 38103,
+      "sha256": "1837bb068ef87b501b572e1127fb4cf32dfdee76ab299a004c49a1bc793dfa25"
+    },
+    "model-comparison-20261025/images/R07-02-erp-simsac.jpg": {
+      "bytes": 37950,
+      "sha256": "183f4cb0864a87c660acaf8dded57a89746cfc2e9621b03edf159c9aee28cfda"
+    },
+    "model-comparison-20261025/images/R07-02-erp-viewdelta.jpg": {
+      "bytes": 37928,
+      "sha256": "bdaca501d435d55bd8e04287abdf0800dfe42fb729512a66fdc08a85f9e5d90e"
+    },
+    "model-comparison-20261025/images/R07-02-rgb.jpg": {
+      "bytes": 33898,
+      "sha256": "f88f0ccb24b8fd663da71a74a8d5d58290db335c1ffe945b7075069c241fd31b"
+    },
+    "model-comparison-20261025/images/R07-02-view-scenediff_mesh.jpg": {
+      "bytes": 39548,
+      "sha256": "4e27545963c44d8b8c3ef76843dada5ee0198149de6bd982f0ac6c2fbef31149"
+    },
+    "model-comparison-20261025/images/R07-02-view-scenediff_original.jpg": {
+      "bytes": 38103,
+      "sha256": "1837bb068ef87b501b572e1127fb4cf32dfdee76ab299a004c49a1bc793dfa25"
+    },
+    "model-comparison-20261025/images/R07-02-view-simsac.jpg": {
+      "bytes": 37928,
+      "sha256": "bdaca501d435d55bd8e04287abdf0800dfe42fb729512a66fdc08a85f9e5d90e"
+    },
+    "model-comparison-20261025/images/R07-02-view-viewdelta.jpg": {
+      "bytes": 38078,
+      "sha256": "ecc1407adfffd0018abad5d333132f7792ea46f546f41ffe0131ab3d00a52423"
+    },
+    "model-comparison-20261025/images/R07-03-erp-full-simsac.jpg": {
+      "bytes": 121583,
+      "sha256": "2fb0e4d2363902ead42982605e172e5cabe0fe199ad8b7cc6ac636c4c717f0c9"
+    },
+    "model-comparison-20261025/images/R07-03-erp-full-viewdelta.jpg": {
+      "bytes": 121825,
+      "sha256": "be3e8a9c61c694a83924be3e069af4240e6100c44803b11228e8ff8c383d6c54"
+    },
+    "model-comparison-20261025/images/R07-03-erp-reference.jpg": {
+      "bytes": 89640,
+      "sha256": "3e7bf99432f7ae12264f8993c526feeef2720519c549bafdbcb529d7307e4286"
+    },
+    "model-comparison-20261025/images/R07-03-erp-rgb.jpg": {
+      "bytes": 99470,
+      "sha256": "0cbc9d667260de12be2ddde74a11fbca4f527eee19df56c02f7f4953e97bf1af"
+    },
+    "model-comparison-20261025/images/R07-03-erp-scenediff_mesh.jpg": {
+      "bytes": 47034,
+      "sha256": "b0d0ef50501ef1b7383c657b3ed9acd6055e153654b8f9bf7ed35b28a93fa6e6"
+    },
+    "model-comparison-20261025/images/R07-03-erp-scenediff_original.jpg": {
+      "bytes": 43556,
+      "sha256": "3f9f36fa71836a282162757b85c64ed7111559202abe9a4b69a4e414e14afccc"
+    },
+    "model-comparison-20261025/images/R07-03-erp-simsac.jpg": {
+      "bytes": 45865,
+      "sha256": "4399dd3edfdbeb1b3331b820532b65b1b615d592c0aa80ea3e9f36558fe9e557"
+    },
+    "model-comparison-20261025/images/R07-03-erp-viewdelta.jpg": {
+      "bytes": 45865,
+      "sha256": "4399dd3edfdbeb1b3331b820532b65b1b615d592c0aa80ea3e9f36558fe9e557"
+    },
+    "model-comparison-20261025/images/R07-03-rgb.jpg": {
+      "bytes": 41382,
+      "sha256": "9a3070f92114cdfae20653c862667e3afab7ebd3ba855003a7c0928ccb843311"
+    },
+    "model-comparison-20261025/images/R07-03-view-scenediff_mesh.jpg": {
+      "bytes": 47034,
+      "sha256": "b0d0ef50501ef1b7383c657b3ed9acd6055e153654b8f9bf7ed35b28a93fa6e6"
+    },
+    "model-comparison-20261025/images/R07-03-view-scenediff_original.jpg": {
+      "bytes": 43556,
+      "sha256": "3f9f36fa71836a282162757b85c64ed7111559202abe9a4b69a4e414e14afccc"
+    },
+    "model-comparison-20261025/images/R07-03-view-simsac.jpg": {
+      "bytes": 49254,
+      "sha256": "a008ebcb019d68ac78cf2c4d5979acf39f5ab132cbcd1a26315aa9247ddabea0"
+    },
+    "model-comparison-20261025/images/R07-03-view-viewdelta.jpg": {
+      "bytes": 46523,
+      "sha256": "c9578ae19b3033eaf224737c64eddc1037389deea1396437c0cf9c20b8a83606"
+    },
+    "model-comparison-20261025/images/R07-04-erp-full-simsac.jpg": {
+      "bytes": 114284,
+      "sha256": "70204f0021c9cf268eff89fbaf1cd9f08754eae4cd7c6aac9d3dd1f890005be2"
+    },
+    "model-comparison-20261025/images/R07-04-erp-full-viewdelta.jpg": {
+      "bytes": 115937,
+      "sha256": "ecec20c6a59d740e01bf34ac6278fb1abc0c29203f1f206ac7edde7b3f64b51a"
+    },
+    "model-comparison-20261025/images/R07-04-erp-reference.jpg": {
+      "bytes": 89640,
+      "sha256": "3e7bf99432f7ae12264f8993c526feeef2720519c549bafdbcb529d7307e4286"
+    },
+    "model-comparison-20261025/images/R07-04-erp-rgb.jpg": {
+      "bytes": 93473,
+      "sha256": "51562169c7250e8b9241e61041ed12328be835e83118f4a6c17ec1a42991f0dd"
+    },
+    "model-comparison-20261025/images/R07-04-erp-scenediff_mesh.jpg": {
+      "bytes": 39757,
+      "sha256": "d8b4841afd590c73d36fc349ca2ae61cebc19123d862003a4eed6b398f5bfd0a"
+    },
+    "model-comparison-20261025/images/R07-04-erp-scenediff_original.jpg": {
+      "bytes": 39757,
+      "sha256": "d8b4841afd590c73d36fc349ca2ae61cebc19123d862003a4eed6b398f5bfd0a"
+    },
+    "model-comparison-20261025/images/R07-04-erp-simsac.jpg": {
+      "bytes": 39757,
+      "sha256": "d8b4841afd590c73d36fc349ca2ae61cebc19123d862003a4eed6b398f5bfd0a"
+    },
+    "model-comparison-20261025/images/R07-04-erp-viewdelta.jpg": {
+      "bytes": 39831,
+      "sha256": "8c45aac89c958bd41b75f927ab80f3f6de9021437972da005673607e120830a8"
+    },
+    "model-comparison-20261025/images/R07-04-rgb.jpg": {
+      "bytes": 35747,
+      "sha256": "4063eadc6857cffd921b15fd70e79f80eb4b4be1fb8e60dd0e93549d7354d596"
+    },
+    "model-comparison-20261025/images/R07-04-view-scenediff_mesh.jpg": {
+      "bytes": 39757,
+      "sha256": "d8b4841afd590c73d36fc349ca2ae61cebc19123d862003a4eed6b398f5bfd0a"
+    },
+    "model-comparison-20261025/images/R07-04-view-scenediff_original.jpg": {
+      "bytes": 39757,
+      "sha256": "d8b4841afd590c73d36fc349ca2ae61cebc19123d862003a4eed6b398f5bfd0a"
+    },
+    "model-comparison-20261025/images/R07-04-view-simsac.jpg": {
+      "bytes": 41053,
+      "sha256": "4d88db25ad43ae51f6a880988935646c8805c9767594e3f0defc5d5bff7f3e3c"
+    },
+    "model-comparison-20261025/images/R07-04-view-viewdelta.jpg": {
+      "bytes": 39891,
+      "sha256": "c298dc034be0114b7ebea68f797ec1acf0a55ea1ccf2fe5abd7cc449c8f0ec06"
+    },
+    "model-comparison-20261025/images/R07-05-erp-full-simsac.jpg": {
+      "bytes": 110168,
+      "sha256": "ae2f37ba7291a9ea96764013d3da56be23bec172b72d5f487b7f0318f2a6bde3"
+    },
+    "model-comparison-20261025/images/R07-05-erp-full-viewdelta.jpg": {
+      "bytes": 110128,
+      "sha256": "0dcbdd797082df487cfd50d861ab482af45f2cb127163ae37dcfd2017969807f"
+    },
+    "model-comparison-20261025/images/R07-05-erp-reference.jpg": {
+      "bytes": 98176,
+      "sha256": "8c24502f4cc62c454b961f8cc42ea16985fdc0089dbd7e3dc072cb79920468c1"
+    },
+    "model-comparison-20261025/images/R07-05-erp-rgb.jpg": {
+      "bytes": 89640,
+      "sha256": "3e7bf99432f7ae12264f8993c526feeef2720519c549bafdbcb529d7307e4286"
+    },
+    "model-comparison-20261025/images/R07-05-erp-scenediff_mesh.jpg": {
+      "bytes": 40966,
+      "sha256": "65ecd9617695a4179124c51fb52694bb985bb554c457bcfa27950cfc1d24431f"
+    },
+    "model-comparison-20261025/images/R07-05-erp-scenediff_original.jpg": {
+      "bytes": 38401,
+      "sha256": "1dab928b0231c3e920239d69fce7c504083e9478dd028d511d78954ed1164d3a"
+    },
+    "model-comparison-20261025/images/R07-05-erp-simsac.jpg": {
+      "bytes": 38479,
+      "sha256": "d0d7acb52be33b67557f6e7084dd52c81fbcabae7addcc9d64ff4f01cec7ccfa"
+    },
+    "model-comparison-20261025/images/R07-05-erp-viewdelta.jpg": {
+      "bytes": 38401,
+      "sha256": "1dab928b0231c3e920239d69fce7c504083e9478dd028d511d78954ed1164d3a"
+    },
+    "model-comparison-20261025/images/R07-05-rgb.jpg": {
+      "bytes": 34463,
+      "sha256": "c3cbbdcf2e387dd409b208d5fddaac1fae125d4b8fdf717261eb9ce4c40f5520"
+    },
+    "model-comparison-20261025/images/R07-05-view-scenediff_mesh.jpg": {
+      "bytes": 40966,
+      "sha256": "65ecd9617695a4179124c51fb52694bb985bb554c457bcfa27950cfc1d24431f"
+    },
+    "model-comparison-20261025/images/R07-05-view-scenediff_original.jpg": {
+      "bytes": 38401,
+      "sha256": "1dab928b0231c3e920239d69fce7c504083e9478dd028d511d78954ed1164d3a"
+    },
+    "model-comparison-20261025/images/R07-05-view-simsac.jpg": {
+      "bytes": 38558,
+      "sha256": "c4208f3cd81affd72058b163ea58535f6d71718e69db3be3df38d962bfed3415"
+    },
+    "model-comparison-20261025/images/R07-05-view-viewdelta.jpg": {
+      "bytes": 38491,
+      "sha256": "9057e02339901ce42266344e0669a671d438588a7fae0790f8f760ffe5999b88"
+    },
+    "model-comparison-20261025/images/R07-06-erp-full-simsac.jpg": {
+      "bytes": 110167,
+      "sha256": "4faf1e6c5f961a18f77bbc6bc4f4af6ef3c53a169bbf43073c18e82df2d552eb"
+    },
+    "model-comparison-20261025/images/R07-06-erp-full-viewdelta.jpg": {
+      "bytes": 110128,
+      "sha256": "0dcbdd797082df487cfd50d861ab482af45f2cb127163ae37dcfd2017969807f"
+    },
+    "model-comparison-20261025/images/R07-06-erp-reference.jpg": {
+      "bytes": 98176,
+      "sha256": "8c24502f4cc62c454b961f8cc42ea16985fdc0089dbd7e3dc072cb79920468c1"
+    },
+    "model-comparison-20261025/images/R07-06-erp-rgb.jpg": {
+      "bytes": 89640,
+      "sha256": "3e7bf99432f7ae12264f8993c526feeef2720519c549bafdbcb529d7307e4286"
+    },
+    "model-comparison-20261025/images/R07-06-erp-scenediff_mesh.jpg": {
+      "bytes": 45730,
+      "sha256": "bf70768b8112ebabea0490c880bffe6a90b77c18a1158eada8e02a53fbcef753"
+    },
+    "model-comparison-20261025/images/R07-06-erp-scenediff_original.jpg": {
+      "bytes": 44327,
+      "sha256": "93821d18c9e3699d78846c27e2aa60cd5d698de9ef9125282d7633a166eae0e4"
+    },
+    "model-comparison-20261025/images/R07-06-erp-simsac.jpg": {
+      "bytes": 44463,
+      "sha256": "91154c0d043c35ee6ea50a60424e1fcb1e256bbc0cfbc63fc3cbe358fdb3c927"
+    },
+    "model-comparison-20261025/images/R07-06-erp-viewdelta.jpg": {
+      "bytes": 44463,
+      "sha256": "91154c0d043c35ee6ea50a60424e1fcb1e256bbc0cfbc63fc3cbe358fdb3c927"
+    },
+    "model-comparison-20261025/images/R07-06-rgb.jpg": {
+      "bytes": 40083,
+      "sha256": "3054af52678a8359c216f68f37b9ce0342a92344014f1720126b035e45f5c9c7"
+    },
+    "model-comparison-20261025/images/R07-06-view-scenediff_mesh.jpg": {
+      "bytes": 45730,
+      "sha256": "bf70768b8112ebabea0490c880bffe6a90b77c18a1158eada8e02a53fbcef753"
+    },
+    "model-comparison-20261025/images/R07-06-view-scenediff_original.jpg": {
+      "bytes": 44327,
+      "sha256": "93821d18c9e3699d78846c27e2aa60cd5d698de9ef9125282d7633a166eae0e4"
+    },
+    "model-comparison-20261025/images/R07-06-view-simsac.jpg": {
+      "bytes": 43476,
+      "sha256": "8045571c2b60d790b3802f92b7150ec6c153acb25b5a38a30e165d98624336af"
+    },
+    "model-comparison-20261025/images/R07-06-view-viewdelta.jpg": {
+      "bytes": 43607,
+      "sha256": "158d4620f1b49f25039338b4c9a13809666405e086a4b0a44be7a2769c75d3af"
+    },
+    "model-comparison-20261025/images/R07-07-erp-full-simsac.jpg": {
+      "bytes": 124253,
+      "sha256": "10a48a0bf3767309c22786addd047d4612d827042cd5b32ac3f4e85fec25b0be"
+    },
+    "model-comparison-20261025/images/R07-07-erp-full-viewdelta.jpg": {
+      "bytes": 124118,
+      "sha256": "7cacf31d5b542963ce8a276e69928719b31edc18d3732f61dfff8e997b280ce7"
+    },
+    "model-comparison-20261025/images/R07-07-erp-reference.jpg": {
+      "bytes": 98119,
+      "sha256": "cdd0bfba201c17ae73f6f64bcd1fc615212ba1e9f81a100a7b3676ad6bb2c241"
+    },
+    "model-comparison-20261025/images/R07-07-erp-rgb.jpg": {
+      "bytes": 101508,
+      "sha256": "cdbac56f56e62d27b2a131c6bf4953c0b0c48974e7213cce64f8c2c4bb6cbd3f"
+    },
+    "model-comparison-20261025/images/R07-07-erp-scenediff_mesh.jpg": {
+      "bytes": 58999,
+      "sha256": "9b4677018ab0cef19411cd769fd56843b9f1f380b94de79c77a11de98fe5efed"
+    },
+    "model-comparison-20261025/images/R07-07-erp-scenediff_original.jpg": {
+      "bytes": 53237,
+      "sha256": "1678c29746993bd2f155c82aed346b5a2cfd5b65e9ebd84e6f47443f5ae4d733"
+    },
+    "model-comparison-20261025/images/R07-07-erp-simsac.jpg": {
+      "bytes": 52604,
+      "sha256": "b7a7a0fc01238a8e9a8011caa277e89911c4d7c4e861d4d00342c6049e1540bc"
+    },
+    "model-comparison-20261025/images/R07-07-erp-viewdelta.jpg": {
+      "bytes": 52604,
+      "sha256": "b7a7a0fc01238a8e9a8011caa277e89911c4d7c4e861d4d00342c6049e1540bc"
+    },
+    "model-comparison-20261025/images/R07-07-rgb.jpg": {
+      "bytes": 47665,
+      "sha256": "e1f40a12b70ba5296a3046240d12a2b1f6c311eb9d85f246eb1997366907a777"
+    },
+    "model-comparison-20261025/images/R07-07-view-scenediff_mesh.jpg": {
+      "bytes": 58999,
+      "sha256": "9b4677018ab0cef19411cd769fd56843b9f1f380b94de79c77a11de98fe5efed"
+    },
+    "model-comparison-20261025/images/R07-07-view-scenediff_original.jpg": {
+      "bytes": 53237,
+      "sha256": "1678c29746993bd2f155c82aed346b5a2cfd5b65e9ebd84e6f47443f5ae4d733"
+    },
+    "model-comparison-20261025/images/R07-07-view-simsac.jpg": {
+      "bytes": 50982,
+      "sha256": "a01432d40439ea496fc6712681dc343ce71e5eaa5412e3f1632385b9b6a681e2"
+    },
+    "model-comparison-20261025/images/R07-07-view-viewdelta.jpg": {
+      "bytes": 54722,
+      "sha256": "97d2f2da2c8820a74b14feebc9ee8b39f381a76c33716acf3f2d94cd4d79143c"
+    },
+    "model-comparison-20261025/images/R07-08-erp-full-simsac.jpg": {
+      "bytes": 117896,
+      "sha256": "74d918909fa7d8ae0c889c3f6c7820299c704979a130699692b0c8ed9dda65d7"
+    },
+    "model-comparison-20261025/images/R07-08-erp-full-viewdelta.jpg": {
+      "bytes": 116598,
+      "sha256": "b0eda182bf6442a12674f9ecb6cc072ed19962019aecdfb1cbbe6d9262bdfe1e"
+    },
+    "model-comparison-20261025/images/R07-08-erp-reference.jpg": {
+      "bytes": 98176,
+      "sha256": "8c24502f4cc62c454b961f8cc42ea16985fdc0089dbd7e3dc072cb79920468c1"
+    },
+    "model-comparison-20261025/images/R07-08-erp-rgb.jpg": {
+      "bytes": 95109,
+      "sha256": "e7b8dc6263376a73fbe12f396406081c027e66ebf7824f105e7e0369348d15c3"
+    },
+    "model-comparison-20261025/images/R07-08-erp-scenediff_mesh.jpg": {
+      "bytes": 42934,
+      "sha256": "23ba3c03056df680ade8c389c208949055c8826d23180c59665c339911f9b0b6"
+    },
+    "model-comparison-20261025/images/R07-08-erp-scenediff_original.jpg": {
+      "bytes": 40380,
+      "sha256": "2f4dedfa82f010db680be666c40cf1c513dbf363e5b1c96cf80d57d69dff9d94"
+    },
+    "model-comparison-20261025/images/R07-08-erp-simsac.jpg": {
+      "bytes": 40380,
+      "sha256": "2f4dedfa82f010db680be666c40cf1c513dbf363e5b1c96cf80d57d69dff9d94"
+    },
+    "model-comparison-20261025/images/R07-08-erp-viewdelta.jpg": {
+      "bytes": 40380,
+      "sha256": "2f4dedfa82f010db680be666c40cf1c513dbf363e5b1c96cf80d57d69dff9d94"
+    },
+    "model-comparison-20261025/images/R07-08-rgb.jpg": {
+      "bytes": 36349,
+      "sha256": "553fa9c1395e1c3be21050b942910665a6f982ee86ca3d6c7fd9a797979cf314"
+    },
+    "model-comparison-20261025/images/R07-08-view-scenediff_mesh.jpg": {
+      "bytes": 42934,
+      "sha256": "23ba3c03056df680ade8c389c208949055c8826d23180c59665c339911f9b0b6"
+    },
+    "model-comparison-20261025/images/R07-08-view-scenediff_original.jpg": {
+      "bytes": 40380,
+      "sha256": "2f4dedfa82f010db680be666c40cf1c513dbf363e5b1c96cf80d57d69dff9d94"
+    },
+    "model-comparison-20261025/images/R07-08-view-simsac.jpg": {
+      "bytes": 40498,
+      "sha256": "c79c043a4eeb230883f2894743fe3d1f5e3e7098faf2051970cffe14b16ffe8c"
+    },
+    "model-comparison-20261025/images/R07-08-view-viewdelta.jpg": {
+      "bytes": 42569,
+      "sha256": "558892e496c4040e56abf1594d6f34dd2a41a30bf7350b2dfae11b8ae8c8c14e"
+    },
+    "model-comparison-20261025/images/R07-09-erp-full-simsac.jpg": {
+      "bytes": 122499,
+      "sha256": "b85bbea70d29c645068f2bf7850a05d6ac97e7a8ae671cf717c321d6956a8739"
+    },
+    "model-comparison-20261025/images/R07-09-erp-full-viewdelta.jpg": {
+      "bytes": 122319,
+      "sha256": "cefd9313a4811babdef9a21555ca7849c335af9a3b2fdadb85b7bed0814ac09e"
+    },
+    "model-comparison-20261025/images/R07-09-erp-reference.jpg": {
+      "bytes": 98119,
+      "sha256": "cdd0bfba201c17ae73f6f64bcd1fc615212ba1e9f81a100a7b3676ad6bb2c241"
+    },
+    "model-comparison-20261025/images/R07-09-erp-rgb.jpg": {
+      "bytes": 100203,
+      "sha256": "402e04321de1e572669402796ff485bf34a758bda7eb64d91765684fad397368"
+    },
+    "model-comparison-20261025/images/R07-09-erp-scenediff_mesh.jpg": {
+      "bytes": 41520,
+      "sha256": "f120c023054232ae2a0c7fc911542da1c3c6fd8db78e519569d5c2ddb8a12a7f"
+    },
+    "model-comparison-20261025/images/R07-09-erp-scenediff_original.jpg": {
+      "bytes": 38477,
+      "sha256": "e7a7d28e8209761c9ada198d20887d350bfdf1b5a481c4097e66ca36321bb08a"
+    },
+    "model-comparison-20261025/images/R07-09-erp-simsac.jpg": {
+      "bytes": 39764,
+      "sha256": "a064ee9c42fafe6705563ec387faec9f5193db21949b319db629907e1a8f1ae2"
+    },
+    "model-comparison-20261025/images/R07-09-erp-viewdelta.jpg": {
+      "bytes": 39591,
+      "sha256": "ed63757872d1864c7bd3b22f7c4e173f7d9161dac5928d735e7733c24ef191b5"
+    },
+    "model-comparison-20261025/images/R07-09-rgb.jpg": {
+      "bytes": 35467,
+      "sha256": "328f403a84c56e5306dde78004d4a5f3cc68250cf23f5b52a36ee6db99c752f0"
+    },
+    "model-comparison-20261025/images/R07-09-view-scenediff_mesh.jpg": {
+      "bytes": 41520,
+      "sha256": "f120c023054232ae2a0c7fc911542da1c3c6fd8db78e519569d5c2ddb8a12a7f"
+    },
+    "model-comparison-20261025/images/R07-09-view-scenediff_original.jpg": {
+      "bytes": 38477,
+      "sha256": "e7a7d28e8209761c9ada198d20887d350bfdf1b5a481c4097e66ca36321bb08a"
+    },
+    "model-comparison-20261025/images/R07-09-view-simsac.jpg": {
+      "bytes": 40218,
+      "sha256": "6cedacca3f88f4cc6489c44b0052c75fea9e799e6103a97eab192c51d46816dd"
+    },
+    "model-comparison-20261025/images/R07-09-view-viewdelta.jpg": {
+      "bytes": 40001,
+      "sha256": "8b02e539b5ae33fe445fbe3eb832219600e02778df4e859235214b3326708e58"
+    },
+    "model-comparison-20261025/images/R08-00-erp-full-simsac.jpg": {
+      "bytes": 121265,
+      "sha256": "1467252b4b09f6a1c17829a4cf68d9e12ae91e49859d4fc67a802f3990a5739d"
+    },
+    "model-comparison-20261025/images/R08-00-erp-full-viewdelta.jpg": {
+      "bytes": 121367,
+      "sha256": "c9fc644a9bf55a7426aec5de3862375572f2f6e7777c366f3a26b4127c93b545"
+    },
+    "model-comparison-20261025/images/R08-00-erp-reference.jpg": {
+      "bytes": 81403,
+      "sha256": "b84ea693ac1825fb92ce9f5afc24d144137f0b10ccacbacdc77029d1c0225880"
+    },
+    "model-comparison-20261025/images/R08-00-erp-rgb.jpg": {
+      "bytes": 98356,
+      "sha256": "4b92cb1f4218480e85703a75c982515d15fdca414df992add9d5ee584eb95df6"
+    },
+    "model-comparison-20261025/images/R08-00-erp-scenediff_mesh.jpg": {
+      "bytes": 49617,
+      "sha256": "0eb80c593311b93361b47655e0ccba4b76ab3dd0a59653a5a35540deea5c08c7"
+    },
+    "model-comparison-20261025/images/R08-00-erp-scenediff_original.jpg": {
+      "bytes": 47848,
+      "sha256": "05a5c3c03dee212562afc5fcfdf856d4e4236734f16ca14c9deca87c4ed14f30"
+    },
+    "model-comparison-20261025/images/R08-00-erp-simsac.jpg": {
+      "bytes": 48897,
+      "sha256": "ef098d440186ad6d2899ea120345eedd9f4eac99c8cbf62909ee3f6dfa43054d"
+    },
+    "model-comparison-20261025/images/R08-00-erp-viewdelta.jpg": {
+      "bytes": 47848,
+      "sha256": "05a5c3c03dee212562afc5fcfdf856d4e4236734f16ca14c9deca87c4ed14f30"
+    },
+    "model-comparison-20261025/images/R08-00-rgb.jpg": {
+      "bytes": 43321,
+      "sha256": "5d86f8aaa5d32fc2cd1131cfc0446c72ac78f9b0a0b3868885969e5e16317eab"
+    },
+    "model-comparison-20261025/images/R08-00-view-scenediff_mesh.jpg": {
+      "bytes": 49617,
+      "sha256": "0eb80c593311b93361b47655e0ccba4b76ab3dd0a59653a5a35540deea5c08c7"
+    },
+    "model-comparison-20261025/images/R08-00-view-scenediff_original.jpg": {
+      "bytes": 47848,
+      "sha256": "05a5c3c03dee212562afc5fcfdf856d4e4236734f16ca14c9deca87c4ed14f30"
+    },
+    "model-comparison-20261025/images/R08-00-view-simsac.jpg": {
+      "bytes": 51419,
+      "sha256": "b2e5ff7e96bb181d433f0fe8425c6e0531ce92cb38ada8b35189fa44a79606fb"
+    },
+    "model-comparison-20261025/images/R08-00-view-viewdelta.jpg": {
+      "bytes": 47848,
+      "sha256": "05a5c3c03dee212562afc5fcfdf856d4e4236734f16ca14c9deca87c4ed14f30"
+    },
+    "model-comparison-20261025/images/R08-01-erp-full-simsac.jpg": {
+      "bytes": 127332,
+      "sha256": "250fb10dc54a24c9bfca80ca339dd44fc9aba83cbe173ad0b1e9203b89111699"
+    },
+    "model-comparison-20261025/images/R08-01-erp-full-viewdelta.jpg": {
+      "bytes": 126788,
+      "sha256": "eaac5daae52d3db240efba1866112e899c8b4e8bb3b23f14dae09aaaffea330c"
+    },
+    "model-comparison-20261025/images/R08-01-erp-reference.jpg": {
+      "bytes": 81403,
+      "sha256": "b84ea693ac1825fb92ce9f5afc24d144137f0b10ccacbacdc77029d1c0225880"
+    },
+    "model-comparison-20261025/images/R08-01-erp-rgb.jpg": {
+      "bytes": 103894,
+      "sha256": "ad0bbd485eb6813fe12ebfb0d6f6c6ed90fbdb2a76f596ec12482ad50f6cd9f6"
+    },
+    "model-comparison-20261025/images/R08-01-erp-scenediff_mesh.jpg": {
+      "bytes": 51628,
+      "sha256": "6603ed9f9747c3dafc528a5903655fd6e818310c1226e6a51bc4663f8eb0e202"
+    },
+    "model-comparison-20261025/images/R08-01-erp-scenediff_original.jpg": {
+      "bytes": 49398,
+      "sha256": "faebc095078c27644ab5bba2db4e71a050cc820601d3b1dcf7c711a62a93ba10"
+    },
+    "model-comparison-20261025/images/R08-01-erp-simsac.jpg": {
+      "bytes": 48919,
+      "sha256": "13fc60d47765f752926a1527f927c3027559897f479bd06a9887caf7bace319f"
+    },
+    "model-comparison-20261025/images/R08-01-erp-viewdelta.jpg": {
+      "bytes": 49398,
+      "sha256": "faebc095078c27644ab5bba2db4e71a050cc820601d3b1dcf7c711a62a93ba10"
+    },
+    "model-comparison-20261025/images/R08-01-rgb.jpg": {
+      "bytes": 44624,
+      "sha256": "22a6cd7c0b18f5f256c06e69b424d65cf8fb8210b1fe9a05bbce1331ab5cff79"
+    },
+    "model-comparison-20261025/images/R08-01-view-scenediff_mesh.jpg": {
+      "bytes": 51628,
+      "sha256": "6603ed9f9747c3dafc528a5903655fd6e818310c1226e6a51bc4663f8eb0e202"
+    },
+    "model-comparison-20261025/images/R08-01-view-scenediff_original.jpg": {
+      "bytes": 49398,
+      "sha256": "faebc095078c27644ab5bba2db4e71a050cc820601d3b1dcf7c711a62a93ba10"
+    },
+    "model-comparison-20261025/images/R08-01-view-simsac.jpg": {
+      "bytes": 52540,
+      "sha256": "df7d85814148449a0ac757c5d234dba3eecb369c8e8c15aa3810c91939c350fc"
+    },
+    "model-comparison-20261025/images/R08-01-view-viewdelta.jpg": {
+      "bytes": 49398,
+      "sha256": "faebc095078c27644ab5bba2db4e71a050cc820601d3b1dcf7c711a62a93ba10"
+    },
+    "model-comparison-20261025/images/R08-02-erp-full-simsac.jpg": {
+      "bytes": 128894,
+      "sha256": "5fd007efd57c8c32fd4f14aba1250e377dc4ea2316512473ea476310743bb68d"
+    },
+    "model-comparison-20261025/images/R08-02-erp-full-viewdelta.jpg": {
+      "bytes": 126852,
+      "sha256": "b1bab9e6a9966c199b9c5e0b03cc9d34778383887256de3f9fc39f1e3c3d3c20"
+    },
+    "model-comparison-20261025/images/R08-02-erp-reference.jpg": {
+      "bytes": 91967,
+      "sha256": "f018984a4f24668fe35c1b6f01b6a07b11132203cc4c249e467c31914219500e"
+    },
+    "model-comparison-20261025/images/R08-02-erp-rgb.jpg": {
+      "bytes": 103894,
+      "sha256": "ad0bbd485eb6813fe12ebfb0d6f6c6ed90fbdb2a76f596ec12482ad50f6cd9f6"
+    },
+    "model-comparison-20261025/images/R08-02-erp-scenediff_mesh.jpg": {
+      "bytes": 45978,
+      "sha256": "d0c2aea9f1dfc33ebcdfc284de160cc2160aa48822c45dc35780b331985bd6e2"
+    },
+    "model-comparison-20261025/images/R08-02-erp-scenediff_original.jpg": {
+      "bytes": 45978,
+      "sha256": "d0c2aea9f1dfc33ebcdfc284de160cc2160aa48822c45dc35780b331985bd6e2"
+    },
+    "model-comparison-20261025/images/R08-02-erp-simsac.jpg": {
+      "bytes": 47876,
+      "sha256": "a29ddd0f1f1c0df0731aaf88432c7c6e07ecc9c1cf1e8048c745d8611065f0d5"
+    },
+    "model-comparison-20261025/images/R08-02-erp-viewdelta.jpg": {
+      "bytes": 45978,
+      "sha256": "d0c2aea9f1dfc33ebcdfc284de160cc2160aa48822c45dc35780b331985bd6e2"
+    },
+    "model-comparison-20261025/images/R08-02-rgb.jpg": {
+      "bytes": 41341,
+      "sha256": "15a8afee23a6032e4234d0bf0f523f41607feea8b78ffcb1ff071f5292854b95"
+    },
+    "model-comparison-20261025/images/R08-02-view-scenediff_mesh.jpg": {
+      "bytes": 45978,
+      "sha256": "d0c2aea9f1dfc33ebcdfc284de160cc2160aa48822c45dc35780b331985bd6e2"
+    },
+    "model-comparison-20261025/images/R08-02-view-scenediff_original.jpg": {
+      "bytes": 45978,
+      "sha256": "d0c2aea9f1dfc33ebcdfc284de160cc2160aa48822c45dc35780b331985bd6e2"
+    },
+    "model-comparison-20261025/images/R08-02-view-simsac.jpg": {
+      "bytes": 47886,
+      "sha256": "30a32af95212e90fe33d4365309a94bada53ce1b88b60360a7d6268d28ff302d"
+    },
+    "model-comparison-20261025/images/R08-02-view-viewdelta.jpg": {
+      "bytes": 46462,
+      "sha256": "9d35321288c3cf24091bc5cbe0dbaf8ae4d8151a235443ed729509ca0ebfaa67"
+    },
+    "model-comparison-20261025/images/R08-03-erp-full-simsac.jpg": {
+      "bytes": 121312,
+      "sha256": "512b9a88e8fba215a301109c593eb7971acfa0a74fe424a789be9a0c91c86ec2"
+    },
+    "model-comparison-20261025/images/R08-03-erp-full-viewdelta.jpg": {
+      "bytes": 121307,
+      "sha256": "275cea0cf7b5c6ca79ad128d85e36a43c82767f14cd14ac61e653b8b0e1e12d3"
+    },
+    "model-comparison-20261025/images/R08-03-erp-reference.jpg": {
+      "bytes": 91967,
+      "sha256": "f018984a4f24668fe35c1b6f01b6a07b11132203cc4c249e467c31914219500e"
+    },
+    "model-comparison-20261025/images/R08-03-erp-rgb.jpg": {
+      "bytes": 98356,
+      "sha256": "4b92cb1f4218480e85703a75c982515d15fdca414df992add9d5ee584eb95df6"
+    },
+    "model-comparison-20261025/images/R08-03-erp-scenediff_mesh.jpg": {
+      "bytes": 41161,
+      "sha256": "eb450c20d8ee8152059c495c724f3a3df8a09feebae618c69370ee7bb3219527"
+    },
+    "model-comparison-20261025/images/R08-03-erp-scenediff_original.jpg": {
+      "bytes": 41161,
+      "sha256": "eb450c20d8ee8152059c495c724f3a3df8a09feebae618c69370ee7bb3219527"
+    },
+    "model-comparison-20261025/images/R08-03-erp-simsac.jpg": {
+      "bytes": 41161,
+      "sha256": "eb450c20d8ee8152059c495c724f3a3df8a09feebae618c69370ee7bb3219527"
+    },
+    "model-comparison-20261025/images/R08-03-erp-viewdelta.jpg": {
+      "bytes": 41161,
+      "sha256": "eb450c20d8ee8152059c495c724f3a3df8a09feebae618c69370ee7bb3219527"
+    },
+    "model-comparison-20261025/images/R08-03-rgb.jpg": {
+      "bytes": 36896,
+      "sha256": "2545b7bda0f5257134471f29c7a7f5a5306e2d00c44764d5d978e1e5ed847c03"
+    },
+    "model-comparison-20261025/images/R08-03-view-scenediff_mesh.jpg": {
+      "bytes": 41161,
+      "sha256": "eb450c20d8ee8152059c495c724f3a3df8a09feebae618c69370ee7bb3219527"
+    },
+    "model-comparison-20261025/images/R08-03-view-scenediff_original.jpg": {
+      "bytes": 41161,
+      "sha256": "eb450c20d8ee8152059c495c724f3a3df8a09feebae618c69370ee7bb3219527"
+    },
+    "model-comparison-20261025/images/R08-03-view-simsac.jpg": {
+      "bytes": 41379,
+      "sha256": "cc2a42019af756d8ccd790aba4e0c625dd163370d3517d81841f4c261cfc8d5e"
+    },
+    "model-comparison-20261025/images/R08-03-view-viewdelta.jpg": {
+      "bytes": 41161,
+      "sha256": "eb450c20d8ee8152059c495c724f3a3df8a09feebae618c69370ee7bb3219527"
+    },
+    "model-comparison-20261025/images/R08-04-erp-full-simsac.jpg": {
+      "bytes": 119397,
+      "sha256": "da21cda4d0be998654e15972e1cb772468046eb19fd0f8fddec51141294698ce"
+    },
+    "model-comparison-20261025/images/R08-04-erp-full-viewdelta.jpg": {
+      "bytes": 121083,
+      "sha256": "2e5c787d7e203ccfbd45fcc86d7e386c0292085ec363f464ec9c1ca304776266"
+    },
+    "model-comparison-20261025/images/R08-04-erp-reference.jpg": {
+      "bytes": 91908,
+      "sha256": "0d31cbb3893d4c7a9eb7a2da879eaae38e76851fad47702f579c03fdcc5aa2b6"
+    },
+    "model-comparison-20261025/images/R08-04-erp-rgb.jpg": {
+      "bytes": 98119,
+      "sha256": "cdd0bfba201c17ae73f6f64bcd1fc615212ba1e9f81a100a7b3676ad6bb2c241"
+    },
+    "model-comparison-20261025/images/R08-04-erp-scenediff_mesh.jpg": {
+      "bytes": 39369,
+      "sha256": "d9aafa372a9044f3a07e3943c630a552d00fcdb2852c4e532b91e4fe73e4cf3b"
+    },
+    "model-comparison-20261025/images/R08-04-erp-scenediff_original.jpg": {
+      "bytes": 39369,
+      "sha256": "d9aafa372a9044f3a07e3943c630a552d00fcdb2852c4e532b91e4fe73e4cf3b"
+    },
+    "model-comparison-20261025/images/R08-04-erp-simsac.jpg": {
+      "bytes": 39929,
+      "sha256": "e9f73b17a4dce6cb72ad20a142cf0363a4791b943d5ae9c450c1f76074022ed4"
+    },
+    "model-comparison-20261025/images/R08-04-erp-viewdelta.jpg": {
+      "bytes": 39369,
+      "sha256": "d9aafa372a9044f3a07e3943c630a552d00fcdb2852c4e532b91e4fe73e4cf3b"
+    },
+    "model-comparison-20261025/images/R08-04-rgb.jpg": {
+      "bytes": 35335,
+      "sha256": "f86559ecc16428dc4397e08da4880c82a63d2ce23963058df7257fd5747615af"
+    },
+    "model-comparison-20261025/images/R08-04-view-scenediff_mesh.jpg": {
+      "bytes": 39369,
+      "sha256": "d9aafa372a9044f3a07e3943c630a552d00fcdb2852c4e532b91e4fe73e4cf3b"
+    },
+    "model-comparison-20261025/images/R08-04-view-scenediff_original.jpg": {
+      "bytes": 39369,
+      "sha256": "d9aafa372a9044f3a07e3943c630a552d00fcdb2852c4e532b91e4fe73e4cf3b"
+    },
+    "model-comparison-20261025/images/R08-04-view-simsac.jpg": {
+      "bytes": 39428,
+      "sha256": "85a29b552e3a285196083e063edba48d8d02586fe6fff6ecf1b12cc946e043c9"
+    },
+    "model-comparison-20261025/images/R08-04-view-viewdelta.jpg": {
+      "bytes": 39369,
+      "sha256": "d9aafa372a9044f3a07e3943c630a552d00fcdb2852c4e532b91e4fe73e4cf3b"
+    },
+    "model-comparison-20261025/images/R08-05-erp-full-simsac.jpg": {
+      "bytes": 101105,
+      "sha256": "c63b3aa5015fd898a4ba9543af3cd263e96634abcf3c0076a1ee4c846c69d4ef"
+    },
+    "model-comparison-20261025/images/R08-05-erp-full-viewdelta.jpg": {
+      "bytes": 100739,
+      "sha256": "ac563e1aa3dbd4fa6cb6baa88e5ec87116c3600967ff170a6a9cb8c98851008e"
+    },
+    "model-comparison-20261025/images/R08-05-erp-reference.jpg": {
+      "bytes": 98356,
+      "sha256": "4b92cb1f4218480e85703a75c982515d15fdca414df992add9d5ee584eb95df6"
+    },
+    "model-comparison-20261025/images/R08-05-erp-rgb.jpg": {
+      "bytes": 81403,
+      "sha256": "b84ea693ac1825fb92ce9f5afc24d144137f0b10ccacbacdc77029d1c0225880"
+    },
+    "model-comparison-20261025/images/R08-05-erp-scenediff_mesh.jpg": {
+      "bytes": 41306,
+      "sha256": "f5b37e13da31a0d61a84ceeeb763bcb0865878639de6f1876bce705dd1c31bc7"
+    },
+    "model-comparison-20261025/images/R08-05-erp-scenediff_original.jpg": {
+      "bytes": 33368,
+      "sha256": "78efeba37dcacf4558cdce47da0cbabd5df520bf630adcf00f01ccd4f8b88568"
+    },
+    "model-comparison-20261025/images/R08-05-erp-simsac.jpg": {
+      "bytes": 34546,
+      "sha256": "a9f143c069a1a7bf10a96f4f8e8e9f9d3071a0b8556f963e6a4f1398cf3cc37f"
+    },
+    "model-comparison-20261025/images/R08-05-erp-viewdelta.jpg": {
+      "bytes": 33368,
+      "sha256": "78efeba37dcacf4558cdce47da0cbabd5df520bf630adcf00f01ccd4f8b88568"
+    },
+    "model-comparison-20261025/images/R08-05-rgb.jpg": {
+      "bytes": 29650,
+      "sha256": "2719159e73a9195ae2f95b3c102472605e220f7f58ba2a3331a9efe963763543"
+    },
+    "model-comparison-20261025/images/R08-05-view-scenediff_mesh.jpg": {
+      "bytes": 41306,
+      "sha256": "f5b37e13da31a0d61a84ceeeb763bcb0865878639de6f1876bce705dd1c31bc7"
+    },
+    "model-comparison-20261025/images/R08-05-view-scenediff_original.jpg": {
+      "bytes": 33368,
+      "sha256": "78efeba37dcacf4558cdce47da0cbabd5df520bf630adcf00f01ccd4f8b88568"
+    },
+    "model-comparison-20261025/images/R08-05-view-simsac.jpg": {
+      "bytes": 33368,
+      "sha256": "78efeba37dcacf4558cdce47da0cbabd5df520bf630adcf00f01ccd4f8b88568"
+    },
+    "model-comparison-20261025/images/R08-05-view-viewdelta.jpg": {
+      "bytes": 33614,
+      "sha256": "d4c1dabd87751b961ec4b52c3e042bcf03a3e14c7d88be94cbb3ed730435244d"
+    },
+    "model-comparison-20261025/images/R08-06-erp-full-simsac.jpg": {
+      "bytes": 115401,
+      "sha256": "38d75114629387cd820771a7098432fc597ac822a797a238fb48b0351edee60d"
+    },
+    "model-comparison-20261025/images/R08-06-erp-full-viewdelta.jpg": {
+      "bytes": 112966,
+      "sha256": "b2ca4051184d61ba205a78376d2836f6bffa78c94ff63328f93653b9dfadf95f"
+    },
+    "model-comparison-20261025/images/R08-06-erp-reference.jpg": {
+      "bytes": 98356,
+      "sha256": "4b92cb1f4218480e85703a75c982515d15fdca414df992add9d5ee584eb95df6"
+    },
+    "model-comparison-20261025/images/R08-06-erp-rgb.jpg": {
+      "bytes": 91908,
+      "sha256": "0d31cbb3893d4c7a9eb7a2da879eaae38e76851fad47702f579c03fdcc5aa2b6"
+    },
+    "model-comparison-20261025/images/R08-06-erp-scenediff_mesh.jpg": {
+      "bytes": 48277,
+      "sha256": "8f22b3f27a9e1f203980dcb4c92a1f5e7d6f568eecbb181eaf65b9df34754c64"
+    },
+    "model-comparison-20261025/images/R08-06-erp-scenediff_original.jpg": {
+      "bytes": 44467,
+      "sha256": "fdbac8cb6fd0ce146cce2e594746fcd85b762ccbb61d0d186c1cc5c597e33fae"
+    },
+    "model-comparison-20261025/images/R08-06-erp-simsac.jpg": {
+      "bytes": 44823,
+      "sha256": "be0a487c5d1a41e2f7f80bd307afb4adf06adbd4f766ce4a4c324605bbc92a9a"
+    },
+    "model-comparison-20261025/images/R08-06-erp-viewdelta.jpg": {
+      "bytes": 42330,
+      "sha256": "27787e38ccddb552439b6928d978dfada7035e4a3d8a777f8b83f38864abb587"
+    },
+    "model-comparison-20261025/images/R08-06-rgb.jpg": {
+      "bytes": 37997,
+      "sha256": "5c06d11444ea5c0d279687c7acb13fb9ea71de747c8400f0755ad5569c42b027"
+    },
+    "model-comparison-20261025/images/R08-06-view-scenediff_mesh.jpg": {
+      "bytes": 48277,
+      "sha256": "8f22b3f27a9e1f203980dcb4c92a1f5e7d6f568eecbb181eaf65b9df34754c64"
+    },
+    "model-comparison-20261025/images/R08-06-view-scenediff_original.jpg": {
+      "bytes": 44467,
+      "sha256": "fdbac8cb6fd0ce146cce2e594746fcd85b762ccbb61d0d186c1cc5c597e33fae"
+    },
+    "model-comparison-20261025/images/R08-06-view-simsac.jpg": {
+      "bytes": 44950,
+      "sha256": "280833307fe89636ff732b0a9c2150ab819e96e2988d6ebb7200b294409c8842"
+    },
+    "model-comparison-20261025/images/R08-06-view-viewdelta.jpg": {
+      "bytes": 42330,
+      "sha256": "27787e38ccddb552439b6928d978dfada7035e4a3d8a777f8b83f38864abb587"
+    },
+    "model-comparison-20261025/images/R08-07-erp-full-simsac.jpg": {
+      "bytes": 116357,
+      "sha256": "86a1b5b636aa002df2c9a4d0f09a9737bb4cb91fe259c0f687fc5855e2a46e55"
+    },
+    "model-comparison-20261025/images/R08-07-erp-full-viewdelta.jpg": {
+      "bytes": 113930,
+      "sha256": "c0731ea49633c8d9cf348148478ff43a9e1cacc8f458e1f0e3eacdc6571476db"
+    },
+    "model-comparison-20261025/images/R08-07-erp-reference.jpg": {
+      "bytes": 98356,
+      "sha256": "4b92cb1f4218480e85703a75c982515d15fdca414df992add9d5ee584eb95df6"
+    },
+    "model-comparison-20261025/images/R08-07-erp-rgb.jpg": {
+      "bytes": 91967,
+      "sha256": "f018984a4f24668fe35c1b6f01b6a07b11132203cc4c249e467c31914219500e"
+    },
+    "model-comparison-20261025/images/R08-07-erp-scenediff_mesh.jpg": {
+      "bytes": 48665,
+      "sha256": "1c5cc64385aac4eafee5ac49038e7d81619995e01ff9b661023923be50490b94"
+    },
+    "model-comparison-20261025/images/R08-07-erp-scenediff_original.jpg": {
+      "bytes": 43709,
+      "sha256": "b24db1feecde49f35265dc9ccb02e5a4d4e6d0548039e13994f6e2c3cc772449"
+    },
+    "model-comparison-20261025/images/R08-07-erp-simsac.jpg": {
+      "bytes": 45515,
+      "sha256": "21d8756d3521378feab87b699ef6eeed5d588c4c8aa3aaf07c4e89a20486e0ed"
+    },
+    "model-comparison-20261025/images/R08-07-erp-viewdelta.jpg": {
+      "bytes": 41605,
+      "sha256": "7098f7eaa7eefa26f1059717503e6a11f35d8d445318074dd0470afe7cebe391"
+    },
+    "model-comparison-20261025/images/R08-07-rgb.jpg": {
+      "bytes": 37314,
+      "sha256": "7e3f3a84914ab53b0515f48159245e19c28d419fa549742b79937f3cf12b5d83"
+    },
+    "model-comparison-20261025/images/R08-07-view-scenediff_mesh.jpg": {
+      "bytes": 48665,
+      "sha256": "1c5cc64385aac4eafee5ac49038e7d81619995e01ff9b661023923be50490b94"
+    },
+    "model-comparison-20261025/images/R08-07-view-scenediff_original.jpg": {
+      "bytes": 43709,
+      "sha256": "b24db1feecde49f35265dc9ccb02e5a4d4e6d0548039e13994f6e2c3cc772449"
+    },
+    "model-comparison-20261025/images/R08-07-view-simsac.jpg": {
+      "bytes": 46185,
+      "sha256": "44d1e12be769dfa0feb7a18542f1233bc6036e28ef82e7fd3169b6e886147693"
+    },
+    "model-comparison-20261025/images/R08-07-view-viewdelta.jpg": {
+      "bytes": 41605,
+      "sha256": "7098f7eaa7eefa26f1059717503e6a11f35d8d445318074dd0470afe7cebe391"
+    },
+    "model-comparison-20261025/images/R08-08-erp-full-simsac.jpg": {
+      "bytes": 114477,
+      "sha256": "eb68a2fdb55d7a76f120c6ddfeab95dbff6a5d985aa6efb3140679eafb186567"
+    },
+    "model-comparison-20261025/images/R08-08-erp-full-viewdelta.jpg": {
+      "bytes": 111299,
+      "sha256": "93770de738c4aad5879b4b8621b7155322a42116cfe65c64813cb15c7ddcaff5"
+    },
+    "model-comparison-20261025/images/R08-08-erp-reference.jpg": {
+      "bytes": 98356,
+      "sha256": "4b92cb1f4218480e85703a75c982515d15fdca414df992add9d5ee584eb95df6"
+    },
+    "model-comparison-20261025/images/R08-08-erp-rgb.jpg": {
+      "bytes": 90770,
+      "sha256": "0ddc50e76a2e332375598fc338b0f20c73bf42be734e8b4c08214505c206f177"
+    },
+    "model-comparison-20261025/images/R08-08-erp-scenediff_mesh.jpg": {
+      "bytes": 51962,
+      "sha256": "ffd05d2eab214d927155ff46c57613386ce9bae49740da3ce4436a2ef4894341"
+    },
+    "model-comparison-20261025/images/R08-08-erp-scenediff_original.jpg": {
+      "bytes": 43933,
+      "sha256": "32124e5aa6d0190f56f34cd6d138d2721005ef00c30a57cd34539b164bd12e17"
+    },
+    "model-comparison-20261025/images/R08-08-erp-simsac.jpg": {
+      "bytes": 44492,
+      "sha256": "6fb8c02f2a80d45d07e7ce86bff5075d59650a49b347de1bdc379db22b9feb9a"
+    },
+    "model-comparison-20261025/images/R08-08-erp-viewdelta.jpg": {
+      "bytes": 43617,
+      "sha256": "0a3f327e4279202b50495e0906a3df36f48a66d36f98aabd01e4a0095e9ee469"
+    },
+    "model-comparison-20261025/images/R08-08-rgb.jpg": {
+      "bytes": 39292,
+      "sha256": "21348f9c356ad214cf84ae6a753b2c1aaa7ac160bd01cd259aff015540604ba0"
+    },
+    "model-comparison-20261025/images/R08-08-view-scenediff_mesh.jpg": {
+      "bytes": 51962,
+      "sha256": "ffd05d2eab214d927155ff46c57613386ce9bae49740da3ce4436a2ef4894341"
+    },
+    "model-comparison-20261025/images/R08-08-view-scenediff_original.jpg": {
+      "bytes": 43933,
+      "sha256": "32124e5aa6d0190f56f34cd6d138d2721005ef00c30a57cd34539b164bd12e17"
+    },
+    "model-comparison-20261025/images/R08-08-view-simsac.jpg": {
+      "bytes": 47701,
+      "sha256": "bcccb84ad45533f1c876e890f0c8f820564aee3ffd691a3e994df1a6e8b57931"
+    },
+    "model-comparison-20261025/images/R08-08-view-viewdelta.jpg": {
+      "bytes": 44220,
+      "sha256": "758efec422870fde9cda1c42a1cc5b769983d3ff83de48f693ee0560d37bfbb3"
+    },
+    "model-comparison-20261025/images/R08-09-erp-full-simsac.jpg": {
+      "bytes": 115401,
+      "sha256": "38d75114629387cd820771a7098432fc597ac822a797a238fb48b0351edee60d"
+    },
+    "model-comparison-20261025/images/R08-09-erp-full-viewdelta.jpg": {
+      "bytes": 112966,
+      "sha256": "b2ca4051184d61ba205a78376d2836f6bffa78c94ff63328f93653b9dfadf95f"
+    },
+    "model-comparison-20261025/images/R08-09-erp-reference.jpg": {
+      "bytes": 98356,
+      "sha256": "4b92cb1f4218480e85703a75c982515d15fdca414df992add9d5ee584eb95df6"
+    },
+    "model-comparison-20261025/images/R08-09-erp-rgb.jpg": {
+      "bytes": 91908,
+      "sha256": "0d31cbb3893d4c7a9eb7a2da879eaae38e76851fad47702f579c03fdcc5aa2b6"
+    },
+    "model-comparison-20261025/images/R08-09-erp-scenediff_mesh.jpg": {
+      "bytes": 46866,
+      "sha256": "43c05a3dc8c71211edf1223fcce2e9326ec4a2853487421c786ea62ef53465fa"
+    },
+    "model-comparison-20261025/images/R08-09-erp-scenediff_original.jpg": {
+      "bytes": 42035,
+      "sha256": "48170585efee1a6f7d530dc5a3ea6ab7a58209feb34022b502dcbf7fcc65be8d"
+    },
+    "model-comparison-20261025/images/R08-09-erp-simsac.jpg": {
+      "bytes": 40740,
+      "sha256": "457694cb1d8993b4e8ec635edbca5d8fc19f0fd1bf38d74caa019a64bc38d66f"
+    },
+    "model-comparison-20261025/images/R08-09-erp-viewdelta.jpg": {
+      "bytes": 39499,
+      "sha256": "e10e3c5509f477a1ab0a5c6ed2a86c680c125e65ec7dc94ef7b4571a6bf8bb4b"
+    },
+    "model-comparison-20261025/images/R08-09-rgb.jpg": {
+      "bytes": 35392,
+      "sha256": "3e3584f23a65b331217ba015d207babbad8dd361547d6aa965191d32cce5de71"
+    },
+    "model-comparison-20261025/images/R08-09-view-scenediff_mesh.jpg": {
+      "bytes": 46866,
+      "sha256": "43c05a3dc8c71211edf1223fcce2e9326ec4a2853487421c786ea62ef53465fa"
+    },
+    "model-comparison-20261025/images/R08-09-view-scenediff_original.jpg": {
+      "bytes": 42035,
+      "sha256": "48170585efee1a6f7d530dc5a3ea6ab7a58209feb34022b502dcbf7fcc65be8d"
+    },
+    "model-comparison-20261025/images/R08-09-view-simsac.jpg": {
+      "bytes": 41809,
+      "sha256": "5db255f4388f1093ade0a02afed6eca6f9b433b75860f1b81c1b5b8dcb810a96"
+    },
+    "model-comparison-20261025/images/R08-09-view-viewdelta.jpg": {
+      "bytes": 39499,
+      "sha256": "e10e3c5509f477a1ab0a5c6ed2a86c680c125e65ec7dc94ef7b4571a6bf8bb4b"
+    },
+    "model-comparison-20261025/inputs/manifest.json": {
+      "bytes": 28004,
+      "sha256": "23a5fd373e7970d0c18b70516d716696487f822cf1b1bbf1e631c0cf9064acd2"
+    },
+    "model-comparison-20261025/results/simsac/model.json": {
+      "bytes": 704,
+      "sha256": "3ebacecf010f395c59bfd2fe976d3002ee58e9cd37b53713f9a528656d67dcb8"
+    },
+    "model-comparison-20261025/results/simsac/pairs.json": {
+      "bytes": 51562,
+      "sha256": "ecb62a2941fc19baea418979f877320eecee284b81c80fcf24cb21505ef52534"
+    },
+    "model-comparison-20261025/results/simsac/self-control.json": {
+      "bytes": 275,
+      "sha256": "535738fb82ff3b08b6b50714f35ede7bb5a96b0d11e564f9f7a8b0e99e81152e"
+    },
+    "model-comparison-20261025/results/simsac/status.json": {
+      "bytes": 404,
+      "sha256": "4f50e121081589e7aca376776310adee6ead126c904dbc0d3accdd38bf19735d"
+    },
+    "model-comparison-20261025/results/viewdelta/model.json": {
+      "bytes": 1055,
+      "sha256": "35b24bb27f1f1c27892979806fd1a2a787ac62a43851ccca9955ecd0e36ebde2"
+    },
+    "model-comparison-20261025/results/viewdelta/pairs.json": {
+      "bytes": 51562,
+      "sha256": "ecb62a2941fc19baea418979f877320eecee284b81c80fcf24cb21505ef52534"
+    },
+    "model-comparison-20261025/results/viewdelta/self-control.json": {
+      "bytes": 272,
+      "sha256": "ed57e8c69e54aca5fdbb72569bb155ca1ca63183d3d21e6cd81e2ad770350b44"
+    },
+    "model-comparison-20261025/results/viewdelta/status.json": {
+      "bytes": 402,
+      "sha256": "709022269b807778bdb833e6260a91a48b36876fc5a7fc999f84b25ef38a9b12"
+    },
+    "focus-comparison-20261025/images/R01-00-baseline-review.png": {
+      "bytes": 49617,
+      "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
+    },
+    "focus-comparison-20261025/images/R01-00-baseline.png": {
+      "bytes": 49617,
+      "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
+    },
+    "focus-comparison-20261025/images/R01-00-erp-simsac.png": {
+      "bytes": 49617,
+      "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
+    },
+    "focus-comparison-20261025/images/R01-00-erp-viewdelta.png": {
+      "bytes": 49617,
+      "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
+    },
+    "focus-comparison-20261025/images/R01-00-person.png": {
+      "bytes": 49617,
+      "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
+    },
+    "focus-comparison-20261025/images/R01-00-rgb.png": {
+      "bytes": 49617,
+      "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
+    },
+    "focus-comparison-20261025/images/R01-00-view-simsac.png": {
+      "bytes": 49617,
+      "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
+    },
+    "focus-comparison-20261025/images/R01-00-view-viewdelta.png": {
+      "bytes": 49617,
+      "sha256": "5003232a61779811d7efe7dacd4d6d77fd8d3d630ef49df2a71dfeca539b9c21"
+    },
+    "focus-comparison-20261025/images/R01-01-baseline-review.png": {
+      "bytes": 65445,
+      "sha256": "f0124e3171e3377a35cf3391e965ca47719d418be5080855f3afe29c88a64bcf"
+    },
+    "focus-comparison-20261025/images/R01-01-baseline.png": {
+      "bytes": 65493,
+      "sha256": "7a2f4034af19067bda5736eb0c99803d8859674385ebd09ba6f60aa757feabfc"
+    },
+    "focus-comparison-20261025/images/R01-01-erp-simsac.png": {
+      "bytes": 65493,
+      "sha256": "7a2f4034af19067bda5736eb0c99803d8859674385ebd09ba6f60aa757feabfc"
+    },
+    "focus-comparison-20261025/images/R01-01-erp-viewdelta.png": {
+      "bytes": 65493,
+      "sha256": "7a2f4034af19067bda5736eb0c99803d8859674385ebd09ba6f60aa757feabfc"
+    },
+    "focus-comparison-20261025/images/R01-01-person.png": {
+      "bytes": 62842,
+      "sha256": "c349f6e1f7df1e03642ee14c1b7fc5fc9060d1deccd203d79f364a8c899176d5"
+    },
+    "focus-comparison-20261025/images/R01-01-rgb.png": {
+      "bytes": 65493,
+      "sha256": "7a2f4034af19067bda5736eb0c99803d8859674385ebd09ba6f60aa757feabfc"
+    },
+    "focus-comparison-20261025/images/R01-01-view-simsac.png": {
+      "bytes": 62727,
+      "sha256": "6fc85e20b77987ca45ae8f7dc5266522a5cad74419d3698017b478f2e1495273"
+    },
+    "focus-comparison-20261025/images/R01-01-view-viewdelta.png": {
+      "bytes": 63927,
+      "sha256": "22857c043679abc29afc273a90bf6a408ecc98a0761740fdc7daeb7ec13fc98c"
+    },
+    "focus-comparison-20261025/images/R01-02-baseline-review.png": {
+      "bytes": 56684,
+      "sha256": "d11be7a0c69a7cc37deaa4c9fbe2be6d31c94e21f1a10a59a6bf2a2b6fb2026a"
+    },
+    "focus-comparison-20261025/images/R01-02-baseline.png": {
+      "bytes": 56684,
+      "sha256": "d11be7a0c69a7cc37deaa4c9fbe2be6d31c94e21f1a10a59a6bf2a2b6fb2026a"
+    },
+    "focus-comparison-20261025/images/R01-02-erp-simsac.png": {
+      "bytes": 56684,
+      "sha256": "d11be7a0c69a7cc37deaa4c9fbe2be6d31c94e21f1a10a59a6bf2a2b6fb2026a"
+    },
+    "focus-comparison-20261025/images/R01-02-erp-viewdelta.png": {
+      "bytes": 56684,
+      "sha256": "d11be7a0c69a7cc37deaa4c9fbe2be6d31c94e21f1a10a59a6bf2a2b6fb2026a"
+    },
+    "focus-comparison-20261025/images/R01-02-person.png": {
+      "bytes": 56684,
+      "sha256": "d11be7a0c69a7cc37deaa4c9fbe2be6d31c94e21f1a10a59a6bf2a2b6fb2026a"
+    },
+    "focus-comparison-20261025/images/R01-02-rgb.png": {
+      "bytes": 56684,
+      "sha256": "d11be7a0c69a7cc37deaa4c9fbe2be6d31c94e21f1a10a59a6bf2a2b6fb2026a"
+    },
+    "focus-comparison-20261025/images/R01-02-view-simsac.png": {
+      "bytes": 56008,
+      "sha256": "a781fcaa231124a79ac2be99e3a99937ef3ed1001c60d77ba23d1e37f61b3189"
+    },
+    "focus-comparison-20261025/images/R01-02-view-viewdelta.png": {
+      "bytes": 56700,
+      "sha256": "f47206859b1dd10e40d8973f6788f6fc4c826edec2a90c72093dc242c0c58078"
+    },
+    "focus-comparison-20261025/images/R01-03-baseline-review.png": {
+      "bytes": 63782,
+      "sha256": "44d13d578c62fe76a4c7fa155e3f6f78256ab40c3bbde7a1f643790c3026aa7f"
+    },
+    "focus-comparison-20261025/images/R01-03-baseline.png": {
+      "bytes": 63698,
+      "sha256": "e9936a22a9167a68755938eaf4b0e0fc4c4359843ad204bad8d78969ae8f627a"
+    },
+    "focus-comparison-20261025/images/R01-03-erp-simsac.png": {
+      "bytes": 63698,
+      "sha256": "e9936a22a9167a68755938eaf4b0e0fc4c4359843ad204bad8d78969ae8f627a"
+    },
+    "focus-comparison-20261025/images/R01-03-erp-viewdelta.png": {
+      "bytes": 63698,
+      "sha256": "e9936a22a9167a68755938eaf4b0e0fc4c4359843ad204bad8d78969ae8f627a"
+    },
+    "focus-comparison-20261025/images/R01-03-person.png": {
+      "bytes": 63698,
+      "sha256": "e9936a22a9167a68755938eaf4b0e0fc4c4359843ad204bad8d78969ae8f627a"
+    },
+    "focus-comparison-20261025/images/R01-03-rgb.png": {
+      "bytes": 63698,
+      "sha256": "e9936a22a9167a68755938eaf4b0e0fc4c4359843ad204bad8d78969ae8f627a"
+    },
+    "focus-comparison-20261025/images/R01-03-view-simsac.png": {
+      "bytes": 63726,
+      "sha256": "42eb1ade12fadcf08487110dfecdce5480c953d105695577427770e13ea14a25"
+    },
+    "focus-comparison-20261025/images/R01-03-view-viewdelta.png": {
+      "bytes": 63698,
+      "sha256": "e9936a22a9167a68755938eaf4b0e0fc4c4359843ad204bad8d78969ae8f627a"
+    },
+    "focus-comparison-20261025/images/R01-04-baseline-review.png": {
+      "bytes": 66042,
+      "sha256": "8a18daf60f706689c01b4f61d39efd12056d8b4b7892549c311540c7645863e7"
+    },
+    "focus-comparison-20261025/images/R01-04-baseline.png": {
+      "bytes": 66042,
+      "sha256": "8a18daf60f706689c01b4f61d39efd12056d8b4b7892549c311540c7645863e7"
+    },
+    "focus-comparison-20261025/images/R01-04-erp-simsac.png": {
+      "bytes": 66042,
+      "sha256": "8a18daf60f706689c01b4f61d39efd12056d8b4b7892549c311540c7645863e7"
+    },
+    "focus-comparison-20261025/images/R01-04-erp-viewdelta.png": {
+      "bytes": 66042,
+      "sha256": "8a18daf60f706689c01b4f61d39efd12056d8b4b7892549c311540c7645863e7"
+    },
+    "focus-comparison-20261025/images/R01-04-person.png": {
+      "bytes": 66042,
+      "sha256": "8a18daf60f706689c01b4f61d39efd12056d8b4b7892549c311540c7645863e7"
+    },
+    "focus-comparison-20261025/images/R01-04-rgb.png": {
+      "bytes": 66042,
+      "sha256": "8a18daf60f706689c01b4f61d39efd12056d8b4b7892549c311540c7645863e7"
+    },
+    "focus-comparison-20261025/images/R01-04-view-simsac.png": {
+      "bytes": 66042,
+      "sha256": "8a18daf60f706689c01b4f61d39efd12056d8b4b7892549c311540c7645863e7"
+    },
+    "focus-comparison-20261025/images/R01-04-view-viewdelta.png": {
+      "bytes": 66042,
+      "sha256": "8a18daf60f706689c01b4f61d39efd12056d8b4b7892549c311540c7645863e7"
+    },
+    "focus-comparison-20261025/images/R01-05-baseline-review.png": {
+      "bytes": 57223,
+      "sha256": "c1db72305749a078c6993451ad7743225b8e2a08abcc1921c2c25e1ca5cba2a4"
+    },
+    "focus-comparison-20261025/images/R01-05-baseline.png": {
+      "bytes": 57223,
+      "sha256": "c1db72305749a078c6993451ad7743225b8e2a08abcc1921c2c25e1ca5cba2a4"
+    },
+    "focus-comparison-20261025/images/R01-05-erp-simsac.png": {
+      "bytes": 57223,
+      "sha256": "c1db72305749a078c6993451ad7743225b8e2a08abcc1921c2c25e1ca5cba2a4"
+    },
+    "focus-comparison-20261025/images/R01-05-erp-viewdelta.png": {
+      "bytes": 57223,
+      "sha256": "c1db72305749a078c6993451ad7743225b8e2a08abcc1921c2c25e1ca5cba2a4"
+    },
+    "focus-comparison-20261025/images/R01-05-person.png": {
+      "bytes": 57223,
+      "sha256": "c1db72305749a078c6993451ad7743225b8e2a08abcc1921c2c25e1ca5cba2a4"
+    },
+    "focus-comparison-20261025/images/R01-05-rgb.png": {
+      "bytes": 57223,
+      "sha256": "c1db72305749a078c6993451ad7743225b8e2a08abcc1921c2c25e1ca5cba2a4"
+    },
+    "focus-comparison-20261025/images/R01-05-view-simsac.png": {
+      "bytes": 57223,
+      "sha256": "c1db72305749a078c6993451ad7743225b8e2a08abcc1921c2c25e1ca5cba2a4"
+    },
+    "focus-comparison-20261025/images/R01-05-view-viewdelta.png": {
+      "bytes": 57223,
+      "sha256": "c1db72305749a078c6993451ad7743225b8e2a08abcc1921c2c25e1ca5cba2a4"
+    },
+    "focus-comparison-20261025/images/R01-06-baseline-review.png": {
+      "bytes": 58143,
+      "sha256": "a42b4a7c83500f99560dfb6e86e07326e35c7405f45df48ae35671f759ab3c1a"
+    },
+    "focus-comparison-20261025/images/R01-06-baseline.png": {
+      "bytes": 58334,
+      "sha256": "4352bf0820a30b3629deffaf8d81acb84776926d93268d7d636b69dbe2212be7"
+    },
+    "focus-comparison-20261025/images/R01-06-erp-simsac.png": {
+      "bytes": 58334,
+      "sha256": "4352bf0820a30b3629deffaf8d81acb84776926d93268d7d636b69dbe2212be7"
+    },
+    "focus-comparison-20261025/images/R01-06-erp-viewdelta.png": {
+      "bytes": 58334,
+      "sha256": "4352bf0820a30b3629deffaf8d81acb84776926d93268d7d636b69dbe2212be7"
+    },
+    "focus-comparison-20261025/images/R01-06-person.png": {
+      "bytes": 58334,
+      "sha256": "4352bf0820a30b3629deffaf8d81acb84776926d93268d7d636b69dbe2212be7"
+    },
+    "focus-comparison-20261025/images/R01-06-rgb.png": {
+      "bytes": 58334,
+      "sha256": "4352bf0820a30b3629deffaf8d81acb84776926d93268d7d636b69dbe2212be7"
+    },
+    "focus-comparison-20261025/images/R01-06-view-simsac.png": {
+      "bytes": 58455,
+      "sha256": "b60199b8e492871b8ee9b57238cca77f37b9ce75c6ace7de101b381243b2b97d"
+    },
+    "focus-comparison-20261025/images/R01-06-view-viewdelta.png": {
+      "bytes": 58334,
+      "sha256": "4352bf0820a30b3629deffaf8d81acb84776926d93268d7d636b69dbe2212be7"
+    },
+    "focus-comparison-20261025/images/R01-07-baseline-review.png": {
+      "bytes": 59072,
+      "sha256": "c76b4e722ce2e511f4d014b761b1f4f0fd65a5fb4a1da84b72de2e1b8c7d727c"
+    },
+    "focus-comparison-20261025/images/R01-07-baseline.png": {
+      "bytes": 59072,
+      "sha256": "c76b4e722ce2e511f4d014b761b1f4f0fd65a5fb4a1da84b72de2e1b8c7d727c"
+    },
+    "focus-comparison-20261025/images/R01-07-erp-simsac.png": {
+      "bytes": 59072,
+      "sha256": "c76b4e722ce2e511f4d014b761b1f4f0fd65a5fb4a1da84b72de2e1b8c7d727c"
+    },
+    "focus-comparison-20261025/images/R01-07-erp-viewdelta.png": {
+      "bytes": 59072,
+      "sha256": "c76b4e722ce2e511f4d014b761b1f4f0fd65a5fb4a1da84b72de2e1b8c7d727c"
+    },
+    "focus-comparison-20261025/images/R01-07-person.png": {
+      "bytes": 59072,
+      "sha256": "c76b4e722ce2e511f4d014b761b1f4f0fd65a5fb4a1da84b72de2e1b8c7d727c"
+    },
+    "focus-comparison-20261025/images/R01-07-rgb.png": {
+      "bytes": 59072,
+      "sha256": "c76b4e722ce2e511f4d014b761b1f4f0fd65a5fb4a1da84b72de2e1b8c7d727c"
+    },
+    "focus-comparison-20261025/images/R01-07-view-simsac.png": {
+      "bytes": 59072,
+      "sha256": "c76b4e722ce2e511f4d014b761b1f4f0fd65a5fb4a1da84b72de2e1b8c7d727c"
+    },
+    "focus-comparison-20261025/images/R01-07-view-viewdelta.png": {
+      "bytes": 59072,
+      "sha256": "c76b4e722ce2e511f4d014b761b1f4f0fd65a5fb4a1da84b72de2e1b8c7d727c"
+    },
+    "focus-comparison-20261025/images/R01-08-baseline-review.png": {
+      "bytes": 53985,
+      "sha256": "e29b1dce37c1c20450bfb6016bf307e2f48ff813b6658078f9a880167a23b7ce"
+    },
+    "focus-comparison-20261025/images/R01-08-baseline.png": {
+      "bytes": 54090,
+      "sha256": "b057c61a3b3bb7c34b1dd5fcffaf59fc6b44315fa7351385430dee630cfe7f32"
+    },
+    "focus-comparison-20261025/images/R01-08-erp-simsac.png": {
+      "bytes": 54090,
+      "sha256": "b057c61a3b3bb7c34b1dd5fcffaf59fc6b44315fa7351385430dee630cfe7f32"
+    },
+    "focus-comparison-20261025/images/R01-08-erp-viewdelta.png": {
+      "bytes": 54090,
+      "sha256": "b057c61a3b3bb7c34b1dd5fcffaf59fc6b44315fa7351385430dee630cfe7f32"
+    },
+    "focus-comparison-20261025/images/R01-08-person.png": {
+      "bytes": 54090,
+      "sha256": "b057c61a3b3bb7c34b1dd5fcffaf59fc6b44315fa7351385430dee630cfe7f32"
+    },
+    "focus-comparison-20261025/images/R01-08-rgb.png": {
+      "bytes": 54090,
+      "sha256": "b057c61a3b3bb7c34b1dd5fcffaf59fc6b44315fa7351385430dee630cfe7f32"
+    },
+    "focus-comparison-20261025/images/R01-08-view-simsac.png": {
+      "bytes": 54061,
+      "sha256": "c7a0d1a7a0c168f55fc4d7ac29c7a02f19b97b0515063054e7d90940c2382d2a"
+    },
+    "focus-comparison-20261025/images/R01-08-view-viewdelta.png": {
+      "bytes": 54090,
+      "sha256": "b057c61a3b3bb7c34b1dd5fcffaf59fc6b44315fa7351385430dee630cfe7f32"
+    },
+    "focus-comparison-20261025/images/R01-09-baseline-review.png": {
+      "bytes": 57244,
+      "sha256": "6e67ed347d0eb3917a36c9013249f9128173b3d67c8c5cf69afaf466cc165837"
+    },
+    "focus-comparison-20261025/images/R01-09-baseline.png": {
+      "bytes": 57386,
+      "sha256": "a2752d9686bfc7c14edbad430ea87f745f2b28e0acb9dfbf408f4e00eec192b7"
+    },
+    "focus-comparison-20261025/images/R01-09-erp-simsac.png": {
+      "bytes": 57385,
+      "sha256": "9d4a0c06b67d28415ed73ecb849914fda6f912b53eaebdf095111efb8c330657"
+    },
+    "focus-comparison-20261025/images/R01-09-erp-viewdelta.png": {
+      "bytes": 57386,
+      "sha256": "a2752d9686bfc7c14edbad430ea87f745f2b28e0acb9dfbf408f4e00eec192b7"
+    },
+    "focus-comparison-20261025/images/R01-09-person.png": {
+      "bytes": 57386,
+      "sha256": "a2752d9686bfc7c14edbad430ea87f745f2b28e0acb9dfbf408f4e00eec192b7"
+    },
+    "focus-comparison-20261025/images/R01-09-rgb.png": {
+      "bytes": 57386,
+      "sha256": "a2752d9686bfc7c14edbad430ea87f745f2b28e0acb9dfbf408f4e00eec192b7"
+    },
+    "focus-comparison-20261025/images/R01-09-view-simsac.png": {
+      "bytes": 57255,
+      "sha256": "b33e84953019dd15e6f3ff362b192b4f7ca68abcf24b2b207fa2ee68088e0dca"
+    },
+    "focus-comparison-20261025/images/R01-09-view-viewdelta.png": {
+      "bytes": 56877,
+      "sha256": "1a286ffd83ed1e7ddcbbbd3ff0a3da00b988de610ff84fd2c87524a69c279281"
+    },
+    "focus-comparison-20261025/images/R07-00-baseline-review.png": {
+      "bytes": 57503,
+      "sha256": "e22ce80f511aa0a6b0462f81f3d83eb6acaa9ad427e688f2c9fccd9183a9c7b9"
+    },
+    "focus-comparison-20261025/images/R07-00-baseline.png": {
+      "bytes": 57427,
+      "sha256": "b0ed6175f5c2124c5a7dd4e0448459be58fc1e5ec9194e6924b72d2653e57458"
+    },
+    "focus-comparison-20261025/images/R07-00-erp-simsac.png": {
+      "bytes": 57427,
+      "sha256": "b0ed6175f5c2124c5a7dd4e0448459be58fc1e5ec9194e6924b72d2653e57458"
+    },
+    "focus-comparison-20261025/images/R07-00-erp-viewdelta.png": {
+      "bytes": 57427,
+      "sha256": "b0ed6175f5c2124c5a7dd4e0448459be58fc1e5ec9194e6924b72d2653e57458"
+    },
+    "focus-comparison-20261025/images/R07-00-person.png": {
+      "bytes": 57427,
+      "sha256": "b0ed6175f5c2124c5a7dd4e0448459be58fc1e5ec9194e6924b72d2653e57458"
+    },
+    "focus-comparison-20261025/images/R07-00-rgb.png": {
+      "bytes": 57427,
+      "sha256": "b0ed6175f5c2124c5a7dd4e0448459be58fc1e5ec9194e6924b72d2653e57458"
+    },
+    "focus-comparison-20261025/images/R07-00-view-simsac.png": {
+      "bytes": 57491,
+      "sha256": "a9c21dcf2380ab81ab58c0f5ec0e671715967fc4737532c921b998c73d1ac823"
+    },
+    "focus-comparison-20261025/images/R07-00-view-viewdelta.png": {
+      "bytes": 57466,
+      "sha256": "8abfb0fe6623e33c92716a83387905c64ced529f7a895e585a4dc1e12909741c"
+    },
+    "focus-comparison-20261025/images/R07-01-baseline-review.png": {
+      "bytes": 50840,
+      "sha256": "9ee53dcc25466bb42f713b501a2ae8a8d1ccfad2d43ad6c468ecb2d70732379a"
+    },
+    "focus-comparison-20261025/images/R07-01-baseline.png": {
+      "bytes": 50708,
+      "sha256": "4b2fd4599c7332cbb7836383e873a1cbc5be9ca5672275cedb7440995e700f45"
+    },
+    "focus-comparison-20261025/images/R07-01-erp-simsac.png": {
+      "bytes": 50708,
+      "sha256": "4b2fd4599c7332cbb7836383e873a1cbc5be9ca5672275cedb7440995e700f45"
+    },
+    "focus-comparison-20261025/images/R07-01-erp-viewdelta.png": {
+      "bytes": 50708,
+      "sha256": "4b2fd4599c7332cbb7836383e873a1cbc5be9ca5672275cedb7440995e700f45"
+    },
+    "focus-comparison-20261025/images/R07-01-person.png": {
+      "bytes": 50708,
+      "sha256": "4b2fd4599c7332cbb7836383e873a1cbc5be9ca5672275cedb7440995e700f45"
+    },
+    "focus-comparison-20261025/images/R07-01-rgb.png": {
+      "bytes": 50708,
+      "sha256": "4b2fd4599c7332cbb7836383e873a1cbc5be9ca5672275cedb7440995e700f45"
+    },
+    "focus-comparison-20261025/images/R07-01-view-simsac.png": {
+      "bytes": 50761,
+      "sha256": "2991564e7868d4bfbbc0c77e9b0c5630da4b821630efc609e51c68f15fa32bbe"
+    },
+    "focus-comparison-20261025/images/R07-01-view-viewdelta.png": {
+      "bytes": 50708,
+      "sha256": "4b2fd4599c7332cbb7836383e873a1cbc5be9ca5672275cedb7440995e700f45"
+    },
+    "focus-comparison-20261025/images/R07-02-baseline-review.png": {
+      "bytes": 66111,
+      "sha256": "80516fd67904efb83863c1cd2a8b2f72170f58d73c2891b3e33a0bd4b40b3d27"
+    },
+    "focus-comparison-20261025/images/R07-02-baseline.png": {
+      "bytes": 66111,
+      "sha256": "80516fd67904efb83863c1cd2a8b2f72170f58d73c2891b3e33a0bd4b40b3d27"
+    },
+    "focus-comparison-20261025/images/R07-02-erp-simsac.png": {
+      "bytes": 66126,
+      "sha256": "6a793cba2243a150a41a368ebc91a4789ce6926346034b1d9845d1cb79f56d0c"
+    },
+    "focus-comparison-20261025/images/R07-02-erp-viewdelta.png": {
+      "bytes": 66111,
+      "sha256": "80516fd67904efb83863c1cd2a8b2f72170f58d73c2891b3e33a0bd4b40b3d27"
+    },
+    "focus-comparison-20261025/images/R07-02-person.png": {
+      "bytes": 66111,
+      "sha256": "80516fd67904efb83863c1cd2a8b2f72170f58d73c2891b3e33a0bd4b40b3d27"
+    },
+    "focus-comparison-20261025/images/R07-02-rgb.png": {
+      "bytes": 66111,
+      "sha256": "80516fd67904efb83863c1cd2a8b2f72170f58d73c2891b3e33a0bd4b40b3d27"
+    },
+    "focus-comparison-20261025/images/R07-02-view-simsac.png": {
+      "bytes": 66111,
+      "sha256": "80516fd67904efb83863c1cd2a8b2f72170f58d73c2891b3e33a0bd4b40b3d27"
+    },
+    "focus-comparison-20261025/images/R07-02-view-viewdelta.png": {
+      "bytes": 65453,
+      "sha256": "a0d2e793c50f34a9f9d18df2db8c82564ee5455eda52b726c062197817f0649d"
+    },
+    "focus-comparison-20261025/images/R07-03-baseline-review.png": {
+      "bytes": 66164,
+      "sha256": "4ba94712a254e978c72bf7299b881f84aaa1938ed289f3941d70ced8573912c4"
+    },
+    "focus-comparison-20261025/images/R07-03-baseline.png": {
+      "bytes": 66164,
+      "sha256": "4ba94712a254e978c72bf7299b881f84aaa1938ed289f3941d70ced8573912c4"
+    },
+    "focus-comparison-20261025/images/R07-03-erp-simsac.png": {
+      "bytes": 66164,
+      "sha256": "4ba94712a254e978c72bf7299b881f84aaa1938ed289f3941d70ced8573912c4"
+    },
+    "focus-comparison-20261025/images/R07-03-erp-viewdelta.png": {
+      "bytes": 66164,
+      "sha256": "4ba94712a254e978c72bf7299b881f84aaa1938ed289f3941d70ced8573912c4"
+    },
+    "focus-comparison-20261025/images/R07-03-person.png": {
+      "bytes": 66164,
+      "sha256": "4ba94712a254e978c72bf7299b881f84aaa1938ed289f3941d70ced8573912c4"
+    },
+    "focus-comparison-20261025/images/R07-03-rgb.png": {
+      "bytes": 66164,
+      "sha256": "4ba94712a254e978c72bf7299b881f84aaa1938ed289f3941d70ced8573912c4"
+    },
+    "focus-comparison-20261025/images/R07-03-view-simsac.png": {
+      "bytes": 66183,
+      "sha256": "7b5e0f2c4485142da53896bc32832ebbac0ac4caabb441f6594ff14abfef0b1d"
+    },
+    "focus-comparison-20261025/images/R07-03-view-viewdelta.png": {
+      "bytes": 65847,
+      "sha256": "8aad7caec2db6fb3cb24f8a7507f1e37bc06f79279c723a04f55be2daa51b4e5"
+    },
+    "focus-comparison-20261025/images/R07-04-baseline-review.png": {
+      "bytes": 62321,
+      "sha256": "0df8c7497d6bfa66df718d8063063eb311a67536577033b25a2735b18de91d69"
+    },
+    "focus-comparison-20261025/images/R07-04-baseline.png": {
+      "bytes": 62212,
+      "sha256": "70ed8980a5c1b3c9862d2f16a77ee8fb45955b07aaacf5a6bab1a7c5644cc71c"
+    },
+    "focus-comparison-20261025/images/R07-04-erp-simsac.png": {
+      "bytes": 62212,
+      "sha256": "70ed8980a5c1b3c9862d2f16a77ee8fb45955b07aaacf5a6bab1a7c5644cc71c"
+    },
+    "focus-comparison-20261025/images/R07-04-erp-viewdelta.png": {
+      "bytes": 62232,
+      "sha256": "bb768266fc389926054761a2d04fb548c897382cde784b20fbe24c86c2cfbc70"
+    },
+    "focus-comparison-20261025/images/R07-04-person.png": {
+      "bytes": 62212,
+      "sha256": "70ed8980a5c1b3c9862d2f16a77ee8fb45955b07aaacf5a6bab1a7c5644cc71c"
+    },
+    "focus-comparison-20261025/images/R07-04-rgb.png": {
+      "bytes": 62212,
+      "sha256": "70ed8980a5c1b3c9862d2f16a77ee8fb45955b07aaacf5a6bab1a7c5644cc71c"
+    },
+    "focus-comparison-20261025/images/R07-04-view-simsac.png": {
+      "bytes": 62163,
+      "sha256": "f704f5a24239ffd2d85a5996fdd3a7601abb254d8ae2b78a2294815fe5384fb9"
+    },
+    "focus-comparison-20261025/images/R07-04-view-viewdelta.png": {
+      "bytes": 62332,
+      "sha256": "b5933985af944d246c6a256d58ee9dae0e86b9a9db9a7f2340e4e97bbe78c2b4"
+    },
+    "focus-comparison-20261025/images/R07-05-baseline-review.png": {
+      "bytes": 57244,
+      "sha256": "6e67ed347d0eb3917a36c9013249f9128173b3d67c8c5cf69afaf466cc165837"
+    },
+    "focus-comparison-20261025/images/R07-05-baseline.png": {
+      "bytes": 57386,
+      "sha256": "a2752d9686bfc7c14edbad430ea87f745f2b28e0acb9dfbf408f4e00eec192b7"
+    },
+    "focus-comparison-20261025/images/R07-05-erp-simsac.png": {
+      "bytes": 57382,
+      "sha256": "a9ce0279452e74c4af3e9e71b8f410d35cbe2d6d8851e43c84f86f0e8c05bc95"
+    },
+    "focus-comparison-20261025/images/R07-05-erp-viewdelta.png": {
+      "bytes": 57386,
+      "sha256": "a2752d9686bfc7c14edbad430ea87f745f2b28e0acb9dfbf408f4e00eec192b7"
+    },
+    "focus-comparison-20261025/images/R07-05-person.png": {
+      "bytes": 57386,
+      "sha256": "a2752d9686bfc7c14edbad430ea87f745f2b28e0acb9dfbf408f4e00eec192b7"
+    },
+    "focus-comparison-20261025/images/R07-05-rgb.png": {
+      "bytes": 57386,
+      "sha256": "a2752d9686bfc7c14edbad430ea87f745f2b28e0acb9dfbf408f4e00eec192b7"
+    },
+    "focus-comparison-20261025/images/R07-05-view-simsac.png": {
+      "bytes": 57268,
+      "sha256": "de557476fa681238d879814097f68ed39b222a27d7e73d33c6b2f9d4b86058a2"
+    },
+    "focus-comparison-20261025/images/R07-05-view-viewdelta.png": {
+      "bytes": 57419,
+      "sha256": "33811d34ccedb579d1376e50a63f783f927150e5a43a653395e24e062f9ac032"
+    },
+    "focus-comparison-20261025/images/R07-06-baseline-review.png": {
+      "bytes": 71369,
+      "sha256": "4992d7b86c9c296f60bc768c60bb4a83f0f4cea4635b6468c54fe881df24ec0d"
+    },
+    "focus-comparison-20261025/images/R07-06-baseline.png": {
+      "bytes": 71352,
+      "sha256": "46dbbce057152ef1e412fc93bacf48a36795c2e8720ade260a99c2df76877b0e"
+    },
+    "focus-comparison-20261025/images/R07-06-erp-simsac.png": {
+      "bytes": 71352,
+      "sha256": "46dbbce057152ef1e412fc93bacf48a36795c2e8720ade260a99c2df76877b0e"
+    },
+    "focus-comparison-20261025/images/R07-06-erp-viewdelta.png": {
+      "bytes": 71352,
+      "sha256": "46dbbce057152ef1e412fc93bacf48a36795c2e8720ade260a99c2df76877b0e"
+    },
+    "focus-comparison-20261025/images/R07-06-person.png": {
+      "bytes": 67935,
+      "sha256": "2c12d87e9c547e6e6637a0abc373b61e336a7cbbc0aa6062cc255aa65de227db"
+    },
+    "focus-comparison-20261025/images/R07-06-rgb.png": {
+      "bytes": 71352,
+      "sha256": "46dbbce057152ef1e412fc93bacf48a36795c2e8720ade260a99c2df76877b0e"
+    },
+    "focus-comparison-20261025/images/R07-06-view-simsac.png": {
+      "bytes": 67505,
+      "sha256": "7205e1f85598b46433f1a61dd880eb183ae986f60fd783f490607419b95f50e9"
+    },
+    "focus-comparison-20261025/images/R07-06-view-viewdelta.png": {
+      "bytes": 68148,
+      "sha256": "5b63748bf70fcaaac3be38b6d0e090caed66509dd5b2844a7594e37ceded1689"
+    },
+    "focus-comparison-20261025/images/R07-07-baseline-review.png": {
+      "bytes": 74365,
+      "sha256": "e5f175d59dd6a2ff8cc62874915e0e3bc41eb7d410a2818fc415f7096fccf5b7"
+    },
+    "focus-comparison-20261025/images/R07-07-baseline.png": {
+      "bytes": 74287,
+      "sha256": "cd423bbf3d4b77accdc7629a64d226d2c47740d21182624f3494cdff2bacc7ad"
+    },
+    "focus-comparison-20261025/images/R07-07-erp-simsac.png": {
+      "bytes": 74287,
+      "sha256": "cd423bbf3d4b77accdc7629a64d226d2c47740d21182624f3494cdff2bacc7ad"
+    },
+    "focus-comparison-20261025/images/R07-07-erp-viewdelta.png": {
+      "bytes": 74287,
+      "sha256": "cd423bbf3d4b77accdc7629a64d226d2c47740d21182624f3494cdff2bacc7ad"
+    },
+    "focus-comparison-20261025/images/R07-07-person.png": {
+      "bytes": 70250,
+      "sha256": "9f41cb8b761835ae0ac413ef9ac159e4fc8ad1a7f9c3f886ac986433a0b0249f"
+    },
+    "focus-comparison-20261025/images/R07-07-rgb.png": {
+      "bytes": 74287,
+      "sha256": "cd423bbf3d4b77accdc7629a64d226d2c47740d21182624f3494cdff2bacc7ad"
+    },
+    "focus-comparison-20261025/images/R07-07-view-simsac.png": {
+      "bytes": 70300,
+      "sha256": "bd17731e35344a62d5d7f2e1fd7b608f21a1878cecedac8559bfa3549b32f949"
+    },
+    "focus-comparison-20261025/images/R07-07-view-viewdelta.png": {
+      "bytes": 74095,
+      "sha256": "fda3719a696890aeccfcdcf1fd96b40befbbb5eb2fca97122e68ca15fa9862d5"
+    },
+    "focus-comparison-20261025/images/R07-08-baseline-review.png": {
+      "bytes": 62875,
+      "sha256": "9828f41fa4c46ee6eae7af5b3f9350b16ff20d7ee13f3ce8e4e832c4b3774de3"
+    },
+    "focus-comparison-20261025/images/R07-08-baseline.png": {
+      "bytes": 62933,
+      "sha256": "025f9b3060fe2b1bc5e80f8e2207c1123f4a983fd2a01282c49eb8be606a09a4"
+    },
+    "focus-comparison-20261025/images/R07-08-erp-simsac.png": {
+      "bytes": 62933,
+      "sha256": "025f9b3060fe2b1bc5e80f8e2207c1123f4a983fd2a01282c49eb8be606a09a4"
+    },
+    "focus-comparison-20261025/images/R07-08-erp-viewdelta.png": {
+      "bytes": 62933,
+      "sha256": "025f9b3060fe2b1bc5e80f8e2207c1123f4a983fd2a01282c49eb8be606a09a4"
+    },
+    "focus-comparison-20261025/images/R07-08-person.png": {
+      "bytes": 62933,
+      "sha256": "025f9b3060fe2b1bc5e80f8e2207c1123f4a983fd2a01282c49eb8be606a09a4"
+    },
+    "focus-comparison-20261025/images/R07-08-rgb.png": {
+      "bytes": 62933,
+      "sha256": "025f9b3060fe2b1bc5e80f8e2207c1123f4a983fd2a01282c49eb8be606a09a4"
+    },
+    "focus-comparison-20261025/images/R07-08-view-simsac.png": {
+      "bytes": 62843,
+      "sha256": "bb6774938a06144b7952d6917447c3b9988e629a3e1eb74ea9f50419e8e3b399"
+    },
+    "focus-comparison-20261025/images/R07-08-view-viewdelta.png": {
+      "bytes": 61766,
+      "sha256": "566e1fd69f753a24535640c3f3b4792ba9bb806706e45f89b246f7057d7d7d1d"
+    },
+    "focus-comparison-20261025/images/R07-09-baseline-review.png": {
+      "bytes": 59272,
+      "sha256": "828f02475622686ad58bccea7349af31974b713b48687c3a24da62c1ccfb0753"
+    },
+    "focus-comparison-20261025/images/R07-09-baseline.png": {
+      "bytes": 59272,
+      "sha256": "828f02475622686ad58bccea7349af31974b713b48687c3a24da62c1ccfb0753"
+    },
+    "focus-comparison-20261025/images/R07-09-erp-simsac.png": {
+      "bytes": 59296,
+      "sha256": "b2661175b548944d57ed507fa50e7ef6b24469e7a7deb28a464ebec063d66a41"
+    },
+    "focus-comparison-20261025/images/R07-09-erp-viewdelta.png": {
+      "bytes": 59272,
+      "sha256": "828f02475622686ad58bccea7349af31974b713b48687c3a24da62c1ccfb0753"
+    },
+    "focus-comparison-20261025/images/R07-09-person.png": {
+      "bytes": 59312,
+      "sha256": "9eb829c3a77682384669fe1c045e5f27e11b935eb876a6821ab87158817ad000"
+    },
+    "focus-comparison-20261025/images/R07-09-rgb.png": {
+      "bytes": 59272,
+      "sha256": "828f02475622686ad58bccea7349af31974b713b48687c3a24da62c1ccfb0753"
+    },
+    "focus-comparison-20261025/images/R07-09-view-simsac.png": {
+      "bytes": 59318,
+      "sha256": "59b799859bfd4f9ed89a139914623a735058a71755e17f32daef98d5df9b658a"
+    },
+    "focus-comparison-20261025/images/R07-09-view-viewdelta.png": {
+      "bytes": 59408,
+      "sha256": "81eb0b36ed341758bfc157f8958e15e53347b69a66e242b1a1ddfc05eb683720"
+    },
+    "focus-comparison-20261025/images/R08-00-baseline-review.png": {
+      "bytes": 79620,
+      "sha256": "7166fc490a651625db6ae372e1b82ce47b4e8f3c4ea06d8574da4699eb2f8ef0"
+    },
+    "focus-comparison-20261025/images/R08-00-baseline.png": {
+      "bytes": 79125,
+      "sha256": "59b14c092482a5c1efed338d27c643b1bde57537b0774afea195687844baeb49"
+    },
+    "focus-comparison-20261025/images/R08-00-erp-simsac.png": {
+      "bytes": 79269,
+      "sha256": "d6fdbf76ecbd3b0747ee9ff1e8f0b05bffc7fcc1fce3fb94de7f669a85dd340d"
+    },
+    "focus-comparison-20261025/images/R08-00-erp-viewdelta.png": {
+      "bytes": 79125,
+      "sha256": "59b14c092482a5c1efed338d27c643b1bde57537b0774afea195687844baeb49"
+    },
+    "focus-comparison-20261025/images/R08-00-person.png": {
+      "bytes": 75246,
+      "sha256": "cdf8b8e2910a230a1f54ca53a45e06063dd6c116c7ffa7fd23fa7e9fb2ccbf41"
+    },
+    "focus-comparison-20261025/images/R08-00-rgb.png": {
+      "bytes": 79125,
+      "sha256": "59b14c092482a5c1efed338d27c643b1bde57537b0774afea195687844baeb49"
+    },
+    "focus-comparison-20261025/images/R08-00-view-simsac.png": {
+      "bytes": 77693,
+      "sha256": "68b21125456441da9348834a825b477a4b0c983b1dfe4e6c24c5601d6a5706c0"
+    },
+    "focus-comparison-20261025/images/R08-00-view-viewdelta.png": {
+      "bytes": 79125,
+      "sha256": "59b14c092482a5c1efed338d27c643b1bde57537b0774afea195687844baeb49"
+    },
+    "focus-comparison-20261025/images/R08-01-baseline-review.png": {
+      "bytes": 74508,
+      "sha256": "8543de5b73e80df496d15d0d531fb003f67f25ba45984cb455b1f54fb7c0dd0f"
+    },
+    "focus-comparison-20261025/images/R08-01-baseline.png": {
+      "bytes": 74519,
+      "sha256": "99463ea1008c443d59e92957106889a5483def15ca2b05ac54d85bf2860ecbb1"
+    },
+    "focus-comparison-20261025/images/R08-01-erp-simsac.png": {
+      "bytes": 72507,
+      "sha256": "ce34770b71814e9f87362eb49e71e4b1f67d3024f5c1ed5f6a3b9411df7bad9c"
+    },
+    "focus-comparison-20261025/images/R08-01-erp-viewdelta.png": {
+      "bytes": 74519,
+      "sha256": "99463ea1008c443d59e92957106889a5483def15ca2b05ac54d85bf2860ecbb1"
+    },
+    "focus-comparison-20261025/images/R08-01-person.png": {
+      "bytes": 73295,
+      "sha256": "3d8e9ad34b8e7f3d4c508b10f44b344d700df00f6f099a161358f21971e4e9f4"
+    },
+    "focus-comparison-20261025/images/R08-01-rgb.png": {
+      "bytes": 74519,
+      "sha256": "99463ea1008c443d59e92957106889a5483def15ca2b05ac54d85bf2860ecbb1"
+    },
+    "focus-comparison-20261025/images/R08-01-view-simsac.png": {
+      "bytes": 74073,
+      "sha256": "6693ddee0c7a2760b8badf792de4e885adb78508c66e63d805fd5cdbb4d7eda6"
+    },
+    "focus-comparison-20261025/images/R08-01-view-viewdelta.png": {
+      "bytes": 74519,
+      "sha256": "99463ea1008c443d59e92957106889a5483def15ca2b05ac54d85bf2860ecbb1"
+    },
+    "focus-comparison-20261025/images/R08-02-baseline-review.png": {
+      "bytes": 67918,
+      "sha256": "ed7ce662dded5d49b31c8827f5d6b42278364342c7b28f3c439f222e25b3841d"
+    },
+    "focus-comparison-20261025/images/R08-02-baseline.png": {
+      "bytes": 67916,
+      "sha256": "f6b242e03ed615d0493fbf3a2d6de27bdca65d7bb86a247f9b8f7751eed27747"
+    },
+    "focus-comparison-20261025/images/R08-02-erp-simsac.png": {
+      "bytes": 68236,
+      "sha256": "a6573b4ba2a5c8b3dcf0d3650d6eeffa3e06ee9e0f948d4dad3c288440db2233"
+    },
+    "focus-comparison-20261025/images/R08-02-erp-viewdelta.png": {
+      "bytes": 67916,
+      "sha256": "f6b242e03ed615d0493fbf3a2d6de27bdca65d7bb86a247f9b8f7751eed27747"
+    },
+    "focus-comparison-20261025/images/R08-02-person.png": {
+      "bytes": 67916,
+      "sha256": "f6b242e03ed615d0493fbf3a2d6de27bdca65d7bb86a247f9b8f7751eed27747"
+    },
+    "focus-comparison-20261025/images/R08-02-rgb.png": {
+      "bytes": 67916,
+      "sha256": "f6b242e03ed615d0493fbf3a2d6de27bdca65d7bb86a247f9b8f7751eed27747"
+    },
+    "focus-comparison-20261025/images/R08-02-view-simsac.png": {
+      "bytes": 67667,
+      "sha256": "b1bc76dfefbebd32b38dcebfca9605ccd0cb7102240d04a8a72acd3e3a6d4ad3"
+    },
+    "focus-comparison-20261025/images/R08-02-view-viewdelta.png": {
+      "bytes": 68120,
+      "sha256": "92fa32cb385f61edb67ebaa2c46596475ac43e4e7d07e7ac2efc4bad65cd7e84"
+    },
+    "focus-comparison-20261025/images/R08-03-baseline-review.png": {
+      "bytes": 65757,
+      "sha256": "3433cc6aeb380285aad4633b0d35806fae3f4ba58aed45cbeff45b50fc3986ba"
+    },
+    "focus-comparison-20261025/images/R08-03-baseline.png": {
+      "bytes": 65581,
+      "sha256": "35d94dd5ce0ee777d24f1fa8f9084a13f882918c7e0f5dd28a54021ed720a2f3"
+    },
+    "focus-comparison-20261025/images/R08-03-erp-simsac.png": {
+      "bytes": 65581,
+      "sha256": "35d94dd5ce0ee777d24f1fa8f9084a13f882918c7e0f5dd28a54021ed720a2f3"
+    },
+    "focus-comparison-20261025/images/R08-03-erp-viewdelta.png": {
+      "bytes": 65581,
+      "sha256": "35d94dd5ce0ee777d24f1fa8f9084a13f882918c7e0f5dd28a54021ed720a2f3"
+    },
+    "focus-comparison-20261025/images/R08-03-person.png": {
+      "bytes": 65581,
+      "sha256": "35d94dd5ce0ee777d24f1fa8f9084a13f882918c7e0f5dd28a54021ed720a2f3"
+    },
+    "focus-comparison-20261025/images/R08-03-rgb.png": {
+      "bytes": 65581,
+      "sha256": "35d94dd5ce0ee777d24f1fa8f9084a13f882918c7e0f5dd28a54021ed720a2f3"
+    },
+    "focus-comparison-20261025/images/R08-03-view-simsac.png": {
+      "bytes": 65543,
+      "sha256": "416f78a81f9f037eeb35245c3cdfe876bce696f481ab87a7fbd0285a41ec8c36"
+    },
+    "focus-comparison-20261025/images/R08-03-view-viewdelta.png": {
+      "bytes": 65581,
+      "sha256": "35d94dd5ce0ee777d24f1fa8f9084a13f882918c7e0f5dd28a54021ed720a2f3"
+    },
+    "focus-comparison-20261025/images/R08-04-baseline-review.png": {
+      "bytes": 55204,
+      "sha256": "8a51b1bb57e1b5612873eb47f3a045f182f6d49f9596e456d85b4c6fda778cf7"
+    },
+    "focus-comparison-20261025/images/R08-04-baseline.png": {
+      "bytes": 55181,
+      "sha256": "a7d91d40acce45fe3942763ac3ad0dff3d1f0154c62b17cfe29e6c22d32393d3"
+    },
+    "focus-comparison-20261025/images/R08-04-erp-simsac.png": {
+      "bytes": 53795,
+      "sha256": "47ffad1ca6002a75b9c1416faf1de948d646b067af208ae3d05d506cfb46f24e"
+    },
+    "focus-comparison-20261025/images/R08-04-erp-viewdelta.png": {
+      "bytes": 55181,
+      "sha256": "a7d91d40acce45fe3942763ac3ad0dff3d1f0154c62b17cfe29e6c22d32393d3"
+    },
+    "focus-comparison-20261025/images/R08-04-person.png": {
+      "bytes": 53308,
+      "sha256": "b05258d6f27555f5b08a9641a326ea07571d5e6f18962cd042768bb05300bf16"
+    },
+    "focus-comparison-20261025/images/R08-04-rgb.png": {
+      "bytes": 55181,
+      "sha256": "a7d91d40acce45fe3942763ac3ad0dff3d1f0154c62b17cfe29e6c22d32393d3"
+    },
+    "focus-comparison-20261025/images/R08-04-view-simsac.png": {
+      "bytes": 53225,
+      "sha256": "4b92679c2474d5125877c127e805cf436ee55ae1dcfd658cd24b6e0ea353ad9a"
+    },
+    "focus-comparison-20261025/images/R08-04-view-viewdelta.png": {
+      "bytes": 55181,
+      "sha256": "a7d91d40acce45fe3942763ac3ad0dff3d1f0154c62b17cfe29e6c22d32393d3"
+    },
+    "focus-comparison-20261025/images/R08-05-baseline-review.png": {
+      "bytes": 60830,
+      "sha256": "b6d9d39f05c6505746524b9954b3752c4c8f9dedc7d3d2ec791e0e8a0ef3f848"
+    },
+    "focus-comparison-20261025/images/R08-05-baseline.png": {
+      "bytes": 61017,
+      "sha256": "ae21875457f4b87b9b511ade8eb9177f85ba3df577132ab3c4aad2b246e3d1d1"
+    },
+    "focus-comparison-20261025/images/R08-05-erp-simsac.png": {
+      "bytes": 58135,
+      "sha256": "5780fa27083f0ad37ea028c33fa9388893ca542b1d607baa5d46f153715e8f2c"
+    },
+    "focus-comparison-20261025/images/R08-05-erp-viewdelta.png": {
+      "bytes": 61017,
+      "sha256": "ae21875457f4b87b9b511ade8eb9177f85ba3df577132ab3c4aad2b246e3d1d1"
+    },
+    "focus-comparison-20261025/images/R08-05-person.png": {
+      "bytes": 58943,
+      "sha256": "b8fa9758eeff66226420034b01ed7888894a2395aa0c9b5c2206fc39d991f4e6"
+    },
+    "focus-comparison-20261025/images/R08-05-rgb.png": {
+      "bytes": 61017,
+      "sha256": "ae21875457f4b87b9b511ade8eb9177f85ba3df577132ab3c4aad2b246e3d1d1"
+    },
+    "focus-comparison-20261025/images/R08-05-view-simsac.png": {
+      "bytes": 61017,
+      "sha256": "ae21875457f4b87b9b511ade8eb9177f85ba3df577132ab3c4aad2b246e3d1d1"
+    },
+    "focus-comparison-20261025/images/R08-05-view-viewdelta.png": {
+      "bytes": 61076,
+      "sha256": "1287fb7cc64319a75049b492f29b8b9c3f5c17dcaf88db41c778244f626b3c08"
+    },
+    "focus-comparison-20261025/images/R08-06-baseline-review.png": {
+      "bytes": 66673,
+      "sha256": "ef02b240bd2b465eb1e0a5df1d7a0f5faa20d07a498d674a076078ed44e4ff92"
+    },
+    "focus-comparison-20261025/images/R08-06-baseline.png": {
+      "bytes": 67163,
+      "sha256": "e299134adbb0a529ca9418d2f2082fa7cf303bfc29f69a808fec5fbe874b9a6a"
+    },
+    "focus-comparison-20261025/images/R08-06-erp-simsac.png": {
+      "bytes": 66121,
+      "sha256": "c3d714a6ff1a41b99545fbe8fedf37c516f43241d1a6f95f587a26ba6cbdca04"
+    },
+    "focus-comparison-20261025/images/R08-06-erp-viewdelta.png": {
+      "bytes": 66454,
+      "sha256": "29f22933855696e5faa9cb9777a4cb8811519f838b32764374328d70824f6321"
+    },
+    "focus-comparison-20261025/images/R08-06-person.png": {
+      "bytes": 66454,
+      "sha256": "29f22933855696e5faa9cb9777a4cb8811519f838b32764374328d70824f6321"
+    },
+    "focus-comparison-20261025/images/R08-06-rgb.png": {
+      "bytes": 66454,
+      "sha256": "29f22933855696e5faa9cb9777a4cb8811519f838b32764374328d70824f6321"
+    },
+    "focus-comparison-20261025/images/R08-06-view-simsac.png": {
+      "bytes": 67030,
+      "sha256": "0005a3065afd1271a2b244d22fde55d646632a82d915f10348eac5ed5234cc7d"
+    },
+    "focus-comparison-20261025/images/R08-06-view-viewdelta.png": {
+      "bytes": 66454,
+      "sha256": "29f22933855696e5faa9cb9777a4cb8811519f838b32764374328d70824f6321"
+    },
+    "focus-comparison-20261025/images/R08-07-baseline-review.png": {
+      "bytes": 63545,
+      "sha256": "0132b7f22410ac566c7aae603be752e80b346932296d8190ace45cd13f371a88"
+    },
+    "focus-comparison-20261025/images/R08-07-baseline.png": {
+      "bytes": 63296,
+      "sha256": "71cd75b10ff3ca22f48c1232172bc2bb2590470d10837a8899d575450b6cc5f4"
+    },
+    "focus-comparison-20261025/images/R08-07-erp-simsac.png": {
+      "bytes": 62816,
+      "sha256": "777a19d6f8ed0d6464a8cfdc065cb6f970c5c9f34f777e8062bfc56ddfea7683"
+    },
+    "focus-comparison-20261025/images/R08-07-erp-viewdelta.png": {
+      "bytes": 62256,
+      "sha256": "95da8b7588c44d4704c99af0713ca12481168d0166852c35103074a811fd1bb3"
+    },
+    "focus-comparison-20261025/images/R08-07-person.png": {
+      "bytes": 61218,
+      "sha256": "68362f6084bf6f07fc63dd9d82314a90b5f07fec6423f490910b159af2fcbb93"
+    },
+    "focus-comparison-20261025/images/R08-07-rgb.png": {
+      "bytes": 62256,
+      "sha256": "95da8b7588c44d4704c99af0713ca12481168d0166852c35103074a811fd1bb3"
+    },
+    "focus-comparison-20261025/images/R08-07-view-simsac.png": {
+      "bytes": 63023,
+      "sha256": "02806e6a715911be830adf26deed5efb99a48f5a6d01bd14f7498ff557041b5c"
+    },
+    "focus-comparison-20261025/images/R08-07-view-viewdelta.png": {
+      "bytes": 62256,
+      "sha256": "95da8b7588c44d4704c99af0713ca12481168d0166852c35103074a811fd1bb3"
+    },
+    "focus-comparison-20261025/images/R08-08-baseline-review.png": {
+      "bytes": 72083,
+      "sha256": "c89027a7737fd9e345e4b07f22ff85d27a02fff655c701f2f56b663fe9843fa0"
+    },
+    "focus-comparison-20261025/images/R08-08-baseline.png": {
+      "bytes": 73752,
+      "sha256": "a0d28bc390356c62c16da5c30edc9d84dfe1295a80c8349c74ff96ba3fe20fe9"
+    },
+    "focus-comparison-20261025/images/R08-08-erp-simsac.png": {
+      "bytes": 68579,
+      "sha256": "ec428b416aa5d62f421432cef7ba0820342197534940bcbc38c0475883eb5e9e"
+    },
+    "focus-comparison-20261025/images/R08-08-erp-viewdelta.png": {
+      "bytes": 73255,
+      "sha256": "5d51ee5fb6c0f2837d3cead4c010ebabf98eca934580c4f4c53e58707c9091ff"
+    },
+    "focus-comparison-20261025/images/R08-08-person.png": {
+      "bytes": 70680,
+      "sha256": "17571499997184077af657db9ddaf91a56437e9b38f71e7d1738be593f3055d0"
+    },
+    "focus-comparison-20261025/images/R08-08-rgb.png": {
+      "bytes": 73255,
+      "sha256": "5d51ee5fb6c0f2837d3cead4c010ebabf98eca934580c4f4c53e58707c9091ff"
+    },
+    "focus-comparison-20261025/images/R08-08-view-simsac.png": {
+      "bytes": 72764,
+      "sha256": "94a98be44e4fd192cfba8c29a3ba48f9df0a58d3df2b9a816bcbede077197fb6"
+    },
+    "focus-comparison-20261025/images/R08-08-view-viewdelta.png": {
+      "bytes": 73418,
+      "sha256": "a2e6f91d46471cd11753100e7f6ca21db4b323d723b779cce670a93b8e91464c"
+    },
+    "focus-comparison-20261025/images/R08-09-baseline-review.png": {
+      "bytes": 58520,
+      "sha256": "2da32d2f8d78de230d6088ae577adf40e2657a2796a93f5c70d69d21171e979f"
+    },
+    "focus-comparison-20261025/images/R08-09-baseline.png": {
+      "bytes": 60283,
+      "sha256": "d8d941fde24b17cb843a2a6cb5b68c481ff288fd98127c0e85e3c9c983b3cb20"
+    },
+    "focus-comparison-20261025/images/R08-09-erp-simsac.png": {
+      "bytes": 59314,
+      "sha256": "a55fd614566ecb088fdf42febbdefe9b611cb20f83bd78bc53850916683b318a"
+    },
+    "focus-comparison-20261025/images/R08-09-erp-viewdelta.png": {
+      "bytes": 60283,
+      "sha256": "d8d941fde24b17cb843a2a6cb5b68c481ff288fd98127c0e85e3c9c983b3cb20"
+    },
+    "focus-comparison-20261025/images/R08-09-person.png": {
+      "bytes": 60283,
+      "sha256": "d8d941fde24b17cb843a2a6cb5b68c481ff288fd98127c0e85e3c9c983b3cb20"
+    },
+    "focus-comparison-20261025/images/R08-09-rgb.png": {
+      "bytes": 60283,
+      "sha256": "d8d941fde24b17cb843a2a6cb5b68c481ff288fd98127c0e85e3c9c983b3cb20"
+    },
+    "focus-comparison-20261025/images/R08-09-view-simsac.png": {
+      "bytes": 59532,
+      "sha256": "928e3f4877f744b3bd000176fe12deea98fd28e25600eb0f935ddbcbbb91c94c"
+    },
+    "focus-comparison-20261025/images/R08-09-view-viewdelta.png": {
+      "bytes": 60283,
+      "sha256": "d8d941fde24b17cb843a2a6cb5b68c481ff288fd98127c0e85e3c9c983b3cb20"
+    },
+    ".gitattributes": {
+      "bytes": 72,
+      "sha256": "308a40fa1d89ae5ea4390b4c9b46a0108b09f171f07898f25d451fa0c69c4e9f"
+    }
+  }
+}

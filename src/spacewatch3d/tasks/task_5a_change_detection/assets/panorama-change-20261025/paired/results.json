@@ -1,0 +1,347 @@
+{
+  "results": [
+    {
+      "branch": "original",
+      "zone": "R01",
+      "input_rgb_sha256": [
+        "b3e4e33703b91ad4d112335cd257d988837a64476a34ca51db55be1edae80ebb",
+        "b804550eec372a1354aa6ad767138fd69599fe95d59c846c250fc46f2308ed32",
+        "9f6534e0a0d5eebefda8192af404244fb1de508f95dbb94aa4a6d8dda743190a",
+        "745b154f49941df5d5fdb478c8fa8a0f20380c952040abae01f5c34383b7dbe7",
+        "df97669430fd6bec4068cea30490831f039327140f9e53afd108a610fcdd41ac",
+        "cab4952d59ce99aba06869c1345cc2e5cdba945ffb989d521c1c466e67083ee3",
+        "1632dac34c78d311ed366873191787f4493f45eeda27545d3ffe526fb40dd719",
+        "9f9f7e69336766ba78207fe8dd22cccfa2a71d472a9527355a3914cf12d66e6e",
+        "e1913493a61cc2086f22c73bea60626bd0288c8158ea3370458ad18ab514c509",
+        "bfc83efc9092a2d0fb3c076f945533d015512b1c7ba480224d061f8f82d6d440"
+      ],
+      "size": [
+        224,
+        224
+      ],
+      "frames": 10,
+      "voxel_size": 0.022121784818172428,
+      "threshold": 0.5104163752326966,
+      "input_regions": [
+        4,
+        3,
+        7,
+        2,
+        3,
+        5,
+        4,
+        8,
+        2,
+        9
+      ],
+      "per_side_candidates": [
+        0,
+        0
+      ],
+      "unified_candidates": 0,
+      "candidate_pixels": 0,
+      "valid_fraction": 0.7681341171264648,
+      "visible_fraction": 0.055626194924116135
+    },
+    {
+      "branch": "mesh",
+      "zone": "R01",
+      "input_rgb_sha256": [
+        "b3e4e33703b91ad4d112335cd257d988837a64476a34ca51db55be1edae80ebb",
+        "b804550eec372a1354aa6ad767138fd69599fe95d59c846c250fc46f2308ed32",
+        "9f6534e0a0d5eebefda8192af404244fb1de508f95dbb94aa4a6d8dda743190a",
+        "745b154f49941df5d5fdb478c8fa8a0f20380c952040abae01f5c34383b7dbe7",
+        "df97669430fd6bec4068cea30490831f039327140f9e53afd108a610fcdd41ac",
+        "cab4952d59ce99aba06869c1345cc2e5cdba945ffb989d521c1c466e67083ee3",
+        "1632dac34c78d311ed366873191787f4493f45eeda27545d3ffe526fb40dd719",
+        "9f9f7e69336766ba78207fe8dd22cccfa2a71d472a9527355a3914cf12d66e6e",
+        "e1913493a61cc2086f22c73bea60626bd0288c8158ea3370458ad18ab514c509",
+        "bfc83efc9092a2d0fb3c076f945533d015512b1c7ba480224d061f8f82d6d440"
+      ],
+      "size": [
+        224,
+        224
+      ],
+      "frames": 10,
+      "voxel_size": 0.042152196979522695,
+      "threshold": 0.1676245778799057,
+      "input_regions": [
+        3,
+        3,
+        3,
+        4,
+        2,
+        2,
+        2,
+        1,
+        2,
+        2
+      ],
+      "per_side_candidates": [
+        4,
+        0
+      ],
+      "unified_candidates": 4,
+      "candidate_pixels": 53351,
+      "valid_fraction": 0.9997348785400391,
+      "visible_fraction": 0.7784099578857422
+    },
+    {
+      "branch": "original",
+      "zone": "R07",
+      "input_rgb_sha256": [
+        "456bc12c494f57d57e7ce5d8ac13bc6aa6f4514619695d83fdeac29f204638ec",
+        "9900b6b7dde36c1f1d8c1f6b4be9e8f85a0f93a9f3169bed48f78c7a27ead13e",
+        "a1bc39d580ab75ba1e88faa6ed451451636f7a1da597e46887edc89b1615d946",
+        "ffdc5315f9685250da0bdd550fa4db0143a27a87cbf2a4be3e4563997c4fb577",
+        "02b88d6bf219af2959dfa0fe2a987c6808925a068316578d8d0a758fe74a0eb4",
+        "bfc83efc9092a2d0fb3c076f945533d015512b1c7ba480224d061f8f82d6d440",
+        "13df8ebb21535335336583d38e3e3f56e2bbeed51b6e8cd1c1997e2e331d2e94",
+        "acff4d3a55e52781a85c27b2cbb1690e00a76d4dd6ac76e09566ff7e524a1bdd",
+        "0667b9116cfc98a8317263c576a4e872773e4e8f57cba808c3309f726f58fa29",
+        "30971097bcf8652ec44741ecf3337c22222f79ae03c23f2a64ca259969f1e634"
+      ],
+      "size": [
+        224,
+        224
+      ],
+      "frames": 10,
+      "voxel_size": 0.016820472872257214,
+      "threshold": 0.3797776401042938,
+      "input_regions": [
+        5,
+        5,
+        4,
+        3,
+        4,
+        9,
+        11,
+        9,
+        5,
+        5
+      ],
+      "per_side_candidates": [
+        2,
+        4
+      ],
+      "unified_candidates": 5,
+      "candidate_pixels": 102420,
+      "valid_fraction": 0.6571208834648132,
+      "visible_fraction": 0.5831373333930969
+    },
+    {
+      "branch": "mesh",
+      "zone": "R07",
+      "input_rgb_sha256": [
+        "456bc12c494f57d57e7ce5d8ac13bc6aa6f4514619695d83fdeac29f204638ec",
+        "9900b6b7dde36c1f1d8c1f6b4be9e8f85a0f93a9f3169bed48f78c7a27ead13e",
+        "a1bc39d580ab75ba1e88faa6ed451451636f7a1da597e46887edc89b1615d946",
+        "ffdc5315f9685250da0bdd550fa4db0143a27a87cbf2a4be3e4563997c4fb577",
+        "02b88d6bf219af2959dfa0fe2a987c6808925a068316578d8d0a758fe74a0eb4",
+        "bfc83efc9092a2d0fb3c076f945533d015512b1c7ba480224d061f8f82d6d440",
+        "13df8ebb21535335336583d38e3e3f56e2bbeed51b6e8cd1c1997e2e331d2e94",
+        "acff4d3a55e52781a85c27b2cbb1690e00a76d4dd6ac76e09566ff7e524a1bdd",
+        "0667b9116cfc98a8317263c576a4e872773e4e8f57cba808c3309f726f58fa29",
+        "30971097bcf8652ec44741ecf3337c22222f79ae03c23f2a64ca259969f1e634"
+      ],
+      "size": [
+        224,
+        224
+      ],
+      "frames": 10,
+      "voxel_size": 0.050875988578796105,
+      "threshold": 0.1647428274154663,
+      "input_regions": [
+        5,
+        7,
+        3,
+        3,
+        6,
+        6,
+        5,
+        6,
+        9,
+        4
+      ],
+      "per_side_candidates": [
+        2,
+        5
+      ],
+      "unified_candidates": 3,
+      "candidate_pixels": 79974,
+      "valid_fraction": 0.9994359612464905,
+      "visible_fraction": 0.8023616671562195
+    },
+    {
+      "branch": "original",
+      "zone": "R08",
+      "input_rgb_sha256": [
+        "fcf06e2049c2535ebfe917fdc1b0157ff2f351b284637748dcc494a6283fd763",
+        "dea1af248b01a364a5f64fd030f3b489e47c9b75127aa390fffc1fa823ba107a",
+        "c3925d0018b09bf9806cb3cf2be1c7a5f336e0f7d3e23e5384caadea72adb5ce",
+        "c276001cf309a22dad53a6bb2469dbfa7b9c3e1db57e1ebf607010f40e842468",
+        "12be991ef2262372609fe5b5184a9d6f8db655c9326698d2a6b769b540d6e06d",
+        "c9bc0cb3e406ac981d6920dd5eb54c5ddd75a568f76b8fd68e5ef7bf0aff6916",
+        "966fbcb405be8e32429af304127104417df8c65c02796afeac254f5261fd8d0c",
+        "7722ff21ccff432c88e6587eda0a96260b97161826997d78e706961d07b4446b",
+        "f78bced34ad7639a4a31071af9bc412779efac408d5ae367d6d827747ce8b5fc",
+        "e747e1f58a0ad8e317358dae75410fea69b12f559c22f7555bb9d904c96a5ec1"
+      ],
+      "size": [
+        224,
+        224
+      ],
+      "frames": 10,
+      "voxel_size": 0.014618319755792615,
+      "threshold": 0.242489755153656,
+      "input_regions": [
+        12,
+        14,
+        6,
+        4,
+        9,
+        8,
+        11,
+        8,
+        19,
+        19
+      ],
+      "per_side_candidates": [
+        0,
+        9
+      ],
+      "unified_candidates": 9,
+      "candidate_pixels": 33576,
+      "valid_fraction": 0.6540038585662842,
+      "visible_fraction": 0.35647717118263245
+    },
+    {
+      "branch": "mesh",
+      "zone": "R08",
+      "input_rgb_sha256": [
+        "fcf06e2049c2535ebfe917fdc1b0157ff2f351b284637748dcc494a6283fd763",
+        "dea1af248b01a364a5f64fd030f3b489e47c9b75127aa390fffc1fa823ba107a",
+        "c3925d0018b09bf9806cb3cf2be1c7a5f336e0f7d3e23e5384caadea72adb5ce",
+        "c276001cf309a22dad53a6bb2469dbfa7b9c3e1db57e1ebf607010f40e842468",
+        "12be991ef2262372609fe5b5184a9d6f8db655c9326698d2a6b769b540d6e06d",
+        "c9bc0cb3e406ac981d6920dd5eb54c5ddd75a568f76b8fd68e5ef7bf0aff6916",
+        "966fbcb405be8e32429af304127104417df8c65c02796afeac254f5261fd8d0c",
+        "7722ff21ccff432c88e6587eda0a96260b97161826997d78e706961d07b4446b",
+        "f78bced34ad7639a4a31071af9bc412779efac408d5ae367d6d827747ce8b5fc",
+        "e747e1f58a0ad8e317358dae75410fea69b12f559c22f7555bb9d904c96a5ec1"
+      ],
+      "size": [
+        224,
+        224
+      ],
+      "frames": 10,
+      "voxel_size": 0.03151233562231054,
+      "threshold": 0.19030103087425232,
+      "input_regions": [
+        5,
+        4,
+        2,
+        1,
+        2,
+        13,
+        8,
+        7,
+        14,
+        10
+      ],
+      "per_side_candidates": [
+        1,
+        7
+      ],
+      "unified_candidates": 8,
+      "candidate_pixels": 27158,
+      "valid_fraction": 0.9994558691978455,
+      "visible_fraction": 0.5647301077842712
+    }
+  ],
+  "model": {
+    "model": "vit_huge_plus_patch16_dinov3_qkvb.lvd1689m",
+    "checkpoint_sha256": "6016572e3408eac0c18f303ab3d9c8c7b6eed8bad129cbf03337cfdb9328fbe4",
+    "checkpoint_bytes": 3362418152,
+    "feature_dim": 1280,
+    "implementation": "timm conversion of DINOv3 ViT-H+/16; original bfloat16 RoPE periods restored",
+    "weights_loaded_strict": true
+  },
+  "config": {
+    "models": {
+      "pi3": {
+        "name": "yyfz233/Pi3",
+        "device": "cuda"
+      },
+      "sam": {
+        "checkpoint": "/workspace/scenediff_input_ab_20261024/sam_vit_h_4b8939.pth",
+        "points_per_side": 32,
+        "pred_iou_thresh": 0.7,
+        "box_nms_thresh": 0.7,
+        "stability_score_thresh": 0.85,
+        "crop_n_layers": 0,
+        "crop_n_points_downscale_factor": 1,
+        "min_mask_region_area": 100
+      },
+      "dinov3": {
+        "model_name": "dinov3_vith16plus",
+        "feature_dim": 1280,
+        "weight_url": "TO_BE_FILLED"
+      }
+    },
+    "dataset": {
+      "gt_dir": "data/scenediff_benchmark/data",
+      "splits": {
+        "val": "data/scenediff_benchmark/splits/val_split.json",
+        "test": "data/scenediff_benchmark/splits/test_split.json"
+      },
+      "resample_rate": 30
+    },
+    "processing": {
+      "visible_percentage": 0.5,
+      "subsample_size": 1000000,
+      "total_voxel_number": 200,
+      "occlusion_threshold": -0.02
+    },
+    "costs": {
+      "lambda_geo": 1.0,
+      "lambda_dino": 0.5,
+      "lambda_dino_region_match": 0.1
+    },
+    "detection": {
+      "min_detection_pixel": 100,
+      "threshold_method": "max_entropy",
+      "change_region_threshold": null,
+      "filter_percentage_before_threshold": 0.7,
+      "max_score": 0.5,
+      "max_detected_objects": 1000
+    },
+    "merging": {
+      "geometry_distance_threshold_of_voxel_size": 2,
+      "visual_threshold_ratio": 0.7,
+      "geometry_threshold_ratio": 0.5,
+      "general_threshold": 1.4,
+      "object_similarity_threshold": 0.7
+    },
+    "aggregation": {
+      "mean_over_visible_region_during_cost_aggregation": true,
+      "merge_pc_before_and_after": true
+    },
+    "cache": {
+      "use_cache": false,
+      "save_cache": false
+    },
+    "visualization": {
+      "vis_pc": false,
+      "save_detections": false,
+      "save_gt_visualization": false
+    },
+    "output": {
+      "output_dir": "output",
+      "save_object_masks": true
+    }
+  },
+  "upstream_commit": "62dcbd285fcfe984bb3db55dc01bdcd1a0055714",
+  "resolution_note": "Controlled paired comparison at 224x224; upstream default RGB loader uses max_size=518.",
+  "elapsed_seconds": 271.98503971099854
+}

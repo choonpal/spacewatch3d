@@ -1,0 +1,8 @@
+{
+  "paired_rgb_identical": true,
+  "local_rgb_hashes_verified": true,
+  "candidate_threshold_and_input_region_checks": true,
+  "views": 30,
+  "image_count": 120,
+  "all_candidate_pixels_accounted": true
+}

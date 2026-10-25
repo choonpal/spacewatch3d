@@ -1,0 +1,10 @@
+{
+  "model_checkpoints_loaded_strict": true,
+  "views": 30,
+  "images": 390,
+  "modes": [
+    "erp",
+    "view"
+  ],
+  "source_view_hashes_preserved": true
+}

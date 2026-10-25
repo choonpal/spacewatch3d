@@ -127,6 +127,10 @@ python tools/scenediff_mesh/build_focus_comparison.py
 
 사람 제외가 기본값이다. 기존 YOLO11l의 대상 프레임 사람 분할과 ERP seam을 감싼 검출 박스를 합쳐 두 RGB 모델 후보와 메쉬 투영에 동일하게 적용한다. RGB 사람 뒤의 메쉬 면은 관측 가능한 것으로 세지 않는다. 원본 모델 확률·기존 객체 판정은 유지하며 화면 토글을 끄면 필터 전 결과를 볼 수 있다.
 
-현재 집중 화면은 기존 정합오차·관측검증과 SimSaC만 원본 **360° 전후**로 표시한다. 전은 Dorm2, 후는 Dorm3로 고정한다. `build_focus_comparison.py`는 기존 투영을 준비하고 `build_before_after.build(root)`로 44개 방향 쌍의 보조 자료를 만든 뒤 `build_panorama_review.build(root, prior)`를 호출한다. 전체 ERP 중복을 제외한 구역별 36쌍의 저장된 양방향 SimSaC 예측을 사용한다. 이전 다중 상대 평균을 선택한 한 쌍의 결과로 표시하지 않는다.
+현재 집중 화면은 **전 360° 영상 하나의 후보 박스**를 먼저 표시한다. 기존 정합오차·관측검증과 SimSaC만 선택하며, 박스를 누르면 해당 영역 안에 후 관측 RGB를 반투명하게 겹친다. 후보가 남은 쌍만 기본 표시한다. 목록의 수는 전/후 순서이고, 전체·사람 제외 비교 모드는 후보 0인 쌍도 유지한다. R01 133/142는 후의 원본 156픽셀이 모두 사람 제외 영역이므로 0이다.
 
-준비된 입력과 캐시가 있으면 `python tools/scenediff_mesh/build_panorama_review.py`만으로 360° 화면을 갱신할 수 있다. 원본 ERP 20프레임을 2048×1024로 표시하며 전체 펼침·드래그·확대·정합 좌표 기준 동일 지점 연동을 지원한다. 카메라 위치를 같게 만드는 새 RGB 생성이나 픽셀 단위 정합은 수행하지 않는다. 카메라 간격이 작은 쌍부터 표시하고 원근·가림 차이를 명시한다. `build_before_after.py`는 별도의 `cropped-review.html`을 갱신한다.
+`build_focus_comparison.py`는 기존 투영을 준비하고 `build_before_after.build(root)`로 44개 방향 쌍의 보조 자료를 만든 뒤 `build_panorama_review.build(root, prior)`를 호출한다. 원본 ERP 20프레임·구역별 36쌍의 저장된 양방향 SimSaC 예측을 사용한다. `build_panorama_review.py`는 전체 RGB·메쉬 첫 표면·카메라를 준비한 후 `build_panorama_interactions.py`로 현재 화면을 완성한다. 새 모델 추론은 없다.
+
+이미 전체 파노라마 자료가 있으면 `python tools/scenediff_mesh/build_panorama_interactions.py`로 박스·겹침만 갱신한다. 이 단계에는 NumPy·SciPy·Pillow와 저장된 export만 필요하다. 후에서만 검출된 후보도 후 깊이로 전으로 투영한다. 사람 제외 시 후 원본 사람 영역과 투영 위치의 전 사람 영역을 제외한다. 후보 연결 영역을 3 ERP 픽셀 여유로 묶어 박스로 만들며 원본 보존 후보 픽셀이 정확히 한 박스에 포함되는지 검사한다. 박스는 semantic instance나 확정 객체 변화가 아니다.
+
+후 겹침은 전 메쉬의 첫 깊이와 저장된 Sim3·카메라로 원래 후 RGB를 샘플링한다. 전 깊이가 없으면 투명하게 남기고, 후 박스 투영에 깊이가 없으면 방향만 맞춘 근사 위치를 기록한다. 원본 RGB·예측·기존 판정·메쉬를 바꾸지 않으며 촬영 위치·가림·메쉬·정합 잔차는 남는다. `panorama-interactions.json`, `interaction-validation.json`에서 박스·픽셀 분해·입력 해시를 확인한다. 이전 방향 비교는 `cropped-review.html`에 보관했다.

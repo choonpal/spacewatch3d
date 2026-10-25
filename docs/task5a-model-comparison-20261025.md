@@ -2,15 +2,17 @@
 
 2026-10-25 기준, **기존 정합오차·관측검증 방식과 SimSaC·ViewDelta의 변화 후보를 비교하고 있다.** 현재까지의 코드, 측정 결과 JSON, 비교 화면, 가중치 로딩 검사와 캡처를 이 브랜치에 보관한다. 공통 Task 5a backend의 통합 완료를 뜻하지 않는다.
 
-## 현재 화면: 원본 360° 전후 비교
+## 현재 화면: 전 360° 후보 박스와 선택 영역 반투명 비교
 
-기존 정합오차·관측검증과 SimSaC만 표시한다. 원본 ERP 20프레임 전체를 2048×1024로 표시하며, 구역별 36개 전후 쌍을 사용한다. 전체 펼침·드래그·같은 지점 확대·원본 전체 열기를 지원한다. ‘사람 제외로 달라진 장면’에서도 전후 양쪽을 유지한다.
+처음에는 **전(Dorm2) 360° 영상 하나**를 둘러보기 모드로 표시한다. 기존 정합오차·관측검증과 SimSaC의 후보 박스를 미리 그린다. 박스를 누르면 해당 영역 안에만 후(Dorm3) RGB를 55% 겹친다. 전만 보기·반투명·선택 영역 후만 및 슬라이더로 비교한다. 드래그·방향키·확대·전체 화면을 지원하고, 박스 위에서도 드래그할 수 있다.
 
-이전 화면이 딱 맞지 않았던 이유는 모델 입력용 224×224 방향 뷰를 겹침이 있는 사진 쌍으로 붙였기 때문이다. 현재는 저장된 구역별 Sim3·이동 편향과 원본 포즈를 사용해 같은 3D 지점을 바라보도록 시야를 연결한다. 카메라 위치는 바꾸지 않으므로 원근·정합 잔차·가림 차이는 남는다. 간격이 작은 촬영 쌍부터 표시하고, 간격을 맵 단위와 기준높이 대비 비율로 표시한다. 객체 이동 거리로 해석하지 않는다.
+목록 기본값은 사람 제외 후 선택한 방식의 후보가 남은 쌍이다. 전/후 후보 수를 표시하며 전체 쌍·사람 제외 비교에서는 0인 쌍도 볼 수 있다. R01 전 133 ↔ 후 142의 SimSaC는 원본 전 0 / 후 156픽셀이고, 후의 156픽셀이 모두 사람 제외 영역에 들어가 표시 후보 0이다. 필터를 끄면 복원된다. 현재 기본값은 36쌍 중 28쌍이다.
 
-SimSaC는 전체 ERP(1024×512) 쌍의 기존 양방향 예측을 사용한다. 새 추론·재학습은 없다. 현재 화면의 `panorama-review.json`은 쌍·카메라·전체 화면 수치, `panorama-validation.json`은 입력·기하·캐시 해시, `PANORAMA_REVIEW.md`는 표시 방법이다. 입력 영상에 없는 새 RGB를 생성하거나 가려진 부분을 채우지 않는다.
+전후 양쪽의 후보를 전 영상에 표시한다. 후에서만 검출된 영역은 후 메쉬 깊이와 저장된 카메라 정합으로 전으로 투영한다. 후 깊이가 없으면 방향만 맞춘 근사 투영임을 기록한다. 사람 제외 시 원본 후의 사람 영역뿐 아니라 투영 위치의 전 사람 영역도 제외한다. 이 때문에 전 시점 박스에 포함된 후 후보 수가 원본 필터 후 수보다 작을 수 있다. 박스는 1024×512 ERP의 연결 후보 영역을 3픽셀 여유로 묶으며 객체 단위의 확정 판정이 아니다. 모든 보존 후보 픽셀이 정확히 한 박스에 포함되는지 검사한다.
 
-기존 44개 224px 방향 쌍의 2×2 비교는 `cropped-review.html`과 `before-after.json`으로 보관했다. `comparison.json`과 `REPORT.md`는 이전 다중 상대 평균 실험 자료다.
+반투명 후 영상은 전 메쉬의 첫 표면 깊이와 저장된 구역 Sim3·이동 편향·카메라 포즈로 원래 후 RGB를 샘플링한다. 전 깊이가 없는 곳은 겹침이 투명하다. 새 관측 내용을 생성하지 않는다. 촬영 위치·메쉬·가림·정합 잔차는 남고, 겹침 경계 차이를 객체 이동의 증거로 해석하지 않는다.
+
+전체 ERP 20프레임·구역별 36쌍을 사용한다. SimSaC는 기존 전체 ERP(1024×512) 양방향 예측이며 새 추론·재학습은 없다. `panorama-review.json`은 카메라·원본 수치, `panorama-interactions.json`은 후보 박스와 겹침, `interaction-validation.json`은 픽셀 분해·입력 해시를 담는다. 기존 224px 방향 비교는 `cropped-review.html`, 이전 다중 상대 평균은 `comparison.json`과 `REPORT.md`로 보관한다.
 
 ## 비교 화면 실행
 
@@ -24,7 +26,7 @@ python -m http.server 4190 --bind 127.0.0.1 --directory src/spacewatch3d/tasks/t
 
 | 화면 | 내용 |
 |---|---|
-| `focus-comparison-20261025/index.html` | 기존 정합오차·관측검증 / SimSaC의 원본 360° 전후 비교. 같은 3D 지점 연동·드래그·확대·사람 제외 |
+| `focus-comparison-20261025/index.html` | 전 360° 영상의 기존 / SimSaC 후보 박스. 선택 영역 후 반투명 비교·사람 제외 |
 | `model-comparison-20261025/index.html` | 앞서 실행한 SceneDiff 두 입력 경로까지 포함한 비교 |
 | `paired/index.html` | 동일 RGB에서 SceneDiff 원본 Pi3/SAM 입력과 외부 메쉬·인스턴스 입력의 후보 차이 |
 
@@ -89,7 +91,8 @@ ViewDelta는 공개 [hoskerelab/ViewDelta](https://huggingface.co/hoskerelab/Vie
 | `report_pair_models.py`, `report_inputs.py` | 이전 비교 화면 생성 |
 | `build_focus_comparison.py` | 저장된 기존 판정과 투영을 준비하고 마지막에 전후 뷰어 생성 |
 | `build_before_after.py`, `before_after.html`, `before_after.js` | 선택한 전후 쌍과 기존 방식 / SimSaC의 양방향 후보 표시 |
-| `build_panorama_review.py`, `panorama_canvas.js`, `panorama_review.*` | 원본 360° 텍스처·전체 메쉬 투영·저장 포즈·깊이로 전후 시야 연결 |
+| `build_panorama_review.py` | 원본 360° 텍스처·전체 메쉬 투영·저장 포즈·깊이 준비 |
+| `build_panorama_interactions.py`, `panorama_canvas.js`, `panorama_review.*` | 후보 박스·관측 RGB 재투영·전 영상 둘러보기·선택 영역 반투명 비교 |
 | `frozen_object_event_policy.py` | 기존 판정 정책의 소스 스냅샷. 이 화면에서 판정을 다시 계산하지 않음 |
 
 실제 추론·화면 재생성에는 별도로 보존된 입력과 확률 캐시가 필요하다. 일부 서버용 스크립트는 실행 당시 `/workspace/...` 배치를 고정하므로 새 환경에서는 외부 소스·가중치·입력 경로를 맞춰야 한다. 이 커밋만으로 원본 전체 촬영을 재추론할 수 있다고 설명하지 않는다. `run.py`의 이전 기하/RGB 실험은 현재 요청한 기존 정합오차·관측검증 기준선이 아니다.
@@ -104,11 +107,12 @@ python tools/scenediff_mesh/build_focus_comparison.py --root outputs/scenediff-m
 
 ```bash
 python -m unittest discover -s tests/task_5a_change_detection/model_comparison -v
+node --test tests/task_5a_change_detection/model_comparison/test_panorama_candidate_filter.mjs
 ```
 
 검증 범위는 correlation의 offset·padding·채널 평균, ERP 투영의 방향·주기성, 카메라 round-trip, 첫 표면 가림·미관측 유지, 비연속/빈 인스턴스 ID, 관측 없는 voxel 평균이다. 실제 30뷰 메쉬 투영은 기존 깊이·유효 hit와 정확히 일치했고 후보 픽셀의 배타적 분해를 확인했다. 이는 모델 변화 탐지 정확도의 검증과 구분한다.
 
-이번 업로드에서 공통 fixture 7종, 공통 규약 테스트 19개, 모델·메쉬·사람 제외·360° 기하 어댑터 테스트 14개를 통과했다. 스냅샷 해시, 화면의 로컬 링크, 30뷰 집계, 모델 커밋·체크포인트 해시와 HTTP 미리보기도 확인했다. 스냅샷은 `.gitattributes`로 줄바꿈 자동 변환을 끄고 원래 바이트를 유지한다.
+이번 업로드에서 공통 fixture 7종, 공통 규약 테스트 19개, 모델·메쉬·사람 제외·360° 기하/재투영 어댑터 테스트 18개와 후보 필터·화면 기본값 Node 테스트 7개를 통과했다. 스냅샷 해시, 화면의 로컬 링크, 30뷰 집계, 모델 커밋·체크포인트 해시와 HTTP 미리보기도 확인했다. 스냅샷은 `.gitattributes`로 줄바꿈 자동 변환을 끄고 원래 바이트를 유지한다.
 
 ## 진행 중인 작업
 
@@ -119,6 +123,14 @@ python -m unittest discover -s tests/task_5a_change_detection/model_comparison -
 
 조사 기록: [파노라마 모델](panoramic-change-models-20261024.md), [메쉬·RGB 모델](mesh-rgb-instance-change-models-20261023.md), [CYWS와 두 촬영 영상 비교](360-video-change-comparison-20261025.md).
 
-전후 뷰어 갱신에서 44쌍의 반대 촬영 연결과 176개 방향·입력별 예측 맵, 사람 제외 영역 밖 후보 보존을 확인했다. 쌍별 사진·마스크 파일과 UI의 전후 동시 표시도 확인했다.
+이전 2×2 전후 뷰어 갱신 당시 44쌍의 반대 촬영 연결과 176개 방향·입력별 예측 맵, 사람 제외 영역 밖 후보 보존을 확인했다. 쌍별 사진·마스크 파일과 UI의 전후 동시 표시도 확인했다.
 
 360° 갱신에서는 전체 구면 ray·카메라 Sim3·입력 방향 벡터 보존 테스트를 추가했다. 원본 20프레임 해시, 카메라 회전의 정규성, 공통 지점 round-trip, 구역별 36쌍의 70개 ERP 방향 예측 캐시와 360° 전체/확대/시야 연동을 검증했다. 이는 광학적 픽셀 정합이나 탐지 정확도 검증이 아니다.
+
+단일 전 영상 갱신에서 실제 R01 133/142 필터 전후, 후보가 남은 쌍만 선택, 후에서만 검출된 영역 유지, 한 개의 초기 캔버스·숨겨진 겹침 패널, 동일 카메라 RGB 보존, Sim3 이동·스케일, ERP seam 박스의 연속성과 상하 비주기성을 검사했다. 브라우저에서 박스 클릭·전만 보기·박스 위 드래그를 확인하고 `viewer-candidate-before.png`, `viewer-candidate-ghost.png`에 캡처했다.
+
+저장된 스냅샷만으로 박스·겹침을 다시 만들 때는 NumPy·SciPy·Pillow 환경에서 아래 명령을 사용한다. GPU·가중치·원본 전체 메쉬는 필요하지 않다.
+
+```bash
+python tools/scenediff_mesh/build_panorama_interactions.py --directory src/spacewatch3d/tasks/task_5a_change_detection/assets/panorama-change-20261025/focus-comparison-20261025
+```

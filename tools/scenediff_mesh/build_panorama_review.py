@@ -200,6 +200,8 @@ def build(root, prior):
     for src,dst in [('panorama_review.html','index.html'),('panorama_review.js','panorama_review.js'),
                     ('panorama_canvas.js','panorama_canvas.js')]:
         shutil.copy2(Path(__file__).with_name(src),out/dst)
+    from build_panorama_interactions import build as build_interactions
+    build_interactions(out)
     print('360 review ready',len(frame_data),'frames',len(result['cases']),'cases',flush=True)
 
 

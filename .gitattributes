@@ -1,0 +1,8 @@
+# Preserve the exact source bytes recorded in the frozen transfer protocol.
+/tools/all_surface_change.py -text
+/tools/structural_reference.py -text
+/tools/compare_mesh_methods.py -text
+/tools/build_m3c2_independent.py -text
+/tools/run_all_surface_comparison.py -text
+/tools/prepare_bonn_pair.py -text
+/tools/frozen-bonn-placement-protocol.json -text

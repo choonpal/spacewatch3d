@@ -1,3 +1,6 @@
-# Install only the dependencies validated by this task owner.
-# Record tested model revision, CUDA/Python versions and installation steps in README.md.
-# The shared contract environment does not install any GPU/model dependency.
+# CPU geometry backend; imported lazily when task 5a executes.
+numpy==2.2.6
+scipy==1.15.3
+open3d==0.19.0
+Pillow==12.3.0
+opencv-python-headless==4.14.0.94

@@ -2,7 +2,7 @@
 
 같은 공간의 두 촬영 회차를 정합한 뒤 객체 대응 및 위치·형상 변화를 판별한다. 공간 정합도 이 task의 책임 범위다.
 
-상태: **Task 5a 모델 비교 진행 중 (2026-10-25)**. 현재 집중 화면은 기존 정합오차·관측검증과 SimSaC의 변화 후보를 전후 촬영으로 비교한다. SceneDiff의 원본 Pi3/SAM 입력과 메쉬·인스턴스 입력 비교도 수행했다. 공통 `pipeline.py` backend 통합은 아직 완료되지 않았으며 `run`은 미구현 오류를 반환한다.
+상태: **Task 5a 모델 비교 진행 중 (2026-10-25)**. 현재 집중 화면은 기존 정합오차·관측검증과 SimSaC의 변화 후보를 전후 촬영으로 비교한다. SceneDiff의 원본 Pi3/SAM 입력과 메쉬·인스턴스 입력 비교도 수행했다. Gaussian·SimSaC 경로는 별도 도구에서 실행하며 공통 `pipeline.py`에는 아직 연결하지 않았다. 기존 Dorm 기하 backend는 아래 실행 경로로 동작한다.
 
 ## 현재 모델 비교
 
@@ -24,6 +24,35 @@
 ![실제 가우시안 맵의 변화 후보와 후 영역 겹침](assets/panorama-change-20261025/gaussian-map-comparison-20261025/viewer-gaussian-ghost.png)
 
 진행 과제는 사람·시점·관측 범위에 따른 반응을 확인하고, 모델 후보를 기존 관측검증과 연결해 추가로 검증하는 것이다. 기존 방식은 전체 촬영을, 두 모델은 파일럿 20 ERP 프레임을 이용했으므로 현재 수치를 정확도 순위로 사용하지 않는다.
+
+기존 기하 경로: **Dorm 메시 기반 변화 구역 backend 연결** (2026-10-23). 전체 메시의 양방향 표면 거리, 구역별 정합 오차, 표면 잡음, 공간 연속성과 카메라 관측을 계산한다. 객체 분할·클래스·변화 정답을 탐지에 사용하지 않는다. 기존 정합 산출물을 입력으로 받으며 새 정합을 추정하는 backend는 아직 포함하지 않는다.
+
+## 현재 구현과 실행
+
+- `surface_geometry.py`: 표면 거리·오차 기준·연속 패치·관측 조건.
+- `surface_materials.py`: 공통 벽면과 명시적으로 지정한 유리 면 제외.
+- `dorm_surface.py`: 실제 전체 메시 입력부터 전후 원본 사진이 연결된 뷰어 산출물까지 생성.
+- `surface_review.py`: 사진 검토 설명과 주변 구조 오차 진단을 기존 결과에 연결.
+- `whole_object_photo.py`: 원본 사진의 객체 마스크 전체를 사용해 배경 없는 전체 실루엣을 겹침. 메시 조각으로 자르지 않는다.
+- `object_photo_tour.py`: 인스턴스 비교와 나머지 객체 의심 구역을 통합하고 원본 객체의 반투명 사진 레이어를 생성.
+- `local_surface_diagnostic.py`: 객체에 맞추지 않고 주변 벽·바닥의 오차와 패치 차이를 비교. 기준면 방향이 부족하면 미확인 방향을 기록한다.
+- `pipeline.py` / `dorm_backend.py`: 공통 `TaskRequest → changes.json` 실행 경로. 무거운 수치 라이브러리는 실행 시에만 불러온다.
+
+`tools/build_dorm_surface_changes.py`, `tools/publish_dorm_surface_review.py` 및 기하·재질 모듈은 호환 진입점이며 실제 계산은 이 디렉터리에서 실행한다.
+
+```bash
+python -m pip install -e .
+python -m pip install -r src/spacewatch3d/tasks/task_5a_change_detection/requirements.txt
+python -m spacewatch3d.tasks.task_5a_change_detection --source data/dorm/prepared-mesh-pair --output outputs/dorm-new/published
+```
+
+입력 폴더에는 `alignment-context.json`, `maps/mesh-metadata.json`, 전체 전후 메시, `new-inputs/poses-0.json`, `new-inputs/poses-1.json` 및 원본 JPEG가 있어야 한다. 산출물 `tour.json`은 Auto Tour의 `--dorm-tour-dir`로 연결한다. 기존 도구의 `--materials`, `--previous` 옵션도 유지한다. `--previous`는 표시 ID 유지용이며 판정 라벨을 재사용하지 않는다.
+
+공통 `spacewatch3d run --task 5a`도 `backend: dorm_geometry_first`로 실행할 수 있다. before/after의 objects manifest는 추적용이며 탐지에서는 그 객체 목록을 사용하지 않는다. 두 manifest의 `parameters.whole_mesh_uri`가 각각 준비된 소스의 reference/after 메시를 가리켜야 한다. 다른 촬영 쌍을 잘못 연결하면 실행을 거부한다. 경로는 해당 입력 manifest 기준 상대 경로다. 설정의 `source_dir`, `materials`, `previous`는 실행 위치 기준이다.
+
+공통 객체 변화 규약에는 객체 ID 없는 표면 구역을 넣을 수 없으므로, 실제 후보·보류·제외 목록은 `changes.json`의 `parameters.viewer_manifest_uri`에 연결한다. `output_scope: surface_regions_not_object_events`, `object_events_evaluated: false`를 기록하며 `changes: []`를 공간 변화 없음으로 읽으면 안 된다. 단일 전역 변환은 초기화만 나타내고 실제 비교에 사용한 구역별 변환은 `regional_alignment_uri`에 보존한다. 객체 ID나 이동·추가·소실을 만들어 넣지 않는다.
+
+이관 후 실제 Dorm 입력을 패키지 명령으로 다시 실행해 294,860개 삼각형 비교, 의심 21 / 보류 19 / 제외 10구역과 강조 삼각형 788 / 1,541개가 기존 계산과 동일함을 확인했다. 출력은 `outputs/dorm-surface-change-20261023/src-integration-v1/published`이며 원본은 변경하지 않았다. 이 결과는 정답 대비 성능 평가가 아니다. 자세한 계산과 한계는 [메시 탐지 기록](../../../../docs/dorm-geometry-first-changes-20261023.md), [사진·주변 오차 검토](../../../../docs/dorm-r08-review-and-map-error-20261023.md)를 참조한다.
 
 ## 작업 범위
 
@@ -52,14 +81,14 @@ python -m spacewatch3d check-fixtures --task 5a
 
 위 명령은 파일·ID·규약만 검증한다. 모델 추론이나 task 알고리즘을 실행하지 않는다.
 
-구현을 연결한 뒤 실행할 명령:
+공통 manifest와 소스 경로를 준비한 뒤 실행할 명령:
 
 ```bash
 python -m spacewatch3d run --task 5a --input before=examples/fixtures/before/objects.json --input after=examples/fixtures/after/objects.json --output outputs/task-5a-trial --config src/spacewatch3d/tasks/task_5a_change_detection/config.example.json
 ```
 
 `run(request: TaskRequest) -> Path`를 구현하고, 출력 디렉터리를 생성한 뒤 출력 manifest 경로를 반환한다.
-현재는 exit code 2의 미구현 오류가 정상이며, 결과 파일을 성공한 것처럼 만들지 않는다.
+기본 설정에는 실제 소스 폴더를 지정해야 한다. 입력이 없거나 연결이 다르면 명시적으로 오류를 반환한다.
 
 ## 첫 구현 완료 기준
 
@@ -82,7 +111,7 @@ python -m spacewatch3d run --task 5a --input before=examples/fixtures/before/obj
 
 객체별 모델을 만든 뒤 두 객체 집합의 **위치와 형상으로 대응 관계를 찾고, 남은 차이를 판정하는 실험**까지 진행했다. 2026-09-28에 비교 데이터를 준비했고, 2026-10-01에 변화 판정과 전후 토글 시각화를 완료했다.
 
-현재 결과는 **별도 실험 스크립트의 실행 결과**다. 이 디렉터리의 `pipeline.py`는 여전히 `BackendNotImplemented`를 반환하며, `config.example.json`도 `backend: unimplemented` 상태다. 아래 실험의 완료가 공통 `spacewatch3d run --task 5a` 구현 완료를 뜻하지는 않는다.
+아래는 당시 **별도 실험 스크립트의 실행 결과**다. 이 객체 대응 실험은 현재 연결한 Dorm 표면 구역 backend와 별개이며, 당시의 객체 매칭 방식까지 공통 실행 경로로 이관했다는 뜻은 아니다.
 
 ### 1. 비교 데이터와 입력 역할
 

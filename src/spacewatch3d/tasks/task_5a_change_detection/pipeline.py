@@ -1,4 +1,4 @@
-"""Task 5a: 공간 정합 및 변화탐지. Implement the backend here."""
+"""Task 5a entry point; optional geometry dependencies load only on execution."""
 
 from pathlib import Path
 
@@ -12,8 +12,11 @@ def run(request: TaskRequest) -> Path:
     Never modify upstream inputs. Paths in the output manifest are relative
     to that manifest. See README.md in this directory and docs/contracts.md.
     """
+    backend = request.config.get('backend', 'dorm_geometry_first')
+    if backend == 'dorm_geometry_first':
+        from .dorm_backend import run as run_dorm
+        return run_dorm(request)
     raise BackendNotImplemented(
-        'Task 5a (공간 정합 및 변화탐지) backend is not implemented. '
-        'Implement task_5a_change_detection/pipeline.py; '
-        'use `spacewatch3d check-fixtures --task 5a` to check the contract.'
+        f'Task 5a backend {backend!r} is not implemented. '
+        'Use dorm_geometry_first with a prepared whole-mesh pair.'
     )

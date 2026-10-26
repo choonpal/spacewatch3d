@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "counting_unit": "unique change event",
+  "repeated_views_create_events": false,
+  "counts": {
+    "raw": {
+      "source_candidates": 6,
+      "unique_events": 5,
+      "regions": 3,
+      "observation_links": 16
+    },
+    "filtered": {
+      "source_candidates": 5,
+      "unique_events": 5,
+      "regions": 3,
+      "observation_links": 13
+    }
+  }
+}

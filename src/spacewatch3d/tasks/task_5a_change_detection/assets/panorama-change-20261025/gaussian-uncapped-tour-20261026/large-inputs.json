@@ -1,0 +1,173 @@
+{
+  "shared_models": "../gaussian-map-comparison-20261025/models",
+  "omitted_depth_files": {
+    "renders\\K1\\after-geometry.npz": {
+      "bytes": 3046512,
+      "sha256": "2a25ddf9c3d250437a08a10734e17d9de2553cd23740767fe4a32636661689f7"
+    },
+    "renders\\K1\\before-geometry.npz": {
+      "bytes": 3016960,
+      "sha256": "a426940a2f6646ad1525250da5feefd70a3b839a1246e5784e78b744e3128863"
+    },
+    "renders\\K10\\after-geometry.npz": {
+      "bytes": 3051224,
+      "sha256": "f7b20b0f3f194fcb5c62cdca30fcbe2e13f57277b3ae112adcdca8ee8dd4a7f5"
+    },
+    "renders\\K10\\before-geometry.npz": {
+      "bytes": 3043385,
+      "sha256": "1b62653db2816772ab1b6a162122dfa6f0e037ba38004ba7c5c46f81cbc07eee"
+    },
+    "renders\\K11\\after-geometry.npz": {
+      "bytes": 3011880,
+      "sha256": "860f3990f28c6cacafa117c6772e3e7db29820799af82c3b24150b6e083b2400"
+    },
+    "renders\\K11\\before-geometry.npz": {
+      "bytes": 3104092,
+      "sha256": "00c5d2634853704ad80956f2fb909964a96971795843e63bc12fbb0c8d4e861f"
+    },
+    "renders\\K12\\after-geometry.npz": {
+      "bytes": 3008564,
+      "sha256": "08031823c303b804f50047d70c9d271c9ad2716c28c6fa3ac92763db2966d0b5"
+    },
+    "renders\\K12\\before-geometry.npz": {
+      "bytes": 3035081,
+      "sha256": "b44c89b8287c88fed118816b2642b2a8e5f89976c87f8c14dc481be43756eb83"
+    },
+    "renders\\K13\\after-geometry.npz": {
+      "bytes": 3075978,
+      "sha256": "51aad78f4138eeed33c4f3b2b4936e069716a71b36a960fb2ae62a74da25c653"
+    },
+    "renders\\K13\\before-geometry.npz": {
+      "bytes": 3033891,
+      "sha256": "a50d392781dde9e2dab5b2f7bc028012d8a3e4c956dc9eacd732ce0900f58737"
+    },
+    "renders\\K14\\after-geometry.npz": {
+      "bytes": 3003711,
+      "sha256": "f4de2f5b85a414d37c42bb71dbd7c523033d5a575880bed4104b91b8260bfadd"
+    },
+    "renders\\K14\\before-geometry.npz": {
+      "bytes": 2965285,
+      "sha256": "0c61b8481cc922d93d8ebbbe38cfa90299f6f0e13708a647f274d39b3a17eaa3"
+    },
+    "renders\\K15\\after-geometry.npz": {
+      "bytes": 3074795,
+      "sha256": "09fdd5a89c47893a7c3672f3ca11b3e6a6638adfd3155e90ac6aa3e26a98f36b"
+    },
+    "renders\\K15\\before-geometry.npz": {
+      "bytes": 3051566,
+      "sha256": "39722a604943dd54cd6c5b81faee8bfc38dab4fb7c6a73d8b0a5f588cbf78411"
+    },
+    "renders\\K16\\after-geometry.npz": {
+      "bytes": 3037884,
+      "sha256": "ca12e98a6c37ea9feeae1aa78325ca327227dfe233a2ae9a84bb8ec1d9c97e39"
+    },
+    "renders\\K16\\before-geometry.npz": {
+      "bytes": 2948802,
+      "sha256": "573236c03b2f8f230ba10862d48a83704000250e725e8975ecc181579196915e"
+    },
+    "renders\\K17\\after-geometry.npz": {
+      "bytes": 3057901,
+      "sha256": "0d37d119843019cd8c7ec1e48dfd2658ebc82347c81fbaa5e762ca30f6c087b2"
+    },
+    "renders\\K17\\before-geometry.npz": {
+      "bytes": 3007529,
+      "sha256": "828a1be968abe89c06e94c60a642e0d9ac6bc3e54d8208d23fe040d508b68c28"
+    },
+    "renders\\K18\\after-geometry.npz": {
+      "bytes": 3033950,
+      "sha256": "669d4de4f7c673820120486ef873df124af3d7663d327c8ba9af62d1e236f789"
+    },
+    "renders\\K18\\before-geometry.npz": {
+      "bytes": 2986992,
+      "sha256": "9158060eb197b55faffe95c7442cdc9868d66c9c47a8a695e4a72438b8ff32b3"
+    },
+    "renders\\K19\\after-geometry.npz": {
+      "bytes": 2958470,
+      "sha256": "33b0241dd6f7d566f23cc01d59f918c712fa6a8d3e589524536e2a2b99a2ceff"
+    },
+    "renders\\K19\\before-geometry.npz": {
+      "bytes": 2970334,
+      "sha256": "40e96f3169c408b12e17eae853eb4aa2ec6ef05d1f7777ee8abd5e18f7fdc156"
+    },
+    "renders\\K2\\after-geometry.npz": {
+      "bytes": 2997820,
+      "sha256": "a4147ca58d11903b789c11fe16358eb8e83d21ee8ff998a72c5353dede0b1a8d"
+    },
+    "renders\\K2\\before-geometry.npz": {
+      "bytes": 2981579,
+      "sha256": "b0e0e0c24660c168c4638b02b0e7f5eb6fabda303377dcc53d2d6515e4eb8b50"
+    },
+    "renders\\K20\\after-geometry.npz": {
+      "bytes": 2969579,
+      "sha256": "52bdf0134427034f63d034271ed98233aad3724b8f2a931f6d644489e1ce98a4"
+    },
+    "renders\\K20\\before-geometry.npz": {
+      "bytes": 3088740,
+      "sha256": "013f5a08d51973892d1e715c22fac2821b6c47ad88fd8035df5d12625a801f0b"
+    },
+    "renders\\K21\\after-geometry.npz": {
+      "bytes": 3059674,
+      "sha256": "997a2faef7532f43a5fc0b7ee61749bfe2ca693a3a8fec80e43ece6ffa736761"
+    },
+    "renders\\K21\\before-geometry.npz": {
+      "bytes": 3119102,
+      "sha256": "6cad94eaae907c9bbe180a78faa6ff05e24ae3bb752016d707e8a9c3f1026ff4"
+    },
+    "renders\\K3\\after-geometry.npz": {
+      "bytes": 2993469,
+      "sha256": "84469752ed5e2c0da812df42ceb7bf4d625a70ff38f9f7400c44dbce7e5b56ef"
+    },
+    "renders\\K3\\before-geometry.npz": {
+      "bytes": 3009252,
+      "sha256": "31547fbc3190c028615b99e81f52d61ccec52aeb5ac0ea4a151648f753cad59f"
+    },
+    "renders\\K4\\after-geometry.npz": {
+      "bytes": 2784846,
+      "sha256": "24fec221ee59b72bb80ac930828177d2a57832aea669bca5d1502789eaf2c4d8"
+    },
+    "renders\\K4\\before-geometry.npz": {
+      "bytes": 2744256,
+      "sha256": "684a623a3dda804b2111e17937c9579938c4fb1f74ef777527b7b64afbaed2ee"
+    },
+    "renders\\K5\\after-geometry.npz": {
+      "bytes": 3048320,
+      "sha256": "4f9b9c08e738eb50b65ca94a88bbc8d639221836e4839387d2972394f1a62dbf"
+    },
+    "renders\\K5\\before-geometry.npz": {
+      "bytes": 3040989,
+      "sha256": "921a6c5199daf9d60206991e3f5e26e2d8198b3d291bdd455b6b68fd1ce1bbee"
+    },
+    "renders\\K6\\after-geometry.npz": {
+      "bytes": 3023928,
+      "sha256": "704348d2202391b4b1bd67e675833ed7423eb33d58ff3b169602e12a19ff6977"
+    },
+    "renders\\K6\\before-geometry.npz": {
+      "bytes": 3033928,
+      "sha256": "5f9b7824193002292d3221561fe2e43e150cffa2d853b1875a275ca095296045"
+    },
+    "renders\\K7\\after-geometry.npz": {
+      "bytes": 3060776,
+      "sha256": "d7073416be34f734a41ca98528cbcc09be1b4fcbe2b56ae10467cbdd1e57e078"
+    },
+    "renders\\K7\\before-geometry.npz": {
+      "bytes": 2990936,
+      "sha256": "731269877b1355aa19d7dfbb27588749969d5b8136fa4b67691d2448137f086a"
+    },
+    "renders\\K8\\after-geometry.npz": {
+      "bytes": 3015939,
+      "sha256": "169b8d2b6e9755490cf22f743c136f475680f948b8e06f3c2f6e23816065b0c4"
+    },
+    "renders\\K8\\before-geometry.npz": {
+      "bytes": 3034165,
+      "sha256": "392299756e9299a097b2ac33470502b966e6cb9426fd02dcc18450164b08a753"
+    },
+    "renders\\K9\\after-geometry.npz": {
+      "bytes": 3031732,
+      "sha256": "91ce01859125eed317b47b7578a6b0ce97246871e13ed0bc56e40f856a684ff3"
+    },
+    "renders\\K9\\before-geometry.npz": {
+      "bytes": 3005935,
+      "sha256": "43ef36e817ebbac92557951af35e80495dc1c6c8c679c1da7eab63d1cc240912"
+    }
+  }
+}

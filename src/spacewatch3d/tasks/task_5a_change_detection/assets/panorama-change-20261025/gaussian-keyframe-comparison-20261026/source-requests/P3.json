@@ -1,0 +1,617 @@
+{
+  "schema_name": "spacewatch3d.virtual_tour_render_requests",
+  "schema_version": "0.1.0",
+  "scene_id": "dorm_shared",
+  "geometry_sha256": "c1d5ab4188cb07c78653dea6c664e620c8aa8a111def16f2028eec17893eb45c",
+  "route_id": "route_9e7c000e7989",
+  "route_version": 1,
+  "requests": [
+    {
+      "viewpoint_id": "vp_n_00026_00022",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -2.7044804096221915
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -29.129261207580562
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": [
+        "region_3331",
+        "region_3346",
+        "region_3756",
+        "region_3777",
+        "region_3949"
+      ]
+    },
+    {
+      "viewpoint_id": "vp_n_00039_00047",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          1.0455195903778085
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -27.179261207580563
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": [
+        "region_2508",
+        "region_3331",
+        "region_3777",
+        "region_3811",
+        "region_3873",
+        "region_3930",
+        "region_4092",
+        "region_4552"
+      ]
+    },
+    {
+      "viewpoint_id": "vp_n_00065_00039",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -0.15448040962219167
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -23.279261207580564
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": [
+        "region_2348",
+        "region_2414",
+        "region_3109",
+        "region_3111",
+        "region_3114",
+        "region_3163",
+        "region_3166",
+        "region_3331",
+        "region_3756",
+        "region_4251",
+        "region_4270",
+        "region_4292"
+      ]
+    },
+    {
+      "viewpoint_id": "vp_n_00087_00015",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -3.7544804096221918
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -19.979261207580564
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": [
+        "region_2439",
+        "region_2458",
+        "region_3720",
+        "region_3737",
+        "region_3756",
+        "region_4352",
+        "region_4544"
+      ]
+    },
+    {
+      "viewpoint_id": "vp_n_00167_00011",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -4.354480409622192
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -7.979261207580564
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": [
+        "region_2303",
+        "region_2353",
+        "region_2618",
+        "region_3056",
+        "region_3173",
+        "region_3295",
+        "region_4230",
+        "region_4315"
+      ]
+    },
+    {
+      "viewpoint_id": "vp_n_00211_00010",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -4.504480409622191
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -1.3792612075805657
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": [
+        "region_2490",
+        "region_2555",
+        "region_3056",
+        "region_3143",
+        "region_3670",
+        "region_4230"
+      ]
+    },
+    {
+      "viewpoint_id": "vp_n_00261_00021",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -2.8544804096221914
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          6.120738792419438
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": [
+        "region_2122",
+        "region_2207",
+        "region_2265",
+        "region_2269",
+        "region_2305",
+        "region_2360",
+        "region_2362",
+        "region_2490",
+        "region_2593",
+        "region_2788",
+        "region_3059",
+        "region_3089",
+        "region_3334",
+        "region_3651",
+        "region_4197",
+        "region_4199",
+        "region_4258"
+      ]
+    },
+    {
+      "viewpoint_id": "vp_n_00268_00013",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -4.054480409622192
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          7.170738792419435
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": [
+        "region_2265",
+        "region_2269",
+        "region_2305",
+        "region_2360",
+        "region_2362",
+        "region_2422",
+        "region_2490",
+        "region_2593",
+        "region_2788",
+        "region_3059",
+        "region_3089",
+        "region_3334",
+        "region_4197",
+        "region_4199",
+        "region_4258"
+      ]
+    },
+    {
+      "viewpoint_id": "vp_n_00299_00011",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -4.354480409622192
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          11.820738792419434
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": [
+        "region_2422",
+        "region_2449",
+        "region_3334",
+        "region_4197",
+        "region_4312",
+        "region_4323"
+      ]
+    },
+    {
+      "viewpoint_id": "vp_n_00309_00063",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          3.445519590377809
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          13.320738792419434
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": [
+        "region_2429",
+        "region_2700",
+        "region_3336",
+        "region_3769",
+        "region_3802",
+        "region_3897",
+        "region_4361",
+        "region_4391"
+      ]
+    },
+    {
+      "viewpoint_id": "vp_n_00317_00101",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          9.145519590377809
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          14.520738792419436
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": [
+        "region_2471",
+        "region_2524",
+        "region_3158",
+        "region_3182",
+        "region_3245",
+        "region_3902"
+      ]
+    },
+    {
+      "viewpoint_id": "vp_n_00332_00022",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -2.7044804096221915
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          16.770738792419436
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": [
+        "region_2598",
+        "region_3727",
+        "region_4312",
+        "region_4358",
+        "region_4391"
+      ]
+    },
+    {
+      "viewpoint_id": "vp_n_00337_00098",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          8.695519590377806
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          17.520738792419436
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": [
+        "region_2471",
+        "region_2524",
+        "region_2611",
+        "region_2663",
+        "region_2868",
+        "region_3158",
+        "region_3182",
+        "region_3309",
+        "region_3902",
+        "region_4326"
+      ]
+    }
+  ]
+}

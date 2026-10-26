@@ -8,24 +8,25 @@ const matrix=rows=>new THREE.Matrix4().fromArray(rows.flat()).transpose();
 const vector=a=>new THREE.Vector3().fromArray(a);
 const methods=()=>$('#method').value==='both'?['baseline','simsac']:[$('#method').value];
 const mode=()=>$('#exclude-person').checked?'filtered':'raw';
-const candidates=()=>[...data.baseline_boxes,...prediction.boxes[mode()]];
+const candidates=()=>[...data.baseline_boxes,...prediction.boxes[mode()]].filter(b=>b.method!=='simsac'||b.before_pixels+b.after_pixels>=Number($('#minimum-pixels')?.value||0));
 const overlaps=(a,b)=>[0,1,2].every(i=>a[0][i]<=b[1][i]&&a[1][i]>=b[0][i]);
 function fail(error){$('#error').textContent=error?.stack||String(error);}
 function counts(z){const list=candidates().filter(b=>b.zone===z);return{baseline:list.filter(b=>b.method==='baseline').length,simsac:list.filter(b=>b.method==='simsac').length};}
 function refreshZones(){
- const previous=$('#zone').value;const zones=data.zones.filter(z=>!$('#only-candidates').checked||candidates().some(b=>b.zone===z.id&&methods().includes(b.method)));
- $('#zone').innerHTML=zones.map(z=>{const c=counts(z.id);return`<option value="${z.id}">${z.id} · 기존 ${c.baseline} / SimSaC ${c.simsac}</option>`;}).join('');
+ const previous=$('#zone').value;const group=$('#plan-group')?.value;const zones=data.zones.filter(z=>(!group||group==='all'||z.plan_group===group)&&(!$('#only-candidates').checked||candidates().some(b=>b.zone===z.id&&methods().includes(b.method))));
+ $('#zone').innerHTML=zones.map(z=>{const c=counts(z.id);return`<option value="${z.id}">${z.label||z.id} · ${data.viewpoint_mode?'후보 '+c.simsac:'기존 '+c.baseline+' / SimSaC '+c.simsac}</option>`;}).join('');
  if(zones.some(z=>z.id===previous))$('#zone').value=previous;else if(zones.some(z=>z.id==='R08'))$('#zone').value='R08';
  if(!zones.length){$('#summary').textContent='현재 선택한 방식에서 남은 후보 구역이 없습니다. 후보 있는 구역만을 끄면 맵을 둘러볼 수 있습니다.';boxes=[];renderBoxList();return;}
  showZone();
 }
 function updateDirection(){const y=THREE.MathUtils.degToRad(yaw),p=THREE.MathUtils.degToRad(pitch);camera.lookAt(camera.position.clone().add(new THREE.Vector3(Math.sin(y)*Math.cos(p),Math.sin(p),Math.cos(y)*Math.cos(p))));camera.updateMatrixWorld();}
 function lookAt(point){camera.lookAt(vector(point));camera.updateMatrixWorld();const f=camera.getWorldDirection(new THREE.Vector3());yaw=THREE.MathUtils.radToDeg(Math.atan2(f.x,f.z));pitch=THREE.MathUtils.radToDeg(Math.asin(f.y));}
-function resetCamera(){if(!zone)return;camera.position.copy(vector(zone.camera_to_common_cv.map(row=>row[3]).slice(0,3)));camera.fov=65;camera.updateProjectionMatrix();lookAt(zone.target);}
+function resetCamera(){if(!zone)return;camera.fov=65;camera.updateProjectionMatrix();if(zone.reset_from_pose){const gl=matrix(zone.camera_to_common_cv).multiply(new THREE.Matrix4().makeScale(1,-1,-1));gl.decompose(camera.position,camera.quaternion,new THREE.Vector3());camera.updateMatrixWorld(true);const f=camera.getWorldDirection(new THREE.Vector3());yaw=THREE.MathUtils.radToDeg(Math.atan2(f.x,f.z));pitch=THREE.MathUtils.radToDeg(Math.asin(f.y));}else{camera.position.copy(vector(zone.camera_to_common_cv.map(row=>row[3]).slice(0,3)));lookAt(zone.target);}}
 function showZone(){
  clearSelection();zone=data.zones.find(z=>z.id===$('#zone').value);if(!zone)return;
  boxes=candidates().filter(b=>b.zone===zone.id&&methods().includes(b.method));allBoxes=boxes;
  renderBoxList();resetCamera();updateSummary();
+ if($('#input-before'))for(const phase of ['before','after']){$('#input-'+phase).src=data.renders[zone.id][phase].image;$('#download-'+phase).href=data.renders[zone.id][phase].image;}
 }
 function boxText(b){return b.method==='baseline'?`${b.zone} 기존 · ${b.source_entry}`:`${b.zone} SimSaC · 전 ${n(b.before_pixels)} / 후 ${n(b.after_pixels)} px`;}
 function renderBoxList(){
@@ -72,6 +73,7 @@ async function selectBox(b){
 async function showPhase(value){clearSelection();phase=value;if(value==='after')await Promise.all(data.models.after.map(loadAsset));else await Promise.all(data.models.before.map(loadAsset));updateVisibility();}
 function updateSummary(){const c=counts(zone.id),s=prediction.zones[zone.id],pixelKey=$('#exclude-person').checked?'filtered_pixels':'observable_without_person_filter';$('#summary').textContent=`${zone.id} · 기존 메쉬 후보 ${c.baseline} / 새 SimSaC 후보 ${c.simsac} · ${$('#exclude-person').checked?'사람 제외 적용':'사람 제외 해제'} · 후보 박스를 눌러 후 맵 확인`;
  $('#audit').innerHTML=data.scenes.map((s,i)=>`<p><b>${i?'후 · Dorm3':'전 · Dorm2'}</b> · ${n(s.gaussians)} Gaussians · ${n(s.step)} step<br>원본 영상 SHA-256: ${s.video_sha256}<br>체크포인트 SHA-256: ${s.checkpoint_sha256}<br>메쉬↔3DGS 카메라 ${data.camera_checks[s.capture].cameras}개 좌표 일치 확인</p>`).join('')+`<p>${zone.id} 새 SimSaC 전 ${n(s.stats.before[pixelKey])} / 후 ${n(s.stats.after[pixelKey])} px · 사람 제외 ${n($('#exclude-person').checked?s.stats.before.removed_person_pixels+s.stats.after.removed_person_pixels:0)} px · 양쪽 맵의 유효 렌더 겹침 ${(s.valid_overlap_pixels/(1024*512)*100).toFixed(1)}%</p>`;
+ if(data.viewpoint_mode==='tour_keyframes'){$('#summary').textContent=`${zone.label} · SimSaC ${c.simsac}영역 · 사람 제외 ${$('#exclude-person').checked?'적용':'해제'} · ${zone.registration_supported?'기존 구역 정합 적용':'기존 구역 정합의 관측 지원 부족'}`;if($('#valid-render'))$('#valid-render').textContent=`분석에 사용한 양쪽 유효 렌더 영역: ${(s.valid_overlap_pixels/(1024*512)*100).toFixed(1)}%. 나머지는 변화 없음으로 판정하지 않습니다. 이 비율은 정합 정확도가 아닙니다.`;$('#audit').insertAdjacentHTML('beforeend',`<p>원본 키프레임: ${zone.viewpoint_id} · 기준 촬영: ${zone.capture_id} · 정합 구역: ${zone.registration_zone}<br>전후는 이 키프레임의 동일 위치·방향에서 렌더링했습니다. 원본 투어 계획은 경로·커버리지 검증 미완료 상태입니다. 시점 선택에 변화 후보를 사용하지 않았습니다.</p>`);}
 }
 function bindControls(){
  const stage=$('#stage'),canvas=$('#gaussian-canvas');
@@ -83,6 +85,8 @@ function bindControls(){
  stage.addEventListener('wheel',e=>{if(document.activeElement!==canvas)return;e.preventDefault();camera.fov=Math.max(30,Math.min(100,camera.fov+e.deltaY*.035));camera.updateProjectionMatrix();},{passive:false});
  canvas.addEventListener('keydown',e=>{const step=data.height_u*.08*(e.shiftKey?3:1),f=camera.getWorldDirection(new THREE.Vector3()),r=new THREE.Vector3(1,0,0).applyQuaternion(camera.quaternion);f.y=0;f.normalize();const key=e.key.toLowerCase();if(key==='w')camera.position.addScaledVector(f,step);else if(key==='s')camera.position.addScaledVector(f,-step);else if(key==='a')camera.position.addScaledVector(r,-step);else if(key==='d')camera.position.addScaledVector(r,step);else if(key==='q')camera.position.y-=step;else if(key==='e')camera.position.y+=step;else if(key==='arrowleft')yaw+=8;else if(key==='arrowright')yaw-=8;else if(key==='arrowup')pitch=Math.min(85,pitch+8);else if(key==='arrowdown')pitch=Math.max(-85,pitch-8);else return;e.preventDefault();updateDirection();});
  for(const id of ['method','exclude-person','only-candidates'])$('#'+id).addEventListener('change',refreshZones);$('#zone').addEventListener('change',showZone);$('#show-boxes').addEventListener('change',drawBoxes);$('#reset').addEventListener('click',resetCamera);
+ $('#plan-group')?.addEventListener('change',refreshZones);
+ $('#minimum-pixels')?.addEventListener('change',refreshZones);
  for(const[id,delta]of [['zoom-in',-10],['zoom-out',10]])$('#'+id).addEventListener('click',()=>{camera.fov=Math.max(30,Math.min(100,camera.fov+delta));camera.updateProjectionMatrix();});
  $('#fullscreen').addEventListener('click',()=>{(document.fullscreenElement?document.exitFullscreen():stage.requestFullscreen()).catch(fail);});$('#map-before').addEventListener('click',()=>showPhase('before').catch(fail));$('#map-after').addEventListener('click',()=>showPhase('after').catch(fail));
  $('#opacity').addEventListener('input',()=>setWeight($('#opacity').value));$('#before-only').addEventListener('click',()=>setWeight(0));$('#ghost-half').addEventListener('click',()=>setWeight(55));$('#after-only').addEventListener('click',()=>setWeight(100));$('#close-ghost').addEventListener('click',clearSelection);

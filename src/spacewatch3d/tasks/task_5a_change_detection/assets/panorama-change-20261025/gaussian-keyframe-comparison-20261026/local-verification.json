@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "metadata_only": false,
+  "views": 46,
+  "same_pose_pairs": 46,
+  "source_request_poses_verified": true,
+  "all_input_image_hashes_verified": true,
+  "exact_probabilities_verified": true,
+  "self_controls_zero": 92,
+  "candidates_used_for_view_selection": false,
+  "groups": {
+    "P2": {
+      "views": 13,
+      "positive_views": 5,
+      "before_pixels": 68,
+      "after_pixels": 10520,
+      "mean_valid_overlap": 0.9987700535700872,
+      "minimum_valid_overlap": 0.9914722442626953
+    },
+    "P3": {
+      "views": 13,
+      "positive_views": 5,
+      "before_pixels": 3068,
+      "after_pixels": 12046,
+      "mean_valid_overlap": 0.9997335580679086,
+      "minimum_valid_overlap": 0.9994335174560547
+    },
+    "S3": {
+      "views": 20,
+      "positive_views": 8,
+      "before_pixels": 5555,
+      "after_pixels": 14090,
+      "mean_valid_overlap": 0.9802153587341309,
+      "minimum_valid_overlap": 0.6661949157714844
+    }
+  },
+  "filtered_view_regions": 26,
+  "physical_changed_object_count_verified": false,
+  "all_source_plans_publication_ready": false,
+  "original_registration_unchanged": true
+}

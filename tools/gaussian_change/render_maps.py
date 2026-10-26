@@ -4,6 +4,7 @@ Only derived files are written. Means, covariance rotations and scales follow th
 existing mesh transforms; view-dependent SH is evaluated in each original frame.
 """
 from __future__ import annotations
+import argparse
 import gc
 import hashlib
 import importlib.util
@@ -15,7 +16,7 @@ import numpy as np
 from scipy.spatial.transform import Rotation
 import torch
 from gsplat import rasterization,spherical_harmonics
-from prepare import FrozenPartition,transform
+from prepare import FrozenPartition,transform,membership
 
 ROOT=Path('/workspace/gaussian_change_20261025')
 def read(p):return json.loads(Path(p).read_text())
@@ -37,18 +38,6 @@ def write_ply(path,params,mask):
     with path.open('wb') as f:f.write(header.encode());f.write(values.tobytes())
     return dict(file='models/'+path.name,gaussians=len(values),bytes=path.stat().st_size,sha256=sha(path))
 
-def membership(protocol,points,epoch,classifier):
-    if not epoch:return classifier.assign(points)
-    points=transform(points,protocol['membership_base_matrix'])
-    parent=protocol['membership_parent_transform']
-    if parent:
-        d=points@np.array(parent['axis'])
-        x=np.clip((d-parent['transition_start_u'])/parent['transition_width_u'],0,1)
-        weight=x*x*(3-2*x)
-        corrected=transform(points,parent['correction_matrix'])
-        points=points+weight[:,None]*(corrected-points)
-    return classifier.assign(points)
-
 def main():
     start=time.time();torch.set_num_threads(4)
     protocol=read(ROOT/'protocol.json');out=ROOT/'published';out.mkdir(exist_ok=True)
@@ -65,7 +54,10 @@ def main():
         d=rays@basis;z=np.maximum(d[...,2],1e-8)
         maps[name]=(d,(focal*d[...,0]/z+F/2-.5).astype('f4'),(focal*d[...,1]/z+F/2-.5).astype('f4'))
     dominant=np.argmax(np.stack([maps[k][0][...,2] for k in bases],-1),-1)
-    dataset=dict(schema='registered-gaussian-pair-renders-v1',scenes=protocol['scenes'],models={'before':[],'after':[]},zones=protocol['zones'],baseline_boxes=protocol['baseline_boxes'],height_u=protocol['height_u'],camera_checks=protocol['camera_checks'],decisions=protocol['decisions'],renders={},source_hashes=protocol['source_hashes'],region_membership_counts={})
+    views=protocol.get('views',protocol['zones'])
+    dataset=dict(schema='registered-gaussian-pair-renders-v1',scenes=protocol['scenes'],models={'before':[],'after':[]},zones=views,registration_zones=protocol['zones'],baseline_boxes=protocol['baseline_boxes'],height_u=protocol['height_u'],camera_checks=protocol['camera_checks'],decisions=protocol['decisions'],renders={},source_hashes=protocol['source_hashes'],region_membership_counts={})
+    if 'keyframe_sources' in protocol:
+        dataset.update(keyframe_sources=protocol['keyframe_sources'],viewpoint_mode='tour_keyframes',keyframe_camera_checks=protocol['keyframe_camera_checks'])
     for epoch,scene in enumerate(protocol['scenes']):
         name=scene['capture'];phase=['before','after'][epoch]
         save(ROOT/'render-status.json',dict(state='loading',capture=name))
@@ -93,7 +85,7 @@ def main():
         means=torch.from_numpy(world).cuda();quats=torch.from_numpy(qworld).cuda();scales=torch.from_numpy(np.exp(sworld)).cuda()
         opacities=torch.from_numpy(1/(1+np.exp(-params['opacities'].reshape(-1)))).cuda()
         coeff=torch.from_numpy(np.concatenate([params['features_dc'][:,None,:],params['features_rest']],1)).cuda();rotations_gpu=torch.from_numpy(rotations).cuda()
-        for number,zone in enumerate(protocol['zones']):
+        for number,zone in enumerate(views):
             directory=out/'renders'/zone['id'];directory.mkdir(exist_ok=True)
             pose=np.array(zone['camera_to_common_cv']);center=torch.from_numpy(pose[:3,3].astype('f4')).cuda()
             # Evaluate original directional SH in each Gaussian's native frame.
@@ -121,14 +113,15 @@ def main():
             image=directory/(phase+'.jpg');aux=directory/(phase+'-geometry.npz')
             cv2.imwrite(str(image),cv2.cvtColor(pano,cv2.COLOR_RGB2BGR),[cv2.IMWRITE_JPEG_QUALITY,95]);np.savez_compressed(aux,depth=depth,alpha=alpha)
             dataset['renders'].setdefault(zone['id'],{})[phase]=dict(image=str(image.relative_to(out)),geometry=str(aux.relative_to(out)),image_sha256=sha(image),geometry_sha256=sha(aux),size=[W,H],camera_to_common_cv=pose.tolist(),checkpoint_sha256=scene['checkpoint_sha256'],same_registered_world_pose=True,reference_sharpening=False)
-            save(ROOT/'render-status.json',dict(state='rendering',capture=name,zone=zone['id'],completed=number+1,total=13));print('RENDER',phase,zone['id'],flush=True)
+            save(ROOT/'render-status.json',dict(state='rendering',capture=name,zone=zone['id'],completed=number+1,total=len(views)));print('RENDER',phase,zone['id'],flush=True)
         assert sha(scene['checkpoint'])==scene['checkpoint_sha256']
         del means,quats,scales,opacities,coeff,rotations_gpu,params;gc.collect();torch.cuda.empty_cache()
     save(out/'gaussian-data.json',dataset)
-    save(ROOT/'render-status.json',dict(state='complete',seconds=time.time()-start,views=26,source_gaussians=[s['gaussians'] for s in protocol['scenes']],all_gaussians_exported=True,original_models_unchanged=True))
+    save(ROOT/'render-status.json',dict(state='complete',seconds=time.time()-start,views=2*len(views),source_gaussians=[s['gaussians'] for s in protocol['scenes']],all_gaussians_exported=True,original_models_unchanged=True))
     print('RENDER COMPLETE',time.time()-start,flush=True)
 
 if __name__=='__main__':
+    parser=argparse.ArgumentParser();parser.add_argument('--root',type=Path,default=ROOT);ROOT=parser.parse_args().root
     try:main()
     except Exception:
         import traceback

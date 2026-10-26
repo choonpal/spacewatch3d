@@ -1,0 +1,67 @@
+{
+  "sources": [
+    {
+      "group": "U3",
+      "capture": "dorm3",
+      "render_requests": "outputs\\route-versions-20261026\\dorm3-fast-uncapped\\plan\\render_requests.json",
+      "render_requests_sha256": "4a43e393863d5b525767dba0e33e7d8b4e9d16c6172766536ca70e2bc1c6b70a",
+      "tour_plan": "outputs\\route-versions-20261026\\dorm3-fast-uncapped\\plan\\tour_plan.json",
+      "tour_plan_sha256": "a705fc726dea288bdc04566d725a760c802b9aa2a8ae22b6f8f06fed73d5663c",
+      "scene_sha256": "c34755c85f43031a19e06e0743be8a33e81577a02691fcce9f3adb0f328219ad",
+      "route_id": "route_8b9f436e2efd",
+      "count": 21,
+      "planning_status": "incomplete",
+      "publication_ready": false,
+      "quality_status": "unverified",
+      "failure_codes": [
+        "targets_unmet",
+        "coverage_repair_targets_unmet",
+        "object_selection_guard_targets_unmet",
+        "independent_coverage_targets_unmet"
+      ]
+    }
+  ],
+  "camera_checks": {
+    "U3": {
+      "capture": "dorm3",
+      "cameras": 248,
+      "max_native_position_residual": 0.0,
+      "planner_to_gaussian": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "max_gaussian_position_residual": 0.0
+    }
+  },
+  "views": 21,
+  "candidates_used": false,
+  "registered_before_rendering": true,
+  "registration_unsupported_zones": [
+    "R07",
+    "R09",
+    "R10",
+    "R11"
+  ]
+}

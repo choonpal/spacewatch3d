@@ -1,0 +1,30 @@
+{
+  "server_run": "/workspace/gaussian_keyframes_20261026_v2",
+  "render": {
+    "state": "complete",
+    "seconds": 85.5842354297638,
+    "views": 92,
+    "source_gaussians": [
+      386826,
+      369446
+    ],
+    "all_gaussians_exported": true,
+    "original_models_unchanged": true
+  },
+  "inference": {
+    "state": "complete",
+    "seconds": 53.2685649394989,
+    "views": 46
+  },
+  "source_sha256": {
+    "infer_keyframes.py": "5fa346cbfdc6ea25401db183d1cf7ee94be90b4399765d76379ce0c6759cbdc9",
+    "infer_simsac.py": "68563d9aae1583227ed3a12d23738ff79a07e8edb68580190c187cea3703ec29",
+    "prepare.py": "4a1a18c77f6e278c2ad3ac7afd5e1309c5b7a8cc18f0c41ff6e7cb337cc1445b",
+    "render_maps.py": "d44bcd85e95e0fa38a808fc1d385359e3ea522c3c5ada22e361147ae07f13bf9",
+    "run_pipeline.py": "81dd420acd6ef2c79e4c36891d7cb02089ff094c58d3b9a5a0eaffc855104e7b"
+  },
+  "source_protocol_sha256": "6fdbfa0c8691c73dea09cff04e0f211a7b9f36df4b28f33beb8a05290f7f99dd",
+  "archive_sha256": "48dbf8a4e3954ac62b6becf2499162654c567b0305161740c8a70e13047c073a",
+  "registration_fitted_again": false,
+  "initial_axis_bridge_attempt_rejected": true
+}

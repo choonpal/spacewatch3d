@@ -1,0 +1,99 @@
+{
+  "passed": true,
+  "metadata_only": false,
+  "keyframes": 21,
+  "stored_links": 20,
+  "connected_segments": 1,
+  "exact_source_keyframe_poses": true,
+  "same_pose_render_pairs": 21,
+  "render_images_verified": 42,
+  "original_filtered_candidates": 5,
+  "candidate_id_bounds_pixels_unchanged": true,
+  "new_simsac_inference": false,
+  "registration_fitted_again": false,
+  "gaussian_maps_unchanged": true,
+  "visibility": {
+    "K1": [
+      "SimSaC-R12-001",
+      "SimSaC-R13-001"
+    ],
+    "K2": [
+      "SimSaC-R13-001"
+    ],
+    "K3": [
+      "SimSaC-R12-001",
+      "SimSaC-R13-001"
+    ],
+    "K4": [],
+    "K5": [
+      "SimSaC-R12-001",
+      "SimSaC-R13-001"
+    ],
+    "K6": [
+      "SimSaC-R13-001"
+    ],
+    "K7": [],
+    "K8": [],
+    "K9": [],
+    "K10": [
+      "SimSaC-R08-001",
+      "SimSaC-R08-002"
+    ],
+    "K11": [],
+    "K12": [],
+    "K13": [],
+    "K14": [],
+    "K15": [
+      "SimSaC-R01-001"
+    ],
+    "K16": [],
+    "K17": [],
+    "K18": [],
+    "K19": [
+      "SimSaC-R01-001"
+    ],
+    "K20": [],
+    "K21": [
+      "SimSaC-R01-001"
+    ]
+  },
+  "depth_visibility_recomputed": true,
+  "physical_change_accuracy_verified": false,
+  "object_evidence": {
+    "passed": true,
+    "metadata_only": false,
+    "segmented_meshes": 44,
+    "review_hints": {
+      "added": 0,
+      "removed": 1,
+      "moved": 2,
+      "unresolved": 2
+    },
+    "original_faces_preserved": true,
+    "original_simsac_regions_unchanged": true,
+    "simsac_pixel_direction_used_for_type": false,
+    "physical_event_types_confirmed": false,
+    "automatic": true,
+    "manual_overrides_used": false,
+    "automatic_matches": 2
+  },
+  "shared_change_regions": {
+    "passed": true,
+    "counting_unit": "unique change event",
+    "repeated_views_create_events": false,
+    "counts": {
+      "raw": {
+        "source_candidates": 6,
+        "unique_events": 5,
+        "regions": 3,
+        "observation_links": 16
+      },
+      "filtered": {
+        "source_candidates": 5,
+        "unique_events": 5,
+        "regions": 3,
+        "observation_links": 13
+      }
+    }
+  }
+}

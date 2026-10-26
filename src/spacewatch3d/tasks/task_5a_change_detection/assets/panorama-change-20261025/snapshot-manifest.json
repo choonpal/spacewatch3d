@@ -1,7 +1,7 @@
 {
   "date": "2026-10-25",
   "timezone": "Asia/Seoul",
-  "source": "Frozen mesh registration/observation decisions displayed on two verified original Gaussian maps; fresh SimSaC inference on same-pose GS renders",
+  "source": "Frozen Gaussian-RGB SimSaC candidates with automatic object matching and a shared per-region change registry; keyframes reference existing events without creating new ones",
   "full_input_meshes_included": false,
   "model_weights_included": false,
   "files": {
@@ -4257,6 +4257,854 @@
       "bytes": 72139,
       "sha256": "eb8e0e31f9c6127d03e36adeecae5b0824851b26a10c87df233addf15d8ff212"
     },
+    "gaussian-keyframe-comparison-20261026/.gitignore": {
+      "bytes": 45,
+      "sha256": "2bcf4321a4d6fb4a1b88e0eda83b0014b1687e97ee04fc56d48f56329985822d"
+    },
+    "gaussian-keyframe-comparison-20261026/execution-receipt.json": {
+      "bytes": 1165,
+      "sha256": "ae6e1ac8d782482739ce9c8ee78b0f1818a9b4eecf986f4edac1dcfd421272a8"
+    },
+    "gaussian-keyframe-comparison-20261026/execution-source/infer_keyframes.py": {
+      "bytes": 7893,
+      "sha256": "5fa346cbfdc6ea25401db183d1cf7ee94be90b4399765d76379ce0c6759cbdc9"
+    },
+    "gaussian-keyframe-comparison-20261026/execution-source/infer_simsac.py": {
+      "bytes": 10698,
+      "sha256": "68563d9aae1583227ed3a12d23738ff79a07e8edb68580190c187cea3703ec29"
+    },
+    "gaussian-keyframe-comparison-20261026/execution-source/prepare.py": {
+      "bytes": 9713,
+      "sha256": "4a1a18c77f6e278c2ad3ac7afd5e1309c5b7a8cc18f0c41ff6e7cb337cc1445b"
+    },
+    "gaussian-keyframe-comparison-20261026/execution-source/render_maps.py": {
+      "bytes": 10135,
+      "sha256": "d44bcd85e95e0fa38a808fc1d385359e3ea522c3c5ada22e361147ae07f13bf9"
+    },
+    "gaussian-keyframe-comparison-20261026/execution-source/run_pipeline.py": {
+      "bytes": 689,
+      "sha256": "81dd420acd6ef2c79e4c36891d7cb02089ff094c58d3b9a5a0eaffc855104e7b"
+    },
+    "gaussian-keyframe-comparison-20261026/experiment-46.html": {
+      "bytes": 7030,
+      "sha256": "29c7a3a47c5de39a35cdfee2b38f82b97c10c43ecdecbc06a4e9ae4124a68bd4"
+    },
+    "gaussian-keyframe-comparison-20261026/gaussian-data.json": {
+      "bytes": 267534,
+      "sha256": "2e306e60e3305a05204fa9d106dd8f4b84cf52831667733deb4dccace3d4d6bf"
+    },
+    "gaussian-keyframe-comparison-20261026/index.html": {
+      "bytes": 289,
+      "sha256": "dff686863070974c9150713ee8c02ccc6e05ee088dbbc4202af6c0927419fbbb"
+    },
+    "gaussian-keyframe-comparison-20261026/keyframe-validation.json": {
+      "bytes": 2028,
+      "sha256": "16581f54de6ae75fb78e1b1053e2cd6a985f9eeb4490e1d7ab5187d172a969c9"
+    },
+    "gaussian-keyframe-comparison-20261026/large-inputs.json": {
+      "bytes": 29438,
+      "sha256": "740aa3e0875b03f3a3e8a4e5e678660e895e9c19f8d4d8bc0dd1c52d8eaafecd"
+    },
+    "gaussian-keyframe-comparison-20261026/local-verification.json": {
+      "bytes": 1178,
+      "sha256": "9ad8bc07ea6f6e862891d8076c92025a94948f8c5def8fe3201460a507519555"
+    },
+    "gaussian-keyframe-comparison-20261026/protocol.json": {
+      "bytes": 253387,
+      "sha256": "6fdbfa0c8691c73dea09cff04e0f211a7b9f36df4b28f33beb8a05290f7f99dd"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-001/after-candidates.png": {
+      "bytes": 4914,
+      "sha256": "ba2c105eff91ff344d48ef8d95d04ae336bd52d17e407076d793d0bc5be86d6c"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-001/after.jpg": {
+      "bytes": 66457,
+      "sha256": "2c97985dd0e7fae01c5eaa837213a2421e7cd4e1dce1fd3e02f3d16eeacc4c35"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-001/before-candidates.png": {
+      "bytes": 4914,
+      "sha256": "ba2c105eff91ff344d48ef8d95d04ae336bd52d17e407076d793d0bc5be86d6c"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-001/before.jpg": {
+      "bytes": 61593,
+      "sha256": "fe311c6f7e41b5d92c50718f7d25976c90711ba639dee2dcd8a9235dfe2931d7"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-002/after-candidates.png": {
+      "bytes": 4474,
+      "sha256": "bd9f0b04ad4310c221711d477990eb7457bf486d5938c64689398b770fbec14d"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-002/after.jpg": {
+      "bytes": 68925,
+      "sha256": "68af9c8e12289daf26d1e00692f8f881c2645dde732fe5a26f852747783d0c86"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-002/before-candidates.png": {
+      "bytes": 4214,
+      "sha256": "b4c9b55a11833a5947edc6d82c3d17ea4908a564c28f0f9904340f9e24e97a70"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-002/before.jpg": {
+      "bytes": 69750,
+      "sha256": "ef7ba004c53b08fbe3533154c36ea76c492131cd64af2f95f17f26f3081d256e"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-003/after-candidates.png": {
+      "bytes": 4933,
+      "sha256": "cb3cb8d3ef580f379b6d6980c72c44452f4dda96f651d3312e153865bef12685"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-003/after.jpg": {
+      "bytes": 61136,
+      "sha256": "4ba769d701176f2b592573b2ff632bceb6069f13d58b9f9044b1e1324f0b6b71"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-003/before-candidates.png": {
+      "bytes": 4394,
+      "sha256": "2f3ef36d41e38771cb9b7cf65fc693f12abfe3b60df919e08b79135fd2bae8fa"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-003/before.jpg": {
+      "bytes": 61614,
+      "sha256": "bd4dbb6edb6e7dfbdded51eadf70883e13f8fdadca9ca82960942741f24ca360"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-004/after-candidates.png": {
+      "bytes": 4846,
+      "sha256": "3fe490ef686ec6d1fb0fc5dfdd948b00eb5451113683234c7e4420b681d3a1bf"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-004/after.jpg": {
+      "bytes": 57243,
+      "sha256": "3b2aff578caf657efb2f107dbc6a2f3b2349dcf65686c17376f53d1724fa47bc"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-004/before-candidates.png": {
+      "bytes": 4816,
+      "sha256": "61e6896385c83e7ad4abf27435990034e3fb93200d2fa744c6f413a1cb2dbc62"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-004/before.jpg": {
+      "bytes": 65096,
+      "sha256": "4aa2923e15bef74caa7fe8c181790d2d8b519455c5d5f2c7ee0acae28f09f035"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-005/after-candidates.png": {
+      "bytes": 4436,
+      "sha256": "4d0ef24a23d62b262a71328256e69e86882e40fad837c4bfa2e845da79cef050"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-005/after.jpg": {
+      "bytes": 57678,
+      "sha256": "faecd95d9d5a9b1f2d98be82a29f24a426632c0eff6880721bff81a7fc828177"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-005/before-candidates.png": {
+      "bytes": 4436,
+      "sha256": "4d0ef24a23d62b262a71328256e69e86882e40fad837c4bfa2e845da79cef050"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-005/before.jpg": {
+      "bytes": 58629,
+      "sha256": "87b4f3e228474faecd6304d053a13974a324da37ffae08d4456e306bb861a7ad"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-006/after-candidates.png": {
+      "bytes": 4030,
+      "sha256": "a091b79bbd772c02f62ba64647a4fbd5f76f65fb99b9a9dea2923f501fd08209"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-006/after.jpg": {
+      "bytes": 60214,
+      "sha256": "8effd62c494a2a5b7d0df058f7b68c7c32a5171b31d0cebd80da55d373f37fa2"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-006/before-candidates.png": {
+      "bytes": 4030,
+      "sha256": "a091b79bbd772c02f62ba64647a4fbd5f76f65fb99b9a9dea2923f501fd08209"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-006/before.jpg": {
+      "bytes": 65917,
+      "sha256": "0e8074f8ee17ad9eed86eedd7ff4ab6b13dd7dd52c6c311f76b6d374c533cb0b"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-007/after-candidates.png": {
+      "bytes": 3856,
+      "sha256": "d9a9bd6fb331cb87aec1a75a82c1e177305d02e81200aab0712b448746d7647a"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-007/after.jpg": {
+      "bytes": 62910,
+      "sha256": "8c8a7de9d27fb98921384bc96420c67090a068743084577ccbaa9f4a0021c81e"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-007/before-candidates.png": {
+      "bytes": 3856,
+      "sha256": "d9a9bd6fb331cb87aec1a75a82c1e177305d02e81200aab0712b448746d7647a"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-007/before.jpg": {
+      "bytes": 64285,
+      "sha256": "3a9ae556fb5ece0a63d3f0ea1eae21c1e0ec5f0b18b497a6628f160ad9572d7a"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-008/after-candidates.png": {
+      "bytes": 4334,
+      "sha256": "d93b4676f1778a5ddf7e5af6dcef20c4a182bb81f640a76a4d50fafe33ad2430"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-008/after.jpg": {
+      "bytes": 46246,
+      "sha256": "0558ad01906b244218c943a2ad157033e0b8b3d3d24e8239f9f970a284947590"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-008/before-candidates.png": {
+      "bytes": 4230,
+      "sha256": "1d340db6f9ab04c4bd91e72d0f1db94f9558a672f3c1f1b107fc83dee8a61f0a"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-008/before.jpg": {
+      "bytes": 52691,
+      "sha256": "df7e776373182cbce060f814f4ad6f9cee479201c1fafe6c74396c13f5d44cde"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-009/after-candidates.png": {
+      "bytes": 3877,
+      "sha256": "58ffb9d6160ac6da2197216f5dc84f9e3b33f1c538d5098d3747c001fc6d6ea5"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-009/after.jpg": {
+      "bytes": 58838,
+      "sha256": "26dd8f394acde623996e80d66a040170610f9f6140889b25ab173e275dd992b3"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-009/before-candidates.png": {
+      "bytes": 3807,
+      "sha256": "44a7a4f68d21524b9bf0e023ce4b0f7f355a7a86ad971dfef431940b3b635f82"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-009/before.jpg": {
+      "bytes": 59966,
+      "sha256": "c91acb963d799ed85d5f796e90271e1bdc27ef74898307d58bf52117de0e8fc2"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-010/after-candidates.png": {
+      "bytes": 3740,
+      "sha256": "0b81e9fb543c818a018308c5802ad7956e0a27c6f89ec254180d95d88bbe58ae"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-010/after.jpg": {
+      "bytes": 59766,
+      "sha256": "ec8d2f5719564cb13c614c719164af0dcf9169b10c82d169ed1e9c316e0643ad"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-010/before-candidates.png": {
+      "bytes": 3740,
+      "sha256": "0b81e9fb543c818a018308c5802ad7956e0a27c6f89ec254180d95d88bbe58ae"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-010/before.jpg": {
+      "bytes": 60755,
+      "sha256": "954752bb91b2d21d0ad0db62c3f454691b974afb64237a1d0a8f4c45c39a58bc"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-011/after-candidates.png": {
+      "bytes": 5240,
+      "sha256": "5681119e4f0dfc61b07a04582fbe09abee465ee308aba7a2009d42222d9d64d5"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-011/after.jpg": {
+      "bytes": 58101,
+      "sha256": "d3f9aa0f1a29f5faa2a5e36a590b31f9b8f8576838da591f5d76d134566b560e"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-011/before-candidates.png": {
+      "bytes": 5240,
+      "sha256": "5681119e4f0dfc61b07a04582fbe09abee465ee308aba7a2009d42222d9d64d5"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-011/before.jpg": {
+      "bytes": 57874,
+      "sha256": "8b0904b1c53265f5215d6dd49f4934d8dbcd320c8586f801c33463cd643616de"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-012/after-candidates.png": {
+      "bytes": 4966,
+      "sha256": "4f85e39e9cc01a0056a12bd7dff7d12793938a9b626ffba461be9f6414f9e2f5"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-012/after.jpg": {
+      "bytes": 60450,
+      "sha256": "750f642e7c019df64b51977e495623703d6fd5c67968ead1803a889afe82ac4f"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-012/before-candidates.png": {
+      "bytes": 4966,
+      "sha256": "4f85e39e9cc01a0056a12bd7dff7d12793938a9b626ffba461be9f6414f9e2f5"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-012/before.jpg": {
+      "bytes": 65956,
+      "sha256": "440b4eba9563911665b980dd71d66f8f03ba7c67a8359a874571687b193b8ca5"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-013/after-candidates.png": {
+      "bytes": 5016,
+      "sha256": "2ddfb489857812fd4ccfd57b26b53ea3320c62366f2f4cba6ce9e0b718af1ff3"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-013/after.jpg": {
+      "bytes": 54813,
+      "sha256": "29d152328dcf236bad62063ba6d818e1bbfe3f811165535bf870c7f4af4ed697"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-013/before-candidates.png": {
+      "bytes": 5016,
+      "sha256": "2ddfb489857812fd4ccfd57b26b53ea3320c62366f2f4cba6ce9e0b718af1ff3"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P2-013/before.jpg": {
+      "bytes": 52666,
+      "sha256": "a135caab935ee64bf129dac4a43db64cabcc9e1a3b8154f518a081e574063e63"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-001/after-candidates.png": {
+      "bytes": 4856,
+      "sha256": "db94cc2ae3eb3bbf88886e07438cbd310d35f5b1f1f7b71ef7bb8e23e30ce71a"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-001/after.jpg": {
+      "bytes": 63702,
+      "sha256": "051a48f88c47e3882b093373b2fd4faf7069b96644a77ff92af1b702d6fbef05"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-001/before-candidates.png": {
+      "bytes": 4728,
+      "sha256": "7c38e795417b79e94a7e51dc313bbc5fc44daea431e97e2b2398d3d683324a24"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-001/before.jpg": {
+      "bytes": 58283,
+      "sha256": "20ff879bfd99123c5d9909fa7a54dc14f56b47b9a843d113c27171a221ff2b2a"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-002/after-candidates.png": {
+      "bytes": 4381,
+      "sha256": "d43528ca11b1e82ebe076e0e88516aee85667c9bcff2bb32845bb0eaddc314b1"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-002/after.jpg": {
+      "bytes": 66865,
+      "sha256": "c9d73ef4c93298d4395ca8524a76466b6f69e2bc9a3b34414f29c4f9546ca31f"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-002/before-candidates.png": {
+      "bytes": 4210,
+      "sha256": "ab99dabbbc4082851b5bbd99fb0d321a48ba3a6155812f67167da0e6950d9628"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-002/before.jpg": {
+      "bytes": 55700,
+      "sha256": "fac37871a34ca07590fcecb9c218c6370fa560e33593939e18de2712f6800126"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-003/after-candidates.png": {
+      "bytes": 5022,
+      "sha256": "6be1a6ecfd8f767a522f2876e5d14f1465e9ef2d191daff4b4c89576bc17c32c"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-003/after.jpg": {
+      "bytes": 55482,
+      "sha256": "3885779424548b9ba369cc09fcbd7f75c5e905ca2b6c148e6f616825b6b9c1c6"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-003/before-candidates.png": {
+      "bytes": 4480,
+      "sha256": "fca8c8c5df783040aa9c0725581c86a4f482aa9a7ae3f564857e3be29a7e8759"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-003/before.jpg": {
+      "bytes": 59280,
+      "sha256": "a4cd78959959adf4bdd1eafee644c013e3d5989ce2f2b9945b38abe8d468a7a6"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-004/after-candidates.png": {
+      "bytes": 3886,
+      "sha256": "7d997cef379363e6dbc3e4d74d0160a19f82308be13cf6613b41c9e2da7d93fc"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-004/after.jpg": {
+      "bytes": 62669,
+      "sha256": "d2612270370bd18c9b0e1beb0d389da844b64e5ba4f0be9746b886c24abb4c82"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-004/before-candidates.png": {
+      "bytes": 3886,
+      "sha256": "7d997cef379363e6dbc3e4d74d0160a19f82308be13cf6613b41c9e2da7d93fc"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-004/before.jpg": {
+      "bytes": 62589,
+      "sha256": "33d580af31395686647f53b7d4f6084966b840fba99d35e1a538f56e1a638e7f"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-005/after-candidates.png": {
+      "bytes": 4084,
+      "sha256": "add6db434b3f49a322b2fc85106e4604945fba4a59b0011ba1b9b601dd8d5cdd"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-005/after.jpg": {
+      "bytes": 57737,
+      "sha256": "e8025ccf39c2ae47d0c6f3aeedb5f544f5a7c9fe37a708f3d35ef5e60abd3102"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-005/before-candidates.png": {
+      "bytes": 4084,
+      "sha256": "add6db434b3f49a322b2fc85106e4604945fba4a59b0011ba1b9b601dd8d5cdd"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-005/before.jpg": {
+      "bytes": 63699,
+      "sha256": "bd8f508a9b3c83b6b4509b0ca3f5a62d92338eed1531cfffe1e871b15a743a77"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-006/after-candidates.png": {
+      "bytes": 3807,
+      "sha256": "8a4be3b54783603d091ab50cef5e93bb9e9edaa77a05b7e48f2bc21a7585e557"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-006/after.jpg": {
+      "bytes": 60503,
+      "sha256": "e246526fafd74971e57c58b7a1d2ac1db53c11fc44b09ace0962b4a77530125f"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-006/before-candidates.png": {
+      "bytes": 3807,
+      "sha256": "8a4be3b54783603d091ab50cef5e93bb9e9edaa77a05b7e48f2bc21a7585e557"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-006/before.jpg": {
+      "bytes": 60217,
+      "sha256": "37fc95cd9338986e0358d11c2fb627918c4e7bbf587a5b6fa95d72f32ac9c83a"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-007/after-candidates.png": {
+      "bytes": 4149,
+      "sha256": "6233f1c4c782878ce03c8b025cc2e774b6730acb5c9e536848e4bfbe760fc819"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-007/after.jpg": {
+      "bytes": 54314,
+      "sha256": "1cff63f762a64ed0abf73c8e86dfc73ab10e8a2552ace9ba1d02022dcaccc746"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-007/before-candidates.png": {
+      "bytes": 4159,
+      "sha256": "f2f6ffa5acb361ca26a5106307559c9b1bdacf9133866b9fa6815310b3fcba54"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-007/before.jpg": {
+      "bytes": 51702,
+      "sha256": "049c6939e9bcaa2c1cb16da8119b2a5ca3528d82512310be1ad79878d8c6b890"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-008/after-candidates.png": {
+      "bytes": 3924,
+      "sha256": "898d082131d6637cf8438b602e524d903bd7738b1ac4bf18b1c13fc548a5ba34"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-008/after.jpg": {
+      "bytes": 58515,
+      "sha256": "c8a41c55c76c2c97544ee6f311180563aa32069fd6b68189fcbff321abc40dd0"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-008/before-candidates.png": {
+      "bytes": 3956,
+      "sha256": "9340869fb74d31af5ab67a64ee37df01ed6f73b153c244b61311fb53898acffb"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-008/before.jpg": {
+      "bytes": 58960,
+      "sha256": "9c8de524d10dd1f2fcaebd558c698047789bc5a061c22f7754f0b3b52355922b"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-009/after-candidates.png": {
+      "bytes": 4812,
+      "sha256": "3b87f4b3aae536e462f4163b099b6e4168b90979b71eec83e153492cc372bf07"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-009/after.jpg": {
+      "bytes": 43066,
+      "sha256": "22e86b84d39757959e9c75b5f04825a41dc399f3cf8df88d794ab78db9aee14a"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-009/before-candidates.png": {
+      "bytes": 4812,
+      "sha256": "3b87f4b3aae536e462f4163b099b6e4168b90979b71eec83e153492cc372bf07"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-009/before.jpg": {
+      "bytes": 49537,
+      "sha256": "d82e15bf2f800809b3c49c157690f7d47bc09514b5019391cbfb4c1b1d449782"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-010/after-candidates.png": {
+      "bytes": 3801,
+      "sha256": "df922df081afee7893f8ff04d10293f5dcf38a8f0198fdc5763dd5e2a0e9846f"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-010/after.jpg": {
+      "bytes": 66681,
+      "sha256": "67d42fbe5e4495ccc8bcc790da7c549b549d5896b4a66900807a36140920635d"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-010/before-candidates.png": {
+      "bytes": 3801,
+      "sha256": "df922df081afee7893f8ff04d10293f5dcf38a8f0198fdc5763dd5e2a0e9846f"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-010/before.jpg": {
+      "bytes": 68585,
+      "sha256": "b8b62515c0eac186c1708cc90e1f8697a40dc24cedb901af5383248e79103bd0"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-011/after-candidates.png": {
+      "bytes": 3790,
+      "sha256": "ca557b1effafd6bb082b0634226993000339f2c29ceff6625f911cccfaba0958"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-011/after.jpg": {
+      "bytes": 58426,
+      "sha256": "71d049309b401e848c2ce28f57a1ea0bda51ab0f379ad5e7ddc843d4f6f3b3ed"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-011/before-candidates.png": {
+      "bytes": 3790,
+      "sha256": "ca557b1effafd6bb082b0634226993000339f2c29ceff6625f911cccfaba0958"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-011/before.jpg": {
+      "bytes": 55604,
+      "sha256": "e15e204bfbef2f4492295baf2bbe94aecccae352fbdebd08526d8827b7788625"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-012/after-candidates.png": {
+      "bytes": 4224,
+      "sha256": "19dab4b4856a248c467fbf2488ebc06c4c61075eca123fcca88a23a12766ed99"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-012/after.jpg": {
+      "bytes": 46793,
+      "sha256": "8ad8109e5b92911f4751922c24dad99c98df3af2804d81069ad49666d42528ce"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-012/before-candidates.png": {
+      "bytes": 4224,
+      "sha256": "19dab4b4856a248c467fbf2488ebc06c4c61075eca123fcca88a23a12766ed99"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-012/before.jpg": {
+      "bytes": 49918,
+      "sha256": "5111cfa4f99c2fa9129fce083b4d6ad49a52f55a903963ca80e6a0a0743d8ff7"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-013/after-candidates.png": {
+      "bytes": 3850,
+      "sha256": "4ef57dbfbfc0b599e8b4174ae3a6d838b269536b0a4f14344adb6f31d94d22b9"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-013/after.jpg": {
+      "bytes": 63621,
+      "sha256": "00a0909169ff36cd0734e3c570a5e913f30c43e86bc2c9ae8a766939101610ff"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-013/before-candidates.png": {
+      "bytes": 3850,
+      "sha256": "4ef57dbfbfc0b599e8b4174ae3a6d838b269536b0a4f14344adb6f31d94d22b9"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/P3-013/before.jpg": {
+      "bytes": 60404,
+      "sha256": "12d655900343a368372e9a6fe18259a8e4599aea3ac5791de7b529094b9dfd4c"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-001/after-candidates.png": {
+      "bytes": 4649,
+      "sha256": "1228384d368c9442ca5a72cfdf89466e69ffb61c378ef5a2aea4c23bb9e0c374"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-001/after.jpg": {
+      "bytes": 39790,
+      "sha256": "61b9f36f723a39a24e6ba60b5e03ab60a1f34bc0a057b9b8b0d81c42cb3dfa0f"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-001/before-candidates.png": {
+      "bytes": 4628,
+      "sha256": "bac956e440e8a9c5e982d410e2d7ab970f9302cb82c2db6c1d28ebfddef15f63"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-001/before.jpg": {
+      "bytes": 45666,
+      "sha256": "0ac467d993aa7bab6a6c3dd2d6bfdda6a6e171fbf0eb71279ee513d4be7f0c05"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-002/after-candidates.png": {
+      "bytes": 3922,
+      "sha256": "4a23bf250c5135d55b65669573db97e9111cb4c53fc68da67c427105ccf21900"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-002/after.jpg": {
+      "bytes": 66518,
+      "sha256": "54dc40d4221f8226b8a1fcdbc3c71794140f5fe83d259e174c2265b73136d2b5"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-002/before-candidates.png": {
+      "bytes": 3922,
+      "sha256": "4a23bf250c5135d55b65669573db97e9111cb4c53fc68da67c427105ccf21900"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-002/before.jpg": {
+      "bytes": 62383,
+      "sha256": "1cc3dba961ffb9d1b93777f86d0f844bf0fdbb4d305c0031d850f05403b3a659"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-003/after-candidates.png": {
+      "bytes": 5986,
+      "sha256": "5db62e13fcab0c67f599c4f80525d16c0151864f44b47130b6f1f7005f774631"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-003/after.jpg": {
+      "bytes": 61353,
+      "sha256": "e4bbe685f023666fa242ee94d318f0b3b3c9bb64bed2b140ebe7481cf9dc8c1f"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-003/before-candidates.png": {
+      "bytes": 5873,
+      "sha256": "c1b390a65fde6e18f8b41bddc1e591220ed1bfaeb2fcdb6744821d9f0ce73f4e"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-003/before.jpg": {
+      "bytes": 32888,
+      "sha256": "91b38218c5e6a076ab9048353ecea14f65f0b7c3b9de0363f96830ac89bc147b"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-004/after-candidates.png": {
+      "bytes": 3917,
+      "sha256": "b97279fd8ea6baa62dd5fff2cdeaed8354291a37debe56caca79bee9c6a8f2aa"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-004/after.jpg": {
+      "bytes": 63816,
+      "sha256": "deebaef215eead63d8e910f6b8b862dba1f7461a903ef45cb5214e74365b3c55"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-004/before-candidates.png": {
+      "bytes": 3862,
+      "sha256": "8132fa152219d4de86cad24156d0fd00d881971caaf051e6408e1b0d929fd21f"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-004/before.jpg": {
+      "bytes": 65239,
+      "sha256": "4edf5b042e5769d02cc2f99fb88640df19e5dea0bc0083cebd72bdcc326b3a9d"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-005/after-candidates.png": {
+      "bytes": 4029,
+      "sha256": "335027efb9649a3a080db985e53c413dca16ab84d2bf6363035ca16a958d5a78"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-005/after.jpg": {
+      "bytes": 31739,
+      "sha256": "a6050fd995497ef171830b5071ab19b7dd70d6945bd1fc35746e0dd8db381fc3"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-005/before-candidates.png": {
+      "bytes": 3728,
+      "sha256": "ec0d4b6e86c48e72e438fa76f47cebfa7f7cf2dd70046148b1c6e6276f92624b"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-005/before.jpg": {
+      "bytes": 30954,
+      "sha256": "2733d85b88b6e49c3f8b550e7461078407d5d0847857585f5ffba96192cd149f"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-006/after-candidates.png": {
+      "bytes": 4010,
+      "sha256": "fbc94daf84247936cb3a5821f37fc06b89c166f8c8d18702080b79bf6156dec0"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-006/after.jpg": {
+      "bytes": 56238,
+      "sha256": "3ea913bf9b6520c4d04434c7b28b8a6103d139786374cfac1879becdffc40664"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-006/before-candidates.png": {
+      "bytes": 3728,
+      "sha256": "ec0d4b6e86c48e72e438fa76f47cebfa7f7cf2dd70046148b1c6e6276f92624b"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-006/before.jpg": {
+      "bytes": 55175,
+      "sha256": "dd75add044567cf8793c40da92d05a9ed38ebe59e484054d89ba5cbd3f685454"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-007/after-candidates.png": {
+      "bytes": 4822,
+      "sha256": "1d5d981fcf68bd834455b5ef6837d936c1d5b1ac285695adc6cf62199971fa32"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-007/after.jpg": {
+      "bytes": 61200,
+      "sha256": "71b11c5c67b286657830ae47b04ef32277b0013e534f6526e7133a8ff16712ae"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-007/before-candidates.png": {
+      "bytes": 4822,
+      "sha256": "1d5d981fcf68bd834455b5ef6837d936c1d5b1ac285695adc6cf62199971fa32"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-007/before.jpg": {
+      "bytes": 63847,
+      "sha256": "6b268cb09c9651c955012b734078a86d0a8ec4e5c9d483e71a48a7427fe22500"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-008/after-candidates.png": {
+      "bytes": 4299,
+      "sha256": "7b5acfeae140abf2b383aba03d3828813a8f87c7c138b9ddf3767a4f3adf295c"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-008/after.jpg": {
+      "bytes": 66045,
+      "sha256": "54613f3ba38c73154ad878c5b7dd85f7b93972f02d80b6c13507c1dd6844df5f"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-008/before-candidates.png": {
+      "bytes": 4299,
+      "sha256": "7b5acfeae140abf2b383aba03d3828813a8f87c7c138b9ddf3767a4f3adf295c"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-008/before.jpg": {
+      "bytes": 61134,
+      "sha256": "ffefa6c9c6b5b22e5e7f4916138bf725dde80190cc240fef57f9e5de2d255b06"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-009/after-candidates.png": {
+      "bytes": 4017,
+      "sha256": "661ef187d520c8abdb81d6b0e224498cb6a582695780871393032bcba0d555b7"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-009/after.jpg": {
+      "bytes": 59238,
+      "sha256": "f64af192ff13640372d09d960459dece45717c8dd5df2b694d88c79dc9ba8290"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-009/before-candidates.png": {
+      "bytes": 4017,
+      "sha256": "661ef187d520c8abdb81d6b0e224498cb6a582695780871393032bcba0d555b7"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-009/before.jpg": {
+      "bytes": 62203,
+      "sha256": "ea066ccb4b0439aafc76cc10828fd021526a454697e8dfe8a7e2f911edacc7cb"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-010/after-candidates.png": {
+      "bytes": 3804,
+      "sha256": "7db909dfc1817ea66fa1f53a6563f05cbd84ac68a47c8b164fef311021a886d2"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-010/after.jpg": {
+      "bytes": 56136,
+      "sha256": "ba1445a157e453c1491efb310fbbe50e6c4ed64e9e1d4f32c85eff1d1b8e628d"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-010/before-candidates.png": {
+      "bytes": 3853,
+      "sha256": "b83be5d410711230790ae1a98961a4d2232bd2d2824f57bc37f9482a7df4331c"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-010/before.jpg": {
+      "bytes": 58056,
+      "sha256": "c874451c1188cfd0f2410ed0c63a26826ae2f3d2ec3c8e9467d21898b940ec30"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-011/after-candidates.png": {
+      "bytes": 4132,
+      "sha256": "6760ecb280885da6f2e4b1f9e50040fdeee5714693cdd8099f39b06d4886bc94"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-011/after.jpg": {
+      "bytes": 62985,
+      "sha256": "6442f1aadacd3bdb02d1fb24d1f82ff15f0bd0fdd7f59fc22ce01cea126b768d"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-011/before-candidates.png": {
+      "bytes": 4132,
+      "sha256": "6760ecb280885da6f2e4b1f9e50040fdeee5714693cdd8099f39b06d4886bc94"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-011/before.jpg": {
+      "bytes": 62738,
+      "sha256": "bad4c80f47b587a8944967871f1f12f24948ca7e10ab49dd2a432405965e0857"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-012/after-candidates.png": {
+      "bytes": 3830,
+      "sha256": "431c25a2024a278a4944e6cd41d14296777190fa3f0c0f3401dbad534bb38cad"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-012/after.jpg": {
+      "bytes": 52767,
+      "sha256": "47344f272c414664d09fd4744d261f5982b541ad3dbf8dd7182abb0f1c1eb425"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-012/before-candidates.png": {
+      "bytes": 3830,
+      "sha256": "431c25a2024a278a4944e6cd41d14296777190fa3f0c0f3401dbad534bb38cad"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-012/before.jpg": {
+      "bytes": 54486,
+      "sha256": "9bd872d2360727a2535485968f8af2f4fa4dea8b26548dc7a601f96e7b805afb"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-013/after-candidates.png": {
+      "bytes": 3753,
+      "sha256": "e5c7ce500bcb9251f9b287a2e7651be7a6995ae7f80292746625870ea25fe324"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-013/after.jpg": {
+      "bytes": 67389,
+      "sha256": "19bc94efa97ba5a07b7848b1f1c5fabcb9a92b2a1b9bb45cc13a2011af860bed"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-013/before-candidates.png": {
+      "bytes": 3753,
+      "sha256": "e5c7ce500bcb9251f9b287a2e7651be7a6995ae7f80292746625870ea25fe324"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-013/before.jpg": {
+      "bytes": 67679,
+      "sha256": "76c8426b7d533c274d61118d0870e2912a8141f63bd89400c8f0128b619e1cbe"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-014/after-candidates.png": {
+      "bytes": 4147,
+      "sha256": "f8c22a2f85e6719af6ec3235a2eaa1c6707f72f899f0de137c811637005f230b"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-014/after.jpg": {
+      "bytes": 67712,
+      "sha256": "02a750b67d66e676ba8104527f30f230a992824cef08077595fc52f41dc14520"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-014/before-candidates.png": {
+      "bytes": 4147,
+      "sha256": "f8c22a2f85e6719af6ec3235a2eaa1c6707f72f899f0de137c811637005f230b"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-014/before.jpg": {
+      "bytes": 70830,
+      "sha256": "61ef8369eece130ed263afa0b9aeea91e81fe117667f1ff1e7b7bd633305816d"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-015/after-candidates.png": {
+      "bytes": 4140,
+      "sha256": "a6c7f5c24135514cb537cf867b26befd40ed9cc0b9eae1d0189d9b6228fae5fd"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-015/after.jpg": {
+      "bytes": 39646,
+      "sha256": "6a1004d92abacd0241a97b6727143686df4b8488f7e966a734951cd2d49df59d"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-015/before-candidates.png": {
+      "bytes": 4140,
+      "sha256": "a6c7f5c24135514cb537cf867b26befd40ed9cc0b9eae1d0189d9b6228fae5fd"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-015/before.jpg": {
+      "bytes": 39929,
+      "sha256": "ef76cb53622a1bc4c1a71f264f22f71c6de76793d9a92ca6d7149cf1500afeb5"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-016/after-candidates.png": {
+      "bytes": 4751,
+      "sha256": "6ad5f6f188754b0c6cae725e41afb24c7f91dbd24839d9927ef26dbbd94321e9"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-016/after.jpg": {
+      "bytes": 53098,
+      "sha256": "298707baa58481855d3992931d4637074b060a41b1ee260a46617ccf0c0e8aa4"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-016/before-candidates.png": {
+      "bytes": 4670,
+      "sha256": "c883a8fec2a2491392677d29639096a33dd2b8b0e991806fb195b9fa73bec786"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-016/before.jpg": {
+      "bytes": 58890,
+      "sha256": "22fa8b566d8c7025aa9bed9aa7154fc0f146096da31122753cf2c037abc52628"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-017/after-candidates.png": {
+      "bytes": 3728,
+      "sha256": "ec0d4b6e86c48e72e438fa76f47cebfa7f7cf2dd70046148b1c6e6276f92624b"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-017/after.jpg": {
+      "bytes": 57820,
+      "sha256": "ef6d15cb572c3ce7201764f5d410eab3184215aae884f5517ca4544f8dafd533"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-017/before-candidates.png": {
+      "bytes": 3728,
+      "sha256": "ec0d4b6e86c48e72e438fa76f47cebfa7f7cf2dd70046148b1c6e6276f92624b"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-017/before.jpg": {
+      "bytes": 57755,
+      "sha256": "f86ae384f20b87a7e870a0bc739921d4fcbe281803af040195815d4dc3121b13"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-018/after-candidates.png": {
+      "bytes": 3870,
+      "sha256": "896081d5fa05b3f2a8494cbb6388eaf907ce0bb1550f7e2cb94ad905aa34eaac"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-018/after.jpg": {
+      "bytes": 58735,
+      "sha256": "a03755a1f6100180bbaad0f0ff0443371c70bbb6f01a353703606279c1b8071b"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-018/before-candidates.png": {
+      "bytes": 3870,
+      "sha256": "896081d5fa05b3f2a8494cbb6388eaf907ce0bb1550f7e2cb94ad905aa34eaac"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-018/before.jpg": {
+      "bytes": 63598,
+      "sha256": "8dfdca5cf784d5b2896e406e4c21ca2ae14d00b2ecdc5a80894c7b8f2284eccb"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-019/after-candidates.png": {
+      "bytes": 5688,
+      "sha256": "b8e62579635580ca869cd616204c2735d23a1c2241f15ec601d3ed46a3e55d06"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-019/after.jpg": {
+      "bytes": 51391,
+      "sha256": "806417e7dcf2498538784145f2b9235d543421fa077b683c93bc835134ebacad"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-019/before-candidates.png": {
+      "bytes": 5688,
+      "sha256": "b8e62579635580ca869cd616204c2735d23a1c2241f15ec601d3ed46a3e55d06"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-019/before.jpg": {
+      "bytes": 53571,
+      "sha256": "372eecad0c734c8c81b2975b34a927888f7cbedf45459a0a5ae817b2e58b642c"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-020/after-candidates.png": {
+      "bytes": 3873,
+      "sha256": "d78bba5d932a108fdfa0d14585ffa1c72587194e1e51dadea9717bc33a0c02c6"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-020/after.jpg": {
+      "bytes": 54592,
+      "sha256": "eb7249773e59b754210b6a835395972a443dc1f64702a8bd3a6904c4cfb6ace1"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-020/before-candidates.png": {
+      "bytes": 3995,
+      "sha256": "5ec55bb40b8668fcf4bbb12971e028a73bc03b88d376aad7037832b37503fa31"
+    },
+    "gaussian-keyframe-comparison-20261026/renders/S3-020/before.jpg": {
+      "bytes": 59109,
+      "sha256": "8ab67d0a5b894b8e3ffa7f4ea16baaa8bd14d4b1ae28d28c83fc3ab020a719cd"
+    },
+    "gaussian-keyframe-comparison-20261026/REPORT.md": {
+      "bytes": 4331,
+      "sha256": "33ffac3fb92eadec60882933dfb493c310bc2f5596f734a12eff08de138d2ba6"
+    },
+    "gaussian-keyframe-comparison-20261026/selection-audit.json": {
+      "bytes": 4774,
+      "sha256": "bcb1feaf9d693b98cdadc1d31515fd8cf243019bac609f68db32991eb76324da"
+    },
+    "gaussian-keyframe-comparison-20261026/simsac-candidates.json": {
+      "bytes": 124201,
+      "sha256": "63e5684919777d9eaac9af8add825eaba6e390a7fa511676370f7620cd38106d"
+    },
+    "gaussian-keyframe-comparison-20261026/simsac-model.json": {
+      "bytes": 1062,
+      "sha256": "aa0b23c1888dd7689b5c6d6963be2fd5792bd914a437e2bc6d38952a2cf7f1dd"
+    },
+    "gaussian-keyframe-comparison-20261026/source-requests/P2.json": {
+      "bytes": 12683,
+      "sha256": "9b7faa2cad9e53ab229d4cd1fd103a9ecfe5df5664e6e3fe043e1518728d1015"
+    },
+    "gaussian-keyframe-comparison-20261026/source-requests/P3.json": {
+      "bytes": 12255,
+      "sha256": "8e052a034318f6b4393debb73909176829650b0bbd2c886482945936c32a5755"
+    },
+    "gaussian-keyframe-comparison-20261026/source-requests/S3.json": {
+      "bytes": 20254,
+      "sha256": "39df80cecf5c075fd73a8023bedb757b7ef4f432fcbfa418eba3686f278cabe3"
+    },
+    "gaussian-keyframe-comparison-20261026/tour-candidates.json": {
+      "bytes": 169521,
+      "sha256": "19ae6f166bd3041f5fec84c27104957242ea711cc60b7fd40761060c1c72cc12"
+    },
+    "gaussian-keyframe-comparison-20261026/tour-routes.json": {
+      "bytes": 205130,
+      "sha256": "36769c2ff09e331d132e1d455ffa770042bd881a56dad7efa25b77115830c829"
+    },
+    "gaussian-keyframe-comparison-20261026/tour.js": {
+      "bytes": 9928,
+      "sha256": "9198388acf4b5ccd7b03cb91901719a263fb8e2887b07e9150451210de0217b6"
+    },
+    "gaussian-keyframe-comparison-20261026/tour_navigation.js": {
+      "bytes": 1865,
+      "sha256": "7e31f5d6cf9b51d3f21674818d046616592a994c7aa0e0a5ecd67114f06031a5"
+    },
+    "gaussian-keyframe-comparison-20261026/viewer-keyframe-ghost.png": {
+      "bytes": 39359,
+      "sha256": "d4edf254ed6fc0b53f8bf5d5560c0a43b9ae0dc9d51959fb8b2ca17ee6e35307"
+    },
+    "gaussian-keyframe-comparison-20261026/viewer.css": {
+      "bytes": 7218,
+      "sha256": "261a46bed95f9a58055fc566deaa6d808a900b801edd39db07ab10f542217a54"
+    },
+    "gaussian-keyframe-comparison-20261026/viewer.js": {
+      "bytes": 21587,
+      "sha256": "094c4b90701335b83255c73b07a3a982c9fbca890b8ec18cc0c01111cd73566b"
+    },
     "gaussian-map-comparison-20261025/.gitignore": {
       "bytes": 28,
       "sha256": "17ff4305de7e7c4092d9719c9e16bcf49baa97f3c26e29ca632786cfc22241e9"
@@ -4274,8 +5122,8 @@
       "sha256": "6cd09deb5f5fa28923d691a7f53f5c8a8b8e3212c6d09077267270dd019bcce1"
     },
     "gaussian-map-comparison-20261025/index.html": {
-      "bytes": 4585,
-      "sha256": "bb332fd4e77ec34cc01b3177be653a5b9897d1ae770ace9a1e4aa532f929f172"
+      "bytes": 4731,
+      "sha256": "5350cf27b67c8e751d928baf84c34735afc49590326b734b7190dd6f8c8c0329"
     },
     "gaussian-map-comparison-20261025/large-inputs.json": {
       "bytes": 19210,
@@ -4554,8 +5402,504 @@
       "sha256": "4109ea3053e838c5a720e72e957373d5f0211b022f8910866db8c21a51ffffd9"
     },
     "gaussian-map-comparison-20261025/viewer.js": {
-      "bytes": 16216,
-      "sha256": "f092d4312db76349be60d989a6ac9ae9af2ddf976d67c86b2d5419f0bcf946d6"
+      "bytes": 18102,
+      "sha256": "0d5490420545034714ae03bef9e4c5bbb9849a38924ebab21d99c2bc6a83ec85"
+    },
+    "gaussian-uncapped-tour-20261026/.gitignore": {
+      "bytes": 26,
+      "sha256": "e069fddad998f5b441b4863bc96a8f5a150ec6b48febfa75a9aaa2a0b093d2d1"
+    },
+    "gaussian-uncapped-tour-20261026/automatic-matching.json": {
+      "bytes": 32032,
+      "sha256": "7d202d7e2197c7a4ee0904b27c648f671a66b17cb7c07e2f7b99c0326e25d2a9"
+    },
+    "gaussian-uncapped-tour-20261026/automatic-replay-audit.json": {
+      "bytes": 3576,
+      "sha256": "290a5913956ed0ad2ff5e7fa927623f64677b2baaf9b9da2c754d8064cf1ddb3"
+    },
+    "gaussian-uncapped-tour-20261026/change-regions.json": {
+      "bytes": 20770,
+      "sha256": "636c0c1c7a997eaabf86a3ac059100e24ec652896724896b2f82aa7ccd655efd"
+    },
+    "gaussian-uncapped-tour-20261026/change_regions.js": {
+      "bytes": 1384,
+      "sha256": "0461d4318258e694601d8636cd4fa1497882258d686c956ef945d3f31492a0c4"
+    },
+    "gaussian-uncapped-tour-20261026/execution-receipt.json": {
+      "bytes": 2344,
+      "sha256": "344b5af0d01ca103b5d43e8182965b36a54760816de54aed1ce6c5d723791606"
+    },
+    "gaussian-uncapped-tour-20261026/execution-source/prepare.py": {
+      "bytes": 9713,
+      "sha256": "4a1a18c77f6e278c2ad3ac7afd5e1309c5b7a8cc18f0c41ff6e7cb337cc1445b"
+    },
+    "gaussian-uncapped-tour-20261026/execution-source/render_maps.py": {
+      "bytes": 10135,
+      "sha256": "d44bcd85e95e0fa38a808fc1d385359e3ea522c3c5ada22e361147ae07f13bf9"
+    },
+    "gaussian-uncapped-tour-20261026/gaussian-data.json": {
+      "bytes": 150992,
+      "sha256": "e2f81f37068b3d18238c56ff9a3c680cc3b8d2dc19dc6113ba12075947c8612a"
+    },
+    "gaussian-uncapped-tour-20261026/index.html": {
+      "bytes": 8776,
+      "sha256": "8e8d034ebfbf46f38339bb7d6153cc1129011d430ae7a44078068ba0b229a7c5"
+    },
+    "gaussian-uncapped-tour-20261026/large-inputs.json": {
+      "bytes": 6827,
+      "sha256": "b82d2db3c4e30cd05bc3726117e4a6cc0e5c3962b4f2459dd3153aebdba0fada"
+    },
+    "gaussian-uncapped-tour-20261026/object-evidence.json": {
+      "bytes": 261927,
+      "sha256": "404f39716c460b378bb1c0e7f58b0e560fdbdafcdbd167e6ab861b8a8b2e851a"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-006.json": {
+      "bytes": 3096,
+      "sha256": "1d79a28b01db93a45268216213b523501059bed5838bb1cd5e3dae3ad136e5d2"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-007.json": {
+      "bytes": 3371,
+      "sha256": "b8069e89719df15c9b0f4518b01a2826004e57910e23d29e95cfb1b5b9df0446"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-010.json": {
+      "bytes": 74372,
+      "sha256": "13d39e008dcd21fc12e803d74861c2cd0b7abe092e1306f28d91188870187e67"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-010@I0-004.json": {
+      "bytes": 14918,
+      "sha256": "6b57ca7ff87e6487e95e15633cbf01140914121ab8fd3a9b5b98ec4fe4abe299"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-010@I0-005.json": {
+      "bytes": 13538,
+      "sha256": "62ce35affeabc411e133d6953f65ac2c79f4fd951399c3a9fb52c30bccc95929"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-010@I0-009.json": {
+      "bytes": 13461,
+      "sha256": "36a30ec66daf6831bfa0265c0366124ef8f24f865042462bd02c5790853b6f73"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-010@I0-010.json": {
+      "bytes": 9781,
+      "sha256": "453c48448d003c0b72d84346ebdb3e77cda29be07ab25f3202ace86f0a3a542f"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-010@I0-011.json": {
+      "bytes": 12141,
+      "sha256": "114d47596ead9ff75d6feb9283daa38a2b9faa413107a261922b8508d5f4eaa4"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-010@I0-013.json": {
+      "bytes": 13650,
+      "sha256": "94912dea4e741f84f4b764ddffb4759d3400b07ceaf92a2689032f467aa8d8b1"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-015.json": {
+      "bytes": 17603,
+      "sha256": "59befc4f73d3615a0294365650790451c11f49aef70d5077f88a74eb6c90defd"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-020.json": {
+      "bytes": 57776,
+      "sha256": "0548a76a57f8b881fed2bb8eb49595a5bd6b9930ff75d2be293d85d21ff4ecb1"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-020@I0-028.json": {
+      "bytes": 12690,
+      "sha256": "873260942cfa34f890271b3696f5e85ca2e7ecde76489c70278288810796e1df"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-020@I0-035.json": {
+      "bytes": 14245,
+      "sha256": "331b4e8a218c68e15c63fea327b9c5b1ea9283560e8fd7b868502cf95f4f8fae"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-020@I0-039.json": {
+      "bytes": 18218,
+      "sha256": "386d323999475b8b8fe2a004ab4a301f9fdf02ff483fa02b0f41c37469608418"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-020@I0-042.json": {
+      "bytes": 13763,
+      "sha256": "1f02fb5ee1b56566ffe8d2e5f5c674fcf9bca8a28705233fb8948ecdc9136c61"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-044.json": {
+      "bytes": 18351,
+      "sha256": "afdbad5b4c5e0661813e750c5df4c3dbe31416fab8ce24d0259f1ef2a48ca0d3"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-046.json": {
+      "bytes": 12280,
+      "sha256": "4aa422844919629ea8f75238fd2b2c15b1cb2ca77c18f38a7e520605b0c2ee2d"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-052.json": {
+      "bytes": 18534,
+      "sha256": "30a2da3d54219d7dfaad209cb72e9728e660f05165618616028a52aa14cf3132"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-056.json": {
+      "bytes": 11728,
+      "sha256": "9a3cbe9758fcbe33008a188318afcd9d46dda799cac99bc44efd5d491e3a78dd"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-064.json": {
+      "bytes": 8097,
+      "sha256": "85194b86557a01c80a46fbf42de3a059e8ccbb3f8384939ede611856643258d4"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-078.json": {
+      "bytes": 56871,
+      "sha256": "2ac3c2ad6045744f8e39b74014dd85a0df0268faf9b6c8115fa8fcc8928e45f0"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-081.json": {
+      "bytes": 1307,
+      "sha256": "9110f4f3e149f985004e5d7f4c82415a68c463794921b779d6fcf68a72edc888"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S0-110.json": {
+      "bytes": 1111,
+      "sha256": "e6a82c85c8979eba268e6193d36b6f3ff2e50ecd5083c58f6851ab8d2de61c65"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-001.json": {
+      "bytes": 4681,
+      "sha256": "7b50a7d7dd646adf1b2524f7c924142358a7bd4866bd90a73ed9aa079a4f9990"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-002.json": {
+      "bytes": 2304,
+      "sha256": "1d629d0fbbf3ccbda144cf1bc8f48e4b5daa4dc7a6bba6bebab2a888bda59d9f"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-003.json": {
+      "bytes": 69041,
+      "sha256": "190d003a5bd5d1f0b4ff1d80a3ff0a4744c37a858a73848f9ddec71a65672819"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-003@I1-092.json": {
+      "bytes": 14316,
+      "sha256": "b87de9aa8fffbfd20c7e43e25960bd0db6531ef8da3b4fdbbe8999d6287853c7"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-003@I1-097.json": {
+      "bytes": 18604,
+      "sha256": "b926eee1671e50ce0e71042e9b6acc225205eb1767b2209fad2819ae3a7ea6ce"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-003@I1-098.json": {
+      "bytes": 20784,
+      "sha256": "b497899a6a0a26eb467229fdab56531c77934a0092ba996d61d418a61d8b7d39"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-003@I1-099.json": {
+      "bytes": 16705,
+      "sha256": "112a12da4e6b4c8c37bbcf9f33ff58a59b697513dd4a7c3bac908fab865676ac"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-005.json": {
+      "bytes": 1064,
+      "sha256": "12e02c48fe9375c5602c9be7308b87e9ddb7649fbd8ce3a87d534d477193e729"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-006.json": {
+      "bytes": 2065,
+      "sha256": "76551cbe0424dbf20bf63b92faf0874ad7879d06d5d9cf2b3a41d6102cbac44d"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-024.json": {
+      "bytes": 13719,
+      "sha256": "4c43185be6c7b776290e5c40298c45ccd4c6589f5942c866ac8bd1165a038a32"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-027.json": {
+      "bytes": 10602,
+      "sha256": "18b6cfb08447b360ab70d7140ee2a31da2e18d423afe5a369cd19a7539be51a5"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-033.json": {
+      "bytes": 8365,
+      "sha256": "997988b9f3b1945f088ea48f9674cf6688e6c5f8b95dcab69571657febeb4316"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-034.json": {
+      "bytes": 39826,
+      "sha256": "7d2c6425070e4683ba7610ab30fc1e2c33cd2600ea4fb46e9eae83896db030f1"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-034@I1-077.json": {
+      "bytes": 7440,
+      "sha256": "76016fa394368d04850e41128c6ac1ac5003c2e9756494a2cbfea56ca15c21be"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-034@I1-079.json": {
+      "bytes": 22395,
+      "sha256": "bf9f54a1b4ca2b6b8660668952844ddff3e0692374c3847c9283a27c534d5f9c"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-034@I1-080.json": {
+      "bytes": 12132,
+      "sha256": "04b843101b78e819208ecda8622a4a093f948a639a56da5e8aa3b719eefa4f69"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-035.json": {
+      "bytes": 1321,
+      "sha256": "f8fa6d2c3873b86b2a2c918d5cd6ca74ff51a3d4cbf4eefb19406df9d9047866"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-041.json": {
+      "bytes": 25867,
+      "sha256": "da0a333a0df6f98b17fac23a4bfe6e4ab5f4bdc1dc292f4cfe4e57eac1f86823"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-061.json": {
+      "bytes": 28113,
+      "sha256": "be30a270d366030c83ddc013879cc9c072df4161d7bfc73a4345cb7b8314454a"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-082.json": {
+      "bytes": 11311,
+      "sha256": "a0bfc7e4d758fd288636c43800c086a8aee04ef811e6985b9335cd76370bca78"
+    },
+    "gaussian-uncapped-tour-20261026/object-meshes/S1-084.json": {
+      "bytes": 50781,
+      "sha256": "3fcb9a5590406428af6a6b6182f67fac504c851e1a8d10cbf2a92a0eb5592d21"
+    },
+    "gaussian-uncapped-tour-20261026/object-review-validation.json": {
+      "bytes": 440,
+      "sha256": "7d7d5175b294489f6531ae3e3426f4fc7522ba0ad9c1a1fbcc7f2294be11bef8"
+    },
+    "gaussian-uncapped-tour-20261026/object_evidence.js": {
+      "bytes": 10054,
+      "sha256": "46c395823c7b0899fa2ee7294e1681b1ae3d9535b58e473f98d6d940060df6f0"
+    },
+    "gaussian-uncapped-tour-20261026/protocol.json": {
+      "bytes": 197421,
+      "sha256": "5aa4228c753944944bb906a470c9cc01fc92ffb5630906868eb581879eb9b657"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K1/after.jpg": {
+      "bytes": 57117,
+      "sha256": "e16f51e0a7134865b84184fb10b8fffc69748ad9f93444702dc8a7fb2807367b"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K1/before.jpg": {
+      "bytes": 57228,
+      "sha256": "5215eabf7073723a3e5ff424db4e6b16ab84a54c6fad51ef249e3943914b2cad"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K10/after.jpg": {
+      "bytes": 54991,
+      "sha256": "e45844a99da320cd47d5a8af89e59f6b43055b4b6be4a3bcb66aa4084cc7462f"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K10/before.jpg": {
+      "bytes": 60366,
+      "sha256": "cc44f26add839e2408b8a8f7c3580f0ba88a9b211f2ddc48acf8b35f0baf7d46"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K11/after.jpg": {
+      "bytes": 67190,
+      "sha256": "f14c398e8146094e9146c960af0e2ca38e1fa397fbc6d22064653dca2011deaa"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K11/before.jpg": {
+      "bytes": 65914,
+      "sha256": "aa88f7d0f8f8b9dbaedbcd9826e4668194b5d857b18831ce2592efa601047ce4"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K12/after.jpg": {
+      "bytes": 39938,
+      "sha256": "be32574d027a2cfb1df06f070b3df3364e7efe95a69e27f708b38e1826fb1fbe"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K12/before.jpg": {
+      "bytes": 36718,
+      "sha256": "e0713ccb85351ab8a5cc0924819bb53326e6da7355e4f0050de08b28f2c31f28"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K13/after.jpg": {
+      "bytes": 58860,
+      "sha256": "81d513de1d81cc0b5f82bc7ec39a9bd615ba622542701a6c5f7ec3ae691c0d24"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K13/before.jpg": {
+      "bytes": 57337,
+      "sha256": "ab1f219478c3e2ab47369b3b394c8c7567210d3380c881d66d82fe4190486934"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K14/after.jpg": {
+      "bytes": 67783,
+      "sha256": "f1c0e84534b2eaad2f998549244a06f2f8abf50b3959930c35bdd034f648424b"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K14/before.jpg": {
+      "bytes": 69242,
+      "sha256": "8e34d0d5bf7757d19a212bd8bb405d433f244e04abec817ea8a2fec810fe5203"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K15/after.jpg": {
+      "bytes": 59592,
+      "sha256": "3044f7e6d7e894ae0674baf865d706785263b640f0aff33f4ca14b4906d6eee2"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K15/before.jpg": {
+      "bytes": 59725,
+      "sha256": "fc445c4f73058002673e2b40f567b21748439fd618939fd772939c7c0f3a6df2"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K16/after.jpg": {
+      "bytes": 59416,
+      "sha256": "2c77187bc4a384f93b8afbb6a65e85aa06ac9dcc103573aaac795556b41958ca"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K16/before.jpg": {
+      "bytes": 57077,
+      "sha256": "1c51997bca084ffdeab255b7b094a3ce5b92cdff930bfe16d75765276b85e2e8"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K17/after.jpg": {
+      "bytes": 57638,
+      "sha256": "2e436ebc1f52520b43a0599714aa94612e940b1e95fb9c3703d453d6fab0c27c"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K17/before.jpg": {
+      "bytes": 58581,
+      "sha256": "5065a34e7c26c4492a3a3e852e00a7e53ab5225655152c1b65a9410ede383945"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K18/after.jpg": {
+      "bytes": 56762,
+      "sha256": "fdc193b6de8e098ce0b63783001659def89d5165d7c411d52782514b22aca5c2"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K18/before.jpg": {
+      "bytes": 55699,
+      "sha256": "02d754f26769c7cbbbe9281694be6facf6e6edb59c47c2fa05071a4144a0ec6b"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K19/after.jpg": {
+      "bytes": 59514,
+      "sha256": "3ce59a427611c32febaa0f35f78f02758be38dd8aa176689a35d3db3d4c57918"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K19/before.jpg": {
+      "bytes": 58951,
+      "sha256": "68d4a9cd938a37cf6476ad0a29da971d1da1aedd3660825b3db2dc3aca54cb45"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K2/after.jpg": {
+      "bytes": 68692,
+      "sha256": "2178daffa86a6d08683e25d03d17bf36449c015c9b399660fd8851b4d624a182"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K2/before.jpg": {
+      "bytes": 65454,
+      "sha256": "62fd2584b140fb5672c7ed30a18f5839d50676aed36e2dcffd509dec4aa37418"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K20/after.jpg": {
+      "bytes": 55449,
+      "sha256": "35220ef574b085d37ece9a7174ae11f1ab5aef8e767285d3595aaaceec7a9d15"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K20/before.jpg": {
+      "bytes": 57121,
+      "sha256": "a15ae68fe6538b8d506e24335384e7d2246dd39a917c55755af8ad332c21eaae"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K21/after.jpg": {
+      "bytes": 65763,
+      "sha256": "776b40f8ad645b565f2b6af35d3f66f7423e33b25590c249b1836720c33a864c"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K21/before.jpg": {
+      "bytes": 61958,
+      "sha256": "300c04a22d3dad81bc561f21c04ad1471fb8cec3461d8499c0a756b6a7bd4856"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K3/after.jpg": {
+      "bytes": 62467,
+      "sha256": "3959c569cb0b9af453349bce4b9c1b2aad5de10b6ed1e3b21b4f8880cf0ce687"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K3/before.jpg": {
+      "bytes": 65773,
+      "sha256": "0bef4a94bbca1b8acb62e0488a3eed4023384b985658e0c9dc7f6b27588b9407"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K4/after.jpg": {
+      "bytes": 25898,
+      "sha256": "fe4b96e3c4b208a5f395a8fc5bbcad3a92973b1695ed4c7abaea9a2c13dcc413"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K4/before.jpg": {
+      "bytes": 21665,
+      "sha256": "e8f20360ee7cad3ca3452edc1e8e23d76fe9700baea0f93fc8938aec94f71213"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K5/after.jpg": {
+      "bytes": 58637,
+      "sha256": "c86ad4568bcbabbefafea77bccc9c379c1aadcf13787290c7caa98586a613219"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K5/before.jpg": {
+      "bytes": 56501,
+      "sha256": "0a78e8554f7666ad59cb91a6fecbfbb4e178a68ae64c267786e29d821dc1a68d"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K6/after.jpg": {
+      "bytes": 61200,
+      "sha256": "71b11c5c67b286657830ae47b04ef32277b0013e534f6526e7133a8ff16712ae"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K6/before.jpg": {
+      "bytes": 63847,
+      "sha256": "6b268cb09c9651c955012b734078a86d0a8ec4e5c9d483e71a48a7427fe22500"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K7/after.jpg": {
+      "bytes": 66045,
+      "sha256": "54613f3ba38c73154ad878c5b7dd85f7b93972f02d80b6c13507c1dd6844df5f"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K7/before.jpg": {
+      "bytes": 61134,
+      "sha256": "ffefa6c9c6b5b22e5e7f4916138bf725dde80190cc240fef57f9e5de2d255b06"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K8/after.jpg": {
+      "bytes": 58742,
+      "sha256": "ed0b0445e307c1500c5ae6d03f08fab682e8b8112018b11e50700d28cf73e964"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K8/before.jpg": {
+      "bytes": 62337,
+      "sha256": "93a57edcc4c4a227f38074bda239580d41c4ebdcd03629bd48c672e07bbf6dbd"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K9/after.jpg": {
+      "bytes": 55689,
+      "sha256": "061ac67602c86a9316ecf56b126d5d8ba454dfca48f2fe5c8fb22fb6190c82b5"
+    },
+    "gaussian-uncapped-tour-20261026/renders/K9/before.jpg": {
+      "bytes": 56967,
+      "sha256": "b0af6373d436261128b7e72f0edb0a2bf0f01125b28ccde960b46e79e6e9a002"
+    },
+    "gaussian-uncapped-tour-20261026/REPORT.md": {
+      "bytes": 4155,
+      "sha256": "126b55adbeec1428a46d244de196f7e6046bd08125aec7063f3245ca6add53ab"
+    },
+    "gaussian-uncapped-tour-20261026/route-map-source.json": {
+      "bytes": 7828,
+      "sha256": "2fc2f44ae623ad7698f693428b2fc57bc071bec031988aab6654902e0cb924b9"
+    },
+    "gaussian-uncapped-tour-20261026/route-overview.png": {
+      "bytes": 87930,
+      "sha256": "f4e0b1258374136ac4afc1bfb86f8be331047819e98b5e8fb4b47a549ba82a05"
+    },
+    "gaussian-uncapped-tour-20261026/route-source-receipt.json": {
+      "bytes": 333,
+      "sha256": "b497bc0ce6b2eacaf5b0e51c607d254246cf78b4b89378fe05a61544763bc954"
+    },
+    "gaussian-uncapped-tour-20261026/selection-audit.json": {
+      "bytes": 1710,
+      "sha256": "474535b821303c20f8c9721c1a1a1cfd940f8410fea83461ace75132ddf13054"
+    },
+    "gaussian-uncapped-tour-20261026/shared-change-validation.json": {
+      "bytes": 398,
+      "sha256": "17d178a00598ef2236fd0e1a98f3f59345f0ca06af032bdfb64a2a9ca85d7920"
+    },
+    "gaussian-uncapped-tour-20261026/simsac-candidates.json": {
+      "bytes": 27575,
+      "sha256": "ca83ec2fb07af79fb38fb6f00db1130f07676811c82d58dd418c94e46b5a74d5"
+    },
+    "gaussian-uncapped-tour-20261026/simsac-model.json": {
+      "bytes": 1032,
+      "sha256": "aa2b8a6e3c07c8e944a701d4ae98ee74f62b842d731ffb5ffefa982be072d532"
+    },
+    "gaussian-uncapped-tour-20261026/source-requests/U3.json": {
+      "bytes": 20681,
+      "sha256": "4a43e393863d5b525767dba0e33e7d8b4e9d16c6172766536ca70e2bc1c6b70a"
+    },
+    "gaussian-uncapped-tour-20261026/tour-candidates.json": {
+      "bytes": 122862,
+      "sha256": "76a0e9d8578fedee8188041e31946ff67b6323580f79fccc777c3e5fa660d0e8"
+    },
+    "gaussian-uncapped-tour-20261026/tour-routes.json": {
+      "bytes": 171276,
+      "sha256": "72b8bacd6a85d20b71a574e7c088738ebb2d3bd84c0bac9adc87329157972eae"
+    },
+    "gaussian-uncapped-tour-20261026/tour-validation.json": {
+      "bytes": 2190,
+      "sha256": "c7ab245912646109bea8aa010286f01fc4c7131050d1993088de3ffe405d04d2"
+    },
+    "gaussian-uncapped-tour-20261026/tour.js": {
+      "bytes": 12183,
+      "sha256": "5bff865bd5087de00f75cc07410eed3950465e357dde90d2515de42f1d1ee006"
+    },
+    "gaussian-uncapped-tour-20261026/tour_navigation.js": {
+      "bytes": 1865,
+      "sha256": "7e31f5d6cf9b51d3f21674818d046616592a994c7aa0e0a5ecd67114f06031a5"
+    },
+    "gaussian-uncapped-tour-20261026/viewer-K10-boxes.png": {
+      "bytes": 74230,
+      "sha256": "166feaeb4d948b07fd297d44f6cddabd342e1e804e364a3ee734995f560d82c1"
+    },
+    "gaussian-uncapped-tour-20261026/viewer-K10-ghost.png": {
+      "bytes": 80940,
+      "sha256": "b5b38ee486beff4e74e374a9941ada30a16f907a5a829ef595f7244410ef811d"
+    },
+    "gaussian-uncapped-tour-20261026/viewer-object-type-review.png": {
+      "bytes": 67533,
+      "sha256": "04ee09ebdc386f06caaef82d48aa884456d2a9bf37b10aff6b171c11ff9eede0"
+    },
+    "gaussian-uncapped-tour-20261026/viewer-R12-automatic-movement.png": {
+      "bytes": 90271,
+      "sha256": "2ba69937cf44d1373cd8b20d4bf0fc3e14b412b4981aac9e23d6be84a28e10b7"
+    },
+    "gaussian-uncapped-tour-20261026/viewer-R12-colored-movement-compact.png": {
+      "bytes": 54784,
+      "sha256": "b56056e573fcb806c51b36dea77bbc90edd65d57970f3624ff334d1bf8283749"
+    },
+    "gaussian-uncapped-tour-20261026/viewer-R12-colored-movement.png": {
+      "bytes": 98535,
+      "sha256": "0f7b7392ab1d595d0c2d6f90022cf5b31a33fab0c0fa5ded9304a418e6fda7ec"
+    },
+    "gaussian-uncapped-tour-20261026/viewer-shared-change-regions.png": {
+      "bytes": 65582,
+      "sha256": "116664ffaac7992fa433097b3eafe145813ee623cb1c22bb0726f5a07c0f3d01"
+    },
+    "gaussian-uncapped-tour-20261026/viewer.css": {
+      "bytes": 11291,
+      "sha256": "5e86a16751290131e79aab1f737351033ed7cebf962cb8f70df26d590dc46785"
+    },
+    "gaussian-uncapped-tour-20261026/viewer.js": {
+      "bytes": 29586,
+      "sha256": "03da595a2d0aa631bc8b78dac10a3c71eea9916578eb34f14cced8a13c6efd9c"
     },
     "index.html": {
       "bytes": 285,
@@ -6719,5 +8063,6 @@
   },
   "current_viewer": "Full original 360 ERP; frozen baseline and SimSaC; registered common-point view linkage with original camera positions preserved",
   "full_gaussian_maps_included": false,
-  "raw_model_probabilities_included": false
+  "raw_model_probabilities_included": false,
+  "last_updated": "2026-10-26"
 }

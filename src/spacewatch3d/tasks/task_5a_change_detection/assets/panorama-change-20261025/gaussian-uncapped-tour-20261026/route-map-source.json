@@ -1,0 +1,289 @@
+{
+  "status": "saved_plan_static_map",
+  "input_hashes": {
+    "/home/lth/Documents/Codex/2026-10-10/dlrj/outputs/dorm3_fast_uncapped_20261026_Ojiy1v/uncapped/tour_plan.json": "a705fc726dea288bdc04566d725a760c802b9aa2a8ae22b6f8f06fed73d5663c",
+    "/home/lth/Documents/Codex/2026-10-10/dlrj/outputs/dorm3_fast_uncapped_20261026_Ojiy1v/uncapped/scene.json": "c34755c85f43031a19e06e0743be8a33e81577a02691fcce9f3adb0f328219ad",
+    "/home/lth/Documents/Codex/2026-10-10/dlrj/outputs/dorm3_fast_uncapped_20261026_Ojiy1v/uncapped/summary.json": "d9d5cd098b36ec2da6aba5c3c5d920cf466fdedb54571dd1d7c969bd42f7d648",
+    "/home/lth/Documents/Codex/2026-10-10/dlrj/outputs/dorm3_fast_uncapped_20261026_Ojiy1v/uncapped/verification.json": "7c228331685e887c478a180ea004efbdc047b091265778104d112d4dce1a7f57",
+    "/home/lth/Documents/Codex/2026-10-10/dlrj/outputs/mesh_statistical_filter_20261025/input/dorm3_mesh_arrays.npz": "da807ca18ffc5a8a0697335999209c6309a088239f565bae457359302c8579f3"
+  },
+  "images": [
+    {
+      "path": "/home/lth/Documents/Codex/2026-10-10/dlrj/outputs/dorm3_fast_uncapped_20261026_Ojiy1v/uncapped/dorm3-uncapped-overview.png",
+      "pixels": [
+        760,
+        2442
+      ],
+      "bounds_xy_m": [
+        [
+          -7.100678443908691,
+          -34.6376953125
+        ],
+        [
+          11.785844802856445,
+          26.38705825805664
+        ]
+      ],
+      "pixels_per_map_unit": 34.57491683959961
+    },
+    {
+      "path": "/home/lth/Documents/Codex/2026-10-10/dlrj/outputs/dorm3_fast_uncapped_20261026_Ojiy1v/uncapped/dorm3-uncapped-lower.png",
+      "pixels": [
+        760,
+        1184
+      ],
+      "bounds_xy_m": [
+        [
+          -7.100678443908691,
+          -34.6376953125
+        ],
+        [
+          11.785844802856445,
+          -10.0
+        ]
+      ],
+      "pixels_per_map_unit": 34.57491839382588
+    },
+    {
+      "path": "/home/lth/Documents/Codex/2026-10-10/dlrj/outputs/dorm3_fast_uncapped_20261026_Ojiy1v/uncapped/dorm3-uncapped-upper.png",
+      "pixels": [
+        760,
+        1003
+      ],
+      "bounds_xy_m": [
+        [
+          -7.100678443908691,
+          7.0
+        ],
+        [
+          11.785844802856445,
+          26.38705825805664
+        ]
+      ],
+      "pixels_per_map_unit": 34.57491839382588
+    }
+  ],
+  "viewpoints": [
+    {
+      "label": "K1",
+      "viewpoint_id": "vp_n_00031_00021",
+      "component_id": "component_001",
+      "position": [
+        -3.1544804096221912,
+        -29.42926120758056,
+        1.9350483653634698
+      ]
+    },
+    {
+      "label": "K2",
+      "viewpoint_id": "vp_n_00045_00041",
+      "component_id": "component_001",
+      "position": [
+        -0.15448040962219167,
+        -27.32926120758056,
+        1.9350483653634698
+      ]
+    },
+    {
+      "label": "K3",
+      "viewpoint_id": "vp_n_00064_00020",
+      "component_id": "component_001",
+      "position": [
+        -3.3044804096221916,
+        -24.479261207580564,
+        1.9350483653634698
+      ]
+    },
+    {
+      "label": "K4",
+      "viewpoint_id": "vp_n_00078_00051",
+      "component_id": "component_001",
+      "position": [
+        1.3455195903778083,
+        -22.379261207580562,
+        1.9350483653634698
+      ]
+    },
+    {
+      "label": "K5",
+      "viewpoint_id": "vp_n_00087_00016",
+      "component_id": "component_001",
+      "position": [
+        -3.9044804096221912,
+        -21.02926120758056,
+        1.9350483653634698
+      ]
+    },
+    {
+      "label": "K6",
+      "viewpoint_id": "vp_n_00118_00016",
+      "component_id": "component_001",
+      "position": [
+        -3.9044804096221912,
+        -16.379261207580562,
+        1.9350483653634698
+      ]
+    },
+    {
+      "label": "K7",
+      "viewpoint_id": "vp_n_00142_00015",
+      "component_id": "component_001",
+      "position": [
+        -4.054480409622192,
+        -12.77926120758056,
+        1.9350483653634698
+      ]
+    },
+    {
+      "label": "K8",
+      "viewpoint_id": "vp_n_00172_00014",
+      "component_id": "component_001",
+      "position": [
+        -4.2044804096221915,
+        -8.27926120758056,
+        1.9350483653634698
+      ]
+    },
+    {
+      "label": "K9",
+      "viewpoint_id": "vp_n_00216_00013",
+      "component_id": "component_001",
+      "position": [
+        -4.354480409622191,
+        -1.6792612075805593,
+        1.9350483653634698
+      ]
+    },
+    {
+      "label": "K10",
+      "viewpoint_id": "vp_n_00277_00014",
+      "component_id": "component_001",
+      "position": [
+        -4.2044804096221915,
+        7.470738792419439,
+        1.9350483653634698
+      ]
+    },
+    {
+      "label": "K11",
+      "viewpoint_id": "vp_n_00294_00062",
+      "component_id": "component_001",
+      "position": [
+        2.9955195903778087,
+        10.020738792419436,
+        1.9350483653634698
+      ]
+    },
+    {
+      "label": "K12",
+      "viewpoint_id": "vp_n_00295_00097",
+      "component_id": "component_001",
+      "position": [
+        8.245519590377809,
+        10.170738792419435,
+        1.9350483653634698
+      ]
+    },
+    {
+      "label": "K13",
+      "viewpoint_id": "vp_n_00298_00010",
+      "component_id": "component_001",
+      "position": [
+        -4.804480409622191,
+        10.620738792419438,
+        1.9350483653634698
+      ]
+    },
+    {
+      "label": "K14",
+      "viewpoint_id": "vp_n_00314_00061",
+      "component_id": "component_001",
+      "position": [
+        2.8455195903778083,
+        13.020738792419436,
+        1.9350483653634698
+      ]
+    },
+    {
+      "label": "K15",
+      "viewpoint_id": "vp_n_00323_00010",
+      "component_id": "component_001",
+      "position": [
+        -4.804480409622191,
+        14.370738792419438,
+        1.9350483653634698
+      ]
+    },
+    {
+      "label": "K16",
+      "viewpoint_id": "vp_n_00340_00101",
+      "component_id": "component_001",
+      "position": [
+        8.845519590377808,
+        16.920738792419435,
+        1.9350483653634698
+      ]
+    },
+    {
+      "label": "K17",
+      "viewpoint_id": "vp_n_00341_00032",
+      "component_id": "component_001",
+      "position": [
+        -1.5044804096221913,
+        17.07073879241944,
+        1.9350483653634698
+      ]
+    },
+    {
+      "label": "K18",
+      "viewpoint_id": "vp_n_00342_00086",
+      "component_id": "component_001",
+      "position": [
+        6.595519590377808,
+        17.22073879241944,
+        1.9350483653634698
+      ]
+    },
+    {
+      "label": "K19",
+      "viewpoint_id": "vp_n_00345_00011",
+      "component_id": "component_001",
+      "position": [
+        -4.654480409622192,
+        17.670738792419435,
+        1.9350483653634698
+      ]
+    },
+    {
+      "label": "K20",
+      "viewpoint_id": "vp_n_00374_00109",
+      "component_id": "component_001",
+      "position": [
+        10.04551959037781,
+        22.020738792419436,
+        1.9350483653634698
+      ]
+    },
+    {
+      "label": "K21",
+      "viewpoint_id": "vp_n_00376_00007",
+      "component_id": "component_001",
+      "position": [
+        -5.254480409622191,
+        22.32073879241944,
+        1.9350483653634698
+      ]
+    }
+  ],
+  "view_count": 21,
+  "selected_component_count": 1,
+  "route_links": 20,
+  "route_segments": 1149,
+  "fabricated_route_links": 0,
+  "renderer": "Pillow orthographic XY; true 1m source-mesh section and explicitly inferred flat-ground navigation support; source mesh unchanged",
+  "crop_description": "Overview complete source bounds plus 0.7m; lower y<=-10 and upper y>=7, overview includes middle",
+  "color_semantics": "component-color points and direct K labels; saved route links, gray navigation support including disclosed flat-floor inference/mesh section",
+  "gray_not_space_coverage": true,
+  "geometry_or_plan_modified": false,
+  "note": "K indices follow saved viewpoint array, not previous mesh-review numbers; physical safety unverified"
+}

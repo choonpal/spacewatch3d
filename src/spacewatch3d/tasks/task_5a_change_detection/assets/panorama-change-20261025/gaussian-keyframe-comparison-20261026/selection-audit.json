@@ -1,0 +1,174 @@
+{
+  "sources": [
+    {
+      "group": "P2",
+      "capture": "dorm2",
+      "render_requests": "outputs\\gaussian-keyframes-20261026\\source\\production\\dorm2\\render_requests.json",
+      "render_requests_sha256": "9b7faa2cad9e53ab229d4cd1fd103a9ecfe5df5664e6e3fe043e1518728d1015",
+      "tour_plan": "outputs\\gaussian-keyframes-20261026\\source\\production\\dorm2\\tour_plan.json",
+      "tour_plan_sha256": "de8ea959230fe05d348458485cc611c15b679ed320cf24cc70085de9df6c4545",
+      "scene_sha256": "c0427c2cb498738a619b301367a0d3e3eeb8882676f174a9200ea6606a374434",
+      "route_id": "route_04805b160a52",
+      "count": 13,
+      "planning_status": "incomplete",
+      "publication_ready": false,
+      "quality_status": "unverified",
+      "failure_codes": [
+        "disconnected_tour",
+        "targets_unmet",
+        "coverage_repair_targets_unmet",
+        "object_selection_guard_targets_unmet",
+        "independent_coverage_targets_unmet"
+      ]
+    },
+    {
+      "group": "P3",
+      "capture": "dorm3",
+      "render_requests": "outputs\\gaussian-keyframes-20261026\\source\\production\\dorm3\\render_requests.json",
+      "render_requests_sha256": "8e052a034318f6b4393debb73909176829650b0bbd2c886482945936c32a5755",
+      "tour_plan": "outputs\\gaussian-keyframes-20261026\\source\\production\\dorm3\\tour_plan.json",
+      "tour_plan_sha256": "316f04d6b1f663563b0c19c52e2bf28e10ea0636a955e7a4e7b446c5bcd857fe",
+      "scene_sha256": "6a97850610b2fd8d4933a2d5a5b3d11053ac3077f0602fc2f10e0153085e9590",
+      "route_id": "route_9e7c000e7989",
+      "count": 13,
+      "planning_status": "incomplete",
+      "publication_ready": false,
+      "quality_status": "unverified",
+      "failure_codes": [
+        "disconnected_tour",
+        "targets_unmet",
+        "coverage_repair_targets_unmet",
+        "object_selection_guard_targets_unmet",
+        "independent_coverage_targets_unmet"
+      ]
+    },
+    {
+      "group": "S3",
+      "capture": "dorm3",
+      "render_requests": "outputs\\gaussian-keyframes-20261026\\source\\task5b\\plan\\render_requests.json",
+      "render_requests_sha256": "39df80cecf5c075fd73a8023bedb757b7ef4f432fcbfa418eba3686f278cabe3",
+      "tour_plan": "outputs\\gaussian-keyframes-20261026\\source\\task5b\\plan\\tour_plan.json",
+      "tour_plan_sha256": "4f9a7db9701e901cadb2da453d3d7524cc622dcf31c21fd9295785b3dde15ae0",
+      "scene_sha256": "6bd68eca54af254cfea672f3cbfaa4cd6c8c71cced559f43e0f87758b5cc2f3d",
+      "route_id": "route_9e7c000e7989",
+      "count": 20,
+      "planning_status": "incomplete",
+      "publication_ready": false,
+      "quality_status": "unverified",
+      "failure_codes": [
+        "disconnected_tour",
+        "targets_unmet",
+        "coverage_repair_targets_unmet",
+        "object_selection_guard_targets_unmet",
+        "independent_coverage_targets_unmet"
+      ]
+    }
+  ],
+  "camera_checks": {
+    "P2": {
+      "capture": "dorm2",
+      "cameras": 233,
+      "max_native_position_residual": 0.0,
+      "planner_to_gaussian": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "max_gaussian_position_residual": 0.0
+    },
+    "P3": {
+      "capture": "dorm3",
+      "cameras": 248,
+      "max_native_position_residual": 0.0,
+      "planner_to_gaussian": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "max_gaussian_position_residual": 0.0
+    },
+    "S3": {
+      "capture": "dorm3",
+      "cameras": 248,
+      "max_native_position_residual": 0.0,
+      "planner_to_gaussian": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "max_gaussian_position_residual": 0.0
+    }
+  },
+  "views": 46,
+  "candidates_used": false,
+  "registered_before_rendering": true,
+  "registration_unsupported_zones": [
+    "R07",
+    "R09",
+    "R10",
+    "R11"
+  ]
+}

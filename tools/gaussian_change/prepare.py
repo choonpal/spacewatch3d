@@ -36,6 +36,19 @@ class FrozenPartition:
         result[missing]=self.values[self.tree.query(q[missing])[1]]
         return result
 
+def membership(protocol,points,epoch,classifier):
+    """Assign the same frozen region to a map point or a requested camera."""
+    if not epoch:return classifier.assign(points)
+    points=transform(points,protocol['membership_base_matrix'])
+    parent=protocol['membership_parent_transform']
+    if parent:
+        d=points@np.array(parent['axis'])
+        x=np.clip((d-parent['transition_start_u'])/parent['transition_width_u'],0,1)
+        weight=x*x*(3-2*x)
+        corrected=transform(points,parent['correction_matrix'])
+        points=points+weight[:,None]*(corrected-points)
+    return classifier.assign(points)
+
 def epoch_to_common(ctx,epoch,zone):
     m=np.eye(4)
     if epoch:

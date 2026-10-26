@@ -1,0 +1,68 @@
+{
+  "server_run": "/workspace/gaussian_uncapped_tour_20261026",
+  "render": {
+    "state": "complete",
+    "seconds": 59.63353967666626,
+    "views": 42,
+    "source_gaussians": [
+      386826,
+      369446
+    ],
+    "all_gaussians_exported": true,
+    "original_models_unchanged": true
+  },
+  "launch": {
+    "pid": 2852867,
+    "gpu": 2,
+    "new_simsac_inference": false,
+    "command": "render_maps.py --root /workspace/gaussian_uncapped_tour_20261026"
+  },
+  "source_sha256": {
+    "prepare.py": "4a1a18c77f6e278c2ad3ac7afd5e1309c5b7a8cc18f0c41ff6e7cb337cc1445b",
+    "render_maps.py": "d44bcd85e95e0fa38a808fc1d385359e3ea522c3c5ada22e361147ae07f13bf9"
+  },
+  "protocol_sha256": "5aa4228c753944944bb906a470c9cc01fc92ffb5630906868eb581879eb9b657",
+  "archive": {
+    "archive": "/workspace/gaussian_uncapped_tour_20261026/tour-renders.tar.gz",
+    "bytes": 129004559,
+    "sha256": "a0fa10a838d0fe7290d76dad771073fe8b04e3046602a747a6fa9b2ac4d880ce",
+    "parts": [
+      {
+        "path": "/workspace/gaussian_uncapped_tour_20261026/download-parts/part-00",
+        "bytes": 33554432,
+        "sha256": "f26fac162f7477b4934b9462c83d464aaee614ada117d0fbf30a2ccfe5bd61ff"
+      },
+      {
+        "path": "/workspace/gaussian_uncapped_tour_20261026/download-parts/part-01",
+        "bytes": 33554432,
+        "sha256": "1169c30c54b2d5cf51b9b806203d9df5c8560e02635de154f1fd9cfcb8277a0a"
+      },
+      {
+        "path": "/workspace/gaussian_uncapped_tour_20261026/download-parts/part-02",
+        "bytes": 33554432,
+        "sha256": "3313d03e681cbad1f20a44b2c7364a99a4e53d5739095c1fd4082276f1879356"
+      },
+      {
+        "path": "/workspace/gaussian_uncapped_tour_20261026/download-parts/part-03",
+        "bytes": 28341263,
+        "sha256": "a7efbf4a47d0897517eb15e12907d96502d59b76e2405f071cf2357004738910"
+      }
+    ],
+    "render_status": {
+      "state": "complete",
+      "seconds": 59.63353967666626,
+      "views": 42,
+      "source_gaussians": [
+        386826,
+        369446
+      ],
+      "all_gaussians_exported": true,
+      "original_models_unchanged": true
+    },
+    "new_simsac_inference": false,
+    "export_hashes_match_original": true
+  },
+  "new_simsac_inference": false,
+  "automatic_object_matching": true,
+  "manual_overrides_used": false
+}

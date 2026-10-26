@@ -1,0 +1,814 @@
+{
+  "schema": "shared-spatial-change-registry-v1",
+  "policy": {
+    "same_event": "same source ID or identical automatic object correspondence; never keyframe ID",
+    "area_grouping": "shared observing keyframe and AABB gap <= 3 * scene height",
+    "maximum_area_gap_h": 3.0,
+    "counts": "unique events, not observations",
+    "representative": "most events visible, then best minimum two-epoch depth support",
+    "source_geometry_changed": false
+  },
+  "modes": {
+    "raw": {
+      "events": {
+        "SimSaC-R01-001": {
+          "id": "SimSaC-R01-001",
+          "candidate_ids": [
+            "SimSaC-R01-001"
+          ],
+          "observing_keyframes": [
+            "K15",
+            "K19",
+            "K21"
+          ],
+          "bounds": [
+            [
+              -5.759911179534312,
+              0.8843428624074423,
+              -14.496863912569516
+            ],
+            [
+              -4.39558900288122,
+              1.3904745540870207,
+              -12.334481329989368
+            ]
+          ],
+          "best_view": "K19"
+        },
+        "SimSaC-R08-001": {
+          "id": "SimSaC-R08-001",
+          "candidate_ids": [
+            "SimSaC-R08-001"
+          ],
+          "observing_keyframes": [
+            "K10"
+          ],
+          "bounds": [
+            [
+              -0.5293204316288197,
+              -0.12238208499664766,
+              0.45104324466288404
+            ],
+            [
+              0.625228571238769,
+              0.963814900202471,
+              2.75322265548957
+            ]
+          ],
+          "best_view": "K10"
+        },
+        "SimSaC-R08-002": {
+          "id": "SimSaC-R08-002",
+          "candidate_ids": [
+            "SimSaC-R08-002"
+          ],
+          "observing_keyframes": [
+            "K10"
+          ],
+          "bounds": [
+            [
+              -0.6348186860728616,
+              0.09180212915904479,
+              0.7716557348157237
+            ],
+            [
+              -0.40915576635220147,
+              0.4248616863924774,
+              0.9625838498243889
+            ]
+          ],
+          "best_view": "K10"
+        },
+        "SimSaC-R12-001": {
+          "id": "SimSaC-R12-001",
+          "candidate_ids": [
+            "SimSaC-R12-001",
+            "SimSaC-R12-002"
+          ],
+          "observing_keyframes": [
+            "K1",
+            "K2",
+            "K3",
+            "K5",
+            "K6",
+            "K4"
+          ],
+          "bounds": [
+            [
+              0.5252969416836145,
+              -0.10638129867017015,
+              24.45536082550208
+            ],
+            [
+              1.944970771828559,
+              1.0583363681700424,
+              28.16428662248045
+            ]
+          ],
+          "best_view": "K3"
+        },
+        "SimSaC-R13-001": {
+          "id": "SimSaC-R13-001",
+          "candidate_ids": [
+            "SimSaC-R13-001"
+          ],
+          "observing_keyframes": [
+            "K1",
+            "K2",
+            "K3",
+            "K5",
+            "K6"
+          ],
+          "bounds": [
+            [
+              1.0632292509136552,
+              0.407415278495941,
+              30.468057394418757
+            ],
+            [
+              1.7904171642448798,
+              1.6166109277655578,
+              31.859248948048233
+            ]
+          ],
+          "best_view": "K1"
+        }
+      },
+      "candidate_to_event": {
+        "SimSaC-R01-001": "SimSaC-R01-001",
+        "SimSaC-R08-001": "SimSaC-R08-001",
+        "SimSaC-R08-002": "SimSaC-R08-002",
+        "SimSaC-R12-001": "SimSaC-R12-001",
+        "SimSaC-R12-002": "SimSaC-R12-001",
+        "SimSaC-R13-001": "SimSaC-R13-001"
+      },
+      "event_to_region": {
+        "SimSaC-R12-001": "area-SimSaC-R12-001",
+        "SimSaC-R13-001": "area-SimSaC-R12-001",
+        "SimSaC-R08-001": "area-SimSaC-R08-001",
+        "SimSaC-R08-002": "area-SimSaC-R08-001",
+        "SimSaC-R01-001": "area-SimSaC-R01-001"
+      },
+      "regions": [
+        {
+          "id": "area-SimSaC-R12-001",
+          "label": "구역 1",
+          "color_index": 0,
+          "event_ids": [
+            "SimSaC-R12-001",
+            "SimSaC-R13-001"
+          ],
+          "source_zones": [
+            "R12",
+            "R13"
+          ],
+          "observing_keyframes": [
+            "K1",
+            "K2",
+            "K3",
+            "K5",
+            "K6",
+            "K4"
+          ],
+          "representative_view": "K3"
+        },
+        {
+          "id": "area-SimSaC-R08-001",
+          "label": "구역 2",
+          "color_index": 1,
+          "event_ids": [
+            "SimSaC-R08-001",
+            "SimSaC-R08-002"
+          ],
+          "source_zones": [
+            "R08"
+          ],
+          "observing_keyframes": [
+            "K10"
+          ],
+          "representative_view": "K10"
+        },
+        {
+          "id": "area-SimSaC-R01-001",
+          "label": "구역 3",
+          "color_index": 2,
+          "event_ids": [
+            "SimSaC-R01-001"
+          ],
+          "source_zones": [
+            "R01"
+          ],
+          "observing_keyframes": [
+            "K15",
+            "K19",
+            "K21"
+          ],
+          "representative_view": "K19"
+        }
+      ],
+      "observations": {
+        "K1": {
+          "event_ids": [
+            "SimSaC-R12-001",
+            "SimSaC-R13-001"
+          ],
+          "region_ids": [
+            "area-SimSaC-R12-001"
+          ],
+          "candidate_ids": [
+            "SimSaC-R12-001",
+            "SimSaC-R12-002",
+            "SimSaC-R13-001"
+          ],
+          "new_events_created": 0
+        },
+        "K2": {
+          "event_ids": [
+            "SimSaC-R12-001",
+            "SimSaC-R13-001"
+          ],
+          "region_ids": [
+            "area-SimSaC-R12-001"
+          ],
+          "candidate_ids": [
+            "SimSaC-R12-002",
+            "SimSaC-R13-001"
+          ],
+          "new_events_created": 0
+        },
+        "K3": {
+          "event_ids": [
+            "SimSaC-R12-001",
+            "SimSaC-R13-001"
+          ],
+          "region_ids": [
+            "area-SimSaC-R12-001"
+          ],
+          "candidate_ids": [
+            "SimSaC-R12-001",
+            "SimSaC-R12-002",
+            "SimSaC-R13-001"
+          ],
+          "new_events_created": 0
+        },
+        "K5": {
+          "event_ids": [
+            "SimSaC-R12-001",
+            "SimSaC-R13-001"
+          ],
+          "region_ids": [
+            "area-SimSaC-R12-001"
+          ],
+          "candidate_ids": [
+            "SimSaC-R12-001",
+            "SimSaC-R12-002",
+            "SimSaC-R13-001"
+          ],
+          "new_events_created": 0
+        },
+        "K6": {
+          "event_ids": [
+            "SimSaC-R12-001",
+            "SimSaC-R13-001"
+          ],
+          "region_ids": [
+            "area-SimSaC-R12-001"
+          ],
+          "candidate_ids": [
+            "SimSaC-R12-002",
+            "SimSaC-R13-001"
+          ],
+          "new_events_created": 0
+        },
+        "K7": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K8": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K9": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K10": {
+          "event_ids": [
+            "SimSaC-R08-001",
+            "SimSaC-R08-002"
+          ],
+          "region_ids": [
+            "area-SimSaC-R08-001"
+          ],
+          "candidate_ids": [
+            "SimSaC-R08-001",
+            "SimSaC-R08-002"
+          ],
+          "new_events_created": 0
+        },
+        "K13": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K15": {
+          "event_ids": [
+            "SimSaC-R01-001"
+          ],
+          "region_ids": [
+            "area-SimSaC-R01-001"
+          ],
+          "candidate_ids": [
+            "SimSaC-R01-001"
+          ],
+          "new_events_created": 0
+        },
+        "K19": {
+          "event_ids": [
+            "SimSaC-R01-001"
+          ],
+          "region_ids": [
+            "area-SimSaC-R01-001"
+          ],
+          "candidate_ids": [
+            "SimSaC-R01-001"
+          ],
+          "new_events_created": 0
+        },
+        "K21": {
+          "event_ids": [
+            "SimSaC-R01-001"
+          ],
+          "region_ids": [
+            "area-SimSaC-R01-001"
+          ],
+          "candidate_ids": [
+            "SimSaC-R01-001"
+          ],
+          "new_events_created": 0
+        },
+        "K17": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K14": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K11": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K18": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K16": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K20": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K12": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K4": {
+          "event_ids": [
+            "SimSaC-R12-001"
+          ],
+          "region_ids": [
+            "area-SimSaC-R12-001"
+          ],
+          "candidate_ids": [
+            "SimSaC-R12-002"
+          ],
+          "new_events_created": 0
+        }
+      },
+      "counts": {
+        "source_candidates": 6,
+        "unique_events": 5,
+        "regions": 3,
+        "observation_links": 16
+      }
+    },
+    "filtered": {
+      "events": {
+        "SimSaC-R01-001": {
+          "id": "SimSaC-R01-001",
+          "candidate_ids": [
+            "SimSaC-R01-001"
+          ],
+          "observing_keyframes": [
+            "K15",
+            "K19",
+            "K21"
+          ],
+          "bounds": [
+            [
+              -5.759911179534312,
+              0.8843428624074423,
+              -14.496863912569516
+            ],
+            [
+              -4.39558900288122,
+              1.3904745540870207,
+              -12.334481329989368
+            ]
+          ],
+          "best_view": "K19"
+        },
+        "SimSaC-R08-001": {
+          "id": "SimSaC-R08-001",
+          "candidate_ids": [
+            "SimSaC-R08-001"
+          ],
+          "observing_keyframes": [
+            "K10"
+          ],
+          "bounds": [
+            [
+              -0.3816241619093251,
+              -0.12238208499664766,
+              0.45104324466288404
+            ],
+            [
+              0.5443619022179985,
+              0.8885483673257569,
+              2.75322265548957
+            ]
+          ],
+          "best_view": "K10"
+        },
+        "SimSaC-R08-002": {
+          "id": "SimSaC-R08-002",
+          "candidate_ids": [
+            "SimSaC-R08-002"
+          ],
+          "observing_keyframes": [
+            "K10"
+          ],
+          "bounds": [
+            [
+              -0.6348186860728616,
+              0.09180212915904479,
+              0.7716557348157237
+            ],
+            [
+              -0.40915576635220147,
+              0.4248616863924774,
+              0.9625838498243889
+            ]
+          ],
+          "best_view": "K10"
+        },
+        "SimSaC-R12-001": {
+          "id": "SimSaC-R12-001",
+          "candidate_ids": [
+            "SimSaC-R12-001"
+          ],
+          "observing_keyframes": [
+            "K1",
+            "K3",
+            "K5"
+          ],
+          "bounds": [
+            [
+              0.5252969416836145,
+              -0.10638129867017015,
+              24.45536082550208
+            ],
+            [
+              1.944970771828559,
+              0.8561200815849002,
+              25.247554541810974
+            ]
+          ],
+          "best_view": "K3"
+        },
+        "SimSaC-R13-001": {
+          "id": "SimSaC-R13-001",
+          "candidate_ids": [
+            "SimSaC-R13-001"
+          ],
+          "observing_keyframes": [
+            "K1",
+            "K2",
+            "K3",
+            "K5",
+            "K6"
+          ],
+          "bounds": [
+            [
+              1.0632292509136552,
+              0.407415278495941,
+              30.468057394418757
+            ],
+            [
+              1.7904171642448798,
+              1.6166109277655578,
+              31.859248948048233
+            ]
+          ],
+          "best_view": "K1"
+        }
+      },
+      "candidate_to_event": {
+        "SimSaC-R01-001": "SimSaC-R01-001",
+        "SimSaC-R08-001": "SimSaC-R08-001",
+        "SimSaC-R08-002": "SimSaC-R08-002",
+        "SimSaC-R12-001": "SimSaC-R12-001",
+        "SimSaC-R13-001": "SimSaC-R13-001"
+      },
+      "event_to_region": {
+        "SimSaC-R12-001": "area-SimSaC-R12-001",
+        "SimSaC-R13-001": "area-SimSaC-R12-001",
+        "SimSaC-R08-001": "area-SimSaC-R08-001",
+        "SimSaC-R08-002": "area-SimSaC-R08-001",
+        "SimSaC-R01-001": "area-SimSaC-R01-001"
+      },
+      "regions": [
+        {
+          "id": "area-SimSaC-R12-001",
+          "label": "구역 1",
+          "color_index": 0,
+          "event_ids": [
+            "SimSaC-R12-001",
+            "SimSaC-R13-001"
+          ],
+          "source_zones": [
+            "R12",
+            "R13"
+          ],
+          "observing_keyframes": [
+            "K1",
+            "K2",
+            "K3",
+            "K5",
+            "K6"
+          ],
+          "representative_view": "K3"
+        },
+        {
+          "id": "area-SimSaC-R08-001",
+          "label": "구역 2",
+          "color_index": 1,
+          "event_ids": [
+            "SimSaC-R08-001",
+            "SimSaC-R08-002"
+          ],
+          "source_zones": [
+            "R08"
+          ],
+          "observing_keyframes": [
+            "K10"
+          ],
+          "representative_view": "K10"
+        },
+        {
+          "id": "area-SimSaC-R01-001",
+          "label": "구역 3",
+          "color_index": 2,
+          "event_ids": [
+            "SimSaC-R01-001"
+          ],
+          "source_zones": [
+            "R01"
+          ],
+          "observing_keyframes": [
+            "K15",
+            "K19",
+            "K21"
+          ],
+          "representative_view": "K19"
+        }
+      ],
+      "observations": {
+        "K1": {
+          "event_ids": [
+            "SimSaC-R12-001",
+            "SimSaC-R13-001"
+          ],
+          "region_ids": [
+            "area-SimSaC-R12-001"
+          ],
+          "candidate_ids": [
+            "SimSaC-R12-001",
+            "SimSaC-R13-001"
+          ],
+          "new_events_created": 0
+        },
+        "K2": {
+          "event_ids": [
+            "SimSaC-R13-001"
+          ],
+          "region_ids": [
+            "area-SimSaC-R12-001"
+          ],
+          "candidate_ids": [
+            "SimSaC-R13-001"
+          ],
+          "new_events_created": 0
+        },
+        "K3": {
+          "event_ids": [
+            "SimSaC-R12-001",
+            "SimSaC-R13-001"
+          ],
+          "region_ids": [
+            "area-SimSaC-R12-001"
+          ],
+          "candidate_ids": [
+            "SimSaC-R12-001",
+            "SimSaC-R13-001"
+          ],
+          "new_events_created": 0
+        },
+        "K5": {
+          "event_ids": [
+            "SimSaC-R12-001",
+            "SimSaC-R13-001"
+          ],
+          "region_ids": [
+            "area-SimSaC-R12-001"
+          ],
+          "candidate_ids": [
+            "SimSaC-R12-001",
+            "SimSaC-R13-001"
+          ],
+          "new_events_created": 0
+        },
+        "K6": {
+          "event_ids": [
+            "SimSaC-R13-001"
+          ],
+          "region_ids": [
+            "area-SimSaC-R12-001"
+          ],
+          "candidate_ids": [
+            "SimSaC-R13-001"
+          ],
+          "new_events_created": 0
+        },
+        "K7": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K8": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K9": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K10": {
+          "event_ids": [
+            "SimSaC-R08-001",
+            "SimSaC-R08-002"
+          ],
+          "region_ids": [
+            "area-SimSaC-R08-001"
+          ],
+          "candidate_ids": [
+            "SimSaC-R08-001",
+            "SimSaC-R08-002"
+          ],
+          "new_events_created": 0
+        },
+        "K13": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K15": {
+          "event_ids": [
+            "SimSaC-R01-001"
+          ],
+          "region_ids": [
+            "area-SimSaC-R01-001"
+          ],
+          "candidate_ids": [
+            "SimSaC-R01-001"
+          ],
+          "new_events_created": 0
+        },
+        "K19": {
+          "event_ids": [
+            "SimSaC-R01-001"
+          ],
+          "region_ids": [
+            "area-SimSaC-R01-001"
+          ],
+          "candidate_ids": [
+            "SimSaC-R01-001"
+          ],
+          "new_events_created": 0
+        },
+        "K21": {
+          "event_ids": [
+            "SimSaC-R01-001"
+          ],
+          "region_ids": [
+            "area-SimSaC-R01-001"
+          ],
+          "candidate_ids": [
+            "SimSaC-R01-001"
+          ],
+          "new_events_created": 0
+        },
+        "K17": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K14": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K11": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K18": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K16": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K20": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K12": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        },
+        "K4": {
+          "event_ids": [],
+          "region_ids": [],
+          "candidate_ids": [],
+          "new_events_created": 0
+        }
+      },
+      "counts": {
+        "source_candidates": 5,
+        "unique_events": 5,
+        "regions": 3,
+        "observation_links": 13
+      }
+    }
+  },
+  "source_sha256": {
+    "tour-candidates.json": "76a0e9d8578fedee8188041e31946ff67b6323580f79fccc777c3e5fa660d0e8",
+    "object-evidence.json": "404f39716c460b378bb1c0e7f58b0e560fdbdafcdbd167e6ab861b8a8b2e851a",
+    "tour-routes.json": "72b8bacd6a85d20b71a574e7c088738ebb2d3bd84c0bac9adc87329157972eae",
+    "gaussian-data.json": "e2f81f37068b3d18238c56ff9a3c680cc3b8d2dc19dc6113ba12075947c8612a"
+  }
+}

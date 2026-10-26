@@ -1,0 +1,119 @@
+{
+  "views": 46,
+  "same_pose_pairs": 46,
+  "self_controls": 92,
+  "self_candidate_pixels": 0,
+  "keyframe_camera_checks": {
+    "P2": {
+      "capture": "dorm2",
+      "cameras": 233,
+      "max_native_position_residual": 0.0,
+      "planner_to_gaussian": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "max_gaussian_position_residual": 0.0
+    },
+    "P3": {
+      "capture": "dorm3",
+      "cameras": 248,
+      "max_native_position_residual": 0.0,
+      "planner_to_gaussian": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "max_gaussian_position_residual": 0.0
+    },
+    "S3": {
+      "capture": "dorm3",
+      "cameras": 248,
+      "max_native_position_residual": 0.0,
+      "planner_to_gaussian": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "max_gaussian_position_residual": 0.0
+    }
+  },
+  "view_selection_uses_change_candidates": false,
+  "original_plan_publication_ready": false,
+  "registration_fitted_again": false,
+  "registration_unsupported_zones": [
+    "R07",
+    "R09",
+    "R10",
+    "R11"
+  ],
+  "all_gaussians_retained": [
+    386826,
+    369446
+  ],
+  "exact_raw_probability_saved": true,
+  "ground_truth_accuracy_claimed": false
+}

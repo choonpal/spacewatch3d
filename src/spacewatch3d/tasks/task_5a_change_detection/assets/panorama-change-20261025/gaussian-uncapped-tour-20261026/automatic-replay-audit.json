@@ -1,0 +1,122 @@
+{
+  "schema": "automatic-object-replay-audit-v1",
+  "passed": true,
+  "replay_directory": "D:\\ChatGPT\\Workspaces\\Projects\\jonghap_project\\outputs\\automation-replays-20261026\\automatic-object-replay-ybyqx6zh",
+  "initial_files": [
+    "protocol.json",
+    "simsac-candidates.json"
+  ],
+  "copied_previous_decision_outputs": false,
+  "identical_output_sha256": {
+    "automatic-matching.json": true,
+    "object-evidence.json": true
+  },
+  "published_sha256": {
+    "automatic-matching.json": "7d202d7e2197c7a4ee0904b27c648f671a66b17cb7c07e2f7b99c0326e25d2a9",
+    "object-evidence.json": "404f39716c460b378bb1c0e7f58b0e560fdbdafcdbd167e6ab861b8a8b2e851a"
+  },
+  "decision_source_sha256": {
+    "automatic_object_matching.py": "bea10825eabbd668224f0206351b18d4b14c759f2a885fbcf4b3c1cf49b1ad48",
+    "link_segmented_objects.py": "6e56955c797ea93ebf2010d1806214e9e9502140ccfab194b3b9ecf82e7eeb08"
+  },
+  "case_specific_literals_in_decision_code": {
+    "automatic_object_matching.py": [],
+    "link_segmented_objects.py": []
+  },
+  "manual_override_files_present": false,
+  "stages_recomputed": [
+    "instance-to-mesh linkage",
+    "mask-assisted mesh partition",
+    "rigid shape search",
+    "one-to-one assignment",
+    "event classification"
+  ],
+  "upstream_inputs_reused": [
+    "registered meshes",
+    "semantic components",
+    "image instance tracks and vacancy votes",
+    "Gaussian-render SimSaC candidate regions"
+  ],
+  "upstream_model_inference_repeated": false,
+  "new_maps_to_final_output_exercised": false,
+  "generalization_or_physical_accuracy_evaluated": false,
+  "events": [
+    {
+      "candidate_id": "SimSaC-R01-001",
+      "type": "unresolved",
+      "selected_pair": null,
+      "shape_f1": null,
+      "automatic": true
+    },
+    {
+      "candidate_id": "SimSaC-R08-001",
+      "type": "moved",
+      "selected_pair": [
+        "S0-046",
+        "S1-027"
+      ],
+      "shape_f1": 0.6543847137439953,
+      "automatic": true
+    },
+    {
+      "candidate_id": "SimSaC-R08-002",
+      "type": "unresolved",
+      "selected_pair": null,
+      "shape_f1": null,
+      "automatic": true
+    },
+    {
+      "candidate_id": "SimSaC-R12-001",
+      "type": "moved",
+      "selected_pair": [
+        "S0-010@I0-005",
+        "S1-024"
+      ],
+      "shape_f1": 0.7674338808952265,
+      "automatic": true
+    },
+    {
+      "candidate_id": "SimSaC-R13-001",
+      "type": "removed",
+      "selected_pair": [
+        "S0-015",
+        null
+      ],
+      "shape_f1": null,
+      "automatic": true
+    }
+  ],
+  "evidence_ablation": [
+    {
+      "candidate_id": "SimSaC-R08-001",
+      "with_correspondence": "moved",
+      "without_correspondence": "unresolved",
+      "movement_requires_computed_correspondence": true
+    },
+    {
+      "candidate_id": "SimSaC-R12-001",
+      "with_correspondence": "moved",
+      "without_correspondence": "unresolved",
+      "movement_requires_computed_correspondence": true
+    }
+  ],
+  "object_validation": {
+    "passed": true,
+    "metadata_only": false,
+    "segmented_meshes": 44,
+    "review_hints": {
+      "added": 0,
+      "removed": 1,
+      "moved": 2,
+      "unresolved": 2
+    },
+    "original_faces_preserved": true,
+    "original_simsac_regions_unchanged": true,
+    "simsac_pixel_direction_used_for_type": false,
+    "physical_event_types_confirmed": false,
+    "automatic": true,
+    "manual_overrides_used": false,
+    "automatic_matches": 2
+  },
+  "accepted_matches": 2
+}

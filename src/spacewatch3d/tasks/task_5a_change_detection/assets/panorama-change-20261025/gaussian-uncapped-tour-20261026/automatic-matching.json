@@ -1,0 +1,1148 @@
+{
+  "automatic": true,
+  "manual_overrides_used": false,
+  "parameters": {
+    "voxel_h": 0.0064,
+    "point_radius_h": 0.35,
+    "vertical_radius_h": 0.45,
+    "minimum_partition_faces": 12,
+    "minimum_seed_separation_h": 0.12,
+    "shape_tolerance_h": 0.045,
+    "minimum_shape_f1": 0.65,
+    "minimum_directional_coverage": 0.5,
+    "minimum_shape_gain_over_stationary_surface": 0.1,
+    "minimum_assignment_margin": 0.05,
+    "minimum_destination_vacancy_views": 2,
+    "movement_error_multiplier": 3.0,
+    "minimum_movement_h": 0.15,
+    "yaw_seeds_degrees": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ],
+    "icp_iterations": 28,
+    "icp_trim_fraction": 0.85
+  },
+  "track_to_mesh": {
+    "I0-004": "S0-010@I0-004",
+    "I0-005": "S0-010@I0-005",
+    "I0-009": "S0-010@I0-009",
+    "I0-010": "S0-010@I0-010",
+    "I0-011": "S0-010@I0-011",
+    "I0-013": "S0-010@I0-013",
+    "I0-006": "S0-106",
+    "I0-012": "S0-070",
+    "I0-028": "S0-020@I0-028",
+    "I0-035": "S0-020@I0-035",
+    "I0-039": "S0-020@I0-039",
+    "I0-042": "S0-020@I0-042",
+    "I0-031": "S0-046",
+    "I0-032": "S0-064",
+    "I0-044": "S0-056",
+    "I1-067": "S1-024",
+    "I1-074": "S1-068",
+    "I1-075": "S1-033",
+    "I1-076": "S1-098",
+    "I1-077": "S1-034@I1-077",
+    "I1-079": "S1-034@I1-079",
+    "I1-080": "S1-034@I1-080",
+    "I1-092": "S1-003@I1-092",
+    "I1-097": "S1-003@I1-097",
+    "I1-098": "S1-003@I1-098",
+    "I1-099": "S1-003@I1-099",
+    "I1-096": "S1-027"
+  },
+  "derived_instances": 17,
+  "comparisons": [
+    {
+      "reference": "S0-010@I0-004",
+      "source": "S1-024",
+      "reference_track": "I0-004",
+      "source_track": "I1-067",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-075"
+    },
+    {
+      "reference": "S0-010@I0-004",
+      "source": "S1-033",
+      "reference_track": "I0-004",
+      "source_track": "I1-075",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-075"
+    },
+    {
+      "reference": "S0-010@I0-004",
+      "source": "S1-034@I1-077",
+      "reference_track": "I0-004",
+      "source_track": "I1-077",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-075"
+    },
+    {
+      "reference": "S0-010@I0-004",
+      "source": "S1-034@I1-079",
+      "reference_track": "I0-004",
+      "source_track": "I1-079",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-075"
+    },
+    {
+      "reference": "S0-010@I0-004",
+      "source": "S1-034@I1-080",
+      "reference_track": "I0-004",
+      "source_track": "I1-080",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-075"
+    },
+    {
+      "shape_f1": 0.7674338808952265,
+      "directional_coverage": [
+        0.8452685421994884,
+        0.7027250206440958
+      ],
+      "shape_rmse_u": 0.04571585992223475,
+      "reference_to_source_rigid": [
+        [
+          -0.9954955280083252,
+          0.0,
+          -0.09480851077528155,
+          4.972039984043118
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.040179759911590784
+        ],
+        [
+          0.09480851077528192,
+          0.0,
+          -0.9954955280083247,
+          52.07717053355546
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "object_scale_fitted": false,
+      "reference": "S0-010@I0-005",
+      "source": "S1-024",
+      "reference_track": "I0-005",
+      "source_track": "I1-067",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "displacement_u": 2.817149248795442,
+      "origin_stationary_surface_fraction": 0.4961636828644501,
+      "origin_shape_gain": 0.3491048593350383,
+      "destination_stationary_surface_fraction": 0.5293146160198183,
+      "destination_shape_gain": 0.17341040462427748,
+      "destination_vacancy_views": 3,
+      "same_position_partner": null,
+      "already_paired_with_other": null,
+      "origin_free_views": 0,
+      "origin_vacancy_confirmed": false,
+      "physical_id_confirmed": false,
+      "method": "automatic_instance_track_rigid_assignment",
+      "rejection_reasons": [],
+      "assignment_margin": 0.7674338808952265
+    },
+    {
+      "reference": "S0-010@I0-005",
+      "source": "S1-033",
+      "reference_track": "I0-005",
+      "source_track": "I1-075",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I0-004"
+    },
+    {
+      "reference": "S0-010@I0-005",
+      "source": "S1-034@I1-077",
+      "reference_track": "I0-005",
+      "source_track": "I1-077",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I0-010"
+    },
+    {
+      "reference": "S0-010@I0-005",
+      "source": "S1-034@I1-079",
+      "reference_track": "I0-005",
+      "source_track": "I1-079",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I0-013"
+    },
+    {
+      "reference": "S0-010@I0-005",
+      "source": "S1-034@I1-080",
+      "reference_track": "I0-005",
+      "source_track": "I1-080",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I0-011"
+    },
+    {
+      "reference": "S0-106",
+      "source": "S1-068",
+      "reference_track": "I0-006",
+      "source_track": "I1-074",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-074"
+    },
+    {
+      "reference": "S0-106",
+      "source": "S1-098",
+      "reference_track": "I0-006",
+      "source_track": "I1-076",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-074"
+    },
+    {
+      "shape_f1": 0.6962855149517647,
+      "directional_coverage": [
+        0.9139784946236559,
+        0.5623451692815855
+      ],
+      "shape_rmse_u": 0.055041963862434796,
+      "reference_to_source_rigid": [
+        [
+          -0.4980074561613853,
+          0.0,
+          0.867172747269923,
+          -20.175742970627244
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -0.20852653548737465
+        ],
+        [
+          -0.8671727472699228,
+          0.0,
+          -0.4980074561613854,
+          41.983350095134824
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "object_scale_fitted": false,
+      "reference": "S0-010@I0-009",
+      "source": "S1-024",
+      "reference_track": "I0-009",
+      "source_track": "I1-067",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "displacement_u": 4.007166692290366,
+      "origin_stationary_surface_fraction": 0.7338709677419355,
+      "origin_shape_gain": 0.18010752688172038,
+      "destination_stationary_surface_fraction": 0.5293146160198183,
+      "destination_shape_gain": 0.03303055326176718,
+      "destination_vacancy_views": 3,
+      "same_position_partner": null,
+      "already_paired_with_other": null,
+      "origin_free_views": 0,
+      "origin_vacancy_confirmed": false,
+      "physical_id_confirmed": false,
+      "method": "automatic_instance_track_rigid_assignment",
+      "rejection_reasons": [
+        "destination_surface_already_present"
+      ]
+    },
+    {
+      "reference": "S0-010@I0-009",
+      "source": "S1-033",
+      "reference_track": "I0-009",
+      "source_track": "I1-075",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I0-004"
+    },
+    {
+      "reference": "S0-010@I0-009",
+      "source": "S1-034@I1-077",
+      "reference_track": "I0-009",
+      "source_track": "I1-077",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I0-010"
+    },
+    {
+      "reference": "S0-010@I0-009",
+      "source": "S1-034@I1-079",
+      "reference_track": "I0-009",
+      "source_track": "I1-079",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I0-013"
+    },
+    {
+      "reference": "S0-010@I0-009",
+      "source": "S1-034@I1-080",
+      "reference_track": "I0-009",
+      "source_track": "I1-080",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I0-011"
+    },
+    {
+      "reference": "S0-010@I0-010",
+      "source": "S1-024",
+      "reference_track": "I0-010",
+      "source_track": "I1-067",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-077"
+    },
+    {
+      "reference": "S0-010@I0-010",
+      "source": "S1-033",
+      "reference_track": "I0-010",
+      "source_track": "I1-075",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-077"
+    },
+    {
+      "reference": "S0-010@I0-010",
+      "source": "S1-034@I1-077",
+      "reference_track": "I0-010",
+      "source_track": "I1-077",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-077"
+    },
+    {
+      "reference": "S0-010@I0-010",
+      "source": "S1-034@I1-079",
+      "reference_track": "I0-010",
+      "source_track": "I1-079",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-077"
+    },
+    {
+      "reference": "S0-010@I0-010",
+      "source": "S1-034@I1-080",
+      "reference_track": "I0-010",
+      "source_track": "I1-080",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-077"
+    },
+    {
+      "reference": "S0-010@I0-011",
+      "source": "S1-024",
+      "reference_track": "I0-011",
+      "source_track": "I1-067",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-080"
+    },
+    {
+      "reference": "S0-010@I0-011",
+      "source": "S1-033",
+      "reference_track": "I0-011",
+      "source_track": "I1-075",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-080"
+    },
+    {
+      "reference": "S0-010@I0-011",
+      "source": "S1-034@I1-077",
+      "reference_track": "I0-011",
+      "source_track": "I1-077",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-080"
+    },
+    {
+      "reference": "S0-010@I0-011",
+      "source": "S1-034@I1-079",
+      "reference_track": "I0-011",
+      "source_track": "I1-079",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-080"
+    },
+    {
+      "reference": "S0-010@I0-011",
+      "source": "S1-034@I1-080",
+      "reference_track": "I0-011",
+      "source_track": "I1-080",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-080"
+    },
+    {
+      "reference": "S0-070",
+      "source": "S1-068",
+      "reference_track": "I0-012",
+      "source_track": "I1-074",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-076"
+    },
+    {
+      "reference": "S0-070",
+      "source": "S1-098",
+      "reference_track": "I0-012",
+      "source_track": "I1-076",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-076"
+    },
+    {
+      "reference": "S0-010@I0-013",
+      "source": "S1-024",
+      "reference_track": "I0-013",
+      "source_track": "I1-067",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-079"
+    },
+    {
+      "reference": "S0-010@I0-013",
+      "source": "S1-033",
+      "reference_track": "I0-013",
+      "source_track": "I1-075",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-079"
+    },
+    {
+      "reference": "S0-010@I0-013",
+      "source": "S1-034@I1-077",
+      "reference_track": "I0-013",
+      "source_track": "I1-077",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-079"
+    },
+    {
+      "reference": "S0-010@I0-013",
+      "source": "S1-034@I1-079",
+      "reference_track": "I0-013",
+      "source_track": "I1-079",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-079"
+    },
+    {
+      "reference": "S0-010@I0-013",
+      "source": "S1-034@I1-080",
+      "reference_track": "I0-013",
+      "source_track": "I1-080",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-079"
+    },
+    {
+      "reference": "S0-020@I0-028",
+      "source": "S1-003@I1-092",
+      "reference_track": "I0-028",
+      "source_track": "I1-092",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-092"
+    },
+    {
+      "reference": "S0-020@I0-028",
+      "source": "S1-027",
+      "reference_track": "I0-028",
+      "source_track": "I1-096",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-092"
+    },
+    {
+      "reference": "S0-020@I0-028",
+      "source": "S1-003@I1-097",
+      "reference_track": "I0-028",
+      "source_track": "I1-097",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-092"
+    },
+    {
+      "reference": "S0-020@I0-028",
+      "source": "S1-003@I1-098",
+      "reference_track": "I0-028",
+      "source_track": "I1-098",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-092"
+    },
+    {
+      "reference": "S0-020@I0-028",
+      "source": "S1-003@I1-099",
+      "reference_track": "I0-028",
+      "source_track": "I1-099",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-092"
+    },
+    {
+      "reference": "S0-046",
+      "source": "S1-003@I1-092",
+      "reference_track": "I0-031",
+      "source_track": "I1-092",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I0-028"
+    },
+    {
+      "shape_f1": 0.6543847137439953,
+      "directional_coverage": [
+        0.8361702127659575,
+        0.537525354969574
+      ],
+      "shape_rmse_u": 0.05251080246029239,
+      "reference_to_source_rigid": [
+        [
+          0.7840610843184815,
+          0.0,
+          0.6206836682701803,
+          -1.6866677740588139
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -0.09050221591882712
+        ],
+        [
+          -0.62068366827018,
+          0.0,
+          0.7840610843184816,
+          -0.5774626394399309
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "object_scale_fitted": false,
+      "reference": "S0-046",
+      "source": "S1-027",
+      "reference_track": "I0-031",
+      "source_track": "I1-096",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "displacement_u": 1.4284300133225287,
+      "origin_stationary_surface_fraction": 0.4957446808510638,
+      "origin_shape_gain": 0.34042553191489366,
+      "destination_stationary_surface_fraction": 0.40973630831643004,
+      "destination_shape_gain": 0.12778904665314395,
+      "destination_vacancy_views": 2,
+      "same_position_partner": null,
+      "already_paired_with_other": null,
+      "origin_free_views": 2,
+      "origin_vacancy_confirmed": false,
+      "physical_id_confirmed": false,
+      "method": "automatic_instance_track_rigid_assignment",
+      "rejection_reasons": [],
+      "assignment_margin": 0.6543847137439953
+    },
+    {
+      "shape_f1": 0.7278006006429583,
+      "directional_coverage": [
+        0.7936170212765957,
+        0.6720647773279352
+      ],
+      "shape_rmse_u": 0.050449524376376856,
+      "reference_to_source_rigid": [
+        [
+          0.9517531535410049,
+          0.0,
+          0.30686468471421213,
+          -1.0737352656879497
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.03187527057032913
+        ],
+        [
+          -0.3068646847142122,
+          0.0,
+          0.9517531535410048,
+          0.4191247761218066
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "object_scale_fitted": false,
+      "reference": "S0-046",
+      "source": "S1-003@I1-097",
+      "reference_track": "I0-031",
+      "source_track": "I1-097",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "displacement_u": 0.41843047875898604,
+      "origin_stationary_surface_fraction": 0.4957446808510638,
+      "origin_shape_gain": 0.2978723404255319,
+      "destination_stationary_surface_fraction": 0.4939271255060729,
+      "destination_shape_gain": 0.17813765182186236,
+      "destination_vacancy_views": 0,
+      "same_position_partner": null,
+      "already_paired_with_other": null,
+      "origin_free_views": 2,
+      "origin_vacancy_confirmed": false,
+      "physical_id_confirmed": false,
+      "method": "automatic_instance_track_rigid_assignment",
+      "rejection_reasons": [
+        "destination_vacancy_unsupported"
+      ]
+    },
+    {
+      "reference": "S0-046",
+      "source": "S1-003@I1-098",
+      "reference_track": "I0-031",
+      "source_track": "I1-098",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I0-039"
+    },
+    {
+      "reference": "S0-046",
+      "source": "S1-003@I1-099",
+      "reference_track": "I0-031",
+      "source_track": "I1-099",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I0-035"
+    },
+    {
+      "reference": "S0-020@I0-035",
+      "source": "S1-003@I1-092",
+      "reference_track": "I0-035",
+      "source_track": "I1-092",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-099"
+    },
+    {
+      "reference": "S0-020@I0-035",
+      "source": "S1-027",
+      "reference_track": "I0-035",
+      "source_track": "I1-096",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-099"
+    },
+    {
+      "reference": "S0-020@I0-035",
+      "source": "S1-003@I1-097",
+      "reference_track": "I0-035",
+      "source_track": "I1-097",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-099"
+    },
+    {
+      "reference": "S0-020@I0-035",
+      "source": "S1-003@I1-098",
+      "reference_track": "I0-035",
+      "source_track": "I1-098",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-099"
+    },
+    {
+      "reference": "S0-020@I0-035",
+      "source": "S1-003@I1-099",
+      "reference_track": "I0-035",
+      "source_track": "I1-099",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-099"
+    },
+    {
+      "reference": "S0-020@I0-039",
+      "source": "S1-003@I1-092",
+      "reference_track": "I0-039",
+      "source_track": "I1-092",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-098"
+    },
+    {
+      "reference": "S0-020@I0-039",
+      "source": "S1-027",
+      "reference_track": "I0-039",
+      "source_track": "I1-096",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-098"
+    },
+    {
+      "reference": "S0-020@I0-039",
+      "source": "S1-003@I1-097",
+      "reference_track": "I0-039",
+      "source_track": "I1-097",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-098"
+    },
+    {
+      "reference": "S0-020@I0-039",
+      "source": "S1-003@I1-098",
+      "reference_track": "I0-039",
+      "source_track": "I1-098",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-098"
+    },
+    {
+      "reference": "S0-020@I0-039",
+      "source": "S1-003@I1-099",
+      "reference_track": "I0-039",
+      "source_track": "I1-099",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I1-098"
+    },
+    {
+      "reference": "S0-020@I0-042",
+      "source": "S1-003@I1-092",
+      "reference_track": "I0-042",
+      "source_track": "I1-092",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I0-028"
+    },
+    {
+      "shape_f1": 0.5524952205155251,
+      "directional_coverage": [
+        0.927038626609442,
+        0.3935091277890467
+      ],
+      "shape_rmse_u": 0.04343654893052512,
+      "reference_to_source_rigid": [
+        [
+          0.5149264006373256,
+          0.0,
+          0.8572343914745183,
+          -1.8137124335175812
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -0.1837984926016833
+        ],
+        [
+          -0.8572343914745185,
+          0.0,
+          0.5149264006373261,
+          -0.6882736548307217
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "object_scale_fitted": false,
+      "reference": "S0-020@I0-042",
+      "source": "S1-027",
+      "reference_track": "I0-042",
+      "source_track": "I1-096",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "displacement_u": 1.6656461953095936,
+      "origin_stationary_surface_fraction": 0.27896995708154504,
+      "origin_shape_gain": 0.648068669527897,
+      "destination_stationary_surface_fraction": 0.40973630831643004,
+      "destination_shape_gain": -0.016227180527383367,
+      "destination_vacancy_views": 2,
+      "same_position_partner": null,
+      "already_paired_with_other": null,
+      "origin_free_views": 2,
+      "origin_vacancy_confirmed": false,
+      "physical_id_confirmed": false,
+      "method": "automatic_instance_track_rigid_assignment",
+      "rejection_reasons": [
+        "shape_f1",
+        "bidirectional_coverage",
+        "destination_surface_already_present"
+      ]
+    },
+    {
+      "shape_f1": 0.7357776371729552,
+      "directional_coverage": [
+        0.9742489270386266,
+        0.5910931174089069
+      ],
+      "shape_rmse_u": 0.03877148911222414,
+      "reference_to_source_rigid": [
+        [
+          0.6254519638910648,
+          0.0,
+          0.7802626742737405,
+          -1.6046580128509877
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -0.041890488408905524
+        ],
+        [
+          -0.7802626742737406,
+          0.0,
+          0.6254519638910654,
+          0.5903601562268974
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "object_scale_fitted": false,
+      "reference": "S0-020@I0-042",
+      "source": "S1-003@I1-097",
+      "reference_track": "I0-042",
+      "source_track": "I1-097",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "displacement_u": 0.4016477621545054,
+      "origin_stationary_surface_fraction": 0.27896995708154504,
+      "origin_shape_gain": 0.6952789699570816,
+      "destination_stationary_surface_fraction": 0.4939271255060729,
+      "destination_shape_gain": 0.09716599190283404,
+      "destination_vacancy_views": 0,
+      "same_position_partner": null,
+      "already_paired_with_other": null,
+      "origin_free_views": 2,
+      "origin_vacancy_confirmed": false,
+      "physical_id_confirmed": false,
+      "method": "automatic_instance_track_rigid_assignment",
+      "rejection_reasons": [
+        "destination_surface_already_present",
+        "destination_vacancy_unsupported"
+      ]
+    },
+    {
+      "reference": "S0-020@I0-042",
+      "source": "S1-003@I1-098",
+      "reference_track": "I0-042",
+      "source_track": "I1-098",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I0-039"
+    },
+    {
+      "reference": "S0-020@I0-042",
+      "source": "S1-003@I1-099",
+      "reference_track": "I0-042",
+      "source_track": "I1-099",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "rejection_reasons": [
+        "already_stationary_matched"
+      ],
+      "same_position_partner": "I0-035"
+    }
+  ],
+  "accepted_matches": [
+    {
+      "shape_f1": 0.7674338808952265,
+      "directional_coverage": [
+        0.8452685421994884,
+        0.7027250206440958
+      ],
+      "shape_rmse_u": 0.04571585992223475,
+      "reference_to_source_rigid": [
+        [
+          -0.9954955280083252,
+          0.0,
+          -0.09480851077528155,
+          4.972039984043118
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.040179759911590784
+        ],
+        [
+          0.09480851077528192,
+          0.0,
+          -0.9954955280083247,
+          52.07717053355546
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "object_scale_fitted": false,
+      "reference": "S0-010@I0-005",
+      "source": "S1-024",
+      "reference_track": "I0-005",
+      "source_track": "I1-067",
+      "reference_zone": "R12",
+      "source_zone": "R12",
+      "displacement_u": 2.817149248795442,
+      "origin_stationary_surface_fraction": 0.4961636828644501,
+      "origin_shape_gain": 0.3491048593350383,
+      "destination_stationary_surface_fraction": 0.5293146160198183,
+      "destination_shape_gain": 0.17341040462427748,
+      "destination_vacancy_views": 3,
+      "same_position_partner": null,
+      "already_paired_with_other": null,
+      "origin_free_views": 0,
+      "origin_vacancy_confirmed": false,
+      "physical_id_confirmed": false,
+      "method": "automatic_instance_track_rigid_assignment",
+      "rejection_reasons": [],
+      "assignment_margin": 0.7674338808952265
+    },
+    {
+      "shape_f1": 0.6543847137439953,
+      "directional_coverage": [
+        0.8361702127659575,
+        0.537525354969574
+      ],
+      "shape_rmse_u": 0.05251080246029239,
+      "reference_to_source_rigid": [
+        [
+          0.7840610843184815,
+          0.0,
+          0.6206836682701803,
+          -1.6866677740588139
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -0.09050221591882712
+        ],
+        [
+          -0.62068366827018,
+          0.0,
+          0.7840610843184816,
+          -0.5774626394399309
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "object_scale_fitted": false,
+      "reference": "S0-046",
+      "source": "S1-027",
+      "reference_track": "I0-031",
+      "source_track": "I1-096",
+      "reference_zone": "R08",
+      "source_zone": "R08",
+      "displacement_u": 1.4284300133225287,
+      "origin_stationary_surface_fraction": 0.4957446808510638,
+      "origin_shape_gain": 0.34042553191489366,
+      "destination_stationary_surface_fraction": 0.40973630831643004,
+      "destination_shape_gain": 0.12778904665314395,
+      "destination_vacancy_views": 2,
+      "same_position_partner": null,
+      "already_paired_with_other": null,
+      "origin_free_views": 2,
+      "origin_vacancy_confirmed": false,
+      "physical_id_confirmed": false,
+      "method": "automatic_instance_track_rigid_assignment",
+      "rejection_reasons": [],
+      "assignment_margin": 0.6543847137439953
+    }
+  ]
+}

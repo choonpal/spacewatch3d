@@ -10,7 +10,7 @@ PAGE=f'/gaussian-change/{TOUR}/index.html?embed=1'
 PUBLIC={'index.html','viewer.js','viewer.css','tour.js','tour_navigation.js','object_evidence.js','change_regions.js',
         'gaussian-data.json','simsac-candidates.json','simsac-model.json','object-evidence.json','automatic-matching.json',
         'tour-candidates.json','tour-routes.json','change-regions.json','tour-validation.json','automatic-replay-audit.json',
-        'route-overview.png','REPORT.md','README.md','gaussian-validation.json','shared-change-validation.json'}
+        'route-overview.png','REPORT.md','README.md','gaussian-validation.json','shared-change-validation.json','route-update.json'}
 
 
 def asset_path(root,route):

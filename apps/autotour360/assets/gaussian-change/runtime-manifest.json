@@ -25,12 +25,12 @@
       "sha256": "0461d4318258e694601d8636cd4fa1497882258d686c956ef945d3f31492a0c4"
     },
     "gaussian-dual-path-tour-20261026/gaussian-data.json": {
-      "bytes": 176707,
-      "sha256": "ba02aa238ea8607f5126954dd2318cece5299c64e560bddbc14c7736f5d00c9a"
+      "bytes": 176815,
+      "sha256": "478d0eb6ced209d96b96bb511eac1f291572e468ee1a421077f7951e08d5965d"
     },
     "gaussian-dual-path-tour-20261026/index.html": {
       "bytes": 9198,
-      "sha256": "afac7bcb7a3e6c9840cc4baac05c0ade0e91f8787779140aade9e85e8af9562e"
+      "sha256": "7595cd65b4c9ed21de64e5ae62860104dd4b4a8e5c086dc4ff6c9b44ece9466f"
     },
     "gaussian-dual-path-tour-20261026/object-evidence.json": {
       "bytes": 261927,
@@ -437,8 +437,8 @@
       "sha256": "aa2b8a6e3c07c8e944a701d4ae98ee74f62b842d731ffb5ffefa982be072d532"
     },
     "gaussian-dual-path-tour-20261026/source-receipt.json": {
-      "bytes": 1062,
-      "sha256": "a40b508487707cde0abb001e368294f07e6c021542f55fa7e3ff510d1ad98736"
+      "bytes": 1091,
+      "sha256": "bb27f9ead50b314714e297293b8aa926d6e67e22c41e3bc840fce4108d982e1f"
     },
     "gaussian-dual-path-tour-20261026/source-requests/D2.json": {
       "bytes": 12683,
@@ -454,11 +454,11 @@
     },
     "gaussian-dual-path-tour-20261026/tour-routes.json": {
       "bytes": 160006,
-      "sha256": "033c717f9936aa4960c5a0bab641b12dbda165268d75dba1bada9c96ca90dbaa"
+      "sha256": "f177e813994bd0c4654b7b508f314eaa187d39cde3216dba06958c3ad041e1fb"
     },
     "gaussian-dual-path-tour-20261026/tour-validation.json": {
-      "bytes": 3737,
-      "sha256": "cc61b1010aa30b7788f4577148febbf32e754e31ddd663d365466446b52dec3e"
+      "bytes": 3927,
+      "sha256": "55aab0ec89fe335507af5e9f4ab3954029ef61e81e85a65692b9f9e5c44ad059"
     },
     "gaussian-dual-path-tour-20261026/tour.js": {
       "bytes": 12802,
@@ -543,6 +543,10 @@
     "README.md": {
       "bytes": 752,
       "sha256": "020b27b2997d32cf27f01a970e3325b2b87b882a6d032ebf4aae86bcb001bef5"
+    },
+    "gaussian-dual-path-tour-20261026/route-update.json": {
+      "bytes": 1487,
+      "sha256": "9532457688b7f3d0cb34fec868670b9a41925bbe2cf010fc60ba0e1f41cf0675"
     }
   }
 }

@@ -14,6 +14,16 @@ def read(path):
 
 
 class GaussianRuntime(unittest.TestCase):
+    def test_before_path_is_a_verified_fresh_v518_planner_replay(self):
+        audit=read(TOUR/'route-update.json')
+        self.assertTrue(audit['passed'])
+        self.assertTrue(audit['fresh_planner_execution'])
+        self.assertEqual(audit['pipeline_version'],'5.1.8')
+        self.assertEqual(audit['plan_sha256'],audit['previous_plan_sha256'])
+        self.assertEqual(audit['requests_sha256'],hashlib.sha256((TOUR/'source-requests/D2.json').read_bytes()).hexdigest())
+        self.assertTrue(audit['poses_exactly_unchanged'] and audit['links_exactly_unchanged'])
+        self.assertEqual([g['pipeline_version'] for g in read(TOUR/'tour-routes.json')['groups']],['5.1.8','5.1.8'])
+
     def test_public_runtime_matches_its_integrity_manifest(self):
         manifest = read(ROOT / 'runtime-manifest.json')
         self.assertFalse(manifest['model_parameters_included'])

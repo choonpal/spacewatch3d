@@ -787,7 +787,7 @@
   "zones": [
     {
       "id": "D2-K01",
-      "label": "전 · Dorm2 v5.1.7 · K1",
+      "label": "전 · Dorm2 v5.1.8 · K1",
       "anchor_epoch": 0,
       "capture_id": "dorm2",
       "viewpoint_id": "vp_n_00034_00055",
@@ -887,11 +887,11 @@
       "source_request_index": 0,
       "existing_change_candidates_used": false,
       "short_label": "K1",
-      "source_pipeline_version": "5.1.7"
+      "source_pipeline_version": "5.1.8"
     },
     {
       "id": "D2-K02",
-      "label": "전 · Dorm2 v5.1.7 · K2",
+      "label": "전 · Dorm2 v5.1.8 · K2",
       "anchor_epoch": 0,
       "capture_id": "dorm2",
       "viewpoint_id": "vp_n_00048_00063",
@@ -991,11 +991,11 @@
       "source_request_index": 1,
       "existing_change_candidates_used": false,
       "short_label": "K2",
-      "source_pipeline_version": "5.1.7"
+      "source_pipeline_version": "5.1.8"
     },
     {
       "id": "D2-K03",
-      "label": "전 · Dorm2 v5.1.7 · K3",
+      "label": "전 · Dorm2 v5.1.8 · K3",
       "anchor_epoch": 0,
       "capture_id": "dorm2",
       "viewpoint_id": "vp_n_00067_00058",
@@ -1095,11 +1095,11 @@
       "source_request_index": 2,
       "existing_change_candidates_used": false,
       "short_label": "K3",
-      "source_pipeline_version": "5.1.7"
+      "source_pipeline_version": "5.1.8"
     },
     {
       "id": "D2-K04",
-      "label": "전 · Dorm2 v5.1.7 · K4",
+      "label": "전 · Dorm2 v5.1.8 · K4",
       "anchor_epoch": 0,
       "capture_id": "dorm2",
       "viewpoint_id": "vp_n_00069_00046",
@@ -1199,11 +1199,11 @@
       "source_request_index": 3,
       "existing_change_candidates_used": false,
       "short_label": "K4",
-      "source_pipeline_version": "5.1.7"
+      "source_pipeline_version": "5.1.8"
     },
     {
       "id": "D2-K05",
-      "label": "전 · Dorm2 v5.1.7 · K5",
+      "label": "전 · Dorm2 v5.1.8 · K5",
       "anchor_epoch": 0,
       "capture_id": "dorm2",
       "viewpoint_id": "vp_n_00150_00031",
@@ -1303,11 +1303,11 @@
       "source_request_index": 4,
       "existing_change_candidates_used": false,
       "short_label": "K5",
-      "source_pipeline_version": "5.1.7"
+      "source_pipeline_version": "5.1.8"
     },
     {
       "id": "D2-K06",
-      "label": "전 · Dorm2 v5.1.7 · K6",
+      "label": "전 · Dorm2 v5.1.8 · K6",
       "anchor_epoch": 0,
       "capture_id": "dorm2",
       "viewpoint_id": "vp_n_00218_00021",
@@ -1407,11 +1407,11 @@
       "source_request_index": 5,
       "existing_change_candidates_used": false,
       "short_label": "K6",
-      "source_pipeline_version": "5.1.7"
+      "source_pipeline_version": "5.1.8"
     },
     {
       "id": "D2-K07",
-      "label": "전 · Dorm2 v5.1.7 · K7",
+      "label": "전 · Dorm2 v5.1.8 · K7",
       "anchor_epoch": 0,
       "capture_id": "dorm2",
       "viewpoint_id": "vp_n_00242_00019",
@@ -1511,11 +1511,11 @@
       "source_request_index": 6,
       "existing_change_candidates_used": false,
       "short_label": "K7",
-      "source_pipeline_version": "5.1.7"
+      "source_pipeline_version": "5.1.8"
     },
     {
       "id": "D2-K09",
-      "label": "전 · Dorm2 v5.1.7 · K9",
+      "label": "전 · Dorm2 v5.1.8 · K9",
       "anchor_epoch": 0,
       "capture_id": "dorm2",
       "viewpoint_id": "vp_n_00268_00049",
@@ -1615,11 +1615,11 @@
       "source_request_index": 7,
       "existing_change_candidates_used": false,
       "short_label": "K9",
-      "source_pipeline_version": "5.1.7"
+      "source_pipeline_version": "5.1.8"
     },
     {
       "id": "D2-K08",
-      "label": "전 · Dorm2 v5.1.7 · K8",
+      "label": "전 · Dorm2 v5.1.8 · K8",
       "anchor_epoch": 0,
       "capture_id": "dorm2",
       "viewpoint_id": "vp_n_00273_00020",
@@ -1719,11 +1719,11 @@
       "source_request_index": 8,
       "existing_change_candidates_used": false,
       "short_label": "K8",
-      "source_pipeline_version": "5.1.7"
+      "source_pipeline_version": "5.1.8"
     },
     {
       "id": "D2-K13",
-      "label": "전 · Dorm2 v5.1.7 · K13",
+      "label": "전 · Dorm2 v5.1.8 · K13",
       "anchor_epoch": 0,
       "capture_id": "dorm2",
       "viewpoint_id": "vp_n_00311_00070",
@@ -1823,11 +1823,11 @@
       "source_request_index": 9,
       "existing_change_candidates_used": false,
       "short_label": "K13",
-      "source_pipeline_version": "5.1.7"
+      "source_pipeline_version": "5.1.8"
     },
     {
       "id": "D2-K12",
-      "label": "전 · Dorm2 v5.1.7 · K12",
+      "label": "전 · Dorm2 v5.1.8 · K12",
       "anchor_epoch": 0,
       "capture_id": "dorm2",
       "viewpoint_id": "vp_n_00338_00099",
@@ -1927,11 +1927,11 @@
       "source_request_index": 10,
       "existing_change_candidates_used": false,
       "short_label": "K12",
-      "source_pipeline_version": "5.1.7"
+      "source_pipeline_version": "5.1.8"
     },
     {
       "id": "D2-K11",
-      "label": "전 · Dorm2 v5.1.7 · K11",
+      "label": "전 · Dorm2 v5.1.8 · K11",
       "anchor_epoch": 0,
       "capture_id": "dorm2",
       "viewpoint_id": "vp_n_00339_00067",
@@ -2031,11 +2031,11 @@
       "source_request_index": 11,
       "existing_change_candidates_used": false,
       "short_label": "K11",
-      "source_pipeline_version": "5.1.7"
+      "source_pipeline_version": "5.1.8"
     },
     {
       "id": "D2-K10",
-      "label": "전 · Dorm2 v5.1.7 · K10",
+      "label": "전 · Dorm2 v5.1.8 · K10",
       "anchor_epoch": 0,
       "capture_id": "dorm2",
       "viewpoint_id": "vp_n_00348_00009",
@@ -2135,7 +2135,7 @@
       "source_request_index": 12,
       "existing_change_candidates_used": false,
       "short_label": "K10",
-      "source_pipeline_version": "5.1.7"
+      "source_pipeline_version": "5.1.8"
     },
     {
       "id": "D3-K01",
@@ -4850,7 +4850,7 @@
     "cube_fov_degrees": 100,
     "alpha_threshold": 0.85,
     "change_threshold": 0.5,
-    "view_selection": "All exact saved viewpoints from the Dorm2 v5.1.7 and Dorm3 v5.1.8 plans",
+    "view_selection": "All exact saved viewpoints from Dorm2 v5.1.8 planner replay and Dorm3 v5.1.8 plan",
     "existing_change_candidates_used_for_view_selection": false,
     "same_pose_renders_at_each_requested_keyframe": true,
     "source_keyframes_publication_ready": false,
@@ -4862,7 +4862,12 @@
     "tour_route_mode": "separate_capture_paths",
     "new_simsac_inference": false,
     "candidate_geometry_changed": false,
-    "display_phase_follows_selected_capture": true
+    "display_phase_follows_selected_capture": true,
+    "dorm2_route_version_replay": {
+      "version": "5.1.8",
+      "fresh_execution": true,
+      "poses_and_links_unchanged": true
+    }
   },
   "renders": {
     "D2-K01": {
@@ -6997,9 +7002,9 @@
     {
       "group": "D2",
       "capture": "dorm2",
-      "render_requests": "D:\\ChatGPT\\Workspaces\\Projects\\jonghap_project\\outputs\\gaussian-dual-paths-20261026\\sources\\dorm2\\plan\\render_requests.json",
+      "render_requests": "/workspace/dorm2_v518_keypoints_20261027/stage/plan/render_requests.json",
       "render_requests_sha256": "9b7faa2cad9e53ab229d4cd1fd103a9ecfe5df5664e6e3fe043e1518728d1015",
-      "tour_plan": "D:\\ChatGPT\\Workspaces\\Projects\\jonghap_project\\outputs\\gaussian-dual-paths-20261026\\sources\\dorm2\\plan\\tour_plan.json",
+      "tour_plan": "/workspace/dorm2_v518_keypoints_20261027/stage/plan/tour_plan.json",
       "tour_plan_sha256": "71be2aa1ca74b15550e0642326c0aa5fe773047fd8aaa4f3bca278663c8e9086",
       "scene_sha256": "c0427c2cb498738a619b301367a0d3e3eeb8882676f174a9200ea6606a374434",
       "route_id": "route_04805b160a52",
@@ -7014,7 +7019,8 @@
         "object_selection_guard_targets_unmet",
         "independent_coverage_targets_unmet"
       ],
-      "pipeline_version": "5.1.7"
+      "pipeline_version": "5.1.8",
+      "execution_scope": "planner-only replay on unchanged v5.1.7 scene"
     },
     {
       "group": "D3",

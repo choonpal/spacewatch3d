@@ -4,7 +4,7 @@ import {Panorama} from './panorama.js';
 import {TrajectoryController} from './trajectory.js';
 import {KeyframeController} from './keyframe-controller.js';
 import {KeyframeTransition} from './keyframe-transition.js';
-import {createChangeTour} from './change-tour.js?v=whole-object-photo-1';
+import {createChangeTour} from './change-tour.js?v=gaussian-route-1';
 import {uid,clamp,escapeHTML as esc,formatTime,newScene,emptyProject,validateProject,removeScene} from './core.js';
 
 const paths={
@@ -156,6 +156,7 @@ function toggleMute(){muted=!muted;if(media instanceof HTMLVideoElement)media.mu
 function setEditing(value){if(changeMode)setChangeMode(false);movement?.cancel();editing=value;document.body.classList.toggle('is-editing',value);$('inspector').hidden=!value;$('crosshair').hidden=!value;$('browse-mode').classList.toggle('selected',!value);$('edit-mode').classList.toggle('selected',value);$('browse-mode').setAttribute('aria-pressed',String(!value));$('edit-mode').setAttribute('aria-pressed',String(value));renderInspector();renderHotspots();}
 function updateChangeHeader(info=changeFrame){
   if(!changeMode)return;
+  if(!info&&['gaussian',null].includes(new URLSearchParams(location.search).get('source'))){$('project-title').textContent='Gaussian · 변화탐지';$('active-title').textContent='Gaussian 경로 투어를 연결하는 중';$('tour-summary').textContent='저장된 자동분석 결과를 불러오는 중';return;}
   if(!info&&new URLSearchParams(location.search).get('source')!=='rescan'){
     $('project-title').textContent='Dorm · 변화 투어';$('scene-kicker').textContent='CHANGE TOUR · DORM';
     $('active-title').textContent='Dorm 맵을 준비하는 중';$('active-description').textContent='';
@@ -163,7 +164,7 @@ function updateChangeHeader(info=changeFrame){
   }
   if(info?.presentation){
     const p=info.presentation;
-    $('project-title').textContent=p.projectTitle;$('scene-kicker').textContent='CHANGE TOUR · DORM';
+    $('project-title').textContent=p.projectTitle;$('scene-kicker').textContent=p.resolution==='3D GAUSSIAN'?'GAUSSIAN CHANGE TOUR':'CHANGE TOUR · DORM';
     $('active-title').textContent=p.heading;$('active-description').textContent=p.description;
     $('resolution').textContent=p.resolution;$('tour-summary').textContent=p.summary;return;
   }
@@ -274,7 +275,10 @@ async function importProject(file){
 function showOpenDialog(){openDialog('영상과 투어 가져오기',`<p>영상을 넣으면 촬영 경로를 자동으로 만듭니다.</p><button id="dialog-add-media" class="dialog-choice"><span>${icon('panorama')}</span><div><strong>360° 영상 추가 → 자동 투어 생성</strong><small>MP4 · MOV · WebM / 2:1 파노라마 / 최대 2GB · 10분</small></div></button><button id="dialog-open-project" class="dialog-choice"><span>${icon('file')}</span><div><strong>저장한 투어 불러오기</strong><small>.tour.json · 경로, 장면, 설명을 이어서 사용합니다.</small></div></button><p class="hint" style="margin-top:20px">영상과 분석 결과는 프로그램을 실행한 PC에 보관됩니다. 외부 서비스에 전송하지 않습니다.</p>`);$('dialog-add-media').onclick=()=>{$('dialog').close();chooseMedia();};$('dialog-open-project').onclick=()=>{$('dialog').close();$('project-input').value='';$('project-input').click();};}
 function showHelp(){openDialog('공간을 둘러보는 방법',`<div class="help-grid"><span>마우스 드래그 / 터치</span><span>원하는 방향으로 둘러보기</span><span>휠 / 두 손가락</span><span>확대 · 축소</span><span><kbd>←</kbd> <kbd>↑</kbd> <kbd>↓</kbd> <kbd>→</kbd></span><span>동선 이동 · Q/E로 좌우 둘러보기</span><span><kbd>Space</kbd> / <kbd>M</kbd></span><span>재생·정지 / 음소거</span><span><kbd>R</kbd> / <kbd>F</kbd></span><span>시점 초기화 / 전체 화면</span></div><p class="dialog-note">① <strong>영상 선택</strong>만 하면 촬영 경로 분석이 자동으로 시작됩니다.<br>② 바닥 화살표로 이동하고, 드래그로 둘러보세요. 미니맵에서도 이동할 수 있습니다.<br>③ <strong>촬영 경로</strong>에서 표시 설정을 바꾼 뒤 <strong>투어 저장</strong>으로 보관하세요.</p><p>편집 설정은 이 브라우저에 자동 저장됩니다. 투어 파일에는 영상이 포함되지 않으므로 원본도 함께 보관하세요. 360°로 이어 붙인 2:1 영상을 지원합니다. 분석된 동선은 실제 촬영 경로의 추정값이며, 위치가 확인되지 않은 구간은 동선 지도에서 연결하지 않습니다.</p><div class="dialog-actions"><button class="button primary" data-close>둘러보기 시작</button></div>`);}
 async function fullscreen(){try{if(document.fullscreenElement)await document.exitFullscreen();else if($('viewer-shell').requestFullscreen)await $('viewer-shell').requestFullscreen();else toast('이 브라우저에서는 전체 화면 API를 지원하지 않습니다.',true);}catch{toast('브라우저에서 전체 화면을 허용하지 않았습니다.',true);}}
-function showChangeHelp(){openDialog('변화 투어 조작',`<p>이전 지점 / 다음 지점 버튼이나 좌우 방향키로 정지 사진 사이를 이동합니다. 변화 박스를 누르면 원본 사진에서 객체만 잘라 현재 시점에 반투명하게 겹쳐 보여줍니다. 주변 배경은 투명하며 사진에서 관측된 표면만 표시합니다.</p><p>주황 테두리는 이전 객체, 파랑 테두리는 이후 객체입니다. 오른쪽 목록과 원본 사진을 눌러 해당 지점으로 이동할 수 있습니다. Escape로 겹침을 닫고 F로 전체 화면을 전환합니다.</p><p>상단 둘러보기 / 투어 편집을 누르면 기존 360° 투어로 돌아갑니다. 현재 변화 입력은 Rescan이며 R0010004의 촬영 공간과 다릅니다.</p><div class="dialog-actions"><button class="button primary" data-close>확인</button></div>`);}
+function showChangeHelp(){
+  const gaussian=document.body.classList.contains('gaussian-change-tour-mode');
+  openDialog(gaussian?'Gaussian 변화탐지 조작':'변화 투어 조작',gaussian?`<p>키프레임 선택, 경로 지도의 점, 바닥 이동 표시로 저장된 경로를 따라 이동합니다. 드래그로 360° 둘러보고 휠로 확대합니다. 맵 안에서는 W/D로 다음 지점, S/A로 이전 지점에 이동합니다.</p><p>현재 시점에서 보이는 변화 후보에 박스가 표시됩니다. 이동 박스를 누르면 청록색 출발 객체와 주황색 도착 객체, 방향 화살표가 표시됩니다. 같은 변화는 여러 키프레임에서도 같은 ID로 유지됩니다.</p><p>전후 촬영 경로는 다릅니다. 정합한 두 맵의 공통 3D 좌표를 사용하며 양쪽에서 관측 가능한 구역을 비교합니다. 현재 투어는 저장된 Gaussian RGB SimSaC 분석 결과를 연결하며, 이동할 때 새 추론을 실행하지 않습니다.</p><div class="dialog-actions"><button class="button primary" data-close>확인</button></div>`:`<p>이전 지점 / 다음 지점 버튼이나 좌우 방향키로 정지 사진 사이를 이동합니다. 변화 박스를 누르면 원본 사진에서 객체만 잘라 현재 시점에 반투명하게 겹쳐 보여줍니다. 주변 배경은 투명하며 사진에서 관측된 표면만 표시합니다.</p><p>주황 테두리는 이전 객체, 파랑 테두리는 이후 객체입니다. 오른쪽 목록과 원본 사진을 눌러 해당 지점으로 이동할 수 있습니다. Escape로 겹침을 닫고 F로 전체 화면을 전환합니다.</p><p>상단 둘러보기 / 투어 편집을 누르면 기존 360° 투어로 돌아갑니다. 선택한 촬영 데이터에 연결된 결과를 표시합니다.</p><div class="dialog-actions"><button class="button primary" data-close>확인</button></div>`);
+}
 function bindEvents(){
   $('browse-mode').onclick=()=>setEditing(false);$('edit-mode').onclick=()=>setEditing(true);$('close-inspector').onclick=()=>setEditing(false);
   $('change-mode').onclick=()=>setChangeMode(true);

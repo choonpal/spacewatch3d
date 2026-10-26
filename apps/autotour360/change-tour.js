@@ -1,3 +1,4 @@
+import {createGaussianChangeTour,changeSource} from './gaussian-change-tour.js?v=1';
 import {decodeObjectMesh,objectPhotoVisibility,reprojectObjectPhoto} from './object-photo.js?v=1';
 import {createDormChangeTour} from './dorm-change-tour.js?v=whole-object-photo-1';
 
@@ -6,13 +7,15 @@ const COLORS=['#ffad73','#78caff'];
 
 // Mounted in the existing Auto Tour viewport; no page or project replacement.
 export function createChangeTour({onFrame=()=>{},onError=()=>{}}={}){
-  if(new URLSearchParams(location.search).get('source')!=='rescan')return createDormChangeTour({onFrame,onError});
+  const source=changeSource(location.search);
+  if(source==='gaussian')return createGaussianChangeTour({onFrame,onError});
+  if(source==='dorm')return createDormChangeTour({onFrame,onError});
   return createRescanChangeTour({onFrame,onError});
 }
 
 function createRescanChangeTour({onFrame=()=>{},onError=()=>{}}={}){
   const picker=document.createElement('div');picker.className='dorm-source-picker';
-  picker.innerHTML='<label for="change-source-select">촬영 데이터</label><select id="change-source-select"><option value="dorm">Dorm2 / Dorm3</option><option value="rescan" selected>기존 Rescan</option></select>';
+  picker.innerHTML='<label for="change-source-select">촬영 데이터</label><select id="change-source-select"><option value="gaussian">Gaussian 경로 투어</option><option value="dorm">Dorm2 / Dorm3</option><option value="rescan" selected>기존 Rescan</option></select>';
   picker.querySelector('select').onchange=e=>{const url=new URL(location.href);url.searchParams.set('source',e.target.value);url.searchParams.set('mode','changes');location.href=url;};
   document.getElementById('change-sidebar').prepend(picker);
 const $=id=>document.getElementById('change-'+id);

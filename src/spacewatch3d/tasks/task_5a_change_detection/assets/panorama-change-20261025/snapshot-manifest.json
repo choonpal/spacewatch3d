@@ -1,7 +1,7 @@
 {
-  "date": "2026-10-25",
+  "date": "2026-10-26",
   "timezone": "Asia/Seoul",
-  "source": "Frozen Gaussian-RGB SimSaC candidates with automatic object matching and a shared per-region change registry; keyframes reference existing events without creating new ones",
+  "source": "Gaussian-RGB SimSaC saved automatic results, shared change events, and the native Gaussian keyframe tour integrated into Auto Tour change mode",
   "full_input_meshes_included": false,
   "model_weights_included": false,
   "files": {
@@ -5442,8 +5442,8 @@
       "sha256": "e2f81f37068b3d18238c56ff9a3c680cc3b8d2dc19dc6113ba12075947c8612a"
     },
     "gaussian-uncapped-tour-20261026/index.html": {
-      "bytes": 8776,
-      "sha256": "8e8d034ebfbf46f38339bb7d6153cc1129011d430ae7a44078068ba0b229a7c5"
+      "bytes": 8888,
+      "sha256": "f3351b30784c78f2882ff54400335d1d3076673d39371bceafb86be6d9d07337"
     },
     "gaussian-uncapped-tour-20261026/large-inputs.json": {
       "bytes": 6827,
@@ -5865,6 +5865,10 @@
       "bytes": 1865,
       "sha256": "7e31f5d6cf9b51d3f21674818d046616592a994c7aa0e0a5ecd67114f06031a5"
     },
+    "gaussian-uncapped-tour-20261026/viewer-app-gaussian-integration.png": {
+      "bytes": 62024,
+      "sha256": "c03dffb70119f223df943b2d7130422f35e2c5cb630c8f0587f65ca65dd7417f"
+    },
     "gaussian-uncapped-tour-20261026/viewer-K10-boxes.png": {
       "bytes": 74230,
       "sha256": "166feaeb4d948b07fd297d44f6cddabd342e1e804e364a3ee734995f560d82c1"
@@ -5894,12 +5898,12 @@
       "sha256": "116664ffaac7992fa433097b3eafe145813ee623cb1c22bb0726f5a07c0f3d01"
     },
     "gaussian-uncapped-tour-20261026/viewer.css": {
-      "bytes": 11291,
-      "sha256": "5e86a16751290131e79aab1f737351033ed7cebf962cb8f70df26d590dc46785"
+      "bytes": 13045,
+      "sha256": "26d7a61b81a0b5c3427e5770dbdf415d34b7fe1e6216c80920704f91c3a93d7b"
     },
     "gaussian-uncapped-tour-20261026/viewer.js": {
-      "bytes": 29586,
-      "sha256": "03da595a2d0aa631bc8b78dac10a3c71eea9916578eb34f14cced8a13c6efd9c"
+      "bytes": 30761,
+      "sha256": "f42959011faa4ad4008de43208582b5ee7146a29958a9bb9ab4c28b096ab32e2"
     },
     "index.html": {
       "bytes": 285,

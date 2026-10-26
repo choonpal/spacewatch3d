@@ -1,22 +1,23 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dorm3 K1–K21 · 변화 후보 가상투어</title><link rel="stylesheet" href="viewer.css?v=shared-1">
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dorm3 K1–K21 · 변화 후보 가상투어</title><link rel="stylesheet" href="viewer.css?v=app-embed-1">
 <script type="importmap">{"imports":{"three":"../gaussian-map-comparison-20261025/vendor/three.module.js","three/addons/":"../gaussian-map-comparison-20261025/vendor/addons/","@sparkjsdev/spark":"../gaussian-map-comparison-20261025/vendor/spark.module.js"}}</script>
 <style>.input-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}.input-pair img{width:100%;height:auto;display:block}.input-pair figure{margin:0}.input-pair figcaption{padding:8px 0}.route-note{color:#f6cc89}@media(max-width:800px){.input-pair{grid-template-columns:1fr}}</style></head><body class="uncapped-tour"><main>
 <div class="eyebrow">DORM3 · K1–K21 GAUSSIAN TOUR</div><h1>구역별 변화 · 경로 둘러보기</h1>
 <p><b>같은 변화는 구역에 한 번만 등록합니다.</b> 여러 키프레임은 같은 후보를 보는 관측 위치입니다. 박스를 누르면 전→후 변화가 표시됩니다.</p>
 <p class="route-note">선택한 ‘Dorm3 평지·개수 상한 해제’ 경로입니다. 21지점·20개 이동선·연결 영역 1개. 기존 Gaussian RGB SimSaC 검출 결과를 같은 3D 위치에 유지합니다.</p>
-<p><a href="route-overview.png" target="_blank">사진과 동일한 원본 경로 지도</a> · <a href="../gaussian-map-comparison-20261025/index.html">기존 변화탐지 결과</a> · <a href="REPORT.md">연결 근거</a></p>
+<p class="source-links"><a href="route-overview.png" target="_blank">사진과 동일한 원본 경로 지도</a> · <a href="../gaussian-map-comparison-20261025/index.html">기존 변화탐지 결과</a> · <a href="REPORT.md">연결 근거</a></p>
 <details class="compact-sources"><summary>전후 Gaussian 맵 정보</summary><div class="sources" id="sources"></div></details>
 <div class="controls">
 <input id="plan-group" type="hidden" value="U3">
 <label hidden>연결 구간<select id="tour-segment" aria-label="연결 구간"></select></label>
 <label>현재 관측 시점<select id="zone" aria-label="키프레임"></select></label>
 <input id="method" type="hidden" value="simsac">
+<details class="tour-filters"><summary>표시 필터</summary><div>
 <label><input id="exclude-person" type="checkbox" checked aria-label="사람 제외"> 사람 제외</label>
 <input id="only-candidates" type="checkbox" hidden disabled>
 <label><input id="show-boxes" type="checkbox" checked aria-label="후보 박스 표시"> 후보 박스</label>
 <label>표시할 영역 크기<select id="minimum-pixels" aria-label="표시할 영역 최소 픽셀"><option value="100" selected>100 px 이상</option><option value="20">20 px 이상</option><option value="0">전체 조각</option><option value="500">500 px 이상</option></select></label>
 <label>변화 유형<select id="event-type" aria-label="변화 유형"><option value="all">전체</option><option value="added">추가 후보</option><option value="moved">이동 추정</option><option value="removed">소실 추정</option><option value="unresolved">유형 불확실</option></select></label>
-<div class="tour-toolbar"><button id="tour-prev">← 이전 지점</button><button id="tour-play" aria-pressed="false">자동 둘러보기</button><button id="tour-next">다음 지점 →</button><b id="tour-current"></b></div>
+</div></details><div class="tour-toolbar"><button id="tour-prev">← 이전 지점</button><button id="tour-play" aria-pressed="false">자동 둘러보기</button><button id="tour-next">다음 지점 →</button><b id="tour-current"></b></div>
 </div>
 <section class="change-region-panel" id="change-region-panel"><h2>구역별 고유 변화 <span id="candidate-count"></span></h2><div id="candidates" class="change-regions"></div><p id="empty" hidden>현재 조건에서 남은 고유 후보가 없습니다.</p></section>
 <details class="all-tour-views"><summary>전체 경로 · 21개 관측 시점</summary><div id="tour-strip" class="tour-strip" aria-label="연결된 키프레임"></div></details>
@@ -37,4 +38,4 @@
 <div class="detail" id="object-evidence-panel" hidden><label><input id="show-object-meshes" type="checkbox" aria-label="전후 분할 객체 메쉬 표시"> 전후 객체 색 그림자 표시 <span class="object-before">전: 청록</span> · <span class="object-after">후: 주황</span></label> <label><input id="show-object-context" type="checkbox" aria-label="연결된 분할 조각 모두 표시"> 연결된 조각 모두</label><div id="object-evidence-content"></div></div>
 
 <details class="detail"><summary>맵·키프레임·정합 근거</summary><div id="audit"></div><p>기존 전역·구역별 메쉬 정합과 잔차 보정을 가우시안에 적용한 뒤 렌더링했습니다. 새 Gaussian 정합이나 픽셀 단위 보정은 하지 않았습니다. R07·R09·R10·R11은 기존 구조 관측의 정합 지원이 부족합니다.</p><p>두 맵은 서로 다른 층의 Dorm2·Dorm3입니다. 변화 후보에는 재구성·가림·정합 잔차가 포함될 수 있습니다. 원본 경로의 연결성은 확인했으며 객체 관측 커버리지·계산 모델 검증과 실제 보행 안전은 미검증 상태입니다.</p><div class="links"><a href="tour-validation.json">검증</a><a href="gaussian-data.json">카메라·맵</a><a href="simsac-candidates.json">기존 추론 결과</a><a href="tour-candidates.json">고정 후보·가림 근거</a><a href="tour-routes.json">저장 경로</a><a href="change-regions.json">고유 후보·관측 연결</a></div></details>
-<pre id="error" role="alert"></pre></main><script type="module" src="viewer.js?v=shared-2"></script></body></html>
+<pre id="error" role="alert"></pre></main><script type="module" src="viewer.js?v=app-embed-1"></script></body></html>

@@ -1,6 +1,9 @@
 import * as THREE from 'three';
 import {SparkRenderer,SplatMesh,SplatEdit,SplatEditSdf,SplatEditSdfType} from '@sparkjsdev/spark';
 
+const embedded=new URLSearchParams(location.search).get('embed')==='1';
+if(embedded)document.body.classList.add('embedded-tour');
+let renderingEnabled=true;
 const $=q=>document.querySelector(q),n=x=>x.toLocaleString('ko-KR'),names={baseline:'기존',simsac:'SimSaC'};
 let data,prediction,frozenCandidates=null,objectEvidence=null,objectEvidenceView=null,changeRegions=null,regionHelpers=null,scene,camera,renderer,spark,tour=null,zone,phase='before',active=null,allBoxes=[],boxes=[],yaw=0,pitch=0,selectionToken=0;
 const assets=new Map(),meshes=new Map(),edits=new Map(),boxNodes=new Map(),pointers=new Map();
@@ -16,7 +19,7 @@ const eventKey=b=>regionIndex()?.candidate_to_event[b.id]||b.id;
 const regionGroups=()=>regionHelpers?.visibleRegions(regionIndex(),candidates())||[];
 const candidatesAt=id=>regionHelpers?regionHelpers.uniqueForView(candidates(),regionIndex(),frozenCandidates.visibility[id]?.[mode()]):candidates().filter(b=>frozenCandidates?frozenCandidates.visibility[id]?.[mode()]?.[b.id]?.visible:b.zone===id);
 const overlaps=(a,b)=>[0,1,2].every(i=>a[0][i]<=b[1][i]&&a[1][i]>=b[0][i]);
-function fail(error){$('#error').textContent=error?.stack||String(error);}
+function fail(error){$('#error').textContent=error?.stack||String(error);if(embedded)window.parent.postMessage({type:'gaussian-tour:state',error:error?.message||String(error)},location.origin);}
 function counts(z){const list=candidatesAt(z);return{baseline:list.filter(b=>b.method==='baseline').length,simsac:list.filter(b=>b.method==='simsac').length};}
 function refreshZones(){
  if(tour){tour.refresh();return;}
@@ -138,7 +141,10 @@ async function selectBox(b){
  selectionButtons();setWeight(55);drawBoxes();
 }
 async function showPhase(value){clearSelection();phase=value;if(value==='after')await Promise.all(data.models.after.map(loadAsset));else await Promise.all(data.models.before.map(loadAsset));updateVisibility();}
+function reportParent(){if(!embedded||!data)return;const groups=regionGroups();window.parent.postMessage({type:"gaussian-tour:state",keyframe:zone?.id,keyframes:data.zones.length,regions:groups.length,events:groups.reduce((n,g)=>n+g.events.length,0),error:$("#error").textContent},location.origin);}
+function renderFrame(now){tour?.tick(now);renderer.render(scene,camera);drawBoxes();objectEvidenceView?.draw(camera);}
 function updateSummary(){
+ reportParent();
  const c=counts(zone.id),excluded=$('#exclude-person').checked;
  $('#audit').innerHTML=data.scenes.map((s,i)=>`<p><b>${i?'후 · Dorm3':'전 · Dorm2'}</b> · ${n(s.gaussians)} Gaussians · ${n(s.step)} step<br>원본 영상 SHA-256: ${s.video_sha256}<br>체크포인트 SHA-256: ${s.checkpoint_sha256}<br>메쉬↔3DGS 카메라 ${data.camera_checks[s.capture].cameras}개 좌표 일치 확인</p>`).join('');
  if(frozenCandidates){
@@ -193,6 +199,14 @@ async function init(){
    arrive:(id,preserve)=>{if(!preserve)phase='before';$('#zone').value=id;showZone(preserve);}});
  }
  bindControls();if(!tour)refreshZones();
- renderer.setAnimationLoop(now=>{tour?.tick(now);renderer.render(scene,camera);drawBoxes();objectEvidenceView?.draw(camera);});await Promise.all(data.models.before.map(loadAsset));updateVisibility();
+ renderer.setAnimationLoop(renderingEnabled?renderFrame:null);await Promise.all(data.models.before.map(loadAsset));updateVisibility();
 }
+if(embedded)window.addEventListener('message',event=>{
+ if(event.source!==window.parent||event.origin!==location.origin||event.data?.type!=='gaussian-tour:command')return;
+ const{action,value}=event.data;
+ if(action==='navigate'&&[-1,1].includes(value))tour?.step(value);
+ else if(action==='clear')clearSelection();
+ else if(action==='suspend'){renderingEnabled=false;tour?.pause();renderer?.setAnimationLoop(null);}
+ else if(action==='resume'){renderingEnabled=true;renderer?.setAnimationLoop(renderFrame);}
+});
 init().catch(fail);

@@ -1,0 +1,26 @@
+[
+  {
+    "capture": "dorm3",
+    "run": "/workspace/spacewatch_runs/dorm3_pipeline_v5_1_8_20261026",
+    "version": "5.1.8",
+    "plan": "/workspace/spacewatch_runs/dorm3_pipeline_v5_1_8_20261026/stages/dorm3.plan/attempt-1793012943069852494/plan/tour_plan.json",
+    "sha256": "c0fcb79581edfb7aac160d906d5c59220d36908803a2e376e013dc72293b2a11",
+    "viewpoints": 13,
+    "tour_links": 12,
+    "planning_status": "complete",
+    "input_coverage_status": "targets_unmet",
+    "quality_status": "unverified"
+  },
+  {
+    "capture": "dorm2",
+    "run": "/workspace/spacewatch_runs/dorm2_dorm3_pipeline_v5_1_7_20261026",
+    "version": "5.1.7",
+    "plan": "/workspace/spacewatch_runs/dorm2_dorm3_pipeline_v5_1_7_20261026/stages/dorm2.plan/attempt-1792992325884970256/plan/tour_plan.json",
+    "sha256": "71be2aa1ca74b15550e0642326c0aa5fe773047fd8aaa4f3bca278663c8e9086",
+    "viewpoints": 13,
+    "tour_links": 9,
+    "planning_status": "incomplete",
+    "input_coverage_status": "targets_unmet",
+    "quality_status": "unverified"
+  }
+]

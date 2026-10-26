@@ -1,5 +1,9 @@
 # SpaceWatch3D
 
+## 통합 변화투어 · 2026-10-27
+
+`main`의 Auto Tour 360 상단 **변화투어**에서 Gaussian 전후 경로와 기존 자동 변화 후보를 함께 봅니다. 전 Dorm2 v5.1.7은 13지점·4구간, 후 Dorm3 v5.1.8은 13지점·1구간이며 경로를 바꾸면 해당 촬영의 맵도 전환합니다. 현재 고유 후보 5개와 출발→도착 색 그림자를 유지합니다. [실행·입력 연결](apps/autotour360/README.md#통합-변화투어)
+
 원본 메시 경로:
 
 - Dorm2: `/workspace/dorm2_2d3d_v1_object_mesh_20261017/`

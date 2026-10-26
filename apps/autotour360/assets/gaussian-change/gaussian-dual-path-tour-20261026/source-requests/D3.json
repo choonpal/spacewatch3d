@@ -1,0 +1,491 @@
+{
+  "schema_name": "spacewatch3d.virtual_tour_render_requests",
+  "schema_version": "0.1.0",
+  "scene_id": "dorm_shared",
+  "geometry_sha256": "dc6135383a3e20055735820e00e05cee32c75a4af5c0ec5771bf1316e2734774",
+  "route_id": "route_8b9f436e2efd",
+  "route_version": 1,
+  "requests": [
+    {
+      "viewpoint_id": "vp_n_00031_00021",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -3.1544804096221912
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -29.42926120758056
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": []
+    },
+    {
+      "viewpoint_id": "vp_n_00043_00049",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          1.0455195903778085
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -27.629261207580562
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": []
+    },
+    {
+      "viewpoint_id": "vp_n_00059_00019",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -3.4544804096221915
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -25.229261207580564
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": []
+    },
+    {
+      "viewpoint_id": "vp_n_00118_00016",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -3.9044804096221912
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -16.379261207580562
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": []
+    },
+    {
+      "viewpoint_id": "vp_n_00171_00014",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -4.2044804096221915
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -8.429261207580563
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": []
+    },
+    {
+      "viewpoint_id": "vp_n_00211_00012",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -4.504480409622191
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -2.429261207580563
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": []
+    },
+    {
+      "viewpoint_id": "vp_n_00270_00013",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -4.354480409622191
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          6.420738792419435
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": []
+    },
+    {
+      "viewpoint_id": "vp_n_00294_00062",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          2.9955195903778087
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          10.020738792419436
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": []
+    },
+    {
+      "viewpoint_id": "vp_n_00316_00061",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          2.8455195903778083
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          13.32073879241944
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": []
+    },
+    {
+      "viewpoint_id": "vp_n_00341_00028",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -2.104480409622192
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          17.07073879241944
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": []
+    },
+    {
+      "viewpoint_id": "vp_n_00341_00100",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          8.695519590377808
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          17.07073879241944
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": []
+    },
+    {
+      "viewpoint_id": "vp_n_00345_00011",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -4.654480409622192
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          17.670738792419435
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": []
+    },
+    {
+      "viewpoint_id": "vp_n_00375_00108",
+      "capture_id": "dorm3",
+      "reference_frame_id": "dorm3_mesh",
+      "reference_from_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          9.895519590377807
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          22.170738792419435
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          1.9350483653634698
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "projection": "equirectangular",
+      "width": 2048,
+      "height": 1024,
+      "media_origin": "novel_view",
+      "render_required": true,
+      "required_object_ids": []
+    }
+  ]
+}

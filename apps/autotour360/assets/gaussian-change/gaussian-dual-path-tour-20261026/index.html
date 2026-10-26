@@ -1,0 +1,41 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>전·후 키포인트 경로 · Gaussian 변화 투어</title><link rel="stylesheet" href="viewer.css?v=dual-path-1">
+<script type="importmap">{"imports":{"three":"../gaussian-map-comparison-20261025/vendor/three.module.js","three/addons/":"../gaussian-map-comparison-20261025/vendor/addons/","@sparkjsdev/spark":"../gaussian-map-comparison-20261025/vendor/spark.module.js"}}</script>
+<style>.input-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}.input-pair img{width:100%;height:auto;display:block}.input-pair figure{margin:0}.input-pair figcaption{padding:8px 0}.route-note{color:#f6cc89}@media(max-width:800px){.input-pair{grid-template-columns:1fr}}</style></head><body class="uncapped-tour dual-path-tour"><main>
+<div class="eyebrow">BEFORE / AFTER · SAVED KEYPOINT ROUTES</div><h1>전·후 키포인트 경로 둘러보기</h1>
+<p><b>같은 변화는 구역에 한 번만 등록합니다.</b> 여러 키프레임은 같은 후보를 보는 관측 위치입니다. 박스를 누르면 전→후 변화가 표시됩니다.</p>
+<p class="route-note">전: Dorm2 v5.1.7 · 13지점 / 후: Dorm3 v5.1.8 · 13지점. 선택한 촬영의 실제 저장 경로와 맵으로 전환합니다. Dorm2의 끊긴 4구간은 선택으로만 전환합니다.</p>
+<p class="source-links"><a href="route-overview.png" target="_blank">전·후 원본 경로 지도</a> · <a href="../gaussian-map-comparison-20261025/index.html">기존 변화탐지 결과</a> · <a href="REPORT.md">연결 근거</a></p>
+<details class="compact-sources"><summary>전후 Gaussian 맵 정보</summary><div class="sources" id="sources"></div></details>
+<div class="controls">
+<label>전후 경로<select id="plan-group" aria-label="전후 키포인트 경로"><option value="D2">전 · Dorm2 v5.1.7 · 13지점</option><option value="D3">후 · Dorm3 v5.1.8 · 13지점</option></select></label>
+<label>연결 구간<select id="tour-segment" aria-label="연결 구간"></select></label>
+<label>현재 관측 시점<select id="zone" aria-label="키프레임"></select></label>
+<input id="method" type="hidden" value="simsac">
+<details class="tour-filters"><summary>표시 필터</summary><div>
+<label><input id="exclude-person" type="checkbox" checked aria-label="사람 제외"> 사람 제외</label>
+<input id="only-candidates" type="checkbox" hidden disabled>
+<label><input id="show-boxes" type="checkbox" checked aria-label="후보 박스 표시"> 후보 박스</label>
+<label>표시할 영역 크기<select id="minimum-pixels" aria-label="표시할 영역 최소 픽셀"><option value="100" selected>100 px 이상</option><option value="20">20 px 이상</option><option value="0">전체 조각</option><option value="500">500 px 이상</option></select></label>
+<label>변화 유형<select id="event-type" aria-label="변화 유형"><option value="all">전체</option><option value="added">추가 후보</option><option value="moved">이동 추정</option><option value="removed">소실 추정</option><option value="unresolved">유형 불확실</option></select></label>
+</div></details><div class="tour-toolbar"><button id="tour-prev">← 이전 지점</button><button id="tour-play" aria-pressed="false">자동 둘러보기</button><button id="tour-next">다음 지점 →</button><b id="tour-current"></b></div>
+</div>
+<section class="change-region-panel" id="change-region-panel"><h2>구역별 고유 변화 <span id="candidate-count"></span></h2><div id="candidates" class="change-regions"></div><p id="empty" hidden>현재 조건에서 남은 고유 후보가 없습니다.</p></section>
+<details class="all-tour-views"><summary>선택 경로의 관측 시점</summary><div id="tour-strip" class="tour-strip" aria-label="연결된 키프레임"></div></details>
+<p id="tour-status" class="tour-status" role="status"></p>
+<div class="stage" id="stage"><canvas id="gaussian-canvas" role="img" aria-label="키프레임 시점의 실제 가우시안 맵" tabindex="0"></canvas><div class="box-layer" id="box-layer"></div><div class="stage-title" id="stage-title"></div><div class="load-state" id="load-state"></div>
+<div id="tour-hotspots" class="tour-hotspots" data-tour-ui></div>
+<details class="tour-minimap" data-tour-ui open><summary>키프레임 경로</summary><svg id="tour-map" viewBox="0 0 240 140" role="group" aria-label="현재 연결 구간의 경로 지도"></svg><span>● 현재 · 같은 색: 같은 변화 구역 · 끊긴 구간은 선택으로 전환</span></details>
+<div class="stage-tools"><button id="zoom-out" aria-label="축소">−</button><button id="zoom-in" aria-label="확대">＋</button><button id="reset">키프레임 시야</button><button id="fullscreen">전체 화면</button></div>
+<div class="ghost-controls" id="ghost-controls" hidden><b id="ghost-title"></b><label class="ghost-rgb-control">후 겹침 <input id="opacity" type="range" min="0" max="100" value="55" aria-label="후 맵 겹침 비율"><output id="opacity-value">55%</output></label><button class="ghost-rgb-control" id="before-only">전만</button><button class="ghost-rgb-control" id="ghost-half">반투명</button><button class="ghost-rgb-control" id="after-only">영역 후만</button><button id="toggle-object-meshes" aria-pressed="false">색 그림자 / 분할 메쉬</button><button id="close-ghost">닫기</button></div></div>
+<div class="summary" id="summary" role="status">저장된 키프레임과 추론 결과를 읽는 중…</div>
+<p id="event-counts" class="note"></p>
+<p class="event-legend"><span class="event-added">■ 추가 후보</span> · <span class="event-moved">■ 이동 추정</span> · <span class="event-removed">■ 소실 추정</span> · <span class="event-unresolved">■ 유형 불확실</span> — 영상 인스턴스·분할 메쉬·형상·빈 공간 관측으로 자동 분류합니다.</p>
+<div class="view-tools"><button id="map-before" aria-pressed="true">현재 위치의 전 맵</button><button id="map-after" aria-pressed="false">현재 위치의 후 맵</button><span class="note">드래그: 360° 둘러보기 · 휠: 확대 · W/D: 다음 지점 · S/A: 이전 지점</span></div>
+<p class="legend"><span class="simsac">■ 기존 Gaussian RGB → SimSaC 변화영역</span> · 기존 분석의 3D 영역을 유지하며, 키프레임 이동 때 현재 위치에서 관측 가능한 영역을 카메라에 투영합니다. 같은 후보는 여러 시점에서도 같은 박스 범위·id를 유지합니다. 시점별 새 검출로 교체하지 않습니다. 이동 박스는 출발→도착 색 그림자로, 다른 유형은 해당 영역의 후 맵 겹침으로 확인합니다.</p>
+<p class="note" id="valid-render"></p>
+<details class="detail" id="render-inputs"><summary>Gaussian 렌더 RGB · 선택 후보의 원본 분석 입력</summary><p id="render-input-note"></p><div class="input-pair"><figure><figcaption>전 · Dorm2 <a id="download-before" target="_blank">원본 이미지</a></figcaption><img id="input-before" alt="전 맵의 Gaussian 렌더 RGB" loading="lazy"></figure><figure><figcaption>후 · Dorm3 <a id="download-after" target="_blank">원본 이미지</a></figcaption><img id="input-after" alt="후 맵의 Gaussian 렌더 RGB" loading="lazy"></figure></div></details>
+<div class="detail" id="selection" hidden><h2 id="selection-title"></h2><p id="selection-note"></p></div>
+<div class="detail" id="object-evidence-panel" hidden><label><input id="show-object-meshes" type="checkbox" aria-label="전후 분할 객체 메쉬 표시"> 전후 객체 색 그림자 표시 <span class="object-before">전: 청록</span> · <span class="object-after">후: 주황</span></label> <label><input id="show-object-context" type="checkbox" aria-label="연결된 분할 조각 모두 표시"> 연결된 조각 모두</label><div id="object-evidence-content"></div></div>
+
+<details class="detail"><summary>맵·키프레임·정합 근거</summary><div id="audit"></div><p>기존 전역·구역별 메쉬 정합과 잔차 보정을 가우시안에 적용한 뒤 렌더링했습니다. 새 Gaussian 정합이나 픽셀 단위 보정은 하지 않았습니다. R07·R09·R10·R11은 기존 구조 관측의 정합 지원이 부족합니다.</p><p>원본 키포인트는 전 Dorm2 v5.1.7과 후 Dorm3 v5.1.8입니다. 두 맵은 서로 다른 층의 Dorm2·Dorm3입니다. 변화 후보에는 재구성·가림·정합 잔차가 포함될 수 있습니다. 원본 경로의 연결성은 확인했으며 객체 관측 커버리지·계산 모델 검증과 실제 보행 안전은 미검증 상태입니다.</p><div class="links"><a href="tour-validation.json">검증</a><a href="gaussian-data.json">카메라·맵</a><a href="simsac-candidates.json">기존 추론 결과</a><a href="tour-candidates.json">고정 후보·가림 근거</a><a href="tour-routes.json">저장 경로</a><a href="change-regions.json">고유 후보·관측 연결</a></div></details>
+<pre id="error" role="alert"></pre></main><script type="module" src="viewer.js?v=dual-path-1"></script></body></html>

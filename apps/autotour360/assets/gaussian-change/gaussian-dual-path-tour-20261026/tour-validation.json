@@ -1,0 +1,189 @@
+{
+  "passed": true,
+  "keyframes": 26,
+  "same_pose_render_pairs": 26,
+  "render_images_verified": 52,
+  "original_candidate_geometry_unchanged": true,
+  "automatic_object_decisions_unchanged": true,
+  "new_simsac_inference": false,
+  "registration_fitted_again": false,
+  "maps_unchanged": true,
+  "camera_checks": {
+    "D2": {
+      "capture": "dorm2",
+      "cameras": 233,
+      "max_native_position_residual": 0.0,
+      "planner_to_gaussian": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "max_gaussian_position_residual": 0.0
+    },
+    "D3": {
+      "capture": "dorm3",
+      "cameras": 248,
+      "max_native_position_residual": 0.0,
+      "planner_to_gaussian": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "max_gaussian_position_residual": 0.0
+    }
+  },
+  "groups": {
+    "D2": {
+      "capture": "dorm2",
+      "version": "5.1.7",
+      "nodes": 13,
+      "links": 9,
+      "segments": 4
+    },
+    "D3": {
+      "capture": "dorm3",
+      "version": "5.1.8",
+      "nodes": 13,
+      "links": 12,
+      "segments": 1
+    }
+  },
+  "visibility": {
+    "D2-K01": [
+      "SimSaC-R13-001"
+    ],
+    "D2-K02": [
+      "SimSaC-R13-001"
+    ],
+    "D2-K03": [
+      "SimSaC-R12-001"
+    ],
+    "D2-K04": [
+      "SimSaC-R12-001",
+      "SimSaC-R13-001"
+    ],
+    "D2-K05": [],
+    "D2-K06": [],
+    "D2-K07": [],
+    "D2-K09": [
+      "SimSaC-R08-001",
+      "SimSaC-R08-002"
+    ],
+    "D2-K08": [
+      "SimSaC-R08-001",
+      "SimSaC-R08-002"
+    ],
+    "D2-K13": [],
+    "D2-K12": [],
+    "D2-K11": [],
+    "D2-K10": [
+      "SimSaC-R01-001"
+    ],
+    "D3-K01": [
+      "SimSaC-R12-001",
+      "SimSaC-R13-001"
+    ],
+    "D3-K03": [],
+    "D3-K02": [
+      "SimSaC-R12-001",
+      "SimSaC-R13-001"
+    ],
+    "D3-K04": [
+      "SimSaC-R13-001"
+    ],
+    "D3-K05": [],
+    "D3-K06": [],
+    "D3-K07": [
+      "SimSaC-R08-001",
+      "SimSaC-R08-002"
+    ],
+    "D3-K11": [],
+    "D3-K10": [],
+    "D3-K09": [],
+    "D3-K12": [],
+    "D3-K08": [
+      "SimSaC-R01-001"
+    ],
+    "D3-K13": []
+  },
+  "object_evidence": {
+    "passed": true,
+    "metadata_only": true,
+    "segmented_meshes": 44,
+    "review_hints": {
+      "added": 0,
+      "removed": 1,
+      "moved": 2,
+      "unresolved": 2
+    },
+    "original_faces_preserved": false,
+    "original_simsac_regions_unchanged": true,
+    "simsac_pixel_direction_used_for_type": false,
+    "physical_event_types_confirmed": false,
+    "automatic": true,
+    "manual_overrides_used": false,
+    "automatic_matches": 2
+  },
+  "shared_events": {
+    "passed": true,
+    "counting_unit": "unique change event",
+    "repeated_views_create_events": false,
+    "counts": {
+      "raw": {
+        "source_candidates": 6,
+        "unique_events": 5,
+        "regions": 3,
+        "observation_links": 22
+      },
+      "filtered": {
+        "source_candidates": 5,
+        "unique_events": 5,
+        "regions": 3,
+        "observation_links": 18
+      }
+    }
+  },
+  "physical_accuracy_verified": false
+}

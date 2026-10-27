@@ -29,12 +29,12 @@ def local_file(root, name):
     return target
 
 
-def inspect_bundle(root):
+def inspect_bundle(root, manifest='manifest.json'):
     root = Path(root).resolve()
-    doc = json.loads((root / 'manifest.json').read_text(encoding='utf-8-sig'))
+    doc = json.loads(local_file(root, manifest).read_text(encoding='utf-8-sig'))
     if doc.get('schema') != 'mesh-simsac-input-v1':
         raise ValueError('manifest.json은 mesh-simsac-input-v1 형식이어야 합니다.')
-    paths = {'manifest.json'}
+    paths = {manifest}
     for phase in ['before', 'after']:
         spec = doc.get(phase, {})
         if not spec.get('mesh') or not spec.get('frames'):

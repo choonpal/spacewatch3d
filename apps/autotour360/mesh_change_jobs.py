@@ -49,7 +49,7 @@ def model_identity(runtime):
     """Hash actual model/source contents, including changes at an unchanged path."""
     fields = ['simsac_checkpoint'] + (['person_checkpoint'] if runtime.get('person_checkpoint') else [])
     if runtime.get('remote_session'):
-        from tools.gaussian_change.remote import Relay
+        from tools.mesh_simsac.relay import Relay
         script = ('from pathlib import Path;import hashlib,json;'
                   'sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest();'
                   f'files={ {k: runtime[k] for k in fields}!r};'
@@ -76,7 +76,7 @@ class MeshChangeJobs:
         if configured:
             config = read(self.runtime)
             if config.get('remote_session'):
-                from tools.gaussian_change.remote import relay_connected
+                from tools.mesh_simsac.relay import relay_connected
                 connected = relay_connected(config['remote_session'])
         return dict(configured=configured, connected=connected, max_upload_bytes=MAX_BYTES,
                     input_schema='mesh-simsac-input-v1')
@@ -149,7 +149,7 @@ class MeshChangeJobs:
             source = REPO/'tools/mesh_simsac'
             versions = {p.name: digest(p) for p in source.iterdir() if p.suffix in ['.py', '.js', '.html', '.css']}
             versions['jobs'] = digest(__file__)
-            versions['structural_registration'] = digest(REPO/'tools/gaussian_change/registration.py')
+            versions['structural_registration'] = digest(REPO/'tools/mesh_simsac/registration.py')
             # The manifest hash contains camera poses, thresholds and transforms.
             content = dict(files=hashes, models=identity, code=versions,
                            environment=runtime.get('environment', {}), device=runtime.get('device', 'cuda'))

@@ -1,3 +1,0 @@
-# Keep published hashes and third-party runtime bytes intact.
-* -text whitespace=cr-at-eol
-**/vendor/** -whitespace

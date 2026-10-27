@@ -12,6 +12,19 @@ from server import make_handler, parse_range
 
 
 class RangeTests(unittest.TestCase):
+    def test_retired_render_comparison_routes_are_not_exposed(self):
+        server=ThreadingHTTPServer(('127.0.0.1',0),make_handler([],[]))
+        threading.Thread(target=server.serve_forever,daemon=True).start()
+        try:
+            connection=HTTPConnection('127.0.0.1',server.server_port)
+            for path in ['/api/gaussian-change/status','/api/change-jobs/config','/change-analysis.html',
+                         '/gaussian-change/gaussian-map-comparison-20261025/index.html']:
+                connection.request('GET',path);response=connection.getresponse()
+                self.assertEqual(response.status,404,path);response.read()
+            connection.close()
+        finally:
+            server.shutdown();server.server_close()
+
     def test_dorm_tour_only_exposes_adapted_public_assets_and_preserves_other_datasets(self):
         with TemporaryDirectory() as directory:
             root=Path(directory);dorm=root/'dorm';rescan=root/'rescan';dorm.mkdir();rescan.mkdir()

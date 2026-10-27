@@ -8,11 +8,6 @@ export function photoLayers(event, record, epoch, panorama = false) {
 }
 
 export function photoCaption(event, epoch) {
-  if (!event[epoch ? 'after' : 'before']) {
-    if (event.type === 'added') return '추가 전 위치';
-    if (event.type === 'removed') return '소실 후 위치';
-    return '대응 확인 위치';
-  }
-  if (event.type === 'moved') return epoch ? '도착 객체' : '출발 객체';
+  if (!event[epoch ? 'after' : 'before']) return '비교 위치';
   return epoch ? '선택 객체 · 후' : '선택 객체 · 전';
 }

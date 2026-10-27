@@ -2,19 +2,16 @@
 
 같은 공간의 두 촬영 회차를 정합한 뒤 객체 대응 및 위치·형상 변화를 판별한다. 공간 정합도 이 task의 책임 범위다.
 
-상태: **새 메시·Gaussian 입력 자동 처리 backend 추가** (2026-10-27).
-`gaussian_backend.analyze()`는 입력 두 회차에서 메시 전역 정합·구역 보정을 새로 계산하고,
-동일 시점 Gaussian RGB·깊이·alpha 렌더링, SimSaC, 3D 후보 저장까지 실행한다.
-영상 재구성·Gaussian 학습·키포인트 선정은 실행하지 않으며 저장된 카메라를 받는다.
-[입력 계약·GPU 실행·한계](../../../../tools/gaussian_change/README.md).
+상태: **분할 메쉬·원본 RGB 변화 후보 비교** (2026-10-27).
+`mesh_backend.analyze()`는 뷰어와 같은 입력 규약과 worker를 사용해 새 정합·SimSaC·객체 후보 연결·원본 영상 뷰어를 생성합니다. 입력은 메쉬 NPZ, RGB, 카메라 포즈, 선택적으로 실제 점군·원본 분할 마스크입니다. [입력 계약·GPU 실행·한계](../../../../tools/mesh_simsac/README.md).
 
 ```sh
-python -m spacewatch3d.tasks.task_5a_change_detection --manifest input.local.json --runtime runtime.local.json --output outputs/change-run
+python -m spacewatch3d.tasks.task_5a_change_detection --manifest /path/to/manifest.json --runtime /path/to/runtime.local.json --output outputs/change-run
 ```
 
-기존 `dorm_geometry_first` backend는 계속 사전 정합 산출물을 사용한다.
-새 `mesh_gaussian_simsac` backend의 전역 정합은 FPFH/RANSAC·Sim3 ICP이며,
-과거 실험의 저장된 GeoTransformer 변환을 재사용하지 않는다. 두 실행 범위를 구분한다.
+`--validate-only`는 manifest와 파일 연결만 확인하며, 기하 검증이나 추론은 실행하지 않습니다. 공통 TaskRequest에서는 `backend: mesh_rgb_simsac`, `pair_manifest`, 선택적 `runtime`을 지정합니다. pair의 `scene_id`와 전후 `id`/`capture_id`는 객체 lineage와 일치해야 합니다. 상세 후보는 `parameters.candidate_manifest_uri` 및 `viewer_manifest_uri`로 연결합니다. 촬영별 후보 ID를 공통 객체 ID로 가정하지 않으므로 공통 `changes` 배열은 비워 두고 출력 범위를 명시합니다.
+
+기존 `dorm_geometry_first` backend는 사전 정합된 전체 메쉬 실험용으로 유지됩니다. 새 RGB 입력 처리와 실행 범위를 구분합니다.
 
 ## 현재 구현과 실행
 

@@ -4,7 +4,6 @@ import {Panorama} from './panorama.js';
 import {TrajectoryController} from './trajectory.js';
 import {KeyframeController} from './keyframe-controller.js';
 import {KeyframeTransition} from './keyframe-transition.js';
-import {createChangeTour} from './change-tour.js?v=integrated-change-tour-1';
 import {uid,clamp,escapeHTML as esc,formatTime,newScene,emptyProject,validateProject,removeScene} from './core.js';
 
 const paths={
@@ -30,7 +29,6 @@ let libraryTimer,libraryBusy=false,adding=false,uploadController;
 const activeJobs=new Set();
 let project=emptyProject(),activeId=null,editing=false,renderer,media=null,mediaAssetId=null,loadVersion=0,config={media:[]};
 let saveTimer,toastTimer,dbPromise,muted=true,volume=.7,rate=1,relinkAssetId=null,sceneLoading=false,trajectory,keyframes,movement;
-let changeMode=false,changeTour,changeFrame=null;
 const sources=new Map(),objectURLs=new Set();
 const current=()=>project.scenes.find(s=>s.id===activeId);
 const descriptor=id=>project.assets.find(a=>a.id===id);
@@ -63,7 +61,6 @@ async function resolveSources(){
   }
 }
 function updateHeader(){
-  if(changeMode){updateChangeHeader();return;}
   $('project-title').textContent=project.title;
   const count=project.scenes.reduce((n,s)=>n+s.hotspots.length,0);
   $('tour-summary').textContent=`영상 ${project.assets.length}개 · 연결 및 설명 지점 ${count}개`;
@@ -75,7 +72,7 @@ function renderHotspots(){
   updateView();
 }
 function updateView(){
-  if(!renderer||changeMode)return;
+  if(!renderer)return;
   const view=renderer.view;$('heading-value').textContent=`${String(Math.round((view.yaw+360)%360)).padStart(3,'0')}°`;$('compass-needle').style.transform=`rotate(${-view.yaw}deg)`;$('auto-rotate').setAttribute('aria-pressed',String(renderer.autoRotate));
   for(const el of $('hotspots').children){const h=current()?.hotspots.find(x=>x.id===el.dataset.id);const p=h&&renderer.project(h.yaw,h.pitch);el.hidden=!p || !media || sceneLoading;if(p){el.style.left=`${p.x}px`;el.style.top=`${p.y}px`;}}
   if($('live-yaw')){$('live-yaw').textContent=`${Math.round(view.yaw)}°`;$('live-pitch').textContent=`${Math.round(view.pitch)}°`;$('live-fov').textContent=`${Math.round(view.fov)}°`;}
@@ -98,7 +95,6 @@ function waitFor(target,event,signal){return new Promise((resolve,reject)=>{
 });}
 let loadController;
 async function loadScene(id){
-  if(changeMode)setChangeMode(false,{restore:false});
   movement?.cancel();
   const version=++loadVersion;loadController?.abort();loadController=new AbortController();const signal=loadController.signal;
   sceneLoading=false;
@@ -153,53 +149,7 @@ function seekVideo(time){
 }
 async function togglePlay(){if(!(media instanceof HTMLVideoElement))return;movement?.cancel();try{if(media.paused){if(media.ended)media.currentTime=current()?.startTime||0;await media.play();}else media.pause();}catch{toast('재생 버튼을 다시 눌러 주세요. 브라우저가 자동 재생을 제한했거나 코덱을 지원하지 않습니다.',true);}}
 function toggleMute(){muted=!muted;if(media instanceof HTMLVideoElement)media.muted=muted;updatePlayer();}
-function setEditing(value){if(changeMode)setChangeMode(false);movement?.cancel();editing=value;document.body.classList.toggle('is-editing',value);$('inspector').hidden=!value;$('crosshair').hidden=!value;$('browse-mode').classList.toggle('selected',!value);$('edit-mode').classList.toggle('selected',value);$('browse-mode').setAttribute('aria-pressed',String(!value));$('edit-mode').setAttribute('aria-pressed',String(value));renderInspector();renderHotspots();}
-function updateChangeHeader(info=changeFrame){
-  if(!changeMode)return;
-  if(!info&&['gaussian',null].includes(new URLSearchParams(location.search).get('source'))){$('project-title').textContent='통합 변화투어';$('active-title').textContent='Gaussian 경로 투어를 연결하는 중';$('tour-summary').textContent='저장된 자동분석 결과를 불러오는 중';return;}
-  if(!info&&new URLSearchParams(location.search).get('source')!=='rescan'){
-    $('project-title').textContent='Dorm · 변화 투어';$('scene-kicker').textContent='CHANGE TOUR · DORM';
-    $('active-title').textContent='Dorm 맵을 준비하는 중';$('active-description').textContent='';
-    $('resolution').textContent='DORM';$('tour-summary').textContent='정합한 Dorm 맵과 원본 사진을 연결하는 중';return;
-  }
-  if(info?.presentation){
-    const p=info.presentation;
-    $('project-title').textContent=p.projectTitle;$('scene-kicker').textContent=p.resolution==='3D GAUSSIAN'?'GAUSSIAN CHANGE TOUR':'CHANGE TOUR · DORM';
-    $('active-title').textContent=p.heading;$('active-description').textContent=p.description;
-    $('resolution').textContent=p.resolution;$('tour-summary').textContent=p.summary;return;
-  }
-  $('project-title').textContent='Rescan · 변화 투어';
-  $('scene-kicker').textContent='CHANGE TOUR · 원본 정지 키프레임';
-  $('active-title').textContent=info?`${info.epoch===0?'이전':'이후'} 촬영 · 지점 ${info.index+1} / ${info.count}`:'변화 투어 준비 중';
-  $('active-description').textContent='버튼으로 이동하고 변화 박스를 눌러 전후 객체 사진을 겹쳐 보세요.';
-  $('resolution').textContent=info?`${info.frame.width} × ${info.frame.height}`:'RESCAN';
-  $('tour-summary').textContent=info?`Rescan 실제 전후 촬영 · 변화 ${info.data.regions.length}개 · 이동·추가·소실`:'Rescan 전후 메쉬와 원본 사진을 연결하는 중';
-}
-function setChangeMode(value,{restore=true}={}){
-  if(value && !new URLSearchParams(location.search).has('source')){location.assign('/mesh-changes.html');return;}
-  if(value===changeMode)return;
-  if(value){
-    setEditing(false);movement?.cancel();
-    if(media instanceof HTMLVideoElement)media.pause();
-    renderer.autoRotate=false;changeMode=true;showWelcome(false);
-  }else{changeMode=false;changeTour?.deactivate();}
-  document.body.classList.toggle('change-tour-mode',value);
-  for(const id of ['change-photo-layer','change-viewer-note','change-controls','change-sidebar'])$(id).hidden=!value;
-  $('change-mode').classList.toggle('selected',value);$('change-mode').setAttribute('aria-pressed',String(value));
-  $('browse-mode').classList.toggle('selected',!value&&!editing);$('browse-mode').setAttribute('aria-pressed',String(!value&&!editing));
-  $('rename-project').disabled=value;
-  const url=new URL(location.href);if(value)url.searchParams.set('mode','changes');else url.searchParams.delete('mode');history.replaceState(null,'',url);
-  if(value){updateChangeHeader();void changeTour.activate();}
-  else{
-    updateHeader();updatePlayer();updateView();renderAnalysis();renderer.dirty=true;renderer.resize();
-    const width=media?.videoWidth||media?.naturalWidth,height=media?.videoHeight||media?.naturalHeight;
-    $('resolution').textContent=width&&height?`${width} × ${height}`:'EQUIRECTANGULAR';
-    if(trajectory){trajectory.lastDraw='';trajectory.draw();}
-    if(restore&&!current()){
-      if(project.scenes[0])void loadScene(project.scenes[0].id);else showWelcome(true);
-    }
-  }
-}
+function setEditing(value){movement?.cancel();editing=value;document.body.classList.toggle('is-editing',value);$('inspector').hidden=!value;$('crosshair').hidden=!value;$('browse-mode').classList.toggle('selected',!value);$('edit-mode').classList.toggle('selected',value);$('browse-mode').setAttribute('aria-pressed',String(!value));$('edit-mode').setAttribute('aria-pressed',String(value));renderInspector();renderHotspots();}
 function renderInspector(){
   const s=current(),el=$('inspector-content');if(!s){el.innerHTML='<div class="inspector-block"><p class="hint">미디어를 추가하면 장면을 편집할 수 있습니다.</p></div>';return;}
   const a=descriptor(s.assetId);
@@ -276,13 +226,9 @@ async function importProject(file){
 function showOpenDialog(){openDialog('영상과 투어 가져오기',`<p>영상을 넣으면 촬영 경로를 자동으로 만듭니다.</p><button id="dialog-add-media" class="dialog-choice"><span>${icon('panorama')}</span><div><strong>360° 영상 추가 → 자동 투어 생성</strong><small>MP4 · MOV · WebM / 2:1 파노라마 / 최대 2GB · 10분</small></div></button><button id="dialog-open-project" class="dialog-choice"><span>${icon('file')}</span><div><strong>저장한 투어 불러오기</strong><small>.tour.json · 경로, 장면, 설명을 이어서 사용합니다.</small></div></button><p class="hint" style="margin-top:20px">영상과 분석 결과는 프로그램을 실행한 PC에 보관됩니다. 외부 서비스에 전송하지 않습니다.</p>`);$('dialog-add-media').onclick=()=>{$('dialog').close();chooseMedia();};$('dialog-open-project').onclick=()=>{$('dialog').close();$('project-input').value='';$('project-input').click();};}
 function showHelp(){openDialog('공간을 둘러보는 방법',`<div class="help-grid"><span>마우스 드래그 / 터치</span><span>원하는 방향으로 둘러보기</span><span>휠 / 두 손가락</span><span>확대 · 축소</span><span><kbd>←</kbd> <kbd>↑</kbd> <kbd>↓</kbd> <kbd>→</kbd></span><span>동선 이동 · Q/E로 좌우 둘러보기</span><span><kbd>Space</kbd> / <kbd>M</kbd></span><span>재생·정지 / 음소거</span><span><kbd>R</kbd> / <kbd>F</kbd></span><span>시점 초기화 / 전체 화면</span></div><p class="dialog-note">① <strong>영상 선택</strong>만 하면 촬영 경로 분석이 자동으로 시작됩니다.<br>② 바닥 화살표로 이동하고, 드래그로 둘러보세요. 미니맵에서도 이동할 수 있습니다.<br>③ <strong>촬영 경로</strong>에서 표시 설정을 바꾼 뒤 <strong>투어 저장</strong>으로 보관하세요.</p><p>편집 설정은 이 브라우저에 자동 저장됩니다. 투어 파일에는 영상이 포함되지 않으므로 원본도 함께 보관하세요. 360°로 이어 붙인 2:1 영상을 지원합니다. 분석된 동선은 실제 촬영 경로의 추정값이며, 위치가 확인되지 않은 구간은 동선 지도에서 연결하지 않습니다.</p><div class="dialog-actions"><button class="button primary" data-close>둘러보기 시작</button></div>`);}
 async function fullscreen(){try{if(document.fullscreenElement)await document.exitFullscreen();else if($('viewer-shell').requestFullscreen)await $('viewer-shell').requestFullscreen();else toast('이 브라우저에서는 전체 화면 API를 지원하지 않습니다.',true);}catch{toast('브라우저에서 전체 화면을 허용하지 않았습니다.',true);}}
-function showChangeHelp(){
-  const gaussian=document.body.classList.contains('gaussian-change-tour-mode');
-  openDialog(gaussian?'변화투어 조작':'변화 투어 조작',gaussian?`<p>키프레임 선택, 경로 지도의 점, 바닥 이동 표시로 저장된 경로를 따라 이동합니다. 드래그로 360° 둘러보고 휠로 확대합니다. 맵 안에서는 W/D로 다음 지점, S/A로 이전 지점에 이동합니다.</p><p>현재 시점에서 보이는 변화 후보에 박스가 표시됩니다. 이동 박스를 누르면 청록색 출발 객체와 주황색 도착 객체, 방향 화살표가 표시됩니다. 같은 변화는 여러 키프레임에서도 같은 ID로 유지됩니다.</p><p>전후 촬영 경로는 다릅니다. 정합한 두 맵의 공통 3D 좌표를 사용하며 양쪽에서 관측 가능한 구역을 비교합니다. 현재 투어는 저장된 Gaussian RGB SimSaC 분석 결과를 연결하며, 이동할 때 새 추론을 실행하지 않습니다.</p><div class="dialog-actions"><button class="button primary" data-close>확인</button></div>`:`<p>이전 지점 / 다음 지점 버튼이나 좌우 방향키로 정지 사진 사이를 이동합니다. 변화 박스를 누르면 원본 사진에서 객체만 잘라 현재 시점에 반투명하게 겹쳐 보여줍니다. 주변 배경은 투명하며 사진에서 관측된 표면만 표시합니다.</p><p>주황 테두리는 이전 객체, 파랑 테두리는 이후 객체입니다. 오른쪽 목록과 원본 사진을 눌러 해당 지점으로 이동할 수 있습니다. Escape로 겹침을 닫고 F로 전체 화면을 전환합니다.</p><p>상단 둘러보기 / 투어 편집을 누르면 기존 360° 투어로 돌아갑니다. 선택한 촬영 데이터에 연결된 결과를 표시합니다.</p><div class="dialog-actions"><button class="button primary" data-close>확인</button></div>`);
-}
 function bindEvents(){
   $('browse-mode').onclick=()=>setEditing(false);$('edit-mode').onclick=()=>setEditing(true);$('close-inspector').onclick=()=>setEditing(false);
-  $('change-mode').onclick=()=>setChangeMode(true);
+  $('change-mode').onclick=()=>location.assign('/mesh-changes.html');
   $('open-project').onclick=showOpenDialog;$('export-project').onclick=exportProject;
   $('media-input').onchange=()=>{const id=relinkAssetId;relinkAssetId=null;addFiles($('media-input').files,id);};$('project-input').onchange=()=>{if($('project-input').files[0])importProject($('project-input').files[0]);};
   $('message-action').onclick=()=>chooseMedia(current()?.assetId||null);
@@ -292,16 +238,9 @@ function bindEvents(){
   $('timeline').oninput=e=>seekVideo(Number(e.target.value));
   $('zoom-in').onclick=()=>{movement.cancel();renderer.zoom(-8);};$('zoom-out').onclick=()=>{movement.cancel();renderer.zoom(8);};$('reset-view').onclick=()=>{movement.cancel();renderer.autoRotate=false;renderer.setView(current()?.view||{yaw:0,pitch:0,fov:75});};
   $('fullscreen').onclick=fullscreen;$('auto-rotate').onclick=()=>{movement.cancel();renderer.autoRotate=!renderer.autoRotate;updateView();};
-  $('help').onclick=$('keyboard-help').onclick=()=>changeMode?showChangeHelp():showHelp();
+  $('help').onclick=$('keyboard-help').onclick=showHelp;
   $('rename-project').onclick=()=>{openDialog('투어 이름 변경',`<form id="rename-form"><label class="field">투어 이름<input id="new-title" value="${esc(project.title)}" maxlength="100" required></label><div class="dialog-actions"><button type="button" class="button subtle" data-close>취소</button><button class="button primary" type="submit">저장</button></div></form>`);$('rename-form').onsubmit=e=>{e.preventDefault();const title=$('new-title').value.trim();if(!title)return;project.title=title;changed();$('dialog').close();};};
   document.addEventListener('keydown',e=>{
-    if(changeMode){
-      if($('dialog').open||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)||e.target.isContentEditable)return;
-      if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown',' '].includes(e.key))e.preventDefault();
-      if(e.key==='ArrowLeft')changeTour.navigate(-1);if(e.key==='ArrowRight')changeTour.navigate(1);
-      if(e.key==='Escape')changeTour.clear();if(e.key.toLowerCase()==='f')fullscreen();if(e.key==='?')showChangeHelp();
-      return;
-    }
     if($('dialog').open||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)||e.target.isContentEditable)return;
     const key=e.key.toLowerCase(),v={...renderer.view};
     if(['arrowleft','arrowright','arrowup','arrowdown','q','e',' ','+','=','-','r','f','m','?'].includes(key))e.preventDefault();
@@ -318,7 +257,6 @@ function bindEvents(){
   document.addEventListener('drop',e=>{e.preventDefault();dragDepth=0;$('drop-overlay').hidden=true;const files=[...e.dataTransfer.files];if(files.length===1&&files[0].name.endsWith('.json'))importProject(files[0]);else addFiles(files);});
 }
 function showWelcome(value){
-  if(value&&changeMode)setChangeMode(false,{restore:false});
   if(value)movement?.cancel();
   document.body.classList.toggle('welcome-mode',value);$('welcome').hidden=!value;
   if(value){if(media instanceof HTMLVideoElement)media.pause();renderLibrary();}
@@ -376,8 +314,7 @@ async function init(){
   const navigateKeyframe=(time,view,direction)=>movement.navigate(time,view,direction);
   trajectory=new TrajectoryController({getState:()=>({asset:descriptor(current()?.assetId),source:sources.get(current()?.assetId),sceneId:current()?.id,media,view:renderer.view,loading:sceneLoading||movement.active,editing}),onChange:changed,onSeek:seekVideo,onNavigate:navigateKeyframe,notify:toast,openDialog,getConfig:()=>config});
   keyframes=new KeyframeController({getState:()=>({asset:descriptor(current()?.assetId),data:trajectory.data,source:sources.get(current()?.assetId),media,view:renderer.view,loading:sceneLoading||movement.active}),onChange:changed,onNavigate:navigateKeyframe,openDialog,notify:toast,invalidate:()=>{trajectory.lastDraw='';trajectory.draw();}});
-  changeTour=createChangeTour({onFrame:info=>{changeFrame=info;updateChangeHeader(info);},onError:message=>{if(changeMode)toast(message,true);}});
-  renderer.onFrame=()=>{if(!changeMode){keyframes.update();trajectory.draw();}};
+  renderer.onFrame=()=>{keyframes.update();trajectory.draw();};
   bindEvents();
   try{const r=await fetch('/api/config');if(r.ok)config=await r.json();}catch{}
   let restored=false;try{const saved=localStorage.getItem(KEY);if(saved){project=validateProject(JSON.parse(saved));restored=true;}}catch{toast('이전 자동 저장을 읽지 못했습니다. 저장한 투어 파일을 불러와 주세요.',true);}
@@ -391,7 +328,7 @@ async function init(){
   $('upload-cancel').onclick=()=>uploadController?.abort();
   $('analysis-cancel').onclick=async()=>{await trajectory.cancel();await refreshLibrary();};
   $('analysis-retry').onclick=async()=>{await trajectory.start(true);await refreshLibrary();};
-  if(new URLSearchParams(location.search).get('mode')==='changes')setChangeMode(true);
+  if(new URLSearchParams(location.search).get('mode')==='changes')location.replace('/mesh-changes.html');
   await refreshLibrary();libraryTimer=setInterval(refreshLibrary,1500);
 }
 void init();

@@ -25,8 +25,15 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install shared contract package
-        run: python -m pip install -e .
+        run: python -m pip install -e ".[test]"
       - name: Validate every task fixture
         run: python -m spacewatch3d check-fixtures
       - name: Check task boundaries
         run: python -m unittest discover -s tests -v
+      - name: Check viewer jobs
+        run: python -m unittest discover -s apps/autotour360/tests -v
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check viewer interactions
+        run: node --test apps/autotour360/tests/*.test.mjs tests/test_mesh_photo_presentation.mjs

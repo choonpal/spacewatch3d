@@ -2,10 +2,10 @@
 
 The viewer now accepts a capture ZIP and runs SimSaC on its **original RGB** on
 first submission. It registers the segmented meshes, excludes people in both
-images, aggregates independent camera observations, classifies objects and
+images, aggregates independent camera observations, records internal object evidence and
 publishes a job-specific viewer. Gaussian renders and saved change predictions
-are not inputs. The shared `structural.py` remains available to the Gaussian
-pipeline.
+are not inputs. Mesh-only alignment lives in `registration.py`; authenticated transfer lives in
+`relay.py`. No rendered RGB input pipeline is included.
 
 ## Start the viewer
 
@@ -101,7 +101,9 @@ frozen regional alignment preserves triangle IDs and uses each region's camera
 transform for cross-capture projection. At least two independent source frames
 are required to establish repeatable change/absence evidence.
 
-## Classification and inspection
+## Internal evidence and candidate inspection
+
+Internal evidence retains the following distinctions for auditing. The UI presents all entries as **change candidates**, without lifecycle filters or category badges.
 
 - **Moved:** one-to-one identity from rigid shape and masked SimSaC-backbone
   appearance, displacement beyond registration error, and independent vacancy

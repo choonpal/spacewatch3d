@@ -3,29 +3,24 @@ import { OrbitControls } from './preview/vendor/OrbitControls.js';
 import { photoLayers, photoCaption } from './photo-presentation.js';
 
 const $ = id => document.getElementById(id);
-const kinds = {
-  added: { text: '추가', color: '#4bdaa2', order: 1 },
-  moved: { text: '이동', color: '#ffc26a', order: 0 },
-  removed: { text: '소실', color: '#ff7998', order: 2 },
-  modified: { text: '외형 변화', color: '#81b3ff', order: 3 },
-  unresolved: { text: '판정 보류', color: '#9eabba', order: 4 },
-};
+const candidateStyle={text:'변화 후보',color:'#e9bb73',order:0};
+const kinds=Object.fromEntries(['added','moved','removed','modified','unresolved'].map(kind=>[kind,candidateStyle]));
 const names = { chair: '의자', table: '테이블', 'dining table': '테이블', door: '문',
   refrigerator: '냉장고', 'fire extinguisher': '소화기', window: '창문', cabinet: '수납장',
   sofa: '소파', unknown: '미분류 객체', plant: '화분', monitor: '모니터', 'vacuum cleaner': '청소기' };
 const reasons = {
-  segmented_object_appears_over_observed_background: '객체가 있는 촬영의 원본 분할과 SimSaC에서 반복 확인됐습니다. 반대 촬영은 같은 위치의 배경을 가림 없이 반복 관측했고, 같은 종류의 객체 마스크는 검출되지 않았습니다. 메쉬는 위치를 제공하며, 이 판정은 영상 분할에 의존하는 자동 추정입니다.',
-  counterpart_in_rgb_segmentation_but_mesh_incomplete: '반대 촬영의 원본 세그멘테이션에도 같은 종류의 객체가 보입니다. 메쉬 분할이 누락되거나 불완전해 추가·소실로 분류하지 않습니다.',
-  segmented_identity_observation_insufficient: '메쉬와 원본 세그멘테이션이 일치하는 독립 관측이 부족합니다. 객체 조각을 같은 객체로 확정하지 않습니다.',
-  one_sided_rgb_difference: '같은 위치에 대응하지만 SimSaC 변화가 양쪽 촬영에서 반복 확인되지 않았습니다. 시점·조명·분할 차이일 수 있어 외형 변화로 확정하지 않습니다.',
-  registration_uncertainty_unsupported: '이 구역의 별도 검증 표면에서 정합 오차를 충분히 확인하지 못했습니다. 이동·추가·소실을 확정하지 않고 보류합니다.',
-  rigid_identity_and_both_vacancies_supported: '전후 객체의 형상과 원본 영상 특징이 대응합니다. 정합 오차보다 큰 위치 차이가 있고, 출발 자리와 도착 자리의 반대 회차에서 빈 공간을 반복 관측했습니다.',
+  segmented_object_appears_over_observed_background: '객체가 있는 촬영의 원본 분할과 SimSaC에서 반복 확인됐습니다. 반대 촬영은 같은 위치의 배경을 가림 없이 반복 관측했고, 같은 종류의 객체 마스크는 검출되지 않았습니다. 메쉬는 위치를 제공하며, 이 후보는 영상 분할에 의존하는 자동 추정입니다.',
+  counterpart_in_rgb_segmentation_but_mesh_incomplete: '반대 촬영의 원본 세그멘테이션에도 같은 종류의 객체가 보입니다. 메쉬 분할이 누락되거나 불완전해 원본 영상을 직접 비교할 후보로 남겼습니다.',
+  segmented_identity_observation_insufficient: '메쉬와 원본 세그멘테이션이 일치하는 독립 관측이 부족합니다. 전후 객체 조각의 대응을 더 확인해야 합니다.',
+  one_sided_rgb_difference: '같은 위치에 대응하지만 SimSaC 변화가 양쪽 촬영에서 반복 확인되지 않았습니다. 시점·조명·분할 차이일 수 있어 원본에서 차이를 더 확인해야 합니다.',
+  registration_uncertainty_unsupported: '이 구역의 별도 검증 표면에서 정합 오차를 충분히 확인하지 못했습니다. 전후 차이를 해석할 때 이 구역의 오차를 함께 확인해야 합니다.',
+  rigid_identity_and_both_vacancies_supported: '전후 객체의 형상과 원본 영상 특징이 대응합니다. 정합 오차보다 큰 위치 차이가 있고, 두 위치의 반대 촬영에서도 주변 공간을 반복 관측했습니다.',
   expected_location_observed_free_in_independent_frames: '객체가 있는 촬영에서 반복 관측됐고, 반대 촬영의 같은 자리는 가림 없이 더 먼 배경으로 관측됐습니다.',
-  same_location_object_with_repeatable_simsac_surface_change: '전후 객체는 같은 위치에 대응합니다. 해당 객체 표면에서 SimSaC 변화가 여러 원본 프레임에 반복돼 외형 변화로 분류했습니다.',
-  counterpart_identity_ambiguous: '비슷한 종류·형상의 전후 객체가 있어 대응이 모호합니다. 이동 또는 별도 추가·소실로 나누지 않고 보류했습니다.',
+  same_location_object_with_repeatable_simsac_surface_change: '전후 객체는 같은 위치에 대응합니다. 해당 객체 표면에서 SimSaC 변화가 여러 원본 프레임에 반복돼 후보 표면으로 연결했습니다.',
+  counterpart_identity_ambiguous: '비슷한 종류·형상의 전후 객체가 있어 대응이 모호합니다. 전후 원본에서 같은 객체인지 추가 확인이 필요합니다.',
   own_observation_insufficient: '객체를 독립적으로 확인할 수 있는 원본 프레임이 부족합니다.',
   surface_still_occupies_expected_location: '반대 촬영의 예상 자리에 표면이 남아 있습니다. 분할 누락·외관 변화·가림을 구분할 근거가 부족합니다.',
-  opposite_location_occluded_or_unobserved: '반대 촬영의 같은 자리가 가려졌거나 충분히 관측되지 않았습니다. 객체 부재를 확인할 수 없어 보류했습니다.',
+  opposite_location_occluded_or_unobserved: '반대 촬영의 같은 자리가 가려졌거나 충분히 관측되지 않았습니다. 객체의 같은 위치를 원본 영상에서 더 확인해야 합니다.',
 };
 const json = async url => {
   const r = await fetch(url);
@@ -71,7 +66,7 @@ let generation = 0, globalBounds = new THREE.Box3(), transition = null;
 const geometryCache = new Map();
 const query = new URLSearchParams(location.search);
 const reportError = error => { $('error').textContent = error.message; console.error(error); };
-const typeName = event => kinds[event.type]?.text || '판정 보류';
+const typeName = () => '변화 후보';
 const objectName = event => names[event.label] || event.label;
 const asBox = bounds => new THREE.Box3(new THREE.Vector3(...bounds[0]), new THREE.Vector3(...bounds[1]));
 
@@ -179,11 +174,7 @@ async function showGeometry(event, token) {
     line.userData.epoch = event.type === 'added' ? 0 : 1;
     selectedGroup.add(line);
   }
-  $('map-legend').textContent = event.type === 'moved' ? '청록: 전 위치 · 주황: 후 위치 · 화살표: 전 → 후'
-    : event.type === 'added' ? '주황: 추가된 후 객체 · 점선: 전 촬영의 빈자리 검사 범위'
-    : event.type === 'removed' ? '청록: 소실된 전 객체 · 점선: 후 촬영의 빈자리 검사 범위'
-    : event.type === 'modified' ? '청록: 전 객체 · 주황: 후 객체 · 같은 위치의 형상을 겹쳐 비교'
-    : '회색: 판정 보류 객체 · 원본 영상과 예상 자리의 관측 근거 확인';
+  $('map-legend').textContent='청록: 전 촬영의 선택 객체 · 주황: 후 촬영의 선택 객체';
   updateVisibility();
   flyTo(event.bounds);
 }
@@ -372,7 +363,7 @@ async function selectEvent(event, writeUrl = true) {
   $('event-badge').textContent = typeName(event);
   $('event-title').textContent = objectName(event);
   $('event-identities').textContent = `${event.id} · ${event.before || '전 객체 없음'} → ${event.after || '후 객체 없음'} · 자동 추정`;
-  $('decision-title').textContent = event.type === 'unresolved' ? '판정 보류 이유' : '자동 판정 근거';
+  $('decision-title').textContent = '후보 관측 근거';
   $('decision-reason').textContent = reasons[event.reason_code] || event.reason_code;
   $('event-detail').textContent = JSON.stringify({ object_ids: event.object_ids, reason: event.reason_code,
     matching: event.matching, vacancy: event.vacancy, segmented_background_frames: event.segmented_background_frames,
@@ -388,11 +379,11 @@ function emptySelection() {
   selected = null; generation++;
   photoGhost=false;syncPhotoComparison();
   clearGroup(selectedGroup);
-  $('event-badge').textContent = filter === 'all' ? '결과 없음' : kinds[filter].text;
+  $('event-badge').textContent = '변화 후보';
   $('event-title').textContent = '조건을 충족한 항목이 없습니다';
-  $('event-identities').textContent = '다른 유형 또는 판정 보류 목록을 선택하세요.';
+  $('event-identities').textContent = '다른 객체 종류를 선택하세요.';
   $('event-position').textContent = '0 / 0';
-  $('decision-reason').textContent = '해당 유형으로 자동 판정할 관측 근거가 확보되지 않았습니다.';
+  $('decision-reason').textContent = '선택한 객체 종류의 후보가 없습니다.';
   $('event-detail').textContent = '';
   $('metrics').replaceChildren();
   $('previous-event').disabled = $('next-event').disabled = true;
@@ -402,7 +393,7 @@ function emptySelection() {
 }
 async function renderList(preferred) {
   const type = $('object-type').value;
-  filtered = data.events.filter(e => (filter === 'all' || e.type === filter) && (type === 'all' || e.label === type));
+  filtered = data.events.filter(e => (type === 'all' || e.label === type));
   const list = $('event-list'); list.replaceChildren();
   $('list-count').textContent = `${filtered.length}개 항목 · 선택하면 객체와 전후 영상을 표시합니다`;
   for (const event of filtered) {
@@ -419,7 +410,7 @@ async function renderList(preferred) {
   }
   for (const button of document.querySelectorAll('[data-type]')) button.setAttribute('aria-pressed', String(button.dataset.type === filter));
   if (!filtered.length) {
-    const p = document.createElement('p'); p.className = 'empty-list'; p.textContent = '이 유형으로 판정된 항목이 없습니다. 보류 항목의 관측 근거도 확인할 수 있습니다.'; list.append(p);
+    const p = document.createElement('p'); p.className = 'empty-list'; p.textContent = '선택한 객체 종류의 변화 후보가 없습니다.'; list.append(p);
     emptySelection(); return;
   }
   await selectEvent(filtered.find(e => e.id === preferred) || filtered[0]);
@@ -428,18 +419,14 @@ async function start() {
   data = await json('viewer-data.json');
   const align=data.alignment_summary;
   if(align)$('alignment-summary').textContent=`${align.new_alignment_fitted?'새 정합 계산':'입력 정합 검증'} · ${align.region_count}구역 · 실제 점군 ${align.independent_pointcloud?.filter(Boolean).length || 0}/2 · ${align.held_out_validation?'별도 표면으로 오차 검증':'전역 잔차 기준'}`;
-  $('scope').textContent = data.scope || '관측 근거에 따른 자동 분류입니다. 근거가 부족하면 보류합니다.';
+  $('scope').textContent = data.scope || '원본 영상과 관측 근거를 비교한 변화 후보입니다.';
   document.querySelectorAll('.photo-heading h4').forEach((el,i) => { el.textContent = (i?'후 · ':'전 · ')+(data.labels?.[i] || (i?'비교 촬영':'기준 촬영')); });
   $('ghost-opacity').oninput = () => { selectedGroup.traverse(item => { if(item.isMesh && item.userData.cachedGeometry) item.material.opacity = Number($('ghost-opacity').value)/100; }); drawPhotos().catch(reportError); };
   $('photo-reset').onclick = () => {for(const p of panoramas.values())p.focus();};
   $('photo-ghost').onclick = () => comparePhoto(!photoGhost);
-  data.events.sort((a, b) => kinds[a.type].order - kinds[b.type].order || a.id.localeCompare(b.id));
+  data.events.sort((a, b) => a.id.localeCompare(b.id));
   $('pointcloud').parentElement.hidden = !data.scenes.some(s => s.cloud_points > 0);
   $('total').textContent = `${data.events.length}개`;
-  for (const button of document.querySelectorAll('[data-type]')) {
-    button.querySelector('span').textContent = button.dataset.type === 'all' ? data.events.length : data.counts[button.dataset.type];
-    button.onclick = () => { filter = button.dataset.type; renderList().catch(reportError); };
-  }
   for (const label of [...new Set(data.events.map(e => e.label))].sort()) {
     const option = document.createElement('option'); option.value = label; option.textContent = names[label] || label; $('object-type').append(option);
   }
@@ -483,7 +470,7 @@ async function start() {
   $('previous-photo').onclick = () => { photoIndex = Math.max(0, photoIndex - 1); drawPhotos().catch(reportError); };
   $('next-photo').onclick = () => { photoIndex = Math.min(selected.photo_sets.length - 1, photoIndex + 1); drawPhotos().catch(reportError); };
   $('photo-mode').onchange = () => {for(const p of panoramas.values())p.focus();drawPhotos().catch(reportError);};
-  filter = kinds[query.get('type')] ? query.get('type') : 'all';
+  filter = 'all';
   const center = globalBounds.getCenter(new THREE.Vector3());
   camera.position.copy(center).add(new THREE.Vector3(8, 8, 8)); controls.target.copy(center); controls.update();
   updateVisibility();

@@ -4,7 +4,7 @@ from pathlib import Path, PurePosixPath
 import shlex
 import time
 
-from tools.gaussian_change.remote import Relay
+from tools.mesh_simsac.relay import Relay
 
 
 def catalog(runtime):

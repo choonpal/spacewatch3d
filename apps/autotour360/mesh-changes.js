@@ -1,5 +1,5 @@
 const $ = id => document.getElementById(id);
-const labels = {queued:'분석 차례를 기다리고 있습니다',validating:'입력과 저장된 결과를 확인하고 있습니다',running:'변화탐지를 실행하고 있습니다',complete:'변화탐지가 완료됐습니다',failed:'분석을 완료하지 못했습니다',interrupted:'분석이 중단됐습니다'};
+const labels = {queued:'분석 차례를 기다리고 있습니다',validating:'입력과 저장된 결과를 확인하고 있습니다',running:'변화탐지를 실행하고 있습니다',complete:'변화 후보 비교가 완료됐습니다',failed:'분석을 완료하지 못했습니다',interrupted:'분석이 중단됐습니다'};
 let timer, busy = false, configured = false, connected = false, currentJob;
 let captures = [];
 function describeCaptures() {

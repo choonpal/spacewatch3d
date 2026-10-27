@@ -8,23 +8,9 @@
 입력과 코드·모델이 같으면 검증된 캐시를 사용합니다.
 [입력 구성과 실행](tools/mesh_simsac/README.md) · [실행 검증](docs/mesh-rgb-runtime-validation-20261027.md)
 
-기존 Gaussian 경로:
+현재 화면은 **변화 후보**만 표시합니다. 원본 360도 영상의 박스를 누르면 선택한 객체의 전후 모습만 강조하며, 전체 세그멘테이션은 별도 검증 화면에서 확인합니다.
 
-One-command input processing and the system integration API are in
-[`tools/gaussian_change`](tools/gaussian_change/README.md) and
-[`src/spacewatch3d/tasks/task_5a_change_detection`](src/spacewatch3d/tasks/task_5a_change_detection/README.md).
-This path fits mesh global/regional alignment, renders both Gaussian maps at
-identical supplied cameras, runs SimSaC and saves 3D candidates. Saved viewer
-demonstrations are separate from execution on a new input pair.
-
-## 통합 변화투어 · 2026-10-27
-
-`main`의 Auto Tour 360 상단 **변화투어**에서 Gaussian 전후 경로와 기존 자동 변화 후보를 함께 봅니다. 전 Dorm2와 후 Dorm3 모두 v5.1.8 키포인트 경로이며, 각각 13지점·4구간 / 13지점·1구간입니다. 경로를 바꾸면 해당 촬영의 맵도 전환합니다. 현재 고유 후보 5개와 출발→도착 색 그림자를 유지합니다. [실행·입력 연결](apps/autotour360/README.md#통합-변화투어)
-
-원본 메시 경로:
-
-- Dorm2: `/workspace/dorm2_2d3d_v1_object_mesh_20261017/`
-- Dorm3: `/workspace/dorm3_mesh_generator_v1_20261017/`
+시스템 API도 같은 파이프라인을 사용합니다. [Task 5a 실행 안내](src/spacewatch3d/tasks/task_5a_change_detection/README.md)
 
 ## 최근 변경 · 2026-10-19
 

@@ -5,7 +5,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from tools.gaussian_change.remote import Relay
+from tools.mesh_simsac.relay import Relay
 
 
 class RelayCompletion(unittest.TestCase):
@@ -23,16 +23,16 @@ class RelayCompletion(unittest.TestCase):
                 raise FileNotFoundError(path)
             return dict(ok=True,output='same job remained connected')
         with tempfile.TemporaryDirectory() as temp, \
-             patch('tools.gaussian_change.remote.read',side_effect=read), \
-             patch('tools.gaussian_change.remote.time.sleep'):
+             patch('tools.mesh_simsac.relay.read',side_effect=read), \
+             patch('tools.mesh_simsac.relay.time.sleep'):
             self.assertEqual(Relay(temp).call(command='fixture'),'same job remained connected')
 
     def test_dead_local_connector_is_rejected_even_with_fresh_heartbeat(self):
         with tempfile.TemporaryDirectory() as temp:
             root=Path(temp);(root/'inbox').mkdir();(root/'outbox').mkdir()
             (root/'status.json').write_text(json.dumps(dict(state='connected',pid=123,heartbeat_unix=time.time())))
-            with patch('tools.gaussian_change.remote.process_alive',return_value=False,create=True), \
-                 patch('tools.gaussian_change.remote.time.monotonic',side_effect=[0,601]):
+            with patch('tools.mesh_simsac.relay.process_alive',return_value=False,create=True), \
+                 patch('tools.mesh_simsac.relay.time.monotonic',side_effect=[0,601]):
                 with self.assertRaises(ConnectionError):
                     Relay(root).call(command='must not queue on a dead connector')
             self.assertEqual(list((root/'inbox').iterdir()), [])
@@ -43,8 +43,8 @@ class RelayCompletion(unittest.TestCase):
                 return dict(state='connected',pid=123,heartbeat_unix=time.time())
             raise FileNotFoundError(path)
         with tempfile.TemporaryDirectory() as temp, \
-             patch('tools.gaussian_change.remote.read',side_effect=read), \
-             patch('tools.gaussian_change.remote.process_alive',side_effect=[True,False]):
+             patch('tools.mesh_simsac.relay.read',side_effect=read), \
+             patch('tools.mesh_simsac.relay.process_alive',side_effect=[True,False]):
             with self.assertRaisesRegex(ConnectionError,'SSH'):
                 Relay(temp).call(command='connector exits before the receipt arrives')
 
@@ -54,11 +54,11 @@ class RelayCompletion(unittest.TestCase):
                 return dict(state='connected',pid=123,heartbeat_unix=0)
             raise FileNotFoundError(path)
         with tempfile.TemporaryDirectory() as temp, \
-             patch('tools.gaussian_change.remote.read',side_effect=read), \
-             patch('tools.gaussian_change.remote.process_alive',return_value=True), \
-             patch('tools.gaussian_change.remote.time.time',side_effect=[0,106]), \
-             patch('tools.gaussian_change.remote.time.monotonic',side_effect=[0,0,601]), \
-             patch('tools.gaussian_change.remote.time.sleep'):
+             patch('tools.mesh_simsac.relay.read',side_effect=read), \
+             patch('tools.mesh_simsac.relay.process_alive',return_value=True), \
+             patch('tools.mesh_simsac.relay.time.time',side_effect=[0,106]), \
+             patch('tools.mesh_simsac.relay.time.monotonic',side_effect=[0,0,601]), \
+             patch('tools.mesh_simsac.relay.time.sleep'):
             with self.assertRaises(ConnectionError):
                 Relay(temp).call(command='short command on an unresponsive connector')
 
@@ -72,7 +72,7 @@ class RelayCompletion(unittest.TestCase):
             if isinstance(value, Exception):
                 raise value
             return value
-        with tempfile.TemporaryDirectory() as temp, patch('tools.gaussian_change.remote.read', side_effect=read), patch('tools.gaussian_change.remote.time.sleep'):
+        with tempfile.TemporaryDirectory() as temp, patch('tools.mesh_simsac.relay.read', side_effect=read), patch('tools.mesh_simsac.relay.time.sleep'):
             self.assertEqual(Relay(temp).call(command='fixture'), 'finished')
 
 

@@ -7,7 +7,7 @@ import time
 import uuid
 import zipfile
 
-from tools.gaussian_change.remote import Relay
+from tools.mesh_simsac.relay import Relay
 from .core import read, write
 
 
@@ -28,8 +28,6 @@ def execute(bundle, output, runtime):
         code = Path(__file__).resolve().parents[1]
         with zipfile.ZipFile(output/'source.zip', 'w', zipfile.ZIP_DEFLATED) as z:
             z.write(code/'__init__.py', 'tools/__init__.py')
-            for name in ['__init__.py', 'registration.py']:
-                z.write(code/'gaussian_change'/name, 'tools/gaussian_change/'+name)
             for file in (code/'mesh_simsac').iterdir():
                 if file.suffix in ['.py', '.js', '.html', '.css']:
                     z.write(file, 'tools/mesh_simsac/'+file.name)

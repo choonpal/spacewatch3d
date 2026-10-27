@@ -1,13 +1,13 @@
-"""Analyze fresh mesh/Gaussian inputs or publish a prepared whole-mesh comparison."""
+"""Analyze segmented mesh/original RGB or publish a prepared whole-mesh comparison."""
 import argparse
 from pathlib import Path
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description='Task 5a: mesh/Gaussian change detection')
+    parser = argparse.ArgumentParser(description='Task 5a: segmented mesh and original RGB change candidates')
     inputs = parser.add_mutually_exclusive_group(required=True)
     inputs.add_argument('--source', type=Path)
-    inputs.add_argument('--manifest', type=Path, help='Fresh mesh/Gaussian/camera input manifest')
+    inputs.add_argument('--manifest', type=Path, help='mesh-simsac-input-v1 manifest with original RGB and camera poses')
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--runtime', type=Path, help='Local-only GPU/model/SSH configuration')
     parser.add_argument('--validate-only', action='store_true')
@@ -15,7 +15,7 @@ def main(argv=None):
     parser.add_argument('--previous', type=Path)
     args = parser.parse_args(argv)
     if args.manifest:
-        from .gaussian_backend import analyze
+        from .mesh_backend import analyze
         print(analyze(args.manifest, args.output, args.runtime, validate_only=args.validate_only))
         return 0
     from .dorm_surface import main as publish

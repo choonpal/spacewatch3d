@@ -224,7 +224,7 @@ def prepare(manifest_path, output):
             raise ValueError('Frozen regional alignment requires registration=provided')
         regional, regional_hashes = load_regional(manifest, base, common)
         if settings['registration'] == 'auto' and settings['regional_correction']:
-            from tools.gaussian_change.registration import load_mesh, register
+            from tools.mesh_simsac.registration import load_mesh, register
             samples = [load_mesh(dict(mesh=str(resolve(base, side['spec']['mesh'])),
                                       world_from_mesh=side['spec'].get('world_from_mesh', np.eye(4))),
                                  settings['registration_samples'], epoch) for epoch, side in enumerate(sides)]

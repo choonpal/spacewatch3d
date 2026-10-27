@@ -53,14 +53,14 @@ def run_remote(manifest, output, runtime):
         raise ValueError('input_location must be local or server')
     if location == 'local':
         for phase in ['before', 'after']:
-            for field in ['mesh', 'gaussian', 'cameras']:
+            for field in ['mesh', 'gaussian', 'cameras'] + (['instance_observations'] if local_doc[phase].get('instance_observations') else []):
                 p = Path(local_doc[phase][field])
                 p = p if p.is_absolute() else Path(manifest).resolve().parent/p
                 dest = remote+'/inputs/'+phase+'-'+field+p.suffix
                 uploads.append([str(p.resolve()), dest]); local_doc[phase][field] = dest
     else:
         for phase in ['before', 'after']:
-            for field in ['mesh', 'gaussian', 'cameras']:
+            for field in ['mesh', 'gaussian', 'cameras'] + (['instance_observations'] if local_doc[phase].get('instance_observations') else []):
                 p = PurePosixPath(local_doc[phase][field])
                 if not p.is_absolute() or '..' in p.parts:
                     raise ValueError('Server inputs must use absolute POSIX paths')

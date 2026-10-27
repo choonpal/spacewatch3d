@@ -15,6 +15,7 @@ export function createGaussianChangeTour({onFrame=()=>{},onError=()=>{}}={}){
   const picker=document.createElement('select');picker.setAttribute('aria-label','변화탐지 입력');
   for(const [value,text]of [['gaussian','Gaussian 경로 투어'],['dorm','기존 Dorm 메쉬·사진'],['rescan','기존 Rescan']]){const option=document.createElement('option');option.value=value;option.textContent=text;picker.append(option);}
   picker.onchange=()=>{const url=new URL(location.href);url.searchParams.set('mode','changes');url.searchParams.set('source',picker.value);location.href=url;};label.append(picker);toolbar.append(label);
+  const launch=document.createElement('a');launch.href='/change-analysis.html';launch.textContent='새 맵 입력 · 변화탐지 실행';launch.style.color='#8ce0db';toolbar.append(launch);
   const note=document.createElement('span');note.textContent='전·후 저장 경로를 각각 이동 · 같은 변화는 한 번만 집계';toolbar.append(note);container.append(toolbar);
   const message=document.createElement('p');message.id='gaussian-change-status';message.setAttribute('role','status');message.textContent='Gaussian 경로 투어를 연결하는 중…';container.append(message);
   document.getElementById('viewport').append(container);

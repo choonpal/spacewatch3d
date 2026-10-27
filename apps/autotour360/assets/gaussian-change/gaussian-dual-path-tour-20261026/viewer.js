@@ -134,15 +134,25 @@ async function selectBox(b){
   const minimap=$('.tour-minimap');if(minimap){minimapWasOpen=minimap.open;minimap.open=false;}
   $('#stage').dataset.selectionKind='movement';const focus=objectEvidenceView.focusBounds(b,mode());if(focus)frameMovement(focus);
   $('#stage-title').textContent=`${zone.short_label||zone.id} · ${phase==='after'?'후':'전'} Gaussian 맵 + 출발→도착 색 그림자`;
-  $('#ghost-controls').hidden=false;$('#ghost-title').textContent='이동 위치 · 청록 → 주황';
+  $('#ghost-controls').hidden=false;$('#ghost-title').textContent='이동 추정 · 청록 출발 → 주황 도착';$('#movement-map-before').setAttribute('aria-pressed',String(phase==='before'));$('#movement-map-after').setAttribute('aria-pressed',String(phase==='after'));
   $('#selection-note').textContent=event.reason+' 현재 Gaussian 맵 위에 기존 분할 메쉬를 색 그림자로 표시합니다.';
-  selectionButtons();drawBoxes();return;
+  selectionButtons();drawBoxes();$('#stage').scrollIntoView({behavior:'smooth',block:'start'});return;
  }
  phase='before';updateVisibility();const afterAssets=data.models.after.filter(a=>overlaps(a.bounds,b.bounds));const loaded=await Promise.all(afterAssets.map(loadAsset));if(token!==selectionToken)return;
  for(const a of data.models.before){const mesh=meshes.get(a.file);if(mesh)applyBoxEdit(mesh,b.bounds,false,.45);}
  for(const mesh of loaded)applyBoxEdit(mesh,b.bounds,true,0);
- $('#ghost-controls').hidden=false;$('#ghost-title').textContent=names[b.method]+' 후보';$('#selection-note').textContent=b.method==='baseline'?'기존 메쉬 판정과 후보 원본 면을 그대로 유지한 박스입니다. 선택 영역에서만 전·후 가우시안을 겹칩니다.':frozenCandidates?`기존 Gaussian RGB 분석의 ${b.id}를 그대로 표시합니다. 현재 키프레임 ${zone.id}에서도 같은 3D 범위의 후 맵을 겹칩니다. 키프레임별 새 검출로 교체하지 않습니다.`:'동일 정합 시점의 3DGS 렌더에서 새로 검출했습니다. 가우시안 예상 깊이로 후보 영역을 3D에 연결했으며, 재구성·정합 잔차가 포함될 수 있습니다.';
- selectionButtons();setWeight(55);drawBoxes();
+ $('#ghost-controls').hidden=false;$('#ghost-title').textContent=event?.label||names[b.method]+' 후보';$('#selection-note').textContent=b.method==='baseline'?'기존 메쉬 판정과 후보 원본 면을 그대로 유지한 박스입니다. 선택 영역에서만 전·후 가우시안을 겹칩니다.':frozenCandidates?`기존 Gaussian RGB 분석의 ${b.id}를 그대로 표시합니다. 현재 키프레임 ${zone.id}에서도 같은 3D 범위의 후 맵을 겹칩니다. 키프레임별 새 검출로 교체하지 않습니다.`:'동일 정합 시점의 3DGS 렌더에서 새로 검출했습니다. 가우시안 예상 깊이로 후보 영역을 3D에 연결했으며, 재구성·정합 잔차가 포함될 수 있습니다.';
+ selectionButtons();setWeight(55);drawBoxes();$('#stage').scrollIntoView({behavior:'smooth',block:'start'});
+}
+async function movementMapPhase(value){
+ if(!active||eventRecord(active)?.event.type!=='moved')return;
+ const token=selectionToken;
+ await Promise.all(data.models[value].map(loadAsset));
+ if(token!==selectionToken||!active)return;
+ phase=value;updateVisibility();
+ $('#movement-map-before').setAttribute('aria-pressed',String(value==='before'));
+ $('#movement-map-after').setAttribute('aria-pressed',String(value==='after'));
+ $('#stage-title').textContent=`${zone.short_label||zone.id} · ${value==='before'?'전':'후'} 맵 · 청록 출발 → 주황 도착`;$('#stage').scrollIntoView({behavior:'smooth',block:'start'});
 }
 async function showPhase(value){clearSelection();phase=value;if(value==='after')await Promise.all(data.models.after.map(loadAsset));else await Promise.all(data.models.before.map(loadAsset));updateVisibility();}
 function reportParent(){if(!embedded||!data)return;const groups=regionGroups();window.parent.postMessage({type:"gaussian-tour:state",keyframe:zone?.id,keyframes:data.zones.length,regions:groups.length,events:groups.reduce((n,g)=>n+g.events.length,0),error:$("#error").textContent},location.origin);}
@@ -182,6 +192,7 @@ function bindControls(){
  $('#event-type')?.addEventListener('change',refreshZones);
  for(const[id,delta]of [['zoom-in',-10],['zoom-out',10]])$('#'+id).addEventListener('click',()=>{camera.fov=Math.max(30,Math.min(100,camera.fov+delta));camera.updateProjectionMatrix();});
  $('#fullscreen').addEventListener('click',()=>{(document.fullscreenElement?document.exitFullscreen():stage.requestFullscreen()).catch(fail);});$('#map-before').addEventListener('click',()=>showPhase('before').catch(fail));$('#map-after').addEventListener('click',()=>showPhase('after').catch(fail));
+ $('#movement-map-before').addEventListener('click',()=>movementMapPhase('before').catch(fail));$('#movement-map-after').addEventListener('click',()=>movementMapPhase('after').catch(fail));
  $('#opacity').addEventListener('input',()=>setWeight($('#opacity').value));$('#before-only').addEventListener('click',()=>setWeight(0));$('#ghost-half').addEventListener('click',()=>setWeight(55));$('#after-only').addEventListener('click',()=>setWeight(100));$('#close-ghost').addEventListener('click',clearSelection);
 }
 async function init(){

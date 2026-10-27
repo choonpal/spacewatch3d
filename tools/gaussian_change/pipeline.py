@@ -140,6 +140,13 @@ def run(manifest, output, runtime, *, validate_only=False):
                   'limited_view_run': settings['max_views_per_capture'] is not None,
                   'render_depth': 'Gaussian expected radial depth', 'accuracy_ground_truth_evaluated': False}
         write(output/'changes.json', result)
+        progress('object_classification')
+        from .lifecycle import classify
+        events = classify(output, sides, {'model':model,'gaussian_models':[r.model for r in renderers]})
+        result['object_events'] = 'object-events.json'
+        result['object_event_counts'] = events['counts']
+        write(output/'changes.json', result)
+        stages.append('automatic_object_classification')
         stages.append('save_3d_changes')
         write(output/'status.json', {'state': 'complete', 'stage': 'save_3d_changes', 'gpu_executed': True,
                                      'stages_executed': stages, 'result': 'changes.json',

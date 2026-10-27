@@ -1,0 +1,53 @@
+import {focusBounds} from './change-navigation.js';
+// Same-pose RGB evidence viewer. World boxes project through the recorded camera.
+export function createPanorama(canvas, overlay, onSelect){
+ const gl=canvas.getContext('webgl',{alpha:false});if(!gl)throw Error('WebGL을 사용할 수 없습니다.');
+ const shader=(type,source)=>{const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s;};
+ const program=gl.createProgram();gl.attachShader(program,shader(gl.VERTEX_SHADER,'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}'));
+ gl.attachShader(program,shader(gl.FRAGMENT_SHADER,`precision highp float;uniform sampler2D before,after;uniform vec2 size;uniform mat3 rotation;uniform float tangent,showAfter,mixValue;uniform vec4 box,box2;
+ float region(vec2 p,vec4 b){return step(b.x,p.x)*step(b.y,p.y)*step(p.x,b.z)*step(p.y,b.w);}
+ void main(){vec2 xy=(gl_FragCoord.xy/size-.5)*2.;vec3 ray=normalize(rotation*vec3(xy.x*(size.x/size.y)*tangent,-xy.y*tangent,1.));vec2 uv=vec2(.5+atan(ray.x,ray.z)/6.28318530718,.5+asin(clamp(ray.y,-1.,1.))/3.14159265359);vec4 a=texture2D(before,uv),b=texture2D(after,uv);vec2 point=vec2(gl_FragCoord.x,size.y-gl_FragCoord.y);float inside=max(region(point,box),region(point,box2));gl_FragColor=mix(a,b,max(showAfter,inside*mixValue));}`));
+ gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));gl.useProgram(program);
+ const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);const attr=gl.getAttribLocation(program,'p');gl.enableVertexAttribArray(attr);gl.vertexAttribPointer(attr,2,gl.FLOAT,false,0,0);
+ const uniforms=Object.fromEntries(['before','after','size','rotation','tangent','showAfter','box','box2','mixValue'].map(k=>[k,gl.getUniformLocation(program,k)]));
+ const textures=[0,1].map((_,i)=>{const t=gl.createTexture();gl.activeTexture(gl.TEXTURE0+i);gl.bindTexture(gl.TEXTURE_2D,t);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,1,1,0,gl.RGB,gl.UNSIGNED_BYTE,new Uint8Array([10,16,23]));return t;});
+ gl.uniform1i(uniforms.before,0);gl.uniform1i(uniforms.after,1);
+ let yaw=0,pitch=0,fov=85,pose=null,candidates=[],selected=null,after=false,drag=null,sequence=0,weight=.55,focusId=null;
+ const dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0);
+ function rotation(){const c=Math.cos(yaw),s=Math.sin(yaw),cp=Math.cos(pitch),sp=Math.sin(pitch);return [[c,s*sp,s*cp],[0,cp,-sp],[-s,c*sp,c*cp]];}
+ function projectBox(candidate,R,width,height){
+  if(!pose)return null;const points=[];const focal=height/(2*Math.tan(fov*Math.PI/360));
+  for(let i=0;i<8;i++){const p=[0,1,2].map(k=>candidate.bounds[(i>>k)&1][k]-pose[k][3]);const q=[0,1,2].map(k=>p.reduce((v,x,j)=>v+x*pose[j][k],0));const v=[0,1,2].map(k=>q.reduce((sum,x,j)=>sum+x*R[j][k],0));if(v[2]>.02)points.push([width/2+focal*v[0]/v[2],height/2+focal*v[1]/v[2]]);}
+  if(points.length<4)return null;const bounds=[Math.min(...points.map(p=>p[0])),Math.min(...points.map(p=>p[1])),Math.max(...points.map(p=>p[0])),Math.max(...points.map(p=>p[1]))];
+  if(bounds[2]<0||bounds[3]<0||bounds[0]>width||bounds[1]>height)return null;return [Math.max(0,bounds[0]),Math.max(0,bounds[1]),Math.min(width,bounds[2]),Math.min(height,bounds[3])];
+ }
+ const typeLabel=type=>({moved:'이동 추정',added:'추가 추정',removed:'소실 추정',modified:'제자리 외관 차이',unresolved:'판정 근거 부족',unclassified:'판정 근거 부족'}[type]||'변화후보');
+ function pointProjection(point,R,width,height){const delta=point.map((x,k)=>x-pose[k][3]);const q=[0,1,2].map(k=>delta.reduce((sum,x,j)=>sum+x*pose[j][k],0));const v=[0,1,2].map(k=>q.reduce((sum,x,j)=>sum+x*R[j][k],0));if(v[2]<=.02)return null;const focal=height/(2*Math.tan(fov*Math.PI/360));return [width/2+focal*v[0]/v[2],height/2+focal*v[1]/v[2]];}
+ function shadows(item,R,width,height){
+  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox',`0 0 ${width} ${height}`);svg.classList.add('event-shadows');
+  const add=(tag,attrs)=>{const e=document.createElementNS(svg.namespaceURI,tag);for(const [k,v]of Object.entries(attrs))e.setAttribute(k,v);svg.append(e);return e;},endpoints=[],captions=[];
+  for(const [phase,color]of [['before','#61e7df'],['after','#ffb663']]){
+   const bounds=item[phase+'_bounds'];if(!bounds){endpoints.push(null);continue;}
+   const box=projectBox({bounds},R,width,height);
+   if(box){add('rect',{x:box[0],y:box[1],width:box[2]-box[0],height:box[3]-box[1],fill:color,'fill-opacity':.12,stroke:color,'stroke-width':3,'stroke-dasharray':phase==='before'?'7 4':'none'});
+    let x=Math.max(5,Math.min(width-150,box[0]+5)),y=Math.max(20,box[1]-8);while(captions.some(p=>Math.abs(p[1]-y)<20&&Math.abs(p[0]-x)<150))y+=21;captions.push([x,y]);
+    const label=add('text',{x,y,fill:color,'font-size':13});label.textContent=phase==='before'?(item.type==='moved'?'전 · 대표 출발':'전 모습'):(item.type==='moved'?'후 · 도착':'후 모습');
+   }
+   if(!['unresolved','unclassified'].includes(item.type))for(const point of item[phase+'_points']||[]){const q=pointProjection(point,R,width,height);if(q&&q[0]>0&&q[0]<width&&q[1]>0&&q[1]<height)add('circle',{cx:q[0],cy:q[1],r:2.2,fill:color,'fill-opacity':phase==='before'?.42:.6});}
+   endpoints.push(item[phase+'_center']?pointProjection(item[phase+'_center'],R,width,height):null);
+  }
+  if(item.type==='moved'&&endpoints.length===2&&endpoints.every(Boolean)){
+   const [a,b]=endpoints;add('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:'#ffc87b','stroke-width':4,'stroke-dasharray':item.exact_origin_confirmed===false?'8 4':'none'});
+   const angle=Math.atan2(b[1]-a[1],b[0]-a[0]);add('polygon',{points:`${b[0]},${b[1]} ${b[0]-16*Math.cos(angle-.45)},${b[1]-16*Math.sin(angle-.45)} ${b[0]-16*Math.cos(angle+.45)},${b[1]-16*Math.sin(angle+.45)}`,fill:'#ffc87b'});
+  }
+  overlay.append(svg);
+ }
+ function draw(){const width=canvas.clientWidth,height=canvas.clientHeight;if(!width||!height)return;canvas.width=width;canvas.height=height;gl.viewport(0,0,width,height);const R=rotation();gl.uniform2f(uniforms.size,width,height);gl.uniform1f(uniforms.tangent,Math.tan(fov*Math.PI/360));gl.uniformMatrix3fv(uniforms.rotation,false,new Float32Array([0,1,2].flatMap(k=>R.map(row=>row[k]))));gl.uniform1f(uniforms.showAfter,after?1:0);let shadow=[-10,-10,-1,-1];overlay.replaceChildren();
+  for(const candidate of candidates){const b=projectBox({bounds:focusBounds(candidate)},R,width,height);if(!b)continue;if(selected===candidate.id&&(candidate.before_bounds||candidate.after_bounds)){shadow=b;continue;}const button=document.createElement('button');button.className='change-box'+(selected===candidate.id?' selected':'')+(focusId===candidate.id?' focused':'');button.dataset.type=candidate.type;button.style.cssText=`left:${b[0]}px;top:${b[1]}px;width:${b[2]-b[0]}px;height:${b[3]-b[1]}px`;button.setAttribute('aria-label',candidate.id+' '+typeLabel(candidate.type)+' 변화 영역');const label=document.createElement('span');label.textContent='변화 · '+typeLabel(candidate.type)+' · '+candidate.id;button.append(label);button.onclick=()=>onSelect(candidate.id);overlay.append(button);if(selected===candidate.id)shadow=b;
+  }const active=candidates.find(c=>c.id===selected);let second=[-10,-10,-1,-1];if(active){shadow=active.before_bounds?projectBox({bounds:active.before_bounds},R,width,height)||shadow:shadow;second=active.after_bounds?projectBox({bounds:active.after_bounds},R,width,height)||second:second;shadows(active,R,width,height);}gl.uniform4fv(uniforms.box,new Float32Array(shadow));gl.uniform4fv(uniforms.box2,new Float32Array(second));gl.uniform1f(uniforms.mixValue,weight);gl.drawArrays(gl.TRIANGLES,0,6);
+ }
+ canvas.addEventListener('pointerdown',e=>{drag=[e.clientX,e.clientY,yaw,pitch];canvas.setPointerCapture(e.pointerId);});canvas.addEventListener('pointermove',e=>{if(!drag)return;yaw=drag[2]-(e.clientX-drag[0])*.004;pitch=Math.max(-1.4,Math.min(1.4,drag[3]+(e.clientY-drag[1])*.004));draw();});canvas.addEventListener('pointerup',()=>drag=null);canvas.addEventListener('wheel',e=>{e.preventDefault();fov=Math.max(35,Math.min(115,fov+e.deltaY*.03));draw();},{passive:false});new ResizeObserver(draw).observe(canvas);
+ async function load(url,unit,token){const image=new Image();image.src=url;await image.decode();if(token!==sequence)return;gl.activeTexture(gl.TEXTURE0+unit);gl.bindTexture(gl.TEXTURE_2D,textures[unit]);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,image);}
+ function aim(candidate,movement=true){const bounds=movement&&candidate.type!=='unresolved'?[candidate.before_bounds,candidate.after_bounds].filter(Boolean):[focusBounds(candidate)];if(!bounds.length)bounds.push(candidate.bounds);const points=bounds.flatMap(b=>Array.from({length:8},(_,i)=>[0,1,2].map(k=>b[(i>>k)&1][k])));const directions=points.map(p=>{const d=p.map((x,k)=>x-pose[k][3]);return [0,1,2].map(k=>d.reduce((sum,x,j)=>sum+x*pose[j][k],0));});const unit=directions.map(q=>{const n=Math.hypot(...q)||1;return q.map(x=>x/n);});const center=[0,1,2].map(k=>unit.reduce((s,q)=>s+q[k],0)/unit.length);yaw=Math.atan2(center[0],center[2]);pitch=-Math.asin(Math.max(-1,Math.min(1,center[1]/Math.max(Math.hypot(...center),1e-8))));const R=rotation(),aspect=canvas.clientWidth/Math.max(canvas.clientHeight,1);let extent=0;for(const q of directions){const v=[0,1,2].map(k=>dot(q,R.map(row=>row[k])));if(v[2]<=.02){extent=10;break;}extent=Math.max(extent,Math.abs(v[1]/v[2]),Math.abs(v[0]/v[2])/aspect);}fov=Math.max(movement?55:40,Math.min(movement?115:100,2*Math.atan(extent*1.25)*180/Math.PI));}
+ return {async scene(beforeURL,afterURL,camera,items){const token=++sequence;await Promise.all([load(beforeURL,0,token),load(afterURL,1,token)]);if(token!==sequence)return;pose=camera;candidates=items;selected=null;focusId=null;after=false;weight=.55;yaw=0;pitch=0;fov=85;draw();},focus(id){focusId=id;const candidate=candidates.find(c=>c.id===id);if(candidate&&pose)aim(candidate,false);draw();},select(id){selected=id;const candidate=candidates.find(c=>c.id===id);if(candidate&&pose)aim(candidate,true);draw();},comparison(value){weight=value;draw();},after(value){after=value;draw();},reset(){const candidate=candidates.find(c=>c.id===(selected||focusId));if(candidate&&pose)aim(candidate,Boolean(selected));else{yaw=0;pitch=0;fov=85;}draw();}};
+}

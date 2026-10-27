@@ -84,11 +84,28 @@ Output files:
 | `renders/V*/inference.npz` | Both probability maps and filtering masks |
 | `changes.json`, `changes-3d.npz` | Deduplicated 3D candidate boxes, points and view links |
 
-The current generic output is **surface-change candidates**. It does not invent
-physical instance IDs or claim added/moved/removed identity from an RGB difference.
-The system contract adapter links these detailed candidates through `parameters`
-and leaves the shared object-events array empty until downstream identity evidence
-is available. Empty/unsupported comparisons are not proof of no physical change.
+The output preserves surface-change candidates and adds `object-events.json`.
+The lifecycle stage binds unary instance-mask observations to the exact input mesh
+when supplied, or uses supplied face instance IDs. Semantic connected components
+are a fallback hypothesis, not verified physical IDs. Instance observations can be
+provided in the camera JSON as `instance_segmentation`, or through a side's
+`instance_observations` file. The packet uses schema `mesh-instance-observations-v1`,
+`coordinate_frame: mesh`, the input `mesh_sha256`, unary `observations` and source
+`cameras`. Cross-capture event labels and previous pairings are not consumed.
+The browser can bind packets from a private administrator registry by exact mesh
+hash; an unregistered input never inherits another mesh's segmentation.
+
+Appearance features use native Gaussian RGB renders and the frozen SimSaC VGG
+backbone. The original mask-assisted matching gates check shape, displacement
+beyond registration uncertainty, shape gain over stationary surfaces, and observed
+destination vacancy. A unique match produces one estimated origin; a motion
+hypothesis with assignment ambiguity retains every feasible `origin_candidates`
+entry and sets `exact_origin_confirmed: false`. The viewer draws those as alternative
+origins rather than a certain trajectory. Added/removed estimates require observed
+free space, not missing geometry alone. Evidence gaps remain `unresolved` with
+rejection reasons. Same-position appearance changes use `modified`; structural
+surfaces lacking object support are recorded separately without deleting raw
+SimSaC detections. No physical identity ground truth is claimed.
 
 ## System API
 

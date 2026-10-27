@@ -31,6 +31,11 @@ def load_manifest(path):
         if spec.get('camera_convention') not in ['opencv', 'opengl']:
             raise ValueError('camera_convention must be opencv or opengl')
         cams = read(spec['cameras'])
+        if cams.get('instance_segmentation'):
+            spec['_instance_segmentation'] = cams['instance_segmentation']
+        if spec.get('instance_observations'):
+            spec['instance_observations'] = resolve(path.parent,spec['instance_observations'])
+            hashes[f'{phase}.instance_observations'] = sha(spec['instance_observations'])
         rows = cams.get('requests', cams.get('cameras', cams.get('poses', [])))
         if not isinstance(rows, list) or not 1 <= len(rows) <= 2000:
             raise ValueError('Supply 1..2000 saved camera poses, without running a planner')

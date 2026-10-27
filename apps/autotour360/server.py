@@ -15,6 +15,7 @@ from urllib.parse import parse_qs, quote, unquote, urlsplit
 from trajectory_jobs import TrajectoryJobs, write_json
 from storage import StoragePaths
 from gaussian_assets import asset_path as gaussian_asset_path,status as gaussian_status
+from change_jobs import ChangeJobs
 
 ROOT = Path(__file__).resolve().parent
 
@@ -47,7 +48,7 @@ def inspect_media(path, index):
     return result
 
 
-def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_dir=None, rescan_dir=None, mesh_comparison_dir=None, independent_dir=None, rgbd_dir=None, residual_dir=None, transfer_dir=None, motion_assessment_path=None, dorm_dir=None, dorm_tour_dir=None, gaussian_change_dir=None):
+def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_dir=None, rescan_dir=None, mesh_comparison_dir=None, independent_dir=None, rgbd_dir=None, residual_dir=None, transfer_dir=None, motion_assessment_path=None, dorm_dir=None, dorm_tour_dir=None, gaussian_change_dir=None, change_jobs=None):
     tours_dir = Path(export_dir).resolve() if export_dir is not None else StoragePaths.for_app(ROOT).tours
     evidence_root = Path(evidence_dir).resolve() if evidence_dir is not None else ROOT.parents[1] / "outputs/change_evidence_demo"
     rescan_root = Path(rescan_dir).resolve() if rescan_dir is not None else ROOT.parents[1] / "outputs/rescan-review"
@@ -72,6 +73,9 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
                 self.wfile.write(payload)
 
         def do_POST(self):
+            if urlsplit(self.path).path.startswith('/api/change-jobs'):
+                self.change_request('POST')
+                return
             if jobs is None:
                 self.send_json({"error": "이 서버에서는 경로 분석을 사용할 수 없습니다."}, 503)
                 return
@@ -120,6 +124,44 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
                 self.close_connection = True
                 self.send_json({"error": str(error)}, 400)
 
+        def do_PUT(self):
+            self.change_request('PUT')
+
+        def change_request(self, method):
+            if change_jobs is None:
+                self.send_json({'error': 'GPU 변화탐지 실행 설정이 필요합니다.'}, 503)
+                return
+            origin = self.headers.get('Origin')
+            if origin and urlsplit(origin).netloc != self.headers.get('Host'):
+                self.send_json({'error': '다른 사이트의 실행 요청은 허용하지 않습니다.'}, 403)
+                return
+            route = urlsplit(self.path)
+            try:
+                length = int(self.headers.get('Content-Length', '0'))
+                upload = re.fullmatch(r'/api/change-jobs/([a-f0-9]{24})/inputs/([a-z-]+)', route.path)
+                if method == 'PUT' and upload:
+                    name = parse_qs(route.query).get('name', [''])[0]
+                    self.send_json(change_jobs.upload(upload[1], upload[2], self.rfile, length, name), 201)
+                    return
+                if method != 'POST' or not 0 <= length <= 128*1024:
+                    raise ValueError('요청 형식 또는 크기가 올바르지 않습니다.')
+                body = json.loads(self.rfile.read(length) or b'{}')
+                if not isinstance(body, dict):
+                    raise ValueError('JSON 입력 객체가 필요합니다.')
+                if route.path == '/api/change-jobs':
+                    self.send_json(change_jobs.create(body.get('source')), 201)
+                    return
+                start = re.fullmatch(r'/api/change-jobs/([a-f0-9]{24})/run', route.path)
+                if start:
+                    self.send_json(change_jobs.start(start[1], body.get('descriptor')), 202)
+                    return
+                self.send_json({'error': '변화탐지 요청을 찾을 수 없습니다.'}, 404)
+            except KeyError as error:
+                self.send_json({'error': str(error)}, 404)
+            except (ValueError, OSError) as error:
+                self.close_connection = True
+                self.send_json({'error': str(error)}, 400)
+
         def do_HEAD(self):
             self.serve(head_only=True)
 
@@ -128,6 +170,28 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
 
         def serve(self, head_only=False):
             route = unquote(urlsplit(self.path).path)
+            if route == '/api/change-jobs/config':
+                self.send_json(change_jobs.configuration() if change_jobs else {'configured': False, 'connected': False, 'server_inputs_available': False}, head_only=head_only)
+                return
+            change_state = re.fullmatch(r'/api/change-jobs/([a-f0-9]{24})', route)
+            if change_state:
+                try:
+                    if change_jobs is None:
+                        raise KeyError('변화탐지 실행 설정이 필요합니다.')
+                    self.send_json(change_jobs.status(change_state[1]), head_only=head_only)
+                except KeyError as error:
+                    self.send_json({'error': str(error)}, 404, head_only=head_only)
+                return
+            change_file = re.fullmatch(r'/api/change-jobs/([a-f0-9]{24})/files/(.+)', route)
+            change_path = None
+            if change_file:
+                try:
+                    if change_jobs is None:
+                        raise KeyError('변화탐지 실행 설정이 필요합니다.')
+                    change_path = change_jobs.asset(change_file[1], change_file[2])
+                except KeyError as error:
+                    self.send_json({'error': str(error)}, 404, head_only=head_only)
+                    return
             if route in ("/api/config", "/api/library"):
                 self.send_json({"media": jobs.media_catalog() if jobs else metadata, "trajectory": {"available": bool(jobs and jobs.available), "maxUploadBytes": TrajectoryJobs.MAX_UPLOAD}}, head_only=head_only)
                 return
@@ -163,7 +227,9 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
             transfer_match = re.fullmatch(r"/residual-comparison/bonn-placement/(comparison\.json|[01]-(?:comparison|fixed|empirical)\.bin|frame-[01]-\d{6}\.jpg)", route)
             dorm_match = re.fullmatch(r"/residual-comparison/dorm2-dorm3/((?:comparison|alignment-view)\.json|[01]-(?:comparison|empirical|alignment)\.bin|frame-[01]-\d{6}\.jpg)", route)
             dorm_tour_match = re.fullmatch(r"/dorm-tour/(tour\.json|(?:map|changes)-[01]\.bin|object-(?:E\d{3}-[01]|P\d{4}-[01]|[SI][01]-\d{3})\.bin|(?:Dorm[23]-\d{5}|review-P\d{4})\.jpg|ghost-(?:E\d{3}|P\d{4})-[01]-[01]-\d{2}\.png)", route)
-            if gaussian_path is not None:
+            if change_path is not None:
+                path = change_path
+            elif gaussian_path is not None:
                 path = gaussian_path
             elif route == "/rescan/motion-assessment.json":
                 path = motion_report
@@ -203,6 +269,7 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
                 name = "index.html" if route == "/" else route.lstrip("/")
                 # Never expose source video directories, local config, repository, or test files.
                 allowed = name in {"index.html", "styles.css", "app.js", "core.js", "panorama.js", "trajectory.js", "trajectory-math.js", "tour-keyframes.js", "keyframe-controller.js", "keyframe-transition.js", "object-photo.js", "motion-assessment.js", "autotour.js", "autotour.css", "changes.html", "change-evidence.js", "change-evidence.css", "change-tour.html", "change-tour.js", "change-tour.css", "rescan.html", "rescan-review.js", "rescan-review.css", "mesh-comparison.html", "mesh-comparison.js", "mesh-comparison.css", "mesh-change-context.js", "residual-comparison.html", "residual-comparison.js", "residual-comparison.css", "residual-context.js", "dorm-alignment-viewer.js", "dorm-change-tour.js", "dorm-change-tour.css", "dorm-tour-map.js", "dorm-tour-model.js", "gaussian-change-tour.js", "gaussian-change-tour.css"} or re.fullmatch(r"assets/[a-zA-Z0-9_-]+\.(jpg|png|webp|svg)", name)
+                allowed = allowed or name in {'change-analysis.html', 'change-analysis.js', 'change-analysis.css', 'change-panorama.js', 'change-navigation.js'}
                 if not allowed:
                     self.send_error(404)
                     return
@@ -271,6 +338,9 @@ def main():
     parser.add_argument("--dorm-dir", type=Path, help="Published geometry-only Dorm2/Dorm3 aligned mesh comparison")
     parser.add_argument("--dorm-tour-dir", type=Path, help="Adapted Dorm mesh-first maps and frozen automatic event results")
     parser.add_argument("--gaussian-change-dir", type=Path, help="Published panorama change root containing Gaussian tour, shared models and vendor assets")
+    parser.add_argument('--change-runtime', type=Path, help='Private GPU change-detection runtime configuration')
+    parser.add_argument('--change-input', type=Path, help='Optional private server-side raw map input preset')
+    parser.add_argument('--change-jobs-dir', type=Path, help='Fresh change-analysis input/output job directory')
     args = parser.parse_args()
     entries = args.media
     if entries is None and (ROOT / ".local.json").exists():
@@ -290,7 +360,11 @@ def main():
     if jobs.available:
         for meta in metadata:
             jobs.start(meta["trajectoryKey"])
-    server = ThreadingHTTPServer((args.host, args.port), make_handler(paths, metadata, jobs, export_dir=jobs.storage.tours, evidence_dir=args.evidence_dir, rescan_dir=args.rescan_dir, mesh_comparison_dir=args.mesh_comparison_dir, independent_dir=args.independent_dir, rgbd_dir=args.rgbd_dir, residual_dir=args.residual_dir, transfer_dir=args.transfer_dir, motion_assessment_path=args.motion_assessment, dorm_dir=args.dorm_dir, dorm_tour_dir=args.dorm_tour_dir, gaussian_change_dir=args.gaussian_change_dir))
+    runtime = args.change_runtime or (ROOT/'change-runtime.local.json' if (ROOT/'change-runtime.local.json').is_file() else None)
+    preset = args.change_input or (ROOT/'change-input.local.json' if (ROOT/'change-input.local.json').is_file() else None)
+    change_root = args.change_jobs_dir or (json.loads(runtime.read_text(encoding='utf-8-sig')).get('jobs_dir') if runtime else None) or jobs.storage.output/'change-analysis-jobs'
+    changes = ChangeJobs(change_root, runtime, preset) if runtime else None
+    server = ThreadingHTTPServer((args.host, args.port), make_handler(paths, metadata, jobs, export_dir=jobs.storage.tours, evidence_dir=args.evidence_dir, rescan_dir=args.rescan_dir, mesh_comparison_dir=args.mesh_comparison_dir, independent_dir=args.independent_dir, rgbd_dir=args.rgbd_dir, residual_dir=args.residual_dir, transfer_dir=args.transfer_dir, motion_assessment_path=args.motion_assessment, dorm_dir=args.dorm_dir, dorm_tour_dir=args.dorm_tour_dir, gaussian_change_dir=args.gaussian_change_dir, change_jobs=changes))
     server.daemon_threads = True
     url = f"http://{'127.0.0.1' if args.host == '0.0.0.0' else args.host}:{server.server_port}"
     print(f"AUTO TOUR 360: {url}\nLocal media: {len(jobs.sources)} file(s). Trajectory analysis: {'ready' if jobs.available else 'setup required'}.\nVideos: {jobs.storage.data}\nOutputs: {jobs.storage.output}\nPress Ctrl+C to stop.", flush=True)

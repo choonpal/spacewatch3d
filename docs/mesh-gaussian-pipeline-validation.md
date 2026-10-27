@@ -42,7 +42,49 @@ and residual estimation reuse the existing structural functions. It does not
 replay the experiment-specific GeoTransformer selection or historical partition.
 Object lifecycle classification is not asserted by this candidate-only adapter.
 
-This validation did **not** exercise browser map-upload controls. CLI/API execution
-and the existing saved-result viewer are separate surfaces. Input data, model
-weights, deployment paths, camera-version settings and detailed run receipts remain
-outside Git in local configuration/output directories.
+## Browser upload execution
+
+The viewer subsequently received all six raw mesh/Gaussian/camera files and a
+coordinate descriptor through its file selectors. Clicking **Run change detection**
+created a new job, transferred the uploaded inputs to the GPU host, and ran the
+same CLI from global registration onward. No previous changes result was submitted.
+The full 27-camera GPU worker completed in 95.80 seconds and saved 16 candidates.
+Transfer time is additional. The browser waited for the downloaded output before
+marking completion. Keyframe navigation, candidate boxes and after-render blending
+were exercised in the browser on this uploaded-input result.
+
+The result inspection screen is a Gaussian-rendered RGB panorama viewer, with 3D
+boxes projected through each recorded camera. It is not a new native splat renderer.
+Three browser-job service tests, eleven existing HTTP server tests and two existing
+Gaussian integration UI-module tests passed. The service tests cover input-file
+binding, incomplete-input rejection and waiting for downloaded results.
+
+Input data, model weights, deployment paths, camera-version settings and detailed
+run receipts remain outside Git in local configuration/output directories.
+
+## Local automatic classification and shadow viewer validation
+
+The browser workflow additionally connects unary instance-mask observations
+by the exact input mesh hash when the browser's Run button is pressed. A new
+six-file browser upload was executed from fresh registration through classification
+on the GPU. All 27 supplied camera requests ran; 438 unary observations from 481
+source camera poses were bound without importing previous event labels or pairs.
+Native Gaussian RGB object renders and frozen SimSaC VGG features were recomputed.
+
+That run took 192.09 seconds on the GPU, excluding transfer, and produced 15 raw
+surface candidates. Seven structural surface candidates lack supported object
+instances and are recorded separately. Three raw regions were grouped into one
+motion hypothesis; five candidates remain unresolved. There were no added/removed
+estimates on this pair. The motion hypothesis retains three feasible origins and
+does **not** establish an exact physical object correspondence. This is an
+integration check, not an accuracy claim. No manual candidate overrides were used.
+
+The browser automatically loads the resulting object events. Clicking the fresh
+motion box was exercised: a cyan representative origin shadow, an orange destination
+shadow, an estimated movement arrow, same-camera before/after/overlay controls and
+the XZ location diagram were visible. Alternative origins remain in the original
+detector JSON. Change-only navigation groups repeated observations at one
+representative keyframe, skips empty cameras and aims at the visible change box.
+Full route mode preserves all supplied camera stops. Both modes and box-click
+shadows were exercised in the browser. Fourteen processing tests, four job-service
+tests, eleven HTTP tests and seven JavaScript navigation/viewer tests passed.

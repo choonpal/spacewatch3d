@@ -1,0 +1,19 @@
+{
+  "local_python": "python",
+  "three_package": "/path/to/three/package",
+  "remote_session": "/path/to/private/ssh-session",
+  "remote_root": "/srv/spacewatch/runs",
+  "python": "/srv/spacewatch/env/bin/python",
+  "simsac_source": "/srv/models/SimSaC",
+  "simsac_checkpoint": "/srv/models/simsac_changesim.pth",
+  "person_checkpoint": "/srv/models/yolo11l-seg.pt",
+  "capture_catalog": "/path/to/captures.local.json",
+  "environment": {"CUDA_VISIBLE_DEVICES": "0", "OMP_NUM_THREADS": "4"},
+  "box_segmentation": {
+    "python": "/srv/segmentation/env/bin/python",
+    "dino": "/srv/models/grounding-dino-base",
+    "sam2": "/srv/models/sam2.1_hiera_small.pt",
+    "cache": "/srv/spacewatch/box-mask-cache",
+    "environment": {"CUDA_VISIBLE_DEVICES": "0", "USE_TF": "0", "USE_FLAX": "0"}
+  }
+}

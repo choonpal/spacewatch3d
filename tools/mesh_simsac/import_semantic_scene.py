@@ -14,6 +14,13 @@ import numpy as np
 from PIL import Image
 from scipy.spatial import cKDTree
 
+try:
+    from .aux_inputs import generate_boxes, load_boxes, box_face_instances
+    from .capturer import semantic_capturer
+except ImportError:  # Executed as the standalone trusted server input adapter.
+    from aux_inputs import generate_boxes, load_boxes, box_face_instances
+    from capturer import semantic_capturer
+
 
 def read(path):
     return json.loads(Path(path).read_text(encoding='utf-8-sig'))
@@ -104,10 +111,11 @@ def export(config_path, output):
     import open3d as o3d
     config, output = read(config_path), Path(output)
     output.mkdir(parents=True, exist_ok=False)
+    generate_boxes(config, output)
     doc = dict(schema='mesh-simsac-input-v1', scope=config.get('scope',
         'Independent captures; automatically inferred object changes require review.'),
         settings=config.get('comparison_settings', {}))
-    audit = dict(segmentation_rerun=False, change_predictions_imported=False, captures=[])
+    audit = dict(segmentation_rerun=bool(config.get('box_segmentation')), change_predictions_imported=False, captures=[])
     upright = np.array([[1, 0, 0, 0], [0, 0, 1, 0], [0, -1, 0, 0], [0, 0, 0, 1]], float)
     for phase, source in zip(['before', 'after'], config['captures']):
         folder = output/phase
@@ -158,6 +166,8 @@ def export(config_path, output):
         coordinates = read(source['coordinates'])
         source_to_mesh = np.asarray(coordinates['source_to_mesh'])
         labels = [x['name'] for x in sorted(read(source['classes']), key=lambda x: x['id'])]
+        if source.get('box_masks') and 'box' not in labels:
+            labels.append('box')
         points, original_count = sample_ply(run/'result/map.ply', config.get('point_limit', 2000000))
         np.savez_compressed(folder/'points.npz', points=points)
         cloud_provenance = dict(source=str(run/'result/map.ply'), source_sha256=sha(run/'result/map.ply'),
@@ -166,13 +176,44 @@ def export(config_path, output):
         spec = dict(id=source['id'], mesh=phase+'/mesh.npz', objects=phase+'/objects.json',
             pointcloud=phase+'/points.npz', pointcloud_provenance=cloud_provenance,
             world_from_mesh=upright.tolist(), world_from_pointcloud=(upright@source_to_mesh).tolist(),
-            projection='erp', segmentation_labels=labels, frames=[],
+            projection='erp', segmentation_labels=labels, person_mask_policy='capturer_only', frames=[],
             source_video=dict(path=str(video), sha256=frame_manifest['source_sha256']),
             segmentation_provenance=report['provenance'])
         ray_scene = o3d.t.geometry.RaycastingScene(nthreads=4)
         ray_scene.add_triangles(o3d.core.Tensor(vertices.astype('f4')), o3d.core.Tensor(faces.astype('u4')))
         stride = config.get('frame_stride', 6)
         selected = sorted(set(range(0, len(poses), stride)) | {len(poses)-1})
+        box_frames = {}
+        box_records = []
+        if source.get('box_masks'):
+            for i in selected:
+                f, p = frame_manifest['frames'][i], poses[i]
+                raw = np.load(Path(source['predictions'])/f'{i:05d}.npz')['labels']
+                mask, receipt = load_boxes(source['box_masks'], i, raw.shape, f['sha256'])
+                pose = source_to_mesh@np.asarray(p['camera_to_world'])
+                pose[:3, :3] /= np.cbrt(np.linalg.det(pose[:3, :3]))
+                h, w = raw.shape
+                y, x = np.mgrid[:h, :w]
+                lon, lat = ((x+.5)/w-.5)*2*np.pi, ((y+.5)/h-.5)*np.pi
+                direction = np.stack([np.cos(lat)*np.sin(lon), np.sin(lat), np.cos(lat)*np.cos(lon)], -1)@pose[:3, :3].T
+                rays = np.concatenate([np.broadcast_to(pose[:3, 3], direction.shape), direction], -1).astype('f4')
+                hit = ray_scene.cast_rays(o3d.core.Tensor(rays), nthreads=4)['primitive_ids'].numpy()
+                box_frames[i] = (hit, mask)
+                box_records.append(dict(frame=i, detections=len(receipt['detections']), mask_pixels=int(mask.sum()),
+                    image_sha256=receipt['image_sha256'], mask_sha256=receipt['mask_sha256'], model_key=receipt['model_key']))
+            ids, mesh['face_class_id'], added = box_face_instances(faces, ids, mesh['face_class_id'],
+                list(box_frames.values()), labels.index('box'))
+            mesh['face_instance_id'] = ids
+            np.savez_compressed(folder/'mesh.npz', **mesh)
+            records = [{**r, 'face_count':int((ids == r['instance_id']).sum())} for r in records if (ids == r['instance_id']).any()]+added
+            report['instance_records'] = records
+            report['provenance'].update(box_segmentation='Grounding DINO base + SAM 2.1 small; original ERP RGB',
+                instance_method='Saved semantic regions plus automatically segmented box surface components on original triangles',
+                box_mesh_instances=len(added), box_mesh_faces=sum(r['face_count'] for r in added),
+                box_transfer='Source first-hit faces: >=60% mask coverage in >=2 independent frames and >=60% visible-frame agreement; connected components',
+                mesh_geometry_synthesized=False, box_frames=box_records)
+            (folder/'objects.json').write_text(json.dumps(report, ensure_ascii=False))
+        capturer_audit = []
         for i in selected:
             f, p = frame_manifest['frames'][i], poses[i]
             if prediction_manifest['frames'][i]['sha256'] != f['sha256']:
@@ -187,10 +228,10 @@ def export(config_path, output):
                 raw = masks['labels']
                 cls = np.where(raw < len(labels), raw.astype('u2')+1, 0).astype('u2')
             person = raw == labels.index('person') if 'person' in labels else np.zeros_like(raw, bool)
-            mask_path = run/'masks'/f'frame_{i:05d}.png'
-            if not mask_path.is_file():
-                raise ValueError('Original reconstruction person mask is missing')
-            person |= np.asarray(Image.open(mask_path).convert('L').resize(raw.shape[::-1], Image.Resampling.NEAREST)) > 0
+            person, role_audit = semantic_capturer(person)
+            capturer_audit.append(dict(frame=i, **role_audit))
+            if i in box_frames:
+                cls[box_frames[i][1] & ~person] = labels.index('box')+1
             pose = source_to_mesh@np.asarray(p['camera_to_world'])
             scale = np.linalg.det(pose[:3, :3])**(1/3)
             pose[:3, :3] /= scale
@@ -214,7 +255,7 @@ def export(config_path, output):
         doc[phase] = spec
         audit['captures'].append(dict(id=source['id'], mesh_files=1, candidate_regions=len(records),
             source_triangles=len(faces), original_frames=len(poses), sampled_rgb_frames=len(selected),
-            labels=labels, source=report['provenance'], pointcloud=cloud_provenance))
+            labels=labels, source=report['provenance'], pointcloud=cloud_provenance, capturer=capturer_audit))
     (output/'manifest.json').write_text(json.dumps(doc, ensure_ascii=False))
     (output/'source-audit.json').write_text(json.dumps(audit, ensure_ascii=False, indent=2))
     with zipfile.ZipFile(output.with_suffix('.zip'), 'w', zipfile.ZIP_DEFLATED, compresslevel=1) as z:

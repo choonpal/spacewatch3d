@@ -146,6 +146,13 @@ class MeshChangeJobs:
             doc, hashes = unpack(folder/'upload.zip', folder/'inputs')
             runtime = read(self.runtime)
             identity = model_identity(runtime)
+            if data.get('reprocess_parent'):
+                parent=self.folder(data['reprocess_parent'])
+                previous=read(parent/'attempt/identity.json')
+                if identity != previous['models'] or digest(REPO/'tools/mesh_simsac/model.py') != previous['code']['model.py']:
+                    raise ValueError('모델이 변경돼 기존 확률을 재사용할 수 없습니다. 새 비교가 필요합니다.')
+                runtime['reprocess_source']=read(parent/'attempt/result/remote.local.json')['directory']+'/result/detection'
+                runtime['reprocess_parent_viewer_sha256']=data['reprocess_parent_viewer_sha256']
             source = REPO/'tools/mesh_simsac'
             versions = {p.name: digest(p) for p in source.iterdir() if p.suffix in ['.py', '.js', '.html', '.css']}
             versions['jobs'] = digest(__file__)
@@ -153,6 +160,8 @@ class MeshChangeJobs:
             # The manifest hash contains camera poses, thresholds and transforms.
             content = dict(files=hashes, models=identity, code=versions,
                            environment=runtime.get('environment', {}), device=runtime.get('device', 'cuda'))
+            if data.get('reprocess_parent'):
+                content['reprocess_parent_viewer_sha256']=data['reprocess_parent_viewer_sha256']
             fingerprint = hashlib.sha256(json.dumps(content, sort_keys=True).encode()).hexdigest()
             runtime['model_hashes'] = identity['models']
             cache = self.root/'cache'/fingerprint
@@ -203,7 +212,10 @@ class MeshChangeJobs:
     def _publish(self, key, folder, output, data, content):
         public = output/'detection'
         result = read(public/'viewer-data.json')
-        if not result.get('job_provenance', {}).get('fresh_inference'):
+        provenance=result.get('job_provenance', {})
+        replay=(data.get('reprocess_parent') and provenance.get('reused_probabilities') and
+                provenance.get('parent_viewer_sha256')==data.get('reprocess_parent_viewer_sha256'))
+        if not provenance.get('fresh_inference') and not replay:
             raise ValueError('현재 입력의 새 추론 결과가 없습니다.')
         assets = {str(p.relative_to(public)).replace('\\', '/'): digest(p) for p in public.rglob('*')
                   if p.is_file() and self.public_asset(str(p.relative_to(public)).replace('\\', '/'))}
@@ -219,6 +231,22 @@ class MeshChangeJobs:
         write(marker, dict(assets=assets, counts=result['counts'], generation=generation.name, identity=content))
         data.update(state='complete', counts=result['counts'], finished_unix=time.time())
         write(folder/'job.json', data)
+
+    def submit_reprocess(self, parent_key):
+        """New auditable job using the parent's exact probabilities and inputs."""
+        import shutil
+        parent=self.folder(parent_key)
+        if read(parent/'job.json')['state']!='complete':
+            raise ValueError('완료된 비교만 재집계할 수 있습니다.')
+        if not (parent/'attempt/result/remote.local.json').is_file():
+            raise ValueError('서버 원본 확률 기록이 필요합니다.')
+        key=uuid.uuid4().hex[:24];folder=self.root/'jobs'/key;folder.mkdir()
+        shutil.copyfile(parent/'upload.zip',folder/'upload.zip')
+        write(folder/'job.json',dict(id=key,state='queued',created_unix=time.time(),reprocess_parent=parent_key,
+            reprocess_parent_viewer_sha256=digest(self.asset(parent_key,'viewer-data.json'))))
+        with self.lock:self.active.add(key)
+        self.executor.submit(self._process,key)
+        return self.status(key)
 
     def retry(self, key):
         with self.lock:
@@ -271,7 +299,7 @@ class MeshChangeJobs:
 
     @staticmethod
     def public_asset(name):
-        return bool(name in ['index.html', 'events-viewer.js', 'events-viewer.css', 'photo-presentation.js', 'viewer-data.json', 'validation.json', 'results/events.json']
+        return bool(name in ['index.html', 'rgb-viewer.js', 'rgb-viewer.css', 'events-viewer.js', 'events-viewer.css', 'photo-presentation.js', 'viewer-data.json', 'validation.json', 'results/events.json']
                     or re.fullmatch(r'events/(?:objects/E[01]-I\d+\.bin|photos/[\w-]+\.(?:jpg|png))', name)
                     or re.fullmatch(r'preview/(?:mesh-[01]\.bin|cloud-[01]\.bin|vendor/(?:three\.(?:module|core)\.js|OrbitControls\.js|LICENSE))', name))
 

@@ -26,13 +26,16 @@ def select(runtime, request):
 
 def public_sources(runtime):
     return [dict(id=s['id'], label=s.get('label', s['id']), mesh_files=1,
-                 candidate_regions=s.get('candidate_regions'), segmentation=s.get('segmentation_model', ''),
+                 candidate_regions=s.get('candidate_regions'), segmentation=s.get('segmentation_model', '')+
+                 (' + Grounding DINO·SAM2 박스 자동 분할' if runtime.get('box_segmentation') else ''),
                  description='기존 영상·클래스 메쉬·객체 후보 영역·점군·카메라')
             for s in catalog(runtime)['captures']]
 
 
 def prepare(runtime, request, folder):
     config = select(runtime, request)
+    if runtime.get('box_segmentation'):
+        config['box_segmentation'] = runtime['box_segmentation']
     if not runtime.get('remote_session'):
         raise ValueError('서버 촬영 입력에는 연결된 분석 서버가 필요합니다.')
     folder = Path(folder)
@@ -48,6 +51,8 @@ def prepare(runtime, request, folder):
     relay.call(command='mkdir -p '+quote(remote))
     relay.call(upload=[[str(config_path), remote+'/config.json'],
                        [str(script_path), remote+'/prepare.py']])
+    relay.call(upload=[[str(script_path.with_name(name)), remote+'/'+name]
+                       for name in ['aux_inputs.py', 'capturer.py', 'ground_boxes.py']])
     command = [runtime['python'], remote+'/prepare.py', '--config', remote+'/config.json', '--output', remote+'/inputs']
     # The viewer job owns input preparation and the subsequent fresh inference.
     # Redirect long frame progress to its own log; never substitute a saved result.

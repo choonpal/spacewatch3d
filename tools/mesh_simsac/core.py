@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import time
+import uuid
 from pathlib import Path
 
 import numpy as np
@@ -16,9 +18,22 @@ def read(path):
 def write(path, value):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    temp = path.with_suffix(path.suffix + ".tmp")
+    temp = path.with_name(path.name + '.' + uuid.uuid4().hex + '.tmp')
     temp.write_text(json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False), encoding="utf-8")
-    temp.replace(path)
+    try:
+        for attempt in range(100):
+            try:
+                temp.replace(path)
+                return
+            except PermissionError:
+                if attempt == 99:
+                    raise
+                time.sleep(.05)
+    finally:
+        try:
+            temp.unlink(missing_ok=True)
+        except PermissionError:
+            pass
 
 
 def sha(path):

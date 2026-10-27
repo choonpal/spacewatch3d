@@ -160,7 +160,7 @@ def rasterize(vertices, faces, ids, cloud, pose, K, shape, tolerance, scene=None
                 pointcloud_occluded=foreground, pose=pose, K=K)
 
 
-def prepare(manifest_path, output):
+def prepare(manifest_path, output, capturer_checkpoint=None, device='cuda'):
     manifest_path, output = Path(manifest_path).resolve(), Path(output).resolve()
     manifest, base = read(manifest_path), manifest_path.parent
     if manifest.get("schema") != "mesh-simsac-input-v1":
@@ -171,6 +171,9 @@ def prepare(manifest_path, output):
                     registration="auto", min_registration_overlap=.2, regional_correction=True,
                     registration_samples=60000, region_width_heights=2.5, max_regions=64)
     settings.update(manifest.get("settings", {}))
+    from .observation_quality import quality_settings
+    quality_settings(settings)
+    capturer_detector, capturer_records = None, []
     for key in ["size", "frame_stride", "max_refs", "min_frames", "min_object_pixels"]:
         if not isinstance(settings[key], int) or settings[key] < 1:
             raise ValueError(f"{key} must be a positive integer")
@@ -290,6 +293,16 @@ def prepare(manifest_path, output):
                         original_mask = np.asarray(Image.open(path).convert("L")) > 0
                         if original_mask.shape != original.shape[:2]:
                             raise ValueError("Person mask must match original image dimensions")
+                    mask_policy = spec.get('person_mask_policy','all_people')
+                    if capturer_checkpoint and mask_policy != 'capturer_only':
+                        if spec.get('projection','erp') != 'erp':
+                            raise ValueError('Perspective inputs require explicit photographer-only masks and person_mask_policy=capturer_only')
+                        if capturer_detector is None:
+                            from .capturer import CapturerDetector
+                            capturer_detector = CapturerDetector(capturer_checkpoint,device)
+                        original_mask, audit = capturer_detector.predict(original)
+                        capturer_records.append(dict(capture=spec['id'],frame_id=str(frame['id']),**audit))
+                        mask_policy = 'capturer_only'
                     pose = camera_transform(np.array(frame["world_from_camera"]), common)
                     projection = spec.get("projection", "erp")
                     rotations = cube_rotations() if projection == "erp" else {"perspective": np.eye(3)}
@@ -321,7 +334,8 @@ def prepare(manifest_path, output):
                             projected={k:erp_project(v.astype('i4'), direction, rotation, True) if projection=='erp'
                                        else np.asarray(Image.fromarray(v.astype('i4')).resize(shape[::-1],Image.Resampling.NEAREST))
                                        for k,v in segmentation.items() if k in ['class_id','instance_id','person']}
-                            person |= projected['person'] > 0
+                            if spec.get('person_mask_policy') == 'capturer_only' or mask_policy != 'capturer_only':
+                                person |= projected['person'] > 0
                             geometry['segmentation_class']=projected['class_id']
                             geometry['segmentation_instance']=projected['instance_id']
                             # Object evidence requires agreement with its actual
@@ -329,7 +343,8 @@ def prepare(manifest_path, output):
                             geometry['segmentation_supported']=(geometry['instance']<=0)|(projected['instance_id']==geometry['instance'])
                         if regional:
                             geometry = regional.view(geometry, aligned['face_region'], epoch)
-                        person |= np.isin(geometry["instance"], person_ids)
+                        if mask_policy != 'capturer_only':
+                            person |= np.isin(geometry["instance"], person_ids)
                         vid = f"E{epoch}-V{len(metadata):05d}"
                         view = dict(id=vid, frame_id=str(frame["id"]), epoch=epoch, rgb=rgb, person=person, **geometry)
                         np.savez_compressed(output / "views" / (vid + ".npz"), **{k: v for k, v in view.items() if isinstance(v, np.ndarray)})
@@ -340,6 +355,7 @@ def prepare(manifest_path, output):
                                       rgb_sha256=hashlib.sha256(rgb.tobytes()).hexdigest(),
                                       geometry_sha256=sha(output / "views" / (vid + ".npz")),
                                       segmentation_labels=spec.get('segmentation_labels', []),
+                                      person_mask_policy=mask_policy,
                                       valid_pixels=int(geometry["valid"].sum()), person_pixels=int(person.sum()))
                         metadata.append(record)
                         arrays.append(view)
@@ -353,6 +369,7 @@ def prepare(manifest_path, output):
                   upstream_provenance=spec.get("pointcloud_provenance")))
         pairs = choose_pairs(arrays, settings["visibility_tolerance_u"], settings["min_overlap"], settings["max_refs"])
         write(output / 'registration.json', registration)
+        write(output / 'capturer-audit.json',capturer_records)
         write(output / "pairs.json", pairs)
         write(output / "objects.json", object_rows)
         write(output / "manifest.json", dict(schema="mesh-simsac-prepared-v1", settings=settings, views=metadata,

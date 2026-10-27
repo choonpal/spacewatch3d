@@ -238,7 +238,7 @@ def classify(root, manifest_path):
     for key in active:
         opposite[key] = opposite_observations(objects[key]["points"], objects[key]["epoch"], views,
                                               max(prepared['settings']['visibility_tolerance_u'], objects[key]['map_error_u']), objects[key]['point_regions'], objects[key]['label'])
-    before, after = [[o for o in objects.values() if o["epoch"] == epoch and o["label"] != "person"] for epoch in [0, 1]]
+    before, after = [[o for o in objects.values() if o["epoch"] == epoch] for epoch in [0, 1]]
     stationary_options = []
     for a in before:
         for b in after:

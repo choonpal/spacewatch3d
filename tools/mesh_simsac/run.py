@@ -11,9 +11,22 @@ import numpy as np
 from PIL import Image
 
 from .core import evidence_masks, read, sha, vote_state, voxel_components, write
+from .observation_quality import object_pair_quality, reference_consensus, quality_settings
+
+
+def qualified_evidence(query, reference, masks, settings=None):
+    eligible, audit = object_pair_quality(query, reference,**quality_settings(settings or {}))
+    masks = {k:v.copy() for k,v in masks.items()}
+    masks['unobserved_counterpart'] |= masks['candidate'] & ~eligible
+    masks['candidate'] &= eligible
+    masks['observable'] &= eligible
+    return masks, audit
 
 
 def people_masks(views, checkpoint, device):
+    if all(v.get('person_mask_policy') == 'capturer_only' for v in views):
+        return {v['id']:v['person'].copy() for v in views}, dict(detector_used=False,
+            policy='Only supplied nadir-connected photographer masks; ordinary people retained', all_people_excluded=False)
     if checkpoint is None:
         return {v["id"]: v["person"].copy() for v in views}, dict(detector_used=False,
                 policy="Only supplied image masks and segmented mesh person IDs; unsegmented people may remain")
@@ -163,6 +176,7 @@ def run(root, source, checkpoint, person_checkpoint=None, device="cuda"):
                 probability = model.predict(query["rgb"], reference["rgb"])
                 masks_pair = evidence_masks(query, reference, probability, masks[query["id"]], masks[reference["id"]],
                                             settings["visibility_tolerance_u"], settings["probability_threshold"])
+                masks_pair, object_quality = qualified_evidence(query, reference, masks_pair,settings)
                 support += masks_pair["observable"].astype("u1")
                 positive += masks_pair["candidate"].astype("u1")
                 probabilities.append(probability)
@@ -172,9 +186,10 @@ def run(root, source, checkpoint, person_checkpoint=None, device="cuda"):
                 audits.append(dict(id=key, query=query["id"], reference=reference["id"],
                                    query_rgb_sha256=query["rgb_sha256"], reference_rgb_sha256=reference["rgb_sha256"],
                                    path=str(file.relative_to(root)), sha256=sha(file),
+                                   object_observation_quality=object_quality,
                                    pixels={k: int(m.sum()) for k, m in masks_pair.items()}))
             observable = support > 0
-            changed = observable & (positive >= np.maximum(1, np.ceil(support * settings["changed_frame_ratio"])))
+            changed = reference_consensus(support, positive, settings['changed_frame_ratio'])
             evidence.add(query, observable, changed)
             probability = np.mean(probabilities, axis=0).astype("f4") if probabilities else np.zeros(support.shape, "f4")
             np.savez_compressed(out / "views" / (query["id"] + ".npz"), mean_probability=probability,

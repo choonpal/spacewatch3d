@@ -118,6 +118,16 @@ class ChangeJobs:
                     manifest[phase] = {k: copy.deepcopy(spec[k]) for k in ['world_from_mesh', 'world_from_gaussian', 'world_from_camera', 'camera_convention'] if k in spec}
                     for field in ['mesh', 'gaussian', 'cameras']:
                         manifest[phase][field] = data['uploads'][phase+'-'+field]['file']
+            if descriptor is not None and not isinstance(descriptor,dict):raise ValueError('분석 설정 객체가 필요합니다.')
+            profile=(descriptor or {}).get('analysis_profile')
+            if profile not in [None,'input','4k-perspective','1k-panorama']:
+                raise ValueError('알 수 없는 분석 품질 설정입니다.')
+            if profile in ['4k-perspective','1k-panorama']:
+                settings=manifest.setdefault('settings',{})
+                settings.update(width=4096 if profile=='4k-perspective' else 1024,height=2048 if profile=='4k-perspective' else 512,
+                                cube_size=2048 if profile=='4k-perspective' else 384,
+                                inference_mode='perspective_tiles' if profile=='4k-perspective' else 'panorama',
+                                perspective_tile_size=1040,perspective_tile_overlap=32)
             runtime = read(self.runtime_path)
             runtime['input_location'] = 'server' if data['source'] == 'server' else 'local'
             bindings=[]
@@ -190,7 +200,7 @@ class ChangeJobs:
     def asset(self, key, name):
         if self.status(key)['state'] != 'complete':
             raise KeyError('변화탐지가 아직 완료되지 않았습니다.')
-        if not (name in ['changes.json', 'registration.json', 'cameras.json', 'inputs.json', 'self-control.json', 'model.json', 'object-events.json'] or
+        if not (name in ['changes.json', 'registration.json', 'cameras.json', 'inputs.json', 'self-control.json', 'model.json', 'object-events.json', 'comparison.json'] or
                 re.fullmatch(r'renders/V\d{5}/(?:before|after)(?:-change)?\.png', name)):
             raise KeyError('공개할 수 없는 결과 파일입니다.')
         return self.folder(key)/'result'/name

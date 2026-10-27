@@ -7,6 +7,24 @@ rendering → bidirectional pretrained SimSaC → person/common-observation filt
 Video reconstruction, Gaussian training and keypoint selection are upstream work.
 Saved cameras are inputs; there is no planner or keypoint-version dependency here.
 
+For native 4K display with local perspective inference, set:
+
+```json
+{"settings": {"width": 4096, "height": 2048, "cube_size": 2048,
+  "inference_mode": "perspective_tiles", "perspective_tile_size": 1040,
+  "perspective_tile_overlap": 32}}
+```
+
+At every supplied camera both maps are freshly rendered into six 100-degree
+perspective faces. Each 2048-square face supplies four overlapping 1040-square
+tiles, giving 24 paired local views. SimSaC still uses its pretrained 520/256
+branches, but receives local perspective tiles rather than the resized complete
+panorama. Both directional probability maps are averaged in tile overlaps and
+projected back into the common 4K panorama for person/alpha/support filtering and
+3D lifting. Per-view `directional-inference.json` records source image hashes,
+tile rectangles and zero complete-panorama model calls. The existing `panorama`
+mode remains available for reproducing the baseline.
+
 From the repository root on the existing CUDA host:
 
 ```sh
@@ -23,6 +41,11 @@ The adapter transfers this source, launches the same worker, mirrors progress,
 and downloads the results. Passwords are not accepted or stored by this code.
 Deployment paths and capture-specific settings belong in ignored `.local/` or
 `*.local.json` files, not in Git. Use a new output directory for every run.
+
+Optional runtime `download_profile: viewer` downloads tour images, 3D outputs and
+audit JSON while keeping dense per-view arrays and native perspective source images
+on the GPU host. `download-receipt.json` records the full remote evidence directory;
+the default `full` profile downloads everything. No server evidence is deleted.
 
 `python -m tools.gaussian_change.pipeline` is an equivalent repository entry point.
 `--validate-only` checks file references, hashes, coordinate bridges and camera
@@ -122,6 +145,20 @@ CPU integration checks:
 ```sh
 python -m unittest discover -s tests -p test_mesh_gaussian_pipeline.py -v
 ```
+
+Compare two completed runs without modifying their event labels:
+
+```sh
+python -m tools.gaussian_change.comparison --baseline BASELINE_OUTPUT --current NEW_OUTPUT
+```
+
+The new output receives `comparison.json` and its manifest link. The report checks
+mesh/camera input hashes, camera order, checkpoint and classification gates. It
+reports both unresolved counts/rates and outcomes for each previously unresolved
+region. A missing re-detection is not counted as successful classification. The
+browser displays this report alongside the new keyframe change tour. If map and
+inference settings change together, this is a combined experiment, not an isolated
+causal or ground-truth accuracy evaluation.
 
 Those tests cover coordinate conventions, a known structural offset and duplicate
 multi-view fusion. They do not replace real CUDA rendering/inference or accuracy

@@ -111,9 +111,13 @@ def run_remote(manifest, output, runtime):
             raise TimeoutError('GPU run still active; remote-run.local.json records its directory and PID')
         time.sleep(3)
     # Fetch partial diagnostics on failure as well as successful 3D results.
+    profile=runtime.get('download_profile','full')
+    if profile not in ['full','viewer']:raise ValueError('Unknown download profile')
     script = (f'from pathlib import Path;import zipfile;p=Path({remote!r});'
               'z=zipfile.ZipFile(p/"result.zip","w",zipfile.ZIP_DEFLATED,compresslevel=1);'
-              '[z.write(f,str(f.relative_to(p/"result"))) for f in (p/"result").rglob("*") if f.is_file()];'
+              f'profile={profile!r};'
+              '[z.write(f,str(f.relative_to(p/"result"))) for f in (p/"result").rglob("*") if f.is_file() and '
+              '(profile=="full" or ("perspective" not in f.parts and not (f.suffix==".npz" and "renders" in f.parts)))];'
               'z.write(p/"worker.log","worker.log");z.close()')
     relay.call(command=quote(python)+' -c '+quote(script))
     relay.call(get=[[remote+'/result.zip', str(output/'result.zip')]])
@@ -125,4 +129,6 @@ def run_remote(manifest, output, runtime):
         z.extractall(output)
     if state['state'] == 'failed':
         raise RuntimeError(state.get('message', 'GPU worker failed; see worker.log'))
+    write(output/'download-receipt.json',{'profile':profile,'full_evidence_on_gpu':remote+'/result',
+          'omitted_from_local_copy':['perspective source faces','per-view dense geometry and inference arrays'] if profile=='viewer' else []})
     return output/'changes.json'

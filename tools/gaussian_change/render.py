@@ -37,6 +37,21 @@ class Renderer:
         rgb=(result[0,...,:3].clamp(0,1).cpu().numpy()*255+.5).astype('u1')
         return rgb,result[0,...,3].cpu().numpy(),alpha[0,...,0].cpu().numpy()
 
+def person_mask(detector,image):
+    import numpy as np
+    import cv2
+    size=image.shape[0]
+    prediction=detector.predict(image[...,::-1].copy(),classes=[0],conf=.25,imgsz=640,device=0,verbose=False)[0]
+    mask=np.zeros(image.shape[:2],'u1')
+    if prediction.masks is not None:
+        for raw in prediction.masks.data.cpu().numpy():mask|=(cv2.resize(raw,(image.shape[1],size),interpolation=cv2.INTER_NEAREST)>.5).astype('u1')
+    if prediction.boxes is not None:
+        for box in prediction.boxes.xyxy.cpu().numpy():
+            x0,y0,x1,y1=box;mx=(x1-x0)*.1;my=(y1-y0)*.1
+            mask[max(0,int(y0-my)):min(size,int(y1+my)+1),max(0,int(x0-mx)):min(image.shape[1],int(x1+mx)+1)]=1
+    return mask>0
+
+
 def pano(renderer, pose, detector, width=1024, height=512, size=384):
     import numpy as np
     import cv2
@@ -52,14 +67,7 @@ def pano(renderer, pose, detector, width=1024, height=512, size=384):
     for i,basis in enumerate(bases):
         camera=pose.copy();camera[:3,:3]=pose[:3,:3]@basis
         image,dep,a=renderer.face(camera,size)
-        prediction=detector.predict(image[...,::-1].copy(),classes=[0],conf=.25,imgsz=640,device=0,verbose=False)[0]
-        mask=np.zeros((size,size),'u1')
-        if prediction.masks is not None:
-            for raw in prediction.masks.data.cpu().numpy():mask|=(cv2.resize(raw,(size,size),interpolation=cv2.INTER_NEAREST)>.5).astype('u1')
-        if prediction.boxes is not None:
-            for box in prediction.boxes.xyxy.cpu().numpy():
-                x0,y0,x1,y1=box;mx=(x1-x0)*.1;my=(y1-y0)*.1
-                mask[max(0,int(y0-my)):min(size,int(y1+my)+1),max(0,int(x0-mx)):min(size,int(x1+mx)+1)]=1
+        mask=person_mask(detector,image).astype('u1')
         directions=rays@basis;z=np.maximum(directions[...,2],1e-8)
         mx=(focal*directions[...,0]/z+size/2-.5).astype('f4');my=(focal*directions[...,1]/z+size/2-.5).astype('f4')
         choose=dominant==i

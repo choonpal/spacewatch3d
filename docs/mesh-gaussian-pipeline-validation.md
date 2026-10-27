@@ -88,3 +88,41 @@ representative keyframe, skips empty cameras and aims at the visible change box.
 Full route mode preserves all supplied camera stops. Both modes and box-click
 shadows were exercised in the browser. Fourteen processing tests, four job-service
 tests, eleven HTTP tests and seven JavaScript navigation/viewer tests passed.
+
+## Native 4K maps with perspective-tile inference
+
+A second fresh GPU run used the existing alternative native Gaussian models
+(296,679 and 308,246 Gaussians). The original meshes, 438 unary observations,
+27 saved camera requests, model checkpoint and classification gates were held
+fixed. The source camera frame-to-mesh scale/axis bridge was also applied to these
+native model coordinates. Global and regional registration were recomputed: 14/25
+regions remained supported and the maximum global matrix element difference was
+0.0000853. No previous registration or detections were supplied to detection.
+
+Each pose produced a new 4096×2048 panorama from six 2048-square native Gaussian
+perspective renders. Each face supplied four overlapping 1040-square tiles;
+648 paired tiles were inferred bidirectionally over all 27 poses. Audit records
+show zero complete-panorama inference calls. The same-image perspective control
+had zero pixels over threshold and maximum probability 0.085193. The full GPU
+worker completed in 870.46 seconds, excluding result transfer. Complete dense
+evidence remains on the GPU host; the viewer download profile fetched images,
+3D results and JSON receipts.
+
+| Result | Baseline whole panorama | 4K perspective tiles |
+| --- | ---: | ---: |
+| Raw surface candidates | 15 | 40 |
+| Moved estimates | 1 | 1 |
+| Added / removed estimates | 0 / 0 | 0 / 0 |
+| Same-position appearance changes | 0 | 3 |
+| Unresolved events | 5 | 14 |
+| Unresolved share of events | 83.3% | 77.8% |
+
+Unresolved **count increased**. A lower fraction with more detections is not an
+accuracy improvement. Twelve new unresolved events lack a linked instance and two
+lack sufficient correspondence/observation evidence. Under the comparison gates,
+four previous unresolved regions had no corresponding new detection and one was
+excluded as a structural surface; none was counted as successfully classified.
+The same moved instance pair retained its correspondence, with appearance
+similarity 0.921→0.944 and feasible origin hypotheses 3→1. This remains an estimate,
+not physical-identity ground truth. Native map and inference changes were combined,
+so the run does not isolate their individual effects.

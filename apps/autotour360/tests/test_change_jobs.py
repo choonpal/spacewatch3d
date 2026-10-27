@@ -59,6 +59,14 @@ class ChangeJobTests(unittest.TestCase):
             with self.assertRaises(ValueError): self.jobs.start(key, {})
             launch.assert_not_called()
 
+    def test_explicit_4k_profile_preserves_the_supplied_detection_threshold(self):
+        key=self.upload_all();proc=Mock();proc.pid=124;proc.poll.return_value=None
+        with patch('change_jobs.subprocess.Popen',return_value=proc):
+            self.jobs.start(key,{'units':'m','before':{},'after':{},'settings':{'probability_threshold':.55},'analysis_profile':'4k-perspective'})
+        manifest=json.loads((self.jobs.folder(key)/'input.local.json').read_text());settings=manifest['settings']
+        self.assertEqual((settings['width'],settings['height'],settings['cube_size']),(4096,2048,2048))
+        self.assertEqual(settings['inference_mode'],'perspective_tiles');self.assertEqual(settings['probability_threshold'],.55)
+
     def test_run_button_binds_registered_instance_observations_by_mesh_hash(self):
         mesh=b'new-mesh';mesh_hash=hashlib.sha256(mesh).hexdigest()
         packet=self.root/'instances.json';packet.write_text(json.dumps({'schema':'mesh-instance-observations-v1','mesh_sha256':mesh_hash,'observations':[{'id':'a'}],'cameras':[{'frame':0}]}))

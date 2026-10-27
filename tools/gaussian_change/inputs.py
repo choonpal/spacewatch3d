@@ -59,11 +59,18 @@ def load_manifest(path):
                 'region_width_heights': 2., 'max_regions': 48,
                 'probability_threshold': .5, 'alpha_threshold': .85,
                 'width': 1024, 'height': 512, 'cube_size': 384,
+                'inference_mode': 'panorama', 'perspective_tile_size': 1040, 'perspective_tile_overlap': 32,
                 'max_views_per_capture': None, 'min_component_voxels': 5}
     supplied = doc.get('settings', {})
     if set(supplied) - set(settings):
         raise ValueError('Unknown settings: ' + str(sorted(set(supplied) - set(settings))))
     settings.update(supplied)
+    if settings['inference_mode'] not in ['panorama','perspective_tiles']:
+        raise ValueError('inference_mode must be panorama or perspective_tiles')
+    for field in ['perspective_tile_size','perspective_tile_overlap']:
+        if isinstance(settings[field],bool) or not isinstance(settings[field],int):raise ValueError(field+' must be an integer')
+    if settings['perspective_tile_size']<32 or not 0<=settings['perspective_tile_overlap']<settings['perspective_tile_size']:
+        raise ValueError('Invalid perspective tile size/overlap')
     for name in ['samples', 'max_regions', 'width', 'height', 'cube_size', 'min_component_voxels']:
         v = settings[name]
         if isinstance(v, bool) or not isinstance(v, int) or v < 1:

@@ -81,7 +81,9 @@ def run(manifest, output, runtime, *, validate_only=False):
         progress('model_loading')
         model = SimSaC(runtime['simsac_source'], runtime['simsac_checkpoint'])
         model.audit.update(input_source='Fresh same-pose Gaussian RGB renders', gaussian_inputs_used=True,
-                           depth_source='Gaussian expected radial depth, not sensor depth')
+                           depth_source='Gaussian expected radial depth, not sensor depth',
+                           inference_mode=settings['inference_mode'],full_panorama_resized_for_model=settings['inference_mode']=='panorama',
+                           panorama_size=[settings['width'],settings['height']],cube_face_size=settings['cube_size'])
         detector = YOLO(runtime['person_checkpoint'])
         model.audit['person_checkpoint_sha256'] = sha(runtime['person_checkpoint'])
         write(output/'model.json', model.audit)
@@ -90,9 +92,17 @@ def run(manifest, output, runtime, *, validate_only=False):
         for index, view in enumerate(views):
             progress('render_and_infer', completed=index, total=len(views), view_id=view['id'])
             pose = np.array(view['camera_to_common_cv'])
-            pair = [pano(r, pose, detector, settings['width'], settings['height'], settings['cube_size']) for r in renderers]
             directory = output/'renders'/f'V{index+1:05d}'
             directory.mkdir(parents=True)
+            directional_audit=None;tile_control=None
+            if settings['inference_mode']=='perspective_tiles':
+                from .directional import render_pair
+                pair,probabilities,directional_audit,tile_control=render_pair(renderers,pose,detector,model,settings['width'],settings['height'],settings['cube_size'],directory,
+                    settings['perspective_tile_size'],settings['perspective_tile_overlap'],control is None,
+                    lambda face:progress('render_and_infer',completed=index,total=len(views),view_id=view['id'],perspective_face=face+1))
+            else:
+                pair = [pano(r, pose, detector, settings['width'], settings['height'], settings['cube_size']) for r in renderers]
+                probabilities = [model.predict(pair[e]['rgb'], pair[1-e]['rgb']) for e in [0, 1]]
             valid = np.ones((settings['height'], settings['width']), bool)
             for phase, p in zip(['before', 'after'], pair):
                 cv2.imwrite(str(directory/(phase+'.png')), p['rgb'][..., ::-1])
@@ -100,20 +110,21 @@ def run(manifest, output, runtime, *, validate_only=False):
                 valid &= np.isfinite(p['depth']) & (p['depth'] > .001*h) & (p['alpha'] >= settings['alpha_threshold'])
             people = pair[0]['person'] | pair[1]['person']
             if control is None:
-                cp = model.predict(pair[0]['rgb'], pair[0]['rgb'])
+                cp = tile_control.pop('probabilities') if tile_control else model.predict(pair[0]['rgb'], pair[0]['rgb'])
                 control = {'pixels_over_threshold': int((cp > settings['probability_threshold']).sum()),
-                           'max_probability': float(cp.max()), 'compared_image_sha256': sha(directory/'before.png')}
+                           'max_probability': float(cp.max()), 'compared_image_sha256': sha(directory/'before.png'),
+                           'input_kind':'native perspective tile' if tile_control else 'whole panorama',
+                           'tile':tile_control}
                 write(output/'self-control.json', control)
-            probabilities = [model.predict(pair[e]['rgb'], pair[1-e]['rgb']) for e in [0, 1]]
             record = {'id': view['id'], 'directory': directory.relative_to(output).as_posix(),
-                      'valid_overlap_pixels': int(valid.sum()), 'person_union_pixels': int(people.sum()), 'phases': []}
+                      'valid_overlap_pixels': int(valid.sum()), 'person_union_pixels': int(people.sum()), 'phases': [],
+                      'inference_mode':settings['inference_mode'],'tiles_per_phase':directional_audit['tiles_per_phase'] if directional_audit else 1}
             for epoch, p in enumerate(pair):
-                points = pose[:3, 3] + (p['rays'] @ pose[:3, :3].T)*p['depth'][..., None]
-                lookup = np.where(np.isfinite(points), points, pose[:3, 3])
-                labels = assign(lookup.reshape(-1, 3), centers).reshape(valid.shape)
                 raw = probabilities[epoch] > settings['probability_threshold']
-                mask = raw & valid & ~people & supported_regions[labels]
-                q = points[mask]
+                eligible=raw&valid&~people
+                points=pose[:3,3]+(p['rays'][eligible]@pose[:3,:3].T)*p['depth'][eligible,None]
+                supported=supported_regions[assign(points,centers)] if len(points) else np.zeros(0,bool)
+                mask=eligible.copy();mask[eligible]=supported;q=points[supported]
                 # Bound fusion memory; persisted masks/depth retain every original selected pixel.
                 stride = max(1, int(np.ceil(len(q)/20000)))
                 if len(q):
@@ -121,7 +132,7 @@ def run(manifest, output, runtime, *, validate_only=False):
                 cv2.imwrite(str(directory/(['before', 'after'][epoch]+'-change.png')), mask.astype('u1')*255)
                 record['phases'].append({'raw_pixels': int(raw.sum()), 'valid_changed_pixels': int((raw & valid).sum()),
                                          'removed_person_pixels': int((raw & valid & people).sum()),
-                                         'removed_unsupported_region_pixels': int((raw & valid & ~people & ~supported_regions[labels]).sum()),
+                                         'removed_unsupported_region_pixels': int((~supported).sum()),
                                          'selected_pixels': int(mask.sum()), 'fusion_sample_stride': stride})
             np.savez_compressed(directory/'inference.npz', before_probability=probabilities[0], after_probability=probabilities[1], common_valid=valid, person_union=people)
             record['rgb_sha256'] = {p: sha(directory/(p+'.png')) for p in ['before', 'after']}
@@ -139,6 +150,8 @@ def run(manifest, output, runtime, *, validate_only=False):
                   'comparison_support': 'supported' if supported_regions.any() else 'insufficient_registration_support',
                   'limited_view_run': settings['max_views_per_capture'] is not None,
                   'render_depth': 'Gaussian expected radial depth', 'accuracy_ground_truth_evaluated': False}
+        result['render_size']=[settings['width'],settings['height']]
+        result['inference_mode']=settings['inference_mode']
         write(output/'changes.json', result)
         progress('object_classification')
         from .lifecycle import classify

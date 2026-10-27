@@ -18,3 +18,4 @@ include = ["spacewatch3d*", "tools", "tools.gaussian_change*", "tools.mesh_simsa
 
 [tool.setuptools.package-data]
 spacewatch3d = ["schemas/*.json"]
+"tools.mesh_simsac" = ["*.html", "*.css", "*.js"]

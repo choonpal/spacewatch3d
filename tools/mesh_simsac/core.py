@@ -175,7 +175,7 @@ def choose_pairs(views, tolerance, min_overlap=.08, max_refs=2):
 def evidence_masks(query, reference, probability, query_person, reference_person, tolerance, threshold=.5):
     supported, occluded = counterpart_support(query["points"], reference, tolerance, reference_person, query.get('point_region'))
     raw = probability > threshold
-    own = query["valid"]
+    own = query["valid"] & query.get('segmentation_supported', True)
     people = raw & own & query_person
     missing = raw & ~own
     hidden = raw & own & ~query_person & occluded

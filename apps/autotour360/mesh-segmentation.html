@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>분할 메쉬 검증 · SpaceWatch</title><link rel="stylesheet" href="mesh-segmentation.css"></head>
+<body><header><div><p class="eyebrow">SPACEWATCH · SEGMENTATION INSPECTION</p><h1>분할 메쉬와 원본 RGB</h1><p>전후 촬영을 각각 돌려보며, 메쉬 경계가 실제 객체와 맞는지 확인하세요.</p></div><span class="status" id="status" role="status">입력 분할을 준비하고 있습니다</span></header>
+<main><section class="toolbar" aria-label="겹침 표시 설정">
+<label><input id="overlay" type="checkbox" checked> 분할 메쉬 겹치기</label>
+<label>투명도 <input id="opacity" type="range" min="0" max="100" value="55"><output id="opacity-value">55%</output></label>
+<label><input id="outline" type="checkbox" checked> 원본 2D 분할 윤곽</label>
+<label><input id="person" type="checkbox" checked> 촬영자 가림 제외</label>
+<label><input id="wire" type="checkbox"> 삼각형 선</label>
+<label><input id="rgb" type="checkbox" checked> 원본 RGB</label>
+<label><input id="context" type="checkbox"> 3D 배경 표면</label>
+<button id="reset">촬영 방향 복원</button>
+</section>
+<p class="legend"><span class="dot mesh"></span>색 면: 실제 메쉬의 객체 ID <span class="dot mask"></span>초록 선: 원본 2D 분할 <span class="dot missing"></span>분홍 선: 메쉬 ID 연결 없음</p>
+<p id="error" role="alert" hidden></p>
+<div class="pair" id="pair"></div>
+<details class="notes"><summary>좌표·입력 근거</summary><p>각 촬영의 원본 메쉬와 카메라 포즈로 투영합니다. 겹침을 맞추기 위한 별도 이미지 변형이나 메쉬 보정은 적용하지 않습니다. 미분할 표면도 깊이 검사에 사용해 뒤쪽 객체가 벽을 뚫고 보이는 것을 막습니다. 색과 번호는 촬영별 ID이며 전후 객체의 동일성을 뜻하지 않습니다.</p><p id="scope"></p><pre id="provenance"></pre></details>
+</main><template id="capture"><section class="capture"><div class="capture-title"><div><span class="epoch"></span><h2></h2></div><span class="counts"></span></div>
+<div class="frame-controls"><button class="previous" aria-label="이전 프레임">←</button><label>원본 프레임 <select class="frame"></select></label><button class="next" aria-label="다음 프레임">→</button><button class="focus">선택 객체 보기</button></div>
+<div class="pano viewport"><span class="hint">360° 드래그 회전 · 휠 확대 · 객체 클릭</span></div>
+<div class="object-row"><label>메쉬 객체 <select class="objects"><option value="0">전체 분할 객체</option></select></label><span class="picked" role="status">색 면을 누르면 객체를 선택합니다.</span></div>
+<details class="mesh-detail" open><summary>분할 메쉬 3D</summary><div class="mesh viewport"><span class="hint">드래그 회전 · 휠 확대 · 하늘색 점: 촬영 위치</span></div></details>
+</section></template><script type="module" src="mesh-segmentation.js"></script></body></html>

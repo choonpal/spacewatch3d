@@ -14,6 +14,8 @@ from pathlib import Path
 from urllib.parse import parse_qs, quote, unquote, urlsplit
 from trajectory_jobs import TrajectoryJobs, write_json
 from storage import StoragePaths
+from mesh_change_jobs import MeshChangeJobs
+from mesh_segmentation_review import ReviewAssets
 from gaussian_assets import asset_path as gaussian_asset_path,status as gaussian_status
 
 ROOT = Path(__file__).resolve().parent
@@ -47,7 +49,7 @@ def inspect_media(path, index):
     return result
 
 
-def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_dir=None, rescan_dir=None, mesh_comparison_dir=None, independent_dir=None, rgbd_dir=None, residual_dir=None, transfer_dir=None, motion_assessment_path=None, dorm_dir=None, dorm_tour_dir=None, gaussian_change_dir=None):
+def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_dir=None, rescan_dir=None, mesh_comparison_dir=None, independent_dir=None, rgbd_dir=None, residual_dir=None, transfer_dir=None, motion_assessment_path=None, dorm_dir=None, dorm_tour_dir=None, gaussian_change_dir=None, mesh_change_jobs=None):
     tours_dir = Path(export_dir).resolve() if export_dir is not None else StoragePaths.for_app(ROOT).tours
     evidence_root = Path(evidence_dir).resolve() if evidence_dir is not None else ROOT.parents[1] / "outputs/change_evidence_demo"
     rescan_root = Path(rescan_dir).resolve() if rescan_dir is not None else ROOT.parents[1] / "outputs/rescan-review"
@@ -60,6 +62,7 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
     dorm_tour_root = Path(dorm_tour_dir).resolve() if dorm_tour_dir is not None else ROOT.parents[1] / "outputs/dorm-object-photo-tour-20261023/run-v6/published"
     motion_report = Path(motion_assessment_path).resolve() if motion_assessment_path is not None else ROOT.parents[1] / "outputs/local-motion-expanded-20261019/run-v1/motion-assessment.json"
     gaussian_root = Path(gaussian_change_dir).resolve() if gaussian_change_dir is not None else ROOT / "assets/gaussian-change"
+    segmentation_reviews = ReviewAssets(mesh_change_jobs) if mesh_change_jobs else None
     class Handler(BaseHTTPRequestHandler):
         def send_json(self, data, code=200, head_only=False):
             payload = json.dumps(data, ensure_ascii=False).encode()
@@ -72,6 +75,34 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
                 self.wfile.write(payload)
 
         def do_POST(self):
+            mesh_route = urlsplit(self.path).path
+            retry = re.fullmatch(r"/api/mesh-change-jobs/([a-f0-9]{24})/retry", mesh_route)
+            source_submit = mesh_route == '/api/mesh-change-jobs/from-captures'
+            if mesh_route == "/api/mesh-change-jobs" or retry or source_submit:
+                origin = self.headers.get("Origin")
+                if origin and urlsplit(origin).netloc != self.headers.get("Host"):
+                    self.send_json({"error": "다른 사이트의 분석 요청은 허용하지 않습니다."}, 403)
+                    return
+                try:
+                    if mesh_change_jobs is None:
+                        self.send_json({"error": "변화탐지 실행 환경이 설정되지 않았습니다."}, 503)
+                        return
+                    if source_submit:
+                        length = int(self.headers.get('Content-Length', '0'))
+                        if not 0 < length <= 4096:
+                            raise ValueError('전후 촬영 선택을 확인해 주세요.')
+                        result = mesh_change_jobs.submit_sources(json.loads(self.rfile.read(length)))
+                    elif retry:
+                        if int(self.headers.get("Content-Length", "0")) != 0:
+                            raise ValueError('재연결 요청에는 본문이 필요하지 않습니다.')
+                        result = mesh_change_jobs.retry(retry[1])
+                    else:
+                        result = mesh_change_jobs.submit(self.rfile, int(self.headers.get("Content-Length", "0")))
+                    self.send_json(result, 202)
+                except (KeyError, ValueError, OSError) as error:
+                    self.close_connection = True
+                    self.send_json({"error": str(error)}, 400)
+                return
             if jobs is None:
                 self.send_json({"error": "이 서버에서는 경로 분석을 사용할 수 없습니다."}, 503)
                 return
@@ -144,6 +175,37 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
                 except KeyError as error:
                     self.send_json({"error": str(error)}, 404, head_only=head_only)
                 return
+            if route == "/api/mesh-change-jobs/config":
+                self.send_json(mesh_change_jobs.configuration() if mesh_change_jobs else {"configured": False, "connected": False}, head_only=head_only)
+                return
+            if route == '/api/mesh-change-jobs/captures':
+                try:
+                    self.send_json({'captures': mesh_change_jobs.sources() if mesh_change_jobs else []}, head_only=head_only)
+                except (OSError, ValueError) as error:
+                    self.send_json({'error': str(error)}, 400, head_only=head_only)
+                return
+            mesh_job = re.fullmatch(r"/api/mesh-change-jobs/([a-f0-9]{24})(?:/files/(.+))?", route)
+            mesh_job_path = None
+            review = re.fullmatch(r"/api/mesh-change-jobs/([a-f0-9]{24})/segmentation-review/(.+)", route)
+            if review:
+                try:
+                    if segmentation_reviews is None:
+                        raise KeyError('검증할 입력이 없습니다.')
+                    mesh_job_path = segmentation_reviews.asset(review[1], review[2])
+                except (KeyError, ValueError, OSError) as error:
+                    self.send_json({'error': str(error)}, 404, head_only=head_only)
+                    return
+            if mesh_job:
+                try:
+                    if mesh_change_jobs is None:
+                        raise KeyError("변화탐지 작업이 없습니다.")
+                    if not mesh_job[2]:
+                        self.send_json(mesh_change_jobs.status(mesh_job[1]), head_only=head_only)
+                        return
+                    mesh_job_path = mesh_change_jobs.asset(mesh_job[1], mesh_job[2])
+                except KeyError as error:
+                    self.send_json({"error": str(error)}, 404, head_only=head_only)
+                    return
             stored_media = re.fullmatch(r"/media/([a-f0-9]{64})", route)
             if route == "/api/gaussian-change/status":
                 self.send_json(gaussian_status(gaussian_root), head_only=head_only)
@@ -163,7 +225,9 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
             transfer_match = re.fullmatch(r"/residual-comparison/bonn-placement/(comparison\.json|[01]-(?:comparison|fixed|empirical)\.bin|frame-[01]-\d{6}\.jpg)", route)
             dorm_match = re.fullmatch(r"/residual-comparison/dorm2-dorm3/((?:comparison|alignment-view)\.json|[01]-(?:comparison|empirical|alignment)\.bin|frame-[01]-\d{6}\.jpg)", route)
             dorm_tour_match = re.fullmatch(r"/dorm-tour/(tour\.json|(?:map|changes)-[01]\.bin|object-(?:E\d{3}-[01]|P\d{4}-[01]|[SI][01]-\d{3})\.bin|(?:Dorm[23]-\d{5}|review-P\d{4})\.jpg|ghost-(?:E\d{3}|P\d{4})-[01]-[01]-\d{2}\.png)", route)
-            if gaussian_path is not None:
+            if mesh_job_path is not None:
+                path = mesh_job_path
+            elif gaussian_path is not None:
                 path = gaussian_path
             elif route == "/rescan/motion-assessment.json":
                 path = motion_report
@@ -202,7 +266,8 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
             else:
                 name = "index.html" if route == "/" else route.lstrip("/")
                 # Never expose source video directories, local config, repository, or test files.
-                allowed = name in {"index.html", "styles.css", "app.js", "core.js", "panorama.js", "trajectory.js", "trajectory-math.js", "tour-keyframes.js", "keyframe-controller.js", "keyframe-transition.js", "object-photo.js", "motion-assessment.js", "autotour.js", "autotour.css", "changes.html", "change-evidence.js", "change-evidence.css", "change-tour.html", "change-tour.js", "change-tour.css", "rescan.html", "rescan-review.js", "rescan-review.css", "mesh-comparison.html", "mesh-comparison.js", "mesh-comparison.css", "mesh-change-context.js", "residual-comparison.html", "residual-comparison.js", "residual-comparison.css", "residual-context.js", "dorm-alignment-viewer.js", "dorm-change-tour.js", "dorm-change-tour.css", "dorm-tour-map.js", "dorm-tour-model.js", "gaussian-change-tour.js", "gaussian-change-tour.css"} or re.fullmatch(r"assets/[a-zA-Z0-9_-]+\.(jpg|png|webp|svg)", name)
+                allowed = name in {"mesh-changes.html", "mesh-changes.js", "mesh-changes.css", "mesh-input.example.json", "index.html", "styles.css", "app.js", "core.js", "panorama.js", "trajectory.js", "trajectory-math.js", "tour-keyframes.js", "keyframe-controller.js", "keyframe-transition.js", "object-photo.js", "motion-assessment.js", "autotour.js", "autotour.css", "changes.html", "change-evidence.js", "change-evidence.css", "change-tour.html", "change-tour.js", "change-tour.css", "rescan.html", "rescan-review.js", "rescan-review.css", "mesh-comparison.html", "mesh-comparison.js", "mesh-comparison.css", "mesh-change-context.js", "residual-comparison.html", "residual-comparison.js", "residual-comparison.css", "residual-context.js", "dorm-alignment-viewer.js", "dorm-change-tour.js", "dorm-change-tour.css", "dorm-tour-map.js", "dorm-tour-model.js", "gaussian-change-tour.js", "gaussian-change-tour.css"} or re.fullmatch(r"assets/[a-zA-Z0-9_-]+\.(jpg|png|webp|svg)", name)
+                allowed = allowed or name in {'mesh-segmentation.html', 'mesh-segmentation.js', 'mesh-segmentation.css'}
                 if not allowed:
                     self.send_error(404)
                     return
@@ -271,6 +336,8 @@ def main():
     parser.add_argument("--dorm-dir", type=Path, help="Published geometry-only Dorm2/Dorm3 aligned mesh comparison")
     parser.add_argument("--dorm-tour-dir", type=Path, help="Adapted Dorm mesh-first maps and frozen automatic event results")
     parser.add_argument("--gaussian-change-dir", type=Path, help="Published panorama change root containing Gaussian tour, shared models and vendor assets")
+    parser.add_argument("--mesh-change-runtime", type=Path, help="Original RGB SimSaC runtime configuration")
+    parser.add_argument("--mesh-change-jobs-dir", type=Path, help="Persistent input jobs and result cache")
     args = parser.parse_args()
     entries = args.media
     if entries is None and (ROOT / ".local.json").exists():
@@ -290,7 +357,8 @@ def main():
     if jobs.available:
         for meta in metadata:
             jobs.start(meta["trajectoryKey"])
-    server = ThreadingHTTPServer((args.host, args.port), make_handler(paths, metadata, jobs, export_dir=jobs.storage.tours, evidence_dir=args.evidence_dir, rescan_dir=args.rescan_dir, mesh_comparison_dir=args.mesh_comparison_dir, independent_dir=args.independent_dir, rgbd_dir=args.rgbd_dir, residual_dir=args.residual_dir, transfer_dir=args.transfer_dir, motion_assessment_path=args.motion_assessment, dorm_dir=args.dorm_dir, dorm_tour_dir=args.dorm_tour_dir, gaussian_change_dir=args.gaussian_change_dir))
+    mesh_jobs = MeshChangeJobs(args.mesh_change_jobs_dir or ROOT.parents[1]/"outputs/mesh-change-jobs", args.mesh_change_runtime)
+    server = ThreadingHTTPServer((args.host, args.port), make_handler(paths, metadata, jobs, export_dir=jobs.storage.tours, evidence_dir=args.evidence_dir, rescan_dir=args.rescan_dir, mesh_comparison_dir=args.mesh_comparison_dir, independent_dir=args.independent_dir, rgbd_dir=args.rgbd_dir, residual_dir=args.residual_dir, transfer_dir=args.transfer_dir, motion_assessment_path=args.motion_assessment, dorm_dir=args.dorm_dir, dorm_tour_dir=args.dorm_tour_dir, gaussian_change_dir=args.gaussian_change_dir, mesh_change_jobs=mesh_jobs))
     server.daemon_threads = True
     url = f"http://{'127.0.0.1' if args.host == '0.0.0.0' else args.host}:{server.server_port}"
     print(f"AUTO TOUR 360: {url}\nLocal media: {len(jobs.sources)} file(s). Trajectory analysis: {'ready' if jobs.available else 'setup required'}.\nVideos: {jobs.storage.data}\nOutputs: {jobs.storage.output}\nPress Ctrl+C to stop.", flush=True)

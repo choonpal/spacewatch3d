@@ -1,0 +1,214 @@
+{
+  "schema": "mesh-simsac-input-v1",
+  "settings": {
+    "registration": "auto",
+    "frame_stride": 1,
+    "size": 224,
+    "min_frames": 2
+  },
+  "scope": "같은 공간의 전후 촬영 비교",
+  "before": {
+    "id": "before",
+    "mesh": "before/mesh.npz",
+    "projection": "perspective",
+    "frames": [
+      {
+        "id": "1",
+        "image": "before/001.jpg",
+        "world_from_camera": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "K": [
+          [
+            500,
+            0,
+            319.5
+          ],
+          [
+            0,
+            500,
+            239.5
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "id": "2",
+        "image": "before/002.jpg",
+        "world_from_camera": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "K": [
+          [
+            500,
+            0,
+            319.5
+          ],
+          [
+            0,
+            500,
+            239.5
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      }
+    ],
+    "pointcloud": "before/points.npz"
+  },
+  "after": {
+    "id": "after",
+    "mesh": "after/mesh.npz",
+    "projection": "perspective",
+    "frames": [
+      {
+        "id": "1",
+        "image": "after/001.jpg",
+        "world_from_camera": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "K": [
+          [
+            500,
+            0,
+            319.5
+          ],
+          [
+            0,
+            500,
+            239.5
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "id": "2",
+        "image": "after/002.jpg",
+        "world_from_camera": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "K": [
+          [
+            500,
+            0,
+            319.5
+          ],
+          [
+            0,
+            500,
+            239.5
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      }
+    ],
+    "pointcloud": "after/points.npz"
+  }
+}

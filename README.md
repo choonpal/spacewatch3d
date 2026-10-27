@@ -2,6 +2,14 @@
 
 ## 새 입력 자동 변화탐지
 
+현재 객체 변화탐지는 [`mesh-changes.html`](apps/autotour360/mesh-changes.html)에서
+분할 메쉬·원본 RGB·점군·카메라 입력을 받아 첫 제출 때 정합과 SimSaC를 실행합니다.
+원본 2D 분할을 함께 검증하며, ERP 영상은 360도 회전·확대로 전후를 비교합니다.
+입력과 코드·모델이 같으면 검증된 캐시를 사용합니다.
+[입력 구성과 실행](tools/mesh_simsac/README.md) · [실행 검증](docs/mesh-rgb-runtime-validation-20261027.md)
+
+기존 Gaussian 경로:
+
 One-command input processing and the system integration API are in
 [`tools/gaussian_change`](tools/gaussian_change/README.md) and
 [`src/spacewatch3d/tasks/task_5a_change_detection`](src/spacewatch3d/tasks/task_5a_change_detection/README.md).

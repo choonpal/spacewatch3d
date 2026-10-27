@@ -176,6 +176,7 @@ function updateChangeHeader(info=changeFrame){
   $('tour-summary').textContent=info?`Rescan 실제 전후 촬영 · 변화 ${info.data.regions.length}개 · 이동·추가·소실`:'Rescan 전후 메쉬와 원본 사진을 연결하는 중';
 }
 function setChangeMode(value,{restore=true}={}){
+  if(value && !new URLSearchParams(location.search).has('source')){location.assign('/mesh-changes.html');return;}
   if(value===changeMode)return;
   if(value){
     setEditing(false);movement?.cancel();

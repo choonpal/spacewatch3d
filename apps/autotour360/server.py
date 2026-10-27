@@ -75,8 +75,9 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
         def do_POST(self):
             mesh_route = urlsplit(self.path).path
             retry = re.fullmatch(r"/api/mesh-change-jobs/([a-f0-9]{24})/retry", mesh_route)
+            reprocess = re.fullmatch(r"/api/mesh-change-jobs/([a-f0-9]{24})/reprocess", mesh_route)
             source_submit = mesh_route == '/api/mesh-change-jobs/from-captures'
-            if mesh_route == "/api/mesh-change-jobs" or retry or source_submit:
+            if mesh_route == "/api/mesh-change-jobs" or retry or source_submit or reprocess:
                 origin = self.headers.get("Origin")
                 if origin and urlsplit(origin).netloc != self.headers.get("Host"):
                     self.send_json({"error": "다른 사이트의 분석 요청은 허용하지 않습니다."}, 403)
@@ -90,6 +91,10 @@ def make_handler(media_paths, metadata, jobs=None, *, export_dir=None, evidence_
                         if not 0 < length <= 4096:
                             raise ValueError('전후 촬영 선택을 확인해 주세요.')
                         result = mesh_change_jobs.submit_sources(json.loads(self.rfile.read(length)))
+                    elif reprocess:
+                        if int(self.headers.get('Content-Length','0'))!=0:
+                            raise ValueError('재집계 요청에는 본문이 필요하지 않습니다.')
+                        result=mesh_change_jobs.submit_reprocess(reprocess[1])
                     elif retry:
                         if int(self.headers.get("Content-Length", "0")) != 0:
                             raise ValueError('재연결 요청에는 본문이 필요하지 않습니다.')

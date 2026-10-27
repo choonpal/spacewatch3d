@@ -7,8 +7,9 @@ const candidateStyle={text:'변화 후보',color:'#e9bb73',order:0};
 const kinds=Object.fromEntries(['added','moved','removed','modified','unresolved'].map(kind=>[kind,candidateStyle]));
 const names = { chair: '의자', table: '테이블', 'dining table': '테이블', door: '문',
   refrigerator: '냉장고', 'fire extinguisher': '소화기', window: '창문', cabinet: '수납장',
-  sofa: '소파', unknown: '미분류 객체', plant: '화분', monitor: '모니터', 'vacuum cleaner': '청소기' };
+  sofa: '소파', box:'박스', person:'사람', unknown: '미분류 객체', plant: '화분', monitor: '모니터', 'vacuum cleaner': '청소기' };
 const reasons = {
+  registered_rgb_instance_without_mesh:'원본 객체 분할 영역에서 SimSaC 차이가 여러 프레임에 반복됐습니다. 촬영자를 제외하고 메쉬·점군으로 정합한 카메라를 사용합니다. 원본 메쉬가 불완전한 객체는 RGB 마스크로 표시합니다.',
   segmented_object_appears_over_observed_background: '객체가 있는 촬영의 원본 분할과 SimSaC에서 반복 확인됐습니다. 반대 촬영은 같은 위치의 배경을 가림 없이 반복 관측했고, 같은 종류의 객체 마스크는 검출되지 않았습니다. 메쉬는 위치를 제공하며, 이 후보는 영상 분할에 의존하는 자동 추정입니다.',
   counterpart_in_rgb_segmentation_but_mesh_incomplete: '반대 촬영의 원본 세그멘테이션에도 같은 종류의 객체가 보입니다. 메쉬 분할이 누락되거나 불완전해 원본 영상을 직접 비교할 후보로 남겼습니다.',
   segmented_identity_observation_insufficient: '메쉬와 원본 세그멘테이션이 일치하는 독립 관측이 부족합니다. 전후 객체 조각의 대응을 더 확인해야 합니다.',
@@ -150,6 +151,7 @@ function updateVisibility() {
 }
 async function showGeometry(event, token) {
   clearGroup(selectedGroup);
+  if(event.rgb_only){$('map-legend').textContent='이 객체는 RGB 마스크로 관측됐으며 원본 메쉬가 불완전합니다.';return;}
   const beforeColor = '#57d8dd';
   const afterColor = '#ffc26a';
   const parts = await Promise.all(event.object_ids.map(key => objectMesh(key, data.objects[key].epoch ? afterColor : beforeColor)));
@@ -193,7 +195,7 @@ function comparePhoto(on) {
 class Panorama {
   constructor(wrapper, epoch) {
     this.wrapper=wrapper; this.epoch=epoch; this.key=null; this.token=0;
-    this.renderer=new THREE.WebGLRenderer({antialias:true});
+    this.renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});
     this.renderer.setPixelRatio(Math.min(devicePixelRatio,2));
     this.renderer.domElement.className='panorama-canvas';
     this.renderer.domElement.setAttribute('aria-label',`${epoch?'후':'전'} 360도 원본 영상 · 드래그 회전`);
@@ -242,11 +244,18 @@ class Panorama {
       clearGroup(this.group);for(const b of this.boxes)b.remove();this.boxes=[];
       const layers=photoLayers(event,record,this.epoch,true);
       this.boxPositions=new Float32Array(layers.bounds.flatMap(g=>g.positions));
-      for(const g of layers.highlights){const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(g.positions,3));
+      for(const g of layers.highlights){
+        if(g.observed===false)continue;
+        const imageMask=g.mask_image?await loadImage(g.mask_image):null;
+        if(token!==this.token)return;
+        const instanceMask=imageMask?new THREE.Texture(imageMask):null;
+        if(instanceMask)instanceMask.needsUpdate=true;
+        const geometry=imageMask?new THREE.SphereGeometry(10,64,32):new THREE.BufferGeometry();
+        if(!imageMask)geometry.setAttribute('position',new THREE.Float32BufferAttribute(g.positions,3));
         const material=new THREE.ShaderMaterial({transparent:true,side:THREE.DoubleSide,depthWrite:false,depthTest:false,
-          uniforms:{person:{value:mask},colour:{value:new THREE.Color(g.epoch?'#ffc26a':'#57d8dd')},alpha:{value:0}},
+          uniforms:{person:{value:mask},instanceMask:{value:instanceMask||mask},colour:{value:new THREE.Color(g.epoch?'#ffc26a':'#57d8dd')},alpha:{value:0}},
           vertexShader:'varying vec3 ray;void main(){ray=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
-          fragmentShader:`uniform sampler2D person;uniform vec3 colour;uniform float alpha;varying vec3 ray;${this.uvCode}void main(){if(texture2D(person,panoUV(ray)).r>.5)discard;gl_FragColor=vec4(colour,alpha);\n#include <colorspace_fragment>\n}`});
+          fragmentShader:`uniform sampler2D person;uniform sampler2D instanceMask;uniform vec3 colour;uniform float alpha;varying vec3 ray;${this.uvCode}void main(){if(texture2D(person,panoUV(ray)).r>.5)discard;${imageMask?'if(texture2D(instanceMask,panoUV(ray)).r<.5)discard;':''}gl_FragColor=vec4(colour,alpha);\n#include <colorspace_fragment>\n}`});
         const mesh=new THREE.Mesh(geometry,material);mesh.renderOrder=g.epoch+1;mesh.userData.epoch=g.epoch;this.group.add(mesh);
       }
       const box=document.createElement('div');box.className='pano-box';box.style.borderColor='#ffc26a';
@@ -254,7 +263,7 @@ class Panorama {
       box.setAttribute('aria-hidden','true');this.wrapper.append(box);this.boxes.push(box);
       this.direction=p.direction;this.focus();
     }
-    for(const box of this.boxes){box.textContent=photoGhost?photoCaption(event,this.epoch):event.type==='unresolved'?'확인 후보':'변화 구역';box.classList.toggle('comparing',photoGhost);}
+    for(const box of this.boxes){box.textContent='';box.dataset.label=photoGhost?photoCaption(event,this.epoch):'변화 후보';box.classList.toggle('comparing',photoGhost);}
     this.group.visible=photoGhost;
     for(const mesh of this.group.children)mesh.material.uniforms.alpha.value=Number($('ghost-opacity').value)/100;
     this.render();
@@ -418,7 +427,8 @@ async function renderList(preferred) {
 async function start() {
   data = await json('viewer-data.json');
   const align=data.alignment_summary;
-  if(align)$('alignment-summary').textContent=`${align.new_alignment_fitted?'새 정합 계산':'입력 정합 검증'} · ${align.region_count}구역 · 실제 점군 ${align.independent_pointcloud?.filter(Boolean).length || 0}/2 · ${align.held_out_validation?'별도 표면으로 오차 검증':'전역 잔차 기준'}`;
+  const reused=data.job_provenance?.reused_probabilities;
+  if(align)$('alignment-summary').textContent=`${reused?'기존 정합·SimSaC 확률 재사용':align.new_alignment_fitted?'새 정합 계산':'입력 정합 검증'} · ${align.region_count}구역 · 실제 점군 ${align.independent_pointcloud?.filter(Boolean).length || 0}/2 · ${reused?'객체 크기·시점 검증 후 재집계':align.held_out_validation?'별도 표면으로 오차 검증':'전역 잔차 기준'}`;
   $('scope').textContent = data.scope || '원본 영상과 관측 근거를 비교한 변화 후보입니다.';
   document.querySelectorAll('.photo-heading h4').forEach((el,i) => { el.textContent = (i?'후 · ':'전 · ')+(data.labels?.[i] || (i?'비교 촬영':'기준 촬영')); });
   $('ghost-opacity').oninput = () => { selectedGroup.traverse(item => { if(item.isMesh && item.userData.cachedGeometry) item.material.opacity = Number($('ghost-opacity').value)/100; }); drawPhotos().catch(reportError); };
@@ -446,6 +456,7 @@ async function start() {
     scene.add(cloud); clouds.push(cloud);
   }
   for (const event of data.events) {
+    if(event.rgb_only)continue;
     const b = asBox(event.bounds), size = b.getSize(new THREE.Vector3()).max(new THREE.Vector3(.05, .05, .05));
     const hit = new THREE.Mesh(new THREE.BoxGeometry(...size.toArray()), new THREE.MeshBasicMaterial({ color: kinds[event.type].color,
       transparent: true, opacity: .025, depthWrite: false }));
@@ -463,7 +474,7 @@ async function start() {
   });
   for (const button of document.querySelectorAll('[data-phase]')) button.onclick = () => { phase = button.dataset.phase; updateVisibility(); };
   $('context').onchange = $('pointcloud').onchange = updateVisibility;
-  $('focus-object').onclick = () => selected && flyTo(selected.bounds);
+  $('focus-object').onclick = () => selected?.bounds && flyTo(selected.bounds);
   $('overview').onclick = overview;
   $('previous-event').onclick = () => selectEvent(filtered[Math.max(0, filtered.indexOf(selected) - 1)]).catch(reportError);
   $('next-event').onclick = () => selectEvent(filtered[Math.min(filtered.length - 1, filtered.indexOf(selected) + 1)]).catch(reportError);

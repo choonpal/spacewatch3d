@@ -35,7 +35,7 @@ def execute(manifest, output, runtime):
         from .build_event_viewer import build
         stage('registration')
         root = output/'detection'
-        prepare(manifest, root)
+        prepare(manifest, root, capturer_checkpoint=checkpoint, device=runtime.get('device','cuda'))
         stage('simsac')
         run(root, runtime['simsac_source'], runtime['simsac_checkpoint'], checkpoint, runtime.get('device', 'cuda'))
         stage('classification')
@@ -49,6 +49,9 @@ def execute(manifest, output, runtime):
         result['labels'] = [original[p]['id'] for p in ['before', 'after']]
         result['job_provenance'] = dict(fresh_inference=True, input_source='uploaded_original_rgb',
                                       gaussian_inputs_used=False, model=read(root/'results/model.json')['checkpoint_sha256'])
+        from .observation_quality import quality_settings
+        result['job_provenance']['object_quality']=quality_settings(original.get('settings',{}))
+        result['job_provenance']['reference_vote']='Strict majority of usable references; ties are not positive'
         write(root/'viewer-data.json', result)
         write(output/'status.json', dict(state='complete', stage='complete', counts=result['counts'],
                                         inference_pairs=result['inference_pairs'], seconds=time.time()-started))

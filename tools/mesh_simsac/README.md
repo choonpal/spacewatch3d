@@ -1,7 +1,7 @@
 # Segmented mesh + original RGB change detection
 
 The viewer now accepts a capture ZIP and runs SimSaC on its **original RGB** on
-first submission. It registers the segmented meshes, excludes people in both
+first submission. It registers the segmented meshes, excludes the photographer in both
 images, aggregates independent camera observations, records internal object evidence and
 publishes a job-specific viewer. Gaussian renders and saved change predictions
 are not inputs. Mesh-only alignment lives in `registration.py`; authenticated transfer lives in
@@ -34,11 +34,40 @@ the complete source triangle map, maps saved OBJ regions to exact original
 triangles, verifies video/RGB receipts and samples actual PLY records for depth
 support. Original 2D semantic classes gate first-hit mesh associations; these are
 explicitly recorded as **surface candidates, not verified video instance tracks**.
-People and the reconstruction's supplied person mask are excluded. No previous
+The unpadded semantic person components reaching the bottom 8% of an ERP are
+treated as photographer masks, joining the horizontal panorama seam first.
+Separate bystanders remain available to RGB comparison. This nadir heuristic
+assumes a handheld walking capture; it is not verified photographer identity.
+The reconstruction's padded all-person union is not reused for this role.
+No previous
 change labels or predictions are imported. Catalogue `frame_stride` controls
 sampling over the full source video; `point_limit` bounds real PLY record sampling.
 `comparison_settings` configures the same pipeline as uploaded bundles. Source
 scale assumptions and sampling are retained in the input manifest and audit.
+
+Global geometric overlap proposes up to `max_refs` frames. Before an individual
+mesh instance can vote, the same source surface is projected into both cameras:
+at least 64 query pixels, >=60% inside the reference, linear footprint ratio
+between 1/1.5 and 1.5, and <=35 degrees viewing-angle difference are required by
+default. `comparison_settings.object_pair_min_pixels`, `object_pair_max_scale`,
+`object_pair_max_angle`, and `object_pair_min_inside` configure these values.
+Rejected object observations are unknown, not unchanged. With two usable
+references, one positive and one negative is a tie and cannot make a change;
+strict majority is required. This same code runs on new inputs and reaggregation.
+It filters the proposed frame pairs; it does not yet search all frames separately
+for every object. RGB-only person/box masks retain their separate explicitly
+marked evidence path where reconstruction omitted their geometry.
+
+Optional runtime `box_segmentation` configures `python`, local Grounding DINO
+`dino` directory, SAM2 `sam2` checkpoint, `cache` and model `environment`.
+The input adapter runs automatic box proposals on all sampled ERP frames and
+rechecks their enlarged crops against competing object classes before SAM2
+segmentation. This is **Grounding DINO + SAM2 supplementation, not an OOOPS label
+extension**. Model/image/mask/code hashes bind reusable segmentation caches.
+Source mesh faces become box instances only with at least 60% mask coverage in
+two independent frames and 60% visible-frame agreement, grouped by source-vertex
+connectivity. Vertices and triangles are never synthesized. Masks with no
+corresponding geometry remain explicitly RGB-only in the raw report.
 
 The result cache hashes the declared input files (including the manifest's
 camera poses and thresholds), model weights, upstream SimSaC Python sources,
@@ -48,6 +77,15 @@ Changed input or settings triggers a new run. Failed/interrupted work does not
 produce a result URL. Jobs are serialized per viewer process; use one process
 for a jobs directory. An interrupted remote worker can be inspected using the
 private `remote.local.json` receipt before resubmitting.
+
+`POST /api/mesh-change-jobs/<completed-job-id>/reprocess` (empty body, same origin)
+creates a **new** job from a completed remote run's validated probabilities,
+prepared geometry and appearance descriptors. Parent image/model/source hashes
+must match. No SimSaC forward pass runs. The new result records its parent hash,
+filter settings, reused probabilities and zero new predictions; the original
+result remains intact. This is useful for testing observation rules quickly.
+The integration entry points are `MeshChangeJobs.submit_reprocess()` and the same
+`/mesh-changes.html?job=<new-id>` status/result page.
 
 ## Input bundle
 
@@ -67,8 +105,11 @@ Each `before` / `after` capture contains:
 - Optional `objects` JSON provides an `instance_records` array of
   `instance_id` and `label`. Unlabelled instances can still be matched by shape
   and RGB; they are not assumed identical because their IDs match.
-- Optional `person_mask` on each frame excludes people. Without complete supplied
-  masks, the runtime must have a person detector. Removing the photographer from
+- Optional `person_mask` on each frame excludes the photographer; declare
+  `person_mask_policy=capturer_only` when supplying masks with that meaning.
+  Otherwise the worker's person detector selects individual nadir-reaching ERP
+  person masks, using two horizontal rolls before union. Perspective inputs need
+  explicit photographer-only masks. Removing the photographer from
   a mesh alone does not prove that their pixels are absent from the photo.
 - Optional frame `segmentation` NPZ contains ERP (or perspective) `class_id`,
   `instance_id` and `person` masks. Capture `segmentation_labels` maps class IDs
@@ -159,6 +200,13 @@ Configure the inference host separately from uploaded inputs. A local example:
 }
 ```
 
+Copy [runtime.example.json](runtime.example.json) and
+[capture-catalog.example.json](capture-catalog.example.json) to ignored
+`*.local.json` files and replace paths with the installation's own model, input,
+Python and Three.js paths. Checkpoints and source videos are supplied separately.
+The box model environment needs locally installed Transformers, PyTorch and SAM2;
+the inference environment needs the dependencies below.
+
 Requires NumPy, SciPy, Pillow, Open3D, PyTorch/torchvision, ultralytics for person
 detection and official [SimSaC](https://github.com/SAMMiCA/SimSaC) source and
 checkpoint. Three.js supplies the viewer assets and its licence is copied with
@@ -167,6 +215,22 @@ relay add `remote_session`, `remote_root`, remote `python`, and optional
 `dependency_paths`; model paths then refer to that host, while `local_python`
 and `three_package` remain local. The worker verifies model hashes again before
 inference. Credentials are not accepted from uploaded manifests.
+
+For a deployment without an existing queue provider, this repository includes
+the authenticated queue host. Install `pip install -e ".[ssh]"`, verify the host
+key using your normal SSH setup, then run:
+
+```sh
+python -m tools.mesh_simsac.ssh_relay --host HOST --port 22 --user USER \
+  --session /private/ssh-session --password
+```
+
+Omit `--password` for SSH-agent/default keys, or pass `--key-file PATH`.
+Host keys must already exist in `~/.ssh/known_hosts` (or `--known-hosts PATH`);
+unknown keys are rejected. Password entry is interactive and remains in process
+memory for reconnecting. This helper contains no installation-specific host,
+account, credentials, dataset selection or object decisions. Keep its private
+queue outside any served/public artifact directory.
 
 Direct local worker invocation uses the same pipeline as the viewer:
 

@@ -11,6 +11,7 @@ dependencies = ["jsonschema>=4.18,<5"]
 
 [project.optional-dependencies]
 test = ["numpy>=1.24,<3", "scipy>=1.10,<2", "Pillow>=9.5,<12"]
+ssh = ["paramiko>=3.4,<5"]
 
 [project.scripts]
 spacewatch3d = "spacewatch3d.cli:main"
@@ -21,4 +22,4 @@ include = ["spacewatch3d*", "tools", "tools.mesh_simsac*"]
 
 [tool.setuptools.package-data]
 spacewatch3d = ["schemas/*.json"]
-"tools.mesh_simsac" = ["*.html", "*.css", "*.js"]
+"tools.mesh_simsac" = ["*.html", "*.css", "*.js", "*.example.json"]

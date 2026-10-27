@@ -109,6 +109,37 @@ class RuntimeJobs(unittest.TestCase):
             self.assertEqual(self.service.status(status['id'])['counts'],{'moved':1})
 
     @patch.object(jobs, 'model_identity', return_value={'models': {}, 'source': 'revision1'})
+    def test_reprocess_preserves_parent_and_requires_bound_probability_provenance(self, identity):
+        configuration=jobs.read(self.runtime);configuration['remote_session']='test-session'
+        jobs.write(self.runtime,configuration)
+        def worker(command,**kwargs):
+            runtime=jobs.read(command[command.index('--runtime')+1])
+            root=Path(command[command.index('--output')+1]);public=root/'detection'
+            if runtime.get('reprocess_source'):
+                provenance=dict(fresh_inference=False,reused_probabilities=True,
+                    parent_viewer_sha256=runtime['reprocess_parent_viewer_sha256'],new_model_predictions=0)
+                jobs.write(public/'viewer-data.json',dict(counts={'unresolved':7},job_provenance=provenance))
+                (public/'index.html').write_text('reaggregated fixture')
+                jobs.write(root/'status.json',dict(state='complete'))
+                return type('Process',(),{'returncode':0})()
+            return self.fake_worker(command,**kwargs)
+        with patch.object(jobs.subprocess,'run',side_effect=worker) as run:
+            parent=self.submit(bundle());parent_file=self.service.asset(parent['id'],'viewer-data.json')
+            original=parent_file.read_bytes()
+            jobs.write(self.service.folder(parent['id'])/'attempt/result/remote.local.json',dict(directory='/test/rgb-parent'))
+            status=self.service.submit_reprocess(parent['id']);deadline=time.monotonic()+10
+            while status['state'] not in ['complete','failed']:
+                if time.monotonic()>deadline:self.fail('reaggregation did not terminate')
+                time.sleep(.01);status=self.service.status(status['id'])
+            self.assertEqual(status['state'],'complete',status.get('message'))
+            self.assertEqual(status['counts'],{'unresolved':7})
+            self.assertEqual(parent_file.read_bytes(),original)
+            result=jobs.read(self.service.asset(status['id'],'viewer-data.json'))
+            self.assertFalse(result['job_provenance']['fresh_inference'])
+            self.assertEqual(result['job_provenance']['new_model_predictions'],0)
+            self.assertEqual(run.call_count,2)
+
+    @patch.object(jobs, 'model_identity', return_value={'models': {}, 'source': 'revision1'})
     @patch.object(jobs.subprocess, 'run', side_effect=RuntimeError('model unavailable'))
     def test_failure_has_no_viewer_and_is_not_cached(self, run, identity):
         result = self.submit(bundle())

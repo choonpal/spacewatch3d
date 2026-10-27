@@ -1,0 +1,38 @@
+{
+  "captures": [
+    {
+      "id": "capture-before",
+      "label": "Before capture",
+      "mesh": "/srv/captures/before/mesh_arrays.npz",
+      "scene": "/srv/captures/before/scene.json",
+      "source_run": "/srv/captures/before/reconstruction",
+      "coordinates": "/srv/captures/before/coordinates.json",
+      "video": "/srv/captures/before/original.mp4",
+      "classes": "/srv/captures/classes.json",
+      "predictions": "/srv/captures/before/semantic_predictions",
+      "prediction_manifest": "/srv/captures/before/rgb_manifest.json",
+      "segmentation_model": "Provided semantic segmentation"
+    },
+    {
+      "id": "capture-after",
+      "label": "After capture",
+      "mesh": "/srv/captures/after/mesh_arrays.npz",
+      "scene": "/srv/captures/after/scene.json",
+      "source_run": "/srv/captures/after/reconstruction",
+      "coordinates": "/srv/captures/after/coordinates.json",
+      "video": "/srv/captures/after/original.mp4",
+      "classes": "/srv/captures/classes.json",
+      "predictions": "/srv/captures/after/semantic_predictions",
+      "prediction_manifest": "/srv/captures/after/rgb_manifest.json",
+      "segmentation_model": "Provided semantic segmentation"
+    }
+  ],
+  "frame_stride": 6,
+  "point_limit": 2000000,
+  "comparison_settings": {
+    "frame_stride": 1, "size": 224, "max_refs": 2, "min_frames": 2,
+    "registration": "auto", "regional_correction": true,
+    "object_pair_min_pixels": 64, "object_pair_max_scale": 1.5,
+    "object_pair_max_angle": 35, "object_pair_min_inside": 0.6
+  }
+}

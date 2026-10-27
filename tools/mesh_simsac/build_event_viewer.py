@@ -222,9 +222,89 @@ def build(root, manifest_path):
                     pair[epoch] = {**record, 'ghosts': [ghost(record, key) for key in event['object_ids']],
                                    'panorama': panorama(record, event['object_ids'])}
         events.append({**event, "photo_sets": photo_sets})
+    from .rgb_people import candidates as person_candidates
+
+    def image_layer(mask, meta, name, observed):
+        """Image-space silhouette on the panorama sphere; no physical mesh."""
+        size = prepared['settings']['size']
+        direction = rays(intrinsics(size, size), mask.shape)
+        rotation = cube_rotations()[meta['face']]
+        positions = (direction[mask]@rotation.T)*[1,-1,-1]
+        positions /= np.maximum(np.linalg.norm(positions,axis=1,keepdims=True),1e-8)
+        positions *= 10
+        layer = dict(epoch=meta['epoch'], positions=positions[::max(1,len(positions)//4096)].ravel().tolist(),
+                     kind='rgb_instance_mask', observed=observed)
+        if observed:
+            h, w = 512, 1024
+            yy, xx = np.mgrid[:h,:w]
+            lon, lat = (xx+.5)/w*2*np.pi-np.pi, (yy+.5)/h*np.pi-np.pi/2
+            d = np.stack([np.sin(lon)*np.cos(lat), np.sin(lat), np.cos(lon)*np.cos(lat)],-1)@rotation
+            pixel = d@intrinsics(size,size).T
+            uv = np.rint(pixel[...,:2]/np.maximum(d[...,2:],1e-8)).astype(int)
+            good = (d[...,2]>0)&(uv[...,0]>=0)&(uv[...,0]<size)&(uv[...,1]>=0)&(uv[...,1]<size)
+            erp = np.zeros((h,w),bool);erp[good] = mask[uv[...,1][good],uv[...,0][good]]
+            target = photo_dir/(name+'-rgb-mask.png')
+            Image.fromarray(erp.astype('u1')*255).save(target)
+            layer['mask_image'] = str(target.relative_to(root)).replace('\\','/')
+        return layer
+
+    rgb_audit = []
+    for group in person_candidates(root, prepared):
+        own_epoch = group[0]['epoch']
+        instance_label = group[0]['label']
+        if instance_label == 'box' and any(f'E{own_epoch}-I{i}' in result['objects']
+            for r in group for i in r['mesh_instance_ids']):
+            continue
+        key = f'RGB-{instance_label.upper()}-{len(rgb_audit)+1:03d}'
+        photo_sets = []
+        largest=max(r['pixels'] for r in group)
+        photograph_order=sorted(group,key=lambda r:(r['pixels']<largest*.9,
+            views[r['view']]['timestamp_s'] if r['pixels']>=largest*.9 else -r['pixels']))
+        for index, observation in enumerate(photograph_order[:3]):
+            photo_set = {}
+            for epoch in [0,1]:
+                own = epoch == own_epoch
+                vid = observation['view'] if own else observation['reference']
+                meta = views[vid]
+                bbox = observation['bbox'] if own else observation['reference_bbox']
+                record = photograph(dict(view=vid, frame_id=meta['frame_id'], bbox=bbox,
+                    role='observed_object' if own else 'expected_location'))
+                pano = panorama(record, [])
+                mask = observation['mask'] if own else np.zeros_like(observation['mask'])
+                if not own:
+                    x0,y0,x1,y1=bbox;mask[y0:y1,x0:x1]=True
+                layer = image_layer(mask, meta, key+'-'+str(index)+'-'+str(epoch), own)
+                if not own:
+                    layer['epoch'] = own_epoch  # Bounds only, never an observed person.
+                rgba = np.zeros((*mask.shape,4),'u1')
+                if own:
+                    rgba[mask] = [255,194,106,160] if epoch else [87,216,221,160]
+                    name=key+'-'+str(index)+'-highlight.png'
+                    Image.fromarray(rgba).resize((768,768),Image.Resampling.NEAREST).save(photo_dir/name)
+                    record['ghosts']=[dict(epoch=epoch,image='events/photos/'+name,kind='rgb_instance_mask')]
+                else:
+                    record['ghosts']=[]
+                record['panorama']={**pano,'ghosts':[layer]}
+                photo_set[str(epoch)] = record
+            photo_sets.append(photo_set)
+        frames = sorted({r['frame_id'] for r in group})
+        events.append(dict(id=f'EV-{len(events)+1:03d}', type='unresolved',label=instance_label,
+            before=key if own_epoch==0 else None,after=key if own_epoch==1 else None,object_ids=[],
+            bounds=None,rgb_only=True,reason_code='registered_rgb_instance_without_mesh',
+            source_change_frames={key:frames},vacancy={},matching=None,photo_sets=photo_sets,
+            automatic=True,manual_overrides_used=False,physical_identity_verified=False,
+            registration_error_u=result['policy']['registration_error_u'],
+            localization='RGB instance mask in mesh-registered camera pairs; source mesh incomplete'))
+        rgb_audit.append(dict(id=key,epoch=own_epoch,label=instance_label,frames=frames,
+            observations=[dict(view=r['view'],reference=r['reference'],frame_id=r['frame_id'],
+                pixels=r['pixels'],changed_pixels=r['changed_pixels']) for r in group],
+            physical_mesh_created=False,photographer_excluded=True))
+    write(root/'results/rgb-person-audit.json',rgb_audit)
+    counts={**result['counts'],'unresolved':sum(e['type']=='unresolved' for e in events)}
     scenes = [{**s, "mesh": "preview/"+s["mesh"], "cloud": "preview/"+s["cloud"]} for s in scene["scenes"]]
-    write(root / "viewer-data.json", {**result, "events": events, "scenes": scenes,
-          "inference_pairs": read(root / "validation.json")["fresh_inference_pairs"],
+    write(root / "viewer-data.json", {**result, "events": events, "scenes": scenes, 'counts':counts,
+          'rgb_person_audit_sha256':sha(root/'results/rgb-person-audit.json'),
+          "inference_pairs": read(root / "validation.json").get('evaluated_probability_pairs',read(root / "validation.json")["fresh_inference_pairs"]),
           "source_event_sha256": sha(root / "results/events.json")})
     old = root / "index.html"
     if old.exists() and not (root / "raw-report.html").exists():

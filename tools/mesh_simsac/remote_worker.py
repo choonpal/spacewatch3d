@@ -11,6 +11,20 @@ from tools.mesh_simsac.relay import Relay
 from .core import read, write
 
 
+def viewer_archive_script(directory, archive):
+    return (f'from pathlib import Path;import zipfile,json;p=Path({str(directory)!r});'
+            'rgb=json.loads((p/"viewer-data.json").read_text()).get("backend")=="simsac_rgb";'
+            'names=["index.html","viewer-data.json","validation.json"]+'
+            '(["rgb-viewer.js","rgb-viewer.css"] if rgb else ["events-viewer.js","events-viewer.css"]);'
+            'files=[p/n for n in names];'
+            'files += [f for folder in ["events","preview"] for f in (p/folder).rglob("*") if f.is_file()];'
+            'files += [p/"photo-presentation.js"] if not rgb and (p/"photo-presentation.js").is_file() else [];'
+            'files += [p/"results"/n for n in ["events.json","model.json"]] if not rgb else [];'
+            'files += [p/"results/rgb-person-audit.json"] if (p/"results/rgb-person-audit.json").is_file() else [];'
+            f'z=zipfile.ZipFile({str(archive)!r},"w",zipfile.ZIP_DEFLATED,compresslevel=1);'
+            '[z.write(f,str(f.relative_to(p))) for f in files];z.close()')
+
+
 def execute(bundle, output, runtime):
     output = Path(output).resolve()
     output.mkdir(parents=True, exist_ok=True)
@@ -34,7 +48,7 @@ def execute(bundle, output, runtime):
             package = Path(runtime['three_package'])
             for name in ['build/three.module.js', 'build/three.core.js', 'examples/jsm/controls/OrbitControls.js', 'LICENSE']:
                 z.write(package/name, 'three/'+name)
-        remote_runtime = {k: v for k, v in runtime.items() if k in ['simsac_source', 'simsac_checkpoint', 'person_checkpoint', 'dependency_paths', 'model_hashes', 'device']}
+        remote_runtime = {k: v for k, v in runtime.items() if k in ['backend', 'simsac_source', 'simsac_checkpoint', 'person_checkpoint', 'dependency_paths', 'model_hashes', 'device','reprocess_source','reprocess_parent_viewer_sha256']}
         remote_runtime['three_package'] = remote+'/code/three'
         write(output/'runtime.local.json', remote_runtime)
         relay.call(command='mkdir -p '+quote(remote+'/code'))
@@ -42,6 +56,12 @@ def execute(bundle, output, runtime):
                            [str(output/'runtime.local.json'), remote+'/runtime.json']])
         command = [python, '-m', 'tools.mesh_simsac.worker', '--manifest', remote+'/inputs/manifest.json',
                    '--output', remote+'/result', '--runtime', remote+'/runtime.json']
+        if runtime.get('reprocess_source'):
+            source=PurePosixPath(runtime['reprocess_source'])
+            if not source.is_relative_to(remote_root) or '..' in source.parts:
+                raise ValueError('Reprocessing source must be a recorded run under remote_root')
+            command[2]='tools.mesh_simsac.reaggregate'
+            command+=['--source',str(source)]
         script = ('import zipfile,subprocess,os,json;'
                   f'zipfile.ZipFile({remote+"/source.zip"!r}).extractall({remote+"/code"!r});'
                   f'zipfile.ZipFile({remote+"/input.zip"!r}).extractall({remote+"/inputs"!r});'
@@ -80,17 +100,12 @@ def execute(bundle, output, runtime):
         time.sleep(4)
     write(output/'status.json', dict(state='running', stage='receiving_results'))
     # Download this run's public viewer only; private inputs/geometry arrays stay on GPU.
-    script = (f'from pathlib import Path;import zipfile;p=Path({remote+"/result/detection"!r});'
-              f'z=zipfile.ZipFile({remote+"/viewer.zip"!r},"w",zipfile.ZIP_DEFLATED,compresslevel=1);'
-              'files=[p/n for n in ["index.html","events-viewer.js","events-viewer.css","viewer-data.json","validation.json"]];'
-              'files += [f for folder in ["events","preview"] for f in (p/folder).rglob("*") if f.is_file()];'
-              'files += [p/"photo-presentation.js"] if (p/"photo-presentation.js").is_file() else [];'
-              'files += [p/"results"/n for n in ["events.json","model.json"]];'
-              '[z.write(f,str(f.relative_to(p))) for f in files];z.close()')
+    script = viewer_archive_script(remote+'/result/detection',remote+'/viewer.zip')
     relay.call(command=quote(python)+' -c '+quote(script))
-    relay.call(get=[[remote+'/viewer.zip', str(output/'viewer.zip')]])
+    download = output/('viewer-'+uuid.uuid4().hex[:12]+'.zip')
+    relay.call(get=[[remote+'/viewer.zip', str(download)]])
     target = output/'detection'; target.mkdir(exist_ok=True)
-    with zipfile.ZipFile(output/'viewer.zip') as z:
+    with zipfile.ZipFile(download) as z:
         for entry in z.infolist():
             path = (target/entry.filename).resolve()
             if not path.is_relative_to(target) or (entry.external_attr >> 16) & 0o170000 == 0o120000:

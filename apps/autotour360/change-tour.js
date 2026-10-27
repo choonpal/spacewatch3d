@@ -1,4 +1,3 @@
-import {createGaussianChangeTour,changeSource} from './gaussian-change-tour.js?v=1';
 import {decodeObjectMesh,objectPhotoVisibility,reprojectObjectPhoto} from './object-photo.js?v=1';
 import {createDormChangeTour} from './dorm-change-tour.js?v=whole-object-photo-1';
 
@@ -7,8 +6,7 @@ const COLORS=['#ffad73','#78caff'];
 
 // Mounted in the existing Auto Tour viewport; no page or project replacement.
 export function createChangeTour({onFrame=()=>{},onError=()=>{}}={}){
-  const source=changeSource(location.search);
-  if(source==='gaussian')return createGaussianChangeTour({onFrame,onError});
+  const source=new URLSearchParams(location.search).get('source');
   if(source==='dorm')return createDormChangeTour({onFrame,onError});
   return createRescanChangeTour({onFrame,onError});
 }

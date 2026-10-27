@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>변화 후보 비교 · SpaceWatch</title><link rel="stylesheet" href="mesh-changes.css"></head>
+<body><header><a href="/">SPACEWATCH</a><strong>변화 후보 비교</strong><span id="connection" role="status">실행 환경 확인 중</span></header>
+<main><section class="input-panel"><div><p class="eyebrow">SEGMENTED MESH + ORIGINAL RGB</p><h1>전후 촬영을 비교합니다</h1><p>메쉬·RGB·포인트클라우드를 정합하고, SimSaC가 찾은 변화 후보를 원본 영상에서 비교합니다.</p></div>
+<form id="capture-form" hidden><h2>서버에 있는 촬영 입력</h2><label for="before-capture">전 촬영</label><select id="before-capture" required><option value="">촬영 선택</option></select><label for="after-capture">후 촬영</label><select id="after-capture" required><option value="">촬영 선택</option></select><p>전후 촬영을 선택하면 자동으로 변화비교를 시작합니다. 기존 영상과 메쉬·객체 후보·점군·카메라를 함께 불러옵니다.</p><button id="run-captures" disabled>선택한 촬영 다시 비교</button><p id="capture-description"></p></form>
+<form id="upload-form"><label class="dropzone" for="bundle"><strong>또는 전후 입력 ZIP 선택</strong><span>분할 메쉬 · RGB · 점군 · 촬영 위치와 방향<br>파일을 선택하면 자동 분석을 시작합니다.</span><input id="bundle" type="file" accept=".zip" required></label><button id="run" disabled>입력하고 변화탐지</button><p id="upload-progress" role="status"></p></form>
+<details><summary>입력 파일 구성</summary><p>ZIP 최상위의 <code>manifest.json</code>에 전후 파일과 카메라 정보를 연결합니다. 메쉬 NPZ에는 <code>vertices / faces / face_instance_id</code>를 넣습니다. RGB와 메쉬를 같은 위치에서 비교할 수 있도록 프레임별 카메라 포즈가 필요합니다. 일반 사진은 카메라 내부 파라미터 K도 포함합니다.</p><p>전후 포인트클라우드를 함께 넣으면 정합 잔차와 가림·빈자리 관측을 독립적으로 검증합니다. 메쉬에서 빠진 촬영자는 원본 RGB의 사람 마스크로 제외합니다. 서버의 사람 검출 모델을 쓰거나 이미지와 같은 크기의 <code>person_mask</code>를 제공합니다.</p><a href="mesh-input.example.json" download>입력 JSON 예시 내려받기</a><pre>manifest.json
+before/mesh.npz
+before/001.jpg, 002.jpg …
+before/points.npz
+after/mesh.npz
+after/001.jpg, 002.jpg …
+after/points.npz</pre></details>
+<p class="cache-note">첫 입력은 새로 분석합니다. 입력·카메라·설정·모델이 같으면 완료된 분석을 다시 사용합니다.</p></section>
+<section class="result-panel"><div class="progress-card"><ol id="stages"><li data-stage="input_validation">입력 확인</li><li data-stage="registration">메쉬 정합</li><li data-stage="simsac">촬영자 제외 · SimSaC</li><li data-stage="classification">후보 근거 정리</li><li data-stage="viewer">전후 결과 표시</li></ol><div class="state-row"><strong id="state" role="status">새 입력을 기다리고 있습니다</strong><span id="cache-state"></span></div><p id="error" role="alert"></p><a id="result-link" target="_blank" hidden>결과를 넓게 열기 ↗</a></div><div id="empty"><div class="empty-icon">▧ → ▧</div><h2>같은 공간의 전과 후</h2><p>연산이 끝나면 변화 박스를 선택해 전후 객체를 반투명하게 겹쳐 봅니다.<br>박스를 누르면 선택 객체의 전후 모습만 강조합니다.</p></div><iframe id="result" title="현재 입력의 변화 후보 비교 결과" hidden></iframe></section></main>
+<script type="module" src="mesh-changes.js"></script></body></html>

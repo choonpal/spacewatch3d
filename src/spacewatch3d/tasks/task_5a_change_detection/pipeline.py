@@ -13,13 +13,13 @@ def run(request: TaskRequest) -> Path:
     to that manifest. See README.md in this directory and docs/contracts.md.
     """
     backend = request.config.get('backend', 'dorm_geometry_first')
-    if backend == 'mesh_gaussian_simsac':
-        from .gaussian_backend import run as run_gaussian
-        return run_gaussian(request)
+    if backend == 'mesh_rgb_simsac':
+        from .mesh_backend import run as run_mesh
+        return run_mesh(request)
     if backend == 'dorm_geometry_first':
         from .dorm_backend import run as run_dorm
         return run_dorm(request)
     raise BackendNotImplemented(
         f'Task 5a backend {backend!r} is not implemented. '
-        'Use mesh_gaussian_simsac with fresh mesh/Gaussian inputs, or dorm_geometry_first with a prepared whole-mesh pair.'
+        'Use mesh_rgb_simsac with segmented meshes and original RGB, or dorm_geometry_first with a prepared whole-mesh pair.'
     )

@@ -13,7 +13,8 @@ dependencies = ["jsonschema>=4.18,<5"]
 spacewatch3d = "spacewatch3d.cli:main"
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["src", "."]
+include = ["spacewatch3d*", "tools", "tools.gaussian_change*", "tools.mesh_simsac*"]
 
 [tool.setuptools.package-data]
 spacewatch3d = ["schemas/*.json"]

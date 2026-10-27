@@ -2,7 +2,19 @@
 
 같은 공간의 두 촬영 회차를 정합한 뒤 객체 대응 및 위치·형상 변화를 판별한다. 공간 정합도 이 task의 책임 범위다.
 
-상태: **Dorm 메시 기반 변화 구역 backend 연결** (2026-10-23). 전체 메시의 양방향 표면 거리, 구역별 정합 오차, 표면 잡음, 공간 연속성과 카메라 관측을 계산한다. 객체 분할·클래스·변화 정답을 탐지에 사용하지 않는다. 기존 정합 산출물을 입력으로 받으며 새 정합을 추정하는 backend는 아직 포함하지 않는다.
+상태: **새 메시·Gaussian 입력 자동 처리 backend 추가** (2026-10-27).
+`gaussian_backend.analyze()`는 입력 두 회차에서 메시 전역 정합·구역 보정을 새로 계산하고,
+동일 시점 Gaussian RGB·깊이·alpha 렌더링, SimSaC, 3D 후보 저장까지 실행한다.
+영상 재구성·Gaussian 학습·키포인트 선정은 실행하지 않으며 저장된 카메라를 받는다.
+[입력 계약·GPU 실행·한계](../../../../tools/gaussian_change/README.md).
+
+```sh
+python -m spacewatch3d.tasks.task_5a_change_detection --manifest input.local.json --runtime runtime.local.json --output outputs/change-run
+```
+
+기존 `dorm_geometry_first` backend는 계속 사전 정합 산출물을 사용한다.
+새 `mesh_gaussian_simsac` backend의 전역 정합은 FPFH/RANSAC·Sim3 ICP이며,
+과거 실험의 저장된 GeoTransformer 변환을 재사용하지 않는다. 두 실행 범위를 구분한다.
 
 ## 현재 구현과 실행
 

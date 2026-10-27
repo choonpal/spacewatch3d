@@ -1,0 +1,5 @@
+{
+  "simsac_source": "/opt/models/SimSaC",
+  "simsac_checkpoint": "/opt/models/simsac_changesim.pth",
+  "person_checkpoint": "/opt/models/person-seg.pt"
+}

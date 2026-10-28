@@ -1,0 +1,24 @@
+ProPainter 전용 코드 및 결과 저장본
+
+저장 위치: /home/kdj/Desktop/capstone/spacewatch3d/propainter_camera
+서버 실행 위치: /workspace/propainter_camera_20261028
+접속: ssh -p 4444 root@10.132.1.13
+
+pipeline.py / gpu_worker.py / propainter_stage.py / launch.py: 처리 코드
+run.sh / run_env.sh: 서버 실행 진입점과 환경
+config.json: 키프레임 [7, 123, 205] 및 처리 설정
+data/camera_poses.npy: 실제 촬영 카메라 포즈
+README.txt: 실행 방법과 설정 설명
+results/images/: 사람을 제거한 360도 이미지 3장
+results/originals/: 대응 원본 이미지 3장
+results/index.html: 360도 뷰어
+results/plan.json 및 records/: 프레임 선정과 처리 과정 기록
+validation.json / browser_validation.json: 검증 기록
+migration/removal_report.json: 이전 렌더러 실행 코드 제거 기록
+propainter_camera_code.zip: 코드 배포 압축 파일
+TRANSFER_MANIFEST.json: 복사한 파일별 SHA-256 및 저장 시각
+
+현재 설정에는 서버 절대 경로가 들어 있습니다. 모델 실행은 서버에서 수행합니다.
+로컬에서 config.json을 편집해도 서버 파일이 자동으로 동기화되지는 않습니다.
+원본 전체 영상과 모델 가중치는 이 저장본에 포함하지 않았으며 기존 서버에 유지됩니다.
+이번 저장 작업에서는 모델 추론을 실행하지 않았습니다.

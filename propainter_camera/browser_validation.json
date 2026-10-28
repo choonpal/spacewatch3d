@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "download": "images/source_00007.png",
+      "error": "",
+      "frame": "프레임 7 · 3.50초",
+      "meta": "프레임 7 · 3.50초 · 1024 × 512 · 위치 [-2.870, -29.317, 2.007]",
+      "mode": "restored"
+    },
+    {
+      "download": "originals/source_00007.png",
+      "error": "",
+      "frame": "프레임 7 · 3.50초",
+      "meta": "프레임 7 · 3.50초 · 1024 × 512 · 위치 [-2.870, -29.317, 2.007]",
+      "mode": "original"
+    },
+    {
+      "download": "images/source_00123.png",
+      "error": "",
+      "frame": "프레임 123 · 61.49초",
+      "meta": "프레임 123 · 61.49초 · 1024 × 512 · 위치 [-3.815, 7.517, 1.795]",
+      "mode": "restored"
+    },
+    {
+      "download": "originals/source_00123.png",
+      "error": "",
+      "frame": "프레임 123 · 61.49초",
+      "meta": "프레임 123 · 61.49초 · 1024 × 512 · 위치 [-3.815, 7.517, 1.795]",
+      "mode": "original"
+    },
+    {
+      "download": "images/source_00205.png",
+      "error": "",
+      "frame": "프레임 205 · 102.48초",
+      "meta": "프레임 205 · 102.48초 · 1024 × 512 · 위치 [8.288, 16.718, 1.823]",
+      "mode": "restored"
+    },
+    {
+      "download": "originals/source_00205.png",
+      "error": "",
+      "frame": "프레임 205 · 102.48초",
+      "meta": "프레임 205 · 102.48초 · 1024 × 512 · 위치 [8.288, 16.718, 1.823]",
+      "mode": "original"
+    }
+  ],
+  "console_errors": []
+}

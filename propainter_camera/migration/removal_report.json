@@ -1,0 +1,70 @@
+{
+  "completed": true,
+  "removed": [
+    {
+      "path": "/workspace/panogrf_propainter_13_20261027/infer.py",
+      "sha256": "e06a8812b4dc98aa11b8102d2135b276ab955cbb8870095987c9ae09f8b289b1"
+    },
+    {
+      "path": "/workspace/panogrf_propainter_13_20261027/resolution_rays.py",
+      "sha256": "dec73cd38f33e81c7b907adcc11095d2e2f641ae69a5a59f9f6ae61349ef06a5"
+    },
+    {
+      "path": "/workspace/panogrf_propainter_13_20261027/launch.py",
+      "sha256": "d2217ec5bbb3ed1e7b85c5b3d2cf81b0e54ff5109f29f95606b4ae876e280cc6"
+    },
+    {
+      "path": "/workspace/panogrf_propainter_13_20261027/finish.py",
+      "sha256": "3501a24117ea2009ea9c6ff9e7660b26f4e263ae88d47671705da21fbe7653c2"
+    },
+    {
+      "path": "/workspace/panogrf_propainter_13_20261027/plan.py",
+      "sha256": "0a3c5fa6e223bf84ae21f6377f0fecd541547c8ca723ab887f51861b3fde0710"
+    },
+    {
+      "path": "/workspace/panogrf_propainter_13_20261027/collect.py",
+      "sha256": "5b7cd56d79f570b66215a48528baf23978a90676569a4e150d93427d6044a374"
+    },
+    {
+      "path": "/workspace/panogrf_adjacent_13_20261027/infer.py",
+      "sha256": "e06a8812b4dc98aa11b8102d2135b276ab955cbb8870095987c9ae09f8b289b1"
+    },
+    {
+      "path": "/workspace/panogrf_adjacent_13_20261027/resolution_rays.py",
+      "sha256": "dec73cd38f33e81c7b907adcc11095d2e2f641ae69a5a59f9f6ae61349ef06a5"
+    },
+    {
+      "path": "/workspace/panogrf_adjacent_13_20261027/launch.py",
+      "sha256": "d2217ec5bbb3ed1e7b85c5b3d2cf81b0e54ff5109f29f95606b4ae876e280cc6"
+    },
+    {
+      "path": "/workspace/panogrf_adjacent_13_20261027/start_infer.py",
+      "sha256": "c9927a8b8eda192bd46bb5e5c56adedbbf9b3ddb147f9cf70143aec21e54c2de"
+    },
+    {
+      "path": "/workspace/panogrf_adjacent_13_20261027/prepare_reuse.py",
+      "sha256": "74c03929d7fa6d340461b9ff123106bd29751a825f4278272b4f8b14b5e77006"
+    },
+    {
+      "path": "/workspace/panogrf_adjacent_13_20261027/select_three.py",
+      "sha256": "61140c72decde6bd6f8d8d1ec6d3bc4e0d2342218eeb21b2497358d241604b8e"
+    },
+    {
+      "path": "/workspace/panogrf_adjacent_13_20261027/collect.py",
+      "sha256": "5b7cd56d79f570b66215a48528baf23978a90676569a4e150d93427d6044a374"
+    },
+    {
+      "path": "/workspace/panogrf_propainter_13_20261027/__pycache__/resolution_rays.cpython-310.pyc",
+      "sha256": "b34fb5cd0bd18e4e811ff63d8afefbbb8bd96b0efdefb57a8e96eb9af5d327f2"
+    },
+    {
+      "path": "/workspace/panogrf_adjacent_13_20261027/__pycache__/resolution_rays.cpython-310.pyc",
+      "sha256": "7887394104a9219c2ae40e5f875edfb7773491b608419503496e433c5c6c6831"
+    }
+  ],
+  "backup_archive": "/workspace/propainter_camera_20261028/migration/retired_renderer_code.tar.gz",
+  "new_pipeline": "/workspace/propainter_camera_20261028",
+  "historical_images_and_records_preserved": true,
+  "shared_model_repositories_preserved": true,
+  "completed_unix": 1793165247.1348317
+}

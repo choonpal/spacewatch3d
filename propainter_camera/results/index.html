@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>촬영 카메라 · ProPainter 360°</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#101820;color:#edf4fa;font:16px system-ui,sans-serif}main{max-width:1280px;margin:auto;padding:24px}h1{font-size:25px;margin:0 0 8px}.muted{color:#a6bbca}nav{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:18px 0}button,select,a{font:inherit;color:inherit;background:#233544;border:1px solid #496271;border-radius:7px;padding:9px 13px}a{color:#9ee6d4;text-decoration:none}button{cursor:pointer}button[aria-pressed=true]{background:#166b59}canvas{display:block;width:100%;height:65vh;min-height:350px;background:#091117;border-radius:10px;touch-action:none}#meta{line-height:1.8}#error{color:#ffaaaa}footer{margin-top:20px;font-size:14px;color:#a6bbca}label{display:flex;align-items:center;gap:8px}
+</style><main>
+<h1>촬영 카메라 · ProPainter 360°</h1><div class="muted">선택한 실제 촬영 프레임에서 사람을 제거한 결과</div>
+<nav><button id="prev">← 이전</button><select id="choice" aria-label="촬영 프레임"></select><button id="next">다음 →</button><button id="restored" aria-pressed="true">사람 제거</button><button id="original" aria-pressed="false">원본</button><a id="download" download>PNG 저장</a></nav>
+<canvas id="panorama" tabindex="0" aria-label="드래그나 방향키로 회전하는 360도 이미지"></canvas><p id="error" role="status"></p>
+<nav><button id="front">정면</button><button id="focus">사람 있던 곳</button><label>시야각 <input id="fov" type="range" min="30" max="110" value="90"><span id="fov-value">90°</span></label></nav>
+<div id="meta"></div><footer>드래그·방향키로 회전, 휠로 확대/축소. 제거 마스크 밖은 원본 픽셀을 유지합니다. 위치는 촬영 카메라의 좌표이며, 좌표 단위의 미터 환산은 검증되지 않았습니다.</footer>
+</main><script src="data.js"></script><script src="viewer.js"></script></html>

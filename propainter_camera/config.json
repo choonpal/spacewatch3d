@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "selected_camera_ids": [
+    7,
+    123,
+    205
+  ],
+  "source_video": "/workspace/dorm3_pointcloud_v2_20261017/source/video.mp4",
+  "source_manifest": "/workspace/dorm3_pointcloud_v2_20261017/input/manifest.json",
+  "source_sha256": "d8133ca8e746cb0a764dddede4349ad35df28586b70e63614301bc3e202ea79b",
+  "camera_poses": "/workspace/propainter_camera_20261028/data/camera_poses.npy",
+  "output_dir": "/workspace/propainter_camera_20261028/results",
+  "erp_resolution": [
+    1024,
+    512
+  ],
+  "erp_feather_pixels": 2,
+  "seed": 20261027,
+  "context": {
+    "seconds_before": 1.5,
+    "seconds_after": 1.5,
+    "sample_step": 3
+  },
+  "reusable_clips": [
+    "/workspace/panogrf_propainter_13_20261027/clip_00",
+    "/workspace/panogrf_propainter_13_20261027/clip_01",
+    "/workspace/panogrf_propainter_13_20261027/clip_02",
+    "/workspace/panogrf_propainter_13_20261027/clip_03",
+    "/workspace/panogrf_propainter_13_20261027/clip_04",
+    "/workspace/panogrf_propainter_13_20261027/clip_05",
+    "/workspace/panogrf_propainter_13_20261027/clip_06",
+    "/workspace/panogrf_propainter_13_20261027/clip_07",
+    "/workspace/panogrf_propainter_13_20261027/clip_08",
+    "/workspace/panogrf_propainter_13_20261027/clip_09",
+    "/workspace/panogrf_propainter_13_20261027/clip_10",
+    "/workspace/panogrf_propainter_13_20261027/clip_11",
+    "/workspace/panogrf_propainter_13_20261027/clip_12",
+    "/workspace/panogrf_propainter_13_20261027/clip_13",
+    "/workspace/panogrf_propainter_13_20261027/clip_14"
+  ],
+  "new_clip_settings": {},
+  "mask": {
+    "dilation_radius_pixels": 8,
+    "close_kernel_pixels": 5
+  },
+  "sam": {
+    "model_config": "configs/sam2.1/sam2.1_hiera_s.yaml",
+    "checkpoint": "/workspace/grounded_sam2_panorama_test_20261023/cache/models--facebook--sam2.1-hiera-small/snapshots/ee5bba1d82bb8749febdf90f45e84b687142ba03/sam2.1_hiera_small.pt"
+  },
+  "propainter": {
+    "repository": "/workspace/panogrf_propainter_20261027/ProPainter",
+    "official_commit": "326782529a63d997cab80ab21439b92ed422b3d3",
+    "ref_stride": 5,
+    "neighbor_length": 10,
+    "subvideo_length": 80,
+    "mask_dilation": 0,
+    "raft_iter": 20,
+    "save_fps": 10,
+    "fp16": true
+  }
+}

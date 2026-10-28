@@ -1,0 +1,6 @@
+# CPU loop detection / Sim(3) graph optimization, separate from the common scaffold.
+# Validated locally: Python 3.10, NumPy 1.21.5, SciPy 1.8.0, OpenCV 4.5.4.
+# GPU PanoVGGT inference uses its own Colab environment and pinned upstream commit.
+numpy>=1.21,<3
+scipy>=1.8,<2
+opencv-python-headless>=4.5,<5

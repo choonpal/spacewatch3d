@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "items": [
+    {
+      "camera_frame_id": 7,
+      "byte_identical_to_previous": true,
+      "outside_mask_unchanged": true,
+      "pose_equals_captured_pose": true
+    },
+    {
+      "camera_frame_id": 123,
+      "byte_identical_to_previous": true,
+      "outside_mask_unchanged": true,
+      "pose_equals_captured_pose": true
+    },
+    {
+      "camera_frame_id": 205,
+      "byte_identical_to_previous": true,
+      "outside_mask_unchanged": true,
+      "pose_equals_captured_pose": true
+    }
+  ],
+  "changed_parameters_invalidate_cache": true,
+  "duplicate_camera_ids_rejected": true,
+  "no_renderer_imports": true,
+  "no_gpu_used": true,
+  "fresh_gpu_worker_execution_tested": false,
+  "run": {
+    "completed": true,
+    "pipeline": "camera_frame_propainter_erp",
+    "target_count": 3,
+    "camera_ids": [
+      7,
+      123,
+      205
+    ],
+    "output_resolution": [
+      1024,
+      512
+    ],
+    "new_sam_seconds": 0,
+    "new_propainter_seconds": 0,
+    "erp_and_viewer_seconds": 1.895868569612503,
+    "total_seconds": 8.738384258002043,
+    "reused_clips": 3,
+    "new_clips": 0,
+    "completed_unix": 1793165091.4128628
+  }
+}

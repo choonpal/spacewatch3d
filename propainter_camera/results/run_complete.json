@@ -1,0 +1,21 @@
+{
+  "completed": true,
+  "pipeline": "camera_frame_propainter_erp",
+  "target_count": 3,
+  "camera_ids": [
+    7,
+    123,
+    205
+  ],
+  "output_resolution": [
+    1024,
+    512
+  ],
+  "new_sam_seconds": 0,
+  "new_propainter_seconds": 0,
+  "erp_and_viewer_seconds": 1.895868569612503,
+  "total_seconds": 8.738384258002043,
+  "reused_clips": 3,
+  "new_clips": 0,
+  "completed_unix": 1793165091.4128628
+}

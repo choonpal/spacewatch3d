@@ -1,0 +1,409 @@
+{
+  "status": "complete",
+  "method": "SAM 2.1 Hiera Small video propagation",
+  "trained": false,
+  "prompt": {
+    "box": [
+      138,
+      190,
+      308,
+      444
+    ],
+    "points": [
+      [
+        206,
+        252
+      ],
+      [
+        228,
+        332
+      ],
+      [
+        254,
+        402
+      ]
+    ],
+    "source": "Manual box and positive points after inspecting projected first frame"
+  },
+  "mask_convention": "255 remove, 0 keep",
+  "dilation_radius_pixels": 8,
+  "close_kernel_pixels": 5,
+  "started_unix": 1793084266.9757514,
+  "completed_unix": 1793084278.0094278,
+  "elapsed_seconds": 11.033676624298096,
+  "rows": [
+    {
+      "frame": 0,
+      "raw_fraction": 0.0665740966796875,
+      "expanded_fraction": 0.09185791015625,
+      "bbox": [
+        151,
+        200,
+        304,
+        429
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 1,
+      "raw_fraction": 0.06982803344726562,
+      "expanded_fraction": 0.09382247924804688,
+      "bbox": [
+        160,
+        199,
+        307,
+        430
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 2,
+      "raw_fraction": 0.06918716430664062,
+      "expanded_fraction": 0.093231201171875,
+      "bbox": [
+        168,
+        201,
+        306,
+        437
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 3,
+      "raw_fraction": 0.06728744506835938,
+      "expanded_fraction": 0.09086227416992188,
+      "bbox": [
+        175,
+        201,
+        304,
+        441
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 4,
+      "raw_fraction": 0.06373977661132812,
+      "expanded_fraction": 0.08577346801757812,
+      "bbox": [
+        181,
+        200,
+        303,
+        437
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 5,
+      "raw_fraction": 0.061901092529296875,
+      "expanded_fraction": 0.08338546752929688,
+      "bbox": [
+        185,
+        197,
+        302,
+        437
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 6,
+      "raw_fraction": 0.058685302734375,
+      "expanded_fraction": 0.07934188842773438,
+      "bbox": [
+        190,
+        196,
+        300,
+        431
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 7,
+      "raw_fraction": 0.0569305419921875,
+      "expanded_fraction": 0.07819366455078125,
+      "bbox": [
+        196,
+        195,
+        298,
+        430
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 8,
+      "raw_fraction": 0.055698394775390625,
+      "expanded_fraction": 0.07758331298828125,
+      "bbox": [
+        201,
+        195,
+        297,
+        429
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 9,
+      "raw_fraction": 0.05406951904296875,
+      "expanded_fraction": 0.07495880126953125,
+      "bbox": [
+        206,
+        195,
+        301,
+        429
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 10,
+      "raw_fraction": 0.054210662841796875,
+      "expanded_fraction": 0.0745086669921875,
+      "bbox": [
+        207,
+        192,
+        306,
+        429
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 11,
+      "raw_fraction": 0.0531158447265625,
+      "expanded_fraction": 0.07286834716796875,
+      "bbox": [
+        208,
+        191,
+        310,
+        421
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 12,
+      "raw_fraction": 0.053020477294921875,
+      "expanded_fraction": 0.07244873046875,
+      "bbox": [
+        211,
+        190,
+        314,
+        414
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 13,
+      "raw_fraction": 0.054294586181640625,
+      "expanded_fraction": 0.07444381713867188,
+      "bbox": [
+        213,
+        191,
+        322,
+        411
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 14,
+      "raw_fraction": 0.056995391845703125,
+      "expanded_fraction": 0.0779266357421875,
+      "bbox": [
+        212,
+        194,
+        328,
+        414
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 15,
+      "raw_fraction": 0.05681610107421875,
+      "expanded_fraction": 0.08000946044921875,
+      "bbox": [
+        210,
+        195,
+        334,
+        418
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 16,
+      "raw_fraction": 0.0606536865234375,
+      "expanded_fraction": 0.08235549926757812,
+      "bbox": [
+        209,
+        194,
+        340,
+        415
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 17,
+      "raw_fraction": 0.0576934814453125,
+      "expanded_fraction": 0.08046722412109375,
+      "bbox": [
+        209,
+        195,
+        348,
+        405
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 18,
+      "raw_fraction": 0.0615081787109375,
+      "expanded_fraction": 0.0822906494140625,
+      "bbox": [
+        210,
+        195,
+        359,
+        400
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 19,
+      "raw_fraction": 0.06244659423828125,
+      "expanded_fraction": 0.0854034423828125,
+      "bbox": [
+        210,
+        195,
+        371,
+        398
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 20,
+      "raw_fraction": 0.06551742553710938,
+      "expanded_fraction": 0.09027099609375,
+      "bbox": [
+        212,
+        196,
+        381,
+        392
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 21,
+      "raw_fraction": 0.0699615478515625,
+      "expanded_fraction": 0.09588241577148438,
+      "bbox": [
+        214,
+        199,
+        394,
+        401
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 22,
+      "raw_fraction": 0.07555389404296875,
+      "expanded_fraction": 0.10112380981445312,
+      "bbox": [
+        217,
+        201,
+        411,
+        393
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 23,
+      "raw_fraction": 0.08266830444335938,
+      "expanded_fraction": 0.10825347900390625,
+      "bbox": [
+        218,
+        202,
+        431,
+        390
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 24,
+      "raw_fraction": 0.09189224243164062,
+      "expanded_fraction": 0.11838531494140625,
+      "bbox": [
+        220,
+        202,
+        451,
+        386
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 25,
+      "raw_fraction": 0.09640121459960938,
+      "expanded_fraction": 0.12398529052734375,
+      "bbox": [
+        221,
+        202,
+        460,
+        396
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 26,
+      "raw_fraction": 0.10070419311523438,
+      "expanded_fraction": 0.1287384033203125,
+      "bbox": [
+        222,
+        203,
+        461,
+        403
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 27,
+      "raw_fraction": 0.09903335571289062,
+      "expanded_fraction": 0.12752151489257812,
+      "bbox": [
+        220,
+        203,
+        454,
+        404
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 28,
+      "raw_fraction": 0.09228134155273438,
+      "expanded_fraction": 0.11960220336914062,
+      "bbox": [
+        219,
+        202,
+        442,
+        395
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 29,
+      "raw_fraction": 0.08383560180664062,
+      "expanded_fraction": 0.1090240478515625,
+      "bbox": [
+        218,
+        203,
+        428,
+        390
+      ],
+      "mask_touches_border": false
+    },
+    {
+      "frame": 30,
+      "raw_fraction": 0.07940673828125,
+      "expanded_fraction": 0.10424423217773438,
+      "bbox": [
+        216,
+        202,
+        422,
+        392
+      ],
+      "mask_touches_border": false
+    }
+  ],
+  "peak_allocated_mib": 2010.61962890625
+}

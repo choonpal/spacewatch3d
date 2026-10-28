@@ -1,0 +1,147 @@
+{
+  "items": [
+    {
+      "id": "source_00007",
+      "rank": 1,
+      "camera_frame_id": 7,
+      "native_video_frame": 105,
+      "timestamp_s": 3.4993555555555558,
+      "pose": [
+        [
+          0.9855648920809401,
+          -0.006499846681590937,
+          0.16917327061507256,
+          -2.8700719270369452
+        ],
+        [
+          -0.1692932969012921,
+          -0.03031788856359729,
+          0.9850992870047852,
+          -29.3173944255739
+        ],
+        [
+          -0.0012740179652285936,
+          -0.9995191732158822,
+          -0.030980627044383188,
+          2.007194278746667
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "clip": "clip_00",
+      "file": "images/source_00007.png",
+      "original": "originals/source_00007.png",
+      "width": 1024,
+      "height": 512,
+      "focus": {
+        "yaw": -3.028926279598547,
+        "pitch": 1.2290317554912922
+      },
+      "edited_fraction": 0.1673603057861328,
+      "outside_mask_pixels_unchanged": true,
+      "output_sha256": "19217f41c8a118d37cfddd5b1d84eac75f5746de36cfedca8dac5d21235a7b70",
+      "patch_sha256": "79a51dd282d6749e673576b425daf0aee3244ed3ba3a0175fa3f874a99616f01",
+      "reused_model_result": true
+    },
+    {
+      "id": "source_00123",
+      "rank": 2,
+      "camera_frame_id": 123,
+      "native_video_frame": 1845,
+      "timestamp_s": 61.49024444444445,
+      "pose": [
+        [
+          0.7217152063395436,
+          -0.05437148446337936,
+          -0.6900513767941618,
+          -3.8145620731006007
+        ],
+        [
+          0.691581869224143,
+          0.014857449475723617,
+          0.7221452584871805,
+          7.5172729842135375
+        ],
+        [
+          -0.02901170623576603,
+          -0.9984102352601983,
+          0.04832518007172656,
+          1.7950854546907544
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "clip": "clip_08",
+      "file": "images/source_00123.png",
+      "original": "originals/source_00123.png",
+      "width": 1024,
+      "height": 512,
+      "focus": {
+        "yaw": 3.051555344425626,
+        "pitch": 1.272144502061971
+      },
+      "edited_fraction": 0.17426490783691406,
+      "outside_mask_pixels_unchanged": true,
+      "output_sha256": "c833f632b2c4adee2bb30ba61de8e440873bf355f09bf6b58dd2e64faee5ec34",
+      "patch_sha256": "33d46faa083492c9e00c884f7ff11cceb7627a6f34515a9d3845fa8d3511cdbb",
+      "reused_model_result": true
+    },
+    {
+      "id": "source_00205",
+      "rank": 3,
+      "camera_frame_id": 205,
+      "native_video_frame": 3075,
+      "timestamp_s": 102.48355555555555,
+      "pose": [
+        [
+          -0.5012328514130132,
+          0.005331490947858088,
+          0.8652960209481223,
+          8.287642345022988
+        ],
+        [
+          -0.8652362810884905,
+          -0.016355443437206258,
+          -0.5010974729113399,
+          16.717574541509247
+        ],
+        [
+          0.01148070348623528,
+          -0.9998520263890278,
+          0.012810884950536831,
+          1.8228610037140194
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "clip": "clip_13",
+      "file": "images/source_00205.png",
+      "original": "originals/source_00205.png",
+      "width": 1024,
+      "height": 512,
+      "focus": {
+        "yaw": -2.678374589464578,
+        "pitch": 1.2688856792263714
+      },
+      "edited_fraction": 0.16976547241210938,
+      "outside_mask_pixels_unchanged": true,
+      "output_sha256": "b7764276b9ce6338d9e9c7d102fb2e29d6b80de5e06eb7d2522ecb9db164bb6f",
+      "patch_sha256": "e65accaa92210d7f7d0413aec6e6202e98c086fd5f6286eebd55baec5d603d5a",
+      "reused_model_result": true
+    }
+  ],
+  "selection": "Explicit captured-camera indices; output pose equals the captured pose.",
+  "pixel_grid": "endpoint ERP"
+}

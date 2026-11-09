@@ -1,0 +1,474 @@
+--- before/spacewatch_pipeline/florence.py
++++ after/spacewatch_pipeline/florence.py
+@@ -129,6 +129,55 @@
+         save(out/'refinement_plan.json',dict(views=0,reason='disabled_or_no_projected_observations'))
+     result(out,data_root=str(out),prepared=str(out/'prepared.json'),plan=read(out/'refinement_plan.json'))
+ 
++def reference_measurements(observations, candidate, points, voxel):
++    """Separate frame-balanced reference sizes from deduplicated visible union.
++
++    Union dimensions are diagnostic only: they do not replace the size prior
++    used by mesh assignment. Each occupied reconstruction-scale voxel has one
++    deterministic representative, independent of repeated crops/point counts.
++    """
++    helpers()
++    from scene_discovery.measure import dimensions
++    good_ids=[i for i in candidate['observation_ids'] if not observations[i]['reference_rejection']]
++    good=[observations[i] for i in good_ids]
++    if not good:raise ValueError('Reference candidate has no accepted observations')
++    by_frame=defaultdict(list)
++    for row in good:by_frame[int(row['frame'])].append(row['dimensions'])
++    frame_ids=sorted(by_frame)
++    frame_dims=np.array([np.median(by_frame[f],axis=0) for f in frame_ids])
++    legacy=np.median([r['dimensions'] for r in good],axis=0)
++    median=np.median(frame_dims,axis=0)
++    if not np.isfinite(voxel) or voxel<=0:raise ValueError('Expected positive union voxel size')
++    select=(points['candidate_id']==candidate['candidate_id'])&np.isin(points['observation_id'],good_ids)
++    p=np.asarray(points['points'][select],float)
++    if p.ndim!=2 or p.shape[1]!=3 or not np.isfinite(p).all():
++        raise ValueError('Expected finite accepted observation points')
++    # Sorting exact unique XYZ makes voxel representatives independent of order
++    # and duplicate observations. Never synthesize averaged source coordinates.
++    unique=np.unique(p,axis=0)
++    _,indices=np.unique(np.floor(unique/voxel).astype(np.int64),axis=0,return_index=True)
++    union=unique[indices]
++    merged=None;union_status='insufficient_unique_voxels'
++    if len(union)>=8:
++        extent=dimensions(union)
++        if extent.min()>1e-5:
++            merged=extent.tolist();union_status='measured_visible_extent'
++        else:union_status='degenerate_visible_extent'
++    return dict(dimensions=median.tolist(),
++        dimension_source='median_of_per_frame_observation_medians',
++        accepted_observation_median_dimensions=legacy.tolist(),
++        accepted_frame_median_dimensions=median.tolist(),
++        accepted_union_dimensions=merged,
++        accepted_union_status=union_status,
++        accepted_union_voxel=float(voxel),accepted_union_input_points=len(p),
++        accepted_union_unique_points=len(unique),accepted_union_voxels=len(union),
++        accepted_observation_count=len(good),accepted_frame_count=len(frame_ids),
++        frame_measurements=[dict(frame=f,dimensions=d.tolist(),observations=len(by_frame[f]))
++                            for f,d in zip(frame_ids,frame_dims)],
++        union_policy='unique_xyz_then_one_lexicographic_source_point_per_voxel',
++        union_used_for_mesh_limits=False)
++
++
+ def discovery(job):
+     out=Path(job['output']);deps=job['dependencies'];support=defaultdict(set);refs=defaultdict(list)
+     evidence=[]
+@@ -136,11 +185,13 @@
+         prefix=capture['id'];root=Path(deps[prefix+'.objects']['data_root'])
+         observations=read(root/'observations.json')
+         for r in observations:support[r['label']].add((prefix,r['frame']))
+-        for r in read(root/'instances.json'):
+-            if r['reference_eligible']:
+-                good=[observations[i]['dimensions'] for i in r['observation_ids'] if not observations[i]['reference_rejection']]
+-                refs[r['label']].append(dict(capture=prefix,candidate_id=r['candidate_id'],frames=r['complete_frames'],
+-                    dimensions=np.median(good,axis=0).tolist(),axis_max_min_ratio=r['size_ratio']))
++        with np.load(root/'candidates.npz') as points:
++            voxel=read(root/'projection_summary.json')['voxel']
++            for r in read(root/'instances.json'):
++                if r['reference_eligible']:
++                    measurement=reference_measurements(observations,r,points,voxel)
++                    refs[r['label']].append(dict(capture=prefix,candidate_id=r['candidate_id'],frames=r['complete_frames'],
++                        axis_max_min_ratio=r['size_ratio'],**measurement))
+         evidence.append(dict(capture=prefix,data_root=str(root)))
+     names=sorted(k for k,v in support.items() if len(v)>=job['config']['discovery'].get('min_class_frames',2))
+     if len(names)>254:raise ValueError('Too many classes for uint8 face class catalogue')
+@@ -150,7 +201,10 @@
+         distinct_frame_support=[dict(capture=a,frame=b) for a,b in sorted(support[name])],
+         source='Florence-2 OD + polygon masks + reconstructed depth') for i,name in enumerate(names)]
+     priors=dict(units='input_mesh_units',metric_scale_verified=all(deps[c['id']+'.reconstruct']['metric_scale_verified'] for c in job['config']['captures']),
+-        policy='Separate measured candidates; no universal category size or shape-based splitting',classes={})
++        policy='Separate measured candidates; no universal category size or shape-based splitting',
++        measurement_version='phase1_frame_balanced_visible_extent',
++        dimension_order=['short_horizontal','long_horizontal','height'],
++        bounds_are_statistical_confidence_intervals=False,classes={})
+     for name in names:
+         # Keep separate references rather than equating all chair types/sizes.
+         priors['classes'][name]=dict(references=refs[name],families=[dict(dimensions=r['dimensions'],references=[r]) for r in refs[name]])
+--- before/vendor/discovery/segmentation_2d3d/scene_discovery/measure.py
++++ after/vendor/discovery/segmentation_2d3d/scene_discovery/measure.py
+@@ -24,21 +24,47 @@
+     return np.array([*best[1],h])
+ 
+ 
+-def clean_points(points):
+-    """Remove distant mask/depth leakage without assuming a metric object size."""
++def clean_points(points, return_info=False):
++    """Preserve significant disconnected parts; retention is not confidence.
++
++    The default two-value interface is retained. Callers selecting size
++    references should request diagnostics and reject uncertain connectivity.
++    Thresholds are geometric heuristics, not calibrated object probabilities.
++    """
+     p=np.asarray(points,float)
+-    if len(p)<32:return p,1.
++    if p.ndim!=2 or p.shape[1]!=3 or not np.isfinite(p).all():
++        raise ValueError('Point cloud must be a finite Nx3 array')
++    info=dict(raw_points=len(p),retained_points=len(p),retained_fraction=1.,
++              component_count=0,components_kept=0,dominant_fraction=None,
++              connectivity_uncertain=True,measurement_uncertain=True,
++              voxel_size=None,minimum_component_voxels=None)
++    def finish(clean, fraction):
++        info.update(retained_points=len(clean),retained_fraction=float(fraction))
++        return (clean,float(fraction),info) if return_info else (clean,float(fraction))
++    if len(p)<32:return finish(p,1.)
+     q=np.quantile(p,[.01,.99],axis=0);diagonal=np.linalg.norm(q[1]-q[0])
+     voxel=max(diagonal/60,1e-8)
+-    _,ids=np.unique(np.floor(p/voxel).astype(np.int64),axis=0,return_index=True)
++    _,ids,inverse=np.unique(np.floor(p/voxel).astype(np.int64),axis=0,
++                            return_index=True,return_inverse=True)
+     sample=p[ids];tree=cKDTree(sample)
+     pairs=tree.query_pairs(voxel*3.2,output_type='ndarray')
+     graph=coo_matrix((np.ones(len(pairs)),(pairs[:,0],pairs[:,1])),shape=(len(sample),len(sample)))
+     _,labels=connected_components(graph,directed=False)
+-    counts=np.bincount(labels);main=counts.argmax()
+-    _,near=tree.query(p,k=1)
+-    keep=labels[near]==main
+-    return p[keep],float(keep.mean())
++    counts=np.bincount(labels);largest=int(counts.max())
++    info.update(component_count=len(counts),voxel_size=float(voxel))
++    # Sparse connectivity is insufficient evidence for removing whole parts.
++    if largest<max(4,int(np.ceil(.02*len(sample)))):
++        info.update(components_kept=len(counts),dominant_fraction=float(largest/len(sample)))
++        return finish(p,1.)
++    minimum=max(3,int(np.ceil(.05*largest)))
++    retained=np.flatnonzero(counts>=minimum)
++    keep=np.isin(labels,retained)[inverse]
++    fraction=float(keep.mean())
++    info.update(components_kept=len(retained),
++                dominant_fraction=float(largest/counts[retained].sum()),
++                minimum_component_voxels=minimum,connectivity_uncertain=False,
++                measurement_uncertain=bool(len(retained)>1 or fraction<.75))
++    return finish(p[keep],fraction)
+ 
+ 
+ def overlap(a,b):
+@@ -116,7 +142,7 @@
+                     selected=visible[pixels]&eroded.ravel()[index[pixels]]
+                     raw=p[selected]
+                     if len(raw)<64:continue
+-                    cloud,purity=clean_points(raw)
++                    cloud,purity,cleaning=clean_points(raw,return_info=True)
+                     if len(cloud)<64:continue
+                     dims=dimensions(cloud)
+                     if dims.min()<=1e-5:continue
+@@ -124,13 +150,16 @@
+                     reasons=[]
+                     if det['border_touch']:reasons.append('truncated_at_view_border')
+                     if purity<.75:reasons.append('fragmented_depth_support')
++                    if cleaning['components_kept']>1:reasons.append('multiple_spatial_components')
++                    if cleaning['connectivity_uncertain']:reasons.append('uncertain_3d_connectivity')
+                     if det['stability']<.85:reasons.append('unstable_mask')
+                     if det.get('person_boundary_contact',0)>.08:reasons.append('possibly_occluded_by_person')
+                     if det['pixels']/(mask.size)>.75:reasons.append('mask_covers_most_of_view')
+                     observations.append(dict(scene=scene['id'],frame=frame,view=view['view']['name'],index=i,key=view['key'],
+                         name=det['name'],class_id=cls['id'],points=len(cloud),purity=purity,dimensions=dims.tolist(),
+                         bounds=q.tolist(),center=np.median(cloud,axis=0).tolist(),reference_rejection=reasons,
+-                        dino_score=det['dino_score'],sam_score=det['sam_score']))
++                        dino_score=det['dino_score'],sam_score=det['sam_score'],
++                        cleaning=cleaning,retained_fraction=purity,measurement_uncertain=bool(reasons)))
+                     step=max(1,len(cloud)//3000);clouds.append(cloud[::step].astype('f4'))
+             print('MEASURE',scene['id'],frame,'observations',len(observations),flush=True)
+     instances=[]
+--- before/vendor/florence_only/project.py
++++ after/vendor/florence_only/project.py
+@@ -39,6 +39,19 @@
+         else:
+             groups.append([i])
+     return groups, score
++
++
++def reference_rejection_reasons(quality, mask_fraction, label, dynamic_labels, cleaning):
++    """Reference eligibility is separate from retaining an observation."""
++    reasons=[]
++    if quality['border_touch']:reasons.append('view_border_truncation')
++    if quality['outside_box_fraction']>.1:reasons.append('mask_outside_detection_box')
++    if cleaning['retained_fraction']<.75:reasons.append('fragmented_depth_support')
++    if cleaning['components_kept']>1:reasons.append('multiple_spatial_components')
++    if cleaning['connectivity_uncertain']:reasons.append('uncertain_3d_connectivity')
++    if mask_fraction>.75:reasons.append('mask_covers_most_of_view')
++    if label in dynamic_labels:reasons.append('dynamic_category')
++    return reasons
+ 
+ 
+ def run(args):
+@@ -122,7 +135,7 @@
+             if len(raw) < args.min_points:
+                 rejected.append(dict(**base, reason='insufficient_projected_points', points=len(raw)))
+                 continue
+-            clean, purity = clean_points(raw)
++            clean, purity, cleaning = clean_points(raw, return_info=True)
+             if len(clean) < args.min_points:
+                 rejected.append(dict(**base, reason='insufficient_connected_depth_points', points=len(clean)))
+                 continue
+@@ -134,16 +147,16 @@
+             color = rgb[selected][color_ids]
+             _, ids = np.unique(np.floor(clean / voxel).astype('i8'), axis=0, return_index=True)
+             clean, color = clean[ids], color[ids]
+-            reasons = []
+-            if quality['border_touch']: reasons.append('view_border_truncation')
+-            if quality['outside_box_fraction'] > .1: reasons.append('mask_outside_detection_box')
+-            if purity < .75: reasons.append('fragmented_depth_support')
+-            if mask.mean() > .75: reasons.append('mask_covers_most_of_view')
+-            if record['label'] in args.dynamic_labels.split(','): reasons.append('dynamic_category')
++            reasons = reference_rejection_reasons(quality,float(mask.mean()),record['label'],
++                                                 args.dynamic_labels.split(','),cleaning)
+             observations.append(dict(**base, observation_id=len(observations), points=len(clean),
+                 raw_points=len(raw), connected_fraction=purity, dimensions=dims.tolist(),
+                 bounds=np.quantile(clean, [.01, .99], axis=0).tolist(),
+-                reference_rejection=reasons, box=box, mask_quality=quality))
++                reference_rejection=reasons, box=box, mask_quality=quality,
++                observation_preserved=True,retained_fraction=purity,cleaning=cleaning,
++                measurement_uncertain=bool(reasons),
++                measurement_status='preliminary_only' if reasons else 'reference_observation',
++                dimension_source='cleaned_single_observation_visible_extent'))
+             clouds.append(clean.astype('f4'))
+             colors.append(color.astype('u1'))
+             pixel_clouds.append(pixels[selected][color_ids][ids].astype('i8'))
+--- /dev/null
++++ after/tests/test_measurement_phase1.py
+@@ -0,0 +1,242 @@
++"""CPU regression tests: visible extents are not complete physical dimensions."""
++import json
++import sys
++import tempfile
++import unittest
++from pathlib import Path
++from types import SimpleNamespace, ModuleType
++from unittest.mock import patch
++
++import numpy as np
++from scipy.spatial import cKDTree
++from scipy.sparse import coo_matrix
++from scipy.sparse.csgraph import connected_components
++
++from spacewatch_pipeline.florence import helpers, reference_measurements, discovery
++from spacewatch_pipeline.io import ROOT, save, read, sha
++
++helpers()
++from scene_discovery.measure import clean_points, dimensions
++import project as projection
++
++
++def legacy_clean_points(points):
++    """Frozen pre-phase1 algorithm, for behavioral comparisons only."""
++    p=np.asarray(points,float)
++    if len(p)<32:return p,1.
++    q=np.quantile(p,[.01,.99],axis=0);diagonal=np.linalg.norm(q[1]-q[0])
++    voxel=max(diagonal/60,1e-8)
++    _,ids=np.unique(np.floor(p/voxel).astype(np.int64),axis=0,return_index=True)
++    sample=p[ids];tree=cKDTree(sample)
++    pairs=tree.query_pairs(voxel*3.2,output_type='ndarray')
++    graph=coo_matrix((np.ones(len(pairs)),(pairs[:,0],pairs[:,1])),shape=(len(sample),len(sample)))
++    _,labels=connected_components(graph,directed=False)
++    counts=np.bincount(labels);main=counts.argmax()
++    _,near=tree.query(p,k=1)
++    keep=labels[near]==main
++    return p[keep],float(keep.mean())
++
++
++def separated_parts():
++    rng=np.random.default_rng(11)
++    major=rng.uniform([0,0,0],[.6,.5,.8],(6000,3))
++    part=rng.uniform([.68,.2,0],[.85,.4,.4],(700,3))
++    noise=rng.uniform([5,5,5],[6,6,6],(8,3))
++    return np.vstack([major,part,noise])
++
++
++class CleaningTests(unittest.TestCase):
++    def test_preserves_disconnected_part_but_not_reference(self):
++        p=separated_parts()
++        old,_=legacy_clean_points(p)
++        clean,fraction,info=clean_points(p,return_info=True)
++        self.assertGreater(len(clean),len(old))
++        self.assertGreater(dimensions(clean)[1],dimensions(old)[1])
++        self.assertFalse((clean[:,0]>4).any())
++        self.assertGreaterEqual(info['components_kept'],2)
++        self.assertTrue(info['measurement_uncertain'])
++        self.assertEqual(info['retained_points'],len(clean))
++        self.assertAlmostEqual(fraction,len(clean)/len(p))
++        reasons=projection.reference_rejection_reasons(
++            dict(border_touch=False,outside_box_fraction=0),.2,'chair',[],info)
++        self.assertIn('multiple_spatial_components',reasons)
++
++    def test_sparse_points_preserved_and_flagged(self):
++        p=np.array([[x,y,z] for x in range(5) for y in range(5) for z in range(2)],float)
++        old,_=legacy_clean_points(p)
++        clean,fraction,info=clean_points(p,True)
++        self.assertGreater(len(clean),len(old))
++        np.testing.assert_array_equal(clean,p)
++        self.assertEqual(fraction,1.)
++        self.assertTrue(info['connectivity_uncertain'])
++        self.assertTrue(info['measurement_uncertain'])
++
++    def test_legacy_interface_and_dense_cloud_unchanged(self):
++        p=np.random.default_rng(14).uniform(0,1,(6000,3))
++        old,old_fraction=legacy_clean_points(p)
++        pair=clean_points(p)
++        self.assertEqual(len(pair),2)
++        np.testing.assert_array_equal(pair[0],old)
++        self.assertEqual(pair[1],old_fraction)
++        _,_,info=clean_points(p,True)
++        self.assertEqual(info['components_kept'],1)
++        self.assertFalse(info['measurement_uncertain'])
++
++    def test_small_empty_and_invalid_inputs(self):
++        for p in [np.empty((0,3)),np.zeros((8,3))]:
++            clean,fraction,info=clean_points(p,True)
++            np.testing.assert_array_equal(clean,p)
++            self.assertEqual(fraction,1.)
++            self.assertTrue(info['connectivity_uncertain'])
++        for p in [np.zeros((8,2)),np.zeros(8),np.full((8,3),np.nan)]:
++            with self.assertRaises(ValueError):clean_points(p)
++
++    def test_existing_quality_reasons_remain_independent(self):
++        info=dict(retained_fraction=.7,components_kept=2,connectivity_uncertain=True)
++        reasons=projection.reference_rejection_reasons(
++            dict(border_touch=True,outside_box_fraction=.2),.8,'person',['person'],info)
++        self.assertEqual(set(reasons),{'view_border_truncation','mask_outside_detection_box',
++            'fragmented_depth_support','multiple_spatial_components','uncertain_3d_connectivity',
++            'mask_covers_most_of_view','dynamic_category'})
++
++
++class ReferenceTests(unittest.TestCase):
++    def fixture(self):
++        p=np.array([[x,y,z] for x in [0.,1.] for y in [0.,2.] for z in [0.,3.]])
++        observations=[dict(frame=0,dimensions=[1.,2.,3.],reference_rejection=[]),
++                      dict(frame=1,dimensions=[1.4,2.8,4.2],reference_rejection=[]),
++                      dict(frame=2,dimensions=[9.,9.,9.],reference_rejection=['truncated'])]
++        candidate=dict(candidate_id=7,observation_ids=[0,1,2])
++        points=dict(points=np.vstack([p,p,p+100]),candidate_id=np.full(24,7),
++                    observation_id=np.repeat([0,1,2],8))
++        return observations,candidate,points
++
++    def test_accepted_union_excludes_rejected_observations(self):
++        obs,candidate,points=self.fixture()
++        summary=reference_measurements(obs,candidate,points,.01)
++        np.testing.assert_allclose(summary['dimensions'],[1.2,2.4,3.6])
++        np.testing.assert_allclose(summary['accepted_union_dimensions'],[1.,2.,3.])
++        self.assertEqual(summary['accepted_union_input_points'],16)
++        self.assertEqual(summary['accepted_union_voxels'],8)
++        self.assertEqual(summary['accepted_frame_count'],2)
++        self.assertFalse(summary['union_used_for_mesh_limits'])
++
++    def test_duplicate_crops_do_not_overweight_frames_or_union(self):
++        obs,candidate,points=self.fixture()
++        baseline=reference_measurements(obs,candidate,points,.01)
++        for _ in range(4):
++            i=len(obs);obs.append(dict(obs[0]));candidate['observation_ids'].append(i)
++            points['points']=np.vstack([points['points'],points['points'][:8]])
++            points['candidate_id']=np.r_[points['candidate_id'],np.full(8,7)]
++            points['observation_id']=np.r_[points['observation_id'],np.full(8,i)]
++        current=reference_measurements(obs,candidate,points,.01)
++        np.testing.assert_allclose(current['dimensions'],baseline['dimensions'])
++        np.testing.assert_allclose(current['accepted_union_dimensions'],baseline['accepted_union_dimensions'])
++        np.testing.assert_allclose(current['accepted_observation_median_dimensions'],[1,2,3])
++        self.assertEqual(current['accepted_frame_count'],2)
++        self.assertEqual(current['accepted_observation_count'],6)
++        order=np.arange(len(points['points']))[::-1]
++        reversed_points={k:v[order] for k,v in points.items()}
++        reordered=reference_measurements(obs,candidate,reversed_points,.01)
++        self.assertEqual(reordered['accepted_union_dimensions'],current['accepted_union_dimensions'])
++
++    def test_insufficient_union_does_not_replace_reference(self):
++        obs,candidate,points=self.fixture()
++        points['points']=np.zeros_like(points['points'])
++        summary=reference_measurements(obs,candidate,points,.01)
++        self.assertIsNone(summary['accepted_union_dimensions'])
++        self.assertEqual(summary['accepted_union_status'],'insufficient_unique_voxels')
++        self.assertEqual(summary['dimensions'],[1.2,2.4,3.6])
++        for voxel in [0.,float('nan')]:
++            with self.assertRaises(ValueError):reference_measurements(obs,candidate,points,voxel)
++
++    def test_degenerate_union_is_diagnostic_failure(self):
++        obs,candidate,points=self.fixture()
++        points['points']=np.array([[0.,float(i),float(i*i)] for i in range(24)])
++        summary=reference_measurements(obs,candidate,points,.01)
++        self.assertIsNone(summary['accepted_union_dimensions'])
++        self.assertEqual(summary['accepted_union_status'],'degenerate_visible_extent')
++        self.assertEqual(summary['dimensions'],[1.2,2.4,3.6])
++
++    def test_invalid_reference_inputs_fail_explicitly(self):
++        obs,candidate,points=self.fixture()
++        points['points'][0,0]=np.nan
++        with self.assertRaises(ValueError):reference_measurements(obs,candidate,points,.01)
++        for row in obs:row['reference_rejection']=['rejected']
++        with self.assertRaises(ValueError):reference_measurements(obs,candidate,points,.01)
++
++    def test_discovery_additive_json_schema_and_reference_selection(self):
++        obs,candidate,points=self.fixture()
++        for row in obs:row['label']='chair'
++        candidate.update(label='chair',reference_eligible=True,complete_frames=[0,1],size_ratio=[1.4]*3)
++        with tempfile.TemporaryDirectory(dir=ROOT) as td:
++            root=Path(td);data=root/'objects';data.mkdir();out=root/'discovery'
++            save(data/'observations.json',obs);save(data/'instances.json',[candidate])
++            save(data/'projection_summary.json',dict(voxel=.01))
++            np.savez_compressed(data/'candidates.npz',**points)
++            job=dict(output=str(out),config=dict(captures=[dict(id='test')],discovery=dict(min_class_frames=2)),
++                     dependencies={'test.objects':dict(data_root=str(data)),
++                                   'test.reconstruct':dict(metric_scale_verified=False)})
++            discovery(job)
++            catalog=read(out/'classes.json');self.assertEqual(catalog[0]['name'],'chair')
++            prior=read(out/'size_priors.json');ref=prior['classes']['chair']['references'][0]
++            self.assertTrue({'capture','candidate_id','frames','dimensions','axis_max_min_ratio'}<=ref.keys())
++            self.assertEqual(ref['dimensions'],ref['accepted_frame_median_dimensions'])
++            self.assertNotEqual(ref['dimensions'],ref['accepted_union_dimensions'])
++            self.assertFalse(prior['metric_scale_verified'])
++            # Rejected references still support class discovery, as before.
++            candidate['reference_eligible']=False
++            save(data/'instances.json',[candidate]);discovery(job)
++            self.assertEqual(read(out/'classes.json')[0]['name'],'chair')
++            self.assertEqual(read(out/'size_priors.json')['classes']['chair']['references'],[])
++
++
++class ProjectionTests(unittest.TestCase):
++    def test_actual_projection_run_preserves_fragmented_observation(self):
++        # Real cleaning/measurement/association and JSON/NPZ writes. Only source
++        # reconstruction, pixel mapping and PLY export are mocked; no GPU/models.
++        from scene_discovery import common
++        with tempfile.TemporaryDirectory(dir=ROOT) as td:
++            root=Path(td);source=root/'source';out=root/'projection';out.mkdir()
++            p=separated_parts()[:6400]
++            rng=np.random.default_rng(7);rng.shuffle(p)
++            valid=np.ones((80,80),bool)
++            mask=np.zeros((80,80),bool);mask[5:75,5:75]=True
++            save(source/'config.json',dict(voxel_normalized=.01))
++            save(source/'input/manifest.json',dict(frames=[dict(sha256='source')]))
++            coord=root/'coordinates.json';save(coord,dict(source_to_mesh=np.eye(4).tolist(),up=[0,0,1]))
++            view=dict(frame=0,source_sha256='source',view=dict(name='front',yaw=0,pitch=0,fov=100))
++            key='one_region';prediction=out/'predictions'/key
++            prediction.parent.mkdir();np.savez_compressed(prediction.with_suffix('.npz'),mask=mask)
++            save(prediction.with_suffix('.json'),dict(key=key,label='chair',view=view,
++                quality=dict(usable=True,outside_box_fraction=0.,border_touch=False),
++                box=[0,0,79,79],result=dict(output_tokens=20),mask_sha256=sha(prediction.with_suffix('.npz'))))
++            save(out/'prepared.json',dict(scenes=[dict(id='test',coordinates=str(coord),source_run=str(source))]))
++            save(out/'inference_summary.json',dict(prediction_keys=[key],max_tokens=1024))
++            geometry=ModuleType('geometry')
++            geometry.source_frames=lambda *args,**kw:iter([(0,p,valid,np.zeros((6400,3),np.uint8))])
++            ply=ModuleType('plyfile')
++            class PlyData:
++                def __init__(self,*args,**kwargs):pass
++                def write(self,path):Path(path).write_bytes(b'mocked PLY export')
++            ply.PlyData=PlyData
++            ply.PlyElement=SimpleNamespace(describe=lambda *args:None)
++            with patch.dict(sys.modules,{'geometry':geometry,'plyfile':ply}), patch.object(
++                    common,'erp_to_view',return_value=(np.ones(6400,bool),np.arange(6400))):
++                projection.run(SimpleNamespace(vendor=str(ROOT/'vendor/discovery/segmentation_2d3d'),
++                    output=str(out),discovery=str(out),scene='test',min_points=64,fov=100,
++                    overlap=.3,dynamic_labels='person'))
++            observations=read(out/'observations.json');self.assertEqual(len(observations),1)
++            row=observations[0]
++            self.assertTrue(row['observation_preserved'])
++            self.assertIn('multiple_spatial_components',row['reference_rejection'])
++            self.assertEqual(row['measurement_status'],'preliminary_only')
++            self.assertIn('connected_fraction',row)  # legacy retained-fraction field
++            self.assertFalse(read(out/'instances.json')[0]['reference_eligible'])
++            with np.load(out/'candidates.npz') as cloud:
++                self.assertTrue({'points','rgb','candidate_id','observation_id','frame','pixel'}<=set(cloud.files))
++                self.assertGreater(len(cloud['points']),64)
++            self.assertEqual(len(read(out/'projection_rejected.json')),0)
++
++
++if __name__=='__main__':unittest.main()

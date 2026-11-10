@@ -1,0 +1,21 @@
+{
+  "repeat": 5,
+  "request_key": "fa672d03fac2b1d71751b2e25824a7c4e3de986e242466163cc0de6b424d87ec",
+  "response": {
+    "rating": 3,
+    "reason": "환기구는 시설의 안전 및 관리 상태를 확인하는 범주에 포함되므로 파손이나 이물질 적치 여부를 점검할 필요가 있습니다."
+  },
+  "usage": {
+    "promptTokenCount": 347,
+    "candidatesTokenCount": 48,
+    "totalTokenCount": 395,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 347
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "seconds": 1.559356901794672
+}

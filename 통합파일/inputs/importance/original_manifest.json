@@ -1,0 +1,48 @@
+{
+  "version": "patrol-importance-manual-1to5-v1",
+  "model": "gemini-3.1-flash-lite",
+  "temperature": 0,
+  "repeats": 5,
+  "manual": [
+    "출입문과 통로의 이용을 방해하는 적치물을 확인합니다.",
+    "시설과 비품의 눈에 띄는 파손, 누수, 물고임 등 안전과 사용에 영향을 줄 수 있는 상태를 확인합니다.",
+    "소화기 등 소방 설비가 보이는 위치에 있는지, 외형이나 주변 접근 상태에 변화가 있는지 확인합니다.",
+    "물품의 추가, 제거, 이동과 상태 변화를 확인하고 공간의 안전, 사용, 관리에 미치는 영향을 살펴봅니다.",
+    "복도 조명은 24시간 상시 점등합니다.",
+    "공용공간 조명은 미사용·무인일 때 소등하는 것이 점검 목적에 포함됩니다.",
+    "복도 조명도 꺼짐·파손 점검 가치는 있을 수 있습니다.",
+    "상시 운전하는 냉장고는 소등/전원 차단 대상이 아닙니다."
+  ],
+  "sources": [
+    {
+      "path": "/workspace/spacewatch_objects19_v7_20261027_52i774iz/rating_classes.json",
+      "bytes": 223,
+      "sha256": "b1a888560a5c1d4a98f20ebddda1a0e2180502477ee99f50f69459b01d328762"
+    }
+  ],
+  "input_scope": "requested_object_classes_not_presence_claim",
+  "manual_source": {
+    "path": "/workspace/spacewatch_objects19_v7_20261027_52i774iz/code/configs/patrol_manual.json",
+    "bytes": 889,
+    "sha256": "8770591b5e26238a0d8d756df57a3b00030cdc7743b26c7711470d6d24be43b9"
+  },
+  "class_names": [
+    "box",
+    "ceiling light",
+    "chair",
+    "clothes",
+    "door",
+    "fire extinguisher",
+    "fire hose cabinet",
+    "sign",
+    "table",
+    "umbrella",
+    "vacuum cleaner",
+    "ventilation grille",
+    "water dispenser",
+    "window"
+  ],
+  "prompt_sha256": "c17233eba252d17f1c604c2c270080e773ae48eee9b483ed703fc8afce3c51d4",
+  "score_mapping": "mean(rating)/5",
+  "survey_status": "NOT_PROVIDED"
+}

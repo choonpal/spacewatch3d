@@ -1,0 +1,12 @@
+{
+  "calculation_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution06/run",
+  "all_non_display_science_files_identical": true,
+  "changed_source_files": [
+    "spacewatch_pipeline/paper_viewer.py",
+    "apps/autotour360/survey.js"
+  ],
+  "same_source_photo_binding_functions_identical": true,
+  "change_reason": "Display-only unresolved count and candidate wording; release version.",
+  "old_final_event_results_imported": false,
+  "completed_current_submission_results_explicitly_republished": true
+}

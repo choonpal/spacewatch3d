@@ -1,0 +1,42 @@
+{
+  "name": "point cloud 생성기 v1",
+  "version": "1.0.0",
+  "named_on": "2026-10-17",
+  "pipeline": "PanoVGGT + explicit mask rules + matching recovery + per-frame registration",
+  "run_identity_sha256": "a98873dd163d886837c0d4ff193abe269ce72225aca492014b2e08cda7af46b1",
+  "tested_code_sha256": {
+    "common.py": "c482c85d7a12d6b48ccc9176d8f8092aeca4c305980fa0411844459cffa04421",
+    "freeze_inputs.py": "73c08b01261c99a6e65ee32dbb12c4b0a962f8ff410f672237c73d1e1915d13c",
+    "masks.py": "1db576bacd70ca06204d7f1441d38d8c27df142578d9bac353dafc08c8caace0",
+    "run.py": "2db241b71a3e80efeb9b11237bc4c89f85621a0ce27ce7628d93dd9b5c58434f",
+    "workers/build_viewer.py": "22bd99b5010631fb40a34f03fcd8fc3fdf61bd964245248678cf563f33438135",
+    "workers/connect.py": "21da676f4dffd522085e596741fa3eb0e5d820233247f7acc0edd8d9d6c1b768",
+    "workers/engine.py": "1896564ab47f8de718e260ef1ce6d5ac562983073cfcb21a9d6b0279a4cc930a",
+    "workers/enhance.py": "d2dd6c4de31c6ed8b4a222785df9ab572c9b99b9df63a5e7532448d2d13cf7f9",
+    "workers/export.py": "317e4bc12a7301ee379f3a770cc8d3896a56241306826ce4ca274dfa9f91829f",
+    "workers/infer.py": "498e234e838bdd92101091e7cad70631646498301c01aa444ef34eb3842e9c2f",
+    "workers/match.py": "33939fdd78a3376ad0b84dcace80b1bb7f9c82b0012d417d0ce88602057feb5d",
+    "workers/match_hires.py": "b1619ab1d9e160577b3978a189f508218249b951b05387eaab9aff4796466eb4",
+    "workers/optimize.py": "f589f9c6ed5bb0f7a848bae01139ab411bf7c67bfd00ab5660670129c214a957",
+    "workers/panovggt_global.py": "2c0b9db142099bba67300a8b93c10b6913bfff9bcfdb6d990e949c46538c76de",
+    "workers/plan_hires.py": "63cd1edececa1c6cf63bf34ef430ce75b553fa62fd892a1dc9001448da5c98a7",
+    "workers/prepare_inputs.py": "8d8b983a0c4cfad51252bf145fdea154a281df888353e6609ed386427ce6a1e0",
+    "workers/refine.py": "6da37000e9a4fd084b8cc8f452a802f76ff8d7918bf4b9f88beb027babcf0441",
+    "workers/runtime.py": "6cb85313c9bb6d81940137a0c43ef80f2981cc0ac1f6bcf8b3ed103db452c089",
+    "viewer/index.html": "cd61fab48651769a91dbb88b6784d340a660989c34b717ad773961c236cde165",
+    "viewer/viewer_vendor.js": "22b568c2c384610370c4cd9d4b16c1921d5dacfbc7b4b0fd7e9eb79f238b1400"
+  },
+  "config": "configs/dorm3.json",
+  "validation": "VALIDATION.json",
+  "result": {
+    "server_directory": "/workspace/dorm3_repro_validation_20261016",
+    "points": 65602283,
+    "ply_sha256": "3dafa5bd86e167826856e5e4f69b924ad6168fea61f4bbfe7863a69da0be5d90",
+    "preview_points": 750000,
+    "unverified_boundary_frames": [
+      245,
+      246
+    ]
+  },
+  "scope": "Frozen dorm3 inputs; replay reproducibility verified. New GPU inference repeatability not tested."
+}

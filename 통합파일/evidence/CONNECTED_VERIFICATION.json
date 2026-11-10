@@ -1,0 +1,980 @@
+{
+  "schema": "spacewatch.connected_delivery_verification.v1",
+  "run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution06/run",
+  "contract_passed": true,
+  "actual_model_inference": true,
+  "historical_final_event_replay": false,
+  "captures": [
+    {
+      "id": "dorm4",
+      "views": 15,
+      "planning_status": "incomplete",
+      "input_coverage_status": "targets_unmet"
+    },
+    {
+      "id": "dorm5",
+      "views": 10,
+      "planning_status": "incomplete",
+      "input_coverage_status": "targets_unmet"
+    }
+  ],
+  "change_counts": {
+    "added": 0,
+    "moved": 0,
+    "removed": 0,
+    "modified": 0,
+    "unresolved": 5,
+    "verified_changes": 2
+  },
+  "verified_changes": 2,
+  "http_base": "http://127.0.0.1:38871",
+  "http_head_assets": 97,
+  "http_errors": [],
+  "quality_certified": false,
+  "semantic_accuracy": "UNVERIFIED",
+  "full_cold_run_verified": false,
+  "reused_prefix": {
+    "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+    "stages": [
+      {
+        "stage": "dorm4.reconstruct",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm4.reconstruct/complete.json",
+          "bytes": 135290,
+          "sha256": "6946c2a202d03f82db921d7d8c142d15ea5bf467f9ade101c1454aa0a7306d0c"
+        },
+        "original_compute_seconds": 3.516587618738413,
+        "original_wall_seconds": 24.246863905340433,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm4.reconstruct/complete.json",
+            "bytes": 133968,
+            "sha256": "5c969516d6f3ff6cc9093fb3be2e1420b1370860a25c4559821f339a5dc2d96f"
+          },
+          "original_compute_seconds": 3.516587618738413,
+          "original_wall_seconds": 24.246863905340433,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm4.reconstruct/complete.json",
+              "bytes": 132756,
+              "sha256": "987245cb5bdf3d2970355cce6a572399fe5ffbbe71e666fd0fdfe771c77bd82a"
+            },
+            "original_compute_seconds": 3.516587618738413,
+            "original_wall_seconds": 24.246863905340433,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm5.reconstruct",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm5.reconstruct/complete.json",
+          "bytes": 138105,
+          "sha256": "ed8c521d9f103d14724bfd8c44ca532923dc19b72bd1d6355585f58e2b3cb07a"
+        },
+        "original_compute_seconds": 1.5679212287068367,
+        "original_wall_seconds": 24.176819015294313,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm5.reconstruct/complete.json",
+            "bytes": 136782,
+            "sha256": "32c242980bc0d1ee0a36ec223317f71c1624d5d4bee82f769b3b4257185e27d3"
+          },
+          "original_compute_seconds": 1.5679212287068367,
+          "original_wall_seconds": 24.176819015294313,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm5.reconstruct/complete.json",
+              "bytes": 135569,
+              "sha256": "f17611ad7db33fb1b2bd88afc92b01f7b278d060cd487a5f378a5d0f0a7efbc9"
+            },
+            "original_compute_seconds": 1.5679212287068367,
+            "original_wall_seconds": 24.176819015294313,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm4.quality",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm4.quality/complete.json",
+          "bytes": 4856,
+          "sha256": "bd13d42b97b4666f2dbf9377c799fda04013fba18511c8ef294699db3776dc2c"
+        },
+        "original_compute_seconds": 80.22671474143863,
+        "original_wall_seconds": 83.25686426833272,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm4.quality/complete.json",
+            "bytes": 3552,
+            "sha256": "95f416d7db308945999219c7adfcbd9ae08712c4de3573986226ac55cbc6a37b"
+          },
+          "original_compute_seconds": 80.22671474143863,
+          "original_wall_seconds": 83.25686426833272,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm4.quality/complete.json",
+              "bytes": 2355,
+              "sha256": "1ccbd4b97f79917503b9b3ec98f70da5aa53e09b7b020f947dabd49c62cc8638"
+            },
+            "original_compute_seconds": 80.22671474143863,
+            "original_wall_seconds": 83.25686426833272,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm5.quality",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm5.quality/complete.json",
+          "bytes": 4856,
+          "sha256": "5c8e3b386fc511f6b5015527a64170725504e3050292d458b78ab37e91440c49"
+        },
+        "original_compute_seconds": 83.01309578865767,
+        "original_wall_seconds": 91.15936217457056,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm5.quality/complete.json",
+            "bytes": 3552,
+            "sha256": "3548d552c2648dfdbd696e8bf6e121ba18e7c83d0106e671d56cfad1b159a25c"
+          },
+          "original_compute_seconds": 83.01309578865767,
+          "original_wall_seconds": 91.15936217457056,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm5.quality/complete.json",
+              "bytes": 2355,
+              "sha256": "665add7ba80e3c8579c2dad4e38c7f5965a6dc654ec76307a6c0bf5fda84d5a8"
+            },
+            "original_compute_seconds": 83.01309578865767,
+            "original_wall_seconds": 91.15936217457056,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm4.trajectory",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm4.trajectory/complete.json",
+          "bytes": 5776,
+          "sha256": "d8ca1b0f23975f1f8a2efe4948a5658def430f3e416fa17644eb3595ec3d026b"
+        },
+        "original_compute_seconds": 3.166937354952097,
+        "original_wall_seconds": 6.197124369442463,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm4.trajectory/complete.json",
+            "bytes": 4463,
+            "sha256": "4519908e0a60c1622491c764bf5e8d5e071676ba9e56399f62c663bbb43f1e3f"
+          },
+          "original_compute_seconds": 3.166937354952097,
+          "original_wall_seconds": 6.197124369442463,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm4.trajectory/complete.json",
+              "bytes": 3259,
+              "sha256": "8c900f06a8031660d1945e44702526089ded7e5c698bac47b78575f756b37fb7"
+            },
+            "original_compute_seconds": 3.166937354952097,
+            "original_wall_seconds": 6.197124369442463,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm4.mesh",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm4.mesh/complete.json",
+          "bytes": 4312,
+          "sha256": "e7cab8d80fe7d5cb8e765fbcd849804ffdea0759e007ee4d0e6172712520f86b"
+        },
+        "original_compute_seconds": 0.5182046666741371,
+        "original_wall_seconds": 0.8069909363985062,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm4.mesh/complete.json",
+            "bytes": 3015,
+            "sha256": "fe324f413eb4bab961796c0e507b922cedf7ce62c8dd35c0eb9e502ec6020d39"
+          },
+          "original_compute_seconds": 0.5182046666741371,
+          "original_wall_seconds": 0.8069909363985062,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm4.mesh/complete.json",
+              "bytes": 1829,
+              "sha256": "2f2100b163107198489d7a73334b26a8c80fb2eaa07e8de84934b81000a5238c"
+            },
+            "original_compute_seconds": 0.5182046666741371,
+            "original_wall_seconds": 0.8069909363985062,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm5.trajectory",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm5.trajectory/complete.json",
+          "bytes": 5776,
+          "sha256": "fdba7bf3799728fa1b36e840788d555b6d025722f665306422db362948458ce2"
+        },
+        "original_compute_seconds": 6.469110611826181,
+        "original_wall_seconds": 9.589534893631935,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm5.trajectory/complete.json",
+            "bytes": 4463,
+            "sha256": "7334136695473851eaf1f848d3c882b127f2d46c8d04ab9657582f8b4445db1a"
+          },
+          "original_compute_seconds": 6.469110611826181,
+          "original_wall_seconds": 9.589534893631935,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm5.trajectory/complete.json",
+              "bytes": 3257,
+              "sha256": "cd5e2e1ce6357d112868fe1004da9ea9b17788a40437727129466fce647b06a9"
+            },
+            "original_compute_seconds": 6.469110611826181,
+            "original_wall_seconds": 9.589534893631935,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm5.mesh",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm5.mesh/complete.json",
+          "bytes": 4312,
+          "sha256": "a168c2995de8e75c4c1cb2fbbe9e44bee20d1a2b6168c12e7772bd1616c4813f"
+        },
+        "original_compute_seconds": 0.4687113054096699,
+        "original_wall_seconds": 0.7561496384441853,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm5.mesh/complete.json",
+            "bytes": 3015,
+            "sha256": "eed6a408c091026ebd3c85a818bc3d4b2fc3e69e51378eb3e67c00deeb690062"
+          },
+          "original_compute_seconds": 0.4687113054096699,
+          "original_wall_seconds": 0.7561496384441853,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm5.mesh/complete.json",
+              "bytes": 1831,
+              "sha256": "eb46fea0e111c885a1e2923bb04e1cfd9ca6fc450806b51ee782ba76b82b5393"
+            },
+            "original_compute_seconds": 0.4687113054096699,
+            "original_wall_seconds": 0.7561496384441853,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "discovery",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/discovery/complete.json",
+          "bytes": 4837,
+          "sha256": "16e9eb6d49f6e2a7c3664730741276acf85a8205558c5363da005a3e73ea075b"
+        },
+        "original_compute_seconds": 0.21732842922210693,
+        "original_wall_seconds": 0.47925013676285744,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/discovery/complete.json",
+            "bytes": 3541,
+            "sha256": "a0393f62086ecbf8a6a01e6cd153c3c88f2928b78a968fd46b9d8b10d306f3a8"
+          },
+          "original_compute_seconds": 0.21732842922210693,
+          "original_wall_seconds": 0.47925013676285744,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/discovery/complete.json",
+              "bytes": 2361,
+              "sha256": "85771cf8bb142a98eef5e28c66363c5e26aae955e299f4e4112305bdd36c6930"
+            },
+            "original_compute_seconds": 0.21732842922210693,
+            "original_wall_seconds": 0.47925013676285744,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm4.semantic",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm4.semantic/complete.json",
+          "bytes": 5163,
+          "sha256": "5ae354a025a35f3531910122d19df7f2b0fe94b137a6c098b969d0b460e73deb"
+        },
+        "original_compute_seconds": 2.9688003472983837,
+        "original_wall_seconds": 3.336373023688793,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm4.semantic/complete.json",
+            "bytes": 3855,
+            "sha256": "e645c60d472deaa6cc86e727f317b3e82588ccb32d4380574862d6e66545ec42"
+          },
+          "original_compute_seconds": 2.9688003472983837,
+          "original_wall_seconds": 3.336373023688793,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm4.semantic/complete.json",
+              "bytes": 2656,
+              "sha256": "251e50f18132616f6785b444c38f5bb5a3b814d09e0498f78f6af91916d8c2d7"
+            },
+            "original_compute_seconds": 2.9688003472983837,
+            "original_wall_seconds": 3.336373023688793,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm5.semantic",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm5.semantic/complete.json",
+          "bytes": 5165,
+          "sha256": "3a575da77bfdddb73ccc317da4b318207da6665d4018608f4b7d9bdf96d594aa"
+        },
+        "original_compute_seconds": 2.2169584333896637,
+        "original_wall_seconds": 2.5459988228976727,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm5.semantic/complete.json",
+            "bytes": 3856,
+            "sha256": "60795a34ea942f536b22eb78a6e9481706e52b022632d1e236799e7c7d8eb10b"
+          },
+          "original_compute_seconds": 2.2169584333896637,
+          "original_wall_seconds": 2.5459988228976727,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm5.semantic/complete.json",
+              "bytes": 2659,
+              "sha256": "c7b69dcb3f3a9c179b5f2380550594f783650b0c4f062b53dc0af81295c011b0"
+            },
+            "original_compute_seconds": 2.2169584333896637,
+            "original_wall_seconds": 2.5459988228976727,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm4.ooops",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm4.ooops/complete.json",
+          "bytes": 79642,
+          "sha256": "016cf680f21f04cd2c954ed8a0fe49ab85ea77058c22288818ff46eba03a0afe"
+        },
+        "original_compute_seconds": 6.668032024055719,
+        "original_wall_seconds": 7.7411568984389305,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm4.ooops/complete.json",
+            "bytes": 78340,
+            "sha256": "9b183fc8db1826aebe91b87acae5a15613b4b2bf69bd1f3dc96a4067d4d33f78"
+          },
+          "original_compute_seconds": 6.668032024055719,
+          "original_wall_seconds": 7.7411568984389305,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm4.ooops/complete.json",
+              "bytes": 77148,
+              "sha256": "3b76c2d6a51d2b2746a3c051ade74bcdc9e557bd419e481fbbe814619e990362"
+            },
+            "original_compute_seconds": 6.668032024055719,
+            "original_wall_seconds": 7.7411568984389305,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm5.ooops",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm5.ooops/complete.json",
+          "bytes": 80732,
+          "sha256": "15e69c0419838742a34e5e76eb2655942eb8a71c2979f29fe95032d3d00bf682"
+        },
+        "original_compute_seconds": 6.317930340766907,
+        "original_wall_seconds": 7.428133927285671,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm5.ooops/complete.json",
+            "bytes": 79431,
+            "sha256": "5b6fcd2e27bbe9625608629b7f1944d40956f0f5a8193dce7d250d0b6d08c8b3"
+          },
+          "original_compute_seconds": 6.317930340766907,
+          "original_wall_seconds": 7.428133927285671,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm5.ooops/complete.json",
+              "bytes": 78239,
+              "sha256": "476a9f49fb147717a763090c43070560b490c4916b43d013eb8b67eba0f4a2c2"
+            },
+            "original_compute_seconds": 6.317930340766907,
+            "original_wall_seconds": 7.428133927285671,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm4.instances",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm4.instances/complete.json",
+          "bytes": 65684,
+          "sha256": "98e5c271651ac81b0f0158d14e69c47331c5a7cd178b7b0eee5ee1c5a58bdc1a"
+        },
+        "original_compute_seconds": 3.467669762670994,
+        "original_wall_seconds": 3.951401438564062,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm4.instances/complete.json",
+            "bytes": 64371,
+            "sha256": "2116edf7745e4988b3891ab4ce2df8d3b3b9a9778a3db9752a60250800ea5a09"
+          },
+          "original_compute_seconds": 3.467669762670994,
+          "original_wall_seconds": 3.951401438564062,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm4.instances/complete.json",
+              "bytes": 63167,
+              "sha256": "08610d8af063a5898b313cdd5f7b96e5ec9ac84a6388511dd0016c62c7adfefe"
+            },
+            "original_compute_seconds": 3.467669762670994,
+            "original_wall_seconds": 3.951401438564062,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm5.instances",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm5.instances/complete.json",
+          "bytes": 67144,
+          "sha256": "f95c743995e55b7994ac36928863cb9f57c20c723780b24c2f6768919551519d"
+        },
+        "original_compute_seconds": 3.467317547649145,
+        "original_wall_seconds": 3.9446867406368256,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm5.instances/complete.json",
+            "bytes": 65830,
+            "sha256": "55045d0b90745a6c25aca516c31645e3e7dcc076371049aea64c1fe70262ba01"
+          },
+          "original_compute_seconds": 3.467317547649145,
+          "original_wall_seconds": 3.9446867406368256,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm5.instances/complete.json",
+              "bytes": 64626,
+              "sha256": "92e64d1f9b38434b9b6fd93d2c61cd13e18521d87fda60aef009b5b4297618f8"
+            },
+            "original_compute_seconds": 3.467317547649145,
+            "original_wall_seconds": 3.9446867406368256,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm4.scene",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm4.scene/complete.json",
+          "bytes": 64301,
+          "sha256": "c1a6e97a31ba276e831488d4893a30e87d200bc117eb6c5cc879068d768b3270"
+        },
+        "original_compute_seconds": 0.5670817531645298,
+        "original_wall_seconds": 0.9911751635372639,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm4.scene/complete.json",
+            "bytes": 62998,
+            "sha256": "0be4b55ed0b469489290ab7b13303664dfd6d462c1e1d9ed89ece1dd7b6f6b2e"
+          },
+          "original_compute_seconds": 0.5670817531645298,
+          "original_wall_seconds": 0.9911751635372639,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm4.scene/complete.json",
+              "bytes": 61807,
+              "sha256": "0be4da30b2477f36af3a35c3fc0528132ba464b711bd4f0ca03d0ea4c0e40396"
+            },
+            "original_compute_seconds": 0.5670817531645298,
+            "original_wall_seconds": 0.9911751635372639,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm5.scene",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm5.scene/complete.json",
+          "bytes": 65759,
+          "sha256": "664fed7929899ba23645a48162e0b4b77c9566ad0ad56fe07ee5cbc286588dde"
+        },
+        "original_compute_seconds": 0.5672138668596745,
+        "original_wall_seconds": 0.9899404086172581,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm5.scene/complete.json",
+            "bytes": 64456,
+            "sha256": "2f37fa247827ab0cd428c9b0876901eeeb4f78b8d539810aad1fa6a0a9d1c10e"
+          },
+          "original_compute_seconds": 0.5672138668596745,
+          "original_wall_seconds": 0.9899404086172581,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm5.scene/complete.json",
+              "bytes": 63265,
+              "sha256": "e6e2346ac4ea32634646d9afa285f33ba139937ccad77cd71355a5e57a89f4de"
+            },
+            "original_compute_seconds": 0.5672138668596745,
+            "original_wall_seconds": 0.9899404086172581,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm4.importance",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm4.importance/complete.json",
+          "bytes": 29765,
+          "sha256": "0919b29b2a708de77c9d354b71f334e71d63c594ef0a7deebf26c7528256f0f2"
+        },
+        "original_compute_seconds": 0.21648166701197624,
+        "original_wall_seconds": 0.5097887180745602,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm4.importance/complete.json",
+            "bytes": 28446,
+            "sha256": "b5221d860615f3f6bf11a8c84ec735f4866da44da6e09940f64d1e2e9d333725"
+          },
+          "original_compute_seconds": 0.21648166701197624,
+          "original_wall_seconds": 0.5097887180745602,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm4.importance/complete.json",
+              "bytes": 27240,
+              "sha256": "9f93905a0158c52010da19f06920f77436d214f4b57ac096c6da417fe0910cb6"
+            },
+            "original_compute_seconds": 0.21648166701197624,
+            "original_wall_seconds": 0.5097887180745602,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm5.importance",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm5.importance/complete.json",
+          "bytes": 29763,
+          "sha256": "825f9b905cc2d6851609976b6971808a1898d1303a908a3181d514d8ec7e1188"
+        },
+        "original_compute_seconds": 0.2166118621826172,
+        "original_wall_seconds": 0.5096928030252457,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm5.importance/complete.json",
+            "bytes": 28445,
+            "sha256": "fc8f342d25e415d0c1d4b24ebde142f48ecbea23982c330cff03c756f493ab88"
+          },
+          "original_compute_seconds": 0.2166118621826172,
+          "original_wall_seconds": 0.5096928030252457,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm5.importance/complete.json",
+              "bytes": 27239,
+              "sha256": "c33fa829b1538866c65237f52156f77180ca8998f7c46a30edfc3a0853137648"
+            },
+            "original_compute_seconds": 0.2166118621826172,
+            "original_wall_seconds": 0.5096928030252457,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm4.plan",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm4.plan/complete.json",
+          "bytes": 6272,
+          "sha256": "4db7f349a165078c30348a12155ef1fa2b69ef325f689322861411989b730058"
+        },
+        "original_compute_seconds": 404.71046079695225,
+        "original_wall_seconds": 405.125161729753,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm4.plan/complete.json",
+            "bytes": 4977,
+            "sha256": "d26a268a9a3e9176eab433c308b023f4dfb0468c54e7e45f1f4331f246585076"
+          },
+          "original_compute_seconds": 404.71046079695225,
+          "original_wall_seconds": 405.125161729753,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm4.plan/complete.json",
+              "bytes": 3789,
+              "sha256": "66090ceaae6f0a2c1be085ebbe4419aa92961a68e6d866f2cf54364f7bf6db81"
+            },
+            "original_compute_seconds": 404.71046079695225,
+            "original_wall_seconds": 405.125161729753,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm5.plan",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm5.plan/complete.json",
+          "bytes": 6273,
+          "sha256": "68337f24204e495c66414ec0f80f3de29684697feb7202ec06b66a719e293a3d"
+        },
+        "original_compute_seconds": 413.76061921939254,
+        "original_wall_seconds": 414.1488017998636,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm5.plan/complete.json",
+            "bytes": 4977,
+            "sha256": "d72166583a0a9aa5a00d2381060c50761567b471a49f27988698726949ccbc27"
+          },
+          "original_compute_seconds": 413.76061921939254,
+          "original_wall_seconds": 414.1488017998636,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm5.plan/complete.json",
+              "bytes": 3791,
+              "sha256": "14f3e33eae51ff5bf861b9d24cb28d9109a76c902faf579c24b369716aa94231"
+            },
+            "original_compute_seconds": 413.76061921939254,
+            "original_wall_seconds": 414.1488017998636,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm4.render",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm4.render/complete.json",
+          "bytes": 13053,
+          "sha256": "0681025a3e1e5296d8071c09d13478e00c35018b4375d7ccb5e0de2f89aa78d5"
+        },
+        "original_compute_seconds": 31.923334620893,
+        "original_wall_seconds": 35.54633296281099,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm4.render/complete.json",
+            "bytes": 11752,
+            "sha256": "6a4f0f75867633f982abe316c294c11c56453d5b568441df6e56cf2152bd501c"
+          },
+          "original_compute_seconds": 31.923334620893,
+          "original_wall_seconds": 35.54633296281099,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm4.render/complete.json",
+              "bytes": 10558,
+              "sha256": "565c6e976903fbc23e69247f77c4cd02aef4bd19baba9361ae3884c5ab404034"
+            },
+            "original_compute_seconds": 31.923334620893,
+            "original_wall_seconds": 35.54633296281099,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "dorm5.render",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/dorm5.render/complete.json",
+          "bytes": 10223,
+          "sha256": "a54f9896aeb8271fce6fd020ae1362dfb385e5288a8920d6d0582e8f81e0c33c"
+        },
+        "original_compute_seconds": 38.67412554845214,
+        "original_wall_seconds": 42.41730856522918,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/dorm5.render/complete.json",
+            "bytes": 8922,
+            "sha256": "f5a00936f75d4674a05bf9a0d49a4bd5abb266fd55487543d16162c8e6e8b2ef"
+          },
+          "original_compute_seconds": 38.67412554845214,
+          "original_wall_seconds": 42.41730856522918,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm5.render/complete.json",
+              "bytes": 7728,
+              "sha256": "457e10f16bd199d0b705f7717d73f1c4e75ef932a6928cdb39081f2e984a1937"
+            },
+            "original_compute_seconds": 38.67412554845214,
+            "original_wall_seconds": 42.41730856522918,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "pair.rgb_inputs",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/pair.rgb_inputs/complete.json",
+          "bytes": 524137,
+          "sha256": "884de2f9aad38cb4f46983dfa1b4d43b7fba140321b2c5c299c3a21d29ef8611"
+        },
+        "original_compute_seconds": 624.8574035353959,
+        "original_wall_seconds": 637.2900482043624,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/pair.rgb_inputs/complete.json",
+            "bytes": 522823,
+            "sha256": "0758ce86af7d460781e9af40702a3c4f4e92268e6dab1804f1cd7139ab1f880c"
+          },
+          "original_compute_seconds": 624.8574035353959,
+          "original_wall_seconds": 637.2900482043624,
+          "previous_stage_reuse": {
+            "mode": "verified_unchanged_stage_import",
+            "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+            "source_receipt": {
+              "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/pair.rgb_inputs/complete.json",
+              "bytes": 521618,
+              "sha256": "871b8fb7152ad2646927cad22ea532cd5a18b00c43a7e223cf929a5ddbc060cf"
+            },
+            "original_compute_seconds": 624.8574035353959,
+            "original_wall_seconds": 637.2900482043624,
+            "recomputed_in_current_execution": false
+          },
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "pair.rgb_prepare",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/pair.rgb_prepare/complete.json",
+          "bytes": 1002888,
+          "sha256": "f0aa4d3edddae3101caf51990bdd700b4481bfa27c591862138efefb7cea9772"
+        },
+        "original_compute_seconds": 1683.7561886571348,
+        "original_wall_seconds": 1700.2383351661265,
+        "previous_stage_reuse": {
+          "mode": "verified_unchanged_stage_import",
+          "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+          "source_receipt": {
+            "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/pair.rgb_prepare/complete.json",
+            "bytes": 1001644,
+            "sha256": "fddaf4acf725f112e67f41270e1d6d46fd20f1e6714bf0d87ae86d4b272d204b"
+          },
+          "original_compute_seconds": 1683.7561886571348,
+          "original_wall_seconds": 1700.2383351661265,
+          "previous_stage_reuse": null,
+          "recomputed_in_current_execution": false
+        },
+        "recomputed_in_current_execution": false
+      },
+      {
+        "stage": "pair.rgb_infer",
+        "mode": "verified_unchanged_stage_import",
+        "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run",
+        "source_receipt": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/pair.rgb_infer/complete.json",
+          "bytes": 1362333,
+          "sha256": "9fa7d83478cfe0a3529a0c607c943f83096aa363638a1d5af7fd34b74843e39c"
+        },
+        "original_compute_seconds": 99.66844882443547,
+        "original_wall_seconds": 156.20849472656846,
+        "previous_stage_reuse": null,
+        "recomputed_in_current_execution": false,
+        "stage_recovery": {
+          "source_attempt": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/pair.rgb_infer/attempt-1794283525040453181",
+          "original_NN_seconds": 298.9314522743225,
+          "recovered_appearance_seconds": 99.66844882443547,
+          "new_NN_change_predictions": 0
+        }
+      }
+    ],
+    "unique_verified_artifacts": 12589,
+    "seconds": 165.55196508392692,
+    "no_new_selection_imported_from_historical_final": true,
+    "source_execution_really_recomputed_selection_and_registration": true
+  },
+  "seconds": 0.39790208637714386
+}

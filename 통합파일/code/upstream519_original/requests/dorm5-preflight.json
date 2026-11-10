@@ -1,0 +1,87 @@
+{
+  "mode": "fresh",
+  "capture_id": "dorm5",
+  "producer_inventory_sha256": "1dc5b023dd2b94ec0d0f78dd777121186406999fa4c77f683a91a418d23f162f",
+  "producer_files": 270,
+  "profile_context_plan": {
+    "path": "/workspace/spacewatch_runs/dorm4_dorm5_pipeline_v5_20261025/stages/dorm5.plan/attempt-1792944656075689257/plan/tour_plan.json",
+    "bytes": 5561249,
+    "sha256": "c961e5a63a14c206007e924fccc8cdb20e1c8e7f4bc8c83c48c63bf312a1e9c8"
+  },
+  "context_fields_only": {
+    "capture_id": "dorm5",
+    "provenance": {
+      "config": {
+        "camera_height_m": 1.9764168109798874
+      }
+    },
+    "route_graph": {
+      "grid_origin_xy_m": [
+        -18.40310640931129,
+        -45.45670900344848
+      ]
+    },
+    "coverage_report": {
+      "surface_sampling": {
+        "fallback_tiles": {
+          "origin_xy_m": [
+            -18.24068260192871,
+            -45.18132781982422
+          ]
+        }
+      }
+    }
+  },
+  "old_selected_views_imported": false,
+  "old_VQ_imported": false,
+  "fresh_model_inference_executed": false,
+  "raw_video_mode_supported": true,
+  "arbitrary_policy_free_raw_video_mode_supported": false,
+  "pipeline_config_template": {
+    "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/code/configs/dorm45-paper.json",
+    "bytes": 10354,
+    "sha256": "0b248717fa65c6549e1e8c583fd3c0f0e584ed66a79b780e5c8444c91c043dbb"
+  },
+  "class_binding": {
+    "person": 15,
+    "floor": 1,
+    "ceiling": 2,
+    "original_raw_person_id": 16,
+    "comparison_nodes_changed": 2
+  },
+  "inputs": {
+    "producer_config": {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/code/upstream519_original/requests/dorm5-original-producer-config.json",
+      "bytes": 8433,
+      "sha256": "5872d1032ac060368f3b2e0657ad90956aaa40ed8fb6918577a4c21f077d1141"
+    },
+    "video": {
+      "path": "/workspace/dorm4_dorm5_v5_20261025/source/dorm5.MP4",
+      "bytes": 943166060,
+      "sha256": "70d8544c9e765e31346e38106ad44403efee3454eb00296a63b6ffdc941857b6"
+    },
+    "vocabulary": {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm5/vocabulary.json",
+      "bytes": 2329,
+      "sha256": "3c12c232ea14d00ef7ae8b8c30721101d462a040ce6610212949461af2f8f910"
+    },
+    "reconstruction_template": {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/code/upstream519_original/raw_input_producer/reconstruction_template.json",
+      "bytes": 4472,
+      "sha256": "82e49f29c798e7005877cbf2337818f1af6c25aaf9fe59f03089f5c0b56ef320"
+    }
+  },
+  "input_mode": "original_raw_video",
+  "raw_video_metadata": {
+    "width": 3840.0,
+    "height": 1920.0,
+    "fps": 30.00487110779752,
+    "frames": 4164.0
+  },
+  "status": "fresh_preflight_ready_not_executed",
+  "coordinate_mode": "original_assumed_2p7m",
+  "available_memory_gib": 6.2359771728515625,
+  "cold_run_memory_guard_gib": 16,
+  "cold_execution_currently_blocked_by_ram": true,
+  "source_contract": "Original stride15/1036x518 extraction, original temporal person/nadir mask policy with explicit class-name binding, Pano stable v2; scale is explicit or original unverified2.7m assumption."
+}

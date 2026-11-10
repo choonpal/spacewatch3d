@@ -1,0 +1,13 @@
+{
+  "capture_id": "dorm2",
+  "frame_id": "dorm2_mesh",
+  "coordinates_sha256": "895d7f08c30ec35e866edcd93015ffe70927a0d8b078b09b1bf44b3acf763256",
+  "source_arrays": "/workspace/spacewatch_runs/dorm2_dorm3_pipeline_v5_1_7_20261026/stages/dorm2.semantic/attempt-1792992206054922331/mesh_arrays.npz",
+  "arrays": {
+    "vertices": "034cb95e3f01b6ae96669cfb01c6b554ef913c3b1ced40ec3ea6c293804dcf70",
+    "faces": "f74a78ac85ab14321fb945449c47f817dfd256599008187b8df7db9d19a48316",
+    "rgb": "f9828128ad8076878dfa1d979d1b85959c1397ecfd6a8dc254afdc489d5a0ad8",
+    "face_class_id": "f60b40e19d8e10562f5655f4af913461a4c4f21c1d8975faf93b9e59985c0d91"
+  },
+  "source_run": "/workspace/dorm2_pointcloud_v2_20261017"
+}

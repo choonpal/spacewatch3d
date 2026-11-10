@@ -1,0 +1,557 @@
+{
+  "schema": "paper-native-current-changes-v1",
+  "after_capture": "dorm5",
+  "captures": {
+    "dorm5": {
+      "views": [
+        {
+          "viewpoint_id": "vp_frame_00000076",
+          "items": [],
+          "evidence_ids": [],
+          "event_ids": [],
+          "verified_change_ids": []
+        },
+        {
+          "viewpoint_id": "vp_frame_00000607",
+          "items": [],
+          "evidence_ids": [],
+          "event_ids": [],
+          "verified_change_ids": []
+        },
+        {
+          "viewpoint_id": "vp_frame_00000847",
+          "items": [],
+          "evidence_ids": [],
+          "event_ids": [],
+          "verified_change_ids": []
+        },
+        {
+          "viewpoint_id": "vp_frame_00001428",
+          "items": [],
+          "evidence_ids": [],
+          "event_ids": [],
+          "verified_change_ids": []
+        },
+        {
+          "viewpoint_id": "vp_frame_00001935",
+          "items": [],
+          "evidence_ids": [],
+          "event_ids": [],
+          "verified_change_ids": []
+        },
+        {
+          "viewpoint_id": "vp_frame_00002355",
+          "items": [],
+          "evidence_ids": [
+            "evidence-21b124fcf3ef0c62",
+            "evidence-535eb040e0150324",
+            "evidence-8caf1e4441082264",
+            "evidence-a869b0962bbdce9b",
+            "evidence-b7a53868e1eb05b0"
+          ],
+          "event_ids": [
+            "EV-001",
+            "EV-005"
+          ],
+          "verified_change_ids": [
+            "CH-01"
+          ]
+        },
+        {
+          "viewpoint_id": "vp_frame_00002654",
+          "items": [],
+          "evidence_ids": [],
+          "event_ids": [],
+          "verified_change_ids": []
+        },
+        {
+          "viewpoint_id": "vp_frame_00002942",
+          "items": [],
+          "evidence_ids": [],
+          "event_ids": [],
+          "verified_change_ids": []
+        },
+        {
+          "viewpoint_id": "vp_frame_00003494",
+          "items": [],
+          "evidence_ids": [
+            "evidence-033d7fc57cbbf4aa",
+            "evidence-0e4c23454c5736a6",
+            "evidence-492e2ab681349bce",
+            "evidence-4c45095fd9eb4ecf",
+            "evidence-648834a45ef33a43",
+            "evidence-876b860697349aa7",
+            "evidence-8f2563bf7495a78b",
+            "evidence-b4ae4ff452d7b910"
+          ],
+          "event_ids": [
+            "EV-002",
+            "EV-003",
+            "EV-004"
+          ],
+          "verified_change_ids": [
+            "CH-02"
+          ]
+        },
+        {
+          "viewpoint_id": "vp_frame_00003947",
+          "items": [],
+          "evidence_ids": [
+            "evidence-4e8c0834207708b1"
+          ],
+          "event_ids": [
+            "EV-004"
+          ],
+          "verified_change_ids": [
+            "CH-02"
+          ]
+        }
+      ]
+    }
+  },
+  "verified_changes": [
+    {
+      "id": "CH-01",
+      "label": "person",
+      "lead_event": "EV-005",
+      "event_ids": [
+        "EV-001",
+        "EV-005"
+      ],
+      "center": [
+        -11.437787294387817,
+        0.41922732442617416,
+        8.650357961654663
+      ]
+    },
+    {
+      "id": "CH-02",
+      "label": "chair",
+      "lead_event": "EV-004",
+      "event_ids": [
+        "EV-002",
+        "EV-003",
+        "EV-004"
+      ],
+      "center": [
+        -9.48946475982666,
+        1.44046754638354,
+        36.54846636454264
+      ]
+    }
+  ],
+  "source_events": [
+    {
+      "id": "EV-001",
+      "type": "unresolved",
+      "label": "chair",
+      "verified_change": "CH-01",
+      "verification": "person_context",
+      "reason_code": "one_sided_rgb_difference"
+    },
+    {
+      "id": "EV-002",
+      "type": "unresolved",
+      "label": "chair",
+      "verified_change": "CH-02",
+      "verification": "grouped",
+      "reason_code": "one_sided_rgb_difference"
+    },
+    {
+      "id": "EV-003",
+      "type": "unresolved",
+      "label": "table",
+      "verified_change": "CH-02",
+      "verification": "grouped",
+      "reason_code": "one_sided_rgb_difference"
+    },
+    {
+      "id": "EV-004",
+      "type": "unresolved",
+      "label": "chair",
+      "verified_change": "CH-02",
+      "verification": "grouped",
+      "reason_code": "counterpart_in_rgb_segmentation_but_mesh_incomplete"
+    },
+    {
+      "id": "EV-005",
+      "type": "unresolved",
+      "label": "person",
+      "verified_change": "CH-01",
+      "verification": "grouped",
+      "reason_code": "registered_rgb_instance_without_mesh"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "evidence-21b124fcf3ef0c62",
+      "event_id": "EV-001",
+      "type": "unresolved",
+      "label": "chair",
+      "verified_change": "CH-01",
+      "image": "/pipeline-assets/current-changes/photos/edaac3a2c5c0e3f55352.jpg",
+      "bbox": [
+        500.57142857142856,
+        593.1428571428571,
+        768.0,
+        768.0
+      ],
+      "width": 768,
+      "height": 768,
+      "capture_id": "dorm5",
+      "source_frame_index": 2310,
+      "frame_id": "154",
+      "source_inference_view": "E1-V00630",
+      "role": "observed_object",
+      "viewpoint_ids": [
+        "vp_frame_00002355"
+      ]
+    },
+    {
+      "id": "evidence-a869b0962bbdce9b",
+      "event_id": "EV-001",
+      "type": "unresolved",
+      "label": "chair",
+      "verified_change": "CH-01",
+      "image": "/pipeline-assets/current-changes/photos/37c3d560b5eb43158b13.jpg",
+      "bbox": [
+        267.4285714285714,
+        565.7142857142857,
+        600.0,
+        768.0
+      ],
+      "width": 768,
+      "height": 768,
+      "capture_id": "dorm5",
+      "source_frame_index": 2385,
+      "frame_id": "159",
+      "source_inference_view": "E1-V00647",
+      "role": "observed_object",
+      "viewpoint_ids": [
+        "vp_frame_00002355"
+      ]
+    },
+    {
+      "id": "evidence-8caf1e4441082264",
+      "event_id": "EV-001",
+      "type": "unresolved",
+      "label": "chair",
+      "verified_change": "CH-01",
+      "image": "/pipeline-assets/current-changes/photos/64e3bdd8cd3fc0c65f79.jpg",
+      "bbox": [
+        548.5714285714286,
+        524.5714285714286,
+        768.0,
+        768.0
+      ],
+      "width": 768,
+      "height": 768,
+      "capture_id": "dorm5",
+      "source_frame_index": 2430,
+      "frame_id": "162",
+      "source_inference_view": "E1-V00664",
+      "role": "observed_object",
+      "viewpoint_ids": [
+        "vp_frame_00002355"
+      ]
+    },
+    {
+      "id": "evidence-033d7fc57cbbf4aa",
+      "event_id": "EV-002",
+      "type": "unresolved",
+      "label": "chair",
+      "verified_change": "CH-02",
+      "image": "/pipeline-assets/current-changes/photos/394b96e350c1c0bc95ad.jpg",
+      "bbox": [
+        0.0,
+        548.5714285714286,
+        754.2857142857142,
+        737.1428571428571
+      ],
+      "width": 768,
+      "height": 768,
+      "capture_id": "dorm5",
+      "source_frame_index": 3480,
+      "frame_id": "232",
+      "source_inference_view": "E1-V00786",
+      "role": "observed_object",
+      "viewpoint_ids": [
+        "vp_frame_00003494"
+      ]
+    },
+    {
+      "id": "evidence-b4ae4ff452d7b910",
+      "event_id": "EV-002",
+      "type": "unresolved",
+      "label": "chair",
+      "verified_change": "CH-02",
+      "image": "/pipeline-assets/current-changes/photos/1f1d233ccb0447512a01.jpg",
+      "bbox": [
+        528.0,
+        524.5714285714286,
+        768.0,
+        768.0
+      ],
+      "width": 768,
+      "height": 768,
+      "capture_id": "dorm5",
+      "source_frame_index": 3345,
+      "frame_id": "223",
+      "source_inference_view": "E1-V00757",
+      "role": "observed_object",
+      "viewpoint_ids": [
+        "vp_frame_00003494"
+      ]
+    },
+    {
+      "id": "evidence-4c45095fd9eb4ecf",
+      "event_id": "EV-002",
+      "type": "unresolved",
+      "label": "chair",
+      "verified_change": "CH-02",
+      "image": "/pipeline-assets/current-changes/photos/f9815477d78b656117ce.jpg",
+      "bbox": [
+        30.857142857142854,
+        486.85714285714283,
+        483.4285714285714,
+        768.0
+      ],
+      "width": 768,
+      "height": 768,
+      "capture_id": "dorm5",
+      "source_frame_index": 3435,
+      "frame_id": "229",
+      "source_inference_view": "E1-V00769",
+      "role": "observed_object",
+      "viewpoint_ids": [
+        "vp_frame_00003494"
+      ]
+    },
+    {
+      "id": "evidence-8f2563bf7495a78b",
+      "event_id": "EV-003",
+      "type": "unresolved",
+      "label": "table",
+      "verified_change": "CH-02",
+      "image": "/pipeline-assets/current-changes/photos/738d033278c972e95b93.jpg",
+      "bbox": [
+        353.1428571428571,
+        624.0,
+        641.1428571428571,
+        768.0
+      ],
+      "width": 768,
+      "height": 768,
+      "capture_id": "dorm5",
+      "source_frame_index": 3435,
+      "frame_id": "229",
+      "source_inference_view": "E1-V00775",
+      "role": "observed_object",
+      "viewpoint_ids": [
+        "vp_frame_00003494"
+      ]
+    },
+    {
+      "id": "evidence-876b860697349aa7",
+      "event_id": "EV-003",
+      "type": "unresolved",
+      "label": "table",
+      "verified_change": "CH-02",
+      "image": "/pipeline-assets/current-changes/photos/394b96e350c1c0bc95ad.jpg",
+      "bbox": [
+        507.4285714285714,
+        651.4285714285714,
+        768.0,
+        768.0
+      ],
+      "width": 768,
+      "height": 768,
+      "capture_id": "dorm5",
+      "source_frame_index": 3480,
+      "frame_id": "232",
+      "source_inference_view": "E1-V00786",
+      "role": "observed_object",
+      "viewpoint_ids": [
+        "vp_frame_00003494"
+      ]
+    },
+    {
+      "id": "evidence-0e4c23454c5736a6",
+      "event_id": "EV-003",
+      "type": "unresolved",
+      "label": "table",
+      "verified_change": "CH-02",
+      "image": "/pipeline-assets/current-changes/photos/96a13a4917281d576c1d.jpg",
+      "bbox": [
+        0.0,
+        558.8571428571428,
+        205.7142857142857,
+        654.8571428571428
+      ],
+      "width": 768,
+      "height": 768,
+      "capture_id": "dorm5",
+      "source_frame_index": 3345,
+      "frame_id": "223",
+      "source_inference_view": "E1-V00768",
+      "role": "observed_object",
+      "viewpoint_ids": [
+        "vp_frame_00003494"
+      ]
+    },
+    {
+      "id": "evidence-648834a45ef33a43",
+      "event_id": "EV-004",
+      "type": "unresolved",
+      "label": "chair",
+      "verified_change": "CH-02",
+      "image": "/pipeline-assets/current-changes/photos/3db786c14a79e7cf62aa.jpg",
+      "bbox": [
+        137.14285714285714,
+        555.4285714285714,
+        387.4285714285714,
+        747.4285714285713
+      ],
+      "width": 768,
+      "height": 768,
+      "capture_id": "dorm5",
+      "source_frame_index": 3480,
+      "frame_id": "232",
+      "source_inference_view": "E1-V00798",
+      "role": "expected_location",
+      "viewpoint_ids": [
+        "vp_frame_00003494"
+      ]
+    },
+    {
+      "id": "evidence-4e8c0834207708b1",
+      "event_id": "EV-004",
+      "type": "unresolved",
+      "label": "chair",
+      "verified_change": "CH-02",
+      "image": "/pipeline-assets/current-changes/photos/5538c3e6f1c3c5c7c5ed.jpg",
+      "bbox": [
+        373.71428571428567,
+        562.2857142857142,
+        545.1428571428571,
+        768.0
+      ],
+      "width": 768,
+      "height": 768,
+      "capture_id": "dorm5",
+      "source_frame_index": 3600,
+      "frame_id": "240",
+      "source_inference_view": "E1-V00802",
+      "role": "expected_location",
+      "viewpoint_ids": [
+        "vp_frame_00003947"
+      ]
+    },
+    {
+      "id": "evidence-492e2ab681349bce",
+      "event_id": "EV-004",
+      "type": "unresolved",
+      "label": "chair",
+      "verified_change": "CH-02",
+      "image": "/pipeline-assets/current-changes/photos/154862c62026ec47e885.jpg",
+      "bbox": [
+        452.57142857142856,
+        466.2857142857143,
+        730.2857142857142,
+        685.7142857142857
+      ],
+      "width": 768,
+      "height": 768,
+      "capture_id": "dorm5",
+      "source_frame_index": 3435,
+      "frame_id": "229",
+      "source_inference_view": "E1-V00779",
+      "role": "expected_location",
+      "viewpoint_ids": [
+        "vp_frame_00003494"
+      ]
+    },
+    {
+      "id": "evidence-b7a53868e1eb05b0",
+      "event_id": "EV-005",
+      "type": "unresolved",
+      "label": "person",
+      "verified_change": "CH-01",
+      "image": "/pipeline-assets/current-changes/photos/d865072fc8a66db09041.jpg",
+      "bbox": [
+        161.14285714285714,
+        462.85714285714283,
+        486.85714285714283,
+        768.0
+      ],
+      "width": 768,
+      "height": 768,
+      "capture_id": "dorm5",
+      "source_frame_index": 2385,
+      "frame_id": "159",
+      "source_inference_view": "E1-V00658",
+      "role": "observed_object",
+      "viewpoint_ids": [
+        "vp_frame_00002355"
+      ]
+    },
+    {
+      "id": "evidence-535eb040e0150324",
+      "event_id": "EV-005",
+      "type": "unresolved",
+      "label": "person",
+      "verified_change": "CH-01",
+      "image": "/pipeline-assets/current-changes/photos/333658bd7b653d55f2c1.jpg",
+      "bbox": [
+        157.7142857142857,
+        449.1428571428571,
+        435.4285714285714,
+        692.5714285714286
+      ],
+      "width": 768,
+      "height": 768,
+      "capture_id": "dorm5",
+      "source_frame_index": 2310,
+      "frame_id": "154",
+      "source_inference_view": "E1-V00638",
+      "role": "observed_object",
+      "viewpoint_ids": [
+        "vp_frame_00002355"
+      ]
+    }
+  ],
+  "counts": {
+    "source_events": 5,
+    "verified_changes": 2,
+    "evidence_photographs": 14,
+    "same_frame_erp_boxes": 0
+  },
+  "policy": {
+    "after_only": true,
+    "current_anchor_scope_only": true,
+    "cross_frame_bbox_reuse": false,
+    "unmatched_photo_evidence": "in_viewer_drawer"
+  },
+  "provenance": {
+    "viewer_data": {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution06/run/stages/pair.changes/attempt-1794285013394991786/detection/viewer-data.json",
+      "bytes": 4565455,
+      "sha256": "3b3911156105d8b8a7c78aaef4b9f0e18dde24934a4714a7abd3c39a3c69c574"
+    },
+    "inputs_manifest": {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/pair.rgb_prepare/attempt-1794281098404115246/current-inputs/manifest.json",
+      "bytes": 103277,
+      "sha256": "51f84db3f151a50006040553f84e997dbad104c37ec289a8b04099e5a45d0ef2"
+    },
+    "keypoint_plan": {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/pair.rgb_inputs/attempt-1794279703072785920/keypoint-plan.json",
+      "bytes": 314571,
+      "sha256": "00e02cda5194b49a73c9ba52902c2ac4b1b359758584cf2ea11100869cfd4343"
+    },
+    "detection_manifest": {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution06/run/stages/pair.changes/attempt-1794285013394991786/detection/manifest.json",
+      "bytes": 2924046,
+      "sha256": "f63ebc6e0604add667d9e798e770f9011c003dcaef8f1680cd5a535927f66f63"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>메쉬·점군 변화 후보 3D</title><style>body{margin:0;background:#10151c;color:#e8eff9;font:14px/1.5 system-ui}#view{height:72vh;min-height:380px}canvas{display:block;width:100%;height:100%}.toolbar,#status,#detail{padding:10px 16px}select,button{padding:7px;background:#202e40;color:white;border:1px solid #506379;border-radius:5px;margin-right:12px}label{margin-right:16px}#detail{color:#bac9db;min-height:28px}</style>
+<div class="toolbar"><select id="phase"><option value="0">전 메쉬</option><option value="1">후 메쉬</option><option value="both">전·후 겹침</option></select><label><input type="checkbox" id="seg">분할 ID 색상</label><label><input type="checkbox" id="cloud">실제 점군</label><label><input type="checkbox" id="boxes" checked>후보 박스</label><button id="reset">전체 보기</button></div><div id="status">메쉬·점군을 읽는 중…</div><div id="view"></div><div id="detail">드래그: 회전 · 오른쪽 드래그: 이동 · 휠: 확대 · 박스 클릭: 반복 관측 근거</div>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from './vendor/OrbitControls.js';
+const $=s=>document.querySelector(s),host=$('#view'),scene=new THREE.Scene();scene.background=new THREE.Color('#10151c');
+const camera=new THREE.PerspectiveCamera(50,1,.01,2000),renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));host.append(renderer.domElement);
+const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;
+scene.add(new THREE.HemisphereLight(0xf0f6ff,0x34414e,2));const light=new THREE.DirectionalLight(0xffffff,2);light.position.set(7,15,5);scene.add(light);
+const meshes=[],clouds=[],boxGroup=new THREE.Group();scene.add(boxGroup);const boxItems=[];let bounds,center,span;
+function resize(){camera.aspect=host.clientWidth/host.clientHeight;camera.updateProjectionMatrix();renderer.setSize(host.clientWidth,host.clientHeight)}new ResizeObserver(resize).observe(host);resize();
+function home(){controls.target.copy(center);camera.position.copy(center).add(new THREE.Vector3(.65,.9,.95).multiplyScalar(span));controls.update()}
+function update(){const phase=$('#phase').value;for(let i=0;i<meshes.length;i++){meshes[i].visible=phase==='both'||phase===String(i);meshes[i].material.opacity=phase==='both'?.55:1;meshes[i].material.transparent=phase==='both';meshes[i].material.depthWrite=phase!=='both';meshes[i].geometry.setAttribute('color',$('#seg').checked?meshes[i].userData.seg:meshes[i].userData.rgb);clouds[i].visible=$('#cloud').checked&&(phase==='both'||phase===String(i))}boxGroup.visible=$('#boxes').checked}
+try{
+ const response=await fetch('./scene.json');if(!response.ok)throw Error('scene.json '+response.status);const data=await response.json();bounds=new THREE.Box3();
+ for(const s of data.scenes){const r=await fetch('./'+s.mesh);if(!r.ok)throw Error(s.mesh+' '+r.status);const buffer=await r.arrayBuffer(),n=s.vertices;
+  const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.BufferAttribute(new Float32Array(buffer,0,n*3),3));
+  const rgb=new THREE.BufferAttribute(new Uint8Array(buffer,n*12,n*3),3,true),seg=new THREE.BufferAttribute(new Uint8Array(buffer,n*15,n*3),3,true);geometry.setAttribute('color',rgb);geometry.computeVertexNormals();geometry.computeBoundingBox();bounds.union(geometry.boundingBox);
+  const mesh=new THREE.Mesh(geometry,new THREE.MeshStandardMaterial({vertexColors:true,side:THREE.DoubleSide,roughness:1,flatShading:true}));mesh.userData={rgb,seg};scene.add(mesh);meshes.push(mesh);
+  const cr=await fetch('./'+s.cloud);if(!cr.ok)throw Error(s.cloud+' '+cr.status);const cg=new THREE.BufferGeometry();cg.setAttribute('position',new THREE.BufferAttribute(new Float32Array(await cr.arrayBuffer()),3));const pc=new THREE.Points(cg,new THREE.PointsMaterial({color:s.epoch?0xffaa55:0x4de0ce,size:.025}));scene.add(pc);clouds.push(pc);
+ }
+ for(const region of data.regions){const min=new THREE.Vector3(...region.bounds[0]),max=new THREE.Vector3(...region.bounds[1]),size=max.clone().sub(min),middle=max.clone().add(min).multiplyScalar(.5),colour=region.epoch?0xff9b4a:0x48dfce;
+  const box=new THREE.Mesh(new THREE.BoxGeometry(...size.toArray()),new THREE.MeshBasicMaterial({color:colour,transparent:true,opacity:.07,depthWrite:false}));box.position.copy(middle);box.userData=region;boxGroup.add(box);boxItems.push(box);const lines=new THREE.LineSegments(new THREE.EdgesGeometry(box.geometry),new THREE.LineBasicMaterial({color:colour}));lines.position.copy(middle);boxGroup.add(lines);
+ }
+ center=bounds.getCenter(new THREE.Vector3());span=bounds.getSize(new THREE.Vector3()).length()*.65;home();update();
+ $('#status').textContent=`원본 분할 메쉬 ${data.scenes.map(s=>s.triangles.toLocaleString()+'면').join(' / ')} · 3D 후보 ${data.regions.length}개 · 청록: 전 표면 후보 / 주황: 후 표면 후보. 같은 객체의 이동 대응을 의미하지 않습니다.`;
+ for(const id of ['phase','seg','cloud','boxes'])$('#'+id).onchange=update;$('#reset').onclick=home;
+ const raycaster=new THREE.Raycaster();let down;
+ renderer.domElement.addEventListener('pointerdown',e=>{down=[e.clientX,e.clientY]});
+ renderer.domElement.addEventListener('pointerup',e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>5||!boxGroup.visible)return;const b=renderer.domElement.getBoundingClientRect();raycaster.setFromCamera(new THREE.Vector2((e.clientX-b.left)/b.width*2-1,1-(e.clientY-b.top)/b.height*2),camera);const hit=raycaster.intersectObjects(boxItems)[0];if(hit){const d=hit.object.userData;$('#detail').textContent=`${d.id} · ${d.epoch?'후':'전'} · 원본 프레임 ${d.source_frames.join(', ')} · 연결된 분할 ID ${d.instance_ids.join(', ')||'없음'} · ${d.voxel_count} 복셀 · 변화 유형 미확정`;controls.target.copy(hit.object.position)}});
+ window.__meshReviewReady=true;
+}catch(error){$('#status').textContent='3D 읽기 실패: '+error.message;window.__meshReviewError=error.message}
+renderer.setAnimationLoop(()=>{controls.update();renderer.render(scene,camera)});
+</script></html>

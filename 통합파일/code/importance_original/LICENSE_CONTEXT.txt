@@ -1,0 +1,23 @@
+License and origin context for the preserved importance producer
+
+Producing snapshot:
+  /workspace/spacewatch_objects19_v7_20261027_52i774iz/code
+
+Collected original files are byte-identical copies, with original file content
+and embedded notices preserved. Their original paths, sizes and SHA256 values
+are recorded in source_manifest.json. Extracted prompt/schema files identify
+their exact AST literal origin and the original source hash.
+
+The inspected producing snapshot has no top-level LICENSE, LICENSE.txt,
+LICENSE.md, or COPYING file. No separate license notice was found among the
+declared producer/helper files. The existing local SpaceWatch3D mirror likewise
+did not provide a LICENSE/COPYING file in the bounded filename check.
+
+Project background reference supplied for this work:
+  https://github.com/choonpal/spacewatch3d
+
+That repository reference is provenance context, not evidence that a particular
+license or commit applies to this modified producing snapshot. This context
+file supplies no new license grant and does not invent or replace original
+project or third-party terms. No credential material or provider account data
+is part of this collection.

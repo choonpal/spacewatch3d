@@ -1,0 +1,10 @@
+[
+  {
+    "config": "/workspace/panovggt_pipeline_v2/configs/dorm2.json",
+    "output": "/workspace/dorm2_pointcloud_v2_20261017"
+  },
+  {
+    "config": "/workspace/panovggt_pipeline_v2/configs/dorm3.json",
+    "output": "/workspace/dorm3_pointcloud_v2_20261017"
+  }
+]

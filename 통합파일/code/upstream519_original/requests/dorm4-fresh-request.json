@@ -1,0 +1,47 @@
+{
+  "mode": "fresh",
+  "input_mode": "original_raw_video",
+  "capture_id": "dorm4",
+  "producer_config": {
+    "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/code/upstream519_original/requests/dorm4-original-producer-config.json",
+    "bytes": 8433,
+    "sha256": "1bae35d67863a11180da52d8784eaf402339ed0fa7fb7d900a614b0e0871e772"
+  },
+  "pipeline_config_template": {
+    "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/code/configs/dorm45-paper.json",
+    "bytes": 10354,
+    "sha256": "0b248717fa65c6549e1e8c583fd3c0f0e584ed66a79b780e5c8444c91c043dbb"
+  },
+  "video": {
+    "path": "/workspace/dorm4_dorm5_v5_20261025/source/dorm4.MP4",
+    "bytes": 923910598,
+    "sha256": "219f049717336cbc1c81d9e41e4b75d04140fa4cac27eae60fa5198de9f8d125"
+  },
+  "vocabulary": {
+    "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/vocabulary.json",
+    "bytes": 2329,
+    "sha256": "3c12c232ea14d00ef7ae8b8c30721101d462a040ce6610212949461af2f8f910"
+  },
+  "profile_context_plan": {
+    "path": "/workspace/spacewatch_runs/dorm4_dorm5_pipeline_v5_20261025/stages/dorm4.plan/attempt-1792943436523361367/plan/tour_plan.json",
+    "bytes": 4130682,
+    "sha256": "5cbc8a9cdf5871487c924a152cd5f89943b7d03a7075dfb63831999632db06db"
+  },
+  "coordinate_mode": "original_assumed_2p7m",
+  "minimum_available_memory_gib": 16,
+  "stage_timeout_seconds": 3600,
+  "gpu_wait_seconds": 300,
+  "manual_inputs": {
+    "manual": {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/profile/manual.json",
+      "bytes": 889,
+      "sha256": "8770591b5e26238a0d8d756df57a3b00030cdc7743b26c7711470d6d24be43b9"
+    },
+    "prompt": {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/profile/prompt.txt",
+      "bytes": 5978,
+      "sha256": "6d8acd07f57a01d0a62bbedc4358d227315fca8d8f3c752a3dd6a1999e4b2733"
+    }
+  },
+  "scope": "Original Dorm4/5 policy with current19-class vocabulary bound by class name; no cold execution claimed by this request."
+}

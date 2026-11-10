@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-10",
+  "repository": "choonpal/spacewatch3d",
+  "branch": "main",
+  "folder": "통합파일",
+  "source_archive_sha256": "1b506b613bae3c42170b24a23a9ec5047c0e70787bc3a5cea4149cfd8a78162d",
+  "source_and_runtime_logic_changed": false,
+  "changes_since_archive": [
+    "Documentation interpretation correction",
+    "Release/audit metadata clarification",
+    "Regenerated distribution checksums"
+  ],
+  "large_models_raw_videos_pointclouds_included": false,
+  "source_archive_included_twice": false
+}

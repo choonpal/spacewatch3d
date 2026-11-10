@@ -1,0 +1,72 @@
+{
+  "class_counts_all": {
+    "door": 103,
+    "elevator door": 36,
+    "window": 10,
+    "chair": 16,
+    "table": 12,
+    "vacuum cleaner": 2,
+    "ceiling light": 22
+  },
+  "class_counts_active": {
+    "door": 53,
+    "elevator door": 10,
+    "window": 1,
+    "chair": 5,
+    "table": 3,
+    "vacuum cleaner": 1,
+    "ceiling light": 20
+  },
+  "active_importance_sum": 56.5,
+  "class_scores": {
+    "chair": {
+      "level": 1,
+      "score": 0.5,
+      "kind_role": "generic_only",
+      "line": "M02",
+      "reason": "의자는 비품이라는 묶음 말로 연결되어 파손 여부 등을 확인하는 대상에 포함된다."
+    },
+    "door": {
+      "level": 1,
+      "score": 0.5,
+      "kind_role": "location_reference",
+      "line": "M01",
+      "reason": "출입문은 적치물 확인을 위한 위치의 기준으로 언급되었습니다."
+    },
+    "elevator door": {
+      "level": 1,
+      "score": 0.5,
+      "kind_role": "generic_only",
+      "line": "M02",
+      "reason": "승강기 문은 시설이라는 묶음 말로만 연결되며, 시설의 파손 여부 확인은 일반적인 점검 기준에 해당합니다."
+    },
+    "table": {
+      "level": 1,
+      "score": 0.5,
+      "kind_role": "generic_only",
+      "line": "M02",
+      "reason": "테이블은 비품이라는 묶음 말로 연결되어 파손 여부 등을 확인하는 대상에 포함된다."
+    },
+    "window": {
+      "level": 1,
+      "score": 0.5,
+      "kind_role": "not_mentioned",
+      "line": null,
+      "reason": "창문은 매뉴얼의 어떤 점검 항목에서도 언급되지 않으나 시설물로서 일반적인 파손 점검 기준에는 해당할 수 있다."
+    },
+    "ceiling light": {
+      "level": 2,
+      "score": 1.0,
+      "kind_role": "target",
+      "line": "M06",
+      "reason": "매뉴얼에서 조명의 소등 상태를 점검 대상으로 명시하고 있다."
+    },
+    "vacuum cleaner": {
+      "level": 1,
+      "score": 0.5,
+      "kind_role": "generic_only",
+      "line": "M02",
+      "reason": "진공청소기는 비품이라는 묶음 말로 연결되어 파손 및 상태 점검 대상에 포함된다."
+    }
+  }
+}

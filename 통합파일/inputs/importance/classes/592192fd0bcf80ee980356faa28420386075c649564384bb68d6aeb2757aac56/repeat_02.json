@@ -1,0 +1,21 @@
+{
+  "repeat": 2,
+  "request_key": "592192fd0bcf80ee980356faa28420386075c649564384bb68d6aeb2757aac56",
+  "response": {
+    "rating": 5,
+    "reason": "소방 설비는 안전과 직결되는 핵심 시설로 매뉴얼에서 외형 및 접근 상태 확인을 명시하고 있어 매우 중요하게 관찰해야 합니다."
+  },
+  "usage": {
+    "promptTokenCount": 347,
+    "candidatesTokenCount": 48,
+    "totalTokenCount": 395,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 347
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "seconds": 4.261917565017939
+}

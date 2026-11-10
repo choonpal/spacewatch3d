@@ -1,0 +1,21 @@
+{
+  "repeat": 3,
+  "request_key": "2b28b9eb5dc9b651b22f099a619bf26ba29eea7afcb2881f81f41ee4bc24ed38",
+  "response": {
+    "rating": 5,
+    "reason": "박스는 출입문과 통로의 이용을 방해하는 적치물에 해당하며 공간의 안전과 관리에 직접적인 영향을 미치므로 높은 관찰이 필요합니다."
+  },
+  "usage": {
+    "promptTokenCount": 345,
+    "candidatesTokenCount": 50,
+    "totalTokenCount": 395,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 345
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "seconds": 2.352062549442053
+}

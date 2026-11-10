@@ -1,0 +1,27 @@
+{
+  "schema": "mesh-gaussian-change-input-v1",
+  "scene_id": "shared-scene",
+  "world_up": "+Y",
+  "units": "m",
+  "before": {
+    "capture_id": "capture-before",
+    "mesh": "before/mesh.npz",
+    "gaussian": "before/map.ply",
+    "cameras": "before/render_requests.json",
+    "camera_convention": "opencv",
+    "world_from_mesh": [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]],
+    "world_from_gaussian": [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]],
+    "world_from_camera": [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]
+  },
+  "after": {
+    "capture_id": "capture-after",
+    "mesh": "after/mesh.npz",
+    "gaussian": "after/map.ply",
+    "cameras": "after/render_requests.json",
+    "camera_convention": "opencv",
+    "world_from_mesh": [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]],
+    "world_from_gaussian": [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]],
+    "world_from_camera": [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]
+  },
+  "settings": {"height_u": 2.7}
+}

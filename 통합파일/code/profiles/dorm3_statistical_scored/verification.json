@@ -1,0 +1,184 @@
+{
+  "status": "executed_not_physical_safety_certification",
+  "all_original_triangles_preserved_exactly_once": true,
+  "source_faces": 146478,
+  "full_scene_config_and_target_mask_exactly_unchanged": true,
+  "importance_applied_to_all93": true,
+  "safe_positions_in_new_model": 21,
+  "positions": 21,
+  "safe_segments_in_new_model": 938,
+  "segments": 938,
+  "all_positions_and_segments_pass_new_model": true,
+  "runs": [
+    {
+      "seed": 26103001,
+      "selection_used": false,
+      "results": {
+        "baseline21": {
+          "views": 21,
+          "space_total_original_geometry": 0.9765719949438242,
+          "observed": 92,
+          "total": 93,
+          "unobserved": [
+            "stat_class_12_cc_0013"
+          ],
+          "by_class": {
+            "ceiling light": {
+              "observed": 19,
+              "count": 20
+            },
+            "chair": {
+              "observed": 5,
+              "count": 5
+            },
+            "door": {
+              "observed": 53,
+              "count": 53
+            },
+            "elevator door": {
+              "observed": 10,
+              "count": 10
+            },
+            "table": {
+              "observed": 3,
+              "count": 3
+            },
+            "vacuum cleaner": {
+              "observed": 1,
+              "count": 1
+            },
+            "window": {
+              "observed": 1,
+              "count": 1
+            }
+          }
+        },
+        "importance": {
+          "views": 21,
+          "space_total_original_geometry": 0.9753417456509959,
+          "observed": 92,
+          "total": 93,
+          "unobserved": [
+            "stat_class_12_cc_0013"
+          ],
+          "by_class": {
+            "ceiling light": {
+              "observed": 19,
+              "count": 20
+            },
+            "chair": {
+              "observed": 5,
+              "count": 5
+            },
+            "door": {
+              "observed": 53,
+              "count": 53
+            },
+            "elevator door": {
+              "observed": 10,
+              "count": 10
+            },
+            "table": {
+              "observed": 3,
+              "count": 3
+            },
+            "vacuum cleaner": {
+              "observed": 1,
+              "count": 1
+            },
+            "window": {
+              "observed": 1,
+              "count": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 26103002,
+      "selection_used": false,
+      "results": {
+        "baseline21": {
+          "views": 21,
+          "space_total_original_geometry": 0.9762517866652002,
+          "observed": 92,
+          "total": 93,
+          "unobserved": [
+            "stat_class_12_cc_0013"
+          ],
+          "by_class": {
+            "ceiling light": {
+              "observed": 19,
+              "count": 20
+            },
+            "chair": {
+              "observed": 5,
+              "count": 5
+            },
+            "door": {
+              "observed": 53,
+              "count": 53
+            },
+            "elevator door": {
+              "observed": 10,
+              "count": 10
+            },
+            "table": {
+              "observed": 3,
+              "count": 3
+            },
+            "vacuum cleaner": {
+              "observed": 1,
+              "count": 1
+            },
+            "window": {
+              "observed": 1,
+              "count": 1
+            }
+          }
+        },
+        "importance": {
+          "views": 21,
+          "space_total_original_geometry": 0.9769643994158702,
+          "observed": 92,
+          "total": 93,
+          "unobserved": [
+            "stat_class_12_cc_0013"
+          ],
+          "by_class": {
+            "ceiling light": {
+              "observed": 19,
+              "count": 20
+            },
+            "chair": {
+              "observed": 5,
+              "count": 5
+            },
+            "door": {
+              "observed": 53,
+              "count": 53
+            },
+            "elevator door": {
+              "observed": 10,
+              "count": 10
+            },
+            "table": {
+              "observed": 3,
+              "count": 3
+            },
+            "vacuum cleaner": {
+              "observed": 1,
+              "count": 1
+            },
+            "window": {
+              "observed": 1,
+              "count": 1
+            }
+          }
+        }
+      }
+    }
+  ],
+  "physical_safety_verified": false,
+  "model_importance_semantics": "UNVERIFIED"
+}

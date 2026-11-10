@@ -1,0 +1,29 @@
+{
+  "schema": "spacewatch.nn-lifecycle-isolation.v1",
+  "date": "2026-11-10",
+  "scope": "Root mesh_rgb.rgb_infer adapter and mocked tests only; no native scientific source changes, actual NN/API/model jobs, original/result/process edits by this agent.",
+  "cause": "Prior worker imported run and appearance.extract in one process. SimSaC/ERP inference caches/model memory could remain resident while appearance initialized another backbone. Actual05 completed NN output was preserved before interruption during appearance initialization.",
+  "fix": "Call unchanged native run CLI then unchanged native appearance CLI in serial finite subprocesses. Each process exits before the next starts; no NN modules imported in worker. Use runtime.change_python, inherited os.environ including existing leased GPU/CUDA/TORCH_HOME, and one shared monotonic stage deadline. start_new_session=false preserves worker process group. Existing engine.run_worker starts the worker group and kills it with SIGTERM/SIGKILL on cancellation; no nested GPU lease/session/group introduced.",
+  "ast": {"only_changed_mesh_rgb_function":"rgb_infer","mesh_rgb_before_sha256":"be3f9cc24087ed0ef4da8a1e8825837dc260aff2a819ebb0479dcdc8e9bf7f3e","paper_changes_and_protected_early_functions_unchanged":true},
+  "files": [
+    {"path":"code/spacewatch_pipeline/mesh_rgb.py","sha256":"89fb2efabb6acf84f3aa3f6c9938447ac89d0b0567c5a555fa031d02cb2041f6"},
+    {"path":"code/tests/test_mesh_rgb_lifecycle.py","sha256":"02e4ae68e0d6fad52a28e17235df9f97571bf5c82f351d8a0e7333f35cf37f71"},
+    {"path":"code/spacewatch_pipeline/paper_changes.py","sha256":"1f12df8110799d6a7fd39ccac76385769a34608661115b9f34d8960aff18f280","unchanged":true},
+    {"path":"code/tools/mesh_simsac/run.py","sha256":"e15ad0d9a3cd070b751ebb09fd6d280e1e94109275466e676377890e02aa50d1","unchanged":true},
+    {"path":"code/tools/mesh_simsac/appearance.py","sha256":"1a7fa86236f13e448d40a8c8f185fe7f5ceeeb5d7882cf99ab44cb1e6bca5b0d","unchanged":true}
+  ],
+  "tests": {"count":5,"failures":0,"errors":0,"local_seconds":0.020,"server_seconds":0.052,"cpu_affinity":1,"model_calls":0,"scope":["Exact module argv/flags/interpreter", "Inherited leased GPU/cache environment", "No in-process torch/native NN imports", "One shared decreasing timeout", "No new session/process group", "NN failure prevents appearance", "Appearance failure preserves completed NN without a success result", "Invalid deadline rejected before clone"]},
+  "saved05_nn": {
+    "root":"/workspace/spacewatch_integrated_20261110_8QJn4J/execution05/run/stages/pair.rgb_infer/attempt-1794283525040453181/detection",
+    "inference_status":{"state":"complete","pairs":1282,"regions":122,"object_candidates":4,"seconds":298.9314522743225},
+    "model":{"model":"SimSaC","loaded_strict":true,"source_commit":"43abe282231dc7d8c8cb829a92f9ebc014fa6cb6","checkpoint_sha256":"55f28690989603b5b01723d255bbc63157bacc704e635100ae517b0ad4d1f99a","gaussian_inputs_used":false},
+    "changes_source_manifest_sha256":"f63ebc6e0604add667d9e798e770f9011c003dcaef8f1680cd5a535927f66f63",
+    "recovery_required_checks":["Manifest SHA equals changes.source_manifest_sha256", "changes Gaussian/existing-result flags false; keypoint_plan_used true", "pair-audit length1282; each declared pair checksum and query/reference RGB metadata/opposite epoch consistent", "Preserve completed NN artifacts in new recovery output with original checksums", "Run ONLY native appearance under main's new GPU lease", "Appearance checkpoint SHA matches NN model, source_manifest_sha256 matches unchanged NN manifest, descriptors_sha256 matches object-appearance.npz", "Clearly mark NN reused from interrupted05 and appearance newly executed; not an all-new NN rerun"]
+  },
+  "result_contract": {
+    "mesh_rgb_fields":["root", "pairs", "model", "source_rgb=true", "gaussian_used=false", "fresh_predictions=true"],
+    "paper_changes_from_prepare":["inputs_manifest", "keypoint_plan", "crop_importance_binding", "registration_computed_in_current_pipeline=false"],
+    "paper_changes_binding_fields":["source_image_binding", "source_prepared_root", "bound_views=845", "bound_original_frames=60"],
+    "note":"Recovery must add explicit reused-NN/new-appearance provenance; fresh_predictions describes actual saved05 NN, not a claim it reran in recovery. Main owns verification/recovery and result commitment."
+  }
+}

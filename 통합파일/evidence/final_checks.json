@@ -1,0 +1,14 @@
+{
+  "version": "SpaceWatch Final 2026.11.10.1 (preserved native core5.1.9)",
+  "full_suite_tests": 174,
+  "suite_failures": 0,
+  "suite_skipped": 1,
+  "demo_contract_tests": 4,
+  "http_asset_checks": 54,
+  "environment_contract_checks": 18,
+  "browser_checked": true,
+  "credential_scan_text_files": 1278,
+  "credential_findings": [],
+  "cold_run_verified": false,
+  "paper_result_exactly_reproduced": false
+}

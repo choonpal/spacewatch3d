@@ -1,0 +1,7 @@
+{
+  "reason": "v5.1 changes decoded image storage, asynchronous input copies, fixed-pose inverse caching and duplicate checkpoint writes. Dataset geometry, SH/rasterizer conventions, optimizer settings and checkpoint schema are retained. Imported checkpoints remain explicitly marked reused.",
+  "spacewatch_pipeline/gaussian.py": {
+    "consumer_sha256": "e074bf48ca1d56dfd8187b07c3c85f370722ef73560b445cebde35217d11e568",
+    "producer_sha256": ["9889c7430babea839f06d3084d57b4e56211a9d55042191674da4a53fc80ec5d"]
+  }
+}

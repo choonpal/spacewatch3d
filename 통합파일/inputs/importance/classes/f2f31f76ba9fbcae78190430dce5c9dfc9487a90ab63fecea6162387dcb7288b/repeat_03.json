@@ -1,0 +1,21 @@
+{
+  "repeat": 3,
+  "request_key": "f2f31f76ba9fbcae78190430dce5c9dfc9487a90ab63fecea6162387dcb7288b",
+  "response": {
+    "rating": 4,
+    "reason": "매뉴얼에서 복도 조명의 상시 점등 유지와 공용공간 조명의 점검을 명시하고 있어 시설 안전 및 관리 측면에서 중요도가 높습니다."
+  },
+  "usage": {
+    "promptTokenCount": 346,
+    "candidatesTokenCount": 56,
+    "totalTokenCount": 402,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 346
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "seconds": 5.95628584548831
+}

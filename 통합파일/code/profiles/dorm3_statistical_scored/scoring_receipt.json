@@ -1,0 +1,30 @@
+{
+  "status": "completed",
+  "model_judgment_status": "UNVERIFIED",
+  "model": "gemini-3.1-flash-lite",
+  "temperature": 0,
+  "total_semantic_regions_scored": 201,
+  "active_observation_targets": 93,
+  "excluded_regions_scored_but_not_reactivated": 108,
+  "unique_classes": 7,
+  "exact_existing_cache_classes": 5,
+  "new_api_calls": 2,
+  "new_api_responses": 2,
+  "tokens": {
+    "promptTokenCount": 3564,
+    "candidatesTokenCount": 242,
+    "totalTokenCount": 3806
+  },
+  "seconds": 21.213587898993865,
+  "api_response_seconds": 10.139800673990976,
+  "policy_events": 0,
+  "original_scene_sha256": "721529c64e9535e5702d602e400cc3e380289beb34d59a480c4e5044fdd88b78",
+  "prompt_sha256": "6d8acd07f57a01d0a62bbedc4358d227315fca8d8f3c752a3dd6a1999e4b2733",
+  "score_formula": "level/2; no class-count correction",
+  "images_sent": 0,
+  "credential_saved": false,
+  "selected_cache_scores": {
+    "0.5": 73,
+    "1.0": 20
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "spacewatch.erp-source-binding-fix.v1",
+  "date": "2026-11-10",
+  "scope": "Root source adapter/tests only. No original or execution04 source/result edits, NN/API calls or completed-stage rerun.",
+  "cause": "Native erp_infer.panorama resolves prepared view.source_image from root.parent/inputs. Native inference clones detection to a new attempt without that sibling inputs folder. Completed04 prepared views still had correct bundle-relative source-image declarations, but relocation broke ERP image lookup.",
+  "failed_reference": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/pair.rgb_infer/attempt-1794282798785735791/worker.log",
+  "change": "paper_changes.rgb_infer privately clones completed prepare root to new inference out/prepared-binding, validates each view against authoritative current inputs_manifest, replaces only source_image path/provenance fields with exact absolute source RGB, then calls unchanged mesh_rgb.rgb_infer with private prepared root override. erp_infer/core/native algorithms unchanged.",
+  "validation": ["Current capture IDs unique and ordered epoch0/1", "Current source frame IDs unique within capture", "View capture/frame/source_frame_index and original source_image declaration match current frame", "Current image bundle-relative path cannot traverse outside bundle or escape through symlink", "Each unique original source image SHA256 checked once", "Existing prepared source-image checksum, if any, agrees", "Prepared view IDs safe and unique", "Projected NPZ/JPG assets cloned untouched; geometry/RGB hash metadata identical", "Original prepared/input manifest SHA unchanged", "Binding receipt records60-source/845-view mapping and hardlink/copy counts; no arrays opened"],
+  "protected_ast": {
+    "unchanged": true,
+    "before_sha256": "19776205f928839100788ac4728e3917cea9c9ef18281dc7d7a1fc49ea32adfa",
+    "functions": ["validate_options", "paper_settings", "_frame_key", "select_lowmask", "extend_photographer", "_catalog", "select_current_plan", "_require_plan_dependencies", "rgb_inputs", "rgb_prepare"]
+  },
+  "files": [
+    {"path": "code/spacewatch_pipeline/paper_changes.py", "sha256": "1f12df8110799d6a7fd39ccac76385769a34608661115b9f34d8960aff18f280"},
+    {"path": "code/tests/test_paper_changes.py", "sha256": "9fd750153815eb3609283c365c6f5f2c4afa58f09ee9ba27e73e6747c3d6072e"}
+  ],
+  "tests": {"count": 17, "failures": 0, "errors": 0, "seconds": 9.521, "cpu_affinity": 1, "deadline_seconds": 120, "inference": "mocked only", "covers": ["Private-clone/source immutability", "NPZ/JPG hash and hardlink preservation on tiny byte fixtures", "Input path escape", "Checksum/capture/frame/source-index/declared-image mismatch", "Native inference receives private root override", "Earlier crop/current-plan/grouping contracts"]},
+  "actual04_read_only_metadata_check": {"prepared_views":845,"unique_original_images":60,"mismatch_ids":[],"arrays_opened":false,"images_decoded":false},
+  "new_run_status": "Main owns execution05 import and actual new inference. Tests and metadata join do not claim completed model execution."
+}

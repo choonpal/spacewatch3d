@@ -1,0 +1,7 @@
+{
+  "status": "failed",
+  "pid": 105758,
+  "run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run",
+  "error": "Worker exited 1; see /workspace/spacewatch_integrated_20261110_8QJn4J/execution04/run/stages/pair.rgb_infer/attempt-1794282798785735791/worker.log",
+  "seconds": 512.596170604229
+}

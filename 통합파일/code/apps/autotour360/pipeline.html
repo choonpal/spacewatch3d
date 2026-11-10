@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SpaceWatch · 순찰</title><link rel="stylesheet" href="survey.css"></head>
+<body>
+<header><strong>SpaceWatch</strong><nav id="captures"></nav><span id="counter"></span><button id="tour-tab" aria-pressed="true">둘러보기</button><button id="changes-tab" hidden>변화</button><button id="settings-tab" aria-pressed="false">입력·결과</button></header>
+<p id="error" role="alert" hidden></p>
+<main id="tour">
+ <section id="map-panel" aria-label="전체 3D 지도"><canvas id="mesh" tabindex="0"></canvas><svg id="map-overlay" aria-label="키프레임 위치"></svg><div class="map-tools"><button id="zoom-in" aria-label="지도 확대">＋</button><button id="zoom-out" aria-label="지도 축소">－</button><button id="fit">전체</button></div><span class="hint">드래그 회전 · 오른쪽 드래그 이동 · 휠 확대</span></section>
+ <section id="view-panel" aria-label="현재 원본 360도 이미지"><canvas id="panorama" tabindex="0"></canvas><div id="change-labels"></div><div id="arrows"></div><span id="loading">이미지 불러오는 중</span><span id="view-label"></span><button id="focus-changes" hidden>변화 방향</button><button id="toggle-changes" aria-label="변화 박스 표시" aria-pressed="true" hidden>박스 켜짐</button><span id="overlay-hint" hidden></span><button id="look-reset" aria-label="시선 초기화">시선 초기화</button></section>
+</main>
+<aside id="evidence-panel" aria-label="현재 실행의 변화 비교 사진" hidden><div class="evidence-heading"><h2 id="evidence-title">변화 근거</h2><button id="evidence-all">전체 변화</button><button id="evidence-close" aria-label="변화 근거 닫기">×</button></div><div id="evidence-body"></div></aside>
+<section id="settings" hidden>
+ <h1>입력·결과</h1><p>현재 선정한 지점의 원본 파노라마를 지도와 함께 탐색합니다. 변화 근거는 비교 후 촬영에 연결됩니다.</p><p id="coordinate-note">지도 좌표 단위는 u(재구성 단위)이며 실제 미터 단위로 검증하지 않았습니다.</p>
+ <h2>입력 3가지</h2><div class="inputs"><article><h3>순찰 매뉴얼</h3><ol id="manual"></ol></article><article><h3>찾을 객체 목록</h3><p id="classes"></p></article><article><h3>입력 영상</h3><ul id="videos"></ul></article></div>
+ <h2>관측 결과</h2><div id="coverage"></div><p id="pose-note"></p>
+ <h2>물체 중요도 · 1–5점</h2><p>입력 매뉴얼과 객체 목록에 대응하는 기존 5회 채점 결과를 사용합니다.</p><div id="ratings"></div>
+ <h2>클래스별 관측 대상</h2><p>연결영역 중 독립 관측 대상에 포함되거나 제외된 수입니다.</p><div id="noise"></div>
+ <h2>단계별 시간</h2><div id="timing"></div>
+ <h2>보기 설정</h2><label>키프레임 <select id="frame-select"></select></label> <label>지도 <select id="map-mode"><option value="rgb">원본 색상</option><option value="semantic">의미 분할</option><option value="instances">관측 대상 영역</option></select></label> <label><input id="ceiling" type="checkbox" checked>천장 숨김</label><label hidden><input id="display-restored" type="checkbox" checked>대체 표시 이미지</label><p id="change-status"></p><p><a id="change-link" href="#changes" hidden>전체 변화 근거</a></p><div id="downloads"></div>
+ <p id="version"></p>
+</section><script type="module" src="survey.js"></script></body></html>

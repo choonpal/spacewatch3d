@@ -1,0 +1,79 @@
+{
+  "mode": "verified_reuse",
+  "capture_id": "dorm4",
+  "reuse": {
+    "semantic_arrays": {
+      "path": "/workspace/v519_capture_clone_20261028_tWZimf/inputs19_02/dorm4/semantic/mesh_arrays.npz",
+      "bytes": 2575459,
+      "sha256": "4340e87ea22d3659cdd9dd49b5740b3a3d1247878bebcac1fb9fa0d61681db64"
+    },
+    "vocabulary": {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/vocabulary.json",
+      "bytes": 2329,
+      "sha256": "3c12c232ea14d00ef7ae8b8c30721101d462a040ce6610212949461af2f8f910"
+    },
+    "coordinates": {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/dorm4.json",
+      "bytes": 1779,
+      "sha256": "01ac2e5ee0b356ae716a00f7ed0de45adcc9d40ccd77ac4ca8c6d4fd4ea62205"
+    },
+    "scene": {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/profile/scene.json",
+      "bytes": 324582,
+      "sha256": "38314283c6a51b781ee893fc0909df2e5ccea9a94bee3195d99542d3cc6f4855"
+    },
+    "profile_root": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/profile",
+    "profile_checksums": {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/profile/checksums.json",
+      "bytes": 27561,
+      "sha256": "fb0cd4e919b9f8fcdfd0b6aa16b345fda0363d68d1ad8b3127ac0189eff4f320"
+    },
+    "profile_input_binding": {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/profile/input_binding.json",
+      "bytes": 685,
+      "sha256": "d75ca5ff128dc133bb2fa98cc002f14295f1a13ba1f8260c76e9e2e1b95d4bcc"
+    },
+    "source_run": "/workspace/dorm4_dorm5_v5_20261025/reconstruction/dorm4",
+    "captured_prediction": {
+      "predictions": "/workspace/v519_capture_parity_20261028_txz49d/rebuild01/runs/before/stages/before.ooops/attempt-1793118962529126899/predictions",
+      "inference": {
+        "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/inference.json",
+        "bytes": 59702,
+        "sha256": "99726336d1a81444e82ced1b3cfede1514dfb96899ab64b348ced5af60890406"
+      },
+      "vocabulary": {
+        "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/vocabulary.json",
+        "bytes": 2329,
+        "sha256": "3c12c232ea14d00ef7ae8b8c30721101d462a040ce6610212949461af2f8f910"
+      }
+    },
+    "reconstruction_files": {
+      "status": {
+        "path": "/workspace/dorm4_dorm5_v5_20261025/reconstruction/dorm4/status.json",
+        "bytes": 145,
+        "sha256": "e3e6cbcb8fa2db5d4aa8e31847d82b6eb5e7c5381d04b2929306fa32304c783e"
+      },
+      "config": {
+        "path": "/workspace/dorm4_dorm5_v5_20261025/reconstruction/dorm4/config.json",
+        "bytes": 11327,
+        "sha256": "794c9fa76f3167d5505fc57e67a57cad87dd0a4dec43ff8fdc8a8e3bab599e96"
+      },
+      "poses": {
+        "path": "/workspace/dorm4_dorm5_v5_20261025/reconstruction/dorm4/result/camera_poses.json",
+        "bytes": 169248,
+        "sha256": "cdd04023afb8504249b70440500d433ca0d46efba06fe831612385e756e7c7da"
+      },
+      "manifest": {
+        "path": "/workspace/dorm4_dorm5_v5_20261025/reconstruction/dorm4/input/manifest.json",
+        "bytes": 57560,
+        "sha256": "f0b81993a2ce00818143633f2eea022dcf185f376e9dd579ac81b207abe273b0"
+      }
+    }
+  },
+  "profile_context_plan": {
+    "path": "/workspace/spacewatch_runs/dorm4_dorm5_pipeline_v5_20261025/stages/dorm4.plan/attempt-1792943436523361367/plan/tour_plan.json",
+    "bytes": 4130682,
+    "sha256": "5cbc8a9cdf5871487c924a152cd5f89943b7d03a7075dfb63831999632db06db"
+  },
+  "semantic_producer_provenance": "Accepted inputs19_02 artifacts; exact artifact/profile/input binding verification, not claimed originalv2 stage replay or fresh model execution."
+}

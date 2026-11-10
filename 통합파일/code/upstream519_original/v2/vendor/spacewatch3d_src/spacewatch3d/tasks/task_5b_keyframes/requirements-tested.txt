@@ -1,0 +1,17 @@
+# Exact CPU environment used for the synthetic tests; Python 3.13.
+attrs==26.1.0
+ImageIO==2.38.1
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
+lazy-loader==0.6
+networkx==3.7
+numpy==2.5.3
+packaging==26.3
+pillow==12.3.0
+referencing==0.37.0
+rpds-py==2026.9.1
+scikit-image==0.26.0
+scipy==1.18.1
+shapely==2.2.0
+tifffile==2026.9.20
+trimesh==5.1.1

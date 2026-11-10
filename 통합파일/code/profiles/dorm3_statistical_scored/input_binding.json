@@ -1,0 +1,12 @@
+{
+  "capture_id": "dorm3",
+  "frame_id": "dorm3_mesh",
+  "coordinates_sha256": "03a8c752f6f8cb01bde8c0bc6d4deb88bfdbb2ca44482480f1524c659df9bab8",
+  "source_run": "/workspace/dorm3_pointcloud_v2_20261017",
+  "arrays": {
+    "vertices": "6331d98504c773b8d3b51b2e40ceeb62ee0b056073fbe4cfdad03798af61911b",
+    "faces": "cffe291c759fc0cd47fe455257fb3464269c37404bf39977efb3c2b34c6fb4d7",
+    "rgb": "32807475b5bd437b7bd53f25febe110ad44f0ca3388b425006df7b1eaae5fd53",
+    "face_class_id": "9535e3fff8744bfbbf768a61b1f0aafffbb82384ad16ffe5d913498de468cdfa"
+  }
+}

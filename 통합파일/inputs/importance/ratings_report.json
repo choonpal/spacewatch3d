@@ -1,0 +1,1829 @@
+{
+  "version": "patrol-importance-manual-1to5-v1",
+  "model": "gemini-3.1-flash-lite",
+  "temperature": 0,
+  "repeats": 5,
+  "manual": [
+    "출입문과 통로의 이용을 방해하는 적치물을 확인합니다.",
+    "시설과 비품의 눈에 띄는 파손, 누수, 물고임 등 안전과 사용에 영향을 줄 수 있는 상태를 확인합니다.",
+    "소화기 등 소방 설비가 보이는 위치에 있는지, 외형이나 주변 접근 상태에 변화가 있는지 확인합니다.",
+    "물품의 추가, 제거, 이동과 상태 변화를 확인하고 공간의 안전, 사용, 관리에 미치는 영향을 살펴봅니다.",
+    "복도 조명은 24시간 상시 점등합니다.",
+    "공용공간 조명은 미사용·무인일 때 소등하는 것이 점검 목적에 포함됩니다.",
+    "복도 조명도 꺼짐·파손 점검 가치는 있을 수 있습니다.",
+    "상시 운전하는 냉장고는 소등/전원 차단 대상이 아닙니다."
+  ],
+  "sources": [
+    {
+      "path": "/workspace/spacewatch_objects19_v7_20261027_52i774iz/rating_classes.json",
+      "bytes": 223,
+      "sha256": "b1a888560a5c1d4a98f20ebddda1a0e2180502477ee99f50f69459b01d328762"
+    }
+  ],
+  "input_scope": "requested_object_classes_not_presence_claim",
+  "manual_source": {
+    "path": "/workspace/spacewatch_objects19_v7_20261027_52i774iz/code/configs/patrol_manual.json",
+    "bytes": 889,
+    "sha256": "8770591b5e26238a0d8d756df57a3b00030cdc7743b26c7711470d6d24be43b9"
+  },
+  "class_names": [
+    "box",
+    "ceiling light",
+    "chair",
+    "clothes",
+    "door",
+    "fire extinguisher",
+    "fire hose cabinet",
+    "sign",
+    "table",
+    "umbrella",
+    "vacuum cleaner",
+    "ventilation grille",
+    "water dispenser",
+    "window"
+  ],
+  "prompt_sha256": "c17233eba252d17f1c604c2c270080e773ae48eee9b483ed703fc8afce3c51d4",
+  "score_mapping": "mean(rating)/5",
+  "survey_status": "NOT_PROVIDED",
+  "status": "UNVERIFIED",
+  "classes": {
+    "box": {
+      "class_name": "box",
+      "ratings": [
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "n": 5,
+      "mean": 5,
+      "sd": 0.0,
+      "minimum": 5,
+      "maximum": 5,
+      "range": 0,
+      "unanimous": true,
+      "score": 1.0,
+      "request_key": "2b28b9eb5dc9b651b22f099a619bf26ba29eea7afcb2881f81f41ee4bc24ed38",
+      "trials": [
+        {
+          "repeat": 1,
+          "request_key": "2b28b9eb5dc9b651b22f099a619bf26ba29eea7afcb2881f81f41ee4bc24ed38",
+          "response": {
+            "rating": 5,
+            "reason": "박스는 출입문과 통로의 이용을 방해하는 적치물에 해당하며 공간의 안전과 관리에 직접적인 영향을 미치므로 높은 관찰이 필요합니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 50,
+            "totalTokenCount": 395,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 2.850216545164585
+        },
+        {
+          "repeat": 2,
+          "request_key": "2b28b9eb5dc9b651b22f099a619bf26ba29eea7afcb2881f81f41ee4bc24ed38",
+          "response": {
+            "rating": 5,
+            "reason": "박스는 출입문과 통로의 이용을 방해하는 적치물에 해당하며 공간의 안전과 관리에 직접적인 영향을 미치므로 높은 관찰이 필요합니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 50,
+            "totalTokenCount": 395,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 3.788654938340187
+        },
+        {
+          "repeat": 3,
+          "request_key": "2b28b9eb5dc9b651b22f099a619bf26ba29eea7afcb2881f81f41ee4bc24ed38",
+          "response": {
+            "rating": 5,
+            "reason": "박스는 출입문과 통로의 이용을 방해하는 적치물에 해당하며 공간의 안전과 관리에 직접적인 영향을 미치므로 높은 관찰이 필요합니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 50,
+            "totalTokenCount": 395,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 2.352062549442053
+        },
+        {
+          "repeat": 4,
+          "request_key": "2b28b9eb5dc9b651b22f099a619bf26ba29eea7afcb2881f81f41ee4bc24ed38",
+          "response": {
+            "rating": 5,
+            "reason": "박스는 출입문과 통로의 이용을 방해하는 적치물에 해당하며 공간의 안전과 관리에 직접적인 영향을 미치므로 높은 관찰이 필요합니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 50,
+            "totalTokenCount": 395,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 2.8647903241217136
+        },
+        {
+          "repeat": 5,
+          "request_key": "2b28b9eb5dc9b651b22f099a619bf26ba29eea7afcb2881f81f41ee4bc24ed38",
+          "response": {
+            "rating": 5,
+            "reason": "박스는 출입문과 통로의 이용을 방해하는 적치물에 해당하며 공간의 안전과 관리에 직접적인 영향을 미치므로 높은 관찰이 필요합니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 50,
+            "totalTokenCount": 395,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 3.5743864625692368
+        }
+      ]
+    },
+    "ceiling light": {
+      "class_name": "ceiling light",
+      "ratings": [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "n": 5,
+      "mean": 4,
+      "sd": 0.0,
+      "minimum": 4,
+      "maximum": 4,
+      "range": 0,
+      "unanimous": true,
+      "score": 0.8,
+      "request_key": "f2f31f76ba9fbcae78190430dce5c9dfc9487a90ab63fecea6162387dcb7288b",
+      "trials": [
+        {
+          "repeat": 1,
+          "request_key": "f2f31f76ba9fbcae78190430dce5c9dfc9487a90ab63fecea6162387dcb7288b",
+          "response": {
+            "rating": 4,
+            "reason": "매뉴얼에서 복도 조명의 상시 점등 유지와 공용공간 조명의 점검을 명시하고 있어 시설 안전 및 관리 측면에서 중요도가 높습니다."
+          },
+          "usage": {
+            "promptTokenCount": 346,
+            "candidatesTokenCount": 56,
+            "totalTokenCount": 402,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 346
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 3.1703653782606125
+        },
+        {
+          "repeat": 2,
+          "request_key": "f2f31f76ba9fbcae78190430dce5c9dfc9487a90ab63fecea6162387dcb7288b",
+          "response": {
+            "rating": 4,
+            "reason": "매뉴얼에서 복도 조명의 상시 점등 유지와 공용공간 조명의 점검을 명시하고 있어 시설 안전 및 관리 측면에서 중요도가 높습니다."
+          },
+          "usage": {
+            "promptTokenCount": 346,
+            "candidatesTokenCount": 56,
+            "totalTokenCount": 402,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 346
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 3.5157521665096283
+        },
+        {
+          "repeat": 3,
+          "request_key": "f2f31f76ba9fbcae78190430dce5c9dfc9487a90ab63fecea6162387dcb7288b",
+          "response": {
+            "rating": 4,
+            "reason": "매뉴얼에서 복도 조명의 상시 점등 유지와 공용공간 조명의 점검을 명시하고 있어 시설 안전 및 관리 측면에서 중요도가 높습니다."
+          },
+          "usage": {
+            "promptTokenCount": 346,
+            "candidatesTokenCount": 56,
+            "totalTokenCount": 402,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 346
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 5.95628584548831
+        },
+        {
+          "repeat": 4,
+          "request_key": "f2f31f76ba9fbcae78190430dce5c9dfc9487a90ab63fecea6162387dcb7288b",
+          "response": {
+            "rating": 4,
+            "reason": "매뉴얼에서 복도 조명의 상시 점등 유지와 공용공간 조명의 점검을 명시하고 있어 시설 안전 및 관리 측면에서 중요도가 높습니다."
+          },
+          "usage": {
+            "promptTokenCount": 346,
+            "candidatesTokenCount": 56,
+            "totalTokenCount": 402,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 346
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 3.3576293885707855
+        },
+        {
+          "repeat": 5,
+          "request_key": "f2f31f76ba9fbcae78190430dce5c9dfc9487a90ab63fecea6162387dcb7288b",
+          "response": {
+            "rating": 4,
+            "reason": "매뉴얼에서 복도 조명의 상시 점등 유지와 공용공간 조명의 점검을 명시하고 있어 시설 안전 및 관리 측면에서 중요도가 높습니다."
+          },
+          "usage": {
+            "promptTokenCount": 346,
+            "candidatesTokenCount": 56,
+            "totalTokenCount": 402,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 346
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 5.36114102974534
+        }
+      ]
+    },
+    "chair": {
+      "class_name": "chair",
+      "ratings": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "n": 5,
+      "mean": 3,
+      "sd": 0.0,
+      "minimum": 3,
+      "maximum": 3,
+      "range": 0,
+      "unanimous": true,
+      "score": 0.6,
+      "request_key": "3e0185dc6ff29615e929ec5c700293111a82aee6931c75f31ebbea8d6658f4d0",
+      "trials": [
+        {
+          "repeat": 1,
+          "request_key": "3e0185dc6ff29615e929ec5c700293111a82aee6931c75f31ebbea8d6658f4d0",
+          "response": {
+            "rating": 3,
+            "reason": "의자는 비품으로서 파손 여부나 통로 적치 여부 등 안전과 사용에 영향을 줄 수 있는 상태를 확인해야 하므로 중간 정도의 중요도를 가집니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 51,
+            "totalTokenCount": 396,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 5.0769330114126205
+        },
+        {
+          "repeat": 2,
+          "request_key": "3e0185dc6ff29615e929ec5c700293111a82aee6931c75f31ebbea8d6658f4d0",
+          "response": {
+            "rating": 3,
+            "reason": "의자는 비품으로서 파손 여부나 통로 적치 여부 등 안전과 사용에 영향을 줄 수 있는 상태를 확인해야 하므로 중간 정도의 중요도를 가집니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 51,
+            "totalTokenCount": 396,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 3.543559391051531
+        },
+        {
+          "repeat": 3,
+          "request_key": "3e0185dc6ff29615e929ec5c700293111a82aee6931c75f31ebbea8d6658f4d0",
+          "response": {
+            "rating": 3,
+            "reason": "의자는 비품으로서 파손 여부나 통로 적치 여부 등 안전과 사용에 영향을 줄 수 있는 상태를 확인해야 하므로 중간 정도의 중요도를 가집니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 51,
+            "totalTokenCount": 396,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 1.5506167225539684
+        },
+        {
+          "repeat": 4,
+          "request_key": "3e0185dc6ff29615e929ec5c700293111a82aee6931c75f31ebbea8d6658f4d0",
+          "response": {
+            "rating": 3,
+            "reason": "의자는 비품으로서 파손 여부나 통로 적치 여부 등 안전과 사용에 영향을 줄 수 있는 상태를 확인해야 하므로 중간 정도의 중요도를 가집니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 51,
+            "totalTokenCount": 396,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 4.475953653454781
+        },
+        {
+          "repeat": 5,
+          "request_key": "3e0185dc6ff29615e929ec5c700293111a82aee6931c75f31ebbea8d6658f4d0",
+          "response": {
+            "rating": 3,
+            "reason": "의자는 비품으로서 파손 여부나 통로 적치 여부 등 안전과 사용에 영향을 줄 수 있는 상태를 확인해야 하므로 중간 정도의 중요도를 가집니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 51,
+            "totalTokenCount": 396,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 5.497891832143068
+        }
+      ]
+    },
+    "clothes": {
+      "class_name": "clothes",
+      "ratings": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "n": 5,
+      "mean": 3,
+      "sd": 0.0,
+      "minimum": 3,
+      "maximum": 3,
+      "range": 0,
+      "unanimous": true,
+      "score": 0.6,
+      "request_key": "93900f26ad4f12bfb2d142048c84c8911f604f21eb27c6226afe8ba316a868ad",
+      "trials": [
+        {
+          "repeat": 1,
+          "request_key": "93900f26ad4f12bfb2d142048c84c8911f604f21eb27c6226afe8ba316a868ad",
+          "response": {
+            "rating": 3,
+            "reason": "의류는 공용 공간에 방치될 경우 통로 이용을 방해하거나 물품의 추가 및 이동에 해당하여 안전과 관리에 영향을 줄 수 있습니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 48,
+            "totalTokenCount": 393,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 5.330903686583042
+        },
+        {
+          "repeat": 2,
+          "request_key": "93900f26ad4f12bfb2d142048c84c8911f604f21eb27c6226afe8ba316a868ad",
+          "response": {
+            "rating": 3,
+            "reason": "의류는 공용 공간에 방치될 경우 통로 이용을 방해하거나 물품의 추가 및 이동에 해당하여 안전과 관리에 영향을 줄 수 있습니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 48,
+            "totalTokenCount": 393,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 4.466397400945425
+        },
+        {
+          "repeat": 3,
+          "request_key": "93900f26ad4f12bfb2d142048c84c8911f604f21eb27c6226afe8ba316a868ad",
+          "response": {
+            "rating": 3,
+            "reason": "의류는 공용 공간에 방치될 경우 통로 이용을 방해하거나 물품의 추가 및 이동에 해당하여 안전과 관리에 영향을 줄 수 있습니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 48,
+            "totalTokenCount": 393,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 6.256494045257568
+        },
+        {
+          "repeat": 4,
+          "request_key": "93900f26ad4f12bfb2d142048c84c8911f604f21eb27c6226afe8ba316a868ad",
+          "response": {
+            "rating": 3,
+            "reason": "의류는 공용 공간에 방치될 경우 통로 이용을 방해하거나 물품의 추가 및 이동에 해당하여 안전과 관리에 영향을 줄 수 있습니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 48,
+            "totalTokenCount": 393,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 4.428675137460232
+        },
+        {
+          "repeat": 5,
+          "request_key": "93900f26ad4f12bfb2d142048c84c8911f604f21eb27c6226afe8ba316a868ad",
+          "response": {
+            "rating": 3,
+            "reason": "의류는 공용 공간에 방치될 경우 통로 이용을 방해하거나 물품의 추가 및 이동에 해당하여 안전과 관리에 영향을 줄 수 있습니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 48,
+            "totalTokenCount": 393,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 5.20419992133975
+        }
+      ]
+    },
+    "door": {
+      "class_name": "door",
+      "ratings": [
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "n": 5,
+      "mean": 5,
+      "sd": 0.0,
+      "minimum": 5,
+      "maximum": 5,
+      "range": 0,
+      "unanimous": true,
+      "score": 1.0,
+      "request_key": "a3dbdda2c4f77cf2a4b501b592b89b9a9934f6c14264662e90c9b90c57632518",
+      "trials": [
+        {
+          "repeat": 1,
+          "request_key": "a3dbdda2c4f77cf2a4b501b592b89b9a9934f6c14264662e90c9b90c57632518",
+          "response": {
+            "rating": 5,
+            "reason": "출입문은 통로 이용을 방해하는 적치물 확인 및 시설 안전 관리의 핵심 요소이므로 매우 중요하게 관찰해야 합니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 43,
+            "totalTokenCount": 388,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 7.209138344973326
+        },
+        {
+          "repeat": 2,
+          "request_key": "a3dbdda2c4f77cf2a4b501b592b89b9a9934f6c14264662e90c9b90c57632518",
+          "response": {
+            "rating": 5,
+            "reason": "출입문은 통로 이용을 방해하는 적치물 확인 및 시설 안전 관리의 핵심 요소이므로 매우 중요하게 관찰해야 합니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 43,
+            "totalTokenCount": 388,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 6.829324174672365
+        },
+        {
+          "repeat": 3,
+          "request_key": "a3dbdda2c4f77cf2a4b501b592b89b9a9934f6c14264662e90c9b90c57632518",
+          "response": {
+            "rating": 5,
+            "reason": "출입문은 통로 이용을 방해하는 적치물 확인 및 시설 안전 관리의 핵심 요소이므로 매우 중요하게 관찰해야 합니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 43,
+            "totalTokenCount": 388,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 4.01133931055665
+        },
+        {
+          "repeat": 4,
+          "request_key": "a3dbdda2c4f77cf2a4b501b592b89b9a9934f6c14264662e90c9b90c57632518",
+          "response": {
+            "rating": 5,
+            "reason": "출입문은 통로 이용을 방해하는 적치물 확인 및 시설 안전 관리의 핵심 요소이므로 매우 중요하게 관찰해야 합니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 43,
+            "totalTokenCount": 388,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 2.5643639639019966
+        },
+        {
+          "repeat": 5,
+          "request_key": "a3dbdda2c4f77cf2a4b501b592b89b9a9934f6c14264662e90c9b90c57632518",
+          "response": {
+            "rating": 5,
+            "reason": "출입문은 통로 이용을 방해하는 적치물 확인 및 시설 안전 관리의 핵심 요소이므로 매우 중요하게 관찰해야 합니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 43,
+            "totalTokenCount": 388,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 2.311707004904747
+        }
+      ]
+    },
+    "fire extinguisher": {
+      "class_name": "fire extinguisher",
+      "ratings": [
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "n": 5,
+      "mean": 5,
+      "sd": 0.0,
+      "minimum": 5,
+      "maximum": 5,
+      "range": 0,
+      "unanimous": true,
+      "score": 1.0,
+      "request_key": "e9eab947ab041b298b514e408f58c6bfbd368baffdf946bd45a33535c29d8b78",
+      "trials": [
+        {
+          "repeat": 1,
+          "request_key": "e9eab947ab041b298b514e408f58c6bfbd368baffdf946bd45a33535c29d8b78",
+          "response": {
+            "rating": 5,
+            "reason": "소화기는 화재 시 안전을 책임지는 핵심 설비로, 매뉴얼에서 위치와 외형 및 접근 상태를 확인하도록 명시하고 있어 매우 중요하게 관찰해야 합니다."
+          },
+          "usage": {
+            "promptTokenCount": 346,
+            "candidatesTokenCount": 52,
+            "totalTokenCount": 398,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 346
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 2.4376043677330017
+        },
+        {
+          "repeat": 2,
+          "request_key": "e9eab947ab041b298b514e408f58c6bfbd368baffdf946bd45a33535c29d8b78",
+          "response": {
+            "rating": 5,
+            "reason": "소화기는 화재 시 안전을 책임지는 핵심 설비로, 매뉴얼에서 위치와 외형 및 접근 상태를 확인하도록 명시하고 있어 매우 중요하게 관찰해야 합니다."
+          },
+          "usage": {
+            "promptTokenCount": 346,
+            "candidatesTokenCount": 52,
+            "totalTokenCount": 398,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 346
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 2.4749637320637703
+        },
+        {
+          "repeat": 3,
+          "request_key": "e9eab947ab041b298b514e408f58c6bfbd368baffdf946bd45a33535c29d8b78",
+          "response": {
+            "rating": 5,
+            "reason": "소화기는 화재 시 안전을 책임지는 핵심 설비로, 매뉴얼에서 위치와 외형 및 접근 상태를 확인하도록 명시하고 있어 매우 중요하게 관찰해야 합니다."
+          },
+          "usage": {
+            "promptTokenCount": 346,
+            "candidatesTokenCount": 52,
+            "totalTokenCount": 398,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 346
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 5.20193837210536
+        },
+        {
+          "repeat": 4,
+          "request_key": "e9eab947ab041b298b514e408f58c6bfbd368baffdf946bd45a33535c29d8b78",
+          "response": {
+            "rating": 5,
+            "reason": "소화기는 화재 시 안전을 책임지는 핵심 설비로, 매뉴얼에서 위치와 외형 및 접근 상태를 확인하도록 명시하고 있어 매우 중요하게 관찰해야 합니다."
+          },
+          "usage": {
+            "promptTokenCount": 346,
+            "candidatesTokenCount": 52,
+            "totalTokenCount": 398,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 346
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 6.530754532665014
+        },
+        {
+          "repeat": 5,
+          "request_key": "e9eab947ab041b298b514e408f58c6bfbd368baffdf946bd45a33535c29d8b78",
+          "response": {
+            "rating": 5,
+            "reason": "소화기는 화재 시 안전을 책임지는 핵심 설비로, 매뉴얼에서 위치와 외형 및 접근 상태를 확인하도록 명시하고 있어 매우 중요하게 관찰해야 합니다."
+          },
+          "usage": {
+            "promptTokenCount": 346,
+            "candidatesTokenCount": 52,
+            "totalTokenCount": 398,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 346
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 2.593266535550356
+        }
+      ]
+    },
+    "fire hose cabinet": {
+      "class_name": "fire hose cabinet",
+      "ratings": [
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "n": 5,
+      "mean": 5,
+      "sd": 0.0,
+      "minimum": 5,
+      "maximum": 5,
+      "range": 0,
+      "unanimous": true,
+      "score": 1.0,
+      "request_key": "592192fd0bcf80ee980356faa28420386075c649564384bb68d6aeb2757aac56",
+      "trials": [
+        {
+          "repeat": 1,
+          "request_key": "592192fd0bcf80ee980356faa28420386075c649564384bb68d6aeb2757aac56",
+          "response": {
+            "rating": 5,
+            "reason": "소방 설비는 안전과 직결되는 핵심 시설로 매뉴얼에서 외형 및 접근 상태 확인을 명시하고 있어 매우 중요하게 관찰해야 합니다."
+          },
+          "usage": {
+            "promptTokenCount": 347,
+            "candidatesTokenCount": 48,
+            "totalTokenCount": 395,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 347
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 3.789704170078039
+        },
+        {
+          "repeat": 2,
+          "request_key": "592192fd0bcf80ee980356faa28420386075c649564384bb68d6aeb2757aac56",
+          "response": {
+            "rating": 5,
+            "reason": "소방 설비는 안전과 직결되는 핵심 시설로 매뉴얼에서 외형 및 접근 상태 확인을 명시하고 있어 매우 중요하게 관찰해야 합니다."
+          },
+          "usage": {
+            "promptTokenCount": 347,
+            "candidatesTokenCount": 48,
+            "totalTokenCount": 395,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 347
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 4.261917565017939
+        },
+        {
+          "repeat": 3,
+          "request_key": "592192fd0bcf80ee980356faa28420386075c649564384bb68d6aeb2757aac56",
+          "response": {
+            "rating": 5,
+            "reason": "소방 설비는 안전과 직결되는 핵심 시설로 매뉴얼에서 외형 및 접근 상태 확인을 명시하고 있어 매우 중요하게 관찰해야 합니다."
+          },
+          "usage": {
+            "promptTokenCount": 347,
+            "candidatesTokenCount": 48,
+            "totalTokenCount": 395,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 347
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 3.8284532986581326
+        },
+        {
+          "repeat": 4,
+          "request_key": "592192fd0bcf80ee980356faa28420386075c649564384bb68d6aeb2757aac56",
+          "response": {
+            "rating": 5,
+            "reason": "소방 설비는 안전과 직결되는 핵심 시설로 매뉴얼에서 외형 및 접근 상태 확인을 명시하고 있어 매우 중요하게 관찰해야 합니다."
+          },
+          "usage": {
+            "promptTokenCount": 347,
+            "candidatesTokenCount": 48,
+            "totalTokenCount": 395,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 347
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 2.9359513968229294
+        },
+        {
+          "repeat": 5,
+          "request_key": "592192fd0bcf80ee980356faa28420386075c649564384bb68d6aeb2757aac56",
+          "response": {
+            "rating": 5,
+            "reason": "소방 설비는 안전과 직결되는 핵심 시설로 매뉴얼에서 외형 및 접근 상태 확인을 명시하고 있어 매우 중요하게 관찰해야 합니다."
+          },
+          "usage": {
+            "promptTokenCount": 347,
+            "candidatesTokenCount": 48,
+            "totalTokenCount": 395,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 347
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 8.883375994861126
+        }
+      ]
+    },
+    "sign": {
+      "class_name": "sign",
+      "ratings": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "n": 5,
+      "mean": 2,
+      "sd": 0.0,
+      "minimum": 2,
+      "maximum": 2,
+      "range": 0,
+      "unanimous": true,
+      "score": 0.4,
+      "request_key": "1f4424702b3521e72107fa8674c9d1c4ee506d4f7f610c922a3f2d2ab75de5fe",
+      "trials": [
+        {
+          "repeat": 1,
+          "request_key": "1f4424702b3521e72107fa8674c9d1c4ee506d4f7f610c922a3f2d2ab75de5fe",
+          "response": {
+            "rating": 2,
+            "reason": "표지판은 시설의 안전이나 비품의 상태와 직접적인 연관성이 낮으나, 통로의 이용을 방해하거나 공간 관리 측면에서 변화를 확인할 필요가 있습니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 52,
+            "totalTokenCount": 397,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 3.1230814270675182
+        },
+        {
+          "repeat": 2,
+          "request_key": "1f4424702b3521e72107fa8674c9d1c4ee506d4f7f610c922a3f2d2ab75de5fe",
+          "response": {
+            "rating": 2,
+            "reason": "표지판은 시설의 안전이나 비품의 상태와 직접적인 연관성이 낮으나, 통로의 이용을 방해하거나 공간 관리 측면에서 변화를 확인할 필요가 있습니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 52,
+            "totalTokenCount": 397,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 2.2825097255408764
+        },
+        {
+          "repeat": 3,
+          "request_key": "1f4424702b3521e72107fa8674c9d1c4ee506d4f7f610c922a3f2d2ab75de5fe",
+          "response": {
+            "rating": 2,
+            "reason": "표지판은 시설의 안전이나 비품의 상태와 직접적인 연관성이 낮으나, 통로의 이용을 방해하거나 공간 관리 측면에서 변화를 확인할 필요가 있습니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 52,
+            "totalTokenCount": 397,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 67.74355543777347
+        },
+        {
+          "repeat": 4,
+          "request_key": "1f4424702b3521e72107fa8674c9d1c4ee506d4f7f610c922a3f2d2ab75de5fe",
+          "response": {
+            "rating": 2,
+            "reason": "표지판은 시설의 안전이나 비품의 상태와 직접적인 연관성이 낮으나, 통로의 이용을 방해하거나 공간 관리 측면에서 변화를 확인할 필요가 있습니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 52,
+            "totalTokenCount": 397,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 1.8042979277670383
+        },
+        {
+          "repeat": 5,
+          "request_key": "1f4424702b3521e72107fa8674c9d1c4ee506d4f7f610c922a3f2d2ab75de5fe",
+          "response": {
+            "rating": 2,
+            "reason": "표지판은 시설의 안전이나 비품의 상태와 직접적인 연관성이 낮으나, 통로의 이용을 방해하거나 공간 관리 측면에서 변화를 확인할 필요가 있습니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 52,
+            "totalTokenCount": 397,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 1.4132098257541656
+        }
+      ]
+    },
+    "table": {
+      "class_name": "table",
+      "ratings": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "n": 5,
+      "mean": 3,
+      "sd": 0.0,
+      "minimum": 3,
+      "maximum": 3,
+      "range": 0,
+      "unanimous": true,
+      "score": 0.6,
+      "request_key": "4b266b9ac6fd7e7f17cb62507e00d9ea5301995dc3f93be7b3b8f84f40a94efb",
+      "trials": [
+        {
+          "repeat": 1,
+          "request_key": "4b266b9ac6fd7e7f17cb62507e00d9ea5301995dc3f93be7b3b8f84f40a94efb",
+          "response": {
+            "rating": 3,
+            "reason": "테이블은 시설 및 비품으로서 파손이나 적치물 여부 등 안전과 사용 상태를 확인해야 하는 대상에 포함됩니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 41,
+            "totalTokenCount": 386,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 26.59554038196802
+        },
+        {
+          "repeat": 2,
+          "request_key": "4b266b9ac6fd7e7f17cb62507e00d9ea5301995dc3f93be7b3b8f84f40a94efb",
+          "response": {
+            "rating": 3,
+            "reason": "테이블은 시설 및 비품으로서 파손이나 적치물 여부 등 안전과 사용 상태를 확인해야 하는 대상에 포함됩니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 41,
+            "totalTokenCount": 386,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 1.8298057727515697
+        },
+        {
+          "repeat": 3,
+          "request_key": "4b266b9ac6fd7e7f17cb62507e00d9ea5301995dc3f93be7b3b8f84f40a94efb",
+          "response": {
+            "rating": 3,
+            "reason": "테이블은 시설 및 비품으로서 파손이나 적치물 여부 등 안전과 사용 상태를 확인해야 하는 대상에 포함됩니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 41,
+            "totalTokenCount": 386,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 2.6985412165522575
+        },
+        {
+          "repeat": 4,
+          "request_key": "4b266b9ac6fd7e7f17cb62507e00d9ea5301995dc3f93be7b3b8f84f40a94efb",
+          "response": {
+            "rating": 3,
+            "reason": "테이블은 시설 및 비품으로서 파손이나 적치물 여부 등 안전과 사용 상태를 확인해야 하는 대상에 포함됩니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 41,
+            "totalTokenCount": 386,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 1.6201205849647522
+        },
+        {
+          "repeat": 5,
+          "request_key": "4b266b9ac6fd7e7f17cb62507e00d9ea5301995dc3f93be7b3b8f84f40a94efb",
+          "response": {
+            "rating": 3,
+            "reason": "테이블은 시설 및 비품으로서 파손이나 적치물 여부 등 안전과 사용 상태를 확인해야 하는 대상에 포함됩니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 41,
+            "totalTokenCount": 386,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 1.3724763467907906
+        }
+      ]
+    },
+    "umbrella": {
+      "class_name": "umbrella",
+      "ratings": [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "n": 5,
+      "mean": 4,
+      "sd": 0.0,
+      "minimum": 4,
+      "maximum": 4,
+      "range": 0,
+      "unanimous": true,
+      "score": 0.8,
+      "request_key": "6cd2ca7d7b27b400cdf80fb68df40ce32c5fc36a99aad0b2ac5f1259f14e9074",
+      "trials": [
+        {
+          "repeat": 1,
+          "request_key": "6cd2ca7d7b27b400cdf80fb68df40ce32c5fc36a99aad0b2ac5f1259f14e9074",
+          "response": {
+            "rating": 4,
+            "reason": "우산은 통로에 방치될 경우 보행을 방해하는 적치물이 될 수 있으며, 물기 등으로 인한 안전사고를 유발할 수 있어 관찰이 필요합니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 53,
+            "totalTokenCount": 398,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 1.7491577677428722
+        },
+        {
+          "repeat": 2,
+          "request_key": "6cd2ca7d7b27b400cdf80fb68df40ce32c5fc36a99aad0b2ac5f1259f14e9074",
+          "response": {
+            "rating": 4,
+            "reason": "우산은 통로에 방치될 경우 보행을 방해하는 적치물이 될 수 있으며, 물기 등으로 인한 안전사고를 유발할 수 있어 관찰이 필요합니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 53,
+            "totalTokenCount": 398,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 2.5269596725702286
+        },
+        {
+          "repeat": 3,
+          "request_key": "6cd2ca7d7b27b400cdf80fb68df40ce32c5fc36a99aad0b2ac5f1259f14e9074",
+          "response": {
+            "rating": 4,
+            "reason": "우산은 통로에 방치될 경우 보행을 방해하는 적치물이 될 수 있으며, 물기 등으로 인한 안전사고를 유발할 수 있어 관찰이 필요합니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 53,
+            "totalTokenCount": 398,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 3.020556081086397
+        },
+        {
+          "repeat": 4,
+          "request_key": "6cd2ca7d7b27b400cdf80fb68df40ce32c5fc36a99aad0b2ac5f1259f14e9074",
+          "response": {
+            "rating": 4,
+            "reason": "우산은 통로에 방치될 경우 보행을 방해하는 적치물이 될 수 있으며, 물기 등으로 인한 안전사고를 유발할 수 있어 관찰이 필요합니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 53,
+            "totalTokenCount": 398,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 4.092667084187269
+        },
+        {
+          "repeat": 5,
+          "request_key": "6cd2ca7d7b27b400cdf80fb68df40ce32c5fc36a99aad0b2ac5f1259f14e9074",
+          "response": {
+            "rating": 4,
+            "reason": "우산은 통로에 방치될 경우 보행을 방해하는 적치물이 될 수 있으며, 물기 등으로 인한 안전사고를 유발할 수 있어 관찰이 필요합니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 53,
+            "totalTokenCount": 398,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 34.99434561654925
+        }
+      ]
+    },
+    "vacuum cleaner": {
+      "class_name": "vacuum cleaner",
+      "ratings": [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "n": 5,
+      "mean": 4,
+      "sd": 0.0,
+      "minimum": 4,
+      "maximum": 4,
+      "range": 0,
+      "unanimous": true,
+      "score": 0.8,
+      "request_key": "60c3359ba9dff9b15fd9161cf78f580291c8a394de590db776ab0fe81075bf05",
+      "trials": [
+        {
+          "repeat": 1,
+          "request_key": "60c3359ba9dff9b15fd9161cf78f580291c8a394de590db776ab0fe81075bf05",
+          "response": {
+            "rating": 4,
+            "reason": "진공청소기는 비품으로서 파손 여부 확인이 필요하며, 통로에 방치될 경우 이동을 방해하거나 안전사고를 유발할 수 있어 관찰 중요도가 높습니다."
+          },
+          "usage": {
+            "promptTokenCount": 346,
+            "candidatesTokenCount": 56,
+            "totalTokenCount": 402,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 346
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 1.9190593659877777
+        },
+        {
+          "repeat": 2,
+          "request_key": "60c3359ba9dff9b15fd9161cf78f580291c8a394de590db776ab0fe81075bf05",
+          "response": {
+            "rating": 4,
+            "reason": "진공청소기는 비품으로서 파손 여부 확인이 필요하며, 통로에 방치될 경우 이동을 방해하거나 안전사고를 유발할 수 있어 관찰 중요도가 높습니다."
+          },
+          "usage": {
+            "promptTokenCount": 346,
+            "candidatesTokenCount": 56,
+            "totalTokenCount": 402,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 346
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 1.3325056955218315
+        },
+        {
+          "repeat": 3,
+          "request_key": "60c3359ba9dff9b15fd9161cf78f580291c8a394de590db776ab0fe81075bf05",
+          "response": {
+            "rating": 4,
+            "reason": "진공청소기는 비품으로서 파손 여부 확인이 필요하며, 통로에 방치될 경우 이동을 방해하거나 안전사고를 유발할 수 있어 관찰 중요도가 높습니다."
+          },
+          "usage": {
+            "promptTokenCount": 346,
+            "candidatesTokenCount": 56,
+            "totalTokenCount": 402,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 346
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 2.323458917438984
+        },
+        {
+          "repeat": 4,
+          "request_key": "60c3359ba9dff9b15fd9161cf78f580291c8a394de590db776ab0fe81075bf05",
+          "response": {
+            "rating": 4,
+            "reason": "진공청소기는 비품으로서 파손 여부 확인이 필요하며, 통로에 방치될 경우 이동을 방해하거나 안전사고를 유발할 수 있어 관찰 중요도가 높습니다."
+          },
+          "usage": {
+            "promptTokenCount": 346,
+            "candidatesTokenCount": 56,
+            "totalTokenCount": 402,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 346
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 2.064808588474989
+        },
+        {
+          "repeat": 5,
+          "request_key": "60c3359ba9dff9b15fd9161cf78f580291c8a394de590db776ab0fe81075bf05",
+          "response": {
+            "rating": 4,
+            "reason": "진공청소기는 비품으로서 파손 여부 확인이 필요하며, 통로에 방치될 경우 이동을 방해하거나 안전사고를 유발할 수 있어 관찰 중요도가 높습니다."
+          },
+          "usage": {
+            "promptTokenCount": 346,
+            "candidatesTokenCount": 56,
+            "totalTokenCount": 402,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 346
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 2.0326886624097824
+        }
+      ]
+    },
+    "ventilation grille": {
+      "class_name": "ventilation grille",
+      "ratings": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "n": 5,
+      "mean": 3,
+      "sd": 0.0,
+      "minimum": 3,
+      "maximum": 3,
+      "range": 0,
+      "unanimous": true,
+      "score": 0.6,
+      "request_key": "fa672d03fac2b1d71751b2e25824a7c4e3de986e242466163cc0de6b424d87ec",
+      "trials": [
+        {
+          "repeat": 1,
+          "request_key": "fa672d03fac2b1d71751b2e25824a7c4e3de986e242466163cc0de6b424d87ec",
+          "response": {
+            "rating": 3,
+            "reason": "환기구는 시설의 안전 및 관리 상태를 확인하는 범주에 포함되므로 파손이나 이물질 적치 여부를 점검할 필요가 있습니다."
+          },
+          "usage": {
+            "promptTokenCount": 347,
+            "candidatesTokenCount": 48,
+            "totalTokenCount": 395,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 347
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 2.2543370127677917
+        },
+        {
+          "repeat": 2,
+          "request_key": "fa672d03fac2b1d71751b2e25824a7c4e3de986e242466163cc0de6b424d87ec",
+          "response": {
+            "rating": 3,
+            "reason": "환기구는 시설의 안전 및 관리 상태를 확인하는 범주에 포함되므로 파손이나 이물질 적치 여부를 점검할 필요가 있습니다."
+          },
+          "usage": {
+            "promptTokenCount": 347,
+            "candidatesTokenCount": 48,
+            "totalTokenCount": 395,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 347
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 2.9414315409958363
+        },
+        {
+          "repeat": 3,
+          "request_key": "fa672d03fac2b1d71751b2e25824a7c4e3de986e242466163cc0de6b424d87ec",
+          "response": {
+            "rating": 3,
+            "reason": "환기구는 시설의 안전 및 관리 상태를 확인하는 범주에 포함되므로 파손이나 이물질 적치 여부를 점검할 필요가 있습니다."
+          },
+          "usage": {
+            "promptTokenCount": 347,
+            "candidatesTokenCount": 48,
+            "totalTokenCount": 395,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 347
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 1.6815771348774433
+        },
+        {
+          "repeat": 4,
+          "request_key": "fa672d03fac2b1d71751b2e25824a7c4e3de986e242466163cc0de6b424d87ec",
+          "response": {
+            "rating": 3,
+            "reason": "환기구는 시설의 안전 및 관리 상태를 확인하는 범주에 포함되므로 파손이나 이물질 적치 여부를 점검할 필요가 있습니다."
+          },
+          "usage": {
+            "promptTokenCount": 347,
+            "candidatesTokenCount": 48,
+            "totalTokenCount": 395,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 347
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 3.5381017923355103
+        },
+        {
+          "repeat": 5,
+          "request_key": "fa672d03fac2b1d71751b2e25824a7c4e3de986e242466163cc0de6b424d87ec",
+          "response": {
+            "rating": 3,
+            "reason": "환기구는 시설의 안전 및 관리 상태를 확인하는 범주에 포함되므로 파손이나 이물질 적치 여부를 점검할 필요가 있습니다."
+          },
+          "usage": {
+            "promptTokenCount": 347,
+            "candidatesTokenCount": 48,
+            "totalTokenCount": 395,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 347
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 1.559356901794672
+        }
+      ]
+    },
+    "water dispenser": {
+      "class_name": "water dispenser",
+      "ratings": [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "n": 5,
+      "mean": 4,
+      "sd": 0.0,
+      "minimum": 4,
+      "maximum": 4,
+      "range": 0,
+      "unanimous": true,
+      "score": 0.8,
+      "request_key": "9ae1bee93e710090cab5d57c3d986dd31b432b58d9204ca7ffaf63304bdd46e6",
+      "trials": [
+        {
+          "repeat": 1,
+          "request_key": "9ae1bee93e710090cab5d57c3d986dd31b432b58d9204ca7ffaf63304bdd46e6",
+          "response": {
+            "rating": 4,
+            "reason": "정수기는 시설 및 비품으로서 누수나 파손 시 안전과 사용에 직접적인 영향을 줄 수 있으므로 매뉴얼에 따라 중요하게 관찰해야 합니다."
+          },
+          "usage": {
+            "promptTokenCount": 346,
+            "candidatesTokenCount": 48,
+            "totalTokenCount": 394,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 346
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 1.6655366644263268
+        },
+        {
+          "repeat": 2,
+          "request_key": "9ae1bee93e710090cab5d57c3d986dd31b432b58d9204ca7ffaf63304bdd46e6",
+          "response": {
+            "rating": 4,
+            "reason": "정수기는 시설 및 비품으로서 누수나 파손 시 안전과 사용에 직접적인 영향을 줄 수 있으므로 매뉴얼에 따라 중요하게 관찰해야 합니다."
+          },
+          "usage": {
+            "promptTokenCount": 346,
+            "candidatesTokenCount": 48,
+            "totalTokenCount": 394,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 346
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 2.318742722272873
+        },
+        {
+          "repeat": 3,
+          "request_key": "9ae1bee93e710090cab5d57c3d986dd31b432b58d9204ca7ffaf63304bdd46e6",
+          "response": {
+            "rating": 4,
+            "reason": "정수기는 시설 및 비품으로서 누수나 파손 시 안전과 사용에 직접적인 영향을 줄 수 있으므로 매뉴얼에 따라 중요하게 관찰해야 합니다."
+          },
+          "usage": {
+            "promptTokenCount": 346,
+            "candidatesTokenCount": 48,
+            "totalTokenCount": 394,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 346
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 3.196211028844118
+        },
+        {
+          "repeat": 4,
+          "request_key": "9ae1bee93e710090cab5d57c3d986dd31b432b58d9204ca7ffaf63304bdd46e6",
+          "response": {
+            "rating": 4,
+            "reason": "정수기는 시설 및 비품으로서 누수나 파손 시 안전과 사용에 직접적인 영향을 줄 수 있으므로 매뉴얼에 따라 중요하게 관찰해야 합니다."
+          },
+          "usage": {
+            "promptTokenCount": 346,
+            "candidatesTokenCount": 48,
+            "totalTokenCount": 394,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 346
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 1.5923314541578293
+        },
+        {
+          "repeat": 5,
+          "request_key": "9ae1bee93e710090cab5d57c3d986dd31b432b58d9204ca7ffaf63304bdd46e6",
+          "response": {
+            "rating": 4,
+            "reason": "정수기는 시설 및 비품으로서 누수나 파손 시 안전과 사용에 직접적인 영향을 줄 수 있으므로 매뉴얼에 따라 중요하게 관찰해야 합니다."
+          },
+          "usage": {
+            "promptTokenCount": 346,
+            "candidatesTokenCount": 48,
+            "totalTokenCount": 394,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 346
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 2.522177018225193
+        }
+      ]
+    },
+    "window": {
+      "class_name": "window",
+      "ratings": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "n": 5,
+      "mean": 3,
+      "sd": 0.0,
+      "minimum": 3,
+      "maximum": 3,
+      "range": 0,
+      "unanimous": true,
+      "score": 0.6,
+      "request_key": "a2a9fb48ba30fa6d5b6203b94037446c033ce6d6204c6272712c4bb308e0e85e",
+      "trials": [
+        {
+          "repeat": 1,
+          "request_key": "a2a9fb48ba30fa6d5b6203b94037446c033ce6d6204c6272712c4bb308e0e85e",
+          "response": {
+            "rating": 3,
+            "reason": "창문은 시설의 파손이나 누수 등 안전과 사용에 영향을 줄 수 있는 상태 확인 대상에 포함될 수 있습니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 39,
+            "totalTokenCount": 384,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 1.3706965669989586
+        },
+        {
+          "repeat": 2,
+          "request_key": "a2a9fb48ba30fa6d5b6203b94037446c033ce6d6204c6272712c4bb308e0e85e",
+          "response": {
+            "rating": 3,
+            "reason": "창문은 시설의 파손이나 누수 등 안전과 사용에 영향을 줄 수 있는 상태 확인 대상에 포함될 수 있습니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 39,
+            "totalTokenCount": 384,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 2.433692254126072
+        },
+        {
+          "repeat": 3,
+          "request_key": "a2a9fb48ba30fa6d5b6203b94037446c033ce6d6204c6272712c4bb308e0e85e",
+          "response": {
+            "rating": 3,
+            "reason": "창문은 시설의 파손이나 누수 등 안전과 사용에 영향을 줄 수 있는 상태 확인 대상에 포함될 수 있습니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 39,
+            "totalTokenCount": 384,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 4.406280852854252
+        },
+        {
+          "repeat": 4,
+          "request_key": "a2a9fb48ba30fa6d5b6203b94037446c033ce6d6204c6272712c4bb308e0e85e",
+          "response": {
+            "rating": 3,
+            "reason": "창문은 시설의 파손이나 누수 등 안전과 사용에 영향을 줄 수 있는 상태 확인 대상에 포함될 수 있습니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 39,
+            "totalTokenCount": 384,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 1.9180776253342628
+        },
+        {
+          "repeat": 5,
+          "request_key": "a2a9fb48ba30fa6d5b6203b94037446c033ce6d6204c6272712c4bb308e0e85e",
+          "response": {
+            "rating": 3,
+            "reason": "창문은 시설의 파손이나 누수 등 안전과 사용에 영향을 줄 수 있는 상태 확인 대상에 포함될 수 있습니다."
+          },
+          "usage": {
+            "promptTokenCount": 345,
+            "candidatesTokenCount": 39,
+            "totalTokenCount": 384,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 345
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "seconds": 4.382833536714315
+        }
+      ]
+    }
+  },
+  "api_calls_total": 70,
+  "api_calls_this_invocation": 23,
+  "usage_totals": {
+    "candidatesTokenCount": 3425,
+    "promptTokenCount": 24190,
+    "totalTokenCount": 27615
+  },
+  "seconds_this_invocation": 184.7618808373809,
+  "limitations": [
+    "동일 매뉴얼·동일 클래스의 반복 일관성이며 의미적 정답 검증 아님",
+    "temperature=0이어도 서비스 응답 일치는 보장하지 않음",
+    "같은 클래스의 모든 객체에 같은 평균을 적용",
+    "실제 설문 응답 미제공: 사람 점수 차이는 계산하지 않음"
+  ]
+}

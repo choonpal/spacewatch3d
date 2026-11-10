@@ -1,0 +1,7 @@
+import {PipelineMesh} from './pipeline-mesh.js';
+const $=id=>document.getElementById(id);let report,mesh,candidate=true,cid='dorm5';
+function focus(){const c=report[cid].components[Number($('region').value)];if(c)mesh.focusObject(c);}
+async function load(){cid=$('capture').value;const r=report[cid];$('region').replaceChildren(...r.components.map((c,i)=>new Option(`영역 ${c.region} · ${c.faces}면 · ${c.area_m2.toFixed(4)}m²`,String(i))));
+ const c={bounds:r.bounds,floor_height:r.floor_height,mesh:`/pipeline-assets/box-review/${cid}-${candidate?'candidate':'before'}.bin`};mesh.count=0;mesh.capture=c;mesh.reset();await mesh.load(c,'semantic');focus();$('photo').src=`/pipeline-assets/box-review/${cid}-review.jpg`;$('summary').textContent=`${cid.toUpperCase()} · 상자 후보 ${r.components.length}개 연결영역 / ${r.faces}면 · 기하·RGB 보존 · 형상 복원 아님`;}
+async function start(){report=await(await fetch('/pipeline-assets/box-review/report.json')).json();mesh=new PipelineMesh($('mesh'));$('capture').onchange=()=>load().catch(fail);$('region').onchange=focus;$('all').onclick=()=>mesh.reset();$('variant').onclick=async()=>{candidate=!candidate;$('variant').textContent=candidate?'복구 후보 표시':'기존 라벨 표시';const c=mesh.capture;c.mesh=`/pipeline-assets/box-review/${cid}-${candidate?'candidate':'before'}.bin`;await mesh.load(c,'semantic');};await load();}
+function fail(e){$('error').textContent=e.message||String(e);}start().catch(fail);

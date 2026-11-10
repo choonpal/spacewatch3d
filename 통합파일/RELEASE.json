@@ -1,0 +1,142 @@
+{
+  "schema": "spacewatch.final_program_release.v1",
+  "version": "2026.11.10.1",
+  "status": "final_program_release",
+  "full_pipeline_entry": "code/spacewatch.py",
+  "portable_viewer_entry": "demo.py",
+  "survey_respondent_analysis_included": false,
+  "pipeline_calculation_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution06/run",
+  "connected_execution_verified": true,
+  "regression": {
+    "tests": 174,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "groups": [
+      {
+        "group": "geometry",
+        "python": "/workspace/mesh_generator_v1/.venv/bin/python",
+        "returncode": 0,
+        "summary": {
+          "group": "geometry",
+          "tests": 126,
+          "passed": true,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "group": "planning",
+        "python": "/workspace/task5b_dorm3_keyframes_20261017/venv/bin/python",
+        "returncode": 0,
+        "summary": {
+          "group": "planning",
+          "tests": 15,
+          "passed": true,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 1
+        }
+      },
+      {
+        "group": "florence",
+        "python": "/workspace/mesh_generator_v1/.venv/bin/python",
+        "returncode": 0,
+        "summary": {
+          "group": "florence",
+          "tests": 10,
+          "passed": true,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "group": "reconstruction",
+        "python": "/workspace/panovggt_env/bin/python",
+        "returncode": 0,
+        "summary": {
+          "group": "reconstruction",
+          "tests": 15,
+          "passed": true,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "group": "upstream",
+        "python": "/workspace/mesh_generator_v1/.venv/bin/python",
+        "returncode": 0,
+        "summary": {
+          "group": "upstream",
+          "tests": 8,
+          "passed": true,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      }
+    ]
+  },
+  "full_cold_run_verified": false,
+  "exact_publication_result_reproduced": false,
+  "demo": {
+    "capture": "dorm5",
+    "selected_views": 10,
+    "source_candidates": 5,
+    "rule_grouped_candidates": 2,
+    "unresolved_source_candidates": 5,
+    "app_assets": [
+      "core.js",
+      "panorama.js",
+      "pipeline-arrows.js",
+      "pipeline-change-boxes.js",
+      "pipeline-mesh.js",
+      "pipeline-model.js",
+      "pipeline-route-arrows.js",
+      "pipeline-route-overlay.js",
+      "pipeline-tour.js",
+      "pipeline-travel.js",
+      "pipeline.html",
+      "survey.css",
+      "survey.js",
+      "tour-keyframes.js",
+      "trajectory-math.js"
+    ],
+    "models_required": false,
+    "external_runtime_required": false
+  },
+  "full_pipeline": {
+    "external_server_data_and_model_environments_required": true,
+    "gaussian_enabled": false,
+    "source_inputs": "inputs/",
+    "defaults": "code/configs/dorm45-paper.json",
+    "raw_entry": "code/requests/dorm45-fresh.json"
+  },
+  "limitations": [
+    "The current10-view final selector and historical15-anchor effectiveness evaluation use different comparison inputs. Their different counts do not establish an implementation mismatch; current box support remains insufficient.",
+    "All5source change candidates remain unresolved; grouping is not independent GT verification.",
+    "Reconstruction/semantic inputs and fixed manual-conditioned LLM responses were explicitly reused.",
+    "Full cold reconstruction was not rerun because available RAM was below the16GiB safety guard.",
+    "RGB masks are capturer_only and retain ordinary-person labels/detection. The original top3 crop list separately excludes people. The same saved LLM ratings are reused; a shortened model label is not evidence of model replacement.",
+    "Targets_unmet, interpolated-pose accuracy and metric scale UNVERIFIED remain unchanged."
+  ],
+  "verification": {
+    "version": "SpaceWatch Final 2026.11.10.1 (preserved native core5.1.9)",
+    "full_suite_tests": 174,
+    "suite_failures": 0,
+    "suite_skipped": 1,
+    "demo_contract_tests": 4,
+    "http_asset_checks": 54,
+    "environment_contract_checks": 18,
+    "browser_checked": true,
+    "credential_scan_text_files": 1278,
+    "credential_findings": [],
+    "cold_run_verified": false,
+    "paper_result_exactly_reproduced": false
+  },
+  "method_integration_complete": true,
+  "historical_effectiveness_evaluation_is_separate": true
+}

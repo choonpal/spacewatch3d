@@ -1,0 +1,102 @@
+{
+  "source_to_mesh": [
+    [
+      1.2061979625918573,
+      0.09689029173444122,
+      -0.0029144834545022868,
+      0.0
+    ],
+    [
+      0.0,
+      0.036383243817055134,
+      1.2095395848736359,
+      0.0
+    ],
+    [
+      0.09693411600768688,
+      -1.2056526360207993,
+      0.036266323453649295,
+      1.655345923040607
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "mesh_to_source": [
+    [
+      0.8237314300463754,
+      -3.5954369219984077e-19,
+      0.06619782197916987,
+      -0.10958029472738672
+    ],
+    [
+      0.06616789369841419,
+      0.0248466855264369,
+      -0.8233590180127369,
+      1.3629439936661016
+    ],
+    [
+      -0.0019903462767131325,
+      0.8260134761003497,
+      0.024766838783914735,
+      -0.04099768560755724
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "coordinate_frame": "dorm5_mesh",
+  "up": [
+    0,
+    0,
+    1
+  ],
+  "handedness": "right",
+  "metric_scale_verified": false,
+  "assumed_ceiling_height_m": 2.7,
+  "assumed_meters_per_source_unit": 1.2100866695435244,
+  "scale_method": "2.7 m assumed ceiling height / observed OOOPS ceiling-to-floor gap; shared assumption for both captures",
+  "floor_plane_inlier_fraction": 0.6257287298150703,
+  "floor_points": 183367,
+  "ceiling_points": 170897,
+  "sample_frames": [
+    0,
+    10,
+    20,
+    30,
+    41,
+    51,
+    61,
+    71,
+    82,
+    92,
+    102,
+    112,
+    123,
+    133,
+    143,
+    153,
+    164,
+    174,
+    184,
+    194,
+    205,
+    215,
+    225,
+    235,
+    246,
+    256,
+    266,
+    277
+  ],
+  "floor_ceiling_source_gap": 2.2312451396712842,
+  "geometry_uses_semantic_labels": false,
+  "coordinate_estimation_uses_semantic_labels": true,
+  "source_run": "/workspace/dorm4_dorm5_v5_20261025/reconstruction/dorm5"
+}

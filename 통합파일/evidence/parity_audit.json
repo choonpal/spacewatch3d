@@ -1,0 +1,216 @@
+{
+  "schema": "spacewatch.paper-logic-parity.v1",
+  "audit_date": "2026-11-10",
+  "source_snapshot_utc": "2026-11-10T02:38:02.933802+00:00",
+  "server_root": "/workspace/spacewatch_integrated_20261110_8QJn4J",
+  "scope": "Read-only source/manifest audit of non-Gaussian paper logic. Survey excluded. No model execution, point-cloud/mesh load, installation, download, process control, or original-source write was performed for this audit.",
+  "verdict": "Connected implementation with explicitly reused upstream artifacts and new measured selection/change stages; not a demonstrated full byte-identical clone of every original upstream producer and not evidence that a fresh arbitrary-video run completed.",
+  "publication": {
+    "path": "/home/lth/Documents/Codex/2026-10-10/dlrj/.codex-attachments/5448076d-4db4-49c4-9216-c4121db76918/1d68dc22-7cd3-4a34-b31d-7125143fe286/가상순찰_UCWIT_출판용_저자순서_발표자수정.pdf",
+    "sha256": "4a18f7197dacb2a7aa680b4f5a7022543a5d2becd99bcd867488b1e280c1f038",
+    "read_method": "Full pdftotext -layout extraction; relevant specification sections 3.1, 3.2, 3.3 and quantitative section 4.2.",
+    "units": "u, monocular reconstruction scale; physical metric scale not verified"
+  },
+  "source_collection": {
+    "path": "evidence/source_collection.json",
+    "sha256": "d48a5e12d620527fd37db248e1390347d8aea77e0fd27a51727293f7e5c7ef4f",
+    "declared_entries": 786,
+    "declared_bytes": 16737153,
+    "component_entries": {"accepted-519-capture-binmax-base": 655, "accepted-final-sixface-object-global-mean": 40, "latest-accepted-navigation-ui": 91},
+    "all_declared_original_files_currently_match_recorded_hash": true,
+    "all_declared_packaged_paths_exist": true,
+    "caution": "Manifest has overlapping paths from successive accepted components. It is a collection receipt, not the current post-patch lockfile; intentional integrated patches need their own receipts. UI content and survey behavior were not audited.",
+    "final_change_snapshot": {
+      "root": "/workspace/dorm45_supplement_frames_20261030_9da81417/runs/fuse_mean_verified/code/tools/mesh_simsac",
+      "entries": 40,
+      "unchanged_entries": 38,
+      "changed_paths": ["code/tools/mesh_simsac/prepare.py", "code/tools/mesh_simsac/validate.py"],
+      "patch_receipt_local": "work/integrated_submission_20261110/change/patch_receipt.json"
+    }
+  },
+  "reference_roots": {
+    "release_51": "/workspace/spacewatch_pipeline_v5_1",
+    "clone_519": "/workspace/v519_capture_clone_20261028_tWZimf/code",
+    "accepted_base": "/workspace/capture_binmax_rollback_20261029_a7q908/code",
+    "original_v2_external": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2",
+    "profile_external": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers",
+    "integrated_code": "code"
+  },
+  "byte_parity": [
+    {"path": "spacewatch_pipeline/geometry.py", "sha256": "3e55a9dadbd9c39b8f5a71bf55f1ad7ae6362ff5bca7a92265fc0ace971e3075", "same_in": ["release_51", "clone_519", "accepted_base", "integrated_code"], "original_v2_sha256": "ad9ccc7dc4301b6db04dd0947bf32a1e36819c806affe0448f870e7c3996fe52", "meaning": "Release reconstruction/mesh bridge is preserved; original OOOPS-aware mesh and semantic producer is a different external implementation."},
+    {"path": "spacewatch_pipeline/planning.py", "sha256": "03ae6327ce8e73e33fc5704e6aebb1435f3992d4f8dc9f50b187301859547761", "same_in": ["release_51", "clone_519", "accepted_base", "integrated_code"], "original_v2_sha256": "6d65ca68f2c4c9dda64354ab843e6211f57845dd9c4cf89f9a7caca27510a88a"},
+    {"path": "spacewatch_pipeline/semantic_aggregation.py", "sha256": "4877f3a03a9b7ba6696c3c9a04490ea248f1723d7888eb42c1fc00ca595de3b6", "same_in": ["release_51", "clone_519", "accepted_base", "integrated_code"], "meaning": "Florence-style distinct-frame aggregation; do not equate this branch with original OOOPS support/margin aggregation."},
+    {"path": "spacewatch_pipeline/target_profile.py", "sha256": "3bf98ca446ccb4ce295cbec97cc8c1a4e9b14bf24ecee862569338f0fd0cf262", "same_in": ["release_51", "clone_519", "accepted_base", "integrated_code"]},
+    {"path": "vendor/panovggt_pipeline_v2/common.py", "sha256": "cfc18bdc2e7061b571216316cfd071c4b5777fe8223318b7b734214934106334", "same_in": ["release_51", "clone_519", "accepted_base", "integrated_code", "original_v2_external"]},
+    {"path": "vendor/panovggt_pipeline_v2/run.py", "sha256": "e70590f1d2b7c8c4138a02a05455cf45d3baf57745f3b38bb580af899196e337", "same_in": ["release_51", "clone_519", "accepted_base", "integrated_code", "original_v2_external"]},
+    {"path": "vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/selection.py", "sha256": "4b3dfa5e41a8eae4051505de061185c4af38172c88caaeed5d8f5400691df47c", "same_in": ["release_51", "clone_519", "accepted_base", "integrated_code"], "original_v2_sha256": "084680dbcc50943fedc73ee5d6993d3ededa4984c37d35ff81dd2d63e88b065f"},
+    {"path": "vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/visibility.py", "sha256": "752c1e3fbbf4bbe9d371e01c4a7afc5e28c56a3bd909e2474b941614917ef79b", "same_in": ["accepted_base", "integrated_code"], "release_and_clone_sha256": "7bbef95661bdf279b726842ac26f9d3c16ef070302755fd4fb2d3b69cc044e99", "difference": "Only added object_relative_projected_quality guard/branch in evaluate_positions. It is not active in the inspected paper profile; standard q formula remains unchanged."},
+    {"path": "spacewatch_pipeline/early_semantics.py", "absent_from": ["release_51", "clone_519", "accepted_base", "integrated_code"], "original_v2_sha256": "57b714dd1841be378d3516d31f3383dc6b648a6b74111fcd05086a33e9337af5", "classification": "Original external producer absent from release, not a lost release file. Separate original-source adapter was under implementation at audit snapshot."},
+    {"path": "spacewatch_pipeline/ooops.py", "absent_from": ["release_51", "clone_519", "accepted_base", "integrated_code"], "original_v2_sha256": "a94504f2b8fb778181a1fdb02e6ede26d216cf101fe1313433ce3b837d4ecf25", "classification": "Original external OOOPS producer; not implicitly provided by copied 5.1.9 release."}
+  ],
+  "checks": [
+    {
+      "id": "upstream_contract",
+      "paper": "3.1 PanoVGGT geometry/camera poses and OOOPS semantics on a Poisson mesh",
+      "status": "PRESERVED_RELEASE_CONTRACT_WITH_EXTERNAL_PRODUCER_GAP",
+      "evidence": ["code/vendor/panovggt_pipeline_v2/common.py:52-106 validate_config", "code/vendor/panovggt_pipeline_v2/run.py:Executor.stage and run", "code/spacewatch_pipeline/geometry.py:28-68 reconstruct", "original_v2_external/spacewatch_pipeline/early_semantics.py:13-150"],
+      "details": "Pano runner binds checksummed video/frame/base-mask bundle, exact model revision/checkpoint and FP32 ERP 2:1 dimensions divisible by14. Frozen pre-review masks are required; no implicit raw segmentation. Stage chain receipts verify dependencies and preserve failed/interrupted output. Existing source_run mode validates source status/generator/artifact/coordinate bindings. Exact external early-semantics producer is separate from release geometry.",
+      "limits": "Prepared bundle, masks, model assets, coordinates, semantic vocabulary and statistical context must be explicit; arbitrary raw video is not a verified one-click input contract. Original common.py also pins an historical execution server address; portable wrapper must not silently bypass scientific checks. No fresh Pano/OOOPS job was executed by this audit."
+    },
+    {
+      "id": "depth_cloud_masks",
+      "status": "SOURCE_CONTRACT_VERIFIED_NOT_CURRENTLY_RECOMPUTED",
+      "sources": [
+        {"path": "code/vendor/panovggt_pipeline_v2/workers/engine.py", "sha256": "055062e2f8cfc60e073bea27233d5b756ed67e78ec596c7278c529e4da8c5ce9", "function": "predict_precise:78-120"},
+        {"path": "code/vendor/panovggt_pipeline_v2/masks.py", "sha256": "1db576bacd70ca06204d7f1441d38d8c27df142578d9bac353dafc08c8caace0", "function": "correct_mask:6-25"},
+        {"path": "code/vendor/panovggt_pipeline_v2/component_filter.py", "sha256": "6dfbd76b70e6a468f858f43c98f04d4e6b34e542f4ac670cbaf2e8ec4a4817f2", "functions": ["component_selection:24-27", "filter_cloud:30-122"]}
+      ],
+      "details": "World points derive from local predicted radial depth plus camera poses, not global_points. Validity requires finite points/depth, positive depth, not masked; configured top exclusion and per-frame depth percentile trimming are applied. Shared-window scales use same-frame same-pixel radial depth ratios; per-pixel shape unchanged. Voxel export records source-pixel correspondence. Final component filtering uses fixed-world-origin 26-neighbour occupied voxels and removes components with count<=configured threshold; ROR/SOR explicitly rejected. Periodic horizontal mask dilation and explicit polygon rules are declared inputs.",
+      "original_person_static_filter": "early_semantics.dynamic_pixels:30-32 and masks:34-49 require OOOPS dynamic/person support>=.45 and margin>=.15 then2px periodic dilation. filter:60-150 uses point/pixel correspondence, static support>=.35, margin>=.1, >=2 distinct frames and agreement>=.7; dynamic removal plus protected static rescue. It cannot rescue pixels already removed by depth/photographer masks.",
+      "caution": "These numerical implementation defaults are producer contracts, not all explicit equations in the publication. This optional original-v2 early semantic path is NOT the actual accepted Dorm4/5 raw preparation, which is separately described below. Active artifact reuse does not execute either path anew."
+    },
+    {
+      "id": "meshing_semantic_votes",
+      "status": "BRANCHES_DISTINGUISHED",
+      "evidence": ["release geometry.mesh:70-118", "original_v2_external geometry.mesh:72-132", "original_v2_external geometry.semantic:182-274", "code/vendor/segmentation/core.py frame_votes:71-82 and fuse_votes:84-92", "code/spacewatch_pipeline/semantic_aggregation.py aggregate:5-42"],
+      "segmentation_core_sha256": "9c63c5e3a6c37526a1cb3f7bfe79ae62bb837a440b31c98ad03f3b99b8341a57",
+      "details": "Release mesh uses voxel sampling, camera-oriented normals, Poisson depth9 scale1.1 and Taubin5; original v2 adds protected-point fine voxel ratio.5. Original OOOPS semantic votes project retained source correspondences with mesh depth tolerance, exclude dynamic classes, require pixel support.35/margin.1/min2 pixels; fuse defaults agreement.55/mean_support.2/min2 frames. Release Florence aggregate defaults min2 distinct frames/agreement.6 and must not be described as identical OOOPS voting. Geometry correspondence and vocabulary identity are verified for external semantic reuse."
+    },
+    {
+      "id": "statistical_targets",
+      "paper": "3.2 same-class connected semantic regions as object targets",
+      "status": "EXACT_VERIFIED_PROFILE_REUSE_PLUS_ENGINEERING_FILTERS",
+      "sources": [
+        {"path": "profile_external/statistical_adapter.py", "sha256": "2166e2a6267d3debe7b610f0f8d2ac4b1a145cb92703ef0a3933065b45bb0fb4", "functions": ["components:48-56", "classify:66-106"]},
+        {"path": "profile_external/prepare_map_profile.py", "sha256": "080b245f33f6b11175ed1479a2fa40fe9fa1f93a5c02bb1100cd19433a759439", "function": "main:17-116"},
+        {"path": "code/spacewatch_pipeline/target_profile.py", "sha256": "3bf98ca446ccb4ce295cbec97cc8c1a4e9b14bf24ecee862569338f0fd0cf262", "functions": ["checked_profile:16-67", "instances:70-102", "scene:105-114"]}
+      ],
+      "details": "Per-class canonical shared-vertex connected components; structural/dynamic/non-instance classes and zero-area/statistical surface/residual components excluded as targets. All source observation triangles retained in targets+remainder, separate flat-floor navigation collision proxy. No physical instance identity or physical safety guarantee. checked_profile verifies full profile checksums, arrays/coordinates/capture frame and exact face/class roles. Active mode reuses profile roles; fresh profile producer depends on frozen algorithms and prior context, not old selected viewpoints or old V/Q.",
+      "limits": "Original prepare_map_profile.py hardcodes release profile template and shared score cache locations. Its original plan input supplies camera height and navigation/grid origins; wrapper must sanitize away old selections. Engineering statistical exclusions and flat-ground assumptions are more specific than publication's short description."
+    },
+    {
+      "id": "sharpness_trajectory",
+      "paper": "3.2 each.25s bin maximum Laplacian-variance sharpness frame on original capture path",
+      "status": "NEW_FULL_VIDEO_MEASUREMENT_WITH_EXPLICIT_POSE_INTERPOLATION",
+      "sources": [
+        {"path": "code/spacewatch_pipeline/frame_sharpness.py", "sha256": "08f8dac8caa1a6abafb532bec1e5c8b49e8684328d693fd949c3a659b87b111d", "functions": ["measure:33-38", "scan:41-81"]},
+        {"path": "code/spacewatch_pipeline/existing_path.py", "sha256": "5388311182618251c0c7fa035aa79f00a0e1a8c7ad57e8d8fe134e1b8ddd5fd2", "functions": ["quality_samples:13-32", "interpolate:35-59", "trajectory:71-141"]}
+      ],
+      "details": "Scans all video frames at1024x512 gray, four192px equatorial tangent views, median interior Laplacian variance. Exact rational PTS bins of.25s choose maximum sharpness, source-frame-index tie break. No front quality/exposure gate. Poses between existing camera anchors use linear translation plus Slerp; no extrapolation, source frames beyond anchor support excluded.",
+      "limit": "Candidate pose is interpolated from verified existing Pano anchors, not a new independently estimated camera pose for every selected RGB frame. pose_accuracy_unverified/source_image_pose_exact=false remain explicit."
+    },
+    {
+      "id": "visibility_objective",
+      "paper": "3.2 q=v*min(1,Omega/Omega0), union spatial visibility with equal-region normalization and importance-weighted maximum object quality",
+      "status": "FORMULA_PARITY",
+      "evidence": ["code/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/visibility.py prepare_surface:229-263 and evaluate_positions:612-661", "code/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/selection.py Objective.measure:21-80", "code/spacewatch_pipeline/paper_selector.py CPUBackend.components:89-95"],
+      "details": "Area-proportional, object/region-stratified surface samples; distance/incidence plus BVH rays determine visibility. Active shape-normalized object fraction uses own-mesh self-visible reference denominator. Solid angle=sum(area*incidence/distance^2), q=min(1,fraction)*min(1,solid_angle/.02sr). object_relative_projected_quality=false. Spatial union counted once then per-region observable-area normalized; object coverage is max q over selected cameras, importance-weighted mean. Three independent fresh optimization draws averaged; weights.6/.4. Missing/unobservable targets remain explicit.",
+      "limit": "Shape-normalized visibility fraction is implementation-specific detail; Monte Carlo sampling and estimated mesh visibility do not prove physical observation or object recognition."
+    },
+    {
+      "id": "paper_selection",
+      "status": "NEW_ADAPTER_OF_ACCEPTED_PAPER_SELECTOR",
+      "source": {"path": "code/spacewatch_pipeline/paper_selector.py", "sha256": "3947f5ec302c29b2cc199aeb39db575cc71bca4541fac541192beced9864978a", "functions": ["below_stop:59-61", "stopping:142-150", "exchange:153-195", "select_draws:213-286", "install:289-362"]},
+      "original_producers": [
+        {"path": "/workspace/selector_methods_20261029_PYOwlr/totalstop03_EkQMQO/total_object_stop.py", "sha256": "18ad734bdc6c22a0f9c70d9ff36ffc8f596522c5827f71cdbd1e7c0a3bc20a28"},
+        {"name": "attempt02/benchmark.py", "sha256": "9df8f4a70338e34adf01734f0d5ad121e5d514eaab17505eabddb05034fb1477"}
+      ],
+      "details": "Consumes fresh V/Q arrays, no stored final selected set. Multistart greedy gains plus six one-swap passes and top12 two-swap exchange. Both marginal gains must be strictly below limits: spatial .02*initial maximum spatial gain and object .03*attainable object ceiling. Three draws required, mean objective. Active maximum15 views is a declared safety cap, not a fixed plan length;35s deadline may limit search and must be reported.",
+      "tests": "10 adapter contract tests passed in main-agent record; this source audit did not execute selection."
+    },
+    {
+      "id": "fresh_registration",
+      "paper": "3.3 independent-map structural registration plus regional correction",
+      "status": "SAME_GENERAL_ALGORITHM_NEW_CURRENT_INPUT_FIT_REQUIRED",
+      "source": {"path": "code/tools/mesh_simsac/registration.py", "sha256": "8ce6c487cd909a3e8d13f4b6120b5ed313aecccaf34a71f50acf9190936a87af", "functions": ["load_mesh:14-77", "global_fit:94-133", "register:136-204"]},
+      "details": "Dynamic vocabulary wall/floor mesh samples, FPFH/RANSAC then similarity ICP and point-to-plane ICP; regional rigid correction. Disjoint sample indices fit/calibration/validation; local bias calibrated separately from residual validation. No old experiment transform or GT change coordinates required. paper_changes.rgb_inputs fits from current capture geometry before current-frame selection; subsequent prepare reuses that same freshly produced fit with geometry hashes.",
+      "historical_paper_result": {"path": "/workspace/scenediff_dorm45_registration_20261030_2z2yu0hg/results.json", "whole_mesh_diagnostic_samples": 107621, "global_median_u": 0.13800757319689, "regional_median_u": 0.06438612431682979, "global_overlap_within_height05": 0.672090019605839, "regional_overlap_within_height05": 0.9447041005008316},
+      "limit": "Historical metric is sampled mesh-surface residual consistency, not GT camera accuracy; it is not a claim about the new current run."
+    },
+    {
+      "id": "paper_change_inputs_and_fusion",
+      "paper": "3.3 global ERP+six faces+up to3 small semantic seed crops, source-RGB SimSaC mean fusion",
+      "status": "ACCEPTED_FINAL_SIXFACE_SOURCE_PLUS_DYNAMIC_CURRENT_PLAN_ADAPTER",
+      "sources": [
+        {"path": "code/spacewatch_pipeline/paper_changes.py", "sha256": "6576386763401be91644b81cf32dc35ff654714ea7c95518e54179af91cfd4b0", "functions": ["select_lowmask:58-87", "extend_photographer:90-96", "select_current_plan:152-196", "rgb_inputs:206-262", "rgb_finalize:280-300", "dispatch:303-329"]},
+        {"path": "code/tools/mesh_simsac/prepare.py", "sha256": "8a7937cb14cc9d0652a890b73ed60574f5b5074e4a8bbd6f06246a58bb38b770", "function": "prepare:163-437"},
+        {"path": "code/tools/mesh_simsac/core.py", "sha256": "42e7568c483a46cfd4d26ed4ce4c28979895490f202cd036fd7f10bc41e40b54", "functions": ["cube_rotations:73-79", "choose_pairs:154-181", "evidence_masks:184-196", "vote_state:199-205"]},
+        {"path": "code/tools/mesh_simsac/erp_infer.py", "sha256": "128d416b0c978872bc2d29916e35ad7089c2f4a501b99d798c238b8fb39f8133", "function": "erp_probability:51-58"}
+      ],
+      "details": "Both current plans are required; no fixed15/current Dorm5/frame/event/coordinate exceptions. Current After anchor count and current selected viewpoint IDs are dynamic. Lowmask selection near anchors prefers masked-fraction bins, bystander gate, semantic diversity/object pixels, sharpness, distance and1s spacing. Frequent person prior>=.1 over all source semantic frames dilate4; extended photographer=capturer|person&prior dilate3. Actual source video frames are decoded at native RGB after selection. Final accepted core has6 faces224px100deg; rotated global ERP1024x512. Semantic components>=64px and angular diameter<=45deg seed max3 ranked crops per source frame, separation>=20deg, same first mesh-hit3D point across opposite frames, FOV clip(2.5*diameter,35,70). Up to2 opposite originals sharing keypoint, max7.5u. Mean=(local+global)/2, threshold strictly>.5, at least2 distinct original-frame evidence. Paired crops received from opposite seeds can make a frame contain more than3 total crop views; seed cap and received views must not be conflated.",
+      "limits": "Not the shared later22-window test source and not old12-candidate viewer. Actual NN execution must finish and have new pair/probability receipts before labeling this run fresh inference. These tests alone do not prove a complete connected model run.",
+      "tests": "8 owned contract tests passed with Open3D runtime library path; masks/ranking/dynamic plans/stage wiring/general verification tested synthetically, not NN accuracy."
+    },
+    {
+      "id": "general_grouping_and_evaluation",
+      "status": "GT_FREE_EXECUTION_WITH_GT_AWARE_HISTORICAL_DEVELOPMENT_CAVEAT",
+      "source": {"path": "code/tools/mesh_simsac/verify_changes.py", "sha256": "c583383c3fd02c03f0c4f6eaf8a9955c6836858c331f0b4dc57c75a9403a81f8", "function": "verify:34-89"},
+      "details": "General verifier reads event viewer-data semantic labels, centers/extents, opposite RGB support and local residuals; adaptive distance, opposite-epoch RGB cancellation, person context, complete-linkage grouping and reflection/window exclusion. No hardcoded event IDs, GT sheet, named evaluation object or coordinate exceptions in execution path. Historical final6 candidates yielded3 groups with all6 retained, not manual deletion; fresh current run is not forced to3.",
+      "historical_caveat": "REPORT sections3.18/3.19 document rule development on the same24 evaluated cases: grouping-distance change and complete-linkage chosen after errors against known true changes. Thus publication wording that criteria were not tuned to evaluation truth cannot be independently supported; metadata tuned_thresholds:false is not proof of independent development.",
+      "table_caveat": "Dorm5 historical table baseline6face/global used40+40 originals; crop/combined40+39. It is not a pure same-input ablation. Historical3true0false is numeric evidence, not a guaranteed automatic output of arbitrary new inputs."
+    }
+  ],
+  "actual_accepted_raw_producer_discovery": {
+    "root": "/workspace/dorm4_dorm5_v5_20261025",
+    "sources": [
+      {"path": "prepare_new.py", "sha256": "adcbd1033eea917e57b06e07b318bf6d0901b856942b5ebf8ee1b2e7734d5638", "functions": ["extract:15-30", "masks:31-55", "coordinates:56-77"]},
+      {"path": "run_all.py", "sha256": "a8615515628f7c1307b9a4c0fb18a04088a105d37f8886ff354745e8de2948a3", "functions": ["worker:21-38", "main:40-72"]}
+    ],
+    "actual_order": "Extract every15th RGB source frame to1036x518; OOOPS infer; prepare_new masks; original code/v5 Pano runner with internal26-neighbour component filter; estimate coordinate transform; original code/v2 reconstruct/mesh/semantic; later19-class statistical profile bridge. Does NOT call early_semantics.masks or early_semantics.filter.",
+    "person_masks": "prepare_new.py:34-46: raw vocabulary person id16; temporal union of sampled frames i-2..i+2; capture-wide person envelope appearing>=max(3,floor(.10*N)), limited by fixed512x1024 mask locations [:282] and central x307:717 then maximum.accumulate downward. Resize to1036x518, maximum_filter21x31 with horizontal wrap, bottom rows492: masked. This is accepted capture-preprocessor policy, not general inferred person/support.45-margin.15 path. Current19-class vocabulary uses a different person id; a derived adapter must bind person by class name rather than blindly reuse16, with an explicit patch receipt.",
+    "coordinate_assumptions": "prepare_new.coordinates:61-76 uses OOOPS floor/ceiling samples plus floor RANSAC, camera-up agreement and an assumed2.7m ceiling gap. source_to_mesh has semantic-derived floor leveling and assumed scale; metric_scale_verified=false. run_all:46-48 also generated hypothetical representative class sizes for its old v5 planning. Current statistical target profile explicitly avoids class size templates and preserves observation geometry; these old priors must not be silently reintroduced into fresh paper planning.",
+    "historical_completion_evidence": [
+      {"path": "status.json", "sha256": "e2fb3463bfba95bbe892933e64f21aabb8a4955b63f8f7465837aefc623ea48d", "status": "complete", "last_stage": "v5.export", "completed_at_unix": 1792946515.2498603},
+      {"path": "reconstruction/dorm4/status.json", "sha256": "e3e6cbcb8fa2db5d4aa8e31847d82b6eb5e7c5381d04b2929306fa32304c783e", "status": "complete"},
+      {"path": "reconstruction/dorm5/status.json", "sha256": "5f83182a0e07d74188590994b8b49ea18dafe96525551c711e86be812aa7560e", "status": "complete"},
+      {"path": "reconstruction/dorm4/result/validation.json", "sha256": "2a7a4660907172180ec4c6c27bd0221c04acac36c61c51339fef91d7706d05a2", "generator_version": "2.0.0", "points": 63329446, "geometry_approved": false},
+      {"path": "reconstruction/dorm5/result/validation.json", "sha256": "165feb45e82c78b8cc0d4f7ed9470bc14330b7d208da7b65fab43cbb58ceca1c", "generator_version": "2.0.0", "points": 71607303, "geometry_approved": false}
+    ],
+    "limit": "Historical status+source discovery does not certify a new raw run or byte identity of all original dependencies. Adapter agent was collecting exact raw code/v5 Pano and raw code/v2 sources at audit time; add its final source inventory/AST adaptation receipt when available. No original large arrays were loaded."
+  },
+  "active_run_binding_at_audit": {
+    "config": "code/configs/dorm45-paper.json",
+    "config_sha256": "c8bd93cc0e065808d38f7711b3502b25e12fd88a599e6e13d73a76a1e1f1d309",
+    "upstream_mode": "explicit_verified_reuse",
+    "fresh_geometry": false,
+    "source_runs": ["/workspace/dorm4_dorm5_v5_20261025/reconstruction/dorm4", "/workspace/dorm4_dorm5_v5_20261025/reconstruction/dorm5"],
+    "planning_profiles": [
+      {"path": "/workspace/v519_capture_clone_20261028_tWZimf/inputs19_02/dorm4/input/profile", "checksums_sha256": "fb0cd4e919b9f8fcdfd0b6aa16b345fda0363d68d1ad8b3127ac0189eff4f320"},
+      {"path": "/workspace/v519_capture_clone_20261028_tWZimf/inputs19_02/dorm5/input/profile", "checksums_sha256": "2fb84158f55f68953ee693e0b61928be5717101f61b2114b4cf6df143c654dfe"}
+    ],
+    "importance": {
+      "requested_caches_status": "UNVERIFIED",
+      "source": "/workspace/spacewatch_objects19_v7_20261027_52i774iz/ratings/ratings_report.json",
+      "source_sha256": "cf24cdaca1c85682d0a641f332da4d2c3f8edfe67787bdadafe330e4a619e8ae",
+      "model": "gemini-3.1-flash-lite",
+      "repeats": 5,
+      "manual_sha256": "8770591b5e26238a0d8d756df57a3b00030cdc7743b26c7711470d6d24be43b9",
+      "prompt_sha256": "c17233eba252d17f1c604c2c270080e773ae48eee9b483ed703fc8afce3c51d4",
+      "paper_model_text": "Gemini 3 Flash-Lite",
+      "limit": "Model-name mismatch with paper and cache UNVERIFIED status must remain explicit; no new LLM call was made. Source hash binding is not equivalent to exact publication-model identity or manual/score validation."
+    },
+    "completion": "Audit does not certify live execution completion. Main owns stage status, resource lease, actual new geometry/selection/inference receipts and run outcome."
+  },
+  "runtime_dependencies": {
+    "change_python": "/workspace/sam31_panorama_test_20261023/env/bin/python",
+    "geometry_python": "/workspace/mesh_generator_v1/.venv/bin/python",
+    "geometry_ld_library_path": "/workspace/mesh_generator_v1/.runtime/usr/lib/x86_64-linux-gnu",
+    "simsac_repository": "/workspace/pano_change_models_20261025/simsac",
+    "simsac_revision": "43abe282231dc7d8c8cb829a92f9ebc014fa6cb6",
+    "simsac_checkpoint": "/workspace/pano_change_models_20261025/simsac_changesim.pth",
+    "simsac_checkpoint_sha256": "55f28690989603b5b01723d255bbc63157bacc704e635100ae517b0ad4d1f99a",
+    "torch_home": "/workspace/pano_change_models_20261025/torch_cache",
+    "required_existing_vgg_cache": "/workspace/pano_change_models_20261025/torch_cache/hub/checkpoints/vgg16-397923af.pth",
+    "limit": "Runtime/model/cache assets remain external server prerequisites, not bulk package copies. pretrained VGG constructor otherwise attempts a download; offline cache must be present. GPU lease/deadline belongs to orchestrator, not this audit."
+  },
+  "remaining_gaps": [
+    "Original v2 external producer adapter/source snapshot was still being implemented at this audit snapshot; completion must be separately receipted. Presence of release geometry is not equivalent to that original source.",
+    "Active inputs19_02 artifact bridge derives from older v5.0 baseline. Its accepted prepare_new.py/run_all.py source and completion records have now been located, but full closure hash parity and any vocabulary-binding adaptation still require separate receipts. Do not attribute optional v2 early-semantic filtering to this accepted raw path.",
+    "Arbitrary raw-video automatic mask/assets/profile preparation is not demonstrated; fresh original mode requires explicit checksummed prepared inputs and coordinate/profile context.",
+    "Fresh interpolated-frame poses are not independently estimated; scale and pose accuracy remain unverified.",
+    "Importance cache says UNVERIFIED and underlying model name differs from publication. Exact manual/class/model identity must be reported rather than assumed.",
+    "The general post-grouping code has no GT input at runtime, but historical development used evaluation cases; publication independence claim cannot be certified.",
+    "15-view cap/deadline may stop search; target completeness and marginal stop reason must be taken from the new run, not inferred from source or historical counts.",
+    "Full connected execution completion and actual new SimSaC outputs are outside this source audit; never substitute the old6-to3 detector replay or force historical counts."
+  ]
+}

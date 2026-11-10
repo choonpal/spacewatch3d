@@ -1,0 +1,653 @@
+[
+  {
+    "region_id": 1,
+    "instance_id": "stat_class_3_cc_0000",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 192
+  },
+  {
+    "region_id": 2,
+    "instance_id": "stat_class_3_cc_0001",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 119
+  },
+  {
+    "region_id": 3,
+    "instance_id": "stat_class_3_cc_0002",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 191
+  },
+  {
+    "region_id": 4,
+    "instance_id": "stat_class_3_cc_0003",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 199
+  },
+  {
+    "region_id": 5,
+    "instance_id": "stat_class_3_cc_0004",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 225
+  },
+  {
+    "region_id": 6,
+    "instance_id": "stat_class_3_cc_0005",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 280
+  },
+  {
+    "region_id": 7,
+    "instance_id": "stat_class_3_cc_0006",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 243
+  },
+  {
+    "region_id": 8,
+    "instance_id": "stat_class_3_cc_0007",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 286
+  },
+  {
+    "region_id": 9,
+    "instance_id": "stat_class_3_cc_0008",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 559
+  },
+  {
+    "region_id": 10,
+    "instance_id": "stat_class_3_cc_0009",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 261
+  },
+  {
+    "region_id": 11,
+    "instance_id": "stat_class_3_cc_0010",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 199
+  },
+  {
+    "region_id": 12,
+    "instance_id": "stat_class_3_cc_0011",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 182
+  },
+  {
+    "region_id": 13,
+    "instance_id": "stat_class_3_cc_0012",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 212
+  },
+  {
+    "region_id": 14,
+    "instance_id": "stat_class_3_cc_0013",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 265
+  },
+  {
+    "region_id": 16,
+    "instance_id": "stat_class_3_cc_0015",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 220
+  },
+  {
+    "region_id": 18,
+    "instance_id": "stat_class_3_cc_0017",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 208
+  },
+  {
+    "region_id": 19,
+    "instance_id": "stat_class_3_cc_0018",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 276
+  },
+  {
+    "region_id": 20,
+    "instance_id": "stat_class_3_cc_0019",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 244
+  },
+  {
+    "region_id": 21,
+    "instance_id": "stat_class_3_cc_0020",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 209
+  },
+  {
+    "region_id": 22,
+    "instance_id": "stat_class_3_cc_0021",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 230
+  },
+  {
+    "region_id": 23,
+    "instance_id": "stat_class_3_cc_0022",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 229
+  },
+  {
+    "region_id": 24,
+    "instance_id": "stat_class_3_cc_0023",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 192
+  },
+  {
+    "region_id": 25,
+    "instance_id": "stat_class_3_cc_0024",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 452
+  },
+  {
+    "region_id": 27,
+    "instance_id": "stat_class_3_cc_0026",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 283
+  },
+  {
+    "region_id": 29,
+    "instance_id": "stat_class_3_cc_0028",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 50
+  },
+  {
+    "region_id": 30,
+    "instance_id": "stat_class_3_cc_0029",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 26
+  },
+  {
+    "region_id": 31,
+    "instance_id": "stat_class_3_cc_0030",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 180
+  },
+  {
+    "region_id": 34,
+    "instance_id": "stat_class_3_cc_0033",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 196
+  },
+  {
+    "region_id": 36,
+    "instance_id": "stat_class_3_cc_0035",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 252
+  },
+  {
+    "region_id": 37,
+    "instance_id": "stat_class_3_cc_0036",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 300
+  },
+  {
+    "region_id": 38,
+    "instance_id": "stat_class_3_cc_0037",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 246
+  },
+  {
+    "region_id": 39,
+    "instance_id": "stat_class_3_cc_0038",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 281
+  },
+  {
+    "region_id": 40,
+    "instance_id": "stat_class_3_cc_0039",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 90
+  },
+  {
+    "region_id": 42,
+    "instance_id": "stat_class_3_cc_0041",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 719
+  },
+  {
+    "region_id": 43,
+    "instance_id": "stat_class_3_cc_0042",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 210
+  },
+  {
+    "region_id": 44,
+    "instance_id": "stat_class_3_cc_0043",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 164
+  },
+  {
+    "region_id": 45,
+    "instance_id": "stat_class_3_cc_0044",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 184
+  },
+  {
+    "region_id": 46,
+    "instance_id": "stat_class_3_cc_0045",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 273
+  },
+  {
+    "region_id": 47,
+    "instance_id": "stat_class_3_cc_0046",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 46
+  },
+  {
+    "region_id": 48,
+    "instance_id": "stat_class_3_cc_0047",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 55
+  },
+  {
+    "region_id": 49,
+    "instance_id": "stat_class_3_cc_0048",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 444
+  },
+  {
+    "region_id": 50,
+    "instance_id": "stat_class_3_cc_0049",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 183
+  },
+  {
+    "region_id": 54,
+    "instance_id": "stat_class_3_cc_0053",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 108
+  },
+  {
+    "region_id": 55,
+    "instance_id": "stat_class_3_cc_0054",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 88
+  },
+  {
+    "region_id": 56,
+    "instance_id": "stat_class_3_cc_0055",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 150
+  },
+  {
+    "region_id": 57,
+    "instance_id": "stat_class_3_cc_0056",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 144
+  },
+  {
+    "region_id": 59,
+    "instance_id": "stat_class_3_cc_0058",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 72
+  },
+  {
+    "region_id": 60,
+    "instance_id": "stat_class_3_cc_0059",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 26
+  },
+  {
+    "region_id": 62,
+    "instance_id": "stat_class_3_cc_0061",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 251
+  },
+  {
+    "region_id": 63,
+    "instance_id": "stat_class_3_cc_0062",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 100
+  },
+  {
+    "region_id": 71,
+    "instance_id": "stat_class_3_cc_0070",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 270
+  },
+  {
+    "region_id": 77,
+    "instance_id": "stat_class_3_cc_0076",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 70
+  },
+  {
+    "region_id": 88,
+    "instance_id": "stat_class_3_cc_0087",
+    "class_id": 3,
+    "class_name": "door",
+    "faces": 15
+  },
+  {
+    "region_id": 105,
+    "instance_id": "stat_class_4_cc_0001",
+    "class_id": 4,
+    "class_name": "elevator door",
+    "faces": 86
+  },
+  {
+    "region_id": 106,
+    "instance_id": "stat_class_4_cc_0002",
+    "class_id": 4,
+    "class_name": "elevator door",
+    "faces": 47
+  },
+  {
+    "region_id": 110,
+    "instance_id": "stat_class_4_cc_0006",
+    "class_id": 4,
+    "class_name": "elevator door",
+    "faces": 11
+  },
+  {
+    "region_id": 114,
+    "instance_id": "stat_class_4_cc_0010",
+    "class_id": 4,
+    "class_name": "elevator door",
+    "faces": 19
+  },
+  {
+    "region_id": 115,
+    "instance_id": "stat_class_4_cc_0011",
+    "class_id": 4,
+    "class_name": "elevator door",
+    "faces": 6
+  },
+  {
+    "region_id": 120,
+    "instance_id": "stat_class_4_cc_0016",
+    "class_id": 4,
+    "class_name": "elevator door",
+    "faces": 26
+  },
+  {
+    "region_id": 122,
+    "instance_id": "stat_class_4_cc_0018",
+    "class_id": 4,
+    "class_name": "elevator door",
+    "faces": 11
+  },
+  {
+    "region_id": 123,
+    "instance_id": "stat_class_4_cc_0019",
+    "class_id": 4,
+    "class_name": "elevator door",
+    "faces": 6
+  },
+  {
+    "region_id": 124,
+    "instance_id": "stat_class_4_cc_0020",
+    "class_id": 4,
+    "class_name": "elevator door",
+    "faces": 24
+  },
+  {
+    "region_id": 127,
+    "instance_id": "stat_class_4_cc_0023",
+    "class_id": 4,
+    "class_name": "elevator door",
+    "faces": 5
+  },
+  {
+    "region_id": 140,
+    "instance_id": "stat_class_5_cc_0000",
+    "class_id": 5,
+    "class_name": "window",
+    "faces": 575
+  },
+  {
+    "region_id": 150,
+    "instance_id": "stat_class_6_cc_0000",
+    "class_id": 6,
+    "class_name": "chair",
+    "faces": 652
+  },
+  {
+    "region_id": 153,
+    "instance_id": "stat_class_6_cc_0003",
+    "class_id": 6,
+    "class_name": "chair",
+    "faces": 68
+  },
+  {
+    "region_id": 154,
+    "instance_id": "stat_class_6_cc_0004",
+    "class_id": 6,
+    "class_name": "chair",
+    "faces": 317
+  },
+  {
+    "region_id": 155,
+    "instance_id": "stat_class_6_cc_0005",
+    "class_id": 6,
+    "class_name": "chair",
+    "faces": 124
+  },
+  {
+    "region_id": 156,
+    "instance_id": "stat_class_6_cc_0006",
+    "class_id": 6,
+    "class_name": "chair",
+    "faces": 52
+  },
+  {
+    "region_id": 169,
+    "instance_id": "stat_class_7_cc_0003",
+    "class_id": 7,
+    "class_name": "table",
+    "faces": 272
+  },
+  {
+    "region_id": 170,
+    "instance_id": "stat_class_7_cc_0004",
+    "class_id": 7,
+    "class_name": "table",
+    "faces": 123
+  },
+  {
+    "region_id": 175,
+    "instance_id": "stat_class_7_cc_0009",
+    "class_id": 7,
+    "class_name": "table",
+    "faces": 102
+  },
+  {
+    "region_id": 179,
+    "instance_id": "stat_class_9_cc_0001",
+    "class_id": 9,
+    "class_name": "vacuum cleaner",
+    "faces": 25
+  },
+  {
+    "region_id": 180,
+    "instance_id": "stat_class_12_cc_0000",
+    "class_id": 12,
+    "class_name": "ceiling light",
+    "faces": 4
+  },
+  {
+    "region_id": 181,
+    "instance_id": "stat_class_12_cc_0001",
+    "class_id": 12,
+    "class_name": "ceiling light",
+    "faces": 11
+  },
+  {
+    "region_id": 182,
+    "instance_id": "stat_class_12_cc_0002",
+    "class_id": 12,
+    "class_name": "ceiling light",
+    "faces": 12
+  },
+  {
+    "region_id": 183,
+    "instance_id": "stat_class_12_cc_0003",
+    "class_id": 12,
+    "class_name": "ceiling light",
+    "faces": 2
+  },
+  {
+    "region_id": 185,
+    "instance_id": "stat_class_12_cc_0005",
+    "class_id": 12,
+    "class_name": "ceiling light",
+    "faces": 6
+  },
+  {
+    "region_id": 186,
+    "instance_id": "stat_class_12_cc_0006",
+    "class_id": 12,
+    "class_name": "ceiling light",
+    "faces": 4
+  },
+  {
+    "region_id": 187,
+    "instance_id": "stat_class_12_cc_0007",
+    "class_id": 12,
+    "class_name": "ceiling light",
+    "faces": 12
+  },
+  {
+    "region_id": 188,
+    "instance_id": "stat_class_12_cc_0008",
+    "class_id": 12,
+    "class_name": "ceiling light",
+    "faces": 1
+  },
+  {
+    "region_id": 189,
+    "instance_id": "stat_class_12_cc_0009",
+    "class_id": 12,
+    "class_name": "ceiling light",
+    "faces": 1
+  },
+  {
+    "region_id": 190,
+    "instance_id": "stat_class_12_cc_0010",
+    "class_id": 12,
+    "class_name": "ceiling light",
+    "faces": 2
+  },
+  {
+    "region_id": 191,
+    "instance_id": "stat_class_12_cc_0011",
+    "class_id": 12,
+    "class_name": "ceiling light",
+    "faces": 1
+  },
+  {
+    "region_id": 192,
+    "instance_id": "stat_class_12_cc_0012",
+    "class_id": 12,
+    "class_name": "ceiling light",
+    "faces": 4
+  },
+  {
+    "region_id": 193,
+    "instance_id": "stat_class_12_cc_0013",
+    "class_id": 12,
+    "class_name": "ceiling light",
+    "faces": 1
+  },
+  {
+    "region_id": 194,
+    "instance_id": "stat_class_12_cc_0014",
+    "class_id": 12,
+    "class_name": "ceiling light",
+    "faces": 3
+  },
+  {
+    "region_id": 195,
+    "instance_id": "stat_class_12_cc_0015",
+    "class_id": 12,
+    "class_name": "ceiling light",
+    "faces": 4
+  },
+  {
+    "region_id": 196,
+    "instance_id": "stat_class_12_cc_0016",
+    "class_id": 12,
+    "class_name": "ceiling light",
+    "faces": 2
+  },
+  {
+    "region_id": 197,
+    "instance_id": "stat_class_12_cc_0017",
+    "class_id": 12,
+    "class_name": "ceiling light",
+    "faces": 3
+  },
+  {
+    "region_id": 198,
+    "instance_id": "stat_class_12_cc_0018",
+    "class_id": 12,
+    "class_name": "ceiling light",
+    "faces": 3
+  },
+  {
+    "region_id": 199,
+    "instance_id": "stat_class_12_cc_0019",
+    "class_id": 12,
+    "class_name": "ceiling light",
+    "faces": 5
+  },
+  {
+    "region_id": 200,
+    "instance_id": "stat_class_12_cc_0020",
+    "class_id": 12,
+    "class_name": "ceiling light",
+    "faces": 8
+  }
+]

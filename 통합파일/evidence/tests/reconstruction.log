@@ -1,0 +1,10 @@
+COMPLETE obs
+RESUMED obs
+COMPLETE test
+RESUMED test
+{"group": "reconstruction", "tests": 15, "passed": true, "failures": 0, "errors": 0, "skipped": 0}
+...............
+----------------------------------------------------------------------
+Ran 15 tests in 1.920s
+
+OK

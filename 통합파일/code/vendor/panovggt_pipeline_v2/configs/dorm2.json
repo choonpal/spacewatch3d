@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "name": "dorm2_pointcloud_generator_v2",
+  "execution": {
+    "server_address": "155.230.28.172",
+    "physical_gpu": 1,
+    "cpu_threads": 2,
+    "gpu_max_memory_mb": 200,
+    "gpu_max_utilization_percent": 10,
+    "seed": 42,
+    "server_container_hostname": "33956bf3c14a"
+  },
+  "input": {
+    "bundle": "/workspace/panovggt_inputs/dorm2_v1_20261017/assets.json",
+    "source_sha256": "85ddb4bc45931199d9f3444ec737d2e5472ade28a439585ad1ec46c93f701da1",
+    "width": 1036,
+    "height": 518,
+    "expected_frames": 233,
+    "nominal_interval_seconds": 0.5
+  },
+  "model": {
+    "repository": "/workspace/PanoVGGT_v1_556bb7",
+    "revision": "556bb7d2ec2d02bd3ee4ed535542e74290ba22cf",
+    "checkpoint": "/workspace/dorm3_window_size_test_30_60s_20261016/checkpoints/model.pt",
+    "checkpoint_sha256": "4adab888064ef206c20ab42c08c5f973e3bd98a813fa2c3d849b4d445e278670",
+    "precision": "float32",
+    "window_size": 10,
+    "overlap": 5,
+    "top_fraction_excluded": 0.03,
+    "depth_percentiles": [
+      1,
+      98
+    ]
+  },
+  "mask": {
+    "base": "provided_pre_review_masks",
+    "coordinate_size": [
+      1036,
+      518
+    ],
+    "periodic_dilation_kernel": [
+      101,
+      31
+    ],
+    "max_fraction": 0.45,
+    "polygons": {},
+    "provenance": "Frozen dorm2 SAM2.1 + tracked envelope + missing-head masks from 2026-10-15; prior center overrides frames 126/127 retained in supplied base masks. Apply v1 101x31 periodic dilation; no dorm3 polygons."
+  },
+  "matching": {
+    "model": "indoor_new",
+    "face_size": 384,
+    "confidence": 0.5,
+    "gaps": [
+      1,
+      2,
+      4
+    ],
+    "unique_erp_cell": 5,
+    "border_pixels": 4,
+    "cross_face": true,
+    "sift": {
+      "enabled": true,
+      "max_gap": 8,
+      "ratio": 0.65,
+      "features": 10000,
+      "contrast": 0.003,
+      "edge_threshold": 10
+    },
+    "high_resolution": {
+      "enabled": true,
+      "face_size": 768,
+      "gaps": [
+        1,
+        2
+      ],
+      "all_directions": true
+    },
+    "source_order": [
+      "matches",
+      "bridge_matches",
+      "enhanced_matches",
+      "hires_matches"
+    ]
+  },
+  "registration": {
+    "depth_calibration_stride": 12,
+    "min_depth_scale_samples": 100,
+    "window_scale_ratio_bounds": [
+      0.5,
+      2
+    ],
+    "min_image_matches": 30,
+    "min_valid_depth_matches": 30,
+    "depth_discontinuity_fraction": 0.1,
+    "train_fraction": 0.7,
+    "split_seed": 55109,
+    "min_fitting_matches": 25,
+    "min_inliers": 20,
+    "min_inlier_fraction": 0.35,
+    "ransac_trials": 700,
+    "residual_depth_fraction": 0.04,
+    "relative_scale_bounds": [
+      0.8,
+      1.25
+    ],
+    "max_observations_per_pair": 180,
+    "inner_train_fraction": 0.75,
+    "min_inner_holdout": 4,
+    "inner_inlier_fraction": 0.5
+  },
+  "optimization": {
+    "attempts": [
+      {
+        "max_nfev": 300,
+        "linear_solver": {
+          "atol": 1e-12,
+          "btol": 1e-12,
+          "maxiter": 5000
+        }
+      },
+      {
+        "max_nfev": 600,
+        "linear_solver": {
+          "atol": 1e-12,
+          "btol": 1e-12,
+          "maxiter": 5000
+        }
+      },
+      {
+        "max_nfev": 1200,
+        "linear_solver": {
+          "atol": 1e-13,
+          "btol": 1e-13,
+          "maxiter": 10000
+        }
+      }
+    ],
+    "loss": "soft_l1",
+    "f_scale": 0.25,
+    "depth_weight_fraction": 0.03,
+    "ftol": 1e-08,
+    "xtol": 1e-08,
+    "gtol": 1e-07
+  },
+  "boundary": {
+    "policy": "fail",
+    "allowed_pairs": [],
+    "max_unverified_bridges": 0,
+    "window_selection": "closest_pair_to_window_center",
+    "on_unlisted_boundary": "fail",
+    "authorization": "No unverified dorm2 boundaries approved; require successful visual connections or explicit new boundary policy."
+  },
+  "output": {
+    "pixel_step": 1,
+    "voxel_normalized": 0.005,
+    "preview_points": 750000,
+    "preview_seed": 5201,
+    "voxel_buckets": 64,
+    "ply_name": "map.ply"
+  },
+  "generator_version": "2.0.0",
+  "postprocessing": {
+    "connected_components": {
+      "enabled": true,
+      "voxel_size_normalized": 0.02,
+      "connectivity": 26,
+      "grid_origin": [
+        0,
+        0,
+        0
+      ],
+      "coordinate_frame": "reconstruction_world",
+      "remove_max_points_inclusive": 10000,
+      "slab_width": 64,
+      "max_dense_cells": 80000000,
+      "chunk_points": 1000000
+    },
+    "radius_outlier_removal": false,
+    "statistical_outlier_removal": false
+  }
+}

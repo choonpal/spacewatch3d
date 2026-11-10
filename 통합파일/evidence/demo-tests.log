@@ -1,0 +1,18 @@
+127.0.0.1 - - [10/Nov/2026 15:43:09] "GET /pipeline-assets/image.png HTTP/1.1" 416 -
+.127.0.0.1 - - [10/Nov/2026 15:43:10] "HEAD /pipeline-assets/image.png HTTP/1.1" 200 -
+127.0.0.1 - - [10/Nov/2026 15:43:10] "GET /pipeline-assets/image.png HTTP/1.1" 206 -
+.127.0.0.1 - - [10/Nov/2026 15:43:10] "GET /api/pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [10/Nov/2026 15:43:10] "GET /pipeline-assets/image.png HTTP/1.1" 200 -
+.127.0.0.1 - - [10/Nov/2026 15:43:11] code 404, message Not Found
+127.0.0.1 - - [10/Nov/2026 15:43:11] "GET /RELEASE.json HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2026 15:43:11] code 404, message Not Found
+127.0.0.1 - - [10/Nov/2026 15:43:11] "GET /code/spacewatch.py HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2026 15:43:11] code 404, message Not Found
+127.0.0.1 - - [10/Nov/2026 15:43:11] "GET /pipeline-assets/../RELEASE.json HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2026 15:43:11] code 404, message Not Found
+127.0.0.1 - - [10/Nov/2026 15:43:11] "GET /download.zip HTTP/1.1" 404 -
+.
+----------------------------------------------------------------------
+Ran 4 tests in 2.030s
+
+OK

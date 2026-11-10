@@ -1,0 +1,1898 @@
+{
+  "files": [
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/spacewatch_pipeline/__init__.py",
+      "relative_path": "v2/spacewatch_pipeline/__init__.py",
+      "sha256": "870389b855042adb2088eb7897aa29f6cfa1be2a2f33a4cad6e09db513566381",
+      "bytes": 22,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/spacewatch_pipeline/io.py",
+      "relative_path": "v2/spacewatch_pipeline/io.py",
+      "sha256": "d99d26e10dccbbb95715b2887d8a5aa8c0f84953934d47efa0238c6cb8a14942",
+      "bytes": 1630,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/spacewatch_pipeline/geometry.py",
+      "relative_path": "v2/spacewatch_pipeline/geometry.py",
+      "sha256": "ad9ccc7dc4301b6db04dd0947bf32a1e36819c806affe0448f870e7c3996fe52",
+      "bytes": 17048,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/spacewatch_pipeline/early_semantics.py",
+      "relative_path": "v2/spacewatch_pipeline/early_semantics.py",
+      "sha256": "57b714dd1841be378d3516d31f3383dc6b648a6b74111fcd05086a33e9337af5",
+      "bytes": 11659,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/spacewatch_pipeline/ooops.py",
+      "relative_path": "v2/spacewatch_pipeline/ooops.py",
+      "sha256": "a94504f2b8fb778181a1fdb02e6ede26d216cf101fe1313433ce3b837d4ecf25",
+      "bytes": 3169,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/spacewatch_pipeline/planning.py",
+      "relative_path": "v2/spacewatch_pipeline/planning.py",
+      "sha256": "6d65ca68f2c4c9dda64354ab843e6211f57845dd9c4cf89f9a7caca27510a88a",
+      "bytes": 7591,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/spacewatch_pipeline/reuse.py",
+      "relative_path": "v2/spacewatch_pipeline/reuse.py",
+      "sha256": "b9c8f7fdca05b9e6162fde7476370143658bc9b4556df2d19b27ec37f9bfa43c",
+      "bytes": 2278,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/spacewatch_pipeline/worker.py",
+      "relative_path": "v2/spacewatch_pipeline/worker.py",
+      "sha256": "d93db21036b84c24b001ff2d28ea2019ad05cf0f91f5c665cb32f5a65161b715",
+      "bytes": 1031,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/spacewatch_pipeline/engine.py",
+      "relative_path": "v2/spacewatch_pipeline/engine.py",
+      "sha256": "1fa229b1daaa88f3e5120e7d69c4ed4714b947349e97f1d14c184ff78e67276e",
+      "bytes": 11526,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/spacewatch_pipeline/gpu.py",
+      "relative_path": "v2/spacewatch_pipeline/gpu.py",
+      "sha256": "722d47a92f0950ead0db8127cb142a81eb63205194a7a8d2467f59949524d335",
+      "bytes": 2470,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/segmentation/cli.py",
+      "relative_path": "v2/vendor/segmentation/cli.py",
+      "sha256": "8ba3db14f1bdfa0a812a5b1cfaae66fb9f1f820dec94db85306d48807e63763f",
+      "bytes": 8152,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/segmentation/common.py",
+      "relative_path": "v2/vendor/segmentation/common.py",
+      "sha256": "69f1baec5e81624bb96675daf8e64eba64a3c6196378768af94fa36d391d4e0e",
+      "bytes": 1917,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/segmentation/core.py",
+      "relative_path": "v2/vendor/segmentation/core.py",
+      "sha256": "9c63c5e3a6c37526a1cb3f7bfe79ae62bb837a440b31c98ad03f3b99b8341a57",
+      "bytes": 5113,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/segmentation/export_results.py",
+      "relative_path": "v2/vendor/segmentation/export_results.py",
+      "sha256": "eafbc8da5048742770d6014d2b0d7ce392f3f49cb940548beafdedd5cc7ae273",
+      "bytes": 9365,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/segmentation/filtered_source.py",
+      "relative_path": "v2/vendor/segmentation/filtered_source.py",
+      "sha256": "2dddbaf36a1a28635b4fd47ac719fb63b51cbfced5cc95c07c9577503608dc40",
+      "bytes": 2722,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/segmentation/geometry.py",
+      "relative_path": "v2/vendor/segmentation/geometry.py",
+      "sha256": "2a998d3bbed46b1182d9201c80e6f1b57d00f733b456a32283913dfb148bf261",
+      "bytes": 8530,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/segmentation/inference.py",
+      "relative_path": "v2/vendor/segmentation/inference.py",
+      "sha256": "bc90380ff4a5df163f9d50887b743edf64ac4803666db762b76283e2d2d1587c",
+      "bytes": 6348,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/README.md",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/README.md",
+      "sha256": "cef1f43d8cfcd14c6ec9e509a52caea703c3a20f3ed1b9ddbeb1789e083e140d",
+      "bytes": 5889,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/V1_REFERENCE.md",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/V1_REFERENCE.md",
+      "sha256": "581f86a80655153090abdea7f174dcca236fd733a8f4eac2a3e7236979768471",
+      "bytes": 12289,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/batch.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/batch.py",
+      "sha256": "51a7443362ddb2784c05a41463aa99a1f6d132ae37d9314b3be19736acc03cf6",
+      "bytes": 2809,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/common.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/common.py",
+      "sha256": "cfc18bdc2e7061b571216316cfd071c4b5777fe8223318b7b734214934106334",
+      "bytes": 8380,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/component_filter.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/component_filter.py",
+      "sha256": "6dfbd76b70e6a468f858f43c98f04d4e6b34e542f4ac670cbaf2e8ec4a4817f2",
+      "bytes": 6732,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/freeze_inputs.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/freeze_inputs.py",
+      "sha256": "73c08b01261c99a6e65ee32dbb12c4b0a962f8ff410f672237c73d1e1915d13c",
+      "bytes": 5570,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/masks.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/masks.py",
+      "sha256": "1db576bacd70ca06204d7f1441d38d8c27df142578d9bac353dafc08c8caace0",
+      "bytes": 1210,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/run.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/run.py",
+      "sha256": "e70590f1d2b7c8c4138a02a05455cf45d3baf57745f3b38bb580af899196e337",
+      "bytes": 11548,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/slab_components.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/slab_components.py",
+      "sha256": "f37b405826cfe9f9083c9324849d848575c7898730f890884e33cce4e7b1ef01",
+      "bytes": 5146,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/tests/check_replay.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/tests/check_replay.py",
+      "sha256": "1b5925cbc1d26dfb06414b405abd1629c0ca16beb9d9034da70f9c33ff699895",
+      "bytes": 2900,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/tests/test_components.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/tests/test_components.py",
+      "sha256": "43af0bfe7fa8d7e76f97e00d98846790c159bb21149d0600446ab5e50d28eedc",
+      "bytes": 2420,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/tests/test_pipeline.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/tests/test_pipeline.py",
+      "sha256": "3ca72b9aa8481fe3c243a52d1b38b3693c18b456d56766a2b2b680c80e45fc3b",
+      "bytes": 6275,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/viewer/index.html",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/viewer/index.html",
+      "sha256": "9b15cfe087f47ce2ae8a8b147e25b26002906a1205958414567fa3d7d59d173e",
+      "bytes": 8952,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/viewer/viewer_vendor.js",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/viewer/viewer_vendor.js",
+      "sha256": "22b568c2c384610370c4cd9d4b16c1921d5dacfbc7b4b0fd7e9eb79f238b1400",
+      "bytes": 636877,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/workers/build_viewer.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/workers/build_viewer.py",
+      "sha256": "88c8ff35251c7b268f38446ad3347ba22392ff6a8785af81140cd92c3b513839",
+      "bytes": 1568,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/workers/connect.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/workers/connect.py",
+      "sha256": "21da676f4dffd522085e596741fa3eb0e5d820233247f7acc0edd8d9d6c1b768",
+      "bytes": 3077,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/workers/engine.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/workers/engine.py",
+      "sha256": "1896564ab47f8de718e260ef1ce6d5ac562983073cfcb21a9d6b0279a4cc930a",
+      "bytes": 5462,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/workers/enhance.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/workers/enhance.py",
+      "sha256": "d2dd6c4de31c6ed8b4a222785df9ab572c9b99b9df63a5e7532448d2d13cf7f9",
+      "bytes": 3444,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/workers/export.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/workers/export.py",
+      "sha256": "03ae4bdecef7975cfb63acf4266bdbb80d9bb22ae163eafd508e097957024fab",
+      "bytes": 7231,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/workers/filter_components.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/workers/filter_components.py",
+      "sha256": "c03d7cebf1e7f0e79fe7f311c14e179df338922c666c90dd312ddfe95ed15ebd",
+      "bytes": 3521,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/workers/infer.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/workers/infer.py",
+      "sha256": "498e234e838bdd92101091e7cad70631646498301c01aa444ef34eb3842e9c2f",
+      "bytes": 4319,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/workers/match.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/workers/match.py",
+      "sha256": "33939fdd78a3376ad0b84dcace80b1bb7f9c82b0012d417d0ce88602057feb5d",
+      "bytes": 5243,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/workers/match_hires.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/workers/match_hires.py",
+      "sha256": "b1619ab1d9e160577b3978a189f508218249b951b05387eaab9aff4796466eb4",
+      "bytes": 4882,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/workers/optimize.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/workers/optimize.py",
+      "sha256": "f589f9c6ed5bb0f7a848bae01139ab411bf7c67bfd00ab5660670129c214a957",
+      "bytes": 2457,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/workers/panovggt_global.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/workers/panovggt_global.py",
+      "sha256": "2c0b9db142099bba67300a8b93c10b6913bfff9bcfdb6d990e949c46538c76de",
+      "bytes": 4686,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/workers/plan_hires.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/workers/plan_hires.py",
+      "sha256": "63cd1edececa1c6cf63bf34ef430ce75b553fa62fd892a1dc9001448da5c98a7",
+      "bytes": 351,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/workers/prepare_inputs.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/workers/prepare_inputs.py",
+      "sha256": "8d56cc9e504b807ae19276a51857eff4d5c9b1ef6be3bfb4bd1d7ccb250517ca",
+      "bytes": 3194,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/workers/refine.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/workers/refine.py",
+      "sha256": "6da37000e9a4fd084b8cc8f452a802f76ff8d7918bf4b9f88beb027babcf0441",
+      "bytes": 13623,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/panovggt_pipeline_v2/workers/runtime.py",
+      "relative_path": "v2/vendor/panovggt_pipeline_v2/workers/runtime.py",
+      "sha256": "6cb85313c9bb6d81940137a0c43ef80f2981cc0ac1f6bcf8b3ed103db452c089",
+      "bytes": 2393,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/native/native_executor.py",
+      "relative_path": "v2/vendor/native/native_executor.py",
+      "sha256": "3b71068e78b047337d148efc7468dc50a0d50beae03bedeba0871d9c8a060e14",
+      "bytes": 2799,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/native/objective_executor.py",
+      "relative_path": "v2/vendor/native/objective_executor.py",
+      "sha256": "892f27eca9d36473635cfaaa67bb9293ba947f65821fa7ed601a2aea3ce4e26b",
+      "bytes": 5866,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/native/rays.c",
+      "relative_path": "v2/vendor/native/rays.c",
+      "sha256": "e3ebfc5926ff3ea32343c277d9fceec68b1b3fa69935ddf5990f5d576620e30c",
+      "bytes": 2834,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/native/rays.so",
+      "relative_path": "v2/vendor/native/rays.so",
+      "sha256": "efc89bff879eaa932fe9d81fdcbf91cfbbdd5a2d91b4f08745befb6986c9d6cc",
+      "bytes": 16352,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/__init__.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/__init__.py",
+      "sha256": "700b16122827fa7e9834992c4940a39915eef4e87837ada606f58dc9b0fd27db",
+      "bytes": 103,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/__main__.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/__main__.py",
+      "sha256": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+      "bytes": 48,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/cli.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/cli.py",
+      "sha256": "fcd5c2606003522853ced2a7e8e65ea4de2cbd6dd5c3d010af60354c75d9caca",
+      "bytes": 5510,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/contracts.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/contracts.py",
+      "sha256": "5ff2f7aa9a4674a1e39fe12ee6102b808b94b0aa6deebc2e1ce6a41fd034e147",
+      "bytes": 12061,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/registry.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/registry.py",
+      "sha256": "5dbdd07858bb9c8dbeeb5d512966998f7667406b78371d6259eb8a048021cd23",
+      "bytes": 1674,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/schemas/artifact.schema.json",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/schemas/artifact.schema.json",
+      "sha256": "d204b665da196028c8a87cb71e16e328f3aae84cd05e48799fdebed41de7bc39",
+      "bytes": 20895,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/task_api.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/task_api.py",
+      "sha256": "cf36c267ab4c391463fc35f9905e155d053707108667a5f4d1fdb6612f2208fc",
+      "bytes": 428,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/__init__.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/__init__.py",
+      "sha256": "ca96efd60c7c84026b72727ede004360ff5397c970b40ed7a9d2a08d1bc09580",
+      "bytes": 76,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_1a_rgb_input/README.md",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_1a_rgb_input/README.md",
+      "sha256": "a763b3b63bb07ac821ddd3fbd2890cfe713d07a457ec64e50ba63b0cd8f77f58",
+      "bytes": 3418,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_1a_rgb_input/__init__.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_1a_rgb_input/__init__.py",
+      "sha256": "99e91f1ca76172cfa0a4349777e6aec36c863582770fb56fa5272b5ebe625725",
+      "bytes": 34,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_1a_rgb_input/pipeline.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_1a_rgb_input/pipeline.py",
+      "sha256": "2c8d878d694afa49ca6c6f5837544f9d842fcef5d9c89e73ce3b612a17a5faa9",
+      "bytes": 738,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_1a_rgb_input/requirements.txt",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_1a_rgb_input/requirements.txt",
+      "sha256": "5765b3da2ec6a3b379e774860380a3bb37b4d2e9b80eefad3fca43a8b40354cd",
+      "bytes": 229,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_1b_360_input/README.md",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_1b_360_input/README.md",
+      "sha256": "98654e2132b76edd38943e03b58f7329b48c586d79496a93b70c79b2551075e4",
+      "bytes": 20143,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_1b_360_input/__init__.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_1b_360_input/__init__.py",
+      "sha256": "bdc0ccaab58302150879fe464eaa37d8f5e6ad9f8e924cf122487349d882fb7e",
+      "bytes": 36,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_1b_360_input/assets/panovggt_r0010003_20261007/render_results.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_1b_360_input/assets/panovggt_r0010003_20261007/render_results.py",
+      "sha256": "815f08004acc84090d3a10e6a86a3d052f923e553084e9fc02f8b424e901df3a",
+      "bytes": 9873,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_1b_360_input/assets/r0010003_20261006/render_results.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_1b_360_input/assets/r0010003_20261006/render_results.py",
+      "sha256": "8f66f139d62933acd44dc03d555fd83aa39734f59b346709c51d7c2208cb9ddc",
+      "bytes": 5401,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_1b_360_input/pipeline.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_1b_360_input/pipeline.py",
+      "sha256": "3529ef67ec660fb37e41370e80a909887a20b26d457facf7ab4bba5a29953139",
+      "bytes": 742,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_1b_360_input/requirements.txt",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_1b_360_input/requirements.txt",
+      "sha256": "5765b3da2ec6a3b379e774860380a3bb37b4d2e9b80eefad3fca43a8b40354cd",
+      "bytes": 229,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_2_reconstruction/README.md",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_2_reconstruction/README.md",
+      "sha256": "6296f4e763be02ccd2135e4e58f2e4d8df5779182b6e615df284102563bf09b0",
+      "bytes": 2905,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_2_reconstruction/__init__.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_2_reconstruction/__init__.py",
+      "sha256": "0873d59541dadb57cacf0e15b7f4fc2647857f221f47a0e50a4e9eea8b4553eb",
+      "bytes": 44,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_2_reconstruction/pipeline.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_2_reconstruction/pipeline.py",
+      "sha256": "3591acad3fcd4d1ea63223b7968543282b443ed26f4848b15e611bbadb01bd2f",
+      "bytes": 769,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_2_reconstruction/requirements.txt",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_2_reconstruction/requirements.txt",
+      "sha256": "5765b3da2ec6a3b379e774860380a3bb37b4d2e9b80eefad3fca43a8b40354cd",
+      "bytes": 229,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_3_instance_segmentation/README.md",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_3_instance_segmentation/README.md",
+      "sha256": "ba005434564ecc98f0f04001798d7cce9e502fb6ffd42680ca2ac28dbc9630ac",
+      "bytes": 2990,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_3_instance_segmentation/__init__.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_3_instance_segmentation/__init__.py",
+      "sha256": "3666bafa044920fefb3bb11371e2d25401632b38c76c91d940ec4e16b8d40200",
+      "bytes": 38,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_3_instance_segmentation/pipeline.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_3_instance_segmentation/pipeline.py",
+      "sha256": "e95c5f01b572229e64ce4327c17c61e232c5acd94271a3d321f8eb8b35ba0a03",
+      "bytes": 759,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_3_instance_segmentation/requirements.txt",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_3_instance_segmentation/requirements.txt",
+      "sha256": "5765b3da2ec6a3b379e774860380a3bb37b4d2e9b80eefad3fca43a8b40354cd",
+      "bytes": 229,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_4_object_export/README.md",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_4_object_export/README.md",
+      "sha256": "170109bd4c676f1603b7150b225e5dd5ff69fd8c1f12a32ff91ce3d6dcbefdc0",
+      "bytes": 13020,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_4_object_export/__init__.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_4_object_export/__init__.py",
+      "sha256": "0b7c5a50caa3e60f8da4e7b7c602d68bca6ef5f4faa39b966ee889362a907a3d",
+      "bytes": 39,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_4_object_export/pipeline.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_4_object_export/pipeline.py",
+      "sha256": "a618ffed00614e0420c17c0efe4075bc151bc36266fa98558296ce8711bc0d7d",
+      "bytes": 751,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_4_object_export/requirements.txt",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_4_object_export/requirements.txt",
+      "sha256": "5765b3da2ec6a3b379e774860380a3bb37b4d2e9b80eefad3fca43a8b40354cd",
+      "bytes": 229,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/README.md",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/README.md",
+      "sha256": "a852519230c80fdb80d0f2a51cfca5e68833ab310015ea8307693e4591fa95de",
+      "bytes": 26526,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/__init__.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/__init__.py",
+      "sha256": "a183c375d75e57244622ec95ef94eeeddd4df76192990b4395f6a5095e8cd0b2",
+      "bytes": 47,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/__main__.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/__main__.py",
+      "sha256": "6eac7d126fb0763645c9dc123418d70bbb7508b3563241170aaded52c42fc444",
+      "bytes": 730,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/assets/scene0462-change.html",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/assets/scene0462-change.html",
+      "sha256": "1d6ba80e71265a6cd09ac44aafe7d0b87263b465539fe3da0f1a189e362ed7f6",
+      "bytes": 987137,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/dorm_backend.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/dorm_backend.py",
+      "sha256": "ab78febd0d155736c09e92392aa48fd4dfda4f8de7b8f8ddf1e389a9ebf3a36e",
+      "bytes": 4365,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/dorm_surface.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/dorm_surface.py",
+      "sha256": "3bce7fa0ac86e9e4d2ca3d346c7f419223ccf0318b43d85a75bdd49fa310ee55",
+      "bytes": 21258,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/local_surface_diagnostic.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/local_surface_diagnostic.py",
+      "sha256": "01302b81605281de3ddcc1e4ecf3ccf1e278810fe158bc5c0485d3203b478370",
+      "bytes": 6545,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/pipeline.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/pipeline.py",
+      "sha256": "a53d17e418087c9d509dff1b7a251096f9a5300dda28a14daca48a19f8cac30c",
+      "bytes": 881,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/requirements.txt",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/requirements.txt",
+      "sha256": "6ffc3451ea83904eff19a36d34393766d44c5c68bf2bd597c218101ff7332cb6",
+      "bytes": 120,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/surface_geometry.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/surface_geometry.py",
+      "sha256": "6dbf930a4a7fd967cd7e5d904bcf3ebd38fb93525c6be71066d12befc58c9675",
+      "bytes": 8444,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/surface_materials.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/surface_materials.py",
+      "sha256": "8b05480355ca13a538a4eae281fbb18652baafd7c5e4fff4b93a2a38665d6b08",
+      "bytes": 7357,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/surface_review.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5a_change_detection/surface_review.py",
+      "sha256": "478bb2a85606e8dcd7105e4b11eb6919dbba8b6643c18bee8810052180615663",
+      "bytes": 5632,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/DEVELOPMENT_NOTES.md",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/DEVELOPMENT_NOTES.md",
+      "sha256": "6fa576b3516090df56e2765a76e5be62f2cb8944daf06c90b308f6601d8049d1",
+      "bytes": 156196,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/INPUT_POLICY_AUDIT.md",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/INPUT_POLICY_AUDIT.md",
+      "sha256": "a16dacfb414a79a82d0d24d71d49159cc6b52154f66054111373d774e277ef46",
+      "bytes": 21465,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/README.md",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/README.md",
+      "sha256": "6791ecfc7042d7da33ae324491db9e35a6cd34f411a87e6a3bd01d4942e8c550",
+      "bytes": 197800,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/__init__.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/__init__.py",
+      "sha256": "8bf7419b85ed831cda46b7d74295977c3ce003e43ce8c1cea8d54b493f290fc4",
+      "bytes": 50,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/__main__.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/__main__.py",
+      "sha256": "a70005aae66f06c1fcafb560a0e6b8fb5c0f899707bcf6beaa432dabf2ef7e41",
+      "bytes": 6579,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/camera_height.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/camera_height.py",
+      "sha256": "a8f1eb35fedbf44198ccc3ce97a5320c277592a80811f0c3a71d1de6fba1c337",
+      "bytes": 5022,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/candidates.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/candidates.py",
+      "sha256": "fe6ce42ad4f82b8d9d51f8e6ee5d88be814ba762b303d95caee612d78b305017",
+      "bytes": 8945,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/compaction.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/compaction.py",
+      "sha256": "d6f36316293f96b5f4fde501ab011af8fdae33be733b82881a592297fe27a85d",
+      "bytes": 8388,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/coverage_repair.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/coverage_repair.py",
+      "sha256": "fb2afbcaf8a23e8c757f087707eadf51eaeea935a551feaa49a88f5ac5b5967e",
+      "bytes": 6719,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/coverage_validation.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/coverage_validation.py",
+      "sha256": "9e82be5ae43a20d8ed5229561e5423c3038014d0fa6956f66a4081c5583f4afb",
+      "bytes": 3619,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/examples/benchmark_evaluation.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/examples/benchmark_evaluation.py",
+      "sha256": "39776f6402f1f9bf33a4eb3a54feab627f4522674b0179785799dd6951060014",
+      "bytes": 37752,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/examples/compare_planning.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/examples/compare_planning.py",
+      "sha256": "6d7c5c32060a7adce63cd3cc8d5d7b9c73c7eee27dd0eddfd05d910c4cba0460",
+      "bytes": 4989,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/examples/free_navigation_evaluation.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/examples/free_navigation_evaluation.py",
+      "sha256": "74d00457013b3de6193b57ddcce49641dc4aec0afd822c2ca6b9209c78c34545",
+      "bytes": 6110,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/examples/graph_navigation_evaluation.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/examples/graph_navigation_evaluation.py",
+      "sha256": "e19a8b96c9778d3dc8e0c666a5e5a1bd63612c48e6a051d55f9c680922c5aab9",
+      "bytes": 14660,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/examples/navigation_demo.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/examples/navigation_demo.py",
+      "sha256": "e06a3e08766e15f005215aa1185a2832885a40fb1f56347c32c0c38a5ae483d0",
+      "bytes": 4740,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/examples/navigation_viewer.html",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/examples/navigation_viewer.html",
+      "sha256": "ce3740cb67006d3e164fb384cd55131d26499f2eb28c3f5a8e6b83e585fbe962",
+      "bytes": 8830,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/importance.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/importance.py",
+      "sha256": "e5f9c6939a4d38c3564669d2d64c1a9b41061472a4e40c00c74522b6136daebc",
+      "bytes": 3633,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/input_coverage.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/input_coverage.py",
+      "sha256": "5f4233b1c27fc06818f71744b1c6823bda9fcdab392d2cb5f2221235d3c4662b",
+      "bytes": 3114,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/lateral_candidates.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/lateral_candidates.py",
+      "sha256": "4a5e14e2f03fbaf417efc83df7f272fab169abb48ca387efeda97efab337f885",
+      "bytes": 14010,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/loader.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/loader.py",
+      "sha256": "f174ee519769f1a70d3f869437982f0494f928c2b09c8f67e9f57142bc3b6146",
+      "bytes": 28217,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/models.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/models.py",
+      "sha256": "f7b6f63abd81c91d254cecde5786b3d210e5694bf9a75ba2850fb8000666638c",
+      "bytes": 8819,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/navigation.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/navigation.py",
+      "sha256": "e18f9b50ca95520d982ea5b87358dd918b2ee3c40e382c248321d8e08aa39124",
+      "bytes": 9498,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/navigation_completion.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/navigation_completion.py",
+      "sha256": "e12f799a1b4c263922546e257ae77e7988e69245e46b7260c18c53858b3d06e1",
+      "bytes": 11686,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/navigation_free.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/navigation_free.py",
+      "sha256": "d9343a7c7080a7c5501f066f92588056c09631e1512b8101714c8672f3d1d9ac",
+      "bytes": 18829,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/navigation_graph.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/navigation_graph.py",
+      "sha256": "2e18a2dabcd798bb7e180882d55fe4fdcd491d7d47f339f28e12221916cf7290",
+      "bytes": 11204,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/navigation_rng.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/navigation_rng.py",
+      "sha256": "fd2ad37f491450a6f6199bd934489c9225fc3139e14c6a480f1350cf9b6b6396",
+      "bytes": 5541,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/object_identity.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/object_identity.py",
+      "sha256": "5f77f0c7445450dde52d58f9a16ac138ae64e7566325a00c047b072003603689",
+      "bytes": 4323,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/object_quality.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/object_quality.py",
+      "sha256": "db30df688f7ac3c385c20838c44e3f6bc6216af226201ba1f93f70f16688f993",
+      "bytes": 6164,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/pipeline.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/pipeline.py",
+      "sha256": "404a0d1060db1a1e9ca26d92a77e3021f9903f1c0b891cc8ce0299e46430a923",
+      "bytes": 773,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/planner.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/planner.py",
+      "sha256": "cb58e7e49c233764f788002779e6acdca3762718c4ccafe63bdf9afa142c9b6f",
+      "bytes": 30150,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/reference.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/reference.py",
+      "sha256": "ac490e4abdb53d4b6cf7927225ce8d6ee7c96592f555572b1c9fe83535245378",
+      "bytes": 19514,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/requirements-tested.txt",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/requirements-tested.txt",
+      "sha256": "aa5234a1a32ae6e410692e8d9c816d1a2248845d993ceb863df73db3a97a63b9",
+      "bytes": 350,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/requirements.txt",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/requirements.txt",
+      "sha256": "732cde186bca7217f4c35c0817ee8d29161cabad84b58fac6547205307ebc9ab",
+      "bytes": 225,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/routing.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/routing.py",
+      "sha256": "f775809610f23f46b798cbfc0180b4602eee623cf489acadb6e17551830bdeb0",
+      "bytes": 25680,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/selection.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/selection.py",
+      "sha256": "084680dbcc50943fedc73ee5d6993d3ededa4984c37d35ff81dd2d63e88b065f",
+      "bytes": 25273,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/selection_guard.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/selection_guard.py",
+      "sha256": "c21b37be89c5b3af7421111b0f69108294dedd1ccb582fc7dfa9243802944ff8",
+      "bytes": 2728,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/spatial_sampling.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/spatial_sampling.py",
+      "sha256": "f776a0e6fa3bc03ae2878f9a3cf6b00d822f4975586c8b6c2a84737231358d93",
+      "bytes": 4741,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/validation.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/validation.py",
+      "sha256": "08a3a0e12fbd1ae59b08472c620b07131d05f6bb38ce12be500dd72a0475541c",
+      "bytes": 52336,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/visibility.py",
+      "relative_path": "v2/vendor/spacewatch3d_src/spacewatch3d/tasks/task_5b_keyframes/visibility.py",
+      "sha256": "7bbef95661bdf279b726842ac26f9d3c16ef070302755fd4fb2d3b69cc044e99",
+      "bytes": 34155,
+      "role": "original_v2_source"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/prepare_map_profile.py",
+      "relative_path": "prepare_map_profile.py",
+      "sha256": "080b245f33f6b11175ed1479a2fa40fe9fa1f93a5c02bb1100cd19433a759439",
+      "bytes": 8909,
+      "role": "original_profile_producer"
+    },
+    {
+      "source": "/workspace/v519_capture_clone_20261028_tWZimf/original_producers/statistical_adapter.py",
+      "relative_path": "statistical_adapter.py",
+      "sha256": "2166e2a6267d3debe7b610f0f8d2ac4b1a145cb92703ef0a3933065b45bb0fb4",
+      "bytes": 15488,
+      "role": "original_profile_producer"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/__init__.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/__init__.py",
+      "sha256": "700b16122827fa7e9834992c4940a39915eef4e87837ada606f58dc9b0fd27db",
+      "bytes": 103,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/__main__.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/__main__.py",
+      "sha256": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+      "bytes": 48,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/cli.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/cli.py",
+      "sha256": "fcd5c2606003522853ced2a7e8e65ea4de2cbd6dd5c3d010af60354c75d9caca",
+      "bytes": 5510,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/contracts.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/contracts.py",
+      "sha256": "5ff2f7aa9a4674a1e39fe12ee6102b808b94b0aa6deebc2e1ce6a41fd034e147",
+      "bytes": 12061,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/registry.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/registry.py",
+      "sha256": "5dbdd07858bb9c8dbeeb5d512966998f7667406b78371d6259eb8a048021cd23",
+      "bytes": 1674,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/schemas/artifact.schema.json",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/schemas/artifact.schema.json",
+      "sha256": "d204b665da196028c8a87cb71e16e328f3aae84cd05e48799fdebed41de7bc39",
+      "bytes": 20895,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/task_api.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/task_api.py",
+      "sha256": "cf36c267ab4c391463fc35f9905e155d053707108667a5f4d1fdb6612f2208fc",
+      "bytes": 428,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/__init__.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/__init__.py",
+      "sha256": "ca96efd60c7c84026b72727ede004360ff5397c970b40ed7a9d2a08d1bc09580",
+      "bytes": 76,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_1a_rgb_input/README.md",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_1a_rgb_input/README.md",
+      "sha256": "a763b3b63bb07ac821ddd3fbd2890cfe713d07a457ec64e50ba63b0cd8f77f58",
+      "bytes": 3418,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_1a_rgb_input/__init__.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_1a_rgb_input/__init__.py",
+      "sha256": "99e91f1ca76172cfa0a4349777e6aec36c863582770fb56fa5272b5ebe625725",
+      "bytes": 34,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_1a_rgb_input/pipeline.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_1a_rgb_input/pipeline.py",
+      "sha256": "2c8d878d694afa49ca6c6f5837544f9d842fcef5d9c89e73ce3b612a17a5faa9",
+      "bytes": 738,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_1a_rgb_input/requirements.txt",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_1a_rgb_input/requirements.txt",
+      "sha256": "5765b3da2ec6a3b379e774860380a3bb37b4d2e9b80eefad3fca43a8b40354cd",
+      "bytes": 229,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_1b_360_input/README.md",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_1b_360_input/README.md",
+      "sha256": "98654e2132b76edd38943e03b58f7329b48c586d79496a93b70c79b2551075e4",
+      "bytes": 20143,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_1b_360_input/__init__.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_1b_360_input/__init__.py",
+      "sha256": "bdc0ccaab58302150879fe464eaa37d8f5e6ad9f8e924cf122487349d882fb7e",
+      "bytes": 36,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_1b_360_input/assets/panovggt_r0010003_20261007/render_results.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_1b_360_input/assets/panovggt_r0010003_20261007/render_results.py",
+      "sha256": "815f08004acc84090d3a10e6a86a3d052f923e553084e9fc02f8b424e901df3a",
+      "bytes": 9873,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_1b_360_input/assets/r0010003_20261006/render_results.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_1b_360_input/assets/r0010003_20261006/render_results.py",
+      "sha256": "8f66f139d62933acd44dc03d555fd83aa39734f59b346709c51d7c2208cb9ddc",
+      "bytes": 5401,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_1b_360_input/pipeline.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_1b_360_input/pipeline.py",
+      "sha256": "3529ef67ec660fb37e41370e80a909887a20b26d457facf7ab4bba5a29953139",
+      "bytes": 742,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_1b_360_input/requirements.txt",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_1b_360_input/requirements.txt",
+      "sha256": "5765b3da2ec6a3b379e774860380a3bb37b4d2e9b80eefad3fca43a8b40354cd",
+      "bytes": 229,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_2_reconstruction/README.md",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_2_reconstruction/README.md",
+      "sha256": "6296f4e763be02ccd2135e4e58f2e4d8df5779182b6e615df284102563bf09b0",
+      "bytes": 2905,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_2_reconstruction/__init__.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_2_reconstruction/__init__.py",
+      "sha256": "0873d59541dadb57cacf0e15b7f4fc2647857f221f47a0e50a4e9eea8b4553eb",
+      "bytes": 44,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_2_reconstruction/pipeline.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_2_reconstruction/pipeline.py",
+      "sha256": "3591acad3fcd4d1ea63223b7968543282b443ed26f4848b15e611bbadb01bd2f",
+      "bytes": 769,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_2_reconstruction/requirements.txt",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_2_reconstruction/requirements.txt",
+      "sha256": "5765b3da2ec6a3b379e774860380a3bb37b4d2e9b80eefad3fca43a8b40354cd",
+      "bytes": 229,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_3_instance_segmentation/README.md",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_3_instance_segmentation/README.md",
+      "sha256": "ba005434564ecc98f0f04001798d7cce9e502fb6ffd42680ca2ac28dbc9630ac",
+      "bytes": 2990,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_3_instance_segmentation/__init__.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_3_instance_segmentation/__init__.py",
+      "sha256": "3666bafa044920fefb3bb11371e2d25401632b38c76c91d940ec4e16b8d40200",
+      "bytes": 38,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_3_instance_segmentation/pipeline.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_3_instance_segmentation/pipeline.py",
+      "sha256": "e95c5f01b572229e64ce4327c17c61e232c5acd94271a3d321f8eb8b35ba0a03",
+      "bytes": 759,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_3_instance_segmentation/requirements.txt",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_3_instance_segmentation/requirements.txt",
+      "sha256": "5765b3da2ec6a3b379e774860380a3bb37b4d2e9b80eefad3fca43a8b40354cd",
+      "bytes": 229,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_4_object_export/README.md",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_4_object_export/README.md",
+      "sha256": "170109bd4c676f1603b7150b225e5dd5ff69fd8c1f12a32ff91ce3d6dcbefdc0",
+      "bytes": 13020,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_4_object_export/__init__.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_4_object_export/__init__.py",
+      "sha256": "0b7c5a50caa3e60f8da4e7b7c602d68bca6ef5f4faa39b966ee889362a907a3d",
+      "bytes": 39,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_4_object_export/pipeline.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_4_object_export/pipeline.py",
+      "sha256": "a618ffed00614e0420c17c0efe4075bc151bc36266fa98558296ce8711bc0d7d",
+      "bytes": 751,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_4_object_export/requirements.txt",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_4_object_export/requirements.txt",
+      "sha256": "5765b3da2ec6a3b379e774860380a3bb37b4d2e9b80eefad3fca43a8b40354cd",
+      "bytes": 229,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5a_change_detection/README.md",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5a_change_detection/README.md",
+      "sha256": "a852519230c80fdb80d0f2a51cfca5e68833ab310015ea8307693e4591fa95de",
+      "bytes": 26526,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5a_change_detection/__init__.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5a_change_detection/__init__.py",
+      "sha256": "a183c375d75e57244622ec95ef94eeeddd4df76192990b4395f6a5095e8cd0b2",
+      "bytes": 47,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5a_change_detection/__main__.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5a_change_detection/__main__.py",
+      "sha256": "6eac7d126fb0763645c9dc123418d70bbb7508b3563241170aaded52c42fc444",
+      "bytes": 730,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5a_change_detection/assets/scene0462-change.html",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5a_change_detection/assets/scene0462-change.html",
+      "sha256": "1d6ba80e71265a6cd09ac44aafe7d0b87263b465539fe3da0f1a189e362ed7f6",
+      "bytes": 987137,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5a_change_detection/dorm_backend.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5a_change_detection/dorm_backend.py",
+      "sha256": "ab78febd0d155736c09e92392aa48fd4dfda4f8de7b8f8ddf1e389a9ebf3a36e",
+      "bytes": 4365,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5a_change_detection/dorm_surface.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5a_change_detection/dorm_surface.py",
+      "sha256": "3bce7fa0ac86e9e4d2ca3d346c7f419223ccf0318b43d85a75bdd49fa310ee55",
+      "bytes": 21258,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5a_change_detection/local_surface_diagnostic.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5a_change_detection/local_surface_diagnostic.py",
+      "sha256": "01302b81605281de3ddcc1e4ecf3ccf1e278810fe158bc5c0485d3203b478370",
+      "bytes": 6545,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5a_change_detection/pipeline.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5a_change_detection/pipeline.py",
+      "sha256": "a53d17e418087c9d509dff1b7a251096f9a5300dda28a14daca48a19f8cac30c",
+      "bytes": 881,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5a_change_detection/requirements.txt",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5a_change_detection/requirements.txt",
+      "sha256": "6ffc3451ea83904eff19a36d34393766d44c5c68bf2bd597c218101ff7332cb6",
+      "bytes": 120,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5a_change_detection/surface_geometry.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5a_change_detection/surface_geometry.py",
+      "sha256": "6dbf930a4a7fd967cd7e5d904bcf3ebd38fb93525c6be71066d12befc58c9675",
+      "bytes": 8444,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5a_change_detection/surface_materials.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5a_change_detection/surface_materials.py",
+      "sha256": "8b05480355ca13a538a4eae281fbb18652baafd7c5e4fff4b93a2a38665d6b08",
+      "bytes": 7357,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5a_change_detection/surface_review.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5a_change_detection/surface_review.py",
+      "sha256": "478bb2a85606e8dcd7105e4b11eb6919dbba8b6643c18bee8810052180615663",
+      "bytes": 5632,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/DEVELOPMENT_NOTES.md",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/DEVELOPMENT_NOTES.md",
+      "sha256": "e014cc1373168926000609b0c9698ef05d750d3397a974b48cd243ec2efea100",
+      "bytes": 152852,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/INPUT_POLICY_AUDIT.md",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/INPUT_POLICY_AUDIT.md",
+      "sha256": "87450711f4366ac9ff0c34f72f31764c598b2bcceb17a492d575dfbf668e3405",
+      "bytes": 20680,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/README.md",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/README.md",
+      "sha256": "a7ff1d0f089cde09842879dc90abecbb6e7c37cdae6c908639fb03fe6dda53fc",
+      "bytes": 194185,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/__init__.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/__init__.py",
+      "sha256": "8bf7419b85ed831cda46b7d74295977c3ce003e43ce8c1cea8d54b493f290fc4",
+      "bytes": 50,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/__main__.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/__main__.py",
+      "sha256": "a70005aae66f06c1fcafb560a0e6b8fb5c0f899707bcf6beaa432dabf2ef7e41",
+      "bytes": 6579,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/camera_height.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/camera_height.py",
+      "sha256": "a8f1eb35fedbf44198ccc3ce97a5320c277592a80811f0c3a71d1de6fba1c337",
+      "bytes": 5022,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/candidates.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/candidates.py",
+      "sha256": "aae1065e2c833fcd4937287f787ab4c0cc2d13a7192d03b8b08be1e72638bf2b",
+      "bytes": 9032,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/coverage_repair.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/coverage_repair.py",
+      "sha256": "8e96fbd0ea97360e6277c2dcc4293c5b832b9e89ae4bc51c453fd1c9397c6f7c",
+      "bytes": 6800,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/coverage_validation.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/coverage_validation.py",
+      "sha256": "1b10aa6f71a346e5ec3852657c22a9fc8bbee3f2a20a5bc86cbdc1da08e1895b",
+      "bytes": 3590,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/examples/benchmark_evaluation.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/examples/benchmark_evaluation.py",
+      "sha256": "39776f6402f1f9bf33a4eb3a54feab627f4522674b0179785799dd6951060014",
+      "bytes": 37752,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/examples/compare_planning.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/examples/compare_planning.py",
+      "sha256": "6d7c5c32060a7adce63cd3cc8d5d7b9c73c7eee27dd0eddfd05d910c4cba0460",
+      "bytes": 4989,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/examples/free_navigation_evaluation.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/examples/free_navigation_evaluation.py",
+      "sha256": "74d00457013b3de6193b57ddcce49641dc4aec0afd822c2ca6b9209c78c34545",
+      "bytes": 6110,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/examples/graph_navigation_evaluation.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/examples/graph_navigation_evaluation.py",
+      "sha256": "e19a8b96c9778d3dc8e0c666a5e5a1bd63612c48e6a051d55f9c680922c5aab9",
+      "bytes": 14660,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/examples/navigation_demo.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/examples/navigation_demo.py",
+      "sha256": "e06a3e08766e15f005215aa1185a2832885a40fb1f56347c32c0c38a5ae483d0",
+      "bytes": 4740,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/examples/navigation_viewer.html",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/examples/navigation_viewer.html",
+      "sha256": "ce3740cb67006d3e164fb384cd55131d26499f2eb28c3f5a8e6b83e585fbe962",
+      "bytes": 8830,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/importance.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/importance.py",
+      "sha256": "e5f9c6939a4d38c3564669d2d64c1a9b41061472a4e40c00c74522b6136daebc",
+      "bytes": 3633,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/input_coverage.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/input_coverage.py",
+      "sha256": "2290d2c0338eb91518460b2374f6b9545533ca84342263cc5a10f4e4e291cb1d",
+      "bytes": 3543,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/lateral_candidates.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/lateral_candidates.py",
+      "sha256": "6dc9201527fff4c8b08b9b36c77948b14b4c1b05c74970a41f9ee3797229aa82",
+      "bytes": 14198,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/loader.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/loader.py",
+      "sha256": "042b3fd86c206ad286522f98d10bd68728ffc7f1596c7516e1e150d5372d262e",
+      "bytes": 28334,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/models.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/models.py",
+      "sha256": "d06ffc7ae769acf8775db5138171aa37ff53fef817dcca7d902479a0919f0fea",
+      "bytes": 8123,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/navigation.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/navigation.py",
+      "sha256": "e18f9b50ca95520d982ea5b87358dd918b2ee3c40e382c248321d8e08aa39124",
+      "bytes": 9498,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/navigation_completion.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/navigation_completion.py",
+      "sha256": "e12f799a1b4c263922546e257ae77e7988e69245e46b7260c18c53858b3d06e1",
+      "bytes": 11686,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/navigation_free.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/navigation_free.py",
+      "sha256": "d9343a7c7080a7c5501f066f92588056c09631e1512b8101714c8672f3d1d9ac",
+      "bytes": 18829,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/navigation_graph.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/navigation_graph.py",
+      "sha256": "2e18a2dabcd798bb7e180882d55fe4fdcd491d7d47f339f28e12221916cf7290",
+      "bytes": 11204,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/navigation_rng.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/navigation_rng.py",
+      "sha256": "fd2ad37f491450a6f6199bd934489c9225fc3139e14c6a480f1350cf9b6b6396",
+      "bytes": 5541,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/object_identity.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/object_identity.py",
+      "sha256": "5f77f0c7445450dde52d58f9a16ac138ae64e7566325a00c047b072003603689",
+      "bytes": 4323,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/object_quality.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/object_quality.py",
+      "sha256": "db30df688f7ac3c385c20838c44e3f6bc6216af226201ba1f93f70f16688f993",
+      "bytes": 6164,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/pipeline.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/pipeline.py",
+      "sha256": "404a0d1060db1a1e9ca26d92a77e3021f9903f1c0b891cc8ce0299e46430a923",
+      "bytes": 773,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/planner.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/planner.py",
+      "sha256": "22467337029a7f60dccae846ee074694882558426336fa2bffcb9cf9b6660cd3",
+      "bytes": 29393,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/reference.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/reference.py",
+      "sha256": "033f0256eaa222e4ac726aea585e6861bde9403b96be6481f6313eec6a2a394b",
+      "bytes": 19676,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/requirements-tested.txt",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/requirements-tested.txt",
+      "sha256": "aa5234a1a32ae6e410692e8d9c816d1a2248845d993ceb863df73db3a97a63b9",
+      "bytes": 350,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/requirements.txt",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/requirements.txt",
+      "sha256": "732cde186bca7217f4c35c0817ee8d29161cabad84b58fac6547205307ebc9ab",
+      "bytes": 225,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/routing.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/routing.py",
+      "sha256": "d8adf7a274195d06df97703a25b788c3c22f2164be7f66646c783358f1a79bf6",
+      "bytes": 25841,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/selection.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/selection.py",
+      "sha256": "fd78495c9a88698895775773c09df6749504963fe8600e97e15c9fa02475a1a1",
+      "bytes": 26059,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/selection_guard.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/selection_guard.py",
+      "sha256": "5ec27fff66cef67544764d4fabcfd8cc99f7ae42b267085c2cda6b19744a3ecb",
+      "bytes": 3084,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/spatial_sampling.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/spatial_sampling.py",
+      "sha256": "ad4b54b6a04dedefcaec72b31cd2ab0ac936e64eac9102d4f80735c2cddbf9e0",
+      "bytes": 4823,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/validation.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/validation.py",
+      "sha256": "4cab8f8fd4ec6fc8b998523c97e5ba1b9ff430ac233e5aa1d85ddb6a04b9f3f6",
+      "bytes": 55938,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/code/spacewatch3d/tasks/task_5b_keyframes/visibility.py",
+      "relative_path": "statistical_policy_snapshot/template/code/spacewatch3d/tasks/task_5b_keyframes/visibility.py",
+      "sha256": "db807c533c8540caace52fa8ebb93478e48ed7d7cff5e06419864348d64b7ce1",
+      "bytes": 34311,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/native/native_executor.py",
+      "relative_path": "statistical_policy_snapshot/template/native/native_executor.py",
+      "sha256": "3b71068e78b047337d148efc7468dc50a0d50beae03bedeba0871d9c8a060e14",
+      "bytes": 2799,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/native/objective_executor.py",
+      "relative_path": "statistical_policy_snapshot/template/native/objective_executor.py",
+      "sha256": "3623cc490c6001d2f5c669793749c269b7446398b06533fbf48291256f33de01",
+      "bytes": 6546,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/native/rays.c",
+      "relative_path": "statistical_policy_snapshot/template/native/rays.c",
+      "sha256": "e3ebfc5926ff3ea32343c277d9fceec68b1b3fa69935ddf5990f5d576620e30c",
+      "bytes": 2834,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/native/rays.so",
+      "relative_path": "statistical_policy_snapshot/template/native/rays.so",
+      "sha256": "efc89bff879eaa932fe9d81fdcbf91cfbbdd5a2d91b4f08745befb6986c9d6cc",
+      "bytes": 16352,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/algorithms/dual_size.py",
+      "relative_path": "statistical_policy_snapshot/template/algorithms/dual_size.py",
+      "sha256": "14c1c57b6828b4a249fa0f956c4963709149346e1f11dad4823bab58029ea79f",
+      "bytes": 3030,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/algorithms/flat_floor.py",
+      "relative_path": "statistical_policy_snapshot/template/algorithms/flat_floor.py",
+      "sha256": "0921df168dd32c4672c33fd2ee6eb50058363bb574ae6c4c7977c152c4abcb02",
+      "bytes": 5598,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/algorithms/fusion_guard.py",
+      "relative_path": "statistical_policy_snapshot/template/algorithms/fusion_guard.py",
+      "sha256": "339cbcfcbc0d7e9f231ccf3c7a108efb8cf697eb59af8665ad66e8497daaf08a",
+      "bytes": 5723,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/algorithms/ground_roles.py",
+      "relative_path": "statistical_policy_snapshot/template/algorithms/ground_roles.py",
+      "sha256": "11ea15d27803ea9d86e0a666673dfe2b887de2abb2d7bf5e1395eb070781268b",
+      "bytes": 5370,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/algorithms/middle_size.py",
+      "relative_path": "statistical_policy_snapshot/template/algorithms/middle_size.py",
+      "sha256": "289207dddf3c6153625bf137e56682779933100e811a3ebdc467e14d940a88d2",
+      "bytes": 1406,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/algorithms/residual_shape.py",
+      "relative_path": "statistical_policy_snapshot/template/algorithms/residual_shape.py",
+      "sha256": "5d327cb9b30d2ccf50c353288c87a162f8a52fc735c4b5374d770be45d502be2",
+      "bytes": 7341,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/algorithms/statistical_modes.py",
+      "relative_path": "statistical_policy_snapshot/template/algorithms/statistical_modes.py",
+      "sha256": "e41100283fbf762338d240d810c8dcc254f931fbca342c3f34878520ea007bc1",
+      "bytes": 2086,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/algorithms/surface_features.py",
+      "relative_path": "statistical_policy_snapshot/template/algorithms/surface_features.py",
+      "sha256": "62caddcebcf0052488e1456897fb501bfce58ce3f7b76d1e4e1f86b55538a5f0",
+      "bytes": 7049,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/algorithms/surface_supplement.py",
+      "relative_path": "statistical_policy_snapshot/template/algorithms/surface_supplement.py",
+      "sha256": "032bd5d1f387c4e65dcb95c0b8060c4d97f9b678dd6cc09e389c4202bf512ace",
+      "bytes": 3376,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/algorithms/tail_guard.py",
+      "relative_path": "statistical_policy_snapshot/template/algorithms/tail_guard.py",
+      "sha256": "7c83b92cfdb26734db51085df2b166726347452e4ee8bf44d0ab4a53ce1c9878",
+      "bytes": 293,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/profile_runner.py",
+      "relative_path": "statistical_policy_snapshot/template/profile_runner.py",
+      "sha256": "9e9f275581208e23cf296ec5f2e29a3ecc1ebb4aff7e59f0d4cf6da2903edd66",
+      "bytes": 2327,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/integrated_runner.py",
+      "relative_path": "statistical_policy_snapshot/template/integrated_runner.py",
+      "sha256": "6fb719da61f07fb4783d984c5a4981438de689b25c4a07d1ac95adefb86eca56",
+      "bytes": 1942,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/cache_optimization.py",
+      "relative_path": "statistical_policy_snapshot/template/cache_optimization.py",
+      "sha256": "88e1dbac8a5bca66e0a5b5d62d9161369fcd69e356140fa193be6a0df5fad959",
+      "bytes": 873,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/fast_execution.py",
+      "relative_path": "statistical_policy_snapshot/template/fast_execution.py",
+      "sha256": "a8cff1dc570afc92211c48ff1903386773a1d48cbd25cddcca2991b75c5c87c6",
+      "bytes": 6285,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/manual.json",
+      "relative_path": "statistical_policy_snapshot/template/manual.json",
+      "sha256": "8770591b5e26238a0d8d756df57a3b00030cdc7743b26c7711470d6d24be43b9",
+      "bytes": 889,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/prompt.txt",
+      "relative_path": "statistical_policy_snapshot/template/prompt.txt",
+      "sha256": "6d8acd07f57a01d0a62bbedc4358d227315fca8d8f3c752a3dd6a1999e4b2733",
+      "bytes": 5978,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm2_statistical_scored/config.json",
+      "relative_path": "statistical_policy_snapshot/template/config.json",
+      "sha256": "e59e833eb099549f56232bfd2f069d63ad857b6a845170703e209b2f97d561ec",
+      "bytes": 1378,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/profiles/dorm3_statistical_scored/score_summary.json",
+      "relative_path": "statistical_policy_snapshot/class_score_summary.json",
+      "sha256": "738fc49cfa6ae3b953a7c85a6de6b52838a946d6d5eaa333d9a0ec0796177a6e",
+      "bytes": 2170,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/spacewatch_pipeline_v5_1/configs/dorm3.json",
+      "relative_path": "statistical_policy_snapshot/release_config.json",
+      "sha256": "0202873e450abc269862fdbb3cb29f96f6cad0ce979dd2769e44ed42b95f7ff5",
+      "bytes": 3130,
+      "role": "accepted_statistical_policy"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/prepare_new.py",
+      "relative_path": "raw_input_producer/prepare_new.py",
+      "sha256": "adcbd1033eea917e57b06e07b318bf6d0901b856942b5ebf8ee1b2e7734d5638",
+      "bytes": 7042,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/run_all.py",
+      "relative_path": "raw_input_producer/run_all.py",
+      "sha256": "a8615515628f7c1307b9a4c0fb18a04088a105d37f8886ff354745e8de2948a3",
+      "bytes": 7107,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/configs/dorm2.json",
+      "relative_path": "raw_input_producer/reconstruction_template.json",
+      "sha256": "82e49f29c798e7005877cbf2337818f1af6c25aaf9fe59f03089f5c0b56ef320",
+      "bytes": 4472,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/README.md",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/README.md",
+      "sha256": "cef1f43d8cfcd14c6ec9e509a52caea703c3a20f3ed1b9ddbeb1789e083e140d",
+      "bytes": 5889,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/V1_REFERENCE.md",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/V1_REFERENCE.md",
+      "sha256": "581f86a80655153090abdea7f174dcca236fd733a8f4eac2a3e7236979768471",
+      "bytes": 12289,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/batch.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/batch.py",
+      "sha256": "51a7443362ddb2784c05a41463aa99a1f6d132ae37d9314b3be19736acc03cf6",
+      "bytes": 2809,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/common.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/common.py",
+      "sha256": "cfc18bdc2e7061b571216316cfd071c4b5777fe8223318b7b734214934106334",
+      "bytes": 8380,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/component_filter.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/component_filter.py",
+      "sha256": "6dfbd76b70e6a468f858f43c98f04d4e6b34e542f4ac670cbaf2e8ec4a4817f2",
+      "bytes": 6732,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/freeze_inputs.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/freeze_inputs.py",
+      "sha256": "73c08b01261c99a6e65ee32dbb12c4b0a962f8ff410f672237c73d1e1915d13c",
+      "bytes": 5570,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/masks.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/masks.py",
+      "sha256": "1db576bacd70ca06204d7f1441d38d8c27df142578d9bac353dafc08c8caace0",
+      "bytes": 1210,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/run.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/run.py",
+      "sha256": "e70590f1d2b7c8c4138a02a05455cf45d3baf57745f3b38bb580af899196e337",
+      "bytes": 11548,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/slab_components.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/slab_components.py",
+      "sha256": "f37b405826cfe9f9083c9324849d848575c7898730f890884e33cce4e7b1ef01",
+      "bytes": 5146,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/tests/check_replay.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/tests/check_replay.py",
+      "sha256": "1b5925cbc1d26dfb06414b405abd1629c0ca16beb9d9034da70f9c33ff699895",
+      "bytes": 2900,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/tests/test_components.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/tests/test_components.py",
+      "sha256": "43af0bfe7fa8d7e76f97e00d98846790c159bb21149d0600446ab5e50d28eedc",
+      "bytes": 2420,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/tests/test_pipeline.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/tests/test_pipeline.py",
+      "sha256": "3ca72b9aa8481fe3c243a52d1b38b3693c18b456d56766a2b2b680c80e45fc3b",
+      "bytes": 6275,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/viewer/index.html",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/viewer/index.html",
+      "sha256": "9b15cfe087f47ce2ae8a8b147e25b26002906a1205958414567fa3d7d59d173e",
+      "bytes": 8952,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/viewer/viewer_vendor.js",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/viewer/viewer_vendor.js",
+      "sha256": "22b568c2c384610370c4cd9d4b16c1921d5dacfbc7b4b0fd7e9eb79f238b1400",
+      "bytes": 636877,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/workers/build_viewer.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/workers/build_viewer.py",
+      "sha256": "88c8ff35251c7b268f38446ad3347ba22392ff6a8785af81140cd92c3b513839",
+      "bytes": 1568,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/workers/connect.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/workers/connect.py",
+      "sha256": "21da676f4dffd522085e596741fa3eb0e5d820233247f7acc0edd8d9d6c1b768",
+      "bytes": 3077,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/workers/engine.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/workers/engine.py",
+      "sha256": "1896564ab47f8de718e260ef1ce6d5ac562983073cfcb21a9d6b0279a4cc930a",
+      "bytes": 5462,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/workers/enhance.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/workers/enhance.py",
+      "sha256": "d2dd6c4de31c6ed8b4a222785df9ab572c9b99b9df63a5e7532448d2d13cf7f9",
+      "bytes": 3444,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/workers/export.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/workers/export.py",
+      "sha256": "03ae4bdecef7975cfb63acf4266bdbb80d9bb22ae163eafd508e097957024fab",
+      "bytes": 7231,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/workers/filter_components.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/workers/filter_components.py",
+      "sha256": "c03d7cebf1e7f0e79fe7f311c14e179df338922c666c90dd312ddfe95ed15ebd",
+      "bytes": 3521,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/workers/infer.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/workers/infer.py",
+      "sha256": "498e234e838bdd92101091e7cad70631646498301c01aa444ef34eb3842e9c2f",
+      "bytes": 4319,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/workers/match.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/workers/match.py",
+      "sha256": "33939fdd78a3376ad0b84dcace80b1bb7f9c82b0012d417d0ce88602057feb5d",
+      "bytes": 5243,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/workers/match_hires.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/workers/match_hires.py",
+      "sha256": "b1619ab1d9e160577b3978a189f508218249b951b05387eaab9aff4796466eb4",
+      "bytes": 4882,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/workers/optimize.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/workers/optimize.py",
+      "sha256": "f589f9c6ed5bb0f7a848bae01139ab411bf7c67bfd00ab5660670129c214a957",
+      "bytes": 2457,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/workers/panovggt_global.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/workers/panovggt_global.py",
+      "sha256": "2c0b9db142099bba67300a8b93c10b6913bfff9bcfdb6d990e949c46538c76de",
+      "bytes": 4686,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/workers/plan_hires.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/workers/plan_hires.py",
+      "sha256": "63cd1edececa1c6cf63bf34ef430ce75b553fa62fd892a1dc9001448da5c98a7",
+      "bytes": 351,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/workers/prepare_inputs.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/workers/prepare_inputs.py",
+      "sha256": "8d8b983a0c4cfad51252bf145fdea154a281df888353e6609ed386427ce6a1e0",
+      "bytes": 2792,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/workers/refine.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/workers/refine.py",
+      "sha256": "6da37000e9a4fd084b8cc8f452a802f76ff8d7918bf4b9f88beb027babcf0441",
+      "bytes": 13623,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/dorm4_dorm5_v5_20261025/code/v5/vendor/panovggt_pipeline_v2/workers/runtime.py",
+      "relative_path": "raw_input_producer/panovggt_pipeline_v2/workers/runtime.py",
+      "sha256": "6cb85313c9bb6d81940137a0c43ef80f2981cc0ac1f6bcf8b3ed103db452c089",
+      "bytes": 2393,
+      "role": "accepted_raw_input_producer"
+    },
+    {
+      "source": "/workspace/spacewatch_integrated_20261110_8QJn4J/code/upstream519_original/offline_worker.py",
+      "relative_path": "offline_worker.py",
+      "sha256": "0592554620214e5b3823947739393e136d2698ca8688b261dd9b9ace9b283548",
+      "bytes": 4625,
+      "role": "integrated_io_class_and_offline_adapter"
+    },
+    {
+      "source": "/workspace/spacewatch_integrated_20261110_8QJn4J/code/upstream519_original/network_guard/sitecustomize.py",
+      "relative_path": "network_guard/sitecustomize.py",
+      "sha256": "6e6f1a75eba4d9b402354b2b5382a0c2a5ed7fa09a8cf6ef7cbca7f93f826ffd",
+      "bytes": 404,
+      "role": "integrated_io_class_and_offline_adapter"
+    }
+  ],
+  "total_bytes": 5795349,
+  "source_only": true,
+  "images_models_geometry_or_runs_copied": false,
+  "note": "Original profile producer still reads accepted external release paths, verified against these frozen policy snapshots before execution."
+}

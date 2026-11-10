@@ -1,0 +1,21 @@
+{
+  "repeat": 3,
+  "request_key": "a3dbdda2c4f77cf2a4b501b592b89b9a9934f6c14264662e90c9b90c57632518",
+  "response": {
+    "rating": 5,
+    "reason": "출입문은 통로 이용을 방해하는 적치물 확인 및 시설 안전 관리의 핵심 요소이므로 매우 중요하게 관찰해야 합니다."
+  },
+  "usage": {
+    "promptTokenCount": 345,
+    "candidatesTokenCount": 43,
+    "totalTokenCount": 388,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 345
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "seconds": 4.01133931055665
+}

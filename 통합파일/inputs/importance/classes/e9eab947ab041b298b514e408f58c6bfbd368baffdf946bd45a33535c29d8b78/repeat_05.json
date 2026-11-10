@@ -1,0 +1,21 @@
+{
+  "repeat": 5,
+  "request_key": "e9eab947ab041b298b514e408f58c6bfbd368baffdf946bd45a33535c29d8b78",
+  "response": {
+    "rating": 5,
+    "reason": "소화기는 화재 시 안전을 책임지는 핵심 설비로, 매뉴얼에서 위치와 외형 및 접근 상태를 확인하도록 명시하고 있어 매우 중요하게 관찰해야 합니다."
+  },
+  "usage": {
+    "promptTokenCount": 346,
+    "candidatesTokenCount": 52,
+    "totalTokenCount": 398,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 346
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "seconds": 2.593266535550356
+}

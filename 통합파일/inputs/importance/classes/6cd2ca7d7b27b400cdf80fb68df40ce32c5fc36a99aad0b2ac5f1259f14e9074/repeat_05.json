@@ -1,0 +1,21 @@
+{
+  "repeat": 5,
+  "request_key": "6cd2ca7d7b27b400cdf80fb68df40ce32c5fc36a99aad0b2ac5f1259f14e9074",
+  "response": {
+    "rating": 4,
+    "reason": "우산은 통로에 방치될 경우 보행을 방해하는 적치물이 될 수 있으며, 물기 등으로 인한 안전사고를 유발할 수 있어 관찰이 필요합니다."
+  },
+  "usage": {
+    "promptTokenCount": 345,
+    "candidatesTokenCount": 53,
+    "totalTokenCount": 398,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 345
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "seconds": 34.99434561654925
+}

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SpaceWatch3D 이동 프레임 시험</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+<script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+<style>
+body{font:16px system-ui,sans-serif;background:#10151c;color:#e5eaf0;margin:0;padding:20px}main{max-width:1040px;margin:auto}h1{font-size:23px;font-weight:500}p{line-height:1.5}.controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:12px 0}button,select,input{font:inherit}button,select{padding:9px 12px;background:#263440;color:#edf2f7;border:1px solid #536171;border-radius:5px}button:disabled{opacity:.5}#panorama{width:100%;height:480px;background:#18222c}#stops{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.muted{color:#b5c4d3}#error{color:#ffb5a3}svg{max-width:100%;height:150px}button[aria-current=true]{outline:2px solid #86d3ce}@media(max-width:550px){body{padding:12px}#panorama{height:360px}}
+</style>
+<main><h1>SpaceWatch3D · 이동용 프레임 시험</h1>
+<p class="muted">합성 공간의 파노라마. 핵심 2개는 전환 시험을 위해 고정했다. 화면 효과는 중간 위치의 실제 시야 재현이 아니다.</p>
+<div class="controls"><label>공간 <select id="case"></select></label><label>전환 <select id="mode"><option value="motion">전진 + 페이드</option><option value="fade">페이드만</option><option value="cut">즉시 전환</option></select></label></div>
+<div id="panorama" aria-label="360도 파노라마 시험 화면"></div>
+<div class="controls"><button id="back" type="button">뒤로</button><button id="next" type="button">다음 지점</button><span id="status" aria-live="polite"></span></div>
+<div id="stops"></div><svg id="map" role="img" aria-label="실제 안전 연결과 선택 위치"></svg>
+<details><summary>실제 파노라마로 확인</summary><p>navigation.json과 파노라마 파일들을 선택한다. 파일명은 viewpoint_id.jpg 또는 기존 image_ref 파일명이다.</p><div class="controls"><label>연결 정보 <input id="manifest" type="file" accept=".json"></label><label>파노라마 <input id="media" type="file" multiple accept="image/*"></label></div></details>
+<p id="error" role="alert"></p></main>
+<script id="demo-data" type="application/json">{"cases":[]}</script>
+<script>
+(() => {
+  'use strict';
+  const $=id=>document.getElementById(id), cases=JSON.parse($('demo-data').textContent).cases;
+  let viewer, nav, media={}, current, visit=0, moving=false, custom, files={}, objectUrls=[];
+  const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function worldOffset(v){const r=v.reference_from_camera;return Math.atan2(r[0][2],r[1][2])*180/Math.PI;}
+  function pathOrder(){
+    const order=[];for(const e of nav.links){if(order.at(-1)!==e.from_viewpoint)order.push(e.from_viewpoint);order.push(e.to_viewpoint);}return order.length?order:nav.viewpoints.map(v=>v.viewpoint_id);
+  }
+  function update(){
+    const order=pathOrder(), i=visit, v=nav.viewpoints.find(x=>x.viewpoint_id===current);
+    $('status').textContent=`${v?.roles.includes('content')?'핵심':'이동'} · ${current} · 전체 ${nav.report.total_image_count}장 / 이동 추가 ${nav.report.added_image_count}장`;
+    $('back').disabled=moving||i<=0;$('next').disabled=moving||i>=order.length-1;
+    for(const b of $('stops').children)b.setAttribute('aria-current',String(b.dataset.id===current));
+    drawMap();
+  }
+  function connected(a,b){return nav.links.some(e=>(e.from_viewpoint===a&&e.to_viewpoint===b)||(e.to_viewpoint===a&&e.from_viewpoint===b));}
+  function go(target,targetVisit=pathOrder().indexOf(target)){
+    if(moving||target===current)return;
+    if(!media[target]){$('error').textContent='이 위치의 파노라마가 아직 없다. 이미지 생성 완료로 취급하지 않는다.';return;}
+    const local=connected(current,target), mode=$('mode').value, hfov=viewer.getHfov(), pitch=viewer.getPitch();
+    const start=current, yaw=viewer.getYaw();
+    moving=true;update();
+    const finish=()=>{viewer.loadScene(target,pitch,'sameAzimuth',hfov);};
+    viewer.on('scenechange',function changed(id){if(id!==target)return;viewer.off('scenechange',changed);current=id;visit=targetVisit;moving=false;update();});
+    if(local&&mode==='motion'&&!reduced()){
+      // Image-only zoom cue. It does not fabricate parallax or unseen geometry.
+      viewer.setHfov(Math.max(35,hfov*.88),180);setTimeout(finish,180);
+    }else finish();
+    window.lastTransition={from:start,to:target,mode:local?mode:'explicit_jump',preserveWorldDirection:true,startYaw:yaw};
+  }
+  function drawMap(){
+    const list=nav.viewpoints, p=list.map(v=>[v.reference_from_camera[0][3],v.reference_from_camera[1][3]]), w=600,h=150;
+    const minX=Math.min(...p.map(p=>p[0])),maxX=Math.max(...p.map(p=>p[0])),minY=Math.min(...p.map(p=>p[1])),maxY=Math.max(...p.map(p=>p[1]));
+    const scale=Math.min((w-80)/Math.max(1,maxX-minX),(h-50)/Math.max(1,maxY-minY));
+    const xy=v=>[35+(v.reference_from_camera[0][3]-minX)*scale,h-25-(v.reference_from_camera[1][3]-minY)*scale];
+    const byId=Object.fromEntries(list.map(v=>[v.viewpoint_id,v]));
+    const ns='http://www.w3.org/2000/svg',svg=$('map');svg.replaceChildren();svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
+    for(const e of nav.links){const a=xy(byId[e.from_viewpoint]),b=xy(byId[e.to_viewpoint]),line=document.createElementNS(ns,'line');for(const[k,val]of Object.entries({x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:'#728598','stroke-width':2}))line.setAttribute(k,val);svg.append(line);}
+    for(const v of list){const[x,y]=xy(v),c=document.createElementNS(ns,'circle');for(const[k,val]of Object.entries({cx:x,cy:y,r:v.viewpoint_id===current?7:5,fill:v.roles.includes('content')?'#86d3ce':'#f0bc75'}))c.setAttribute(k,val);svg.append(c);const t=document.createElementNS(ns,'text');t.setAttribute('x',x+9);t.setAttribute('y',y-7);t.setAttribute('fill','#e5eaf0');t.textContent=v.roles.includes('content')?'핵심':'이동';svg.append(t);}
+  }
+  function load(n,m){
+    if(n.schema_name!=='spacewatch3d.tour_navigation'||!n.viewpoints.length)throw Error('지원하지 않는 탐색 정보');
+    nav=n;media=m;current=pathOrder()[0];visit=0;moving=false;$('error').textContent='';
+    if(viewer)viewer.destroy();
+    const scenes={};for(const v of nav.viewpoints){if(media[v.viewpoint_id])scenes[v.viewpoint_id]={type:'equirectangular',panorama:media[v.viewpoint_id],northOffset:worldOffset(v),autoLoad:true,showControls:true};}
+    if(!scenes[current]){$('error').textContent='시작 지점의 파노라마 파일을 선택해줘.';return;}
+    const fade=$('mode').value==='cut'||reduced()?0:350;
+    const first=nav.viewpoints.find(v=>v.viewpoint_id===current),next=nav.viewpoints.find(v=>v.viewpoint_id===pathOrder()[1]);
+    const a=first.reference_from_camera,b=next?.reference_from_camera;
+    const initialYaw=b?Math.atan2(b[0][3]-a[0][3],b[1][3]-a[1][3])*180/Math.PI-worldOffset(first):0;
+    viewer=pannellum.viewer('panorama',{default:{firstScene:current,sceneFadeDuration:fade,hfov:100,yaw:initialYaw,autoLoad:true},scenes});
+    $('stops').replaceChildren();for(const id of new Set(pathOrder())){const b=document.createElement('button');b.type='button';b.dataset.id=id;const v=nav.viewpoints.find(v=>v.viewpoint_id===id);b.textContent=(v.roles.includes('content')?'핵심 ':'이동 ')+id;b.onclick=()=>go(id);$('stops').append(b);}
+    update();window.navigationDemo={nav,go,get current(){return current;},get viewer(){return viewer;}};
+  }
+  function select(){const c=cases[Number($('case').value)];if(c)load(c.navigation,c.media);}
+  cases.forEach((c,i)=>{const o=document.createElement('option');o.value=i;o.textContent=c.name;$('case').append(o);});
+  $('case').onchange=select;$('mode').onchange=()=>{if(nav)load(nav,media);};
+  $('next').onclick=()=>{const p=pathOrder();go(p[visit+1],visit+1);};$('back').onclick=()=>{const p=pathOrder();go(p[visit-1],visit-1);};
+  function customLoad(){if(!custom)return;const mapping={};for(const v of custom.viewpoints){const name=(v.image_ref||'').split(/[\\/]/).pop();mapping[v.viewpoint_id]=files[v.viewpoint_id+'.jpg']||files[v.viewpoint_id+'.png']||files[name];}load(custom,mapping);}
+  $('manifest').onchange=async e=>{try{custom=JSON.parse(await e.target.files[0].text());customLoad();}catch(err){$('error').textContent=err.message;}};
+  $('media').onchange=e=>{for(const u of objectUrls)URL.revokeObjectURL(u);objectUrls=[];files={};for(const f of e.target.files){const u=URL.createObjectURL(f);objectUrls.push(u);files[f.name]=u;}try{customLoad();}catch(err){$('error').textContent=err.message;}};
+  if(cases.length)select();
+})();
+</script></html>

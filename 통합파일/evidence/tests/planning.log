@@ -1,0 +1,6 @@
+{"group": "planning", "tests": 15, "passed": true, "failures": 0, "errors": 0, "skipped": 1}
+......s........
+----------------------------------------------------------------------
+Ran 15 tests in 0.293s
+
+OK (skipped=1)

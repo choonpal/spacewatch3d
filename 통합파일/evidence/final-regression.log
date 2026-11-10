@@ -1,0 +1,5 @@
+{"group": "geometry", "python": "/workspace/mesh_generator_v1/.venv/bin/python", "returncode": 0, "summary": {"group": "geometry", "tests": 126, "passed": true, "failures": 0, "errors": 0, "skipped": 0}}
+{"group": "planning", "python": "/workspace/task5b_dorm3_keyframes_20261017/venv/bin/python", "returncode": 0, "summary": {"group": "planning", "tests": 15, "passed": true, "failures": 0, "errors": 0, "skipped": 1}}
+{"group": "florence", "python": "/workspace/mesh_generator_v1/.venv/bin/python", "returncode": 0, "summary": {"group": "florence", "tests": 10, "passed": true, "failures": 0, "errors": 0, "skipped": 0}}
+{"group": "reconstruction", "python": "/workspace/panovggt_env/bin/python", "returncode": 0, "summary": {"group": "reconstruction", "tests": 15, "passed": true, "failures": 0, "errors": 0, "skipped": 0}}
+{"group": "upstream", "python": "/workspace/mesh_generator_v1/.venv/bin/python", "returncode": 0, "summary": {"group": "upstream", "tests": 8, "passed": true, "failures": 0, "errors": 0, "skipped": 0}}

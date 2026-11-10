@@ -1,0 +1,269 @@
+{
+  "status": "execution_completed",
+  "seconds": 607.9263217672706,
+  "count": 21,
+  "planning_status": "incomplete",
+  "quality_status": "unverified",
+  "selected_components": 1,
+  "failure_codes": [
+    "targets_unmet",
+    "coverage_repair_targets_unmet",
+    "object_selection_guard_targets_unmet",
+    "independent_coverage_targets_unmet"
+  ],
+  "coverage_report": {
+    "weighted_object_quality": 0.9165140348311108,
+    "coverage_observable": 0.9884042269733331,
+    "coverage_total": 0.9763572047671578,
+    "object_observation_requirements": {
+      "policy": "all_input_objects",
+      "required_object_count": 93,
+      "unobserved_required_object_ids": [
+        "stat_class_12_cc_0013"
+      ],
+      "observed_object_count": 92,
+      "input_object_count": 93
+    },
+    "content_count": 21,
+    "transition_count": 0
+  },
+  "ground_role_report": {
+    "method": "semantic_floor_full_xy_flat_indoor_prior_v2",
+    "user_provided_prior": "All indoor areas on this map are flat, same-level floor; no actual steps or floor holes.",
+    "single_level_prior_required": true,
+    "multi_level_or_real_steps_supported": false,
+    "original_source_faces": 146478,
+    "floor_class_ids": [
+      1,
+      15
+    ],
+    "wall_class_ids": [
+      0
+    ],
+    "ceiling_class_ids": [
+      2
+    ],
+    "semantic_ground_faces": 32103,
+    "semantic_floor_height_or_slope_gates": false,
+    "semantic_floor_projected_area": 219.27250793758503,
+    "previous_floor_area": 191.05459292836846,
+    "original_floor_area": 189.28436818423438,
+    "new_floor_area": 231.789342860062,
+    "recovered_semantic_floor_area_vs_previous": 29.986489618109243,
+    "ceiling_backed_inferred_floor_area": 10.736213756705128,
+    "ceiling_projection_used_only_as_navigation_prior": true,
+    "inferred_bounded_hole_area": 0.012046556879579028,
+    "inferred_bounded_hole_count": 81,
+    "source_ground_faces_exempt_from_collision": 32103,
+    "wall_faces_preserved_as_collision": 55648,
+    "ceiling_faces_preserved_as_collision": 28423,
+    "unknown_edge_connected_support_faces": 604,
+    "unknown_collision_faces_preserved": true,
+    "original_floor_bounds": [
+      -5.883541584014893,
+      -32.840545654296875,
+      10.974580764770508,
+      23.482023239135742
+    ],
+    "new_floor_bounds": [
+      -6.132122993469238,
+      -33.87265396118164,
+      11.029285430908203,
+      23.876169204711914
+    ],
+    "convex_hull_used": false,
+    "between_component_gap_filling": false,
+    "source_observation_triangles_added_or_removed": 0,
+    "original_labels_changed": 0,
+    "original_observation_geometry_unchanged": true,
+    "physical_safety_verified": false,
+    "navigation_floor_is_projected_support_not_repaired_source_mesh": true
+  },
+  "verification": {
+    "status": "executed_not_physical_safety_certification",
+    "all_original_triangles_preserved_exactly_once": true,
+    "source_faces": 146478,
+    "full_scene_config_and_target_mask_exactly_unchanged": true,
+    "importance_applied_to_all93": true,
+    "safe_positions_in_new_model": 21,
+    "positions": 21,
+    "safe_segments_in_new_model": 938,
+    "segments": 938,
+    "all_positions_and_segments_pass_new_model": true,
+    "runs": [
+      {
+        "seed": 26103001,
+        "selection_used": false,
+        "results": {
+          "baseline21": {
+            "views": 21,
+            "space_total_original_geometry": 0.9765719949438242,
+            "observed": 92,
+            "total": 93,
+            "unobserved": [
+              "stat_class_12_cc_0013"
+            ],
+            "by_class": {
+              "ceiling light": {
+                "observed": 19,
+                "count": 20
+              },
+              "chair": {
+                "observed": 5,
+                "count": 5
+              },
+              "door": {
+                "observed": 53,
+                "count": 53
+              },
+              "elevator door": {
+                "observed": 10,
+                "count": 10
+              },
+              "table": {
+                "observed": 3,
+                "count": 3
+              },
+              "vacuum cleaner": {
+                "observed": 1,
+                "count": 1
+              },
+              "window": {
+                "observed": 1,
+                "count": 1
+              }
+            }
+          },
+          "importance": {
+            "views": 21,
+            "space_total_original_geometry": 0.9753417456509959,
+            "observed": 92,
+            "total": 93,
+            "unobserved": [
+              "stat_class_12_cc_0013"
+            ],
+            "by_class": {
+              "ceiling light": {
+                "observed": 19,
+                "count": 20
+              },
+              "chair": {
+                "observed": 5,
+                "count": 5
+              },
+              "door": {
+                "observed": 53,
+                "count": 53
+              },
+              "elevator door": {
+                "observed": 10,
+                "count": 10
+              },
+              "table": {
+                "observed": 3,
+                "count": 3
+              },
+              "vacuum cleaner": {
+                "observed": 1,
+                "count": 1
+              },
+              "window": {
+                "observed": 1,
+                "count": 1
+              }
+            }
+          }
+        }
+      },
+      {
+        "seed": 26103002,
+        "selection_used": false,
+        "results": {
+          "baseline21": {
+            "views": 21,
+            "space_total_original_geometry": 0.9762517866652002,
+            "observed": 92,
+            "total": 93,
+            "unobserved": [
+              "stat_class_12_cc_0013"
+            ],
+            "by_class": {
+              "ceiling light": {
+                "observed": 19,
+                "count": 20
+              },
+              "chair": {
+                "observed": 5,
+                "count": 5
+              },
+              "door": {
+                "observed": 53,
+                "count": 53
+              },
+              "elevator door": {
+                "observed": 10,
+                "count": 10
+              },
+              "table": {
+                "observed": 3,
+                "count": 3
+              },
+              "vacuum cleaner": {
+                "observed": 1,
+                "count": 1
+              },
+              "window": {
+                "observed": 1,
+                "count": 1
+              }
+            }
+          },
+          "importance": {
+            "views": 21,
+            "space_total_original_geometry": 0.9769643994158702,
+            "observed": 92,
+            "total": 93,
+            "unobserved": [
+              "stat_class_12_cc_0013"
+            ],
+            "by_class": {
+              "ceiling light": {
+                "observed": 19,
+                "count": 20
+              },
+              "chair": {
+                "observed": 5,
+                "count": 5
+              },
+              "door": {
+                "observed": 53,
+                "count": 53
+              },
+              "elevator door": {
+                "observed": 10,
+                "count": 10
+              },
+              "table": {
+                "observed": 3,
+                "count": 3
+              },
+              "vacuum cleaner": {
+                "observed": 1,
+                "count": 1
+              },
+              "window": {
+                "observed": 1,
+                "count": 1
+              }
+            }
+          }
+        }
+      }
+    ],
+    "physical_safety_verified": false,
+    "model_importance_semantics": "UNVERIFIED"
+  },
+  "source_unchanged": true,
+  "production_changed": false,
+  "new_llm_calls": 0
+}

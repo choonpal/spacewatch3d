@@ -1,0 +1,5 @@
+5.1.8에서 활성화한 Dorm3 관측 프로필. 입력 해시가 다르면 재사용을 거부한다.
+require_all_objects=false 외에는 검증한21개 조건을 유지. reference result13은 강제 장수가 아니며 새 출력에는 실제 재선정을 수행한다.
+93개 대상은 물리 인스턴스 정답이 아닌 의미 연결영역이다.108개 제외는 독립 품질 의무 제외이며 삼각형 삭제가 아니다.
+선정기는 관측가능92개 중83개로 완료하나 전체93개 기준89.25%로90% 미달이다. 기존 지역 미달도 유지한다.
+summary.json/verification.json/README_ko.txt의21개 정보는 이전 프로필의 출처 기록이며 활성13개 근거는reference13_comparison.json과result/tour_plan.json이다.

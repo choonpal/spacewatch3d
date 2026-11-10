@@ -1,0 +1,16 @@
+{
+  "schema": "spacewatch.final_browser_check.v1",
+  "url": "http://127.0.0.1:18844/pipeline.html?capture=dorm5#tour",
+  "observed": [
+    "Only DORM5 is selectable; current selection contains10viewpoints",
+    "Original panorama and3Dmesh rendered",
+    "Frame selection changed the current view fromK1 toK6",
+    "Changes display switch was turned off and back on",
+    "K6 current change-evidence photographs were shown",
+    "Settings explicitly display5unresolved source candidates and2rule groups",
+    "Units remainu and targets_unmet remains visible"
+  ],
+  "browser_errors_and_warnings": [],
+  "old_user_tabs_modified": false,
+  "independent_ground_truth_accuracy_verified": false
+}

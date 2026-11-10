@@ -1,0 +1,60 @@
+{
+  "schema": "spacewatch.strict-paper-crop-binding.v1",
+  "date": "2026-11-10",
+  "scope": "New root code only; no original/frozen execution03 source, input, results, or active process modified. No NN/API/model installation/download executed.",
+  "root": "/workspace/spacewatch_integrated_20261110_8QJn4J/code",
+  "historical_static_map_audit": {
+    "source": "/workspace/dorm45_supplement_frames_20261030_9da81417/runs/fuse_mean_verified/code/tools/mesh_simsac/objcrop.py",
+    "source_sha256": "8cfedf8ad445d105a73dc2546da308828d61d922d757c1f919f67091e6e26de9",
+    "rating_report_sha256": "cf24cdaca1c85682d0a641f332da4d2c3f8edfe67787bdadafe330e4a619e8ae",
+    "differences": [
+      {"class": "water dispenser", "legacy_static": 3, "saved_five_response_mean": 4},
+      {"class": "sign", "legacy_static": 3, "saved_five_response_mean": 2},
+      {"class": "ceiling light", "legacy_static": null, "saved_five_response_mean": 4, "legacy_effect": "ineligible"}
+    ],
+    "other_static_class_means_equal": 11,
+    "note": "Differences are evidence only, not per-class override rules. Production strict mode reads the complete current verified class map dynamically."
+  },
+  "strict_contract": {
+    "setting": "settings.crop_importance_by_class",
+    "validation": "Nonempty explicit mapping; current vocabulary class names; no structural/person target; numeric nonbool finite means in [1,5]. No invented neutral fallback.",
+    "eligibility": "Every supplied nonstructural/nonperson class, including ceiling light and classes not in legacy allowlist, subject to unchanged64pixel/45degree/angular-separation/photographer/mesh-hit/pairing rules.",
+    "legacy_reference": "When setting absent, exact IMPORTANCE values and class eligibility are preserved. Legacy comment corrected to identify historical ranking rather than falsely claim exact saved means.",
+    "dependencies": ["capture-before.importance", "capture-after.importance"],
+    "required_dependency_fields": ["ratings", "cache or importance_cache", "class_list_hash"],
+    "identity": "Validate cache.rating_source hash/size/path, current capture ID, five integer1-5 responses and mean/score arithmetic, class list hash, manual hash and requested model consistency across both captures. Semantic correctness remains UNVERIFIED; no new model calls.",
+    "immutable_inputs": "mesh_rgb.clone full predecessor input folder to rgb_prepare/current-inputs: NPZ/NPY/PNG/JPG/BIN hardlinked read-only by use, JSON copied. Only NEW manifest settings and binding metadata edited. Predecessor manifest SHA checked unchanged.",
+    "result_contract": "rgb_prepare inputs_manifest+manifest point NEW current-inputs manifest; crop_importance_binding receipt and source manifest hash included. rgb_infer propagates these; rgb_finalize shallow-overrides base pair.rgb_inputs.manifest with latest infer/prepare manifest. Final viewer receives authoritative NEW inputs_manifest. Legacy stages without new fields retain backward-compatible source manifest fallback.",
+    "registration": "Imported early-stage registration respects explicit registration_computed_in_current_pipeline=false and stage_reuse metadata, not prior fresh_registration=true. Final viewer provenance preserves this distinction.",
+    "source_checks": "Prepare adds four importance source receipt hashes to prepared source_hashes, then final validation rechecks them."
+  },
+  "protected_prefix_ast": {
+    "before_paper_changes_sha256": "6576386763401be91644b81cf32dc35ff654714ea7c95518e54179af91cfd4b0",
+    "all_unchanged": true,
+    "functions": ["validate_options", "paper_settings", "_frame_key", "select_lowmask", "extend_photographer", "_catalog", "select_current_plan", "_require_plan_dependencies", "rgb_inputs"],
+    "comparison": "ast.dump(include_attributes=false) before root upload versus edited source; no protected function changed."
+  },
+  "files": [
+    {"path": "spacewatch_pipeline/paper_changes.py", "sha256": "19776205f928839100788ac4728e3917cea9c9ef18281dc7d7a1fc49ea32adfa"},
+    {"path": "tools/mesh_simsac/objcrop.py", "sha256": "5edd5d368cd0e31ad3298e48b1eac158845279130e03630e550deb0765a71dbf"},
+    {"path": "tools/mesh_simsac/prepare.py", "sha256": "13198ff6a78881dce44e9dc873bb7ac3e23f0185a04d7b27d8c5b7faad1c52d3"},
+    {"path": "tests/test_paper_changes.py", "sha256": "efd7e78203e60fa231c5505e1c24bd13c55a3f7a5077a9c22199d71c85bdb07f"}
+  ],
+  "verification": {
+    "unit_tests": {"tests": 14, "failures": 0, "errors": 0, "seconds": 4.497, "cpu_affinity": 1, "timeout_seconds": 120, "model_calls": 0},
+    "test_scope": ["Legacy static ranking preserved", "Strict current-class validation and no fallback", "Ceiling light accepted by actual crop-candidate path with fake raycaster only", "Current five-response mean identity/source tamper detection", "Full cloned-folder JSON independence and array hardlink", "Immutable predecessor hash", "Current manifest propagation prepare/infer/finalize", "Imported registration false retained", "Earlier dynamic current-plan/mask/general-grouping tests"],
+    "actual_current_receipt_binding": {
+      "mode": "read-only current_crop_importance helper, no folder clone or prepare/inference",
+      "source_run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run",
+      "status": "passed",
+      "classes": 14,
+      "manual_hash": "554dafa4d0e392ba1947bdbdb9b5abe72d72040fc58d483e635f0d03eacad5fa",
+      "class_list_hash": "bcf3fd5e20694220162ca9ec6c0bcd877020335ed603d2d7023bb206dd0d1a6c",
+      "model_requested": "gemini-3.1-flash-lite",
+      "source_files": 4,
+      "semantic_status": "UNVERIFIED",
+      "class_means": {"box":5,"ceiling light":4,"chair":3,"clothes":3,"door":5,"fire extinguisher":5,"fire hose cabinet":5,"sign":2,"table":3,"umbrella":4,"vacuum cleaner":4,"ventilation grille":3,"water dispenser":4,"window":3}
+    }
+  },
+  "limitations": ["New strict04 actual preparation/inference/finalization must be launched and verified by main; source tests do not claim new model output.", "Historical03 accepted-reference execution remains separate and untouched.", "Requested model name is gemini-3.1-flash-lite; publication uses Gemini3Flash-Lite, provider returned-model revision absent.", "General grouping runtime is GT-free but historical same-evaluation development caveat remains."]
+}

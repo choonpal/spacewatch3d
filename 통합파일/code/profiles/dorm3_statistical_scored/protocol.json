@@ -1,0 +1,22 @@
+{
+  "status": "prepared",
+  "baseline": "/workspace/task5b_dorm3_shape_residual_20261026_kAm2a3",
+  "source_hashes": {
+    "/workspace/task5b_dorm3_shape_residual_20261026_kAm2a3/scene.json": "721529c64e9535e5702d602e400cc3e380289beb34d59a480c4e5044fdd88b78",
+    "/workspace/task5b_dorm3_shape_residual_20261026_kAm2a3/config.json": "a82e5cdece82528e400e2a7474b7892746b66c36fb6f9405527c0492df2d2db4",
+    "/workspace/task5b_dorm3_shape_residual_20261026_kAm2a3/plan/tour_plan.json": "2c67ab1ae008ce4f278d07c45f75f37ed9385876b14f3440d761ad01d31944a4",
+    "/workspace/task5b_dorm3_shape_residual_20261026_kAm2a3/face_roles.npz": "2c4d30e9ff2b86beb36d0eeeb6fec24621090e0247087b0e3354742c89e733b6",
+    "/workspace/spacewatch_runs/dorm2_dorm3_pipeline_v5_20261025/stages/dorm3.instances/attempt-1792927438269125379/mesh_arrays.npz": "da807ca18ffc5a8a0697335999209c6309a088239f565bae457359302c8579f3"
+  },
+  "full_scene_geometry_floor_navigation_and_config_exactly_unchanged": true,
+  "changes": [
+    "importance_cache=level/2; exact-cache reuse plus 2 new class calls",
+    "previously approved count_v1 target policy port; utility formula unchanged"
+  ],
+  "segmentation_changes": 0,
+  "new_noise_exclusions": 0,
+  "count_caps_removed": true,
+  "threads": 4,
+  "deadline_seconds_per_stage": 2700,
+  "production_changed": false
+}

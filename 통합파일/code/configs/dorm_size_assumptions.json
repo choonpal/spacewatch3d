@@ -1,0 +1,507 @@
+{
+  "units": "mesh units; treated as meter-like for hypothetical sizes, metric scale unverified",
+  "metric_scale_verified": false,
+  "per_instance_size_measured": false,
+  "prior_type": "one assumed full-size template per class, common to both scenes",
+  "priors": [
+    {
+      "class_id": 3,
+      "name": "door",
+      "name_ko": "일반 문",
+      "references": [
+        {
+          "scene": "dorm2",
+          "instance_id": 12,
+          "faces": 337,
+          "dimensions": [
+            0.08626729260112498,
+            1.0610847330667266,
+            2.3116665482521057
+          ]
+        },
+        {
+          "scene": "dorm2",
+          "instance_id": 24,
+          "faces": 293,
+          "dimensions": [
+            0.12747776325400206,
+            1.053786568225945,
+            2.3097105473279953
+          ]
+        },
+        {
+          "scene": "dorm3",
+          "instance_id": 33,
+          "faces": 252,
+          "dimensions": [
+            0.08388383868890692,
+            1.0525239676429745,
+            2.309286817908287
+          ]
+        },
+        {
+          "scene": "dorm3",
+          "instance_id": 8,
+          "faces": 286,
+          "dimensions": [
+            0.05738178286953932,
+            1.0566377367106945,
+            2.2550170086324215
+          ]
+        }
+      ],
+      "evidence": "reconstructed surface footprint; not full physical extent",
+      "confidence": "selected_reference_surface",
+      "bounds": "horizontal_short, horizontal_long, vertical_extent",
+      "surface_reference_dimensions": [
+        0.08507556564501595,
+        1.0552121524683198,
+        2.309498682618141
+      ],
+      "dimensions": [
+        0.12,
+        1.055,
+        2.309
+      ],
+      "assumption_ko": "문 표면 폭·높이를 유지하고 깊이를 0.12로 가정",
+      "base_dimension_tolerance_fraction": 0.25,
+      "surface_noise_allowance": 0.08,
+      "maximum_envelope": [
+        0.23,
+        1.3987,
+        2.9663
+      ],
+      "known_per_physical_instance": false,
+      "hypothesis_strength": "참조 기반 + 일부 보완"
+    },
+    {
+      "class_id": 4,
+      "name": "elevator door",
+      "name_ko": "엘리베이터 문",
+      "references": [
+        {
+          "scene": "dorm2",
+          "instance_id": 81,
+          "faces": 164,
+          "dimensions": [
+            0.1406736221843614,
+            0.7954810094062452,
+            1.6751590818166733
+          ]
+        },
+        {
+          "scene": "dorm3",
+          "instance_id": 77,
+          "faces": 86,
+          "dimensions": [
+            0.15622721368923953,
+            0.5711671786623143,
+            2.200859233736992
+          ]
+        }
+      ],
+      "evidence": "reconstructed surface footprint; not full physical extent",
+      "confidence": "exploratory_partial_surface",
+      "bounds": "horizontal_short, horizontal_long, vertical_extent",
+      "surface_reference_dimensions": [
+        0.14845041793680047,
+        0.6833240940342797,
+        1.9380091577768326
+      ],
+      "dimensions": [
+        0.15,
+        1.4,
+        2.2
+      ],
+      "assumption_ko": "참조가 문 일부이므로 엘리베이터 문 전체 폭·높이를 보완 가정",
+      "base_dimension_tolerance_fraction": 0.25,
+      "surface_noise_allowance": 0.08,
+      "maximum_envelope": [
+        0.2675,
+        1.83,
+        2.83
+      ],
+      "known_per_physical_instance": false,
+      "hypothesis_strength": "보완 가정 큼"
+    },
+    {
+      "class_id": 5,
+      "name": "window",
+      "name_ko": "창문",
+      "references": [
+        {
+          "scene": "dorm3",
+          "instance_id": 92,
+          "faces": 575,
+          "dimensions": [
+            0.17801023120410875,
+            1.628844094222206,
+            2.680468238890171
+          ]
+        }
+      ],
+      "evidence": "reconstructed surface footprint; not full physical extent",
+      "confidence": "selected_reference_surface",
+      "bounds": "horizontal_short, horizontal_long, vertical_extent",
+      "surface_reference_dimensions": [
+        0.17801023120410875,
+        1.628844094222206,
+        2.680468238890171
+      ],
+      "dimensions": [
+        0.18,
+        1.629,
+        2.68
+      ],
+      "assumption_ko": "창문 참조 표면 치수를 반올림",
+      "base_dimension_tolerance_fraction": 0.25,
+      "surface_noise_allowance": 0.08,
+      "maximum_envelope": [
+        0.305,
+        2.1162,
+        3.43
+      ],
+      "known_per_physical_instance": false,
+      "hypothesis_strength": "참조 기반 + 일부 보완"
+    },
+    {
+      "class_id": 6,
+      "name": "chair",
+      "name_ko": "의자",
+      "references": [
+        {
+          "scene": "dorm3",
+          "instance_id": 99,
+          "faces": 124,
+          "dimensions": [
+            0.713452136510238,
+            0.7940191848177665,
+            0.7738090753555298
+          ]
+        }
+      ],
+      "evidence": "reconstructed surface footprint; not full physical extent",
+      "confidence": "selected_reference_surface",
+      "bounds": "horizontal_short, horizontal_long, vertical_extent",
+      "surface_reference_dimensions": [
+        0.713452136510238,
+        0.7940191848177665,
+        0.7738090753555298
+      ],
+      "dimensions": [
+        0.713,
+        0.794,
+        0.85
+      ],
+      "assumption_ko": "단독 의자 수평 크기 유지, 손실된 다리를 고려해 높이 0.85 가정",
+      "base_dimension_tolerance_fraction": 0.25,
+      "surface_noise_allowance": 0.08,
+      "maximum_envelope": [
+        0.9712,
+        1.0725,
+        1.1425
+      ],
+      "known_per_physical_instance": false,
+      "hypothesis_strength": "참조 기반 + 일부 보완"
+    },
+    {
+      "class_id": 7,
+      "name": "table",
+      "name_ko": "테이블",
+      "references": [
+        {
+          "scene": "dorm2",
+          "instance_id": 102,
+          "faces": 143,
+          "dimensions": [
+            0.956040494501621,
+            1.0040179137430103,
+            0.2535679042339325
+          ]
+        },
+        {
+          "scene": "dorm2",
+          "instance_id": 104,
+          "faces": 165,
+          "dimensions": [
+            1.057799656407478,
+            1.0609190271421305,
+            0.17000454664230347
+          ]
+        },
+        {
+          "scene": "dorm2",
+          "instance_id": 105,
+          "faces": 118,
+          "dimensions": [
+            0.94609744713037,
+            0.9629514598880817,
+            0.14959299564361572
+          ]
+        },
+        {
+          "scene": "dorm3",
+          "instance_id": 108,
+          "faces": 123,
+          "dimensions": [
+            0.9601700503230255,
+            1.0634857967214888,
+            0.15661215782165527
+          ]
+        },
+        {
+          "scene": "dorm3",
+          "instance_id": 110,
+          "faces": 102,
+          "dimensions": [
+            0.8448408353813619,
+            0.9161505704853264,
+            0.16051167249679565
+          ]
+        }
+      ],
+      "evidence": "reconstructed surface footprint; not full physical extent",
+      "confidence": "selected_reference_surface",
+      "bounds": "horizontal_short, horizontal_long, vertical_extent",
+      "surface_reference_dimensions": [
+        0.956040494501621,
+        1.0040179137430103,
+        0.16051167249679565
+      ],
+      "dimensions": [
+        0.956,
+        1.004,
+        0.75
+      ],
+      "assumption_ko": "상판 수평 크기 유지, 테이블 전체 높이 0.75 가정",
+      "base_dimension_tolerance_fraction": 0.25,
+      "surface_noise_allowance": 0.08,
+      "maximum_envelope": [
+        1.275,
+        1.335,
+        1.0175
+      ],
+      "known_per_physical_instance": false,
+      "hypothesis_strength": "보완 가정 큼"
+    },
+    {
+      "class_id": 8,
+      "name": "water dispenser",
+      "name_ko": "정수기",
+      "references": [
+        {
+          "scene": "dorm2",
+          "instance_id": 109,
+          "faces": 21,
+          "dimensions": [
+            0.052640528047399826,
+            0.30465045316627165,
+            0.7753543555736542
+          ]
+        }
+      ],
+      "evidence": "reconstructed surface footprint; not full physical extent",
+      "confidence": "exploratory_partial_surface",
+      "bounds": "horizontal_short, horizontal_long, vertical_extent",
+      "surface_reference_dimensions": [
+        0.052640528047399826,
+        0.30465045316627165,
+        0.7753543555736542
+      ],
+      "dimensions": [
+        0.45,
+        0.45,
+        1.1
+      ],
+      "assumption_ko": "얇은 일부 표면만 있어 전체 정수기 크기를 보완 가정",
+      "base_dimension_tolerance_fraction": 0.25,
+      "surface_noise_allowance": 0.08,
+      "maximum_envelope": [
+        0.6425,
+        0.6425,
+        1.455
+      ],
+      "known_per_physical_instance": false,
+      "hypothesis_strength": "보완 가정 큼"
+    },
+    {
+      "class_id": 9,
+      "name": "vacuum cleaner",
+      "name_ko": "청소기",
+      "references": [
+        {
+          "scene": "dorm2",
+          "instance_id": 110,
+          "faces": 31,
+          "dimensions": [
+            0.35680307281483964,
+            0.5675761627224284,
+            0.41197486221790314
+          ]
+        },
+        {
+          "scene": "dorm2",
+          "instance_id": 111,
+          "faces": 25,
+          "dimensions": [
+            0.4207740229162873,
+            0.563675404396502,
+            0.4089273512363434
+          ]
+        },
+        {
+          "scene": "dorm3",
+          "instance_id": 112,
+          "faces": 25,
+          "dimensions": [
+            0.2716506157400467,
+            0.39552360243504037,
+            0.27896052598953247
+          ]
+        }
+      ],
+      "evidence": "reconstructed surface footprint; not full physical extent",
+      "confidence": "exploratory_partial_surface",
+      "bounds": "horizontal_short, horizontal_long, vertical_extent",
+      "surface_reference_dimensions": [
+        0.35680307281483964,
+        0.563675404396502,
+        0.4089273512363434
+      ],
+      "dimensions": [
+        0.36,
+        0.56,
+        0.55
+      ],
+      "assumption_ko": "참조 수평 크기를 반올림하고 전체 높이 0.55 가정",
+      "base_dimension_tolerance_fraction": 0.25,
+      "surface_noise_allowance": 0.08,
+      "maximum_envelope": [
+        0.53,
+        0.78,
+        0.7675
+      ],
+      "known_per_physical_instance": false,
+      "hypothesis_strength": "보완 가정 큼"
+    },
+    {
+      "class_id": 12,
+      "name": "ceiling light",
+      "name_ko": "천장 조명",
+      "references": [
+        {
+          "scene": "dorm2",
+          "instance_id": 123,
+          "faces": 5,
+          "dimensions": [
+            0.2568787410858322,
+            0.25945693463199737,
+            0.006623029708862305
+          ]
+        },
+        {
+          "scene": "dorm2",
+          "instance_id": 126,
+          "faces": 6,
+          "dimensions": [
+            0.25355447231502826,
+            0.28846239558273723,
+            0.012748956680297852
+          ]
+        },
+        {
+          "scene": "dorm3",
+          "instance_id": 129,
+          "faces": 8,
+          "dimensions": [
+            0.2750616604639481,
+            0.27888970272603686,
+            0.012535572052001953
+          ]
+        }
+      ],
+      "evidence": "reconstructed surface footprint; not full physical extent",
+      "confidence": "exploratory_partial_surface",
+      "bounds": "horizontal_short, horizontal_long, vertical_extent",
+      "surface_reference_dimensions": [
+        0.2568787410858322,
+        0.27888970272603686,
+        0.012535572052001953
+      ],
+      "dimensions": [
+        0.257,
+        0.279,
+        0.05
+      ],
+      "assumption_ko": "조명 수평 크기 유지, 두께 0.05 가정",
+      "base_dimension_tolerance_fraction": 0.25,
+      "surface_noise_allowance": 0.08,
+      "maximum_envelope": [
+        0.4013,
+        0.4288,
+        0.1425
+      ],
+      "known_per_physical_instance": false,
+      "hypothesis_strength": "참조 기반 + 일부 보완"
+    },
+    {
+      "class_id": 13,
+      "name": "ventilation grille",
+      "name_ko": "환기구",
+      "references": [
+        {
+          "scene": "dorm2",
+          "instance_id": 130,
+          "faces": 84,
+          "dimensions": [
+            0.11097774284138973,
+            1.015916290073271,
+            0.7951884269714355
+          ]
+        }
+      ],
+      "evidence": "reconstructed surface footprint; not full physical extent",
+      "confidence": "exploratory_partial_surface",
+      "bounds": "horizontal_short, horizontal_long, vertical_extent",
+      "surface_reference_dimensions": [
+        0.11097774284138973,
+        1.015916290073271,
+        0.7951884269714355
+      ],
+      "dimensions": [
+        0.12,
+        1.016,
+        0.795
+      ],
+      "assumption_ko": "환기구 참조 표면 치수를 반올림",
+      "base_dimension_tolerance_fraction": 0.25,
+      "surface_noise_allowance": 0.08,
+      "maximum_envelope": [
+        0.23,
+        1.35,
+        1.0737
+      ],
+      "known_per_physical_instance": false,
+      "hypothesis_strength": "참조 기반 + 일부 보완"
+    }
+  ],
+  "structural_size_policy": "Wall/floor/ceiling have variable size: extract planes, do not tile into furniture-sized blocks.",
+  "settings": {
+    "size_tolerance": 0.25,
+    "noise_allowance": 0.08,
+    "plane_distance": 0.06,
+    "plane_normal_degrees": 15,
+    "minimum_plane_area": 5.0,
+    "max_planes": 35,
+    "structure_neighbor_angle_degrees": 30,
+    "max_gap": 0.16,
+    "candidate_min_faces": 6,
+    "candidate_min_two_extent_ratio": 0.4,
+    "sensitivity_factors": [
+      0.8,
+      1.0,
+      1.2
+    ],
+    "random_seed": 20261025
+  }
+}

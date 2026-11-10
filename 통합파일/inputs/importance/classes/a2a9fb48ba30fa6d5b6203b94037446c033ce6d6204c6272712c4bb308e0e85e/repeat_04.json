@@ -1,0 +1,21 @@
+{
+  "repeat": 4,
+  "request_key": "a2a9fb48ba30fa6d5b6203b94037446c033ce6d6204c6272712c4bb308e0e85e",
+  "response": {
+    "rating": 3,
+    "reason": "창문은 시설의 파손이나 누수 등 안전과 사용에 영향을 줄 수 있는 상태 확인 대상에 포함될 수 있습니다."
+  },
+  "usage": {
+    "promptTokenCount": 345,
+    "candidatesTokenCount": 39,
+    "totalTokenCount": 384,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 345
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "seconds": 1.9180776253342628
+}

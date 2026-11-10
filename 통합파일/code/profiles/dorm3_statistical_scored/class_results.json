@@ -1,0 +1,247 @@
+{
+  "chair": {
+    "line": "M02",
+    "quote": "시설과 비품의 눈에 띄는 파손, 누수, 물고임 등 안전과 사용에 영향을 줄 수 있는 상태를 확인합니다.",
+    "checked_target": "시설과 비품",
+    "named_term": null,
+    "kind_role": "generic_only",
+    "general_relevance": true,
+    "reason": "의자는 비품이라는 묶음 말로 연결되어 파손 여부 등을 확인하는 대상에 포함된다.",
+    "level": 1,
+    "score": 0.5,
+    "raw_response": {
+      "line": "M02",
+      "quote": "시설과 비품의 눈에 띄는 파손, 누수, 물고임 등 안전과 사용에 영향을 줄 수 있는 상태를 확인합니다.",
+      "checked_target": "시설과 비품",
+      "named_term": null,
+      "kind_role": "generic_only",
+      "general_relevance": true,
+      "reason": "의자는 비품이라는 묶음 말로 연결되어 파손 여부 등을 확인하는 대상에 포함된다."
+    },
+    "policy_events": [],
+    "verification_status": "UNVERIFIED",
+    "cache_key": "150796a91235d353d93917d3e49eacaf8d27a259047aa8b7de35e40900882e59",
+    "class_name": "chair",
+    "attempts": [
+      {
+        "line": "M02",
+        "quote": "시설과 비품의 눈에 띄는 파손, 누수, 물고임 등 안전과 사용에 영향을 줄 수 있는 상태를 확인합니다.",
+        "checked_target": "시설과 비품",
+        "named_term": null,
+        "kind_role": "generic_only",
+        "general_relevance": true,
+        "reason": "의자는 비품이라는 묶음 말로 연결되어 파손 여부 등을 확인하는 대상에 포함된다."
+      }
+    ]
+  },
+  "door": {
+    "line": "M01",
+    "quote": "출입문과 통로의 이용을 방해하는 적치물을 확인합니다",
+    "checked_target": "적치물",
+    "named_term": null,
+    "kind_role": "location_reference",
+    "general_relevance": true,
+    "reason": "출입문은 적치물 확인을 위한 위치의 기준으로 언급되었습니다.",
+    "level": 1,
+    "score": 0.5,
+    "raw_response": {
+      "line": "M01",
+      "quote": "출입문과 통로의 이용을 방해하는 적치물을 확인합니다",
+      "checked_target": "적치물",
+      "named_term": null,
+      "kind_role": "location_reference",
+      "general_relevance": true,
+      "reason": "출입문은 적치물 확인을 위한 위치의 기준으로 언급되었습니다."
+    },
+    "policy_events": [],
+    "verification_status": "UNVERIFIED",
+    "cache_key": "b425c4dbc37168eb913d82c53977d35d9309198d3fe9fdf910a9c1be796cfdff",
+    "class_name": "door",
+    "attempts": [
+      {
+        "line": "M01",
+        "quote": "출입문과 통로의 이용을 방해하는 적치물을 확인합니다",
+        "checked_target": "적치물",
+        "named_term": null,
+        "kind_role": "location_reference",
+        "general_relevance": true,
+        "reason": "출입문은 적치물 확인을 위한 위치의 기준으로 언급되었습니다."
+      }
+    ]
+  },
+  "elevator door": {
+    "line": "M02",
+    "quote": "시설과 비품의 눈에 띄는 파손, 누수, 물고임 등 안전과 사용에 영향을 줄 수 있는 상태를 확인합니다.",
+    "checked_target": "시설과 비품",
+    "named_term": null,
+    "kind_role": "generic_only",
+    "general_relevance": true,
+    "reason": "승강기 문은 시설이라는 묶음 말로만 연결되며, 시설의 파손 여부 확인은 일반적인 점검 기준에 해당합니다.",
+    "level": 1,
+    "score": 0.5,
+    "raw_response": {
+      "line": "M02",
+      "quote": "시설과 비품의 눈에 띄는 파손, 누수, 물고임 등 안전과 사용에 영향을 줄 수 있는 상태를 확인합니다.",
+      "checked_target": "시설과 비품",
+      "named_term": null,
+      "kind_role": "generic_only",
+      "general_relevance": true,
+      "reason": "승강기 문은 시설이라는 묶음 말로만 연결되며, 시설의 파손 여부 확인은 일반적인 점검 기준에 해당합니다."
+    },
+    "policy_events": [],
+    "verification_status": "UNVERIFIED",
+    "cache_key": "cf0aac3e7dcf10cf4444782b343905756d77d0557d6cc18b7ac3595665fa5827",
+    "class_name": "elevator door",
+    "attempts": [
+      {
+        "line": "M02",
+        "quote": "시설과 비품의 눈에 띄는 파손, 누수, 물고임 등 안전과 사용에 영향을 줄 수 있는 상태를 확인합니다.",
+        "checked_target": "시설과 비품",
+        "named_term": null,
+        "kind_role": "generic_only",
+        "general_relevance": true,
+        "reason": "승강기 문은 시설이라는 묶음 말로만 연결되며, 시설의 파손 여부 확인은 일반적인 점검 기준에 해당합니다."
+      }
+    ]
+  },
+  "table": {
+    "line": "M02",
+    "quote": "시설과 비품의 눈에 띄는 파손, 누수, 물고임 등 안전과 사용에 영향을 줄 수 있는 상태를 확인합니다",
+    "checked_target": "시설과 비품의 눈에 띄는 파손, 누수, 물고임 등 안전과 사용에 영향을 줄 수 있는 상태",
+    "named_term": null,
+    "kind_role": "generic_only",
+    "general_relevance": true,
+    "reason": "테이블은 비품이라는 묶음 말로 연결되어 파손 여부 등을 확인하는 대상에 포함된다.",
+    "level": 1,
+    "score": 0.5,
+    "raw_response": {
+      "line": "M02",
+      "quote": "시설과 비품의 눈에 띄는 파손, 누수, 물고임 등 안전과 사용에 영향을 줄 수 있는 상태를 확인합니다",
+      "checked_target": "시설과 비품의 눈에 띄는 파손, 누수, 물고임 등 안전과 사용에 영향을 줄 수 있는 상태",
+      "named_term": null,
+      "kind_role": "generic_only",
+      "general_relevance": true,
+      "reason": "테이블은 비품이라는 묶음 말로 연결되어 파손 여부 등을 확인하는 대상에 포함된다."
+    },
+    "policy_events": [],
+    "verification_status": "UNVERIFIED",
+    "cache_key": "dd97d734fcecc7f21385c2f977895e496cad9b0e76ad82503328e3919c67dc9b",
+    "class_name": "table",
+    "attempts": [
+      {
+        "line": "M02",
+        "quote": "시설과 비품의 눈에 띄는 파손, 누수, 물고임 등 안전과 사용에 영향을 줄 수 있는 상태를 확인합니다",
+        "checked_target": "시설과 비품의 눈에 띄는 파손, 누수, 물고임 등 안전과 사용에 영향을 줄 수 있는 상태",
+        "named_term": null,
+        "kind_role": "generic_only",
+        "general_relevance": true,
+        "reason": "테이블은 비품이라는 묶음 말로 연결되어 파손 여부 등을 확인하는 대상에 포함된다."
+      }
+    ]
+  },
+  "window": {
+    "line": null,
+    "quote": null,
+    "checked_target": null,
+    "named_term": null,
+    "kind_role": "not_mentioned",
+    "general_relevance": true,
+    "reason": "창문은 매뉴얼의 어떤 점검 항목에서도 언급되지 않으나 시설물로서 일반적인 파손 점검 기준에는 해당할 수 있다.",
+    "level": 1,
+    "score": 0.5,
+    "raw_response": {
+      "line": null,
+      "quote": null,
+      "checked_target": null,
+      "named_term": null,
+      "kind_role": "not_mentioned",
+      "general_relevance": true,
+      "reason": "창문은 매뉴얼의 어떤 점검 항목에서도 언급되지 않으나 시설물로서 일반적인 파손 점검 기준에는 해당할 수 있다."
+    },
+    "policy_events": [],
+    "verification_status": "UNVERIFIED",
+    "cache_key": "10f338abfc6b5aad3c91074c242c167732f761b1df9e53eec866eec9e3fc3ecb",
+    "class_name": "window",
+    "attempts": [
+      {
+        "line": null,
+        "quote": null,
+        "checked_target": null,
+        "named_term": null,
+        "kind_role": "not_mentioned",
+        "general_relevance": true,
+        "reason": "창문은 매뉴얼의 어떤 점검 항목에서도 언급되지 않으나 시설물로서 일반적인 파손 점검 기준에는 해당할 수 있다."
+      }
+    ]
+  },
+  "ceiling light": {
+    "line": "M06",
+    "quote": "공용공간 조명은 미사용·무인일 때 소등하는 것이 점검 목적에 포함됩니다",
+    "checked_target": "공용공간 조명",
+    "named_term": "조명",
+    "kind_role": "target",
+    "general_relevance": true,
+    "reason": "매뉴얼에서 조명의 소등 상태를 점검 대상으로 명시하고 있다.",
+    "level": 2,
+    "score": 1.0,
+    "raw_response": {
+      "line": "M06",
+      "quote": "공용공간 조명은 미사용·무인일 때 소등하는 것이 점검 목적에 포함됩니다",
+      "checked_target": "공용공간 조명",
+      "named_term": "조명",
+      "kind_role": "target",
+      "general_relevance": true,
+      "reason": "매뉴얼에서 조명의 소등 상태를 점검 대상으로 명시하고 있다."
+    },
+    "policy_events": [],
+    "verification_status": "UNVERIFIED",
+    "cache_key": "c8c94550463bac47cc2448ed7e905124c26a8cee72dccc104620d1724eacf5bd",
+    "class_name": "ceiling light",
+    "attempts": [
+      {
+        "line": "M06",
+        "quote": "공용공간 조명은 미사용·무인일 때 소등하는 것이 점검 목적에 포함됩니다",
+        "checked_target": "공용공간 조명",
+        "named_term": "조명",
+        "kind_role": "target",
+        "general_relevance": true,
+        "reason": "매뉴얼에서 조명의 소등 상태를 점검 대상으로 명시하고 있다."
+      }
+    ]
+  },
+  "vacuum cleaner": {
+    "line": "M02",
+    "quote": "시설과 비품의 눈에 띄는 파손, 누수, 물고임 등 안전과 사용에 영향을 줄 수 있는 상태를 확인합니다.",
+    "checked_target": "시설과 비품",
+    "named_term": null,
+    "kind_role": "generic_only",
+    "general_relevance": true,
+    "reason": "진공청소기는 비품이라는 묶음 말로 연결되어 파손 및 상태 점검 대상에 포함된다.",
+    "level": 1,
+    "score": 0.5,
+    "raw_response": {
+      "line": "M02",
+      "quote": "시설과 비품의 눈에 띄는 파손, 누수, 물고임 등 안전과 사용에 영향을 줄 수 있는 상태를 확인합니다.",
+      "checked_target": "시설과 비품",
+      "named_term": null,
+      "kind_role": "generic_only",
+      "general_relevance": true,
+      "reason": "진공청소기는 비품이라는 묶음 말로 연결되어 파손 및 상태 점검 대상에 포함된다."
+    },
+    "policy_events": [],
+    "verification_status": "UNVERIFIED",
+    "cache_key": "58d0637bc58f91dc536fce95f193afa35e5c9e6960482509d7b512bd2b1d44d6",
+    "class_name": "vacuum cleaner",
+    "attempts": [
+      {
+        "line": "M02",
+        "quote": "시설과 비품의 눈에 띄는 파손, 누수, 물고임 등 안전과 사용에 영향을 줄 수 있는 상태를 확인합니다.",
+        "checked_target": "시설과 비품",
+        "named_term": null,
+        "kind_role": "generic_only",
+        "general_relevance": true,
+        "reason": "진공청소기는 비품이라는 묶음 말로 연결되어 파손 및 상태 점검 대상에 포함된다."
+      }
+    ]
+  }
+}

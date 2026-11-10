@@ -1,0 +1,394 @@
+{
+  "status": "additive_profile_installed_not_default_activated",
+  "utc": "2026-10-26T08:58:01.590833+00:00",
+  "installed_profile": "/workspace/spacewatch_pipeline_releases/dorm3_task5b_scored_20261026_PhVMbj",
+  "source_run": "/workspace/task5b_dorm3_importance_final_20261026_PhVMbj",
+  "count": 21,
+  "planning_status": "incomplete",
+  "selected_components": 1,
+  "physical_safety_verified": false,
+  "existing_pipeline_files_changed": 0,
+  "geometry_navigation_objects_surface_partition_identical": true,
+  "relative_asset_mapping": {
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0000.obj": {
+      "bundle": "assets/objects_0.obj",
+      "sha256": "e88b7315eea486775ce145ab79e55d92c694d9385212a32cc31e7490c8ba22ca"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0001.obj": {
+      "bundle": "assets/objects_1.obj",
+      "sha256": "13793d9736ac753910ef3801e2dc2684210ea36df7a172b36d369703dd28cba8"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0002.obj": {
+      "bundle": "assets/objects_2.obj",
+      "sha256": "7e0281ad41e8ad326f5ce5585ba583b4aad514e2a1392e62021e5e66f592cc14"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0003.obj": {
+      "bundle": "assets/objects_3.obj",
+      "sha256": "8e322c37fd60e54e36f3f34106544dcf9a33661685d45ae793f439c4751d7ee2"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0004.obj": {
+      "bundle": "assets/objects_4.obj",
+      "sha256": "852bc9a084329d5967d61f08e9d5bee8e30fd8663a126edd6dabfe1e05fec28f"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0005.obj": {
+      "bundle": "assets/objects_5.obj",
+      "sha256": "254bbda9731686c5df8d3cc6e09b2fc358cf685e4bf8bb98fdb714ec061d5d20"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0006.obj": {
+      "bundle": "assets/objects_6.obj",
+      "sha256": "611915ba65bf3fbe778a38a2aa0936efa066dac5804735036bdaf3be9a495fae"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0007.obj": {
+      "bundle": "assets/objects_7.obj",
+      "sha256": "3440ea326b9a42b4c592517bb7884fa996ea299179bf557a90a4f7b636ffa9c5"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0008.obj": {
+      "bundle": "assets/objects_8.obj",
+      "sha256": "bc22a57053c859ba2c33a90748bc18139096ed4dd07ecb93a0dcb660479e882b"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0009.obj": {
+      "bundle": "assets/objects_9.obj",
+      "sha256": "e7c2872f9ecdb28ea91a2687eb8fe87bdbf32c2e94f1d4d4322e522033e18060"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0010.obj": {
+      "bundle": "assets/objects_10.obj",
+      "sha256": "a686072e332411720284c2b3c4c331c5a96e76b5e10dd71fc65a9490b29d7865"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0011.obj": {
+      "bundle": "assets/objects_11.obj",
+      "sha256": "3a51f8be0f47b276d9a2b70ef911cc2f271367271b5cb4fbe06601594888ad78"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0012.obj": {
+      "bundle": "assets/objects_12.obj",
+      "sha256": "9d78fb56ee87db94a33f57e6e361a75d75d50072ae04959a255f7099c0a79c8e"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0013.obj": {
+      "bundle": "assets/objects_13.obj",
+      "sha256": "a752576aaac560a1251aa85e52ed20541050dc926c4f463e8d3e9cf2169818bc"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0015.obj": {
+      "bundle": "assets/objects_14.obj",
+      "sha256": "8813fc400e799b19bb50247184614fd7f528092a1f935ab57e7efb8ae7492267"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0017.obj": {
+      "bundle": "assets/objects_15.obj",
+      "sha256": "43eaf159bcbec1b2d0340a352ae0647442d6bd9488819533cc572cc7f1f2f8c1"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0018.obj": {
+      "bundle": "assets/objects_16.obj",
+      "sha256": "490dbaf7e2778db0fa6f32fcf5f81c5e4828c0e26df3dcfebc0d1b4bb536ff95"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0019.obj": {
+      "bundle": "assets/objects_17.obj",
+      "sha256": "b1265aa135cc20e62b514377e92aef96a588a2705356a7d128cafe610b1c85af"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0020.obj": {
+      "bundle": "assets/objects_18.obj",
+      "sha256": "2aee65a05335469393d1f04655ab8fe304bdc21497d08e842c4b555823271aba"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0021.obj": {
+      "bundle": "assets/objects_19.obj",
+      "sha256": "f6b5f6adb4f10c5641c726e8740071ce9fe353fcea443a2bb76a4e843297924d"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0022.obj": {
+      "bundle": "assets/objects_20.obj",
+      "sha256": "674115b4fd415f69665055511abb96c6671834c77b883ec4b152d74a34df92d5"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0023.obj": {
+      "bundle": "assets/objects_21.obj",
+      "sha256": "c789efcf9c4a1e605f897c3cb124d9c8a233feeb90282fa0b9e2a8358123efa0"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0024.obj": {
+      "bundle": "assets/objects_22.obj",
+      "sha256": "f672569098d164e6a4366e4701b13d6251a411ad21df9519b6f93bc5e4cf33f3"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0026.obj": {
+      "bundle": "assets/objects_23.obj",
+      "sha256": "b142c04afe5f0896f9aade83828f8ccd41b7d9fad51fd20cdaa0234bfaddc66c"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0028.obj": {
+      "bundle": "assets/objects_24.obj",
+      "sha256": "bf477d5c7219de5ff63b20d277825d86446ce8b121201fe099e699c13c526296"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0029.obj": {
+      "bundle": "assets/objects_25.obj",
+      "sha256": "5db2274db1444ead703cf8b248a214f6d5eae02908d4e08fe4b76f845c8b21f9"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0030.obj": {
+      "bundle": "assets/objects_26.obj",
+      "sha256": "e7cb4f94baf78f4df3de7778c67104772af3798f35f458771a3f77a6ef672b80"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0033.obj": {
+      "bundle": "assets/objects_27.obj",
+      "sha256": "d8be48b09193b4656011a18e268eeb6518419d2c62fc527e3dfbc384d145371b"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0035.obj": {
+      "bundle": "assets/objects_28.obj",
+      "sha256": "34e70988f2ae2a40000ffd466b419acf8f6fc70640fe13106f92be46006b28f1"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0036.obj": {
+      "bundle": "assets/objects_29.obj",
+      "sha256": "b8e50f12ff2c3d033b3df386da1e2abf4421996c06b8054511426e199995472f"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0037.obj": {
+      "bundle": "assets/objects_30.obj",
+      "sha256": "f3705a0b96de6b1fae91a924dc89e1c9b39996923ca28a440b0729e64fda2e80"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0038.obj": {
+      "bundle": "assets/objects_31.obj",
+      "sha256": "7e2e2f9f91ac631d76c718a50394497d25207391453cb2daee10edc4096cadd3"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0039.obj": {
+      "bundle": "assets/objects_32.obj",
+      "sha256": "a983434811e25029ae21876988f009d02e2a63069d4c7625b5c93700a621a07d"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0041.obj": {
+      "bundle": "assets/objects_33.obj",
+      "sha256": "d96fe1e393a64f7909d993163fa5b15ee3e5b0446729d131b8aa6c397616a961"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0042.obj": {
+      "bundle": "assets/objects_34.obj",
+      "sha256": "8014be0967eeded16427d6a595384b3e8bdeb3fc51ec35e61d46062e4f3499c1"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0043.obj": {
+      "bundle": "assets/objects_35.obj",
+      "sha256": "97bfeda9f8a64a05ecfd29a3d6448fdcfafedd68f35aa06b0ce09b4525f3ce47"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0044.obj": {
+      "bundle": "assets/objects_36.obj",
+      "sha256": "567dceca3d67636614c2d7a5bf36524764699a59743cfe46a0261bf74986e0aa"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0045.obj": {
+      "bundle": "assets/objects_37.obj",
+      "sha256": "b66e2b286b621530e597d4ca5bb311a81ab5bed700037958a5281e98f5192360"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0046.obj": {
+      "bundle": "assets/objects_38.obj",
+      "sha256": "910c0aa3d975bee2f8b898348514cd15f532698d04d6bdff1e74a581ff350670"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0047.obj": {
+      "bundle": "assets/objects_39.obj",
+      "sha256": "75f2f11fa94f4cefcd309e74c533ec9ad82681cc917462161da791e2ad96d794"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0048.obj": {
+      "bundle": "assets/objects_40.obj",
+      "sha256": "64686bdc2f85166a1ac48985bed3f0902e2633826ff131c2a8197f3dee070eed"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0049.obj": {
+      "bundle": "assets/objects_41.obj",
+      "sha256": "09a902ab14406f2a6a7893d796fc17b17d2f810598e0693419b93db0cffdb14c"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0053.obj": {
+      "bundle": "assets/objects_42.obj",
+      "sha256": "edc5eef10a5abb627a5ebd4360101f8f4c3080102d45fd35fad8380cbad8d12c"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0054.obj": {
+      "bundle": "assets/objects_43.obj",
+      "sha256": "f34b07f46235f397ff37f5ba5b456f05af9b0135089b3eb4517f41324664daee"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0055.obj": {
+      "bundle": "assets/objects_44.obj",
+      "sha256": "87be2df016ed5af911273a775782a881cf4d238aa341ec9f7e6074591ea327d9"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0056.obj": {
+      "bundle": "assets/objects_45.obj",
+      "sha256": "b91862869c4ec5a52a5b0a3d9ee7df8c156d3a6884369652bc1ea7055d200738"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0058.obj": {
+      "bundle": "assets/objects_46.obj",
+      "sha256": "6f16667a5ba13b96c7157f08076ea8eb9b38c21ad5d9d577031b16777509b427"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0059.obj": {
+      "bundle": "assets/objects_47.obj",
+      "sha256": "5e3621c6ea03c541c11326a675963e56afb77484fdb448ce09a106b243cbe9c0"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0061.obj": {
+      "bundle": "assets/objects_48.obj",
+      "sha256": "995fa6dda1408721857491eb1e73662709c1caae94fb2a0034d91ef7183bd44c"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0062.obj": {
+      "bundle": "assets/objects_49.obj",
+      "sha256": "e021871bfa796da00ee967eb5b63ef9600187d6b321136d89dd560c6b878497f"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0070.obj": {
+      "bundle": "assets/objects_50.obj",
+      "sha256": "612432177f56a5dc914da4bf6e616e5a4132da021890e3f3a810f34874271433"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0076.obj": {
+      "bundle": "assets/objects_51.obj",
+      "sha256": "26ddd939f233ea25683bd6d659e7e46fd78133671335011e185cdcaf420041b4"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_3_cc_0087.obj": {
+      "bundle": "assets/objects_52.obj",
+      "sha256": "34736934faf0e33b5be2805301d34cbbef55136eae69392e2bf2662dd3bc095b"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_4_cc_0001.obj": {
+      "bundle": "assets/objects_53.obj",
+      "sha256": "d3f6a5fc6504d9b50a51c6dc2560e654e1817601cb19432dc1379258b6602f46"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_4_cc_0002.obj": {
+      "bundle": "assets/objects_54.obj",
+      "sha256": "a5dcd56bbba5fe056d9cb6ad45bf14c9e3f79ebf5f0704617efd0f886750c42b"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_4_cc_0006.obj": {
+      "bundle": "assets/objects_55.obj",
+      "sha256": "62df118837243b032d360a4633423ecff792899a41560df187ca4ace6629712d"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_4_cc_0010.obj": {
+      "bundle": "assets/objects_56.obj",
+      "sha256": "b7fda2c63101a3ec16135dd5c862c8b28ef570c295046a39b0857f3fb8ce87df"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_4_cc_0011.obj": {
+      "bundle": "assets/objects_57.obj",
+      "sha256": "646fbccb4008d1e47fc871c347e1d7cff263a7cd9ecfffd29f15f2bece5ab2c2"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_4_cc_0016.obj": {
+      "bundle": "assets/objects_58.obj",
+      "sha256": "c1385c72741cb55c2abb2a5ca4ae83b65cf99217bddd8633cbb441de3e169141"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_4_cc_0018.obj": {
+      "bundle": "assets/objects_59.obj",
+      "sha256": "a95a6f49894022010c21978f9b38e63e9d3d3c3168441fd708aa561c8c86b129"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_4_cc_0019.obj": {
+      "bundle": "assets/objects_60.obj",
+      "sha256": "a1fd140ed4d917cc25a468266040151fa2e8e12592f430ddf870281cb2f08971"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_4_cc_0020.obj": {
+      "bundle": "assets/objects_61.obj",
+      "sha256": "d3989900ff1648c176db4fedf17ab1c4e784bf42357cd4c4ef8dce30614d9f79"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_4_cc_0023.obj": {
+      "bundle": "assets/objects_62.obj",
+      "sha256": "b3ad950eaa08f11b8f70964a0f736d20899907e888c365b8e92eaaa3e2edbe96"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_5_cc_0000.obj": {
+      "bundle": "assets/objects_63.obj",
+      "sha256": "6fc2fbc9c39b6864c36cbf7e5ab186b95249b0ecc7311a294420d21e030ee007"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_6_cc_0000.obj": {
+      "bundle": "assets/objects_64.obj",
+      "sha256": "7cca6321629c4f55fbec89aa5f9068edda1118513eab31732c9f214ac13cf9c2"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_6_cc_0003.obj": {
+      "bundle": "assets/objects_65.obj",
+      "sha256": "8b617c4b71ca27a3cba35e0691b645e2bfd5454df4f5f3a7d99c28d44f24b252"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_6_cc_0004.obj": {
+      "bundle": "assets/objects_66.obj",
+      "sha256": "b4539fe3e710b930f57fbaa9e43151f1b301e33f95569142743dd7146b4481bc"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_6_cc_0005.obj": {
+      "bundle": "assets/objects_67.obj",
+      "sha256": "46ff64fca05862f6df5846e25eef1dc19c956f870a9a28b358675b68135b9ad3"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_6_cc_0006.obj": {
+      "bundle": "assets/objects_68.obj",
+      "sha256": "fcb49b3417014b0513406695f02397c21844e6800a76d7911e1efd73f9a92751"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_7_cc_0003.obj": {
+      "bundle": "assets/objects_69.obj",
+      "sha256": "fa23593c221862339bc78296bc5e740f5ab4185ffcb7a32864619771d1dfbed0"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_7_cc_0004.obj": {
+      "bundle": "assets/objects_70.obj",
+      "sha256": "6412f75085f1d88d569b417ce190aaf8a3cbc69f593dd30988e46f4d3b6f22cd"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_7_cc_0009.obj": {
+      "bundle": "assets/objects_71.obj",
+      "sha256": "1a3ee73b30dc81b8d2de25c6d23faed4e14e2b30f6885e2b1fc96799fe0b6269"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_9_cc_0001.obj": {
+      "bundle": "assets/objects_72.obj",
+      "sha256": "4aa9d7eaf6d6994f4369850ab9460194db1ddd83dd8cf21100d118781c151f29"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_12_cc_0000.obj": {
+      "bundle": "assets/objects_73.obj",
+      "sha256": "d8710be34596033791028ace6521ffc0927978752c2d703f04f91fbe6d9258a4"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_12_cc_0001.obj": {
+      "bundle": "assets/objects_74.obj",
+      "sha256": "435e469623d2b93693641253eeef8c304bc6092abcb990a657bdcb7b204181cf"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_12_cc_0002.obj": {
+      "bundle": "assets/objects_75.obj",
+      "sha256": "cf59cdcb0e5b2ae0ad87f169e56bf11e686df6b464bdb76931a591428acb0a7b"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_12_cc_0003.obj": {
+      "bundle": "assets/objects_76.obj",
+      "sha256": "cf78347b09df5f73bfb59331705bd131b578f74725814e454389be079107637f"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_12_cc_0005.obj": {
+      "bundle": "assets/objects_77.obj",
+      "sha256": "62c8bf5be6e3347a238dfdde84770439bc4412a34d196275b66b7a5da72f11a4"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_12_cc_0006.obj": {
+      "bundle": "assets/objects_78.obj",
+      "sha256": "d6ef4ad23fc512d9cca098ae7c579dd4c7d80acc57fb53fe8251b7c812be7c74"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_12_cc_0007.obj": {
+      "bundle": "assets/objects_79.obj",
+      "sha256": "4968d628e46942e22a90a66326162364b92319c9a52c40e9d6628ea53d818437"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_12_cc_0008.obj": {
+      "bundle": "assets/objects_80.obj",
+      "sha256": "c02e09d9cb43d04239a218ed641876f1e1d22e170f69a15cf457555ac9bc5b46"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_12_cc_0009.obj": {
+      "bundle": "assets/objects_81.obj",
+      "sha256": "43e3cbdd1506332ed2f5062d481ad54c30bd5bf30ae7298deb9cd4dd2689a9d3"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_12_cc_0010.obj": {
+      "bundle": "assets/objects_82.obj",
+      "sha256": "5cfc6255b7c070c7e80ed57c6c3748107d43a6b3165266b6c8635d740d302c9a"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_12_cc_0011.obj": {
+      "bundle": "assets/objects_83.obj",
+      "sha256": "d1684c14c7592e3728f849ed2961af6cb1d860931bbf9c2ab04d8d977df07984"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_12_cc_0012.obj": {
+      "bundle": "assets/objects_84.obj",
+      "sha256": "65f69807910f2ac25a36e19b0aa3055b2bbec306f28c7bdfd13a5b2b0716aeb9"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_12_cc_0013.obj": {
+      "bundle": "assets/objects_85.obj",
+      "sha256": "e88cfe3080aee10d04970054bf5093d195c9170d321b887dc0608967d6fc1bbb"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_12_cc_0014.obj": {
+      "bundle": "assets/objects_86.obj",
+      "sha256": "962a7c88fb2703a08ccd516d51c6498f2cc31c3bb4b5e201bc7aac996ccd6937"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_12_cc_0015.obj": {
+      "bundle": "assets/objects_87.obj",
+      "sha256": "cbdd12d531bc219b07899bd3cb04b583c007fba0b66195c63a49d71cec8b633b"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_12_cc_0016.obj": {
+      "bundle": "assets/objects_88.obj",
+      "sha256": "a8dcc3c50fd8ef22312925984180f8d37e1bb6eb9361abc9d88bb8f873a55a88"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_12_cc_0017.obj": {
+      "bundle": "assets/objects_89.obj",
+      "sha256": "877f770c8ac22dd87463fce3c6ebe98e5bb38966b7d38cbf14b7ac17dfd435a2"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_12_cc_0018.obj": {
+      "bundle": "assets/objects_90.obj",
+      "sha256": "a341865fa38daffcb6ebf93f0b672dde7f1806d77ac2b7ca1adfed4842ec0910"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_12_cc_0019.obj": {
+      "bundle": "assets/objects_91.obj",
+      "sha256": "ebf84984afaf392bf0a8eec3bd55d0c258aeb8783fc5844e764060fb7add3358"
+    },
+    "/workspace/task5b_dorm3_statistical_surface_20261026_EY66id/regions/stat_class_12_cc_0020.obj": {
+      "bundle": "assets/objects_92.obj",
+      "sha256": "7d511538c957a8192b2a107f23b6e0c1e3332fb67d314211e0a932d23349d5ba"
+    },
+    "/workspace/task5b_dorm3_shape_residual_20261026_kAm2a3/regions/remainder.obj": {
+      "bundle": "assets/structures_0.obj",
+      "sha256": "58650c14d6006d1552c44f6961cd68ae6b6419a6a7c505267586f3e04c77058a"
+    },
+    "/workspace/task5b_dorm3_flat_floor_20261026_4d5KI3/navigation_collision.obj": {
+      "bundle": "assets/navigation_geometry_0.obj",
+      "sha256": "ff15fbb4fda3ee3cde41cea2926900c2f10b4d123826d1b09ed3318ec91e0149"
+    }
+  }
+}

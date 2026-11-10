@@ -1,0 +1,346 @@
+{
+  "status": "comparison_executed_not_physical_safety_certification",
+  "configuration_diff": {
+    "require_all_objects": {
+      "before": true,
+      "after": false
+    }
+  },
+  "baseline_count": 21,
+  "new_count": 13,
+  "same_position_ids": 12,
+  "removed_ids": [
+    "vp_n_00078_00051",
+    "vp_n_00099_00017",
+    "vp_n_00142_00015",
+    "vp_n_00203_00013",
+    "vp_n_00294_00011",
+    "vp_n_00295_00097",
+    "vp_n_00323_00010",
+    "vp_n_00342_00086",
+    "vp_n_00376_00007"
+  ],
+  "added_ids": [
+    "vp_n_00211_00012"
+  ],
+  "nearest_distances": {
+    "baseline21": {
+      "min_nearest_m": 2.1053503271427294,
+      "median_nearest_m": 3.61247837363769,
+      "pairs_under3m": 3
+    },
+    "require_all_false": {
+      "min_nearest_m": 2.6196373794859458,
+      "median_nearest_m": 4.569463863518343,
+      "pairs_under3m": 1
+    }
+  },
+  "selected_components": 1,
+  "route_length_m": 107.41904755831217,
+  "safe_positions": 13,
+  "positions": 13,
+  "safe_segments": 625,
+  "segments": 625,
+  "all_positions_and_segments_pass_model": true,
+  "planning_status": "complete",
+  "input_coverage_status": "targets_unmet",
+  "failure_codes": [],
+  "primary_object_count": {
+    "observable": 92,
+    "observed_observable": 83,
+    "total": 93,
+    "observed": 83
+  },
+  "built_in_independent_validation": "passed",
+  "paired_fixed_sample_comparison": [
+    {
+      "seed": 26103001,
+      "selection_used": false,
+      "results": {
+        "baseline21": {
+          "views": 21,
+          "space_total_original_geometry": 0.9753417456509959,
+          "observed": 92,
+          "total": 93,
+          "unobserved": [
+            {
+              "instance_id": "stat_class_12_cc_0013",
+              "class_name": "ceiling light",
+              "quality": 0.08710333700011556
+            }
+          ],
+          "by_class": {
+            "ceiling light": {
+              "observed": 19,
+              "count": 20
+            },
+            "chair": {
+              "observed": 5,
+              "count": 5
+            },
+            "door": {
+              "observed": 53,
+              "count": 53
+            },
+            "elevator door": {
+              "observed": 10,
+              "count": 10
+            },
+            "table": {
+              "observed": 3,
+              "count": 3
+            },
+            "vacuum cleaner": {
+              "observed": 1,
+              "count": 1
+            },
+            "window": {
+              "observed": 1,
+              "count": 1
+            }
+          }
+        },
+        "require_all_false": {
+          "views": 13,
+          "space_total_original_geometry": 0.960296713718668,
+          "observed": 83,
+          "total": 93,
+          "unobserved": [
+            {
+              "instance_id": "stat_class_7_cc_0009",
+              "class_name": "table",
+              "quality": 0.3416997246433267
+            },
+            {
+              "instance_id": "stat_class_9_cc_0001",
+              "class_name": "vacuum cleaner",
+              "quality": 0.05361758050849824
+            },
+            {
+              "instance_id": "stat_class_12_cc_0002",
+              "class_name": "ceiling light",
+              "quality": 0.023280276123219836
+            },
+            {
+              "instance_id": "stat_class_12_cc_0003",
+              "class_name": "ceiling light",
+              "quality": 0.006057729399684383
+            },
+            {
+              "instance_id": "stat_class_12_cc_0008",
+              "class_name": "ceiling light",
+              "quality": 0.009884468525983897
+            },
+            {
+              "instance_id": "stat_class_12_cc_0009",
+              "class_name": "ceiling light",
+              "quality": 0.004008236590368221
+            },
+            {
+              "instance_id": "stat_class_12_cc_0011",
+              "class_name": "ceiling light",
+              "quality": 0.00595345502598475
+            },
+            {
+              "instance_id": "stat_class_12_cc_0013",
+              "class_name": "ceiling light",
+              "quality": 0.08710333700011556
+            },
+            {
+              "instance_id": "stat_class_12_cc_0015",
+              "class_name": "ceiling light",
+              "quality": 0.11612442554214111
+            },
+            {
+              "instance_id": "stat_class_12_cc_0017",
+              "class_name": "ceiling light",
+              "quality": 0.002812705124118358
+            }
+          ],
+          "by_class": {
+            "ceiling light": {
+              "observed": 12,
+              "count": 20
+            },
+            "chair": {
+              "observed": 5,
+              "count": 5
+            },
+            "door": {
+              "observed": 53,
+              "count": 53
+            },
+            "elevator door": {
+              "observed": 10,
+              "count": 10
+            },
+            "table": {
+              "observed": 2,
+              "count": 3
+            },
+            "vacuum cleaner": {
+              "observed": 0,
+              "count": 1
+            },
+            "window": {
+              "observed": 1,
+              "count": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 26103002,
+      "selection_used": false,
+      "results": {
+        "baseline21": {
+          "views": 21,
+          "space_total_original_geometry": 0.9769643994158702,
+          "observed": 92,
+          "total": 93,
+          "unobserved": [
+            {
+              "instance_id": "stat_class_12_cc_0013",
+              "class_name": "ceiling light",
+              "quality": 0.08735391538268111
+            }
+          ],
+          "by_class": {
+            "ceiling light": {
+              "observed": 19,
+              "count": 20
+            },
+            "chair": {
+              "observed": 5,
+              "count": 5
+            },
+            "door": {
+              "observed": 53,
+              "count": 53
+            },
+            "elevator door": {
+              "observed": 10,
+              "count": 10
+            },
+            "table": {
+              "observed": 3,
+              "count": 3
+            },
+            "vacuum cleaner": {
+              "observed": 1,
+              "count": 1
+            },
+            "window": {
+              "observed": 1,
+              "count": 1
+            }
+          }
+        },
+        "require_all_false": {
+          "views": 13,
+          "space_total_original_geometry": 0.9609051783076559,
+          "observed": 83,
+          "total": 93,
+          "unobserved": [
+            {
+              "instance_id": "stat_class_7_cc_0009",
+              "class_name": "table",
+              "quality": 0.3429724344751851
+            },
+            {
+              "instance_id": "stat_class_9_cc_0001",
+              "class_name": "vacuum cleaner",
+              "quality": 0.054264955497610005
+            },
+            {
+              "instance_id": "stat_class_12_cc_0002",
+              "class_name": "ceiling light",
+              "quality": 0.02323608233681949
+            },
+            {
+              "instance_id": "stat_class_12_cc_0003",
+              "class_name": "ceiling light",
+              "quality": 0.006044319961150709
+            },
+            {
+              "instance_id": "stat_class_12_cc_0008",
+              "class_name": "ceiling light",
+              "quality": 0.009870312038971908
+            },
+            {
+              "instance_id": "stat_class_12_cc_0009",
+              "class_name": "ceiling light",
+              "quality": 0.003998215177673505
+            },
+            {
+              "instance_id": "stat_class_12_cc_0011",
+              "class_name": "ceiling light",
+              "quality": 0.005941307025604755
+            },
+            {
+              "instance_id": "stat_class_12_cc_0013",
+              "class_name": "ceiling light",
+              "quality": 0.08735391538268111
+            },
+            {
+              "instance_id": "stat_class_12_cc_0015",
+              "class_name": "ceiling light",
+              "quality": 0.11601536794571828
+            },
+            {
+              "instance_id": "stat_class_12_cc_0017",
+              "class_name": "ceiling light",
+              "quality": 0.002818168793632123
+            }
+          ],
+          "by_class": {
+            "ceiling light": {
+              "observed": 12,
+              "count": 20
+            },
+            "chair": {
+              "observed": 5,
+              "count": 5
+            },
+            "door": {
+              "observed": 53,
+              "count": 53
+            },
+            "elevator door": {
+              "observed": 10,
+              "count": 10
+            },
+            "table": {
+              "observed": 2,
+              "count": 3
+            },
+            "vacuum cleaner": {
+              "observed": 0,
+              "count": 1
+            },
+            "window": {
+              "observed": 1,
+              "count": 1
+            }
+          }
+        }
+      }
+    }
+  ],
+  "geometry_and_scores_unchanged": true,
+  "noise_filter_unchanged": {
+    "raw_regions": 201,
+    "excluded_from_object_obligations": 108,
+    "active_targets": 93,
+    "geometry_deleted_faces": 0
+  },
+  "production_files_unchanged": true,
+  "physical_safety_verified": false,
+  "new_llm_calls": 0,
+  "stage_seconds": {
+    "plan": 512.9761765189469,
+    "verify": 27.60600893944502
+  },
+  "total_seconds": 540.8125892393291
+}

@@ -1,0 +1,244 @@
+{
+  "schema": "spacewatch.execution06-versus-publication-change-audit.v1",
+  "date": "2026-11-10",
+  "scope": "Read-only small source/JSON audit. No source or frozen execution edits, model/API calls, selector changes, probability recomputation, mesh/point-cloud/NPZ loading, event replay, or GT-based tuning.",
+  "verdict": "Different inputs in a historical effectiveness evaluation and the current final10-view connected execution, not proof of publication-method mismatch. The accepted source-frame selector and detector/grouping code were retained. Current missing box support and unresolved results remain explicitly recorded.",
+  "runs": {
+    "new": {
+      "run": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution06/run",
+      "final_root": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution06/run/stages/pair.changes/attempt-1794285013394991786/detection",
+      "viewer_data_sha256": "3b3911156105d8b8a7c78aaef4b9f0e18dde24934a4714a7abd3c39a3c69c574",
+      "verified_changes_sha256": "35d0cbad32509660da7f2a49f17040296e8a8b22a8d3301d7005d665247ad6a8",
+      "keypoint_plan": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/pair.rgb_inputs/attempt-1794279703072785920/keypoint-plan.json",
+      "keypoint_plan_sha256": "00e02cda5194b49a73c9ba52902c2ac4b1b359758584cf2ea11100869cfd4343",
+      "after_anchors": 10,
+      "before_plan_viewpoints": 15,
+      "before_after_selected_originals": [
+        30,
+        30
+      ],
+      "prepared_views": 845,
+      "inferred_pairs": 1282,
+      "mesh_object_candidates": 4,
+      "rgb_only_candidates": [
+        "person"
+      ],
+      "all_event_types": "unresolved",
+      "candidate_count": 5,
+      "rule_group_count": 2,
+      "groups": [
+        {
+          "id": "CH-01",
+          "label": "person",
+          "events": [
+            "EV-001",
+            "EV-005"
+          ]
+        },
+        {
+          "id": "CH-02",
+          "label": "chair",
+          "events": [
+            "EV-002",
+            "EV-003",
+            "EV-004"
+          ]
+        }
+      ],
+      "provenance": "V/Q/plans/input selection/registration were computed in execution03 and verified-imported onward; strict cached-importance crop prepare in04, actual NN in05 plus separately recovered appearance, final classification/grouping in06. This audit does not relabel imported stages as newly computed in06."
+    },
+    "accepted_publication_evidence": {
+      "root": "/workspace/dorm45_supplement_frames_20261030_9da81417/runs/fuse_mean_verified",
+      "viewer_data_sha256": "2dfd31e5fda7a5f409ec7df489615687bcec4c28aefa6895d7005b6dcc535967",
+      "verified_changes_sha256": "3810f4a0c17fee8be4a42873384bbaddc1dcaae762e4ca6547f47fecffafb0df",
+      "keypoint_plan_sha256": "30b82178869dcec397933fae88bd4422a481427cbd8eb0d192e0f4f148b880bd",
+      "after_anchors": 15,
+      "before_after_selected_originals": [
+        40,
+        39
+      ],
+      "prepared_views": 977,
+      "inferred_pairs": 1539,
+      "mesh_object_candidates": 4,
+      "rgb_only_candidates": [
+        "person",
+        "box"
+      ],
+      "candidate_count": 6,
+      "rule_group_count": 3,
+      "groups": [
+        {
+          "id": "CH-01",
+          "label": "person",
+          "events": [
+            "EV-001",
+            "EV-005"
+          ]
+        },
+        {
+          "id": "CH-02",
+          "label": "table",
+          "events": [
+            "EV-002",
+            "EV-003",
+            "EV-004"
+          ]
+        },
+        {
+          "id": "CH-03",
+          "label": "box",
+          "events": [
+            "EV-006"
+          ]
+        }
+      ]
+    }
+  },
+  "missing_historical_change": {
+    "description": "Historical RGB-only box candidate/group, not a suppressed new mesh-object candidate",
+    "accepted_event": "EV-006 / RGB-BOX-002 / CH-03",
+    "accepted_type": "unresolved",
+    "accepted_reason": "registered_rgb_instance_without_mesh",
+    "accepted_center_u": [
+      -6.5732622146606445,
+      1.6806678771972656,
+      38.05048751831055
+    ],
+    "accepted_after_original_frame_ids": [
+      "255",
+      "259"
+    ],
+    "accepted_after_source_video_indices": [
+      3825,
+      3885
+    ],
+    "accepted_rgb_component_evidence": [
+      {
+        "frame": "255",
+        "view": "E1-V00915",
+        "reference": "E0-V00431",
+        "pixels": 880,
+        "changed_pixels": 251
+      },
+      {
+        "frame": "259",
+        "view": "E1-V00930",
+        "reference": "E0-V00434",
+        "pixels": 3644,
+        "changed_pixels": 1440
+      }
+    ],
+    "accepted_reference_originals": [
+      "242",
+      "251"
+    ],
+    "current_after_source_set_contains": {
+      "255": false,
+      "259": true,
+      "262": true
+    },
+    "current_262_box_label_pixels": 0,
+    "current_259_box_label_pixels": 968,
+    "accepted_255_box_label_pixels": 292,
+    "unchanged_rgb_rule": "rgb_people.candidates retains a same-epoch/same-label spatial group only when at least settings.min_frames=2 distinct original frames survive. A second cube face cannot replace missing original-frame support.",
+    "radius_explanation": {
+      "radius_u": 2.4349773790484974,
+      "old_anchor": "dorm5-K14 / vp_frame_00003729",
+      "old_anchor_common_position": [
+        -8.528966964983935,
+        3.0260170671229005,
+        38.08666593268311
+      ],
+      "old_255_distance_u": 1.4671618381194247,
+      "old_after_frames": [
+        "255",
+        "259",
+        "262"
+      ],
+      "old_before_frames": [
+        "257",
+        "242",
+        "251"
+      ],
+      "nearest_current_anchor_for255": "dorm5-K10 / vp_frame_00003947",
+      "current_anchor_common_position": [
+        -10.923010898021863,
+        2.604602856603253,
+        39.410976596712445
+      ],
+      "minimum_distance_to_any_current_anchor_u": 3.4204413528154323,
+      "inside_any_current_neighborhood": false,
+      "current_after_frames": [
+        "259",
+        "240",
+        "262"
+      ],
+      "current_before_frames": [
+        "235",
+        "257",
+        "260"
+      ]
+    },
+    "crop_evidence": "Current frame259 still gets a box crop at unchanged importance5,123pixels, extent8.5077538278deg/FOV35deg. Historical259 box crop has the same source component and virtually identical mesh-hit point. Its references change from historical251/242 to current257/260. Historical255 box crop cannot exist because that source original is outside all current neighborhoods. No candidate threshold or importance fallback explains that input omission.",
+    "causal_bound": "Directly established loss of one historical required original and changed reference inputs. No controlled rerun was performed, so the separate effects of frame choice, reference probabilities and all crop changes are not quantitatively isolated."
+  },
+  "not_missing_supplemental_logic": {
+    "root_name_is_not_execution_proof": true,
+    "accepted_final_plan_supplement_field": null,
+    "accepted_final_supplementary_frame_flags": [
+      0,
+      0
+    ],
+    "current_plan_supplement_field": null,
+    "current_supplementary_frame_flags": [
+      0,
+      0
+    ],
+    "final_worker": {
+      "path": "/workspace/dorm45_supplement_frames_20261030_9da81417/runs/fuse_mean_verified/worker.py",
+      "sha256": "d8ad6ecb1bd259ed543ad38966883472c4fe1458ef3c9499b450e59382ef594d",
+      "behavior": "Reads final keypoint-plan, exports those originals, prepares/infer/finalizes/verifies. No call to supplement.py or observation-deficient backfill."
+    },
+    "final_selector": {
+      "path": "/workspace/dorm45_supplement_frames_20261030_9da81417/select_frames_lowmask.py",
+      "sha256": "41f57db62da033b35d697ffc8ae1e428238ae41acd1b7e7335b26c73ef260ea9",
+      "behavior": "Three originals per capture per anchor, same.65mesh-height radius, bystander>200 last,2percent mask bins, semantic diversity/object pixels/sharpness/distance, prefer>=1second spacing then generic fill. Current adapter preserves this selection logic."
+    },
+    "separate_experiment": {
+      "path": "/workspace/dorm45_supplement_frames_20261030_9da81417/supplement.py",
+      "sha256": "8197b4ecb0d3f99962bfa3d22384d5f6087f5b6f36386889beeb028241d78f5b",
+      "behavior": "Separate baseline/proposed/uniform experiment adding visibility-ranked frames for observation-deficient candidate events. Its existence/root folder name does not establish use by final fuse_mean_verified worker."
+    },
+    "ranking_input_parity": "Among23shared Before and25shared After selected originals, semantic label counts, sharpness, masked_fraction, bystander_pixels and source image SHA all agree exactly. Some pose floats differ at rounding scale. New anchors and neighborhood membership, not a changed lowmask rule, alter the selected set."
+  },
+  "algorithm_and_geometry_parity": {
+    "byte_identical_accepted_and_frozen06": {
+      "tools/mesh_simsac/core.py": "42e7568c483a46cfd4d26ed4ce4c28979895490f202cd036fd7f10bc41e40b54",
+      "tools/mesh_simsac/run.py": "e15ad0d9a3cd070b751ebb09fd6d280e1e94109275466e676377890e02aa50d1",
+      "tools/mesh_simsac/classify.py": "8be8a87e94b6a35226eed4c08d6e346d0226a73f479d1866607bc5dccc5a6f56",
+      "tools/mesh_simsac/rgb_people.py": "976c9b7f36396a50e486283fac460b6a0c08865fb8bb205f43622706a3c2dc24",
+      "tools/mesh_simsac/verify_changes.py": "c583383c3fd02c03f0c4f6eaf8a9955c6836858c331f0b4dc57c75a9403a81f8",
+      "tools/mesh_simsac/registration.py": "8ce6c487cd909a3e8d13f4b6120b5ed313aecccaf34a71f50acf9190936a87af"
+    },
+    "objects_json_identical_sha256": "ca43c1ea4bc612ec81896804dd6f393309d3e225ead3251e7e03d4193a0462e7",
+    "model_json_identical_sha256": "19c63ace28edc5a0b138e19d533898a76e192fe67167a96b2771cad9976cb09d",
+    "registration_max_abs_difference": {
+      "common_from_world": 1.532107773982716e-14,
+      "region_matrices": 6.156186671546493e-14
+    },
+    "registration_interpretation": "Fit was freshly computed for current integration but same geometry and deterministic method produce numerically identical transforms. Registration is not a demonstrated substantive cause of changed counts.",
+    "grouping": "Identical complete-linkage/person-context/opposite-RGB/window rules. Median registration-error term0.2452149828176569 new versus0.24521498281765913 accepted. Every new candidate retained; no new box event exists for grouper to discard. CH02 lead label chair versus historical table is not evidence of a third physical group.",
+    "intentional_crop_difference": "Current strict binding uses all14same-manual cached means: water dispenser4 (legacy3), sign2 (legacy3), ceiling light4 eligible (legacy omitted).183historical versus175current seed targets; other crop constraints unchanged. Box importance stays5 and frame259 remains eligible. This is an explicit paper-binding correction, not identical historical input reproduction."
+  },
+  "disclosure": "The integrated run produces5unresolved candidates and2rule-grouped change clusters from newly selected current plans, not the historical publication's6candidates/3groups. The historical box group depends on source frame255 absent from all current keypoint neighborhoods. The final accepted worker did not use the root's separate supplemental-frame experiment. Do not force counts, widen neighborhoods, restore old anchors/events, or label the2clusters independently GT-verified.",
+  "interpretation_correction": {
+    "date": "2026-11-10",
+    "reason": "User clarified final10points and separate effectiveness evaluation.",
+    "historical_result_count_is_not_final_program_requirement": true,
+    "underlying_run_measurements_unchanged": true,
+    "ordinary_person_detection_retained": true,
+    "actual_845_view_policy": "capturer_only",
+    "ordinary_person_event": "EV-005",
+    "same_saved_llm_ratings_no_model_replacement_evidence": true
+  }
+}

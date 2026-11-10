@@ -1,0 +1,95 @@
+{
+  "component": "original upstream519 preparation adapter",
+  "validated_at_utc": "2026-11-10 03:02:08 UTC",
+  "server_root": "/workspace/spacewatch_integrated_20261110_8QJn4J",
+  "status": "source complete; contract and verified-reuse smoke tests passed; cold fresh execution not performed",
+  "entrypoint": "spacewatch_pipeline.upstream519.run(request, output_dir, gpu=None)",
+  "cli": "python3 -B -m spacewatch_pipeline.upstream519 --prepare-request upstream519_original/requests/dorm4-fresh-request.json --output ../runs/unique-upstream-dorm4",
+  "final_owned_source_sha256": {
+    "spacewatch_pipeline/upstream519.py": "f636dc232e990ce8d0559163bf23f3fae91b47e554dc0791eeadaacafd3fdd3b",
+    "upstream519_original/offline_worker.py": "0592554620214e5b3823947739393e136d2698ca8688b261dd9b9ace9b283548",
+    "upstream519_original/network_guard/sitecustomize.py": "6e6f1a75eba4d9b402354b2b5382a0c2a5ed7fa09a8cf6ef7cbca7f93f826ffd",
+    "upstream519_original/adapter_tests/test_upstream519.py": "668b00e9bf57797fc86f45e5922aadb972352b7cbb0f118817045dbfc92d8271",
+    "upstream519_original/README.txt": "3d428e78f21c8be23964fff5bec47b0f449a3e5b04a1753f8e2810ea72ba146d"
+  },
+  "source_inventory": {
+    "path": "code/upstream519_original/source_manifest.json",
+    "sha256": "1dc5b023dd2b94ec0d0f78dd777121186406999fa4c77f683a91a418d23f162f",
+    "files": 270,
+    "bytes": 5795349,
+    "original_files": 268,
+    "owned_helper_records": 2,
+    "images_models_geometry_or_runs_copied": false,
+    "original_source_hashes": {
+      "v2/spacewatch_pipeline/geometry.py": "ad9ccc7dc4301b6db04dd0947bf32a1e36819c806affe0448f870e7c3996fe52",
+      "v2/spacewatch_pipeline/ooops.py": "a94504f2b8fb778181a1fdb02e6ede26d216cf101fe1313433ce3b837d4ecf25",
+      "prepare_map_profile.py": "080b245f33f6b11175ed1479a2fa40fe9fa1f93a5c02bb1100cd19433a759439",
+      "statistical_adapter.py": "2166e2a6267d3debe7b610f0f8d2ac4b1a145cb92703ef0a3933065b45bb0fb4",
+      "raw_input_producer/prepare_new.py": "adcbd1033eea917e57b06e07b318bf6d0901b856942b5ebf8ee1b2e7734d5638",
+      "raw_input_producer/panovggt_pipeline_v2/workers/prepare_inputs.py": "8d8b983a0c4cfad51252bf145fdea154a281df888353e6609ed386427ce6a1e0"
+    }
+  },
+  "tests": {
+    "command_from_code": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 /workspace/v1_splatfacto_comparison_20261025/env/bin/python -B -m unittest discover -s upstream519_original/adapter_tests -p test_upstream519.py -v",
+    "count": 8,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 1.464,
+    "exit_code": 0,
+    "checks": [
+      "cold memory guard precedes any producer execution",
+      "old context plan reduced to capture-bound camera height/grid origin/fallback tile origin",
+      "inspection cannot implicitly launch fresh models",
+      "mutated reused input rejected",
+      "only accepted upstream stages, no virtual plan or Gaussian",
+      "real synthetic original-mask execution distinguishes person15 from umbrella16",
+      "actual native capture519.import_predictions accepts produced fixture receipt",
+      "streamed NPZ array digest equals original profile logic"
+    ]
+  },
+  "default_requests_sha256": {
+    "dorm4-fresh-request.json": "9e90ee49f6db78761ddad56800dd522703b40b08b18524e1c1039cd1c398fdb7",
+    "dorm5-fresh-request.json": "934ac047eb3e2ed8ba2aee696a9dcf49168c88623194b61ba420796c12427b7d",
+    "dorm4-reuse-request.json": "0b6120175705581c0aa5b72561afad05e836493b6879af6c4037bbfa8dd22f7b",
+    "dorm5-reuse-request.json": "0191a0eeabbbffbfd627e78dec43b3363caa06ecfbb3e4f2d62c20697d8d6cd9"
+  },
+  "fresh_preflight": {
+    "executed": true,
+    "command_pattern": "python3 -B -m spacewatch_pipeline.upstream519 --prepare-request upstream519_original/requests/{capture}-fresh-request.json --check-only --output upstream519_original/requests/{capture}-preflight.json",
+    "fresh_model_inference_executed": false,
+    "cold_run_memory_guard_gib": 16,
+    "dorm4": {"status": "fresh_preflight_ready_not_executed", "available_memory_gib": 6.155021667480469, "cold_execution_currently_blocked_by_ram": true, "report_sha256": "6aa19243ecdc5ac60f44d0182262e85e959c8aa77654cc34e3a91651c57f46a9"},
+    "dorm5": {"status": "fresh_preflight_ready_not_executed", "available_memory_gib": 6.2359771728515625, "cold_execution_currently_blocked_by_ram": true, "report_sha256": "43e20295c173bc50b606c74f8c409b745b5d3792badcb8ade6fff41f6ea0dd00"},
+    "validation_limit": "Preflight verifies real hashes, runtimes, source policy, ERP metadata and vocabulary bindings; it does not prove successful cold neural inference, Pano reconstruction, Poisson or semantic projection."
+  },
+  "verified_reuse_smokes": [
+    {"capture_id": "dorm4", "exit_code": 0, "new_model_calls": 0, "result": "runs/upstream519_reuse_smoke_dorm4_01/preparation_result.json", "bytes": 7770, "sha256": "499dc8c7611d081729f3f12eb0450be91789277a7d96a6c47edc69d0d07d9571", "producer_sha256_at_execution": "ef8df8b4e173fef32aa36b3ca3849a3bcee27191689e4bdab08ca0af6414e431"},
+    {"capture_id": "dorm5", "exit_code": 0, "new_model_calls": 0, "result": "runs/upstream519_reuse_smoke_dorm5_01/preparation_result.json", "bytes": 7762, "sha256": "ec51d9a9b1448f9614f82f70025ba04d601919b519ccf7b947bf67b581f42dcd", "producer_sha256_at_execution": "f636dc232e990ce8d0559163bf23f3fae91b47e554dc0791eeadaacafd3fdd3b"}
+  ],
+  "offline_env_checked": {
+    "HF_HUB_OFFLINE": "1", "TRANSFORMERS_OFFLINE": "1", "HF_DATASETS_OFFLINE": "1",
+    "HF_HUB_DISABLE_TELEMETRY": "1", "WANDB_DISABLED": "true", "WANDB_MODE": "disabled",
+    "TORCH_HOME": "/workspace/pano_change_models_20261025/torch_cache",
+    "python_socket_network_denied": true,
+    "one_cpu_affinity_inherited": true,
+    "finite_stage_deadlines": true
+  },
+  "integration_contract": {
+    "use": ["source_run", "coordinates", "semantic_arrays", "vocabulary", "semantic_frame_id", "semantic_coordinates_sha256", "planning_profile.path", "planning_profile.sha256", "captured_prediction"],
+    "planning_scene_is_diagnostic_only": true,
+    "old_selected_views_imported": false,
+    "old_VQ_imported": false,
+    "gpu": "Use provided existing lease row, otherwise acquire original cooperative lease only for infer/Pano.",
+    "main_binds_manifest_separately": "Native code_identity does not scan upstream519_original; bind source_manifest.json explicitly."
+  },
+  "explicit_caveats": [
+    "Cold end-to-end execution remains unverified; current RAM is below guard.",
+    "Prepared inputs19_02 reuse proves artifact and profile binding, not exact originalv2 stage origin.",
+    "Raw mode uses explicit accepted extraction/person-mask/coordinate policies, not arbitrary policy-free video inference.",
+    "Original mask source is byte-identical; exactly two label==16 comparisons are dynamically bound by person class name. Derived AST/source hashes are recorded at execution. Current vocabulary person15/umbrella16 is tested.",
+    "Original assumed2.7m ceiling-gap metric scale remains unverified; provided checksummed coordinates are an alternative.",
+    "Unchanged profile producer requires accepted external /workspace/spacewatch_pipeline_v5_1 policy files; packaged snapshots hash-check them, but this is not standalone without those recorded dependencies.",
+    "Original model repositories, installed runtimes, source videos and context plans remain external; no model/image archives are packaged or downloaded.",
+    "No survey/participant analysis, new API calls, dependency installs, neural inference or original-source mutations occurred in this work."
+  ]
+}

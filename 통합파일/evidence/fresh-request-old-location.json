@@ -1,0 +1,8 @@
+{
+  "schema": "spacewatch.integrated_fresh.v1",
+  "pipeline_config": "dorm45-paper.json",
+  "captures": [
+    {"id": "dorm4", "prepare_request": "../upstream519_original/requests/dorm4-fresh-request.json"},
+    {"id": "dorm5", "prepare_request": "../upstream519_original/requests/dorm5-fresh-request.json"}
+  ]
+}

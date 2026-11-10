@@ -1,0 +1,6 @@
+{
+  "status": "passed",
+  "exact_native_python_report_checks": 39,
+  "mixed_and_zero_importance_count_policy": true,
+  "empty_observable_denominator_is_null": true
+}

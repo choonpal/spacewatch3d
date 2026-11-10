@@ -1,0 +1,21 @@
+{
+  "repeat": 3,
+  "request_key": "4b266b9ac6fd7e7f17cb62507e00d9ea5301995dc3f93be7b3b8f84f40a94efb",
+  "response": {
+    "rating": 3,
+    "reason": "테이블은 시설 및 비품으로서 파손이나 적치물 여부 등 안전과 사용 상태를 확인해야 하는 대상에 포함됩니다."
+  },
+  "usage": {
+    "promptTokenCount": 345,
+    "candidatesTokenCount": 41,
+    "totalTokenCount": 386,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 345
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "seconds": 2.6985412165522575
+}

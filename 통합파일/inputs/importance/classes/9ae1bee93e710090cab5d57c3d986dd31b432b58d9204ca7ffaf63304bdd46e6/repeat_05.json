@@ -1,0 +1,21 @@
+{
+  "repeat": 5,
+  "request_key": "9ae1bee93e710090cab5d57c3d986dd31b432b58d9204ca7ffaf63304bdd46e6",
+  "response": {
+    "rating": 4,
+    "reason": "정수기는 시설 및 비품으로서 누수나 파손 시 안전과 사용에 직접적인 영향을 줄 수 있으므로 매뉴얼에 따라 중요하게 관찰해야 합니다."
+  },
+  "usage": {
+    "promptTokenCount": 346,
+    "candidatesTokenCount": 48,
+    "totalTokenCount": 394,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 346
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "seconds": 2.522177018225193
+}

@@ -1,0 +1,21 @@
+{
+  "repeat": 5,
+  "request_key": "93900f26ad4f12bfb2d142048c84c8911f604f21eb27c6226afe8ba316a868ad",
+  "response": {
+    "rating": 3,
+    "reason": "의류는 공용 공간에 방치될 경우 통로 이용을 방해하거나 물품의 추가 및 이동에 해당하여 안전과 관리에 영향을 줄 수 있습니다."
+  },
+  "usage": {
+    "promptTokenCount": 345,
+    "candidatesTokenCount": 48,
+    "totalTokenCount": 393,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 345
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "seconds": 5.20419992133975
+}

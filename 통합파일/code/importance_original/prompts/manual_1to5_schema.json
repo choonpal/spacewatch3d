@@ -1,0 +1,18 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "rating": {
+      "maximum": 5,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "reason": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "rating",
+    "reason"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,36 @@
+{
+  "unit_tests": {
+    "status": "passed",
+    "tests": 15,
+    "seconds": 0.916,
+    "environment": "/workspace/panovggt_env/bin/python on authorized GPU server",
+    "gpu_used_by_tests": false
+  },
+  "full_fresh_runs": {
+    "dorm2": {
+      "status": "complete",
+      "all_stages_fresh": true,
+      "points": 63414984,
+      "source_matches_previous_v1_sha256": true,
+      "report": "/workspace/dorm2_pointcloud_v2_20261017/run_report.json",
+      "inclusive_component_threshold_checked": true,
+      "exact_all_retained_and_removed_bytes_checked": true,
+      "independent_full_ply_sha256_check": true
+    },
+    "dorm3": {
+      "status": "complete",
+      "all_stages_fresh": true,
+      "points": 65474818,
+      "source_matches_previous_v1_sha256": true,
+      "report": "/workspace/dorm3_pointcloud_v2_20261017/run_report.json",
+      "inclusive_component_threshold_checked": true,
+      "exact_all_retained_and_removed_bytes_checked": true,
+      "independent_full_ply_sha256_check": true
+    }
+  },
+  "transfer_verification": {
+    "files": 131,
+    "all_sizes_and_sha256_match": true,
+    "full_ply_independently_rehashed_on_server": true
+  }
+}

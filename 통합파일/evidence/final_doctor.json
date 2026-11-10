@@ -1,0 +1,96 @@
+{
+  "ok": true,
+  "checks": [
+    {
+      "check": "GPU server hostname",
+      "actual": "33956bf3c14a",
+      "expected": "33956bf3c14a",
+      "ok": true
+    },
+    {
+      "action": "reconstruct",
+      "python": "/workspace/panovggt_env/bin/python",
+      "ok": true,
+      "detail": "OK\n"
+    },
+    {
+      "action": "mesh",
+      "python": "/workspace/mesh_generator_v1/.venv/bin/python",
+      "ok": true,
+      "detail": "OK\n"
+    },
+    {
+      "action": "plan",
+      "python": "/workspace/task5b_dorm3_keyframes_20261017/venv/bin/python",
+      "ok": true,
+      "detail": "OK\n"
+    },
+    {
+      "action": "render",
+      "python": "/workspace/panovggt_env/bin/python",
+      "ok": true,
+      "detail": "OK\n"
+    },
+    {
+      "action": "align",
+      "python": "/workspace/mesh_generator_v1/.venv/bin/python",
+      "ok": true,
+      "detail": "OK\n"
+    },
+    {
+      "action": "quality",
+      "python": "/workspace/v1_splatfacto_comparison_20261025/env/bin/python",
+      "ok": true,
+      "detail": "OK\n"
+    },
+    {
+      "action": "rgb_infer",
+      "python": "/workspace/sam31_panorama_test_20261023/env/bin/python",
+      "ok": true,
+      "detail": "OK\n"
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/vocabulary.json",
+      "ok": true
+    },
+    {
+      "path": "/workspace/dorm4_dorm5_v5_20261025/reconstruction/dorm4",
+      "ok": true
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/dorm4.json",
+      "ok": true
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/mesh_arrays.npz",
+      "ok": true
+    },
+    {
+      "path": "/workspace/dorm4_dorm5_v5_20261025/reconstruction/dorm5",
+      "ok": true
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm5/dorm5.json",
+      "ok": true
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm5/mesh_arrays.npz",
+      "ok": true
+    },
+    {
+      "check": "input contracts",
+      "ok": true,
+      "detail": "Inputs, coordinates and size assumptions OK\n"
+    },
+    {
+      "check": "native planning config dorm4",
+      "ok": true,
+      "detail": "{\"ok\": true, \"capture\": \"dorm4\", \"native_config_accepted\": true, \"paper_selection\": {\"max_views\": 15, \"deadline_seconds\": 35.0}}\n"
+    },
+    {
+      "check": "native planning config dorm5",
+      "ok": true,
+      "detail": "{\"ok\": true, \"capture\": \"dorm5\", \"native_config_accepted\": true, \"paper_selection\": {\"max_views\": 15, \"deadline_seconds\": 35.0}}\n"
+    }
+  ]
+}

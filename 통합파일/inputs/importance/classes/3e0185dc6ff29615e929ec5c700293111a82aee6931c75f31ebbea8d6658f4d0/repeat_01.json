@@ -1,0 +1,21 @@
+{
+  "repeat": 1,
+  "request_key": "3e0185dc6ff29615e929ec5c700293111a82aee6931c75f31ebbea8d6658f4d0",
+  "response": {
+    "rating": 3,
+    "reason": "의자는 비품으로서 파손 여부나 통로 적치 여부 등 안전과 사용에 영향을 줄 수 있는 상태를 확인해야 하므로 중간 정도의 중요도를 가집니다."
+  },
+  "usage": {
+    "promptTokenCount": 345,
+    "candidatesTokenCount": 51,
+    "totalTokenCount": 396,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 345
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "seconds": 5.0769330114126205
+}

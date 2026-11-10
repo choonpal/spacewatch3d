@@ -1,0 +1,192 @@
+[
+  {
+    "id": 0,
+    "name": "wall",
+    "rgb": [
+      230,
+      80,
+      80
+    ],
+    "static_mesh": true
+  },
+  {
+    "id": 1,
+    "name": "floor",
+    "rgb": [
+      80,
+      124,
+      230
+    ],
+    "static_mesh": true
+  },
+  {
+    "id": 2,
+    "name": "ceiling",
+    "rgb": [
+      167,
+      230,
+      80
+    ],
+    "static_mesh": true
+  },
+  {
+    "id": 3,
+    "name": "door",
+    "rgb": [
+      230,
+      80,
+      211
+    ],
+    "static_mesh": true
+  },
+  {
+    "id": 4,
+    "name": "window",
+    "rgb": [
+      80,
+      230,
+      205
+    ],
+    "static_mesh": true
+  },
+  {
+    "id": 5,
+    "name": "chair",
+    "rgb": [
+      230,
+      161,
+      80
+    ],
+    "static_mesh": true
+  },
+  {
+    "id": 6,
+    "name": "table",
+    "rgb": [
+      118,
+      80,
+      230
+    ],
+    "static_mesh": true
+  },
+  {
+    "id": 7,
+    "name": "water dispenser",
+    "rgb": [
+      87,
+      230,
+      80
+    ],
+    "static_mesh": true
+  },
+  {
+    "id": 8,
+    "name": "vacuum cleaner",
+    "rgb": [
+      230,
+      80,
+      130
+    ],
+    "static_mesh": true
+  },
+  {
+    "id": 9,
+    "name": "fire hose cabinet",
+    "rgb": [
+      80,
+      174,
+      230
+    ],
+    "static_mesh": true
+  },
+  {
+    "id": 10,
+    "name": "fire extinguisher",
+    "rgb": [
+      217,
+      230,
+      80
+    ],
+    "static_mesh": true
+  },
+  {
+    "id": 11,
+    "name": "ceiling light",
+    "rgb": [
+      198,
+      80,
+      230
+    ],
+    "static_mesh": true
+  },
+  {
+    "id": 12,
+    "name": "ventilation grille",
+    "rgb": [
+      80,
+      230,
+      155
+    ],
+    "static_mesh": true
+  },
+  {
+    "id": 13,
+    "name": "sign",
+    "rgb": [
+      230,
+      111,
+      80
+    ],
+    "static_mesh": true
+  },
+  {
+    "id": 14,
+    "name": "tactile paving",
+    "rgb": [
+      80,
+      93,
+      230
+    ],
+    "static_mesh": true
+  },
+  {
+    "id": 15,
+    "name": "person",
+    "rgb": [
+      137,
+      230,
+      80
+    ],
+    "static_mesh": false
+  },
+  {
+    "id": 16,
+    "name": "umbrella",
+    "rgb": [
+      230,
+      80,
+      180
+    ],
+    "static_mesh": true
+  },
+  {
+    "id": 17,
+    "name": "clothes",
+    "rgb": [
+      80,
+      224,
+      230
+    ],
+    "static_mesh": true
+  },
+  {
+    "id": 18,
+    "name": "box",
+    "rgb": [
+      230,
+      192,
+      80
+    ],
+    "static_mesh": true
+  }
+]

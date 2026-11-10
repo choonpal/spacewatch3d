@@ -1,0 +1,52 @@
+{
+  "method": "semantic_floor_full_xy_flat_indoor_prior_v2",
+  "user_provided_prior": "All indoor areas on this map are flat, same-level floor; no actual steps or floor holes.",
+  "single_level_prior_required": true,
+  "multi_level_or_real_steps_supported": false,
+  "original_source_faces": 157760,
+  "floor_class_ids": [
+    1,
+    14
+  ],
+  "wall_class_ids": [
+    0
+  ],
+  "ceiling_class_ids": [
+    2
+  ],
+  "semantic_ground_faces": 32489,
+  "semantic_floor_height_or_slope_gates": false,
+  "semantic_floor_projected_area": 198.68326554597502,
+  "previous_floor_area": 99.24609200045703,
+  "original_floor_area": 97.62136890942428,
+  "new_floor_area": 221.7566271966342,
+  "recovered_semantic_floor_area_vs_previous": 101.06158875829662,
+  "ceiling_backed_inferred_floor_area": 21.24562062335146,
+  "ceiling_projection_used_only_as_navigation_prior": true,
+  "inferred_bounded_hole_area": 0.20332581452900272,
+  "inferred_bounded_hole_count": 144,
+  "source_ground_faces_exempt_from_collision": 32489,
+  "wall_faces_preserved_as_collision": 58092,
+  "ceiling_faces_preserved_as_collision": 29111,
+  "unknown_edge_connected_support_faces": 732,
+  "unknown_collision_faces_preserved": true,
+  "original_floor_bounds": [
+    -17.099990844726562,
+    -37.19163131713867,
+    -0.6050636768341064,
+    10.913071632385254
+  ],
+  "new_floor_bounds": [
+    -17.15650749206543,
+    -44.43330764770508,
+    1.7564409971237183,
+    12.633304595947266
+  ],
+  "convex_hull_used": false,
+  "between_component_gap_filling": false,
+  "source_observation_triangles_added_or_removed": 0,
+  "original_labels_changed": 0,
+  "original_observation_geometry_unchanged": true,
+  "physical_safety_verified": false,
+  "navigation_floor_is_projected_support_not_repaired_source_mesh": true
+}

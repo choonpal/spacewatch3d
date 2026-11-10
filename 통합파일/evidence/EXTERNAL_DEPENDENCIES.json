@@ -1,0 +1,613 @@
+{
+  "schema": "spacewatch.external_bindings.v1",
+  "sources": [
+    "code/configs/dorm45-paper.json",
+    "code/upstream519_original/requests/dorm4-fresh-request.json",
+    "code/upstream519_original/requests/dorm5-fresh-request.json"
+  ],
+  "runtimes": [
+    {
+      "path": "/workspace/mesh_generator_v1/.venv/bin/python",
+      "version": "Python 3.10.13",
+      "ok": true
+    },
+    {
+      "path": "/workspace/task5b_dorm3_keyframes_20261017/venv/bin/python",
+      "version": "Python 3.10.13",
+      "ok": true
+    },
+    {
+      "path": "/workspace/panovggt_env/bin/python",
+      "version": "Python 3.10.13",
+      "ok": true
+    },
+    {
+      "path": "/workspace/grounded_sam2_panorama_test_20261023/env/bin/python",
+      "version": "Python 3.10.13",
+      "ok": true
+    },
+    {
+      "path": "/workspace/v1_splatfacto_comparison_20261025/env/bin/python",
+      "version": "Python 3.10.13",
+      "ok": true
+    },
+    {
+      "path": "/workspace/mtpano_ooops_20261023/env/bin/python",
+      "version": "Python 3.10.13",
+      "ok": true
+    },
+    {
+      "path": "/workspace/sam31_panorama_test_20261023/env/bin/python",
+      "version": "Python 3.12.15",
+      "ok": true
+    }
+  ],
+  "paths": [
+    {
+      "path": "/workspace/mesh_generator_v1/.venv/bin/python",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".runtime.geometry_python"
+        }
+      ],
+      "kind": "file",
+      "bytes": 17157264
+    },
+    {
+      "path": "/workspace/task5b_dorm3_keyframes_20261017/venv/bin/python",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".runtime.planning_python"
+        }
+      ],
+      "kind": "file",
+      "bytes": 17157264
+    },
+    {
+      "path": "/workspace/panovggt_env/bin/python",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".runtime.reconstruction_python"
+        }
+      ],
+      "kind": "file",
+      "bytes": 17157264
+    },
+    {
+      "path": "/workspace/dorm1_3dgs_20261018",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".runtime.gsplat_root"
+        }
+      ],
+      "kind": "directory"
+    },
+    {
+      "path": "/workspace/grounded_sam2_panorama_test_20261023/env/bin/python",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".runtime.florence_python"
+        }
+      ],
+      "kind": "file",
+      "bytes": 17157264
+    },
+    {
+      "path": "/workspace/v1_splatfacto_comparison_20261025/env/bin/python",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".runtime.splatfacto_python"
+        },
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".runtime.quality_python"
+        }
+      ],
+      "kind": "file",
+      "bytes": 17157264
+    },
+    {
+      "path": "/workspace/v1_splatfacto_comparison_20261025",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".runtime.splatfacto_root"
+        }
+      ],
+      "kind": "directory"
+    },
+    {
+      "path": "/workspace/mtpano_ooops_20261023/env/bin/python",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".runtime.ooops_python"
+        }
+      ],
+      "kind": "file",
+      "bytes": 17157264
+    },
+    {
+      "path": "/workspace/mtpano_ooops_20261023",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".runtime.ooops_root"
+        }
+      ],
+      "kind": "directory"
+    },
+    {
+      "path": "/workspace/sam31_panorama_test_20261023/env/bin/python",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".runtime.change_python"
+        }
+      ],
+      "kind": "file",
+      "bytes": 31890400
+    },
+    {
+      "path": "/workspace/pano_change_models_20261025",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".runtime.change_root"
+        }
+      ],
+      "kind": "directory"
+    },
+    {
+      "path": "/workspace/pano_change_models_20261025/torch_cache",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".runtime.change_torch_home"
+        }
+      ],
+      "kind": "directory"
+    },
+    {
+      "path": "/workspace/dorm_registration_benchmark_20261019/image-lifecycle-v4/deps",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".runtime.person_python_path"
+        }
+      ],
+      "kind": "directory"
+    },
+    {
+      "path": "/workspace/dorm_registration_benchmark_20261019/image-lifecycle-v4/yolo11l-seg.pt",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".runtime.person_checkpoint"
+        }
+      ],
+      "kind": "file",
+      "bytes": 56096965
+    },
+    {
+      "path": "/workspace/pano_change_models_20261025/simsac_changesim.pth",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".runtime.mesh_rgb_checkpoint"
+        }
+      ],
+      "kind": "file",
+      "bytes": 72790909
+    },
+    {
+      "path": "/workspace/spacewatch_mesh_rgb_runtime_20261027/rgb-ada5cf853a1e458797268e106b905cc3/code/three",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".runtime.mesh_rgb_three_package"
+        }
+      ],
+      "kind": "directory"
+    },
+    {
+      "path": "/workspace/dorm4_dorm5_v5_20261025/reconstruction/dorm4",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".captures[0].source_run"
+        }
+      ],
+      "kind": "directory"
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/dorm4.json",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".captures[0].coordinates"
+        }
+      ],
+      "kind": "file",
+      "bytes": 1779
+    },
+    {
+      "path": "/workspace/dorm4_dorm5_v5_20261025/source/dorm4.MP4",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".captures[0].video"
+        },
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".requested_inputs.videos[0]"
+        },
+        {
+          "document": "code/upstream519_original/requests/dorm4-fresh-request.json",
+          "field": ".video.path"
+        }
+      ],
+      "kind": "file",
+      "bytes": 923910598
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/mesh_arrays.npz",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".captures[0].semantic_arrays"
+        }
+      ],
+      "kind": "file",
+      "bytes": 2575459
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/profile",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".captures[0].planning_profile.path"
+        }
+      ],
+      "kind": "directory"
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/requested-importance-cache.json",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".captures[0].importance_cache"
+        }
+      ],
+      "kind": "file",
+      "bytes": 16553
+    },
+    {
+      "path": "/workspace/v519_capture_parity_20261028_txz49d/rebuild01/runs/before/stages/before.ooops/attempt-1793118962529126899/predictions",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".captures[0].captured_prediction.predictions"
+        }
+      ],
+      "kind": "directory"
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/inference.json",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".captures[0].captured_prediction.inference.path"
+        }
+      ],
+      "kind": "file",
+      "bytes": 59702
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/vocabulary.json",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".captures[0].captured_prediction.vocabulary.path"
+        },
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".segmentation.vocabulary"
+        },
+        {
+          "document": "code/upstream519_original/requests/dorm4-fresh-request.json",
+          "field": ".vocabulary.path"
+        }
+      ],
+      "kind": "file",
+      "bytes": 2329
+    },
+    {
+      "path": "/workspace/dorm4_dorm5_v5_20261025/reconstruction/dorm5",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".captures[1].source_run"
+        }
+      ],
+      "kind": "directory"
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm5/dorm5.json",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".captures[1].coordinates"
+        }
+      ],
+      "kind": "file",
+      "bytes": 1786
+    },
+    {
+      "path": "/workspace/dorm4_dorm5_v5_20261025/source/dorm5.MP4",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".captures[1].video"
+        },
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".requested_inputs.videos[1]"
+        },
+        {
+          "document": "code/upstream519_original/requests/dorm5-fresh-request.json",
+          "field": ".video.path"
+        }
+      ],
+      "kind": "file",
+      "bytes": 943166060
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm5/mesh_arrays.npz",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".captures[1].semantic_arrays"
+        }
+      ],
+      "kind": "file",
+      "bytes": 2459435
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm5/profile",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".captures[1].planning_profile.path"
+        }
+      ],
+      "kind": "directory"
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm5/requested-importance-cache.json",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".captures[1].importance_cache"
+        }
+      ],
+      "kind": "file",
+      "bytes": 17549
+    },
+    {
+      "path": "/workspace/v519_capture_parity_20261028_txz49d/rebuild01/runs/after/stages/after.ooops/attempt-1793118962527802127/predictions",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".captures[1].captured_prediction.predictions"
+        }
+      ],
+      "kind": "directory"
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm5/inference.json",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".captures[1].captured_prediction.inference.path"
+        }
+      ],
+      "kind": "file",
+      "bytes": 61010
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm5/vocabulary.json",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".captures[1].captured_prediction.vocabulary.path"
+        },
+        {
+          "document": "code/upstream519_original/requests/dorm5-fresh-request.json",
+          "field": ".vocabulary.path"
+        }
+      ],
+      "kind": "file",
+      "bytes": 2329
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/code/configs/dorm_size_assumptions.json",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".size_segmentation.assumptions"
+        }
+      ],
+      "kind": "file",
+      "bytes": 13762
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/importance",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/configs/dorm45-paper.json",
+          "field": ".paper_integration.importance.cache_root"
+        }
+      ],
+      "kind": "directory"
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/code/upstream519_original/requests/dorm4-original-producer-config.json",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/upstream519_original/requests/dorm4-fresh-request.json",
+          "field": ".producer_config.path"
+        }
+      ],
+      "kind": "file",
+      "bytes": 8433
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/code/configs/dorm45-paper.json",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/upstream519_original/requests/dorm4-fresh-request.json",
+          "field": ".pipeline_config_template.path"
+        },
+        {
+          "document": "code/upstream519_original/requests/dorm5-fresh-request.json",
+          "field": ".pipeline_config_template.path"
+        }
+      ],
+      "kind": "file",
+      "bytes": 10354
+    },
+    {
+      "path": "/workspace/spacewatch_runs/dorm4_dorm5_pipeline_v5_20261025/stages/dorm4.plan/attempt-1792943436523361367/plan/tour_plan.json",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/upstream519_original/requests/dorm4-fresh-request.json",
+          "field": ".profile_context_plan.path"
+        }
+      ],
+      "kind": "file",
+      "bytes": 4130682
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/profile/manual.json",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/upstream519_original/requests/dorm4-fresh-request.json",
+          "field": ".manual_inputs.manual.path"
+        }
+      ],
+      "kind": "file",
+      "bytes": 889
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/profile/prompt.txt",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/upstream519_original/requests/dorm4-fresh-request.json",
+          "field": ".manual_inputs.prompt.path"
+        }
+      ],
+      "kind": "file",
+      "bytes": 5978
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/code/upstream519_original/requests/dorm5-original-producer-config.json",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/upstream519_original/requests/dorm5-fresh-request.json",
+          "field": ".producer_config.path"
+        }
+      ],
+      "kind": "file",
+      "bytes": 8433
+    },
+    {
+      "path": "/workspace/spacewatch_runs/dorm4_dorm5_pipeline_v5_20261025/stages/dorm5.plan/attempt-1792944656075689257/plan/tour_plan.json",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/upstream519_original/requests/dorm5-fresh-request.json",
+          "field": ".profile_context_plan.path"
+        }
+      ],
+      "kind": "file",
+      "bytes": 5561249
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm5/profile/manual.json",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/upstream519_original/requests/dorm5-fresh-request.json",
+          "field": ".manual_inputs.manual.path"
+        }
+      ],
+      "kind": "file",
+      "bytes": 889
+    },
+    {
+      "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm5/profile/prompt.txt",
+      "exists": true,
+      "references": [
+        {
+          "document": "code/upstream519_original/requests/dorm5-fresh-request.json",
+          "field": ".manual_inputs.prompt.path"
+        }
+      ],
+      "kind": "file",
+      "bytes": 5978
+    }
+  ],
+  "large_data_copied": false,
+  "credentials_read": false,
+  "contract": "Exact content hashes live in source requests, producer manifests and stage receipts; this file is a path/size inventory, not a substitute for those checks.",
+  "portability": "Existing-server installation. Relocation requires explicit path/runtime configuration and doctor; source archive does not include weights/videos/clouds."
+}

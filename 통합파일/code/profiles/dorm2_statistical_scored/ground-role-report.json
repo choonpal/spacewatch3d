@@ -1,0 +1,52 @@
+{
+  "method": "semantic_floor_full_xy_flat_indoor_prior_v2",
+  "user_provided_prior": "Same single-level flat-indoor policy as v5.1.8; transferred to Dorm2 at user request, physical ground truth unverified.",
+  "single_level_prior_required": true,
+  "multi_level_or_real_steps_supported": false,
+  "original_source_faces": 147020,
+  "floor_class_ids": [
+    1,
+    15
+  ],
+  "wall_class_ids": [
+    0
+  ],
+  "ceiling_class_ids": [
+    2
+  ],
+  "semantic_ground_faces": 32547,
+  "semantic_floor_height_or_slope_gates": false,
+  "semantic_floor_projected_area": 217.86951974436778,
+  "previous_floor_area": 196.5402657851235,
+  "original_floor_area": 195.03773951082638,
+  "new_floor_area": 227.5358198862038,
+  "recovered_semantic_floor_area_vs_previous": 22.820638577284377,
+  "ceiling_backed_inferred_floor_area": 8.098292419677202,
+  "ceiling_projection_used_only_as_navigation_prior": true,
+  "inferred_bounded_hole_area": 0.07662310411889359,
+  "inferred_bounded_hole_count": 83,
+  "source_ground_faces_exempt_from_collision": 32547,
+  "wall_faces_preserved_as_collision": 55662,
+  "ceiling_faces_preserved_as_collision": 28619,
+  "unknown_edge_connected_support_faces": 685,
+  "unknown_collision_faces_preserved": true,
+  "original_floor_bounds": [
+    -6.887794017791748,
+    -41.37217712402344,
+    9.52868366241455,
+    16.205913543701172
+  ],
+  "new_floor_bounds": [
+    -6.990010738372803,
+    -41.757755279541016,
+    9.601411819458008,
+    16.333948135375977
+  ],
+  "convex_hull_used": false,
+  "between_component_gap_filling": false,
+  "source_observation_triangles_added_or_removed": 0,
+  "original_labels_changed": 0,
+  "original_observation_geometry_unchanged": true,
+  "physical_safety_verified": false,
+  "navigation_floor_is_projected_support_not_repaired_source_mesh": true
+}

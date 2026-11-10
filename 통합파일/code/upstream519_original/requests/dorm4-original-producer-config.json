@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "scene_id": "dorm_shared",
+  "native_visibility": true,
+  "runtime": {
+    "geometry_python": "/workspace/mesh_generator_v1/.venv/bin/python",
+    "planning_python": "/workspace/task5b_dorm3_keyframes_20261017/venv/bin/python",
+    "reconstruction_python": "/workspace/panovggt_env/bin/python",
+    "gsplat_root": "/workspace/dorm1_3dgs_20261018",
+    "cpu_threads": 1,
+    "gpu_wait_seconds": 300,
+    "stage_timeout_seconds": 3600,
+    "allowed_hostname": "33956bf3c14a",
+    "gpu_thread_id": "01a12584-248d-7bb2-a3ca-22194928b120",
+    "florence_python": "/workspace/grounded_sam2_panorama_test_20261023/env/bin/python",
+    "splatfacto_python": "/workspace/v1_splatfacto_comparison_20261025/env/bin/python",
+    "splatfacto_root": "/workspace/v1_splatfacto_comparison_20261025",
+    "ooops_python": "/workspace/mtpano_ooops_20261023/env/bin/python",
+    "ooops_root": "/workspace/mtpano_ooops_20261023",
+    "change_python": "/workspace/sam31_panorama_test_20261023/env/bin/python",
+    "change_root": "/workspace/pano_change_models_20261025",
+    "change_torch_home": "/workspace/pano_change_models_20261025/torch_cache",
+    "person_python_path": "/workspace/dorm_registration_benchmark_20261019/image-lifecycle-v4/deps",
+    "person_checkpoint": "/workspace/dorm_registration_benchmark_20261019/image-lifecycle-v4/yolo11l-seg.pt",
+    "gpu_indices": [
+      2,
+      3
+    ],
+    "gpu_budget": 2,
+    "gpu_slot": 0,
+    "overlap_cpu_gpu": false,
+    "mesh_rgb_checkpoint": "/workspace/pano_change_models_20261025/simsac_changesim.pth",
+    "mesh_rgb_three_package": "/workspace/spacewatch_mesh_rgb_runtime_20261027/rgb-ada5cf853a1e458797268e106b905cc3/code/three",
+    "quality_python": "/workspace/v1_splatfacto_comparison_20261025/env/bin/python"
+  },
+  "vocabulary": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/vocabulary.json",
+  "captures": [
+    {
+      "id": "dorm4",
+      "reconstruction_config": "/workspace/dorm4_dorm5_v5_20261025/configs/dorm4_reconstruction.json",
+      "coordinates": "/workspace/dorm4_dorm5_v5_20261025/coordinates/dorm4.json"
+    }
+  ],
+  "mesh": {
+    "voxel_source_units": 0.025,
+    "poisson_depth": 9,
+    "taubin_iterations": 5
+  },
+  "planning": {
+    "spatially_stratified_sampling": true,
+    "balance_automatic_region_samples": true,
+    "lateral_candidate_refinement": true,
+    "max_triangles": 2000000,
+    "width": 2048,
+    "height": 1024,
+    "surface_samples": 6000,
+    "finite_cover_compaction": true,
+    "compaction_time_limit_s": 30.0
+  },
+  "gaussian": {
+    "steps": 30000,
+    "view_size": 512,
+    "frame_stride": 1,
+    "initial_gaussians": 180000,
+    "evaluate_every": 3000,
+    "checkpoint_every": 1000,
+    "original_video": true
+  },
+  "importance_by_class": {
+    "fire extinguisher": 0.95,
+    "fire hose cabinet": 0.95,
+    "sign": 0.8,
+    "ceiling light": {
+      "score": 0.583333,
+      "reason": "Gemini dormitory patrol prior; N/H/A=2/2/3; recheck_value: \uc870\uba85\uc740 \uc0c1\uc2dc \uc810\ub4f1 \uad6c\uc5ed \uc5ec\ubd80 \ud655\uc778\uc5d0 \uc911\uc694\ud568; missed_change_impact: \uc870\uba85 \ud30c\uc190\uc774\ub098 \ud0c8\ub77d\uc740 \uc548\uc804 \ubc0f \uc0ac\uc6a9\uc0c1 \ubd88\ud3b8\uc744 \ucd08\ub798\ud568; visual_checkability: \ucc9c\uc7a5\uc5d0 \ubd80\ucc29\ub41c \uc870\uba85\uc758 \uc678\ud615\uacfc \ud30c\uc190\uc740 \uad00\ucc30 \uac00\ub2a5\ud568"
+    },
+    "chair": {
+      "score": 0.833333,
+      "reason": "Gemini dormitory patrol prior; N/H/A=3/3/4; recheck_value: \uc758\uc790\uc758 \ubc30\uce58\uac00 \ud1b5\ub85c\ub97c \ubc29\ud574\ud560 \uac00\ub2a5\uc131\uc774 \uc788\uc74c; missed_change_impact: \ud1b5\ub85c \ubc29\ud574 \uc2dc \uae34\uae09 \uc0c1\ud669 \ub300\ud53c\ub97c \uc800\ud574\ud568; visual_checkability: \uc758\uc790\uc758 \ubc30\uce58\uc640 \uc774\ub3d9 \uc5ec\ubd80\ub294 360 \ud30c\ub178\ub77c\ub9c8\ub85c \uc2dd\ubcc4 \uc6a9\uc774\ud568"
+    },
+    "door": {
+      "score": 0.833333,
+      "reason": "Gemini dormitory patrol prior; N/H/A=3/4/3; recheck_value: \ucd9c\uc785\ubb38\uc758 \uc815\uc0c1\uc801\uc778 \ud3d0\uc1c4 \uc5ec\ubd80\ub294 \ubcf4\uc548\uacfc \uad00\ub828\ub428; missed_change_impact: \ubb38\uc774 \uc5f4\ub9b0 \ucc44 \uc720\uc9c0\ub420 \uacbd\uc6b0 \ubcf4\uc548 \uc704\ud611 \ubc1c\uc0dd \uac00\ub2a5; visual_checkability: \ubb38\uc758 \uac1c\ud3d0 \uc0c1\ud0dc\uc640 \uc8fc\ubcc0 \uc801\uce58\ubb3c \ud655\uc778\uc774 \uac00\ub2a5\ud568"
+    },
+    "elevator door": {
+      "score": 0.583333,
+      "reason": "Gemini dormitory patrol prior; N/H/A=2/3/2; recheck_value: \uc5d8\ub9ac\ubca0\uc774\ud130\ub294 \uc8fc\uc694 \uc774\ub3d9 \uc218\ub2e8\uc73c\ub85c \uad00\ub9ac\uac00 \ud544\uc694\ud568; missed_change_impact: \uc5d8\ub9ac\ubca0\uc774\ud130 \uace0\uc7a5 \ubc29\uce58 \uc2dc \uc774\ub3d9 \uc81c\ud55c \ubc1c\uc0dd; visual_checkability: \uc678\ubd80 \ud30c\uc190\uc774\ub098 \uc870\uc791 \ud328\ub110 \uc774\uc0c1 \ud655\uc778 \uac00\ub2a5"
+    },
+    "table": {
+      "score": 0.666667,
+      "reason": "Gemini dormitory patrol prior; N/H/A=2/2/4; recheck_value: \ud14c\uc774\ube14\uc740 \uacf5\uc6a9\uacf5\uac04 \uc0ac\uc6a9 \ud604\ud669\uc744 \ubc18\uc601\ud568; missed_change_impact: \ud1b5\ub85c \ud655\ubcf4 \ubc0f \uccad\uacb0 \uc0c1\ud0dc \uc720\uc9c0\uc5d0 \uc911\uc694\ud568; visual_checkability: \ud14c\uc774\ube14 \uc704\uce58\uc640 \uc0c1\ud310 \uc0c1\ud0dc \uad00\ucc30 \uc6a9\uc774\ud568"
+    },
+    "vacuum cleaner": {
+      "score": 0.75,
+      "reason": "Gemini dormitory patrol prior; N/H/A=2/3/4; recheck_value: \uccad\uc18c\uae30\uc758 \ubc29\uce58 \uc704\uce58\ub294 \ud1b5\ud589 \uc548\uc804\uc5d0 \uc601\ud5a5\uc744 \uc90c; missed_change_impact: \ud1b5\ub85c\uc758 \uc7a0\uc7ac\uc801 \uc804\ub3c4 \uc704\ud5d8\uc744 \ucd08\ub798\ud560 \uc218 \uc788\uc74c; visual_checkability: \ud1b5\ub85c \uc704\uc5d0 \uc704\uce58\ud55c \uccad\uc18c\uae30\ub294 \uc2dd\ubcc4 \uac00\ub2a5\ud568"
+    },
+    "ventilation grille": {
+      "score": 0.5,
+      "reason": "Gemini dormitory patrol prior; N/H/A=1/2/3; recheck_value: \ud658\uae30\uad6c\ub294 \ud30c\uc190 \uc2dc \uc678\uad00\uc0c1 \uc704\ud5d8 \uc694\uc778\uc774 \ub420 \uc218 \uc788\uc74c; missed_change_impact: \ud0c8\ub77d \uc2dc \ub099\ud558 \uc704\ud5d8 \ubc0f \ud658\uacbd \uc800\ud574 \uac00\ub2a5; visual_checkability: \uc678\uad00\uc758 \ud30c\uc190 \ubc0f \ubcc0\ud615 \ud655\uc778 \uac00\ub2a5"
+    },
+    "water dispenser": {
+      "score": 0.833333,
+      "reason": "Gemini dormitory patrol prior; N/H/A=3/4/3; recheck_value: \uc815\uc218\uae30\ub294 \ub204\uc218 \ubc0f \uc704\uc0dd \uad00\ub9ac\uac00 \uc911\uc694\ud568; missed_change_impact: \ub204\uc218 \ubc1c\uc0dd \uc2dc \ubbf8\ub044\ub7ec\uc9d0 \uc704\ud5d8 \ubc0f \uc2dc\uc124 \uc190\uc0c1 \uac00\ub2a5; visual_checkability: \uc8fc\ubcc0 \ubb3c\uace0\uc784 \uc0c1\ud0dc \ubc0f \uae30\uae30 \uc678\uad00 \ud655\uc778 \uac00\ub2a5"
+    },
+    "window": {
+      "score": 0.666667,
+      "reason": "Gemini dormitory patrol prior; N/H/A=2/3/3; recheck_value: \ucc3d\ubb38\uc758 \uac1c\ud3d0 \uc0c1\ud0dc\ub294 \ubcf4\uc548\uacfc \ub0c9\ub09c\ubc29 \ud6a8\uc728\uc5d0 \uc601\ud5a5; missed_change_impact: \ubb34\ub2e8 \uce68\uc785 \ub610\ub294 \uc6b0\ucc9c \uc2dc \ud53c\ud574 \uac00\ub2a5\uc131; visual_checkability: \ucc3d\ubb38\uc758 \uac1c\ud3d0 \uc0c1\ud0dc \ud655\uc778 \uac00\ub2a5"
+    }
+  },
+  "alignment": {
+    "voxel_m": 0.08,
+    "fpfh": true,
+    "min_overlap": 0.55,
+    "max_p90_m": 0.15,
+    "ambiguity_overlap_margin": 0.02,
+    "regional_seed_source": "/workspace/dorm_meshfirst_registration_20261022/delivery"
+  },
+  "pipeline_version": "2.0.0",
+  "early_semantics": {
+    "dynamic_classes": [
+      "person"
+    ],
+    "dynamic_support": 0.45,
+    "dynamic_margin": 0.15,
+    "dynamic_dilation_pixels": 2,
+    "static_support": 0.35,
+    "static_margin": 0.1,
+    "minimum_static_frames": 2,
+    "static_agreement": 0.7
+  },
+  "viewer": {
+    "enabled": true,
+    "port": 0
+  },
+  "importance_by_class_assessment": {
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-lite",
+    "rubric_version": "patrol-observation-prior-v2",
+    "report": "/workspace/task5b_patrol_importance_20261024_yP7IOe/class_prior_assessment.json",
+    "context_sha256": "212fe0b90666eac4f18878d47da81b985a1fbaf8ee46e1a17fbe8fee96a8f5fc",
+    "note": "Cached live LLM metadata prior values, supplied explicitly through existing class-score input; no API call at pipeline execution."
+  }
+}

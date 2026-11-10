@@ -1,0 +1,11 @@
+RUNNING one.mesh
+RESUMED one.mesh
+RUNNING publish
+RESUMED one.mesh
+RESUMED publish
+{"group": "geometry", "tests": 126, "passed": true, "failures": 0, "errors": 0, "skipped": 0}
+..............................................................................................................................
+----------------------------------------------------------------------
+Ran 126 tests in 9.539s
+
+OK

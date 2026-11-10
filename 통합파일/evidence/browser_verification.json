@@ -1,0 +1,15 @@
+{
+  "schema": "spacewatch.browser_observation.v1",
+  "url": "http://127.0.0.1:18840/pipeline.html?capture=dorm5#tour",
+  "observed": [
+    "DORM5 1/10 mesh, keypoint markers and original panorama rendered",
+    "Map K6 click completed and header changed to DORM5 6/10",
+    "Current changes drawer showed person-group source photographs and detection boxes",
+    "Current changes drawer closed successfully"
+  ],
+  "browser_error_or_warning_messages": [],
+  "old_user_tabs_modified": false,
+  "screenshots_visually_inspected": true,
+  "ground_truth_accuracy_verified": false,
+  "note": "The two displayed groups are rule-grouped candidates. This browser check is not detection accuracy validation."
+}

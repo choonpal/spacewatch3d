@@ -1,0 +1,21 @@
+{
+  "repeat": 4,
+  "request_key": "1f4424702b3521e72107fa8674c9d1c4ee506d4f7f610c922a3f2d2ab75de5fe",
+  "response": {
+    "rating": 2,
+    "reason": "표지판은 시설의 안전이나 비품의 상태와 직접적인 연관성이 낮으나, 통로의 이용을 방해하거나 공간 관리 측면에서 변화를 확인할 필요가 있습니다."
+  },
+  "usage": {
+    "promptTokenCount": 345,
+    "candidatesTokenCount": 52,
+    "totalTokenCount": 397,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 345
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "seconds": 1.8042979277670383
+}

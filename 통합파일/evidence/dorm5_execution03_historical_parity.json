@@ -1,0 +1,78 @@
+{
+  "scope": "Read-only comparison of existing execution03 receipts against the accepted historical Dorm5 mixed60_40 selector row; no visibility, scoring or solver rerun.",
+  "conclusion": "Exact accepted actual-Dorm5 final-row parity. The quoted .989/.773 pair belongs to a different earlier synthetic/masked-scene table, per parent clarification, and is not the accepted actual-Dorm5 mixed row.",
+  "historical_result": {
+    "path": "/workspace/selector_methods_20261029_PYOwlr/totalstop03_EkQMQO/results/results.json",
+    "sha256": "ec5bfb45b5b9df54a2edfa32e98f7314332a2217561e3a6f35d50a5eac6fec38",
+    "row": {"condition": "mixed60_40", "method": "rawq_totalstop_multistart"}
+  },
+  "new_selector_receipt": {
+    "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/execution03/run/stages/dorm5.plan/attempt-1794279246477451768/plan.selector.json",
+    "sha256": "264977efde7d79a105ad5c18aa59e799d00e5f26b9becf355d1f24baba9d4de6"
+  },
+  "equal_historical_and_new_values": {
+    "selected_order": [80,112,10,353,465,257,526,313,190,392],
+    "selected_frame_ids_order": ["frame_00000607","frame_00000847","frame_00000076","frame_00002654","frame_00003494","frame_00001935","frame_00003947","frame_00002355","frame_00001428","frame_00002942"],
+    "count": 10,
+    "candidate_count": 554,
+    "objects": 104,
+    "space_score": 0.9852266276840167,
+    "raw_object_score": 0.7215443794406915,
+    "utility_0_6_space_0_4_object": 0.8797537283866865,
+    "attainable_object_score": 0.918867313613663,
+    "attainable_object_fraction": 0.7852541588437264,
+    "maximum_remaining_space_gain": 0.002796634629253368,
+    "maximum_remaining_object_gain": 0.02237021109760977,
+    "object_stop_gain_ratio": 0.02434542046079931,
+    "object_stop_threshold": 0.02756601940840989,
+    "stop_reason": "marginal_conditions_met",
+    "old_space_stop_threshold": 0.005611492690809643,
+    "new_space_stop_threshold": 0.005611492690809639,
+    "space_threshold_difference_note": "4e-18 floating-point evaluation difference, with identical selected result and score."
+  },
+  "score_definitions_same": {
+    "space": "Per draw, equally average observable-region area-normalized coverage; then average all 3 optimization draws. Not whole-input surface fraction.",
+    "raw_object": "Per draw, sum importance_j*max_selected_view(q_ij)/sum importance_j; then average all 3 optimization draws. No division by full-pool ceiling in this displayed raw score.",
+    "ceiling": "Average over the 3 draws of importance-weighted max q across all 554 candidates, using the same importance denominator.",
+    "normalized_attainable_fraction": "raw_object_score/ceiling = .7852541588437264, not .773.",
+    "stop": "Space gain below 2% of maximum empty-set singleton spatial gain and object gain below 3% of full-pool raw object ceiling, checked after local exchanges."
+  },
+  "original_array_identity_check": {
+    "method": "Loaded existing optimization.npz only, hashing dtype.str + JSON shape + contiguous bytes with the receipt's array_record implementation; compared to all 15 native observation records. No metric/visibility/solver execution.",
+    "optimization_npz": {"path": "/workspace/selector_methods_20261029_PYOwlr/optimization.npz", "sha256": "c0f5b88f7a9e39e9529beb7e626be9f20ed633c86c7e586f6269f37368c76523"},
+    "metadata": {"path": "/workspace/selector_methods_20261029_PYOwlr/metadata.json", "sha256": "fece814bcfe06ac665296c03aa1dd67ee9ee72a5ff4892aa4fb64df260241520"},
+    "all_15_array_records_match": true,
+    "seeds": [20261025,20261026,20261027],
+    "surface_sample_counts": [6000,12000,12000],
+    "quality_shapes": [[554,104],[554,104],[554,104]],
+    "visible_sha256": ["0dded4b17c95efef8ea1ef854159c81cbeea8a74df924cc429c247afa165b7e2","16416ae0d8f01f9369921c785c214c1472de64cc6a05084415fb6a360eb7b534","b3c991a3f75b1f52ebc9ca30d346457b2db1df81635270ea274f60ebac7fe2f2"],
+    "quality_sha256": ["1f1cbef6a53a3f82121e9e5879e6309224724891703ee0fa45979734cf632245","ccdaed718503bbf8294138afa1fe4f00ae01f057c8fdd81ed29d717e13e2a75c","977979a27a75cd7134a4157e79a60dc71dcc073a88c41c91c6f5835ffb2a498f"],
+    "weights_sha256": ["5ede7e04cd8c61ddd391795e863f85fd01964be1a353f3a403dfe6f923d41570","535fb2c6a8552ccc36f9e48ee1a4de5cafa40e69b8929489bde5226dcef5e05e","535fb2c6a8552ccc36f9e48ee1a4de5cafa40e69b8929489bde5226dcef5e05e"],
+    "regions_sha256": ["eb841c0556c01088761ad4aaea6b3ae3feacca9517be626fb799541690896fab","61bb9be3c96549f44aefd323da20ae28a4f2f874a27d949b246222ed05f37336","61bb9be3c96549f44aefd323da20ae28a4f2f874a27d949b246222ed05f37336"],
+    "importance_sha256_all_draws": "8512491aea0b34c2314b134fe5954c721af88cd32502cf2be8b8dea318b8dd67"
+  },
+  "input_profile": {
+    "historical_and_new_path": "/workspace/v519_capture_clone_20261028_tWZimf/inputs19_02/dorm5/input/profile",
+    "new_job_declared_checksums_sha256": "2fb84158f55f68953ee693e0b61928be5717101f61b2114b4cf6df143c654dfe",
+    "historical_input_scene_sha256_equals_new_provenance": "6a93e96082a43eb7dd09b74b5f2b4b5523fdc0214b4b2632792ac9321bed63d3"
+  },
+  "solver_and_config_differences_not_hidden": {
+    "all_other_native_config_fields_equal": true,
+    "native_config_differences": {"route_aware_selection": {"old": true, "new": false}, "paper_selection": {"old": null, "new": {"max_views":15,"deadline_seconds":35.0}}},
+    "config_file_sha256_new": "99da17e9cfffe2ee105d6d2690e36d16855310371feeadf60818ab3d7806db05",
+    "historical_solver": "GPU float64 backend; deterministic 6 residual-gain starts plus unseeded/full greedy paths; k-wise saved same-objective warm starts; up to six one-swap passes and one top12 pair search; 15-view ceiling,35s budget.",
+    "new_solver": "CPU NumPy backend; same deterministic 6 diverse starts and unseeded greedy paths; no frozen warm bank; same bounded 1/2 exchanges,15-view ceiling,35s budget; stops after earliest cardinality meets both marginal conditions.",
+    "historical_seconds": 2.972829446196556,
+    "new_seconds": 7.495271064341068,
+    "historical_reported_gpu_cpu_max_abs_error": 3.3306690738754696e-16,
+    "no_random_sampling_identity_difference": "Actual old/new V,Q,weights,region and importance digests match for every draw; final selection and scores also match exactly. Implementation/path differences did not cause a final-row difference."
+  },
+  "do_not_mix_with_other_metrics": {
+    "new_primary_draw_balanced_space_coverage": 0.985821783186319,
+    "new_primary_draw_weighted_object_quality": 0.7214526791336298,
+    "new_primary_draw_whole_input_coverage": 0.9535256761260925,
+    "historical_holdout_whole_surface_min": 0.9518887177106574,
+    "note": "These primary-draw and holdout metrics use different draw/denominator definitions from 3-draw selector space/raw-object scores; none is the old synthetic/masked table .989/.773 pair."
+  },
+  "execution04_modified": false
+}

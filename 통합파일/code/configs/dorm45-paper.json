@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "scene_id": "dorm_shared",
+  "native_visibility": true,
+  "runtime": {
+    "geometry_python": "/workspace/mesh_generator_v1/.venv/bin/python",
+    "planning_python": "/workspace/task5b_dorm3_keyframes_20261017/venv/bin/python",
+    "reconstruction_python": "/workspace/panovggt_env/bin/python",
+    "gsplat_root": "/workspace/dorm1_3dgs_20261018",
+    "cpu_threads": 1,
+    "gpu_wait_seconds": 300,
+    "stage_timeout_seconds": 3600,
+    "allowed_hostname": "33956bf3c14a",
+    "gpu_thread_id": "01a12584-248d-7bb2-a3ca-22194928b120",
+    "florence_python": "/workspace/grounded_sam2_panorama_test_20261023/env/bin/python",
+    "splatfacto_python": "/workspace/v1_splatfacto_comparison_20261025/env/bin/python",
+    "splatfacto_root": "/workspace/v1_splatfacto_comparison_20261025",
+    "ooops_python": "/workspace/mtpano_ooops_20261023/env/bin/python",
+    "ooops_root": "/workspace/mtpano_ooops_20261023",
+    "change_python": "/workspace/sam31_panorama_test_20261023/env/bin/python",
+    "change_root": "/workspace/pano_change_models_20261025",
+    "change_torch_home": "/workspace/pano_change_models_20261025/torch_cache",
+    "person_python_path": "/workspace/dorm_registration_benchmark_20261019/image-lifecycle-v4/deps",
+    "person_checkpoint": "/workspace/dorm_registration_benchmark_20261019/image-lifecycle-v4/yolo11l-seg.pt",
+    "gpu_indices": [
+      2,
+      3
+    ],
+    "gpu_budget": 2,
+    "gpu_slot": 0,
+    "overlap_cpu_gpu": false,
+    "mesh_rgb_checkpoint": "/workspace/pano_change_models_20261025/simsac_changesim.pth",
+    "mesh_rgb_three_package": "/workspace/spacewatch_mesh_rgb_runtime_20261027/rgb-ada5cf853a1e458797268e106b905cc3/code/three",
+    "quality_python": "/workspace/v1_splatfacto_comparison_20261025/env/bin/python"
+  },
+  "captures": [
+    {
+      "id": "dorm4",
+      "source_run": "/workspace/dorm4_dorm5_v5_20261025/reconstruction/dorm4",
+      "coordinates": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/dorm4.json",
+      "video": "/workspace/dorm4_dorm5_v5_20261025/source/dorm4.MP4",
+      "semantic_arrays": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/mesh_arrays.npz",
+      "semantic_frame_id": "dorm4_mesh",
+      "semantic_coordinates_sha256": "01ac2e5ee0b356ae716a00f7ed0de45adcc9d40ccd77ac4ca8c6d4fd4ea62205",
+      "planning_profile": {
+        "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/profile",
+        "sha256": "fb0cd4e919b9f8fcdfd0b6aa16b345fda0363d68d1ad8b3127ac0189eff4f320"
+      },
+      "importance_cache": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/requested-importance-cache.json",
+      "captured_prediction": {
+        "predictions": "/workspace/v519_capture_parity_20261028_txz49d/rebuild01/runs/before/stages/before.ooops/attempt-1793118962529126899/predictions",
+        "inference": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/inference.json",
+          "bytes": 59702,
+          "sha256": "99726336d1a81444e82ced1b3cfede1514dfb96899ab64b348ced5af60890406"
+        },
+        "vocabulary": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/vocabulary.json",
+          "bytes": 2329,
+          "sha256": "3c12c232ea14d00ef7ae8b8c30721101d462a040ce6610212949461af2f8f910"
+        }
+      }
+    },
+    {
+      "id": "dorm5",
+      "source_run": "/workspace/dorm4_dorm5_v5_20261025/reconstruction/dorm5",
+      "coordinates": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm5/dorm5.json",
+      "video": "/workspace/dorm4_dorm5_v5_20261025/source/dorm5.MP4",
+      "semantic_arrays": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm5/mesh_arrays.npz",
+      "semantic_frame_id": "dorm5_mesh",
+      "semantic_coordinates_sha256": "3c59a8fe1f6486850d1a22ae4265d925f06a2a657be4efc1f027bf5ff3655f59",
+      "planning_profile": {
+        "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm5/profile",
+        "sha256": "2fb84158f55f68953ee693e0b61928be5717101f61b2114b4cf6df143c654dfe"
+      },
+      "importance_cache": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm5/requested-importance-cache.json",
+      "captured_prediction": {
+        "predictions": "/workspace/v519_capture_parity_20261028_txz49d/rebuild01/runs/after/stages/after.ooops/attempt-1793118962527802127/predictions",
+        "inference": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm5/inference.json",
+          "bytes": 61010,
+          "sha256": "7ac160cf620c0f1d1ade020d860d89987c10e0f4df2563d5daee5a0bbfc2302a"
+        },
+        "vocabulary": {
+          "path": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm5/vocabulary.json",
+          "bytes": 2329,
+          "sha256": "3c12c232ea14d00ef7ae8b8c30721101d462a040ce6610212949461af2f8f910"
+        }
+      }
+    }
+  ],
+  "mesh": {
+    "voxel_source_units": 0.025,
+    "poisson_depth": 9,
+    "taubin_iterations": 5
+  },
+  "planning": {
+    "spatially_stratified_sampling": true,
+    "balance_automatic_region_samples": true,
+    "lateral_candidate_refinement": false,
+    "max_triangles": null,
+    "width": 2048,
+    "height": 1024,
+    "surface_samples": 6000,
+    "seed": 20261025,
+    "clearance_m": 0.2,
+    "coverage_repair": true,
+    "coverage_repair_runs": 2,
+    "coverage_repair_sample_multiplier": 2,
+    "independent_coverage_validation": true,
+    "validation_runs": 2,
+    "validation_sample_multiplier": 2,
+    "shape_normalized_object_quality": true,
+    "solid_angle_target_sr": 0.02,
+    "route_aware_selection": false,
+    "space_weight": 0.6,
+    "object_weight": 0.4,
+    "tile_m": 3.0
+  },
+  "gaussian": {
+    "steps": 30000,
+    "unused": true
+  },
+  "importance_by_class": {
+    "fire extinguisher": 0.95,
+    "fire hose cabinet": 0.95,
+    "sign": 0.8
+  },
+  "alignment": {
+    "voxel_m": 0.08,
+    "fpfh": true,
+    "min_overlap": 0.55,
+    "max_p90_m": 0.15,
+    "ambiguity_overlap_margin": 0.02
+  },
+  "pipeline_version": "5.1.9",
+  "discovery": {
+    "enabled": false
+  },
+  "viewer": {
+    "enabled": true,
+    "port": 38870
+  },
+  "scene": {
+    "geometry_floor_fallback": true
+  },
+  "segmentation": {
+    "source": "provided",
+    "vocabulary": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/bound/dorm4/vocabulary.json"
+  },
+  "size_segmentation": {
+    "assumptions": "/workspace/spacewatch_integrated_20261110_8QJn4J/code/configs/dorm_size_assumptions.json",
+    "factor": 1.0,
+    "class_aliases": {
+      "dining table": "table",
+      "light bulb": "ceiling light"
+    },
+    "compare_geometry_only": true,
+    "sensitivity_factors": [
+      0.8,
+      1.2
+    ]
+  },
+  "media": {
+    "mode": "original_erp",
+    "sampling": "quality_on_existing_path",
+    "candidate_interval_s": 0.25
+  },
+  "changes": {
+    "enabled": true,
+    "backend": "mesh_rgb_simsac",
+    "frame_stride": 1,
+    "point_limit": 2000000,
+    "native_rgb": true,
+    "keypoint_nearby": true
+  },
+  "gaussian_changes": {
+    "enabled": false
+  },
+  "requested_inputs": {
+    "videos": [
+      "/workspace/dorm4_dorm5_v5_20261025/source/dorm4.MP4",
+      "/workspace/dorm4_dorm5_v5_20261025/source/dorm5.MP4"
+    ],
+    "object_classes": [
+      "box",
+      "ceiling light",
+      "chair",
+      "clothes",
+      "door",
+      "fire extinguisher",
+      "fire hose cabinet",
+      "sign",
+      "table",
+      "umbrella",
+      "vacuum cleaner",
+      "ventilation grille",
+      "water dispenser",
+      "window"
+    ],
+    "manual": [
+      "출입문과 통로의 이용을 방해하는 적치물을 확인합니다.",
+      "시설과 비품의 눈에 띄는 파손, 누수, 물고임 등 안전과 사용에 영향을 줄 수 있는 상태를 확인합니다.",
+      "소화기 등 소방 설비가 보이는 위치에 있는지, 외형이나 주변 접근 상태에 변화가 있는지 확인합니다.",
+      "물품의 추가, 제거, 이동과 상태 변화를 확인하고 공간의 안전, 사용, 관리에 미치는 영향을 살펴봅니다.",
+      "복도 조명은 24시간 상시 점등합니다.",
+      "공용공간 조명은 미사용·무인일 때 소등하는 것이 점검 목적에 포함됩니다.",
+      "복도 조명도 꺼짐·파손 점검 가치는 있을 수 있습니다.",
+      "상시 운전하는 냉장고는 소등/전원 차단 대상이 아닙니다."
+    ],
+    "segmentation_classes": [
+      "wall",
+      "floor",
+      "ceiling",
+      "door",
+      "window",
+      "chair",
+      "table",
+      "water dispenser",
+      "vacuum cleaner",
+      "fire hose cabinet",
+      "fire extinguisher",
+      "ceiling light",
+      "ventilation grille",
+      "sign",
+      "tactile paving",
+      "person",
+      "umbrella",
+      "clothes",
+      "box"
+    ]
+  },
+  "paper_integration": {
+    "enabled": true,
+    "schema": "spacewatch.paper.20261110.v1",
+    "version": "2026.11.10-integrated.1",
+    "coordinate_units": "u",
+    "upstream_mode": "explicit_verified_reuse",
+    "fresh_geometry": false,
+    "selection": {
+      "max_views": 15,
+      "deadline_seconds": 35.0
+    },
+    "importance": {
+      "cache_root": "/workspace/spacewatch_integrated_20261110_8QJn4J/inputs/importance",
+      "model_requested": "gemini-3.1-flash-lite",
+      "source_report_sha256": "cf24cdaca1c85682d0a641f332da4d2c3f8edfe67787bdadafe330e4a619e8ae",
+      "paper_model_label": "Gemini 3 Flash-Lite"
+    },
+    "quality_timeout_seconds": 900,
+    "resources": {
+      "minimum_available_gib": 1.5,
+      "inference_available_gib": 3.0,
+      "fresh_geometry_available_gib": 16.0,
+      "max_swap_out_pages_per_check": 4096
+    },
+    "survey_included": false,
+    "reuse_scope": [
+      "PanoVGGT point cloud/camera anchors",
+      "semantic mesh",
+      "statistical target profile",
+      "manual-conditioned importance cache",
+      "original frame 2D labels"
+    ],
+    "newly_executed": [
+      "all-video sharpness",
+      "0.25s candidate/pose binding",
+      "surface/object VQ measurements",
+      "multistart/exchange/2%3% selection",
+      "original ERP image export",
+      "fresh registration",
+      "nearby actual RGB inputs",
+      "global/six-face/object SimSaC",
+      "mean fusion/grouping",
+      "viewer"
+    ]
+  }
+}

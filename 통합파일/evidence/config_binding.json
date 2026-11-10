@@ -1,0 +1,8 @@
+{
+  "base": "/workspace/v519_capture_clone_20261028_tWZimf/inputs19_02/pipeline-config.json",
+  "base_sha256": "cf73ea7ef1aa45bf72733e597f3312719ca8016c2c90049ad9bcd85206fdce40",
+  "generated": "/workspace/spacewatch_integrated_20261110_8QJn4J/code/configs/dorm45-paper.json",
+  "sha256": "0b248717fa65c6549e1e8c583fd3c0f0e584ed66a79b780e5c8444c91c043dbb",
+  "stored_selection_imported": false,
+  "stored_changes_imported": false
+}

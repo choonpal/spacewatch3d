@@ -1,0 +1,11 @@
+{
+  "schema": "spacewatch.final_demo_http_check.v1",
+  "dorm5_only": true,
+  "selected": 10,
+  "head_assets": 54,
+  "errors": [],
+  "original_erp_quality_preserved": true,
+  "unresolved": 5,
+  "candidate_groups": 2,
+  "gt_accuracy_verified": false
+}

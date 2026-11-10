@@ -1,0 +1,62 @@
+{
+  "name": "point cloud 생성기 v2",
+  "version": "2.0.0",
+  "created_on": "2026-10-17",
+  "base": "point cloud 생성기 v1 1.0.0",
+  "change": "Add whole-map 26-neighbour occupied-voxel component filtering; remove point counts <= 10000 inclusive.",
+  "connectivity": {
+    "voxel_size_normalized": 0.02,
+    "neighbors": 26,
+    "frame": "reconstruction_world",
+    "origin": [
+      0,
+      0,
+      0
+    ]
+  },
+  "source_code_sha256": {
+    "batch.py": "51a7443362ddb2784c05a41463aa99a1f6d132ae37d9314b3be19736acc03cf6",
+    "common.py": "cfc18bdc2e7061b571216316cfd071c4b5777fe8223318b7b734214934106334",
+    "component_filter.py": "6dfbd76b70e6a468f858f43c98f04d4e6b34e542f4ac670cbaf2e8ec4a4817f2",
+    "freeze_inputs.py": "73c08b01261c99a6e65ee32dbb12c4b0a962f8ff410f672237c73d1e1915d13c",
+    "masks.py": "1db576bacd70ca06204d7f1441d38d8c27df142578d9bac353dafc08c8caace0",
+    "run.py": "e70590f1d2b7c8c4138a02a05455cf45d3baf57745f3b38bb580af899196e337",
+    "slab_components.py": "f37b405826cfe9f9083c9324849d848575c7898730f890884e33cce4e7b1ef01",
+    "workers/build_viewer.py": "88c8ff35251c7b268f38446ad3347ba22392ff6a8785af81140cd92c3b513839",
+    "workers/connect.py": "21da676f4dffd522085e596741fa3eb0e5d820233247f7acc0edd8d9d6c1b768",
+    "workers/engine.py": "1896564ab47f8de718e260ef1ce6d5ac562983073cfcb21a9d6b0279a4cc930a",
+    "workers/enhance.py": "d2dd6c4de31c6ed8b4a222785df9ab572c9b99b9df63a5e7532448d2d13cf7f9",
+    "workers/export.py": "03ae4bdecef7975cfb63acf4266bdbb80d9bb22ae163eafd508e097957024fab",
+    "workers/filter_components.py": "c03d7cebf1e7f0e79fe7f311c14e179df338922c666c90dd312ddfe95ed15ebd",
+    "workers/infer.py": "498e234e838bdd92101091e7cad70631646498301c01aa444ef34eb3842e9c2f",
+    "workers/match.py": "33939fdd78a3376ad0b84dcace80b1bb7f9c82b0012d417d0ce88602057feb5d",
+    "workers/match_hires.py": "b1619ab1d9e160577b3978a189f508218249b951b05387eaab9aff4796466eb4",
+    "workers/optimize.py": "f589f9c6ed5bb0f7a848bae01139ab411bf7c67bfd00ab5660670129c214a957",
+    "workers/panovggt_global.py": "2c0b9db142099bba67300a8b93c10b6913bfff9bcfdb6d990e949c46538c76de",
+    "workers/plan_hires.py": "63cd1edececa1c6cf63bf34ef430ce75b553fa62fd892a1dc9001448da5c98a7",
+    "workers/prepare_inputs.py": "8d8b983a0c4cfad51252bf145fdea154a281df888353e6609ed386427ce6a1e0",
+    "workers/refine.py": "6da37000e9a4fd084b8cc8f452a802f76ff8d7918bf4b9f88beb027babcf0441",
+    "workers/runtime.py": "6cb85313c9bb6d81940137a0c43ef80f2981cc0ac1f6bcf8b3ed103db452c089",
+    "viewer/index.html": "9b15cfe087f47ce2ae8a8b147e25b26002906a1205958414567fa3d7d59d173e",
+    "viewer/viewer_vendor.js": "22b568c2c384610370c4cd9d4b16c1921d5dacfbc7b4b0fd7e9eb79f238b1400"
+  },
+  "configs": {
+    "batch_dorm2_dorm3.json": "a4164c5899fdc729838d1daa164e412e5c1836a613f2c73f2dbdcef156cdb1f0",
+    "dorm2.json": "82e49f29c798e7005877cbf2337818f1af6c25aaf9fe59f03089f5c0b56ef320",
+    "dorm3.json": "f21f951d21f4623ff882d5879ab27e0cff128f55f1faca53673d624f0d2aee6b"
+  },
+  "scope": "Fresh server inference on frozen RGB/base mask inputs linked to checksummed original MP4; no new automatic person-mask generation.",
+  "validation": "VALIDATION.json",
+  "results": {
+    "dorm2": {
+      "server_ply": "/workspace/dorm2_pointcloud_v2_20261017/result/map.ply",
+      "points": 63414984,
+      "sha256": "df678d859d96d01f372515048204f7eefaf11cb7b7b4175167fbf3b0670552c6"
+    },
+    "dorm3": {
+      "server_ply": "/workspace/dorm3_pointcloud_v2_20261017/result/map.ply",
+      "points": 65474818,
+      "sha256": "ec89bc1445896c287a9d65814d206020ee774cdbe241cdbd202b82fc327badcf"
+    }
+  }
+}

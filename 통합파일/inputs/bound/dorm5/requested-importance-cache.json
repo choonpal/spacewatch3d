@@ -1,0 +1,429 @@
+{
+  "scene_id": "dorm4_dorm5",
+  "capture_id": "dorm5",
+  "scores": {
+    "stat_class_3_cc_0000": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0001": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0002": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0003": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0004": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0005": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0006": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0007": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0008": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0009": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0010": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0011": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0012": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0013": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0014": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0015": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0016": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0017": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0018": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0019": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0020": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0021": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0022": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0023": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0024": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0026": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0027": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0029": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0030": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0031": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0032": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0033": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0034": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0035": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0036": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0037": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0038": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0039": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0040": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0042": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0043": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0044": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0045": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0047": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0048": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0050": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0051": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0054": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0055": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0056": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0058": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0059": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0062": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0065": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0068": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0071": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_3_cc_0075": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_4_cc_0001": {
+      "score": 0.6,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_4_cc_0002": {
+      "score": 0.6,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_4_cc_0004": {
+      "score": 0.6,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_5_cc_0000": {
+      "score": 0.6,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_5_cc_0001": {
+      "score": 0.6,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_5_cc_0002": {
+      "score": 0.6,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_5_cc_0003": {
+      "score": 0.6,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_5_cc_0004": {
+      "score": 0.6,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_5_cc_0005": {
+      "score": 0.6,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_6_cc_0000": {
+      "score": 0.6,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_6_cc_0002": {
+      "score": 0.6,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_6_cc_0003": {
+      "score": 0.6,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_6_cc_0004": {
+      "score": 0.6,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_6_cc_0008": {
+      "score": 0.6,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_6_cc_0009": {
+      "score": 0.6,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_7_cc_0000": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_7_cc_0001": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_7_cc_0002": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_8_cc_0001": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0000": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0001": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0002": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0003": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0004": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0005": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0006": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0007": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0009": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0010": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0011": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0012": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0013": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0014": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0015": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0016": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0018": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0019": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0020": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0021": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0022": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0023": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0024": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0025": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0026": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0027": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_11_cc_0028": {
+      "score": 0.8,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    },
+    "stat_class_18_cc_0000": {
+      "score": 1.0,
+      "reason": "Previously requested1–5 manual-only class rating; cached, semantic judgement UNVERIFIED"
+    }
+  },
+  "new_model_calls": 0,
+  "rating_source": {
+    "path": "/workspace/spacewatch_objects19_v7_20261027_52i774iz/ratings/ratings_report.json",
+    "bytes": 62647,
+    "sha256": "cf24cdaca1c85682d0a641f332da4d2c3f8edfe67787bdadafe330e4a619e8ae"
+  },
+  "verification_status": "UNVERIFIED"
+}

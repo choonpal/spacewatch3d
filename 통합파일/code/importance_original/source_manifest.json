@@ -1,0 +1,102 @@
+{
+  "schema": "importance-original-source-closure-v1",
+  "status": "PASS",
+  "files": [
+    {
+      "path": "spacewatch_pipeline/patrol_rating.py",
+      "producer_path": "/workspace/spacewatch_objects19_v7_20261027_52i774iz/code/spacewatch_pipeline/patrol_rating.py",
+      "bytes": 11569,
+      "sha256": "4f1df4eb6f589e3a5195e38a7c143d9ad59cd82a458429db641bac8d4ea62754",
+      "kind": "exact_original_source"
+    },
+    {
+      "path": "spacewatch_pipeline/importance_stage.py",
+      "producer_path": "/workspace/spacewatch_objects19_v7_20261027_52i774iz/code/spacewatch_pipeline/importance_stage.py",
+      "bytes": 7495,
+      "sha256": "187c9b7c02832f419e1daa8a143ba0ddff1b1b94e29e52dc58020e974dd5a87a",
+      "kind": "exact_original_source"
+    },
+    {
+      "path": "spacewatch_pipeline/patrol_classifier.py",
+      "producer_path": "/workspace/spacewatch_objects19_v7_20261027_52i774iz/code/spacewatch_pipeline/patrol_classifier.py",
+      "bytes": 7203,
+      "sha256": "a3cdb3410bac6f016ddbc1e657fde756907ae4477fff5a9724da470571d65fdb",
+      "kind": "exact_original_source"
+    },
+    {
+      "path": "spacewatch_pipeline/io.py",
+      "producer_path": "/workspace/spacewatch_objects19_v7_20261027_52i774iz/code/spacewatch_pipeline/io.py",
+      "bytes": 3635,
+      "sha256": "35c2f064412fd8ee2f54269d9576bb3bbcb65d80a3009323df3ada191b831a5b",
+      "kind": "exact_original_source"
+    },
+    {
+      "path": "spacewatch_pipeline/__init__.py",
+      "producer_path": "/workspace/spacewatch_objects19_v7_20261027_52i774iz/code/spacewatch_pipeline/__init__.py",
+      "bytes": 29,
+      "sha256": "dcddceac7cddc58b1b0eeaf2a3fd98318474ad17fbb7bcab883e5ecc5ee9b030",
+      "kind": "exact_original_source"
+    },
+    {
+      "path": "spacewatch_pipeline/importance_prompt.txt",
+      "producer_path": "/workspace/spacewatch_objects19_v7_20261027_52i774iz/code/spacewatch_pipeline/importance_prompt.txt",
+      "bytes": 5978,
+      "sha256": "6d8acd07f57a01d0a62bbedc4358d227315fca8d8f3c752a3dd6a1999e4b2733",
+      "kind": "exact_original_source"
+    },
+    {
+      "path": "spacewatch_pipeline/api_credentials.py",
+      "producer_path": "/workspace/spacewatch_objects19_v7_20261027_52i774iz/code/spacewatch_pipeline/api_credentials.py",
+      "bytes": 1711,
+      "sha256": "121b969628f7bdeeaed371f2d5435b95ae409368f68c3083fe25f78edc501c84",
+      "kind": "exact_original_source"
+    },
+    {
+      "path": "prompts/manual_1to5_prompt.txt",
+      "literal_origin": "patrol_rating.py:PROMPT",
+      "bytes": 586,
+      "sha256": "c17233eba252d17f1c604c2c270080e773ae48eee9b483ed703fc8afce3c51d4",
+      "kind": "AST_literal_extraction_no_execution"
+    },
+    {
+      "path": "prompts/manual_1to5_schema.json",
+      "literal_origin": "patrol_rating.py:SCHEMA",
+      "bytes": 259,
+      "sha256": "c1a6d0045a778072e5167708f743a5e95f23c64e1fd42edf30467c2fcd568caf",
+      "kind": "AST_literal_extraction_no_execution"
+    },
+    {
+      "path": "README.txt",
+      "bytes": 3474,
+      "sha256": "4526cccbdfb996475d5652294b46c332bf08ccf2c398dbf373c11d8d04bfa0b0",
+      "kind": "source_context_documentation"
+    },
+    {
+      "path": "LICENSE_CONTEXT.txt",
+      "bytes": 1176,
+      "sha256": "403ec11657c1e57cac6d6235519b7c62a04214071da0c898eadb818d0777aaad",
+      "kind": "source_context_documentation"
+    }
+  ],
+  "total_files": 11,
+  "total_bytes": 43115,
+  "original_source_files": 7,
+  "original_python_ast_parses": 6,
+  "prompt_sha256": "c17233eba252d17f1c604c2c270080e773ae48eee9b483ed703fc8afce3c51d4",
+  "source_prompt_matches_cached_report": true,
+  "request_identities_reconstructed": 14,
+  "original_checked_report_classes": 14,
+  "original_modules_importable": true,
+  "credential_helper_code_only": true,
+  "credential_store_read": false,
+  "credential_values_copied": false,
+  "live_api_wired": false,
+  "producer_run_invoked": false,
+  "transport_invoked": false,
+  "api_calls": 0,
+  "human_files_copied": false,
+  "secret_value_pattern_findings": [],
+  "model_requested": "gemini-3.1-flash-lite",
+  "license_context": "No top-level LICENSE/LICENSE.txt/LICENSE.md/COPYING found in producing snapshot; no license grant inferred.",
+  "default_runtime": "spacewatch_pipeline.paper_importance.importance (offline cache validation/current scene binding)"
+}

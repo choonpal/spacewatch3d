@@ -1,0 +1,13 @@
+{
+  "capture_id": "dorm5",
+  "frame_id": "dorm5_mesh",
+  "source_run": "/workspace/dorm4_dorm5_v5_20261025/reconstruction/dorm5",
+  "coordinates_sha256": "3c59a8fe1f6486850d1a22ae4265d925f06a2a657be4efc1f027bf5ff3655f59",
+  "source_arrays": "/workspace/v519_capture_clone_20261028_tWZimf/inputs19_02/dorm5/semantic/mesh_arrays.npz",
+  "arrays": {
+    "vertices": "47134226b634e6c360abc3dd4819b2467a8b7469146c8e2e16d20a669a37be2a",
+    "faces": "b40a32f7a93f65a2d8362ef590d9c780f83afeab34a9593457cb48f88fd73317",
+    "rgb": "e69c048b8e262b2f778b6bc39365ee521e08a5edb1ad7af9f9daee3ab728ad26",
+    "face_class_id": "aafebdf4d5724edc0f8ddcb29f8113b3a9a5f883ddd510f037720d2c8b5bfe35"
+  }
+}

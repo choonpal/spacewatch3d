@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "checks": [
+    "before: all leave-one-out object metrics independently checked",
+    "after: all leave-one-out object metrics independently checked"
+  ],
+  "baseline_spatial_reproductions": 10,
+  "single_deletions": 40,
+  "reselection_executed": false,
+  "GPU_used": false
+}

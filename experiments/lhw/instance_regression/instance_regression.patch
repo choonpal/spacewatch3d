@@ -1,0 +1,438 @@
+--- before/spacewatch_pipeline/instance_evidence.py
++++ after/spacewatch_pipeline/instance_evidence.py
+@@ -179,7 +179,7 @@
+ 
+ 
+ def solve_evidence(v, f, priors, settings, semantic, factor=1., seed_spec=None,
+-                   frame_id=None, coordinates_sha256=None):
++                   frame_id=None, coordinates_sha256=None,diagnostic_only_narrow=False):
+     from .size_geometry import geometry, adjacency
+     v = np.asarray(v, float); f = np.asarray(f)
+     labels = np.asarray(semantic)
+@@ -202,7 +202,7 @@
+         width = min(r['dimensions'][0] for r in refs[cid]) * opt['neck_width_ratio']
+         for edge in narrow_bridges(pairs[take], lengths[take], area, opt['minimum_area'], width):
+             blocked.add(int(take[edge]))
+-    allowed = np.array([i not in blocked for i in range(len(pairs))], bool)
++    allowed = np.array([diagnostic_only_narrow or i not in blocked for i in range(len(pairs))], bool)
+     edges = pairs[allowed]
+     graph = coo_matrix((np.ones(len(edges)), (edges[:, 0], edges[:, 1])), shape=(len(f), len(f))).tocsr()
+     _, components = connected_components(graph, directed=False)
+@@ -292,7 +292,7 @@
+             eligible = bool(compatible and area[fi].sum() >= opt['minimum_area'])
+             if not g['seed_id']: reasons.append('physical_identity_unverified_no_seed')
+             elif area[fi[seed[fi] == g['seed_id']]].sum() < opt['minimum_seed_area']: reasons.append('insufficient_seed_area')
+-            if blocked and np.isin(pairs[list(blocked)],fi).any(): reasons.append('narrow_topological_connection_cut')
++            if not diagnostic_only_narrow and blocked and np.isin(pairs[list(blocked)],fi).any(): reasons.append('narrow_topological_connection_cut')
+             kind = 'object_candidate' if not reasons else 'uncertain'
+         iid = len(regions)+1; ids[fi] = iid; kinds[fi] = KINDS.index(kind)
+         points = v[np.unique(f[fi])]
+@@ -312,5 +312,6 @@
+     return dict(ids=ids,kinds=kinds,regions=regions,counts={k:sum(r['kind']==k for r in regions) for k in KINDS},
+         coverage={k:dict(faces=int((kinds==i).sum()),area=float(area[kinds==i].sum())) for i,k in enumerate(KINDS)},
+         faces=len(f), all_faces_assigned=True, semantic_labels_used=True, factor=factor,
+-        audit=dict(mode='evidence_v1',seed_records=len(records),narrow_bridges_cut=len(blocked),gap_decisions=gap_audit,
++        audit=dict(mode='evidence_v1',seed_records=len(records),narrow_bridges_cut=0 if diagnostic_only_narrow else len(blocked),
++                   narrow_bridges_detected=len(blocked),gap_decisions=gap_audit,
+                    no_seed_gap_merges=0,physical_accuracy_measured=False,options=opt))
+--- before/spacewatch_pipeline/size_geometry.py
++++ after/spacewatch_pipeline/size_geometry.py
+@@ -65,7 +65,7 @@
+     z=v[:,2][f];return low,high,z.min(1).astype(np.float32),z.max(1).astype(np.float32)
+ 
+ 
+-def solve(v,f,priors,settings,semantic=None,factor=1.,prepared=None):
++def solve(v,f,priors,settings,semantic=None,factor=1.,prepared=None,allow_gap_merges=True):
+     """semantic=None is the strict no-face-label comparison."""
+     started=time.perf_counter();count=len(f)
+     c,n,area=geometry(v,f) if prepared is None else prepared['geometry']
+@@ -128,7 +128,7 @@
+     costs=normal_cost+.05*np.linalg.norm(c[pp[:,0]]-c[pp[:,1]],axis=1)
+     topology=len(pp)
+     # Add short gap candidates only within the allowed semantic class in aided mode.
+-    if len(nodes)>1:
++    if allow_gap_merges and len(nodes)>1:
+         distances,nearest=cKDTree(c[nodes]).query(c[nodes],k=min(5,len(nodes)),distance_upper_bound=settings['max_gap'],workers=1)
+         ii,jj=np.nonzero(np.isfinite(distances)&(nearest<len(nodes))&(distances>1e-8))
+         gp=np.column_stack([nodes[ii],nodes[nearest[ii,jj]]]);keep=gp[:,0]<gp[:,1]
+--- before/spacewatch_pipeline/size_instances.py
++++ after/spacewatch_pipeline/size_instances.py
+@@ -26,8 +26,8 @@
+     if any(settings[k]>90 for k in ['plane_normal_degrees','structure_neighbor_angle_degrees']):raise ValueError('Normal angles must be in [0,90]')
+     for x in [opt.get('factor',1.)]+opt.get('sensitivity_factors',[]):
+         if isinstance(x,bool) or not isinstance(x,(int,float)) or not np.isfinite(x) or x<=0:raise ValueError('Size factors must be positive')
+-    if opt.get('mode','legacy') not in ['legacy','evidence_v1']:raise ValueError('Unknown instance segmentation mode')
+-    if opt.get('mode','legacy')=='evidence_v1':
++    if opt.get('mode','legacy') not in ['legacy','evidence_v1','evidence_v2']:raise ValueError('Unknown instance segmentation mode')
++    if opt.get('mode','legacy').startswith('evidence_'):
+         from .instance_evidence import references,options
+         options(settings)
+         for p in priors:references(p,settings,opt.get('factor',1.))
+@@ -66,7 +66,7 @@
+     canonical,inverse,mapping=canonical_labels(d['face_class_id'],catalog,spec['priors'],opt.get('class_aliases',{}))
+     prepared=prepare(d['vertices'],d['faces'])
+     mode=opt.get('mode','legacy');seed_external=[]
+-    if mode=='evidence_v1':
++    if mode.startswith('evidence_'):
+         from .instance_evidence import solve_evidence
+         seeds=None;coordinate_digest=None
+         if opt.get('seed_evidence'):
+@@ -78,22 +78,33 @@
+                 if r['class_id'] not in class_map:raise ValueError('Seed class absent from input catalogue')
+                 r['class_id']=class_map[r['class_id']]
+             seed_external=[str(seed_path.resolve()),seeds.get('source_artifact_path','')]
+-        main=solve_evidence(d['vertices'],d['faces'],spec['priors'],spec['settings'],canonical,factor,
++        if mode=='evidence_v2':
++            from .instance_proposals import solve_proposals
++            solver=solve_proposals
++        else:solver=solve_evidence
++        main=solver(d['vertices'],d['faces'],spec['priors'],spec['settings'],canonical,factor,
+             seeds,prefix+'_mesh',coordinate_digest)
+     else:
+         main=solve(d['vertices'],d['faces'],spec['priors'],spec['settings'],semantic=canonical,factor=factor,prepared=prepared)
+     for r in main['regions']:
+         r['size_class_id']=r['class_id'];r['class_id']=inverse.get(r['class_id'],-1)
+-        if mode=='evidence_v1':
++        if mode.startswith('evidence_') and 'source_class_id' in r:
+             r['source_size_class_id']=r['source_class_id'];r['source_class_id']=inverse.get(r['source_class_id'],-1)
+     # Florence instance arrays remain provenance, never seeds/IDs for this algorithm.
+     for key in ['face_instance_id','instance_observations','instance_agreement']:
+         if key in d:d['upstream_'+key]=d.pop(key)
+     d.update(face_region_id=main['ids'],face_region_kind=main['kinds'],
+         face_instance_id=np.where(main['kinds']==2,main['ids'],0).astype(np.uint32))
+-    if mode=='evidence_v1':
+-        eligible=np.array([False]+[r.get('size_candidate_eligible',False) for r in main['regions']])
+-        d['face_candidate_region_id']=np.where(eligible[main['ids']],main['ids'],0).astype(np.uint32)
++    if mode.startswith('evidence_'):
++        if mode=='evidence_v2':
++            d['face_candidate_region_id']=main['proposal_ids'].astype(np.uint32)
++            d['face_proposal_id']=d['face_candidate_region_id'].copy()
++            for p in main['proposals']:
++                p['size_class_id']=p['class_id'];p['class_id']=inverse.get(p['class_id'],-1)
++            save(out/'proposals.json',main['proposals'])
++        else:
++            eligible=np.array([False]+[r.get('size_candidate_eligible',False) for r in main['regions']])
++            d['face_candidate_region_id']=np.where(eligible[main['ids']],main['ids'],0).astype(np.uint32)
+         save(out/'instance_evidence_audit.json',main['audit'])
+     variants={}
+     if opt.get('compare_geometry_only',False):
+@@ -101,7 +112,7 @@
+         d['geometry_size_region_id']=blind['ids'];d['geometry_size_kind']=blind['kinds']
+         save(out/'geometry_size_regions.json',blind['regions']);variants['geometry_size' if mode=='legacy' else 'legacy_geometry_size']=blind['counts']
+     for f in opt.get('sensitivity_factors',[]):
+-        run=solve(d['vertices'],d['faces'],spec['priors'],spec['settings'],semantic=canonical,factor=f,prepared=prepared) if mode=='legacy' else solve_evidence(
++        run=solve(d['vertices'],d['faces'],spec['priors'],spec['settings'],semantic=canonical,factor=f,prepared=prepared) if mode=='legacy' else solver(
+             d['vertices'],d['faces'],spec['priors'],spec['settings'],canonical,f,seeds,prefix+'_mesh',coordinate_digest)
+         name='semantic_size_factor_'+str(f);d[name+'_region_id']=run['ids'];d[name+'_kind']=run['kinds'];variants[name]=run['counts']
+         save(out/(name+'_regions.json'),run['regions'])
+@@ -114,11 +125,15 @@
+         method='semantic labels + assumed class size; full-mesh graph grouping',
+         required_object_policy='object_candidate_only',residual_policy='retained_for_occlusion_collision_and_spatial_coverage',
+         class_mapping=mapping,factor=factor,prior_sha256=sha(path),seed=spec['settings']['random_seed'])
+-    if mode=='evidence_v1':
++    if mode.startswith('evidence_'):
+         summary.update(mode=mode,candidate_instances=sum(r.get('size_candidate_eligible',False) for r in main['regions']),
+             uncertain_regions=main['counts'].get('uncertain',0),
+             method='topology + explicit size ranges + verified face-seed provenance; unresolved regions retained',
+             required_object_policy='multiframe_seed_supported_candidates_only',instance_evidence=main['audit'])
++    if mode=='evidence_v2':
++        summary.update(candidate_instances=len(main['proposals']),provisional_proposals=len(main['proposals']),
++            method='provisional bounded topology proposals; supported physical correspondence kept separate',
++            proposal_identity_status='provisional',proposal_file=str(out/'proposals.json'))
+     save(out/'summary.json',summary)
+     result(out,arrays=str(out/'mesh_arrays.npz'),regions=str(out/'regions.json'),
+         assumptions=str(out/'size_assumptions.json'),instance_mesh=str(out/'mesh_instances.glb'),
+--- before/spacewatch_pipeline/size_scene.py
++++ after/spacewatch_pipeline/size_scene.py
+@@ -34,13 +34,17 @@
+     parts=polygon_parts(shapely.union_all([Polygon(t[:,:2]) for t in tri[floor] if Polygon(t[:,:2]).area>1e-10]))
+     if not parts:raise ValueError('Empty planning floor footprint')
+     folder=out/'regions';folder.mkdir();objects=[];used=np.zeros(len(f),np.uint8)
+-    for r in read(seg['regions']):
++    region_rows=read(seg['regions'])
++    if seg.get('summary',{}).get('mode')=='evidence_v2':
++        from .instance_proposals import supported_regions
++        region_rows=supported_regions(region_rows)
++    for r in region_rows:
+         if r['kind']!='object_candidate':continue
+         mask=d['face_region_id']==r['id'];used[mask]+=1;oid='region_'+str(r['id']);path=folder/(oid+'.obj')
+         export_obj(path,v,f[mask]);name=catalog[r['class_id']]['name']
+         item=dict(instance_id=oid,mesh_uri='regions/'+path.name,class_name=name,class_id=r['class_id'],
+             source_triangle_count=int(mask.sum()),solid=False,description='Semantic + assumed class size candidate; physical identity unverified')
+-        if seg.get('summary',{}).get('mode')=='evidence_v1':
++        if seg.get('summary',{}).get('mode','').startswith('evidence_'):
+             item.update(description='Multi-frame seed supported mesh hypothesis; physical identity unverified',
+                 identity_status=r['identity_status'],physical_instance_verified=False,
+                 seed_candidate_id=r['seed_candidate_id'],decision_reasons=r['decision_reasons'])
+@@ -59,10 +63,12 @@
+         source_context=dict(physical_object_identity_verified=False,metric_scale_verified=src['metric_scale_verified'],original_mesh_faces=len(f),
+             segmentation='semantic_size nominal candidates only',segmentation_sha256=sha(seg['arrays']),
+             required_objects=len(objects),residual_faces=int(rest.sum()),residual_observation_policy='spatial coverage, not per-object must-see'))
+-    if seg.get('summary',{}).get('mode')=='evidence_v1':
+-        spec['source_context'].update(segmentation='evidence_v1 supported hypotheses only',
++    if seg.get('summary',{}).get('mode','').startswith('evidence_'):
++        spec['source_context'].update(segmentation=seg['summary']['mode']+' supported hypotheses only',
+             unresolved_regions=seg['summary'].get('uncertain_regions',0),
+             candidate_regions=seg['summary']['candidate_instances'],
+-            unseeded_candidates_are_required_targets=False)
++            unseeded_candidates_are_required_targets=False,
++            object_instance_evidence_status='supported_targets_present' if objects else 'no_supported_instance_targets',
++            zero_targets_is_not_empty_scene=True)
+     save(out/'scene.json',spec);result(out,scene=str(out/'scene.json'),floor_height_m=height,objects=len(objects),
+         residual_faces=int(rest.sum()),floor_components=len(parts),all_faces_preserved=True)
+--- before/spacewatch_pipeline/validation.py
++++ after/spacewatch_pipeline/validation.py
+@@ -43,7 +43,7 @@
+         expected=capture.get('expected_candidates')
+         if expected is not None and job['config']['size_segmentation'].get('mode','legacy')=='legacy':
+             checks['expected_candidate_count']=len(candidates)==expected
+-        if job['config']['size_segmentation'].get('mode','legacy')=='evidence_v1':
++        if job['config']['size_segmentation'].get('mode','legacy').startswith('evidence_'):
+             checks['supported_targets_only']=all(r.get('identity_status')=='supported_by_multiframe_seed' and r.get('seed_candidate_id') for r in candidates)
+         plan=read(deps[prefix+'.plan']['plan']);requests=read(deps[prefix+'.plan']['requests']);validate_outputs(plan,requests)
+         renders=read(deps[prefix+'.render']['renders'])['results'];render_map={r['viewpoint_id']:r for r in renders}
+--- /dev/null
++++ after/spacewatch_pipeline/instance_proposals.py
+@@ -0,0 +1,130 @@
++"""Evidence v2: provisional geometry proposals and supported IDs are separate.
++
++Legacy bounded topology supplies hypotheses, NOT physical truth. No distance-
++only gap merges, no unstable neck cuts, no promotion of partial size to truth.
++"""
++import numpy as np
++from scipy.spatial import cKDTree
++from .size_geometry import solve,geometry
++from .instance_evidence import (KINDS,options,references,extent,solve_evidence)
++
++
++def proposal_ids(result):
++    """Consumers may display proposals; they must never substitute for IDs."""
++    return result['proposal_ids']
++
++
++def supported_regions(regions):
++    """Only identity-supported regions can become per-object planning targets."""
++    return [r for r in regions if r['kind']=='object_candidate' and
++            r.get('identity_status')=='supported_by_multiframe_seed' and r.get('seed_candidate_id')]
++
++
++def boundary(v,f,fi,area,normals):
++    ff=f[fi];edges=np.sort(ff[:,[[0,1],[1,2],[2,0]]].reshape(-1,2),axis=1)
++    unique,count=np.unique(edges,axis=0,return_counts=True);be=unique[count==1]
++    if not len(be):return None
++    vv=np.unique(be);seam=fi[np.isin(f[fi],vv).any(axis=1)]
++    n=np.average(normals[seam],axis=0,weights=np.maximum(area[seam],1e-30))
++    lengths=np.linalg.norm(v[be[:,0]]-v[be[:,1]],axis=1)
++    return dict(vertices=vv,normal=n,perimeter=float(lengths.sum()))
++
++
++def fits_upper(v,f,fi,upper):
++    """Match the legacy any-yaw envelope, not just minimum-area yaw.
++
++    A minimum-area orientation can violate the long-axis cap even when a
++    different orientation satisfies both caps. This is not cap relaxation.
++    """
++    points=v[np.unique(f[fi])]
++    if np.ptp(points[:,2])>upper[2]+1e-6:return False
++    for angle in np.deg2rad(np.arange(0,90,7.5)):
++        c,s=np.cos(angle),np.sin(angle)
++        spans=np.ptp(points[:,:2]@np.array([[c,-s],[s,c]]),axis=0)
++        if np.sort(spans)[0]<=upper[0]+1e-6 and np.sort(spans)[1]<=upper[1]+1e-6:return True
++    return False
++
++
++def solve_proposals(v,f,priors,settings,semantic,factor=1.,seed_spec=None,frame_id=None,coordinates_sha256=None):
++    v=np.asarray(v);f=np.asarray(f);labels=np.asarray(semantic)
++    opt=options(settings);centers,normals,area=geometry(v,f)
++    # Keep the legacy upper envelopes and priority, but eliminate fixed-k gap
++    # edges. Face count and lower-size tests no longer erase partial proposals.
++    base=solve(v,f,priors,settings,semantic=labels,factor=factor,allow_gap_merges=False)
++    refs={p['class_id']:references(p,settings,factor) for p in priors}
++    proposals=[];pids=np.zeros(len(f),np.uint32);bounds={};parts={}
++    for row in base['regions']:
++        fi=np.flatnonzero(base['ids']==row['id']);cid=int(labels[fi[0]])
++        if cid not in refs or area[fi].sum()<opt['minimum_area']:continue
++        dims,raw=extent(v,f,fi,area,opt['trim_fraction'])
++        upper=[r for r in refs[cid] if fits_upper(v,f,fi,r['upper'])]
++        if not upper:continue
++        complete=[r for r in upper if (np.sort(dims)[-2:]>=np.sort(r['lower'])[-2:]).all()]
++        pid=len(proposals)+1;pids[fi]=pid;parts[pid]=fi
++        reasons=['physical_identity_unverified_no_seed'] if seed_spec is None else []
++        if not complete:reasons.append('partial_surface_below_reference_support')
++        if (raw>np.maximum(dims,1e-9)*opt['outlier_extent_ratio']).any():reasons.append('outlier_or_thin_protrusion_extent')
++        p=dict(row,id=pid,proposal_id=pid,source_region_id=row['id'],kind='provisional',class_id=cid,
++            identity_status='provisional',physical_instance_verified=False,observed_dimensions=dims.tolist(),
++            raw_observed_dimensions=raw.tolist(),size_candidate_eligible=True,
++            dimension_source='area_weighted_visible_surface_quantiles',full_physical_size_measured=False,
++            size_support_status='object_scale_surface' if complete else 'partial_surface',
++            grouping_evidence='size_bounded_topology_no_gap',decision_reasons=reasons,
++            reference_ranges=[dict(id=r['id'],scope=r['source'],verified=r['verified'],dimensions=r['dimensions'].tolist(),
++                                   lower=r['lower'].tolist(),upper=r['upper'].tolist()) for r in refs[cid]],
++            assembly_links=[],supported_instance_ids=[])
++        proposals.append(p);bounds[pid]=boundary(v,f,fi,area,normals)
++    # Gap relationships are audited as alternatives. Ambiguous proximity does
++    # not silently collapse proposal IDs. Real validated seed assembly below
++    # is the only route that can strengthen physical correspondence.
++    links=[]
++    for i,a in enumerate(proposals):
++        if bounds[a['id']] is None:continue
++        for b in proposals[:i]:
++            if a['class_id']!=b['class_id'] or bounds[b['id']] is None:continue
++            ba,bb=bounds[a['id']],bounds[b['id']]
++            distance=float(cKDTree(v[ba['vertices']]).query(v[bb['vertices']])[0].min())
++            if distance>settings['max_gap']:continue
++            denom=np.linalg.norm(ba['normal'])*np.linalg.norm(bb['normal'])
++            normal_agreement=float(abs(ba['normal']@bb['normal'])/denom) if denom>1e-12 else None
++            joined=np.r_[parts[a['id']],parts[b['id']]];dim,full=extent(v,f,joined,area,opt['trim_fraction'])
++            upper_fit=any(fits_upper(v,f,joined,r['upper']) for r in refs[a['class_id']])
++            compatible=normal_agreement is not None and normal_agreement>=np.cos(np.deg2rad(opt['gap_normal_degrees'])) and upper_fit
++            reason='two_object_scale_surfaces' if a['size_support_status']==b['size_support_status']=='object_scale_surface' else 'possible_fragment_assembly_requires_observation' if compatible else 'boundary_or_extent_inconsistent'
++            link=dict(proposal_ids=[a['id'],b['id']],distance=distance,boundary_normal_agreement=normal_agreement,
++                      joined_observed_dimensions=dim.tolist(),joined_upper_fit=upper_fit,reason=reason,merged=False)
++            links.append(link);a['assembly_links'].append(len(links)-1);b['assembly_links'].append(len(links)-1)
++    supported=None
++    if seed_spec is not None:
++        # Preserve the existing seed contract, suppress only unstable cuts.
++        supported=solve_evidence(v,f,priors,settings,labels,factor,seed_spec,frame_id,coordinates_sha256,
++                                 diagnostic_only_narrow=True)
++    ids=np.zeros(len(f),np.uint32);kinds=np.zeros(len(f),np.uint8);regions=[]
++    def add(fi,row,kind):
++        rid=len(regions)+1;ids[fi]=rid;kinds[fi]=KINDS.index(kind)
++        points=v[np.unique(f[fi])];row=dict(row,id=rid,kind=kind,faces=len(fi),area=float(area[fi].sum()),
++            bounds=[points.min(0).tolist(),points.max(0).tolist()],
++            centroid=np.average(centers[fi],axis=0,weights=np.maximum(area[fi],1e-30)).tolist(),
++            proposal_ids=np.unique(pids[fi][pids[fi]>0]).astype(int).tolist())
++        regions.append(row)
++        if kind=='object_candidate':
++            for pid in row['proposal_ids']:proposals[pid-1]['supported_instance_ids'].append(rid)
++    if supported:
++        for row in supported['regions']:
++            if row['kind']=='object_candidate':add(np.flatnonzero(supported['ids']==row['id']),row,'object_candidate')
++    for row in base['regions']:
++        fi=np.flatnonzero((base['ids']==row['id'])&(ids==0))
++        if not len(fi):continue
++        pid=int(pids[fi[0]])
++        if pid:
++            record=dict(proposals[pid-1]);kind='uncertain'
++        else:record=dict(row,identity_status='unresolved',decision_reasons=['insufficient_surface_area_or_reference_scope'],physical_instance_verified=False);kind=row['kind'] if row['kind']!='object_candidate' else 'fragment'
++        add(fi,record,kind)
++    assert (ids>0).all() and sum(r['faces'] for r in regions)==len(f)
++    return dict(ids=ids,kinds=kinds,regions=regions,proposals=proposals,proposal_ids=pids,
++        counts={k:sum(r['kind']==k for r in regions) for k in KINDS},
++        coverage={k:dict(faces=int((kinds==i).sum()),area=float(area[kinds==i].sum())) for i,k in enumerate(KINDS)},
++        faces=len(f),all_faces_assigned=True,semantic_labels_used=True,factor=factor,
++        audit=dict(mode='evidence_v2',proposal_count=len(proposals),gap_links=links,automatic_unseeded_gap_merges=0,
++                   unstable_narrow_cuts_applied=0,lower_size_is_diagnostic_only=True,
++                   physical_accuracy_measured=False,seed_audit=supported['audit'] if supported else None))
+--- /dev/null
++++ after/tests/test_instance_proposals.py
+@@ -0,0 +1,109 @@
++import copy,hashlib,json,tempfile,unittest
++from pathlib import Path
++from unittest.mock import patch
++import numpy as np
++from test_instance_evidence import panel,combine,prior,refine,bridge_fixture,SETTINGS
++from spacewatch_pipeline.instance_proposals import solve_proposals,supported_regions
++from spacewatch_pipeline.instance_evidence import mesh_digest
++
++ROOT=Path(__file__).resolve().parents[1]
++
++
++class ProposalTests(unittest.TestCase):
++    @classmethod
++    def setUpClass(cls):
++        base=ROOT/'review_instance_regression/test_tmp';base.mkdir(parents=True,exist_ok=True)
++        cls.temp=tempfile.TemporaryDirectory(dir=base);cls.directory=Path(cls.temp.name)
++        cls.source=cls.directory/'synthetic_observation.json';cls.source.write_text('{"synthetic":true}')
++    @classmethod
++    def tearDownClass(cls):cls.temp.cleanup()
++
++    def seed(self,v,f,groups):
++        return dict(schema='spacewatch.face_seeds.v1',mesh_sha256=mesh_digest(v,f),frame_id='test_mesh',
++            coordinates_sha256='a'*64,projection_method='exact_depth_multiframe',source_artifact_path=str(self.source),
++            source_artifact_sha256=hashlib.sha256(self.source.read_bytes()).hexdigest(),candidates=[dict(candidate_id=i+1,class_id=6,faces=list(map(int,g)),frames=[2,5]) for i,g in enumerate(groups)])
++
++    def run_case(self,v,f,seed=None,labels=None):
++        labels=np.full(len(f),6) if labels is None else labels
++        r=solve_proposals(v,f,prior(),SETTINGS,labels,seed_spec=seed,frame_id='test_mesh',coordinates_sha256='a'*64)
++        self.assertTrue((r['ids']>0).all());self.assertEqual(sum(x['faces'] for x in r['regions']),len(f))
++        for row in r['regions']:self.assertEqual(len(np.unique(labels[r['ids']==row['id']])),1)
++        return r
++
++    def test_disconnected_chair_parts_remain_proposals_with_relationships(self):
++        a=panel(size=.18,n=2);b=panel(.2,size=.18,n=2);c=panel(.2,size=.18,n=2);c[0][:,2]=.05
++        v,f=combine(a,b,c);r=self.run_case(v,f)
++        self.assertEqual(len(r['proposals']),3);self.assertGreater(len(r['audit']['gap_links']),0)
++        self.assertEqual(len(supported_regions(r['regions'])),0)
++        self.assertTrue(all(p['identity_status']=='provisional' for p in r['proposals']))
++
++    def test_two_adjacent_complete_objects_do_not_assemble(self):
++        v,f=combine(panel(n=2),panel(.53,n=2));r=self.run_case(v,f)
++        self.assertEqual(len(r['proposals']),2);self.assertTrue(all(not x['merged'] for x in r['audit']['gap_links']))
++        self.assertTrue(any(x['reason']=='two_object_scale_surfaces' for x in r['audit']['gap_links']))
++
++    def test_overlapping_same_class_never_asserts_physical_truth_without_seed(self):
++        v,f=combine(panel(n=2),panel(.2,n=2));r=self.run_case(v,f)
++        self.assertEqual(len(r['proposals']),2)
++        self.assertTrue(all(not p['physical_instance_verified'] for p in r['proposals']))
++        self.assertEqual(len(supported_regions(r['regions'])),0)
++
++    def test_partial_surface_lower_size_failure_is_not_deleted(self):
++        v,f=panel(size=.18,n=2);r=self.run_case(v,f)
++        self.assertEqual(len(r['proposals']),1);self.assertEqual(r['proposals'][0]['size_support_status'],'partial_surface')
++        self.assertTrue((r['proposal_ids']>0).all());self.assertIn('partial_surface_below_reference_support',r['proposals'][0]['decision_reasons'])
++
++    def test_tiny_size_only_fragment_is_not_promoted(self):
++        v,f=panel(size=.03,n=10);r=self.run_case(v,f)
++        self.assertEqual(len(r['proposals']),0);self.assertEqual(len(supported_regions(r['regions'])),0)
++
++    def test_density_and_face_order_on_two_objects(self):
++        for n in [1,4,12]:
++            v,f=combine(panel(n=n),panel(.53,n=n));a=self.run_case(v,f)
++            perm=np.random.default_rng(17).permutation(len(f));b=self.run_case(v,f[perm])
++            self.assertEqual(len(a['proposals']),2);self.assertEqual(len(b['proposals']),2)
++            self.assertEqual(a['audit']['unstable_narrow_cuts_applied'],0)
++
++    def test_unstable_bridge_cut_is_not_applied_under_refinement(self):
++        v,f=bridge_fixture();a=self.run_case(v,f);vv,ff=refine(v,f);b=self.run_case(vv,ff)
++        self.assertEqual(a['audit']['unstable_narrow_cuts_applied'],0);self.assertEqual(b['audit']['unstable_narrow_cuts_applied'],0)
++        self.assertEqual(len(supported_regions(a['regions'])),0);self.assertEqual(len(supported_regions(b['regions'])),0)
++
++    def test_validated_seed_strengthens_identity_and_can_assemble_pieces(self):
++        v,f=combine(panel(size=.24),panel(.26,size=.24))
++        a=self.run_case(v,f);b=self.run_case(v,f,self.seed(v,f,[range(len(f))]))
++        self.assertEqual(len(a['proposals']),2);self.assertEqual(len(b['proposals']),2)
++        self.assertEqual(len(supported_regions(a['regions'])),0);self.assertEqual(len(supported_regions(b['regions'])),1)
++        self.assertTrue(all(p['identity_status']=='provisional' for p in b['proposals']))
++        self.assertTrue(all(p['supported_instance_ids'] for p in b['proposals']))
++
++    def test_invalid_seed_never_promotes_proposals(self):
++        v,f=panel(n=2);s=self.seed(v,f,[range(len(f))]);s['mesh_sha256']='bad'
++        with self.assertRaises(ValueError):self.run_case(v,f,s)
++
++    def test_wrong_semantic_label_is_not_relabelled(self):
++        v,f=panel(n=2);labels=np.full(len(f),255);r=self.run_case(v,f,labels=labels)
++        self.assertEqual(len(r['proposals']),0);self.assertEqual(len(supported_regions(r['regions'])),0)
++
++    def test_provisional_and_zero_targets_are_safe_for_target_selection(self):
++        v,f=panel(n=2);r=self.run_case(v,f)
++        self.assertGreater(len(r['proposals']),0);self.assertEqual(supported_regions(r['regions']),[])
++        self.assertEqual(supported_regions([]),[])
++        self.assertEqual(supported_regions([dict(kind='object_candidate',identity_status='provisional',seed_candidate_id=None)]),[])
++
++    def test_stage_npz_aliases_and_verified_ids_remain_separate(self):
++        from spacewatch_pipeline import size_instances as stage
++        root=self.directory/'stage';root.mkdir();out=root/'out';out.mkdir();v,f=panel(n=2)
++        np.savez(root/'input.npz',vertices=v,faces=f,rgb=np.full(v.shape,128,np.uint8),face_class_id=np.full(len(f),6),face_instance_id=np.full(len(f),999),observations=np.full(len(f),2))
++        (root/'classes.json').write_text(json.dumps([dict(id=6,name='chair')]))
++        (root/'sizes.json').write_text(json.dumps(dict(priors=prior(),settings=SETTINGS)))
++        cfg=json.loads((ROOT/'configs/dorm2_dorm3.json').read_text(encoding='utf-8'));cfg['size_segmentation'].update(mode='evidence_v2',assumptions=str(root/'sizes.json'),compare_geometry_only=False,sensitivity_factors=[])
++        with patch.object(stage,'export'):
++            stage.instances(dict(capture=dict(id='test'),config=cfg,output=str(out),dependencies={'test.semantic':dict(arrays=str(root/'input.npz'),vocabulary=str(root/'classes.json'))}))
++        with np.load(out/'mesh_arrays.npz') as d:
++            np.testing.assert_array_equal(d['face_candidate_region_id'],d['face_proposal_id']);self.assertTrue(d['face_proposal_id'].any());self.assertFalse(d['face_instance_id'].any())
++            self.assertTrue((d['upstream_face_instance_id']==999).all())
++        p=json.loads((out/'proposals.json').read_text());self.assertEqual(p[0]['identity_status'],'provisional')
++
++
++if __name__=='__main__':unittest.main(verbosity=2)

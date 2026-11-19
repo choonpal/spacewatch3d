@@ -1,0 +1,19 @@
+{
+  "before": {
+    "views": 19,
+    "zero_object_loss": 0,
+    "nominal_object_goal_survives": 0,
+    "primary_guard_survives": 0,
+    "spatial_failure": 3,
+    "diagnostic_candidates": []
+  },
+  "after": {
+    "views": 21,
+    "zero_object_loss": 0,
+    "nominal_object_goal_survives": 7,
+    "primary_guard_survives": 0,
+    "spatial_failure": 12,
+    "diagnostic_candidates": []
+  },
+  "seconds": 41.13871745020151
+}

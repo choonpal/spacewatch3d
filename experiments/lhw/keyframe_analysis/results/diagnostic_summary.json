@@ -1,0 +1,36 @@
+{
+  "before": {
+    "nominal_and_spatial_cases": [],
+    "all_five_nominal_and_spatial": [],
+    "weighted90_and_spatial": [
+      "vp_frame_00000319",
+      "vp_frame_00000495",
+      "vp_frame_00000675",
+      "vp_frame_00000930",
+      "vp_frame_00001290",
+      "vp_frame_00001991",
+      "vp_frame_00002561",
+      "vp_frame_00003285",
+      "vp_frame_00003491"
+    ]
+  },
+  "after": {
+    "nominal_and_spatial_cases": [
+      "vp_frame_00000859",
+      "vp_frame_00000960",
+      "vp_frame_00003376"
+    ],
+    "all_five_nominal_and_spatial": [
+      "vp_frame_00000859",
+      "vp_frame_00000960",
+      "vp_frame_00003376"
+    ],
+    "weighted90_and_spatial": [
+      "vp_frame_00000859",
+      "vp_frame_00000960",
+      "vp_frame_00001905",
+      "vp_frame_00002194",
+      "vp_frame_00003376"
+    ]
+  }
+}
